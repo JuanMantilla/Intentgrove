@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1150" viewBox="0 0 1440 1150" role="img">
+  <title>08-settings-window: revised static UI proposal</title>
+  <rect x="0" y="0" width="1440" height="1150" rx="0" fill="#F4F5F3" />
+  <text x="24" y="29" fill="#315F70" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">PROPOSED — READY FOR DESIGN REVIEW</text>
+  <text x="24" y="63" fill="#202826" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">08 / One Settings window</text>
+  <text x="24" y="87" fill="#52615C" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Language, appearance, reading typography and project-tree visibility in one place.</text>
+  <rect x="320" y="116" width="800" height="956" rx="10" fill="#202928" stroke="#3C4D47" />
+  <rect x="320" y="116" width="800" height="40" rx="10" fill="#1D2524" />
+  <rect x="336" y="130" width="12" height="12" rx="6" fill="#FF6057" />
+  <rect x="358" y="130" width="12" height="12" rx="6" fill="#FEBC2E" />
+  <rect x="380" y="130" width="12" height="12" rx="6" fill="#28C840" />
+  <text x="684" y="143" fill="#E6EEEA" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Settings</text>
+  <text x="356" y="201" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">General</text>
+  <text x="356" y="248" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Language</text>
+  <rect x="700" y="224" width="384" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="712" y="245" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">English</text>
+  <path id="language-select-chevron" d="M 1058 237.5 L 1063 242.5 L 1068 237.5" fill="none" stroke="#A8B9B1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" />
+  <text x="700" y="279" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Interface language; document text stays unchanged.</text>
+  <text x="356" y="321" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Appearance</text>
+  <rect x="700" y="297" width="120" height="36" rx="6" fill="#2D4547" stroke="#91C5D6" />
+  <text x="716" y="320" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">✓ System</text>
+  <rect x="828" y="297" width="120" height="36" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="844" y="320" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Light</text>
+  <rect x="956" y="297" width="120" height="36" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="972" y="320" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Dark</text>
+  <text x="700" y="356" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">System follows macOS appearance.</text>
+  <rect x="356" y="378" width="728" height="1" rx="0" fill="#3C4D47" />
+  <text x="356" y="419" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Reading</text>
+  <text x="356" y="460" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Font</text>
+  <rect x="700" y="436" width="384" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="712" y="457" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Roboto</text>
+  <path id="font-select-chevron" d="M 1058 449.5 L 1063 454.5 L 1068 449.5" fill="none" stroke="#A8B9B1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" />
+  <text x="356" y="516" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Font size</text>
+  <rect x="700" y="504" width="274" height="3" rx="2" fill="#6B8078" />
+  <rect x="700" y="504" width="91" height="3" rx="2" fill="#91C5D6" />
+  <rect x="785" y="496" width="16" height="18" rx="8" fill="#91C5D6" />
+  <rect x="998" y="488" width="86" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="1010" y="509" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">16 px</text>
+  <text x="356" y="568" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Line spacing</text>
+  <rect x="700" y="556" width="274" height="3" rx="2" fill="#6B8078" />
+  <rect x="700" y="556" width="91" height="3" rx="2" fill="#91C5D6" />
+  <rect x="785" y="548" width="16" height="18" rx="8" fill="#91C5D6" />
+  <rect x="998" y="540" width="86" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="1010" y="561" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">1.6</text>
+  <text x="356" y="620" fill="#E6EEEA" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Text width</text>
+  <rect x="700" y="608" width="274" height="3" rx="2" fill="#6B8078" />
+  <rect x="700" y="608" width="106" height="3" rx="2" fill="#91C5D6" />
+  <rect x="800" y="600" width="16" height="18" rx="8" fill="#91C5D6" />
+  <rect x="998" y="592" width="86" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="1010" y="613" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">760 px</text>
+  <rect x="356" y="644" width="728" height="104" rx="8" fill="#17201F" stroke="#3C4D47" />
+  <text x="376" y="668" fill="#A8B9B1" font-size="11" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">READING PREVIEW</text>
+  <text x="376" y="703" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">A quiet Markdown workspace</text>
+  <text x="376" y="733" fill="#E6EEEA" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Read and edit your document with comfortable typography.</text>
+  <text x="356" y="779" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Applies to reading and in-place editing in this workspace window.</text>
+  <rect x="942" y="760" width="142" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="954" y="781" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Reset reading</text>
+  <rect x="356" y="801" width="728" height="1" rx="0" fill="#3C4D47" />
+  <text x="356" y="840" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Project tree</text>
+  <rect x="356" y="863" width="24" height="24" rx="4" fill="#91C5D6" />
+  <text x="361" y="881" fill="#10272E" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">✓</text>
+  <text x="392" y="882" fill="#E6EEEA" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Documents and images only</text>
+  <text x="392" y="913" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Show Markdown, HTML and supported images in the project tree.</text>
+  <text x="392" y="938" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Folders stay visible. Turn off to list other filenames.</text>
+  <rect x="320" y="969" width="800" height="1" rx="0" fill="#3C4D47" />
+  <text x="356" y="1004" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Preferences apply as you change them.</text>
+  <text x="356" y="1028" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Document files are saved separately with ⌘S.</text>
+  <rect x="998" y="997" width="86" height="32" rx="6" fill="#91C5D6" />
+  <text x="1010" y="1018" fill="#10272E" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Done</text>
+  <text x="24" y="1104" fill="#202826" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">The file-type checkbox belongs to Settings → Project tree, with a clear description of its scope.</text>
+  <text x="24" y="1129" fill="#52615C" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Static SVG proposal. Only supported font choices are offered; existing preferences are retained. No application behavior is implemented.</text>
+</svg>

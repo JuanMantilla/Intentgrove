@@ -1,0 +1,36 @@
+{
+  "baselineFiles": 266,
+  "changed": [
+    "src/reader/SectionEditor.tsx",
+    "src/reader/MarkdownView.tsx",
+    "src/reader/ImageView.tsx",
+    "src/reader/LargeSourceView.tsx",
+    "src/reader/find-index.ts",
+    "src/app/App.tsx",
+    "src/app/i18n.ts",
+    "src/app/DocumentLocation.tsx",
+    "src/app/FolderSearchPanel.tsx",
+    "src/styles/app.css",
+    "tests/ui/workspace-handoff.test.tsx",
+    "tests/ui/folder-search.test.tsx",
+    "tests/ui/close-edit.test.tsx",
+    "tests/ui/workspace.test.tsx",
+    "tests/ui/large-source.test.tsx",
+    "tests/ui/session.test.tsx",
+    "tests/ui/automatic-refresh.test.tsx",
+    "tests/ui/manual-reload.test.tsx",
+    "tests/ui/image-view.test.tsx",
+    "tests/fixtures/redesign-preview.tsx"
+  ],
+  "added": [
+    "src/reader/usePinchZoom.ts",
+    "src/app/ActionMenu.tsx",
+    "src/workspace/visitHistory.ts",
+    "tests/behavior/visit-history.test.ts",
+    "tests/ui/zoom-geometry.test.tsx",
+    "tests/ui/approved-navigation.test.tsx",
+    "tests/ui/pinch-zoom.test.tsx"
+  ],
+  "unchangedDesignFiles": 108,
+  "unchangedNativeFiles": 57
+}

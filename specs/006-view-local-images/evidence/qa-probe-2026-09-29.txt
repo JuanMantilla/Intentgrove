@@ -1,0 +1,32 @@
+F006 fresh image QA, 2026-09-29, macOS 26.2 (25C56), arm64.
+Signed helper tested: SHA-256 9702ee59ee6ffdf24d92743af27c1e7e0fa1037a7b353efef47d6cb5dc5677e5.
+Probe: /private/tmp/md-reader-image-probe.0ixSu1/Probe.app, whose bundled helper hash matches the production .app helper.
+Procedure: open -W -a Probe.app --args DISPOSABLE_INPUT CLAIM DISPOSABLE_RESULT [DISPOSABLE_PNG].
+The probe writes a result after the XPC reply; each result was checked after it appeared.
+
+Reported SVG: specs/007-dark-theme/design/theme-states.svg; copied to a disposable file with identical SHA-256 fc9bba6fc65e61d2538818738f07f595cd7fa0159463561900d4cd64b0686303.
+Original: status=0 format=svg width=1200 height=1200 bytes=12547; visual inspection: shapes present, all text absent. PNG SHA-256 c46586b9c073e6ef90abbc9b0a1eefba0c44d7c5a3213215a662e630f6a9fd53.
+Only change in disposable copy: inherited font-family list -> Roboto. Result: status=0 format=svg width=1200 height=1200 bytes=76301; text visible. PNG SHA-256 b8028985032cad0f9b7ee8489a955d9d198112087dc9a09ec95e1743665db810.
+Only change in disposable copies: inherited font-family list -> sans-serif or Arial. Each output PNG was byte-identical to the original (all text absent).
+Other copied project SVGs: F006 image-states.svg and F001 window.svg decoded with no visible text; output PNGs retained in qa-svg-fixtures/.
+Common-symbol SVG with explicit Roboto: status=0 format=svg width=420 height=110; letters render but menu/check/down symbols render as missing-glyph boxes. PNG SHA-256 f3e9afaf34fb64500da63b77863aebbfa3f5103ac61b054d1240a4bf6f6f67f6.
+Safe literal URL inside a <text> element: status=2 error=unsafe_or_corrupt.
+Safe local gradient using fill="url('#g')": status=2 error=unsafe_or_corrupt; equivalent unquoted fill="url(#g)" decoded successfully.
+Hostile script SVG: status=2 error=unsafe_or_corrupt.
+Embedded data image SVG: status=2 error=unsafe_or_corrupt.
+JPEG claimed as PNG: status=2 error=mismatch.
+
+Fresh signed-helper format checks (status 0; source hashes unchanged; decoded output not a packaged UI check):
+svg    b8743a7b1bbdda3ecb093b6d70088980bbb35cac9275c61a32a32564af83008f  40x30  117 bytes
+png    d3676639b4f0bcb94c39527b7464255ccf5ee1b556c959754a94b9991fce5936  24x16  192 bytes
+jpeg   a0e26f50afbe062cea1ce5b06e9ac769f11025d1be84911e5f6e1f10fb2706aa  24x16  186 bytes
+gif    c761de58c964a0937fc02dc0b10c4a5e7a4ae5b2ae342089d1bb3486a53e2081  24x16  192 bytes
+webp   222804e883882765a3a2a92606d576371be7599fcd9accfb81d937743fdd9f81  100x100  348 bytes
+bmp    da0f674b643e445b66f49b39b76da31919b34edd33084120c4704a4e209cb6ea  24x16  192 bytes
+tiff   ed331b077ccdc96d6f36a39437633ce78622f5cef0a976b90390278e73e44d5f  24x16  192 bytes
+heic   a219b9ed4adef7096172d62279da0fc69a2ea09cb38e3edcb5a8f5e94d7a6e84  24x16  192 bytes (actual heif)
+
+Raster pixel inspection: decoded PNG, JPEG, GIF, BMP, TIFF and HEIC/HEIF outputs were visibly solid red, matching their disposable red source fixtures. The decoded WebP was visibly black, matching an independent macOS sips conversion of the same source. All eight small outputs and the WebP reference are retained in qa-raster-pixels/. This verifies simple pixels through the signed helper, not the production WebView.
+
+QA script issue: zsh tests/native/xpc-format-matrix.sh Probe.app FIXTURES REPORT exited 1 after the SVG row. macOS open -W reported "Unable to block on application (GetProcessPID() returned 18446744073709551016)" and the PNG result file arrived after the script checked it. Individual invocations followed by result-file waits passed all eight formats.
+Focused component regression: npm test -- --reporter=dot --maxWorkers=1 tests/ui/image-view.test.tsx tests/ui/markdown.test.tsx tests/ui/workspace.test.tsx tests/ui/image-refresh.test.tsx => 4 files, 30 tests PASS. These mocked IPC tests did not catch the SVG text defects.

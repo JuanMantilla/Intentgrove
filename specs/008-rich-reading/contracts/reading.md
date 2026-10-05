@@ -1,0 +1,3 @@
+# F002R renderer contracts
+
+Parser/renderer share a versioned block and heading sequence. The outline receives IDs emitted by the same render generation; it cannot navigate stale slugs. Diagram input is bounded source text and a fixed allowlist; the isolated renderer receives no file path, grant, native IPC or network privilege. Its only accepted output is bounded raster bytes plus width/height/status, validated against a request nonce/generation. Metadata parser emits plain strings or a typed error. Highlighter emits text tokens only; Copy uses original fence bytes. Reading preferences accept bounded enum/numeric values and persist only through app-owned settings; F003C restores them.

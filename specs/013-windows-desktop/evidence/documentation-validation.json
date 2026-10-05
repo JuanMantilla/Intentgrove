@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-05",
+  "scope": "Documentation consistency only; no native behavior established",
+  "checks": [
+    {
+      "name": "required artifacts exist",
+      "pass": true
+    },
+    {
+      "name": "FR-001 through FR-011 present",
+      "pass": true
+    },
+    {
+      "name": "no unresolved template placeholders",
+      "pass": true
+    },
+    {
+      "name": "local markdown links resolve",
+      "pass": true,
+      "broken": []
+    },
+    {
+      "name": "active Spec Kit feature matches",
+      "pass": true
+    },
+    {
+      "name": "review hashes match disk",
+      "pass": true
+    },
+    {
+      "name": "repository state within 200 words",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Workspace Reader main window proposal</title>
+  <desc id="desc">Light macOS reading window with a file tree, two tabs, and a centered Markdown document.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; fill: #202826; }
+      .muted { fill: #52615c; }
+      .tiny { font-size: 12px; }
+      .small { font-size: 13px; }
+      .body { font-size: 16px; }
+      .line { stroke: #d8deda; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="#f4f5f3"/>
+  <rect width="1440" height="72" fill="#f8f9f7"/>
+  <line x1="0" y1="71.5" x2="1440" y2="71.5" class="line"/>
+  <circle cx="23" cy="22" r="6.5" fill="#ff5f57"/>
+  <circle cx="43" cy="22" r="6.5" fill="#febc2e"/>
+  <circle cx="63" cy="22" r="6.5" fill="#28c840"/>
+  <text x="720" y="27" text-anchor="middle" class="small muted">docs / README.md</text>
+  <rect x="15" y="44" width="32" height="22" rx="5" fill="#e6ebe8"/>
+  <text x="31" y="60" text-anchor="middle" font-size="15">☰</text>
+  <text x="61" y="60" class="small">Workspace</text>
+  <rect x="1254" y="41" width="78" height="25" rx="6" fill="#e6ebe8"/>
+  <text x="1293" y="58" text-anchor="middle" class="small">Open file</text>
+  <rect x="1340" y="41" width="84" height="25" rx="6" fill="#315f70"/>
+  <text x="1382" y="58" text-anchor="middle" class="small" fill="#ffffff" style="fill:#fff">Open folder</text>
+
+  <rect x="0" y="72" width="264" height="828" fill="#eef0ee"/>
+  <line x1="263.5" y1="72" x2="263.5" y2="900" class="line"/>
+  <text x="20" y="109" font-size="11" font-weight="700" letter-spacing="1.2" class="muted">EXPLORER</text>
+  <text x="20" y="142" font-size="14" font-weight="600">⌄  docs</text>
+  <text x="20" y="163" class="tiny muted">~/projects/example/docs</text>
+  <rect x="15" y="184" width="234" height="31" rx="6" fill="#f8f9f7" stroke="#d8deda"/>
+  <text x="29" y="204" class="small muted">⌕  Filter Markdown</text>
+  <text x="21" y="241" class="small muted">⌄  .agents</text>
+  <text x="39" y="267" class="small muted">◇  guide.md</text>
+  <text x="21" y="293" class="small muted">⌄  .specify</text>
+  <text x="39" y="319" class="small muted">◇  notes.md</text>
+  <text x="21" y="345" class="small muted">⌄  api</text>
+  <text x="39" y="371" class="small muted">◇  authentication.md</text>
+  <rect x="10" y="388" width="244" height="31" rx="5" fill="#dee9e8"/>
+  <text x="39" y="409" class="small" font-weight="600">◇  README.md</text>
+  <text x="39" y="445" class="small muted">◇  getting-started.md</text>
+  <text x="21" y="481" class="small muted">▸  images</text>
+  <line x1="18" y1="838" x2="246" y2="838" class="line"/>
+  <text x="20" y="862" class="tiny muted">Excluded: .git, node_modules, build</text>
+  <text x="20" y="881" class="tiny muted">5 Markdown files · Local only</text>
+
+  <rect x="264" y="72" width="1176" height="43" fill="#f8f9f7"/>
+  <line x1="264" y1="114.5" x2="1440" y2="114.5" class="line"/>
+  <rect x="264" y="72" width="208" height="43" fill="#ffffff"/>
+  <line x1="264" y1="114.5" x2="472" y2="114.5" stroke="#315f70" stroke-width="2"/>
+  <text x="282" y="99" class="small" font-weight="600">README.md</text>
+  <text x="375" y="99" class="tiny muted">docs</text>
+  <text x="450" y="99" class="small muted">×</text>
+  <text x="491" y="99" class="small muted">README.md</text>
+  <text x="587" y="99" class="tiny muted">api</text>
+  <text x="654" y="99" class="small muted">×</text>
+
+  <rect x="390" y="147" width="924" height="705" rx="3" fill="#ffffff"/>
+  <text x="478" y="202" class="tiny muted">DOCS  /  README.MD</text>
+  <text x="478" y="264" font-size="36" font-weight="700">Build notes</text>
+  <text x="478" y="301" class="body muted">A practical guide to this repository and its local workflow.</text>
+  <line x1="478" y1="326" x2="1226" y2="326" class="line"/>
+  <text x="478" y="375" font-size="23" font-weight="700">Getting started</text>
+  <text x="478" y="410" class="body">Open the project folder, choose a document, and follow links inside</text>
+  <text x="478" y="436" class="body">the selected workspace. Your source files stay untouched while reading.</text>
+  <rect x="478" y="466" width="748" height="90" rx="7" fill="#f3f6f5"/>
+  <text x="498" y="493" class="small muted">BASH</text>
+  <text x="498" y="521" font-family="Menlo, monospace" font-size="14" fill="#315f70" style="fill:#315f70">npm install</text>
+  <text x="498" y="543" font-family="Menlo, monospace" font-size="14">npm run test</text>
+  <text x="478" y="607" font-size="23" font-weight="700">Checklist</text>
+  <rect x="480" y="629" width="16" height="16" rx="3" fill="#ffffff" stroke="#52615c"/>
+  <path d="M484 636l3 3 5-6" fill="none" stroke="#315f70" stroke-width="2"/>
+  <text x="509" y="643" class="body">Keep documentation in the repository</text>
+  <rect x="480" y="661" width="16" height="16" rx="3" fill="#ffffff" stroke="#52615c"/>
+  <text x="509" y="675" class="body">Review changes before sharing</text>
+  <text x="478" y="726" font-size="23" font-weight="700">References</text>
+  <text x="478" y="761" class="body" fill="#315f70" style="fill:#315f70">Read the local API guide →</text>
+  <rect x="1039" y="785" width="187" height="37" rx="6" fill="#eef0ee"/>
+  <text x="1132" y="809" text-anchor="middle" class="small muted">F001 reading state</text>
+</svg>

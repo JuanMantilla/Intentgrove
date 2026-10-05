@@ -1,0 +1,736 @@
+
+> md-reader@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/juanmantilla/projects/personal/md-reader
+
+ ❯ tests/ui/manual-reload.test.tsx (5 tests | 1 failed) 2811ms
+   × keeps a cancelled folder job and its unchecked branch visible 489ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/manual-reload.test.tsx > keeps a cancelled folder job and its unchecked branch visible
+TestingLibraryElementError: Unable to find an accessible element with the role "menuitem" and name `/Reload docs folder/i`
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"toolbar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Toggle sidebar":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Toggle sidebar"[39m
+    [33mclass[39m=[32m"icon-button"[39m
+    [33mtitle[39m=[32m"Toggle sidebar"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Outline":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Reading settings":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"reading-settings-panel"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Projects":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"projects-trigger"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "docs":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"tree-row"[39m
+    [33mdata-tree-path[39m=[32m"[\"docs\"]"[39m
+    [33mtitle[39m=[32m"docs"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "readme.md":
+  [36m<button[39m
+    [33mclass[39m=[32m"tree-row"[39m
+    [33mdata-tree-path[39m=[32m"[\"readme.md\"]"[39m
+    [33mtitle[39m=[32m"readme.md"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Manage…":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Back":
+  [36m<button[39m
+    [33maria-description[39m=[32m"No previous file"[39m
+    [33maria-label[39m=[32m"Back"[39m
+    [33mclass[39m=[32m"history-arrow"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtitle[39m=[32m"No previous file"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Forward":
+  [36m<button[39m
+    [33maria-description[39m=[32m"No next file"[39m
+    [33maria-label[39m=[32m"Forward"[39m
+    [33mclass[39m=[32m"history-arrow"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtitle[39m=[32m"No next file"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Go menu":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"menu"[39m
+    [33maria-label[39m=[32m"Go menu"[39m
+    [33mclass[39m=[32m"history-menu-trigger"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Open documents (0)":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"document-list-trigger"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Open folder":
+  [36m<button[39m
+    [33mclass[39m=[32m"primary-button"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Open file":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Appearance":
+  [36m<select[39m
+    [33maria-label[39m=[32m"Appearance"[39m
+  [36m/>[39m
+
+  Name "Language":
+  [36m<select[39m
+    [33maria-label[39m=[32m"Language"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "System":
+  [36m<option[39m
+    [33mvalue[39m=[32m"system"[39m
+  [36m/>[39m
+
+  Name "Light":
+  [36m<option[39m
+    [33mvalue[39m=[32m"light"[39m
+  [36m/>[39m
+
+  Name "Dark":
+  [36m<option[39m
+    [33mvalue[39m=[32m"dark"[39m
+  [36m/>[39m
+
+  Name "English":
+  [36m<option[39m
+    [33mvalue[39m=[32m"en"[39m
+  [36m/>[39m
+
+  Name "Español":
+  [36m<option[39m
+    [33mvalue[39m=[32m"es"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "Explorer":
+  [36m<aside[39m
+    [33maria-hidden[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Explorer"[39m
+    [33mclass[39m=[32m"sidebar"[39m
+    [33mdata-animate[39m=[32m"false"[39m
+    [33mdata-compact[39m=[32m"false"[39m
+    [33mdata-open[39m=[32m"true"[39m
+    [33mstyle[39m=[32m"width: 264px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Documents and images only":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"tree-group"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "Visited files":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Visited files"[39m
+    [33mclass[39m=[32m"history-controls"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"main-panel"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  tablist:
+
+  Name "Documents":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Documents"[39m
+    [33mclass[39m=[32m"tab-strip"[39m
+    [33mrole[39m=[32m"tablist"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Read your local Markdown":
+  [36m<h1 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-shell"[39m
+      [33mstyle[39m=[32m"--toolbar-height: 0px;"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"toolbar"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Toggle sidebar"[39m
+          [33mclass[39m=[32m"icon-button"[39m
+          [33mtitle[39m=[32m"Toggle sidebar"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m☰[0m
+        [36m</button>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"workspace-title"[39m
+        [36m>[39m
+          [0mfixture[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"toolbar-spacer"[39m
+        [36m/>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"local-badge"[39m
+        [36m>[39m
+          [0mLocal files only[0m
+        [36m</span>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"toolbar-group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mOutline[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-controls[39m=[32m"reading-settings-panel"[39m
+            [33maria-expanded[39m=[32m"false"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mReading settings[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"toolbar-group"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"appearance-control"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mAppearance[0m
+            [36m</span>[39m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Appearance"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"system"[39m
+              [36m>[39m
+                [0mSystem[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"light"[39m
+              [36m>[39m
+                [0mLight[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"dark"[39m
+              [36m>[39m
+                [0mDark[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"language-control"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mLanguage[0m
+            [36m</span>[39m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Language"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"en"[39m
+              [36m>[39m
+                [0mEnglish[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"es"[39m
+              [36m>[39m
+                [0mEspañol[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+        [36m</div>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"workspace-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33maria-hidden[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Explorer"[39m
+          [33mclass[39m=[32m"sidebar"[39m
+          [33mdata-animate[39m=[32m"false"[39m
+          [33mdata-compact[39m=[32m"false"[39m
+          [33mdata-open[39m=[32m"true"[39m
+          [33mstyle[39m=[32m"width: 264px;"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sidebar-heading sidebar-modes"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"menu"[39m
+              [33mclass[39m=[32m"projects-trigger"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mProjects[0m
+              [36m</span>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mheight[39m=[32m"12"[39m
+                [33mviewBox[39m=[32m"0 0 12 12"[39m
+                [33mwidth[39m=[32m"12"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M1 3 L6 8 L11 3"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-width[39m=[32m"1.75"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"folder-search-host"[39m
+            [33mhidden[39m=[32m""[39m
+            [33minert[39m=[32m""[39m
+          [36m>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Search folder"[39m
+              [33mclass[39m=[32m"folder-search"[39m
+              [33mrole[39m=[32m"search"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mBack to explorer[0m
+              [36m</button>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"folder-search-label"[39m
+              [36m>[39m
+                [0mSearch folder[0m
+                [36m<input[39m
+                  [33mautocomplete[39m=[32m"off"[39m
+                  [33mmaxlength[39m=[32m"256"[39m
+                  [33mplaceholder[39m=[32m"File name or text"[39m
+                  [33mtype[39m=[32m"search"[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m/>[39m
+              [36m</label>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"folder-search-scope"[39m
+              [36m>[39m
+                [0mSearch scope[0m
+                [0m: [0m
+                [0mfixture[0m
+                [0m · [0m
+                [0mNames and content[0m
+              [36m</p>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"Search in"[39m
+                [33mclass[39m=[32m"search-modes"[39m
+                [33mrole[39m=[32m"group"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"true"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                  [36m>[39m
+                    [0m✓ [0m
+                  [36m</span>[39m
+                  [0mNames and content[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mFile names[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mDocument text[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"folder-search-scope"[39m
+              [36m>[39m
+                [0mContents search covers Markdown files.[0m
+              [36m</p>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"folder-search-check"[39m
+              [36m>[39m
+                [36m<input[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mInclude ignored files[0m
+              [36m</label>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"folder-search-actions"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mdisabled[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mSearch[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mdisabled[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mClear search[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"folder-search-scope"[39m
+              [36m>[39m
+                [0mEnter a query to enable Search.[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33maria-live[39m=[32m"polite"[39m
+                [33mclass[39m=[32m"folder-search-status"[39m
+                [33mrole[39m=[32m"status"[39m
+              [36m>[39m
+                [0mEnter text to search the selected folder.[0m
+              [36m</p>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"folder-search-groups"[39m
+              [36m/>[39m
+            [36m</section>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"explorer-host"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"root-label"[39m
+              [33mtabindex[39m=[32m"0"[39m
+              [33mtitle[39m=[32m"/tmp/fixture"[39m
+            [36m>[39m
+              [0mfixture[0m
+            [36m</div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"filter-control"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [0mDocuments and images only[0m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"tree-scroll"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"tree-group"[39m
+                [33mrole[39m=[32m"group"[39m
+              [36m>[39m
+                [36m<div>[39m
+                  [36m<button[39m
+                    [33maria-expanded[39m=[32m"false"[39m
+                    [33mclass[39m=[32m"tree-row"[39m
+                    [33mdata-tree-path[39m=[32m"[\"docs\"]"[39m
+                    [33mtitle[39m=[32m"docs"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"tree-icon"[39m
+                    [36m>[39m
+                      [0m›[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"tree-name"[39m
+                    [36m>[39m
+                      [0mdocs[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"tree-row"[39m
+                    [33mdata-tree-path[39m=[32m"[\"readme.md\"]"[39m
+                    [33mtitle[39m=[32m"readme.md"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"tree-icon"[39m
+                    [36m>[39m
+                      [0m◇[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"tree-name"[39m
+                    [36m>[39m
+                      [0mreadme.md[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sidebar-footnote"[39m
+          [36m>[39m
+            [36m<strong>[39m
+              [0mStorage and recovery[0m
+            [36m</strong>[39m
+            [36m<div>[39m
+              [0mOpen edits and recovery offers[0m
+              [0m: [0m
+              [0m0[0m
+            [36m</div>[39m
+            [36m<button[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mManage…[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</aside>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"main-panel"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"document-tabs"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"Visited files"[39m
+              [33mclass[39m=[32m"history-controls"[39m
+              [33mrole[39m=[32m"group"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33maria-description[39m=[32m"No previous file"[39m
+                [33maria-label[39m=[32m"Back"[39m
+                [33mclass[39m=[32m"history-arrow"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtitle[39m=[32m"No previous file"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mheight[39m=[32m"12"[39m
+                  [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [33mwidth[39m=[32m"12"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M9 0 L3 6 L9 12"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"1.75"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</button>[39m
+              [36m<button[39m
+                [33maria-description[39m=[32m"No next file"[39m
+                [33maria-label[39m=[32m"Forward"[39m
+                [33mclass[39m=[32m"history-arrow"[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtitle[39m=[32m"No next file"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mheight[39m=[32m"12"[39m
+                  [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [33mwidth[39m=[32m"12"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M3 0 L9 6 L3 12"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"1.75"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"Documents"[39m
+              [33mclass[39m=[32m"tab-strip"[39m
+              [33mrole[39m=[32m"tablist"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"menu"[39m
+              [33maria-label[39m=[32m"Go menu"[39m
+              [33mclass[39m=[32m"history-menu-trigger"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mGo[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33mclass[39m=[32m"document-list-trigger"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mOpen documents[0m
+              [0m ([0m
+              [0m0[0m
+              [0m)[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"reading-area reading-font-roboto"[39m
+            [33mstyle[39m=[32m"--reading-width: 760px; --reading-size: 16px; --reading-line-height: 1.6;"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"reader-scroll"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"welcome"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"welcome-mark"[39m
+                [36m>[39m
+                  [0mM[0m
+                [36m</div>[39m
+                [36m<h1>[39m
+                  [0mRead your local Markdown[0m
+                [36m</h1>[39m
+                [36m<p>[39m
+                  [0mOpen a Markdown file to start reading.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"welcome-actions"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"primary-button"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mOpen folder[0m
+                  [36m</button>[39m
+                  [36m<button[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mOpen file[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"reload-feedback-footer"[39m
+          [36m/>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/ui/manual-reload.test.tsx:99:26
+     97|   const folder = await screen.findByTitle("docs");
+     98|   fireEvent.contextMenu(folder);
+     99|   fireEvent.click(screen.getByRole("menuitem", { name: /Reload docs fo…
+       |                          ^
+    100|   await waitFor(() => expect(mocks.reloadItem).toHaveBeenCalled());
+    101|   const listener = mocks.listeners["refresh:job_progress"];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 38 passed (39)
+      Tests  1 failed | 268 passed (269)
+   Start at  06:10:32
+   Duration  35.48s (transform 3.33s, setup 0ms, import 32.67s, tests 131.48s, environment 64.13s)
+

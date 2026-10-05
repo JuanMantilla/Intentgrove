@@ -1,0 +1,33 @@
+   Compiling md_reader v0.1.0 (/Users/juanmantilla/projects/personal/md-reader/src-tauri)
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src/refresh.rs:125:12
+    |
+ 55 | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `md_reader` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.94s
+     Running unittests src/lib.rs (target/qa-native/debug/deps/md_reader_lib-a7b6d172da6dc3bc)
+
+running 10 tests
+test acceptance_harness::tests::authentication_replay_and_expiry ... ok
+test acceptance_harness::tests::released_operation_is_not_cancelled_on_disconnect ... ok
+test acceptance_harness::tests::fixture_fault_is_one_shot ... ok
+test acceptance_harness::tests::disconnect_and_timeout_do_not_release_save ... ok
+test acceptance_harness::tests::bounds_and_snapshot_rejection ... ok
+test acceptance_harness::tests::disconnect_while_held_never_runs_body ... ok
+test acceptance_harness::tests::gate_release_once_preserves_operation ... ok
+test acceptance_harness::tests::original_validation_runs_after_release ... ok
+test acceptance_harness::tests::valid_protocol_and_rejection ... ok
+test acceptance_harness::tests::unsafe_paths_and_trace_overflow_are_rejected ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.01s
+

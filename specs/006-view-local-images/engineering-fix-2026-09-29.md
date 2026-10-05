@@ -1,0 +1,14 @@
+# F006 SVG repair — engineering verification, 2026-09-29
+
+The signed macOS helper in the rebuilt app has SHA-256 `8b95802e220b82e1e3b200ad460fb54107ee9614ec47b3aca23a67d24bb54afb`. The disposable XPC probe used the exact same helper binary. The new local DMG is `src-tauri/target/release/bundle/dmg/Markdown-workspace-svg-fix-2026-09-29.dmg`, SHA-256 `8945470593c77594643228a8b509e82a8d7fc9dbcdf2c3efde297a09e0de6a8d`. `hdiutil verify`, mounted-app deep signature verification, and helper hash comparison **PASS**. This is an ad-hoc signed local build.
+
+| Check | Result | Evidence |
+|---|---|---|
+| Rust helper tests (`cargo test --manifest-path src-tauri/xpc/Cargo.toml --locked`) | **PASS**, 4/4 | Generic/system font fallback, actual bundled glyph coverage and rendered pixels, visible URL text versus blocked resource URLs, quoted fragment gradient versus external/data references, active SVG rejection. |
+| App build (`npm run build:mac`, Rust 1.88) | **PASS** | TypeScript/Vite, Tauri release build, and deep signed `.app`. |
+| Signed XPC format matrix with relative input paths | **PASS**, 8/8 | [Exact statuses and unchanged source hashes](evidence/format-matrix-fix-2026-09-29.txt): SVG, PNG, JPEG, GIF, WebP, BMP, TIFF, HEIC/HEIF. |
+| Byte-identical disposable copy of `theme-states.svg` | **PASS, helper pixels** | Source SHA-256 `fc9bba6fc65e61d2538818738f07f595cd7fa0159463561900d4cd64b0686303` before/after; `status=0`, 1200 × 1200, 80,389 PNG bytes. [Rendered PNG](evidence/svg-fix-2026-09-29/theme-states-fixed.png) visibly has its text and symbols, unlike the [old output](evidence/qa-svg-fixtures/theme-states.png). |
+| Symbols, literal URL, quoted local gradient | **PASS, helper pixels** | Original symbol fixture unchanged (`085782b690355de05a9c78223665bd978212e8c92193775c1ebf668bb7224060`), `status=0`; [widened disposable copy](evidence/svg-fix-2026-09-29/symbols-wide.svg) exposes all three glyphs in its [PNG](evidence/svg-fix-2026-09-29/symbols-wide-fixed.png). URL fixture SHA-256 `bbb575b4328ed5466d9a16289ebb0cfe217b66c4032f55df6f30c5bccdf44d12`, `status=0`, [PNG](evidence/svg-fix-2026-09-29/url-label-fixed.png). Quoted gradient SHA-256 `6ea80592dfa3d841317bdff2998739f2dc5ddef6e3d3127b7683b627364cd566`, `status=0`, [PNG](evidence/svg-fix-2026-09-29/gradient-quoted-fixed.png). All source hashes unchanged. |
+| Script-bearing SVG | **PASS, helper rejection** | `status=2 error=unsafe_or_corrupt`; fixture SHA-256 `1118be8ea7e36f0c1a09dbb87e8c0f0db8cf4c2cd14ce25a4a290e014bf3dfe8`. |
+
+**NOT TESTED:** A visible packaged app window for the tab and inline Markdown journeys. The signed helper supplies both paths, but only a separate visible macOS QA pass can mark their full acceptance scenarios PASS. The older QA failure remains historical evidence for the earlier helper binary.

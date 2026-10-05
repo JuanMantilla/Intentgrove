@@ -1,0 +1,659 @@
+   Compiling md_reader v0.1.0 (/Users/juanmantilla/projects/personal/md-reader/src-tauri)
+warning: unused import: `io_error`
+ --> src/editing.rs:5:30
+  |
+5 | use crate::scope::{identity, io_error, open_relative, open_selected, validate_segment, AppError, AppResult};
+  |                              ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `io_error`
+ --> src/listing.rs:2:5
+  |
+2 |     io_error, open_relative, read_snapshot_entries, AppError, AppResult, DirectoryPage,
+  |     ^^^^^^^^
+
+warning: unused import: `OpenOptions`
+ --> src/large_source.rs:8:27
+  |
+8 | use std::fs::{self, File, OpenOptions};
+  |                           ^^^^^^^^^^^
+
+warning: unused imports: `DirBuilder`, `File`, `OpenOptions`, and `Permissions`
+ --> src/recovery.rs:8:21
+  |
+8 | use std::fs::{self, DirBuilder, File, OpenOptions, Permissions};
+  |                     ^^^^^^^^^^  ^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `File` and `OpenOptions`
+ --> src/recents.rs:8:21
+  |
+8 | use std::fs::{self, File, OpenOptions};
+  |                     ^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `File` and `OpenOptions`
+ --> src/save_copies.rs:4:21
+  |
+4 | use std::fs::{self, File, OpenOptions};
+  |                     ^^^^  ^^^^^^^^^^^
+
+warning: unused import: `read_page`
+  --> src/scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused imports: `File` and `OpenOptions`
+ --> src/session.rs:7:21
+  |
+7 | use std::fs::{self, File, OpenOptions};
+  |                     ^^^^  ^^^^^^^^^^^
+
+warning: unused variable: `metadata`
+   --> src/save_copies.rs:130:13
+    |
+130 |         let metadata = file.metadata().map_err(io_error)?;
+    |             ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_metadata`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `read_page` is never used
+   --> src/platform/macos.rs:144:8
+    |
+144 | pub fn read_page(
+    |        ^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: field `0` is never read
+ --> src/platform/storage.rs:5:31
+  |
+5 | pub(crate) struct StorageLock(pub(super) File);
+  |                   ----------- ^^^^^^^^^^^^^^^
+  |                   |
+  |                   field in this struct
+  |
+  = help: consider removing this field
+
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src/refresh.rs:125:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: methods `reselect_root` and `reselect_explicit_file` are never used
+   --> src/state.rs:254:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (lib) generated 13 warnings (run `cargo fix --lib -p md_reader` to apply 8 suggestions)
+warning: unused import: `native::*`
+   --> tests/../src/platform/storage.rs:113:16
+    |
+113 | pub(crate) use native::*;
+    |                ^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `macos_save::*`
+  --> tests/../src/platform/mod.rs:41:16
+   |
+41 | pub(crate) use macos_save::*;
+   |                ^^^^^^^^^^^^^
+
+warning: unused import: `io_error`
+ --> tests/../src/listing.rs:2:5
+  |
+2 |     io_error, open_relative, read_snapshot_entries, AppError, AppResult, DirectoryPage,
+  |     ^^^^^^^^
+
+warning: unused import: `read_page`
+  --> tests/../src/scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused import: `crate::platform::read_search_entries`
+  --> tests/../src/scope.rs:37:16
+   |
+37 | pub(crate) use crate::platform::read_search_entries;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `require_editing` is never used
+  --> tests/../src/platform/mod.rs:42:15
+   |
+42 | pub(crate) fn require_editing() -> crate::scope::AppResult<()> {
+   |               ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `read_search_entries` is never used
+   --> tests/../src/platform/macos.rs:248:15
+    |
+248 | pub(crate) fn read_search_entries(
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: struct `StorageLock` is never constructed
+ --> tests/../src/platform/storage.rs:5:19
+  |
+5 | pub(crate) struct StorageLock(pub(super) File);
+  |                   ^^^^^^^^^^^
+
+warning: function `ensure_private_dir` is never used
+  --> tests/../src/platform/storage.rs:34:19
+   |
+34 |     pub(crate) fn ensure_private_dir(path: &Path) -> AppResult<()> {
+   |                   ^^^^^^^^^^^^^^^^^^
+
+warning: function `create_private_file` is never used
+  --> tests/../src/platform/storage.rs:56:19
+   |
+56 |     pub(crate) fn create_private_file(path: &Path) -> AppResult<File> {
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: function `verify_private_file` is never used
+  --> tests/../src/platform/storage.rs:66:19
+   |
+66 |     pub(crate) fn verify_private_file(file: &File) -> AppResult<()> {
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: function `lock_private` is never used
+  --> tests/../src/platform/storage.rs:76:19
+   |
+76 |     pub(crate) fn lock_private(
+   |                   ^^^^^^^^^^^^
+
+warning: function `sync_private_directory` is never used
+   --> tests/../src/platform/storage.rs:100:19
+    |
+100 |     pub(crate) fn sync_private_directory(dir: &Path) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `publish_private` is never used
+   --> tests/../src/platform/storage.rs:103:19
+    |
+103 |     pub(crate) fn publish_private(from: &Path, to: &Path) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^
+
+warning: function `preserve_previous` is never used
+   --> tests/../src/platform/storage.rs:106:19
+    |
+106 |     pub(crate) fn preserve_previous(from: &Path, to: &Path) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: struct `StageCleanup` is never constructed
+ --> tests/../src/platform/macos_save.rs:9:8
+  |
+9 | struct StageCleanup<'a> {
+  |        ^^^^^^^^^^^^
+
+warning: associated items `new` and `disarm` are never used
+  --> tests/../src/platform/macos_save.rs:15:8
+   |
+14 | impl<'a> StageCleanup<'a> {
+   | ------------------------- associated items in this implementation
+15 |     fn new(parent: &'a File, name: &'a str) -> Self {
+   |        ^^^
+...
+22 |     fn disarm(&mut self) {
+   |        ^^^^^^
+
+warning: function `stage_bytes` is never used
+  --> tests/../src/platform/macos_save.rs:34:15
+   |
+34 | pub(crate) fn stage_bytes(parent: &File, bytes: &[u8], mode: u32) -> AppResult<(String, File)> {
+   |               ^^^^^^^^^^^
+
+warning: function `remove_stage` is never used
+  --> tests/../src/platform/macos_save.rs:66:15
+   |
+66 | pub(crate) fn remove_stage(parent: &File, name: &str) {
+   |               ^^^^^^^^^^^^
+
+warning: function `rename_stage` is never used
+  --> tests/../src/platform/macos_save.rs:72:15
+   |
+72 | pub(crate) fn rename_stage(parent: &File, stage_name: &str, target_name: &str) -> AppResult<()> {
+   |               ^^^^^^^^^^^^
+
+warning: function `link_stage_new` is never used
+  --> tests/../src/platform/macos_save.rs:91:15
+   |
+91 | pub(crate) fn link_stage_new(parent: &File, stage_name: &str, target_name: &str) -> AppResult<()> {
+   |               ^^^^^^^^^^^^^^
+
+warning: function `document_mode` is never used
+   --> tests/../src/platform/macos_save.rs:111:15
+    |
+111 | pub(crate) fn document_mode(file: &File) -> AppResult<u32> {
+    |               ^^^^^^^^^^^^^
+
+warning: function `read_document` is never used
+   --> tests/../src/document.rs:219:14
+    |
+219 | pub async fn read_document(
+    |              ^^^^^^^^^^^^^
+
+warning: function `list_entries` is never used
+  --> tests/../src/listing.rs:78:14
+   |
+78 | pub async fn list_entries(
+   |              ^^^^^^^^^^^^
+
+warning: function `cancel_listing` is never used
+   --> tests/../src/listing.rs:102:8
+    |
+102 | pub fn cancel_listing(state: tauri::State<'_, AppState>, token: String) -> AppResult<()> {
+    |        ^^^^^^^^^^^^^^
+
+warning: fields `generation`, `disk_version`, `identity_key`, and `checked_at` are never read
+  --> tests/../src/refresh.rs:17:9
+   |
+16 |     FileChanged {
+   |     ----------- fields in this variant
+17 |         generation: u64,
+   |         ^^^^^^^^^^
+18 |         file_id: String,
+19 |         disk_version: String,
+   |         ^^^^^^^^^^^^
+20 |         identity_key: String,
+   |         ^^^^^^^^^^^^
+21 |         checked_at: u128,
+   |         ^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `generation`, `root_id`, `segments`, and `snapshot_id` are never read
+  --> tests/../src/refresh.rs:24:9
+   |
+23 |     DirectoryChanged {
+   |     ---------------- fields in this variant
+24 |         generation: u64,
+   |         ^^^^^^^^^^
+25 |         root_id: String,
+   |         ^^^^^^^
+26 |         segments: Vec<String>,
+   |         ^^^^^^^^
+27 |         snapshot_id: String,
+   |         ^^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `generation`, `file_id`, `reason_code`, and `checked_at` are never read
+  --> tests/../src/refresh.rs:30:9
+   |
+29 |     Uncertain {
+   |     --------- fields in this variant
+30 |         generation: u64,
+   |         ^^^^^^^^^^
+31 |         file_id: String,
+   |         ^^^^^^^
+32 |         reason_code: &'static str,
+   |         ^^^^^^^^^^^
+33 |         checked_at: u128,
+   |         ^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `watch_explicit_file` is never used
+  --> tests/../src/refresh.rs:93:12
+   |
+55 | impl RefreshCore {
+   | ---------------- method in this implementation
+...
+93 |     pub fn watch_explicit_file(&mut self, file_id: &str) -> AppResult<()> {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+warning: fields `root_id` and `segments` are never read
+   --> tests/../src/refresh.rs:246:9
+    |
+245 |     RootFile {
+    |     -------- fields in this variant
+246 |         root_id: String,
+    |         ^^^^^^^
+247 |         segments: Vec<String>,
+    |         ^^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `root_id` and `segments` are never read
+   --> tests/../src/refresh.rs:250:9
+    |
+249 |     Folder {
+    |     ------ fields in this variant
+250 |         root_id: String,
+    |         ^^^^^^^
+251 |         segments: Vec<String>,
+    |         ^^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `file_id` is never read
+   --> tests/../src/refresh.rs:254:9
+    |
+253 |     ExplicitFile {
+    |     ------------ field in this variant
+254 |         file_id: String,
+    |         ^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReloadProgress` is never constructed
+   --> tests/../src/refresh.rs:259:12
+    |
+259 | pub struct ReloadProgress {
+    |            ^^^^^^^^^^^^^^
+    |
+    = note: `ReloadProgress` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: enum `ReloadUpdate` is never used
+   --> tests/../src/refresh.rs:267:10
+    |
+267 | pub enum ReloadUpdate {
+    |          ^^^^^^^^^^^^
+    |
+    = note: `ReloadUpdate` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReloadOutcome` is never constructed
+   --> tests/../src/refresh.rs:277:12
+    |
+277 | pub struct ReloadOutcome {
+    |            ^^^^^^^^^^^^^
+    |
+    = note: `ReloadOutcome` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: function `file_in_folder` is never used
+   --> tests/../src/refresh.rs:284:4
+    |
+284 | fn file_in_folder(grant: &crate::state::FileGrant, root_id: &str, folder: &[String]) -> bool {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `run_reload` is never used
+   --> tests/../src/refresh.rs:291:8
+    |
+291 | pub fn run_reload(
+    |        ^^^^^^^^^^
+
+warning: fields `generation`, `root_id`, `open_file_ids`, and `expanded_directories` are never read
+   --> tests/../src/refresh.rs:474:5
+    |
+473 | struct VisibleState {
+    |        ------------ fields in this struct
+474 |     generation: u64,
+    |     ^^^^^^^^^^
+475 |     root_id: Option<String>,
+    |     ^^^^^^^
+476 |     open_file_ids: Vec<String>,
+    |     ^^^^^^^^^^^^^
+477 |     expanded_directories: Vec<Vec<String>>,
+    |     ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `VisibleState` has derived impls for the traits `Default` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `state`, `visible`, `running`, `watch_failure`, and `reload_jobs` are never read
+   --> tests/../src/refresh.rs:482:5
+    |
+481 | pub struct RefreshService {
+    |            -------------- fields in this struct
+482 |     state: AppState,
+    |     ^^^^^
+483 |     core: Arc<Mutex<RefreshCore>>,
+484 |     visible: Arc<Mutex<VisibleState>>,
+    |     ^^^^^^^
+485 |     running: Arc<AtomicBool>,
+    |     ^^^^^^^
+486 |     watch_failure: Arc<Mutex<Option<String>>>,
+    |     ^^^^^^^^^^^^^
+487 |     reload_jobs: Arc<Mutex<HashMap<String, Arc<AtomicBool>>>>,
+    |     ^^^^^^^^^^^
+    |
+    = note: `RefreshService` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: struct `FileChangedPayload` is never constructed
+   --> tests/../src/refresh.rs:492:8
+    |
+492 | struct FileChangedPayload {
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: struct `DirectoryChangedPayload` is never constructed
+   --> tests/../src/refresh.rs:502:8
+    |
+502 | struct DirectoryChangedPayload {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ItemStatusPayload` is never constructed
+   --> tests/../src/refresh.rs:511:8
+    |
+511 | struct ItemStatusPayload {
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: enum `StatusTargetRef` is never used
+   --> tests/../src/refresh.rs:521:6
+    |
+521 | enum StatusTargetRef {
+    |      ^^^^^^^^^^^^^^^
+
+warning: struct `JobProgressPayload` is never constructed
+   --> tests/../src/refresh.rs:532:8
+    |
+532 | struct JobProgressPayload {
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `status_target` is never used
+   --> tests/../src/refresh.rs:546:4
+    |
+546 | fn status_target(target: &ReloadTarget) -> StatusTargetRef {
+    |    ^^^^^^^^^^^^^
+
+warning: function `emit_progress` is never used
+   --> tests/../src/refresh.rs:557:4
+    |
+557 | fn emit_progress(app: &AppHandle, generation: u64, job_id: &str, progress: ReloadProgress) {
+    |    ^^^^^^^^^^^^^
+
+warning: function `emit_notices` is never used
+   --> tests/../src/refresh.rs:579:4
+    |
+579 | fn emit_notices(app: &AppHandle, notices: Vec<RefreshNotice>) -> AppResult<()> {
+    |    ^^^^^^^^^^^^
+
+warning: multiple methods are never used
+   --> tests/../src/refresh.rs:672:12
+    |
+647 | impl RefreshService {
+    | ------------------- methods in this implementation
+...
+672 |     pub fn start_worker(&self, app: AppHandle) {
+    |            ^^^^^^^^^^^^
+...
+728 |     pub fn watch_root(&self, root_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^
+...
+736 |     pub fn watch_explicit_file(&self, file_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+744 |     pub fn stop(&self) {
+    |            ^^^^
+...
+756 |     pub fn suspend_watches(&self) {
+    |            ^^^^^^^^^^^^^^^
+...
+764 |     pub fn reload_now(
+    |            ^^^^^^^^^^
+...
+927 |     pub fn cancel_reload_now(
+    |            ^^^^^^^^^^^^^^^^^
+...
+948 |     pub fn reconcile_visible_now(
+    |            ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reload_item` is never used
+    --> tests/../src/refresh.rs:1020:14
+     |
+1020 | pub async fn reload_item(
+     |              ^^^^^^^^^^^
+
+warning: function `cancel_reload` is never used
+    --> tests/../src/refresh.rs:1030:8
+     |
+1030 | pub fn cancel_reload(
+     |        ^^^^^^^^^^^^^
+
+warning: function `reconcile_visible_state` is never used
+    --> tests/../src/refresh.rs:1039:14
+     |
+1039 | pub async fn reconcile_visible_state(
+     |              ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `get_confirmed_document_impl` is never used
+    --> tests/../src/refresh.rs:1061:8
+     |
+1061 | pub fn get_confirmed_document_impl(
+     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `get_confirmed_document` is never used
+    --> tests/../src/refresh.rs:1075:14
+     |
+1075 | pub async fn get_confirmed_document(
+     |              ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `pending_root` is never read
+  --> tests/../src/state.rs:30:5
+   |
+23 | struct Registry {
+   |        -------- field in this struct
+...
+30 |     pending_root: Option<(String, PathBuf, Identity, u64)>,
+   |     ^^^^^^^^^^^^
+   |
+   = note: `Registry` has a derived impl for the trait `Default`, but this is intentionally ignored during dead code analysis
+
+warning: variant `Explicit` is never constructed
+  --> tests/../src/state.rs:70:5
+   |
+65 | pub enum FileSource {
+   |          ---------- variant in this enum
+...
+70 |     Explicit {
+   |     ^^^^^^^^
+   |
+   = note: `FileSource` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: multiple methods are never used
+   --> tests/../src/state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+197 |     pub fn register_explicit_file(&self, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+206 |     fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (test "automatic_refresh") generated 56 warnings (run `cargo fix --test "automatic_refresh"` to apply 5 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 32.66s
+     Running tests/automatic_refresh.rs (src-tauri/target/debug/deps/automatic_refresh-ee521965b52fb27b)
+
+running 19 tests
+test document::tests::handles_unicode_case_replacement_denial_and_nonregular_targets ... ok
+test document::tests::preserves_fixture_inventory_and_case_variant_identity ... ok
+test document::tests::reads_without_changing_source_and_rejects_invalid_utf8 ... ok
+test document::tests::reports_binary_oversize_and_missing_files_without_partial_content ... ok
+test focus_reconciliation_finds_a_change_without_a_watcher_event ... ok
+test listing::tests::sorted_snapshot_pages_and_rejects_stale_token ... ok
+test platform::macos::tests::includes_documentation_dot_directories_and_excludes_dependency_trees ... ok
+test platform::macos::tests::measures_large_folder_first_page_and_cancellation ... ignored, measured 25,000-entry fixture; run explicitly for acceptance evidence
+test platform::macos::tests::never_follows_a_symlink_out_of_a_selected_root ... ok
+test platform::macos::tests::pages_a_directory_without_sharing_cursor_state ... ok
+test platform::macos::tests::rejects_dataless_metadata_before_content_open ... ok
+test platform::macos::tests::rejects_unsafe_segments ... ok
+test platform::macos::tests::vanished_root_and_symlink_cycle_do_not_hang_listing ... ok
+test platform::windows_path::tests::only_accepts_absolute_drive_paths_and_preserves_case_unicode ... ok
+test platform::windows_path::tests::rejects_streams_devices_ambiguous_and_reserved_names ... ok
+test refresh::worker_tests::a_watcher_error_reports_uncertainty_instead_of_a_confirmed_hint ... ok
+test refresh::worker_tests::idle_worker_does_not_hold_the_scope_mutex ... ok
+test staged_write_only_reports_a_confirmed_version_or_uncertainty ... FAILED
+test watcher_hints_refresh_in_place_and_atomic_saves ... FAILED
+
+failures:
+
+---- staged_write_only_reports_a_confirmed_version_or_uncertainty stdout ----
+
+thread 'staged_write_only_reports_a_confirmed_version_or_uncertainty' panicked at tests/automatic_refresh.rs:132:5:
+assertion failed: core.wait_for_hint(Duration::from_secs(5)).unwrap()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- watcher_hints_refresh_in_place_and_atomic_saves stdout ----
+
+thread 'watcher_hints_refresh_in_place_and_atomic_saves' panicked at tests/automatic_refresh.rs:62:5:
+assertion failed: core.wait_for_hint(Duration::from_secs(5)).unwrap()
+
+
+failures:
+    staged_write_only_reports_a_confirmed_version_or_uncertainty
+    watcher_hints_refresh_in_place_and_atomic_saves
+
+test result: FAILED. 16 passed; 2 failed; 1 ignored; 0 measured; 0 filtered out; finished in 14.21s
+
+error: test failed, to rerun pass `--test automatic_refresh`

@@ -1,0 +1,14 @@
+# F002R research decisions
+
+**Date:** 2026-09-29; planning evidence, not a security or performance PASS.
+
+| Decision | Rationale and alternatives |
+|---|---|
+| Mermaid needs a dedicated unprivileged render boundary and raster output. | Mermaid's `strict` mode alone is insufficient: directives may alter configuration and [advisories](https://github.com/mermaid-js/mermaid/security/advisories) include CSS injection, XSS and denial of service. Pin an audited 11.16.1-or-newer 11.x release compatible with the macOS 14/Safari floor; [Mermaid v12 compatibility](https://github.com/mermaid-js/mermaid/blob/develop/packages/mermaid/CHANGELOG.md) requires separate review. Disable directives/config frontmatter, allow bounded diagram types, lock `secure` options, no HTML/clicks/external resources. Prototype a script-only opaque-origin sandbox with no Tauri bridge and restrictive CSP; accept only bounded raster output. If isolation cannot be demonstrated, do not enable diagrams and revise architecture for review. A privileged inline SVG route is rejected. |
+| YAML frontmatter is data. | [remark-frontmatter](https://github.com/remarkjs/remark-frontmatter) recognizes a node but does not parse it. Use a bounded [YAML parser](https://eemeli.org/yaml/) with failsafe schema, unique string keys and no custom tags or `toJS`, in a worker. Render source on failure; never apply values as settings. |
+| Code highlighting uses local token output. | [Shiki](https://shiki.style/guide/install) tokens can render as React text spans with fixed CSS. Default inline styles conflict with current `style-src 'self'`; no `dangerouslySetInnerHTML` or auto-detection. Bundle a small grammar list and plain fallback. Highlight.js core is an alternative if Shiki's bundle/time cost is worse. |
+| Outline comes from the same heading sequence as rendering. | Current app derives slugs during render and scroll anchors scan h1–h4. A second independent heading parser risks duplicate-ID mismatch; derive h1–h6 IDs/offsets from one versioned parse result. |
+| Font assets are local. | Bundle [Roboto](https://github.com/google/fonts/blob/main/ofl/roboto/METADATA.pb) and [Roboto Mono](https://github.com/googlefonts/RobotoMono/blob/main/OFL.txt) with OFL notices; use CSS variables and app-data preferences, not runtime font URLs. |
+| Rendering budget needs redesign/profiling. | Current worker has a 5 s parse budget, 10k-node/128-depth caps, but React renders whole Markdown synchronously. Existing whole-document rejection conflicts with per-block fallback. Measure and introduce bounded block rendering/incremental work before claiming 10 MiB / 3 s. |
+
+Open proof gates: minimum WebKit isolation/no-bridge behavior, pinned package advisories and license review, 1/10 MiB packaged timings, and actual font glyph/contrast checks.

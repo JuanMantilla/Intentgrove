@@ -1,0 +1,74 @@
+{
+  "phase": "test-only instrumentation preparation",
+  "platform": "macOS 26.2 (25C56) arm64",
+  "productionExecutableSHA256": "4f50089cffac345c56fe394c1a386a1baaa569216e3899cdd965c20be42ff067",
+  "nativeInstrumentation": "PROPOSED; not installed",
+  "acceptanceTasksClosed": [],
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "PASS",
+      "files": 18,
+      "tests": 148
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tests/acceptance -p test_*.py",
+      "result": "PASS",
+      "tests": 7
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS",
+      "note": "TypeScript and Vite; existing chunk-size warning"
+    },
+    {
+      "command": "npm run test:bundle-worker",
+      "result": "PASS"
+    },
+    {
+      "command": "production dist test-marker scan and retained App/CSS hashes",
+      "result": "PASS",
+      "note": "Supplemental exclusion check; no native hooks or production changes introduced"
+    },
+    {
+      "command": "startup/requests blank-template CLI checks",
+      "result": "PASS",
+      "note": "Both correctly exit 1 with BLOCKED"
+    },
+    {
+      "command": "native capture/request acquisition",
+      "result": "NOT TESTED",
+      "note": "Preparation only; acquisition mechanisms require review"
+    }
+  ],
+  "files": [
+    {
+      "path": "tests/ui/appearance-operations.test.tsx",
+      "sha256": "a70ab77c7a748199c444e81ac8b9b8b7ed86d9d0debb0596c47324a2007bd19b"
+    },
+    {
+      "path": "tests/acceptance/f002a_evidence.py",
+      "sha256": "a6b489a233874a2e1a25d8d56377d8e1833ca59c4fc5961df14100cd810da5d4"
+    },
+    {
+      "path": "tests/acceptance/test_f002a_evidence.py",
+      "sha256": "cab8c01a17adc33190b60610700f19e1747d7af96d074c895cb4523eba96785d"
+    },
+    {
+      "path": "tests/acceptance/README.md",
+      "sha256": "0ed96a2a2445b5abb82941a675897c0a43b13855bd5346b16274e9bffa97a2ba"
+    },
+    {
+      "path": "tests/acceptance/templates/startup.json",
+      "sha256": "e9257449ff7971a21b64784688cc7aad9e4a36cb19f18b5e66d8de4d8147e5f5"
+    },
+    {
+      "path": "tests/acceptance/templates/requests.json",
+      "sha256": "f25477e1f75e92dd8b616588675fa3c93f2966493ad93b5614b8018c64264b60"
+    },
+    {
+      "path": "specs/007-dark-theme/instrumentation-decision.md",
+      "sha256": "8628e023efc25a610a4bee70859ef8cf5b3a3986ea5072a0c36d5d70e67667ca"
+    }
+  ]
+}

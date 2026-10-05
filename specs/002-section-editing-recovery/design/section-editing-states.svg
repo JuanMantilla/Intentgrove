@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc">
+  <title id="title">F004 section editing interaction proposal</title>
+  <desc id="desc">Four proposed states: reading with context menu, selected section editor, recovery status, and close or conflict choice.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #202826; }
+      .cap { font-size: 23px; font-weight: 650; }
+      .small { font-size: 15px; fill: #52615C; }
+      .body { font-size: 17px; }
+      .heading { font-size: 24px; font-weight: 650; }
+      .chrome { fill: #F4F5F3; stroke: #D8DEDA; }
+      .page { fill: #FFFFFF; stroke: #D8DEDA; }
+      .sidebar { fill: #EEF0EE; }
+      .line { stroke: #D8DEDA; stroke-width: 2; }
+      .boundary { stroke: #315F70; stroke-width: 2; }
+      .button { fill: #FFFFFF; stroke: #B8C6C1; stroke-width: 1.5; rx: 7; }
+      .primary { fill: #315F70; rx: 7; }
+      .primaryText { fill: #FFFFFF; font-size: 15px; font-weight: 600; }
+      .label { font-size: 15px; font-weight: 600; fill: #315F70; }
+    </style>
+  </defs>
+  <rect width="1440" height="980" fill="#F4F5F3"/>
+  <text x="36" y="43" class="cap">Section editing · F004 visual proposal</text>
+  <text x="36" y="69" class="small">Sketch for review · the running app and accessibility behavior remain to be tested</text>
+
+  <!-- Reading and context menu -->
+  <text x="36" y="113" class="cap">1 · Deliberate entry</text>
+  <rect x="36" y="130" width="664" height="345" rx="12" class="chrome"/>
+  <rect x="36" y="130" width="145" height="345" rx="12" class="sidebar"/>
+  <text x="54" y="170" class="small">personal</text>
+  <text x="62" y="204" class="small">README.md</text>
+  <text x="62" y="237" class="small">notes.md</text>
+  <rect x="195" y="149" width="487" height="309" rx="8" class="page"/>
+  <text x="218" y="186" class="small">README.md</text>
+  <line x1="218" y1="198" x2="660" y2="198" class="line"/>
+  <text x="218" y="236" class="heading">Overview</text>
+  <text x="218" y="265" class="body">A readable paragraph remains ordinary text.</text>
+  <rect x="211" y="290" width="450" height="116" rx="6" fill="#F6F9F9" stroke="#2E6E87" stroke-width="2"/>
+  <text x="222" y="323" class="heading">Methods</text>
+  <text x="222" y="351" class="body">Right-click this section to edit it.</text>
+  <rect x="395" y="352" width="252" height="75" rx="7" fill="#FFFFFF" stroke="#B8C6C1"/>
+  <text x="413" y="379" class="small">Copy section link</text>
+  <line x1="405" y1="391" x2="637" y2="391" class="line"/>
+  <text x="413" y="416" class="label">Edit section</text>
+
+  <!-- Active editor -->
+  <text x="740" y="113" class="cap">2 · Bounded editor</text>
+  <rect x="740" y="130" width="664" height="345" rx="12" class="chrome"/>
+  <rect x="759" y="149" width="626" height="309" rx="8" class="page"/>
+  <text x="778" y="184" class="small">Overview · readable above the selected section</text>
+  <line x1="778" y1="201" x2="1366" y2="201" class="boundary"/>
+  <text x="778" y="225" class="label">Editing: Methods  ·  Starts here</text>
+  <rect x="778" y="239" width="282" height="150" rx="6" fill="#FAFBFA" stroke="#B8C6C1"/>
+  <text x="790" y="263" class="small">Markdown source</text>
+  <text x="790" y="295" class="body">## Methods</text>
+  <text x="790" y="324" class="body">Describe the approach.</text>
+  <rect x="1072" y="239" width="294" height="150" rx="6" fill="#FFFFFF" stroke="#D8DEDA"/>
+  <text x="1084" y="263" class="small">Live preview · read-only</text>
+  <text x="1084" y="300" class="heading">Methods</text>
+  <text x="1084" y="330" class="body">Describe the approach.</text>
+  <line x1="778" y1="404" x2="1366" y2="404" class="boundary"/>
+  <text x="778" y="431" class="label">Ends before the next heading</text>
+  <text x="778" y="452" class="small">Results · remains readable below</text>
+
+  <!-- Recovery status -->
+  <text x="36" y="524" class="cap">3 · Unsaved work and checkpoint</text>
+  <rect x="36" y="541" width="664" height="379" rx="12" class="chrome"/>
+  <rect x="55" y="560" width="626" height="341" rx="8" class="page"/>
+  <text x="76" y="598" class="label">Editing: Methods</text>
+  <text x="559" y="598" class="small">● Unsaved</text>
+  <line x1="76" y1="612" x2="659" y2="612" class="boundary"/>
+  <rect x="76" y="629" width="583" height="177" rx="6" fill="#FAFBFA" stroke="#B8C6C1"/>
+  <text x="92" y="661" class="body">## Methods</text>
+  <text x="92" y="694" class="body">Describe the updated approach.</text>
+  <text x="92" y="788" class="small">✓ Recovery saved · 10:42:08</text>
+  <rect x="76" y="823" width="87" height="44" class="button"/>
+  <text x="96" y="850" class="small">Undo</text>
+  <rect x="172" y="823" width="87" height="44" class="button"/>
+  <text x="192" y="850" class="small">Redo</text>
+  <rect x="409" y="823" width="110" height="44" class="button"/>
+  <text x="430" y="850" class="small">Save As</text>
+  <rect x="528" y="823" width="131" height="44" class="primary"/>
+  <text x="574" y="850" class="primaryText">Save</text>
+  <text x="76" y="890" class="small">Checkpoint text changes to an error if durable storage fails.</text>
+
+  <!-- Close/conflict -->
+  <text x="740" y="524" class="cap">4 · Choice before closing</text>
+  <rect x="740" y="541" width="664" height="379" rx="12" class="chrome"/>
+  <rect x="759" y="560" width="626" height="341" rx="8" class="page"/>
+  <text x="780" y="603" class="small">README.md  ·  Editing: Methods  ·  Unsaved</text>
+  <rect x="818" y="635" width="514" height="226" rx="12" fill="#FFFFFF" stroke="#B8C6C1" stroke-width="2"/>
+  <text x="841" y="673" class="heading">Keep this section edit?</text>
+  <text x="841" y="705" class="body">Your Markdown file has not been changed.</text>
+  <text x="841" y="732" class="small">Keep draft saves the edit on this Mac for your next visit.</text>
+  <rect x="840" y="774" width="96" height="45" class="button"/>
+  <text x="863" y="802" class="small">Cancel</text>
+  <rect x="945" y="774" width="96" height="45" class="button"/>
+  <text x="960" y="802" class="small">Discard</text>
+  <rect x="1050" y="774" width="96" height="45" class="button"/>
+  <text x="1082" y="802" class="small">Save</text>
+  <rect x="1155" y="774" width="154" height="45" class="primary"/>
+  <text x="1189" y="802" class="primaryText">Keep draft</text>
+  <text x="780" y="890" class="small">A disk conflict uses a persistent inline notice with Inspect versions and Save a copy.</text>
+  <text x="36" y="954" class="small">Colors and scale follow F001. At 900/640 points, source and preview switch or stack; the boundary label stays visible.</text>
+</svg>

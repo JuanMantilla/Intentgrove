@@ -1,0 +1,49 @@
+{
+  "feature": "F007W",
+  "date": "2026-10-05",
+  "status": "APPROVED",
+  "scope": "Windows 11 x64/local NTFS; native adapters; Windows-only windows-sys 0.61.2; existing UI with Windows interaction deltas; read-only milestone then verified editing; private unsigned NSIS package construction after native verification. No installation, CI, signing or publishing; isolated image worker requires later architecture approval.",
+  "artifacts": [
+    {
+      "path": "specs/013-windows-desktop/spec.md",
+      "sha256": "45b8b7be5edca1f5546652b9768f84af9be97d60d2ca8d9a5886243f234ce860",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/design.md",
+      "sha256": "0e55900159ec37f9247fa83095bca5e1184b2b150dd3a48c2a74e26dfaf93ba5",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/plan.md",
+      "sha256": "e0bbdc3d27277a95ebe6bc2e3a483e41a59243f06921f8a27a69b432992960e1",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/research.md",
+      "sha256": "8bca1d0bdf89b45dc4aa11eaec61d21f127e2b180be89f58a580125888024ad0",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/data-model.md",
+      "sha256": "4ae43edb4e145d358c509c8f0b826873d9cf0417004091fc51a52b9e2e963add",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/contracts/platform-boundaries.md",
+      "sha256": "65ebcf7dc65b5160d1bb1653ef57f97995a8d620eebe813a7b883b9181475cd5",
+      "status": "APPROVED"
+    },
+    {
+      "path": "specs/013-windows-desktop/quickstart.md",
+      "sha256": "501f08b861a6aaf66aad723f7d0ccf9e0f8d42a1c44b8620a7483f1059fc0a99",
+      "status": "APPROVED"
+    }
+  ],
+  "approval": {
+    "date": "2026-10-05",
+    "statement": "I approve it. Give me a prompt for the os-senior-expert to work on it",
+    "hash_verification": "7 matched, 0 mismatches",
+    "scope": "Exact review set and scope; original artifact text retained unchanged."
+  }
+}

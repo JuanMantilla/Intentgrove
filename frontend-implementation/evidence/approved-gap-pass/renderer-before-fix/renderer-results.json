@@ -1,0 +1,128 @@
+[
+  {
+    "case": "dark-en-reload",
+    "window": [
+      1440,
+      900
+    ],
+    "pageZoom": 1,
+    "checks": 26,
+    "failures": [
+      {
+        "name": "Reload does not add tree rows or move reader",
+        "status": "FAIL"
+      },
+      {
+        "name": "Dismiss keeps reserved footer space",
+        "status": "FAIL"
+      }
+    ],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "light-es-narrow-reload",
+    "window": [
+      640,
+      480
+    ],
+    "pageZoom": 1,
+    "checks": 26,
+    "failures": [
+      {
+        "name": "Reload does not add tree rows or move reader",
+        "status": "FAIL"
+      },
+      {
+        "name": "Dismiss keeps reserved footer space",
+        "status": "FAIL"
+      }
+    ],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "dark-en-reading",
+    "window": [
+      1440,
+      900
+    ],
+    "pageZoom": 1,
+    "checks": 20,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "light-es-reading",
+    "window": [
+      1440,
+      900
+    ],
+    "pageZoom": 1,
+    "checks": 20,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "dark-es-narrow-editing",
+    "window": [
+      640,
+      480
+    ],
+    "pageZoom": 1,
+    "checks": 22,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "light-en-narrow-search",
+    "window": [
+      640,
+      480
+    ],
+    "pageZoom": 1,
+    "checks": 21,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "light-es-enlarged-reading",
+    "window": [
+      1440,
+      900
+    ],
+    "pageZoom": 2,
+    "checks": 20,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "dark-en-reading-controls",
+    "window": [
+      1440,
+      900
+    ],
+    "pageZoom": 1,
+    "checks": 21,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  },
+  {
+    "case": "light-en-save-recovery",
+    "window": [
+      1280,
+      800
+    ],
+    "pageZoom": 1,
+    "checks": 26,
+    "failures": [],
+    "error": null,
+    "kind": "macOS WKWebView renderer, native API mocked; gestures synthetic"
+  }
+]

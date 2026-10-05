@@ -1,0 +1,76 @@
+{
+  "baselineWiFiPower": "Wi-Fi Power (en0): On",
+  "beforeInventory": [
+    {
+      "path": "Empty",
+      "kind": "directory"
+    },
+    {
+      "path": "README.md",
+      "kind": "file",
+      "sha256": "3d791b78a877d1b31c752440f77125584db025e4c49fcb7206efd5461681964c",
+      "bytes": 6037
+    },
+    {
+      "path": "opaque.png",
+      "kind": "file",
+      "sha256": "423d30d4ebc5710eb07767048fe1a1602681010a98c07e6a99ff6752da9bf13f",
+      "bytes": 176
+    },
+    {
+      "path": "other.md",
+      "kind": "file",
+      "sha256": "0faeac6cfe9c81d5c5ae892de3af058d6dd6e1b0edeccc09e2cbf6ac29e2042f",
+      "bytes": 2153
+    },
+    {
+      "path": "transparent.png",
+      "kind": "file",
+      "sha256": "2a9f90bee1e318c1c0402ab2796606c8f4ab9734157a5df642f9af76694b1661",
+      "bytes": 235
+    }
+  ],
+  "disconnectedWiFiPower": "Wi-Fi Power (en0): Off",
+  "separateControlInternetProbeExit": 6,
+  "networkInformationAbsent": false,
+  "offlineConfirmed": true,
+  "defaultRouteWhileDisconnected": 0,
+  "offlineAppearanceChanges": "PASS",
+  "offlineFixtureOpened": true,
+  "networkObservationResult": "BLOCKED",
+  "networkObservationReason": "nettop observes connections rather than attempted resource requests; fs_usage requires unavailable root credentials; Instruments HTTP capture includes other applications and was stopped without reading its temporary trace.",
+  "offlineUI": "PASS",
+  "afterInventory": [
+    {
+      "path": "Empty",
+      "kind": "directory"
+    },
+    {
+      "path": "README.md",
+      "kind": "file",
+      "sha256": "3d791b78a877d1b31c752440f77125584db025e4c49fcb7206efd5461681964c",
+      "bytes": 6037
+    },
+    {
+      "path": "opaque.png",
+      "kind": "file",
+      "sha256": "423d30d4ebc5710eb07767048fe1a1602681010a98c07e6a99ff6752da9bf13f",
+      "bytes": 176
+    },
+    {
+      "path": "other.md",
+      "kind": "file",
+      "sha256": "0faeac6cfe9c81d5c5ae892de3af058d6dd6e1b0edeccc09e2cbf6ac29e2042f",
+      "bytes": 2153
+    },
+    {
+      "path": "transparent.png",
+      "kind": "file",
+      "sha256": "2a9f90bee1e318c1c0402ab2796606c8f4ab9734157a5df642f9af76694b1661",
+      "bytes": 235
+    }
+  ],
+  "inventoryUnchanged": true,
+  "restoredWiFiPower": "Wi-Fi Power (en0): On",
+  "controlProbeNote": "Separate curl control failed with exit 6 (DNS resolution) while Wi-Fi power was Off. This establishes the observed Wi-Fi-off/no-DNS condition; it does not prove every potential alternate route or absence of app-requested resources."
+}

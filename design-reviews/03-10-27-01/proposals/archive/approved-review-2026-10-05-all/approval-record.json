@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-04",
+  "user_statement": "I approve everything except the file navigation",
+  "gate": "design review only",
+  "status": "APPROVED DESIGN — EXCLUDING FILE NAVIGATION",
+  "approved_scope": [
+    "Recommended scoped horizontal workspace and tab decluttering",
+    "Projects/tree-menu action placement and contextual shortcuts",
+    "Neutral Already current feedback",
+    "Context-menu lifecycle and focus requirements",
+    "Rich in-place Markdown content editing and explicit save/recovery model",
+    "Scoped folder search and results/tree continuity",
+    "Separate Settings window, preferences/tree filter placement and corrected select chevrons",
+    "Local read-only HTML/CSS viewing, JavaScript-off boundary and authored CSS treatment",
+    "Applicable responsive/semantic-color/accessibility design requirements"
+  ],
+  "excluded_scope": [
+    "Proposed cross-format file-link routing and new file-access flows",
+    "Universal Back/Forward, visited-file menus, Go menu/shortcut commands and history semantics",
+    "Other-file File details/default-app launch fallback"
+  ],
+  "scope_note": "File navigation means the latest file-navigation-handoff.md addendum, including its embedded controls/behavior in mixed artifacts. Core existing tabs/tree/Open/search routes are part of the approved workspace design; the new routing/history/fallback extension is excluded. This interpretation is recorded, not additional user wording.",
+  "not_authorized": [
+    "Application implementation in this design-only phase",
+    "Approval of new canonical feature specifications or a new architecture",
+    "Builds, commits, deployments or publishing"
+  ],
+  "reviewed_artifacts": {
+    "audit-and-directions.md": {
+      "sha256": "eab2a86db0e62ba9cd6e9628cacb38ca31708d0190fde236e18ecfe64798bae3",
+      "status": "APPROVED DESIGN SCOPE"
+    },
+    "frontend-handoff.md": {
+      "sha256": "234253e63c9ed40f6bd6d61afcc36360b230ec49de95b5364d97d7db934c05b4",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "interaction-spec.md": {
+      "sha256": "9f1f9a3230ce76b819833405c0b3d238256720b7a245c6a78b9ea5f4d839225f",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "contrast-measurements.md": {
+      "sha256": "047630acc74c65525f5d6747797da049599a84e2a181f89c3bf095879fdf847a",
+      "status": "DESIGN SUPPORTING EVIDENCE"
+    },
+    "html-view-handoff.md": {
+      "sha256": "c24056737f1b6d9851c988c51f558ccd16faa5ab456b366e5de5701805ad6475",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "file-navigation-handoff.md": {
+      "sha256": "47c49fcb7c8e12fc4cfae13dd0d17d01fa9314f4a0cfb20112de5b52d9922200",
+      "status": "NOT APPROVED — FILE NAVIGATION"
+    },
+    "mockups/01-reading-workspace.svg": {
+      "sha256": "a3c837b0bdd9460941686941f905c6b4d95799361f485c9b5eb65e2c026cf06c",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/02-in-place-editing.svg": {
+      "sha256": "28e9e3a7a86aeceb4b4b707326cbd77d5f44434ffbdfdecf616a23ee9309ec6b",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/03-workspace-menus.svg": {
+      "sha256": "2e18f27f53fd7631e17118eb1400c51b74e9a449cd38895c18d81285f92c0efd",
+      "status": "APPROVED DESIGN SCOPE"
+    },
+    "mockups/04-document-menus.svg": {
+      "sha256": "f5c826c07a7ecbcfcfa1394cdfd9b4bdd71050da57e05edd159448eef32e14fc",
+      "status": "APPROVED DESIGN SCOPE"
+    },
+    "mockups/05-search-open.svg": {
+      "sha256": "11ccb7d18e82dfb51265b5030ec5eff2bfbd9e6d8ea4229c31e29f8c0e71c3a6",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/06-search-results.svg": {
+      "sha256": "84d9d585771ca6ec3deaac5967e96d28b1515eb9b9464c55539026efce43b211",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/07-narrow-workspace.svg": {
+      "sha256": "6950f0d6a2dc70b1d029ae5e296781474e50c804eb65008d8abfbe8f2f2e7fbb",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/08-settings-window.svg": {
+      "sha256": "b8848a60f35eb10da469a7a1bc89d1b7f4caeaf7b486acca4eb732e45297b16a",
+      "status": "APPROVED DESIGN SCOPE"
+    },
+    "mockups/09-html-view.svg": {
+      "sha256": "b76575fced59b975690810e9ce051deee297df62be78e60284e8f0e06866024e",
+      "status": "APPROVED DESIGN EXCEPT EMBEDDED FILE NAVIGATION"
+    },
+    "mockups/10-html-links.svg": {
+      "sha256": "c67f9ada97655846ebb9d6b6d6c744cd2a18c5aeb99116e9f76101f9ad8bc6d1",
+      "status": "NOT APPROVED — FILE NAVIGATION"
+    },
+    "mockups/11-html-link-access.svg": {
+      "sha256": "bf25c4829413fdaf36a21a60918d1864214d04561564efce6181d913376e60e3",
+      "status": "NOT APPROVED — FILE NAVIGATION"
+    },
+    "mockups/12-universal-history.svg": {
+      "sha256": "93b0ee7ef033e870ada3f077ca02e02238f11447fdb008d858828cb85d5f9a50",
+      "status": "NOT APPROVED — FILE NAVIGATION"
+    },
+    "mockups/13-file-details-and-history.svg": {
+      "sha256": "044ec0902918700fb9c85a56ac09ad2af47dd6d8c655b1103a491e9dfe2053f9",
+      "status": "NOT APPROVED — FILE NAVIGATION"
+    }
+  },
+  "validation_note": "User approval is not runtime verification. Existing native/security/accessibility/round-trip gaps remain. Alternate layout direction B is background; recommended direction A is the approved design direction.",
+  "reviewed_manifest_sha256": "29908e798ba6ab36b6527a9cb76049d1e039b9ea816ebb6f9d215b057abea614"
+}

@@ -1,0 +1,531 @@
+--- before/specs/007-dark-theme/plan.md
++++ proposed/specs/007-dark-theme/plan.md
+@@ -2,7 +2,7 @@
+ 
+ **Feature:** F002A, specs/007-dark-theme  
+ **Date:** 2026-09-28  
+-**Status:** Draft architecture for user approval  
++**Status:** Existing production architecture retained; test architecture amendment A1 PENDING APPROVAL  
+ **Spec:** [spec.md](spec.md) | **Visual:** [design.md](design.md) and [sketch](design/theme-states.svg)
+ 
+ ## Summary
+@@ -83,8 +83,79 @@
+ 
+ Use disposable Markdown fixtures and current F001/F004 actions. Run UI tests, TypeScript/Vite, worker regression, native regression, and a signed local .app build. Native FSEvents tests need an execution environment that allows events; the 2026-09-28 suite passed outside the agent sandbox.
+ 
+-Packaged appearance acceptance requires a visible macOS session. Current System Events testing is BLOCKED by assistive-access denial; do not change that permission automatically. Manual or approved existing automation must verify native theme changes, cold-start frames, and full state preservation. Compilation, a vector sketch, and sample numeric contrast checks are not macOS UX acceptance.
++Packaged appearance acceptance requires a visible macOS session. The later qa-followup.md records working System Events automation; the earlier assistive-access denial is historical, not the current blocker. Do not change permissions automatically. Native observation is still required for startup frames and full state preservation. Compilation, a vector sketch, and sample numeric contrast checks are not macOS UX acceptance.
+ 
+ ## Post-design Constitution Check
+ 
+ The model/contract/quickstart retain the same enum-only storage, local assets, native appearance permission, editor state, and file boundaries. No exception is proposed. All five principles remain PASS for proposal; user approval and runtime theme verification remain pending.
++
++## Architecture amendment A1 — T018–T021 (2026-09-28)
++
++Status: PENDING APPROVAL, planning only. Original approval and bounded requirements
++retirement are recorded in docs/approvals.md; this revision does not match the
++historical approved plan hash. Only the added test architecture gate reopens.
++Earlier proposal/status wording above describes the original design phase; actual
++implementation and partial QA evidence are in evidence.md and qa-followup.md.
++Spec, design, production interfaces and acceptance criteria are unchanged.
++
++### Selected architecture
++
++| Area | Decision | Authority / evidence boundary |
++|---|---|---|
++| T018/T019 deterministic states | Opt-in QA native feature and frontend entry, isolated identifier/storage, authenticated owner-only Unix socket, one-shot pre-operation gates and fixed fault adapters | New test-only architecture; real native validation and mutations remain intact |
++| T020 first-frame capture | External Swift ScreenCaptureKit display stream started before normal production launch; isolated display, audio off, calibrated frame coverage | Production binary unchanged; approval includes only isolated synthetic-display capture |
++| T021 diagnostics | QA-only WebKit Network + early CSP events, explicit worker/context coverage and calibration | Supplemental only; no complete production observer established |
++| T021 production closure | Retain BLOCKED until a production-scoped observer demonstrates required coverage | No socket-only fallback, evidence substitution or weaker acceptance |
++
++Normative interfaces: [acceptance-harness.md](contracts/acceptance-harness.md) and
++[capture-evidence.md](contracts/capture-evidence.md). The production
++[appearance contract](contracts/appearance.md) remains unchanged in behavior.
++[instrumentation-decision.md](instrumentation-decision.md) is the review summary
++and remaining-surface induction map; qa-followup.md is historical evidence.
++
++Use existing locked Tauri Rust 2.11.6 / JS 2.11.1 dependencies. No new package,
++WebDriver server or service. External helper uses installed Swift 6.1.2 and macOS
++SDK 15.5; record toolchain/OS versions in every run. Only observed macOS 26.2 arm64
++is targeted. SDK availability does not prove runtime capture accuracy.
++
++### Proposed implementation locations and order after approval
++
++1. Add isolated QA build/config/entry under tests/acceptance and a cfg-gated native
++   harness module. Cargo feature/config guards and minimal native entry gates are
++   the only proposed host integration. Production default code path stays intact.
++   Review QA channel and renderer observation bridge; prove default-build exclusion.
++2. Implement fixed fault adapters and bounded snapshots; execute T018/T019 matrix
++   with native events plus separate noninjected production journeys. Pre-operation
++   gating establishes pending-operation overlap, not physical disk-write overlap.
++3. Implement external capture helper under tests/acceptance, calibrate temporal
++   coverage, then collect ten complete production Dark launches for T020.
++4. Implement QA diagnostic observer and separate report class. Record T021 partial
++   image/inventory results; do not start purported complete production observation
++   until a viable observer has a separately reviewed contract.
++5. Extend evidence intake to validate new capture metadata and reject instrumented
++   reports as production; retain raw evidence and obtain a fresh QA review.
++
++No code, dependency, build flag or runtime setting is changed by this amendment.
++Proposed modules are implementation targets, not already-existing tooling.
++No T015/T018–T021 box is checked by planning or by successful metadata intake.
++
++### Validation and review gates
++
++Verify protocol rejection, timeout/disconnect save safety, preserved scope/version
++checks, fixture-only failure injection, build mismatch rejection and production
++hook/asset/ACL exclusion. Run appropriate UI/native regressions and both build
++profiles after implementation, then sign/identify the final production package.
++No CSP/navigation/file-scope relaxation, production inspector, altered signing
++entitlement, OS security change or root collection is authorized.
++
++T018 retains every R02 surface, both themes, EN/ES, 640/1440, actual text/control/
++focus contrast, keyboard and Reduce Motion. T019 retains ten switches and the full
++identity/draft/history/selection/focus/scroll/conflict/recovery/hash comparison.
++T020 retains ten fully observed saved-Dark cold launches and zero light document
++frames. T021 retains actual production request-attempt, image and inventory proof.
++An uncovered context or launch interval stays BLOCKED, even if other layers pass.
++
++User approval is required for A1's exact plan/contracts revision before adding
++hooks or acquiring the expanded capture scope. A later change to observer authority,
++production observability, dependencies or evidence equivalence reopens the affected
++gate. Approval of A1 cannot itself close the production-observer feasibility gap.
+--- before/specs/007-dark-theme/contracts/appearance.md
++++ proposed/specs/007-dark-theme/contracts/appearance.md
+@@ -11,8 +11,16 @@
+ 
+ ## Native calls
+ 
+-Existing Tauri main window: setTheme(light/dark/null), theme(), onThemeChanged. Proposed added permission: core:window:allow-set-theme for main only. No new file/network/IPC command is introduced. Calls are ordered; older completion cannot change newer state.
++Existing Tauri main window: setTheme(light/dark/null), theme(), onThemeChanged. Proposed added permission: core:window:allow-set-theme for main only. No new production file/network/IPC command is introduced. Calls are ordered; older completion cannot change newer state.
+ 
+ ## Error behavior
+ 
+ Invalid preference falls back to System. Storage save error retains current mode and shows localized persistence warning. Native sync error retains readable app-owned theme and shows localized warning; retry is allowed on the next explicit selection. No error resets tabs, editing state, folder grants, or source content.
++
++## Test architecture boundary (A1, pending approval)
++
++The separate [acceptance harness](acceptance-harness.md) may observe/inject fixed
++QA states only in its opt-in build. The [capture contract](capture-evidence.md)
++defines external production startup recording and supplemental QA diagnostics.
++Neither adds a production appearance API, changes errors/persistence, or grants
++Markdown control-channel authority. Production receives no QA bridge or inspector.
+--- before/specs/007-dark-theme/contracts/acceptance-harness.md
++++ proposed/specs/007-dark-theme/contracts/acceptance-harness.md
+@@ -0,0 +1,91 @@
++# F002A acceptance harness contract — amendment A1
++
++Status: PROPOSED; architecture approval required. Applies to T018/T019 and
++supplemental T021 diagnostics, never to production startup timing.
++
++## Build and authority boundary
++
++Use the existing locked Rust/Tauri/React dependencies. Add an opt-in Cargo feature
++`acceptance-harness`, empty default features, a separate frontend QA entry, and
++QA-only Tauri configuration. Identifier: `com.juanmantilla.markdownworkspace.qa`;
++product name: `Markdown workspace QA`; separate target and frontend output directories.
++Reject builds unless native feature, QA frontend marker and QA identifier agree.
++Production config must reject QA assets; QA feature must reject production ID.
++Verify app-data and WebView storage resolve to QA locations before fixture access.
++No migration/copy of production preferences, grants or recovery records.
++
++Compile gates, adapters, snapshot access and channel code only into QA. An
++environment variable, document, URL or preference alone cannot enable them.
++Production gets no new commands, capability, inspector, listener or entitlement.
++No WebDriver server or new package is selected. Inspectability, if enabled for
++request diagnostics, is QA-only and not evidence about the production binary.
++
++## Local runner protocol, version 1
++
++Runner creates an unpredictable run directory (0700) under its temporary directory,
++and a socket (0600), with exclusive creation and no symlink traversal. Runner and
++QA host verify directory/socket ownership, peer UID, and a 256-bit random run token
++passed through an inherited pipe, never argv or logs. Only the launching runner's
++session is accepted. This is not a boundary against a compromised same-user host.
++
++UTF-8 newline-delimited JSON; maximum 4096 bytes per input message, one client,
++monotonically increasing sequence, schema version 1, run ID and token on every
++request. Reject unknown keys/enums, duplicate sequence, oversized/truncated frames,
++wrong peer/token, expired run, and unrecognized operation IDs. No path, URL, script,
++shell, arbitrary invoke or evaluate command is supported. Run expires after 30
++minutes; each armed/reached gate after 60 seconds. Output is bounded: snapshots
++at most 64 KiB, trace at most 100,000 events; overflow invalidates the run.
++
++| Command | Payload | Semantics |
++|---|---|---|
++| arm | operation: read-document / confirmed-refresh / save-section; ordinal: 1..100 | One outstanding one-shot gate, relative to invocation counter at arm acknowledgement |
++| release | operationId | Release the reached operation once; repeated/unknown releases error |
++| snapshot | none | Read bounded counters and synthetic-state digests; no mutation |
++| finish | none | Close channel, clear unused arms; reject if an operation is held or in flight |
++
++States: idle → armed → reached → released → completed/failed → idle. Timeout,
++disconnect or expiry cancels an unreleased operation with an explicit QA error;
++it MUST NOT release a save. A released operation completes through its normal
++implementation; disconnect cannot roll back or cancel a committed write. Retain
++its outcome and mark the test incomplete. Never auto-discard drafts or fixtures.
++
++Place the asynchronous gate at native command entry before scope/version checks,
++without holding a mutex or starting file mutation. Release calls the original
++implementation exactly once with original arguments, including all scope,
++encoding, conflict and atomic-save rechecks. No gate inside rename/write/fsync.
++Trace entered/reached/released/completed/failed, opaque operation ID, monotonic
++time, invocation count and result code. Paths, text and secrets are excluded.
++
++This establishes overlap with a pending native operation, not a disk-write syscall.
++T019 evidence must name the phase. Do not claim all save internals were observed.
++QA snapshots compare editor/session identity, draft/history hashes, selection,
++caret, focus, folder/tab identity, scroll, conflict/recovery and checkpoint sequence.
++Snapshots cross the QA bridge as observations only; document content cannot issue
++control commands. Treat renderer-reported state as untrusted bounded data.
++
++## Faults and scenarios
++
++Fault selection is a fixed launch-time enum supplied by the trusted runner, not a
++socket command or document: none / preference-read / preference-write /
++native-theme / fixture-read / fixture-save. One-shot adapters return the existing
++error shape; no altered OS permissions or skipped native validation. Fixture-save
++failure occurs before mutation and is labelled injected. Native path/version
++rejection tests still execute real validation. No synthetic success response.
++
++Run the surface matrix in instrumentation-decision.md plus all R02 surfaces in
++Light/Dark × EN/ES × 640/1440. For T019, hold each operation, perform ten actual
++selector changes, compare snapshots/counters, release, and check original outcome,
++fixture bytes and recovery. Include success, error, conflict and open-dialog cases.
++Focus movement to the selector is recorded separately from unexpected focus loss;
++verify keyboard return and retained editor selection. Capture actual packaged UI.
++Repeat noninjected representative journeys on production; preserve evidence class.
++
++## Implementation verification required before native acceptance
++
++Test authentication, bounds, replay, expiry/disconnect, double release, no write on
++unreleased timeout, original scope/conflict checks after release, and isolated
++storage. Verify feature/config mismatches fail builds. Build production separately;
++inspect feature graph, generated ACL, assets, symbols/strings and runtime to confirm
++no QA channel/hooks/inspectability, and verify signature. String absence alone is
++insufficient. Record hashes for both packages and exact lockfiles. Separate QA
++review must assess new channel/bridge and exclusion evidence before acceptance.
+--- before/specs/007-dark-theme/contracts/capture-evidence.md
++++ proposed/specs/007-dark-theme/contracts/capture-evidence.md
+@@ -0,0 +1,126 @@
++# F002A capture and request evidence contract — amendment A1
++
++Status: PROPOSED. Tools described here are not implemented or validated.
++Production behavior, signing controls, CSP and acceptance thresholds stay unchanged.
++
++## T020: selected recorder
++
++Build an external Swift command-line helper using installed Swift 6.1.2, macOS SDK
++15.5, ScreenCaptureKit and AVFoundation; no app dependency. Observed target is
++macOS 26.2 (25C56), arm64 only. Capture a dedicated isolated display/session with
++`SCContentFilter(display:excludingApplications:exceptingWindows:)` and `SCStream`.
++Do not use a window-discovery-dependent filter: it cannot observe pre-window time.
++[Apple capture API](https://developer.apple.com/documentation/screencapturekit/capturing-screen-content-in-macos),
++[window filter prerequisite](https://developer.apple.com/documentation/screencapturekit/sccontentfilter/init(desktopindependentwindow:)).
++
++Before capture, the operator verifies that the dedicated display contains only
++synthetic test content; no personal windows, notifications or unrelated menus.
++Use existing screen-recording authorization; never silently alter permissions or
++system settings. Excluding currently known applications is not proof of future
++privacy: isolation is required. If it cannot be established, do not start.
++Approval of A1 includes this isolated display acquisition scope, not the ordinary
++workspace or broad recording followed by cropping. Disable audio capture.
++
++1. Hash/signature-check the production executable and inventory fixtures. Set
++   saved Dark through its normal UI, quit normally, verify process exit. Keep all
++   other app data intact; process cold launch does not mean deleting caches.
++2. Set full display pixel dimensions and capture interval appropriate to the
++   recorded display refresh rate. Start stream and writer; acknowledge ready only
++   after the first complete frame is persisted. Then launch production normally.
++   Do not inject startup code, delay rendering, or conceal the app to aid capture.
++3. Record sample presentation times, ScreenCaptureKit frame status, app PID/window
++   bounds, display scale/color profile, encoder failures and stream interruptions.
++   Preserve full-display acquisition; review every visible app-content pixel.
++4. Use mach continuous time for runner events. Record explicit sample-clock and
++   renderer-clock conversion anchors and uncertainty; sample PTS is not assumed
++   to equal mach continuous time. Sleep, clock discontinuity or uncertain ordering
++   invalidates the trial. Retain original timestamps alongside converted values.
++5. Before/after the series use a separate synthetic helper on the same display
++   to show a known one-refresh light flash. Verify the recorder/review catches it.
++   Requested frame rate alone is not proof of coverage. Retain calibration frames.
++6. Record ten distinct cold launches through first visible app frame, first
++   document and stable document. Preserve raw video and per-frame timeline,
++   ready/launch/end times, full bounds and reviewer classifications. No light
++   document frame is permitted. Identify native pre-content chrome separately.
++
++Unexplained frame gaps, dropped/occluded frames, changed display topology,
++insufficient temporal resolution, failed flash calibration, writer backpressure,
++or ambiguous light-frame classification invalidate a trial. Documented idle
++samples may represent unchanged content; they are not automatically drops, but
++must be distinguished using raw stream status. Never fill missing frames and call
++that observation. Repeat invalid trials only after addressing their cause.
++
++## T021: selected diagnostic observer and production limitation
++
++Select **QA-only WebKit Network inspection plus CSP violation events**. Reject
++root fs_usage, lsof/nettop, proxy-only interception and URL breakpoints as complete
++request-attempt observers. No elevated tracing, debugger injection/private WebKit
++hooks, production inspectability or CSP reporting endpoint is approved by A1.
++
++WebKit inspection requires per-view opt-in (default false). The Network table
++covers requests since inspection opened, so late attachment cannot prove startup.
++[WebKit inspectability](https://webkit.org/blog/13936/enabling-the-inspection-of-web-content-in-apps/),
++[Network table/export](https://webkit.org/web-inspector/network-tab/).
++The CSP event stream is a separate source; a blocked attempt need not create a
++socket or a successful resource timing entry. [CSP violation events (working
++draft)](https://w3c.github.io/webappsec-csp/#violation-events).
++
++QA collection procedure:
++
++- Enable inspector only in the QA host. Use a QA initialization script to register
++  `securitypolicyviolation` before app scripts; forward bounded directive,
++  disposition, scheme/origin category, monotonic timestamp and context ID through
++  a QA-only observation bridge. Never report document text or full URLs/paths.
++  No fetch/XHR monkey patch, preventDefault, altered CSP or network request.
++- Attach Network inspection to that QA WebView before starting the measured
++  journey, preserve logs, leave cache settings unchanged, and export HAR plus
++  CSP events. Inspector attachment/reload is not a production cold-launch test.
++- Track each page/worker context and target lifetime. A main-document listener
++  does not cover worker CSP violations. Include worker-specific observation in
++  the QA worker entry before worker work, or mark that context uncovered. New
++  context, target loss, restart or buffer overflow ends the covered interval;
++  reattach/recalibrate before any new measured action. Do not claim continuity
++  across restart until raw evidence establishes it.
++- Before and after each interval, run fixed controls in a separate disposable
++  calibration host using identical CSP and observer wiring: bundled image/CSS,
++  blocked image and blocked fetch to an .invalid origin. Confirm resource records
++  and CSP events with correct context. Calibrate worker requests/violations if
++  workers participate. Keep controls separate from journey counts. No CSP bypass
++  and no external server. These controls exercise collection, not exhaustive
++  coverage of every request source.
++- Cover reading, appearance selection, preference persistence and restart as
++  explicitly delimited intervals; record blocked fixtures, image pixels, and
++  before/after workspace inventory. Native-host requests are outside the WebKit
++  observer: record that limitation instead of asserting app-wide coverage.
++
++**Production disposition: BLOCKED for complete request-attempt evidence.** No
++supported passive collector providing all production app/WebKit request attempts
++and CSP violations has been established for this package. The selected diagnostic
++observer is concrete but supplemental. A1 does not approve relabelling QA HAR/CSP
++as production, combining socket silence with QA traces to claim complete coverage,
++or closing T021 using a build-equivalence argument. This is a known remaining
++technical blocker, not an implementation promise. To unblock it, a later narrow
++observer proposal must demonstrate production attribution, native/WebKit/context
++coverage, pre-action/restart continuity and calibration without changing behavior
++or security; any different boundary returns for architecture review. Spec criteria
++remain fixed. Do not request root merely to retry the rejected socket approach.
++
++## Artifact interface and verdicts
++
++Retain the existing schema-1 production reports in tests/acceptance/templates.
++`buildKind=production` requires the actual executable hash. QA diagnostics use a
++separate `qa-diagnostic.json` (schema 1; buildKind instrumented; executable/asset/
++CSP hashes; observer versions; intervals; contexts; gaps; controls; artifact
++path/SHA-256 pairs; limitations). Never feed it to the production PASS checker.
++
++Startup reports reference video/timeline containing calibration, clock conversion,
++status and full-frame review. Extend intake checks to require these records during
++implementation; existing metadata checks alone do not validate them. Request
++reports may assert requestAttemptsCovered/cspViolationsCovered only with supporting
++production raw evidence; keep the template incomplete while that evidence is absent.
++
++Use relative artifact paths, reject symlink/traversal and hash every artifact.
++Capture only disposable fixtures; store raw data in the private run directory
++until scoped review, then retain authorized evidence under verification-assets.
++No upload. Intake PASS means metadata accepted, not behavioral acceptance. QA
++records PASS / FAIL / BLOCKED / NOT TESTED per requirement and build class.
+--- before/specs/007-dark-theme/instrumentation-decision.md
++++ proposed/specs/007-dark-theme/instrumentation-decision.md
+@@ -1,82 +1,37 @@
+-# F002A test instrumentation decision — 2026-09-28
++# F002A architecture amendment A1 — 2026-09-28
+ 
+-Status: test-only preparation implemented; native architecture additions below
+-are proposals requiring review. No change to approved spec/design/plan, production
+-code, CSP, capabilities, application state or dependencies. Existing T018–T021
+-remain open. Authority: user explicitly requested preparation of test-only tooling
+-and capture procedures; docs/approvals.md retains the original approval sets and
+-the bounded offline/VoiceOver scope removal.
++Status: PENDING USER APPROVAL; supersedes the earlier instrumentation proposal.
++Canonical architecture is now in [plan.md](plan.md),
++[acceptance-harness.md](contracts/acceptance-harness.md) and
++[capture-evidence.md](contracts/capture-evidence.md). This planning amendment
++changes no production code, security settings, dependencies or acceptance criteria.
+ 
+-## Prepared within the existing plan
++## Exact decisions for review
+ 
+-The approved plan's validation strategy explicitly separates Vitest, native tests
+-and packaged observations, and prohibits test drivers in the production bundle.
+-The following additions implement only its test-file/verification portion:
++1. T018/T019: separate QA identifier/storage/build; compile-time native gates and
++   renderer snapshots; authenticated bounded Unix socket; fixed one-shot faults.
++   Preserve all native path/version/save validation. No test authority in production.
++2. T020: external ScreenCaptureKit isolated-display capture, ready before launch,
++   calibrated frame coverage and shared-clock mapping; ten unchanged production
++   cold launches. Window discovery after launch is rejected. Approval scope is
++   the dedicated synthetic display only, no audio or unrelated content.
++3. T021: select QA WebKit Network + CSP event collection for diagnostics, with
++   calibration/context accounting. Reject sockets alone as complete evidence.
++   Complete production request-attempt observation remains BLOCKED: no supported
++   passive mechanism has been established. Production inspectability/injection,
++   security changes, and substituting QA evidence are excluded from this approval.
+ 
+-- `tests/ui/appearance-operations.test.tsx`: five deterministic App/real CodeMirror
+-  cases with held test IPC promises. Ten theme changes during pending load,
+-  confirmed refresh and save; success/error branches, call counts, editor identity,
+-  history/selection/draft/scroll and checkpoint stability. Mock IPC is declared.
+-- `tests/acceptance/f002a_evidence.py`: startup/request evidence intake with artifact
+-  identity, hash, scope, coverage, calibration and review prerequisites. It cannot
+-  acquire evidence or certify native behavior; PASS is an intake-only result.
+-- `tests/acceptance/templates/`: deliberately incomplete startup/request reports.
+-- `tests/acceptance/test_f002a_evidence.py`: rejection tests for the old blind spots,
+-  malformed reports, swapped/missing raw artifacts and unsafe artifact paths.
+-- `tests/acceptance/README.md`: runnable commands and evidence limitations.
++The observer decision resolves what to implement and what it can prove; it does
++not pretend the production feasibility gap is solved. A later verified production
++observer needs its own narrow architecture review. T015/T018–T021 remain open.
+ 
+-No extra package version is selected: existing lockfiles and Python 3.9+ standard
+-library suffice. macOS 26.2 (25C56), arm64 is the only host validated here.
++## Existing preparation (unchanged)
+ 
+-## Native harness proposal — requires architecture review (T018/T019)
+-
+-Use a separate opt-in `acceptance-harness` Cargo feature and separate QA bundle
+-identifier/app-data directory/target output, with a build-time rejection if the
+-feature is paired with the production identifier. Default builds contain neither
+-handlers, gates, trace strings nor listeners. The shipped .app must be rebuilt
+-without that feature and checked separately. No test URL, document syntax, env
+-var alone, or production preference may activate hooks.
+-
+-Proposed instrumentation contract (not implemented):
+-
+-1. An external runner creates a private disposable workspace and per-run secret.
+-   A private local control channel is owner-only and authenticated; no HTTP/TCP
+-   listener, arbitrary JavaScript evaluation, shell execution or arbitrary path
+-   command. Review a Unix-domain socket with mode 0600 in a directory mode 0700;
+-   validate owner, symlinks, message size, allowed enums, run token and expiry.
+-2. Allow only `arm(operation, ordinal)`, `release(operationId)`, `snapshot`, and
+-   `finish`. Operations are bounded enums: document read, confirmed refresh,
+-   section save. Gates are one-shot and must not suspend while holding a mutex or
+-   inside filesystem mutation. Hook entry before existing scope/version checks,
+-   then release through the original unmodified operation once. Preserve all
+-   validations and save rechecks. A pre-command gate proves pending IPC overlap,
+-   not overlap with an actual disk-write syscall; record that distinction.
+-3. Emit monotonic timestamp, opaque operation ID, start/gate/finish state and
+-   invocation count. Do not log document text, native user paths or tokens. Use
+-   synthetic fixture hashes for state comparisons. Pair renderer/native events
+-   using explicit clock conversion; never infer overlap from sleep durations.
+-4. During `gate reached`, change the actual appearance control ten times, assert
+-   unchanged operation count and editor identity/history/selection/checkpoint;
+-   release and verify final UI, bytes and outcome. Run success/failure and clean/
+-   dirty-conflict cases separately. Timeouts fail closed, keep drafts and require
+-   explicit fixture cleanup; they must never silently trigger a save.
+-5. Fault injection is limited to test-owned preference/native-theme adapters and
+-   fixture I/O outcomes. It may not alter OS permissions, weaken CSP, bypass a
+-   native scope check or redirect real application data. UI snapshots use the
+-   actual packaged WebKit view; classify all injected states as instrumented.
+-
+-The control channel and compile-time host/renderer hooks are new architecture.
+-They are not authorized for implementation by merely approving dark-theme colors.
+-Before implementation, incorporate the chosen contract into canonical plan.md and
+-contracts, review the affected architecture/security boundary, then approve its
+-exact revision. A separate QA .app is supplemental; repeat noninjected journeys
+-against the original production package. Do not present a delayed/injected build
+-as proof of production timing.
+-
+-Tauri's official macOS route uses an embedded WebdriverIO driver. It is a viable
+-alternative, but would introduce dependencies plus an embedded server and needs
+-its own reviewed plan/pinned versions; it is not installed in this preparation.
+-[Official Tauri WebDriver documentation](https://v2.tauri.app/develop/tests/webdriver/).
++Five held-operation App/CodeMirror tests and a seven-test evidence checker already
++exist under tests/. The preparation receipt is
++[verification-assets/instrumentation-preparation.json](verification-assets/instrumentation-preparation.json).
++Those tests use mocked IPC or validate metadata; they do not certify packaged UX.
++A1 specifies further native/capture tooling, not completed implementation.
+ 
+ ## T018 surface procedure
+ 
+@@ -98,74 +53,13 @@
+ for explicit saves/separate-writer actions in the disposable fixture. Do not use
+ fixture documents as instructions or execute their content.
+ 
+-## T020 startup capture procedure — capture scope review required
+ 
+-The existing `SCContentFilter(desktopIndependentWindow:)` helper needs an SCWindow;
+-starting it after discovery cannot recover earlier frames. Apple documents that
+-window dependency: [SCContentFilter initializer](https://developer.apple.com/documentation/screencapturekit/sccontentfilter/init(desktopindependentwindow:)).
++## Approval and execution boundary
+ 
+-Prepare prelaunch display capture on a **dedicated, isolated test display/session**,
+-with all other apps, notifications and personal content excluded before recording.
+-This changes capture scope from a discovered app window to a display; obtain user
+-approval for that specific scope before acquisition. Do not record the ordinary
+-workspace then crop unrelated content afterward. No new recorder was implemented
+-or exercised in this preparation.
+-
+-Procedure:
+-
+-1. Verify executable hash/signature and saved Dark in the production app. Quit it
+-   normally; verify the process exited. Stage a disposable document opening path.
+-2. Start the approved isolated-display recorder before launch, wait for ready and
+-   at least one complete frame, and record ready/launch on the same native clock.
+-3. Record continuously through first app-owned frame, native picker if needed,
+-   first document frame and stable document. Retain video plus frame timestamps,
+-   dimensions, dropped-frame/status information and exact app bounds per frame.
+-4. Review the complete app-content area of each frame; distinguish native chrome
+-   from document content. Log light document frames, visibility/occlusion, gaps
+-   and bounds changes. Three background probes are insufficient. A drop or
+-   uncertain classification invalidates that trial; do not count it as PASS.
+-5. Repeat ten **process** cold launches (not ten clicks or ten window reloads),
+-   populate startup.json from raw observations, run the intake checker, then QA
+-   reviews the recording. Restore app/display settings after the series.
+-
+-If a safe isolated prelaunch capture surface is unavailable, T020 stays BLOCKED.
+-Do not modify production startup timing/visibility to help the recorder catch up.
+-
+-## T021 request-attempt procedure — observer selection remains a review decision
+-
+-Root fs_usage is not by itself a solution: syscall/socket visibility cannot prove
+-absence of WebKit/CSP-blocked resource attempts. Do not request elevated capture
+-until scope/coverage are established. The observer must cover both resource
+-attempts and CSP violations, attribute app plus its owned WebKit processes, span
+-all actions, and avoid unrelated application traffic.
+-
+-Evaluate WebKit Network inspection plus CSP violation instrumentation in the
+-isolated QA host. WebKit states the Network table begins when Inspector opens;
+-thus opening it after the journey is insufficient. Its URL breakpoints cover
+-JavaScript APIs, not every possible native/subresource source. These are candidate
+-components of an observer, not established complete production coverage.
+-[WebKit Network](https://webkit.org/web-inspector/network-tab/),
+-[WebKit URL breakpoints](https://webkit.org/web-inspector/url-breakpoints/).
+-
+-Before and after each journey, on a separate disposable calibration page/host,
+-verify a known bundled resource request and a deliberate CSP-blocked request are
+-both recorded with correct attribution. No external server is required; keep the
+-blocked control blocked and do not relax production CSP. Separate calibration
+-records from journey counts. Record gaps and process replacements explicitly.
+-
+-Run reading, theme changes, persistence/restart and blocked-content fixtures while
+-the validated observer is active. Preserve raw events and process attribution;
+-zero remote attempts may be reported only for that covered interval. A DOM image
+-placeholder, empty socket list, or instrumented-only trace cannot close T021 on
+-the production package. If the chosen mechanism requires enabling inspectability
+-or injecting listeners, that evidence remains supplemental and the production
+-coverage gap must be reviewed explicitly, not silently waived.
+-
+-## Review boundary
+-
+-Preparation is complete without shipping hooks. Requested review decisions are:
+-(a) the native test-only gate/control-channel contract; (b) isolated prelaunch
+-capture scope; (c) an observer with demonstrable production request-attempt coverage.
+-No production spec/visual behavior needs changing. Native instrumentation needs
+-affected-plan/contract approval under AGENTS.md; capture/elevated access still
+-follows runtime permissions. No acceptance requirement is weakened by this proposal.
++Review the exact hashes and changes in
++[architecture-amendment-review.md](architecture-amendment-review.md). Approving A1
++reopens only the affected architecture scope, not spec/design. No requirement
++retirement beyond the already authorized offline/VoiceOver removal is proposed.
++After approval, implement the QA isolation/protocol first, then capture tooling
++and diagnostics. A fresh QA session must evaluate real evidence before closing
++acceptance tasks. The production request observer is a remaining technical blocker.

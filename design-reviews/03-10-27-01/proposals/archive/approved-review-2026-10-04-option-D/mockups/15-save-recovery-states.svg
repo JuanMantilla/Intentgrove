@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+  <title id="title">15 / Save and recovery states</title>
+  <desc id="desc">Independent examples: messages name the file, revision and safe next action. Static proposed design; application behavior has not been tested.</desc>
+  <rect x="0" y="0" width="1440" height="1080" rx="0" fill="#F4F5F3" />
+  <text x="24" y="29" fill="#315F70" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">PROPOSED — READY FOR DESIGN REVIEW</text>
+  <text x="24" y="63" fill="#202826" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">15 / Save and recovery states</text>
+  <text x="24" y="87" fill="#52615C" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Independent examples: messages name the file, revision and safe next action.</text>
+  <rect x="24" y="120" width="684" height="386" rx="10" fill="#202928" stroke="#3C4D47" />
+  <rect x="732" y="120" width="684" height="386" rx="10" fill="#202928" stroke="#3C4D47" />
+  <rect x="24" y="526" width="684" height="434" rx="10" fill="#202928" stroke="#3C4D47" />
+  <rect x="732" y="526" width="684" height="434" rx="10" fill="#202928" stroke="#3C4D47" />
+  <text x="48" y="156" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">A / Clean edit session</text>
+  <text x="48" y="194" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">plan.md · Editing: Authority and design identity</text>
+  <text x="48" y="234" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">No unsaved changes</text>
+  <text x="48" y="268" fill="#A8B9B1" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Entering Edit creates no file write and no dirty dot.</text>
+  <rect x="48" y="298" width="82" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="60" y="319" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save</text>
+  <rect x="140" y="298" width="180" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="152" y="319" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Return to reading</text>
+  <text x="48" y="364" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save is disabled until the draft differs from source.</text>
+  <text x="48" y="394" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⌘S follows the same state; Return to reading ends the edit.</text>
+  <text x="48" y="452" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Recovery acknowledgments identify their draft revision.</text>
+  <text x="756" y="156" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">B / Recovery could not be saved</text>
+  <text x="756" y="194" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">plan.md · Unsaved · Current draft remains in this window</text>
+  <rect x="752" y="212" width="644" height="100" rx="6" fill="#35271F" />
+  <text x="772" y="243" fill="#EFC6A7" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Recovery could not be saved on this Mac.</text>
+  <text x="772" y="274" fill="#EFC6A7" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">This draft is not protected if the app closes.</text>
+  <rect x="756" y="332" width="84" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="768" y="353" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Retry</text>
+  <rect x="850" y="332" width="94" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="862" y="353" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Details…</text>
+  <rect x="954" y="332" width="114" height="32" rx="6" fill="#91C5D6" />
+  <text x="966" y="353" fill="#10272E" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Save</text>
+  <text x="756" y="407" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Original-file Save is available if no separate save blocker exists.</text>
+  <text x="756" y="440" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Keep draft cannot close until this revision is acknowledged.</text>
+  <text x="48" y="562" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">C / Disk conflict blocks Save</text>
+  <text x="48" y="600" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">plan.md · Unsaved · Recovery saved on this Mac</text>
+  <rect x="44" y="618" width="644" height="100" rx="6" fill="#35271F" />
+  <text x="64" y="651" fill="#EFC6A7" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">The file changed on disk while you were editing.</text>
+  <text x="64" y="684" fill="#EFC6A7" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Your draft and the disk version are kept separate.</text>
+  <rect x="48" y="740" width="148" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="60" y="761" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Inspect versions</text>
+  <rect x="206" y="740" width="136" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="218" y="761" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Keep my edit</text>
+  <rect x="352" y="740" width="140" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="364" y="761" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save a copy…</text>
+  <rect x="48" y="786" width="166" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="60" y="807" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Use disk version…</text>
+  <text x="48" y="856" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Keep my edit continues editing; it does not overwrite disk.</text>
+  <text x="48" y="884" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Use disk version requires explicit draft-loss confirmation.</text>
+  <text x="48" y="925" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Conflict: original Save stays disabled until safely resolved.</text>
+  <text x="756" y="562" fill="#E6EEEA" font-size="20" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">D / Return with unsaved changes</text>
+  <text x="756" y="604" fill="#E6EEEA" font-size="22" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Save changes to plan.md?</text>
+  <text x="756" y="646" fill="#A8B9B1" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Section: Authority and design identity</text>
+  <text x="756" y="681" fill="#A8B9B1" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save writes the original, then returns to reading.</text>
+  <text x="756" y="716" fill="#A8B9B1" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Keep draft closes the edit after recovery is acknowledged.</text>
+  <text x="756" y="751" fill="#A8B9B1" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Discard… confirms removal of the draft and recovery copy.</text>
+  <rect x="756" y="788" width="84" height="32" rx="6" fill="#91C5D6" />
+  <text x="768" y="809" fill="#10272E" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Save</text>
+  <rect x="850" y="788" width="126" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="862" y="809" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Keep draft</text>
+  <rect x="986" y="788" width="118" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="998" y="809" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Discard…</text>
+  <rect x="1114" y="788" width="94" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="1126" y="809" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Cancel</text>
+  <rect x="1111" y="785" width="100" height="38" rx="8" fill="none" stroke="#91C5D6" />
+  <text x="756" y="862" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Cancel starts focused; Escape keeps editing.</text>
+  <text x="756" y="892" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save failure or recovery failure leaves this decision pending.</text>
+  <text x="756" y="925" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Tab switching alone retains the edit without this prompt.</text>
+  <text x="24" y="1006" fill="#202826" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Recovery saved is not original saved. Failed operations keep the draft and selection.</text>
+  <text x="24" y="1037" fill="#52615C" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">No silent overwrite, normalization or discard. Static states; actual save/recovery and byte fidelity NOT TESTED.</text>
+</svg>

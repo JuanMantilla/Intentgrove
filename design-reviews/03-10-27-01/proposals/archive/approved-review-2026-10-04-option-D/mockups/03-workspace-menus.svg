@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img">
+  <title>03-workspace-menus: revised static UI proposal</title>
+  <rect x="0" y="0" width="1440" height="1040" rx="0" fill="#F4F5F3" />
+  <text x="24" y="29" fill="#315F70" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">PROPOSED — READY FOR DESIGN REVIEW</text>
+  <text x="24" y="63" fill="#202826" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">03 / Menus that belong to their targets</text>
+  <text x="24" y="87" fill="#52615C" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Independent examples: the application opens only one contextual menu at a time.</text>
+  <rect x="24" y="124" width="440" height="382" rx="10" fill="#18201F" stroke="#3C4D47" />
+  <text x="42" y="158" fill="#E6EEEA" font-size="18" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Workspace root</text>
+  <rect x="40" y="179" width="408" height="34" rx="4" fill="#2D4547" />
+  <text x="52" y="202" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">⌄  projects</text>
+  <rect x="50" y="225" width="388" height="230" rx="8" fill="#202928" stroke="#6B8078" />
+  <text x="66" y="253" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Open file…</text>
+  <text x="388" y="253" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⌘O</text>
+  <text x="66" y="287" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Open folder…</text>
+  <text x="374" y="287" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⇧⌘O</text>
+  <rect x="62" y="317" width="364" height="1" rx="0" fill="#3C4D47" />
+  <text x="66" y="339" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Search workspace…</text>
+  <text x="374" y="339" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⇧⌘F</text>
+  <text x="66" y="373" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Reload workspace</text>
+  <rect x="62" y="403" width="364" height="1" rx="0" fill="#3C4D47" />
+  <text x="66" y="425" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Copy workspace path</text>
+  <text x="42" y="488" fill="#A8B9B1" font-size="12" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Changing workspace uses existing unsaved-work guards.</text>
+  <rect x="488" y="124" width="440" height="382" rx="10" fill="#18201F" stroke="#3C4D47" />
+  <text x="506" y="158" fill="#E6EEEA" font-size="18" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Folder</text>
+  <rect x="504" y="179" width="408" height="34" rx="4" fill="#2D4547" />
+  <text x="516" y="202" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">⌄  frontend-implementation</text>
+  <rect x="514" y="225" width="388" height="196" rx="8" fill="#202928" stroke="#6B8078" />
+  <text x="530" y="253" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Collapse folder</text>
+  <rect x="526" y="283" width="364" height="1" rx="0" fill="#3C4D47" />
+  <text x="530" y="305" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Search in folder… (unavailable)</text>
+  <text x="530" y="339" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Reload folder</text>
+  <rect x="526" y="369" width="364" height="1" rx="0" fill="#3C4D47" />
+  <text x="530" y="391" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Copy folder path</text>
+  <text x="506" y="488" fill="#A8B9B1" font-size="12" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Search in folder unavailable until scoped search is supported.</text>
+  <rect x="952" y="124" width="464" height="382" rx="10" fill="#18201F" stroke="#3C4D47" />
+  <text x="970" y="158" fill="#E6EEEA" font-size="18" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Markdown file</text>
+  <rect x="968" y="179" width="432" height="34" rx="4" fill="#2D4547" />
+  <text x="980" y="202" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">◇  plan.md</text>
+  <rect x="978" y="225" width="412" height="144" rx="8" fill="#202928" stroke="#6B8078" />
+  <text x="994" y="253" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Open</text>
+  <rect x="990" y="283" width="388" height="1" rx="0" fill="#3C4D47" />
+  <text x="994" y="305" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Reload file</text>
+  <text x="1340" y="305" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⌘R</text>
+  <text x="994" y="339" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Copy file path</text>
+  <text x="970" y="488" fill="#A8B9B1" font-size="12" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Existing tab is selected; files are never renamed or deleted.</text>
+  <rect x="24" y="536" width="1392" height="360" rx="10" fill="#202928" stroke="#3C4D47" />
+  <text x="48" y="579" fill="#E6EEEA" font-size="21" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">One Projects menu, two entry routes</text>
+  <rect x="48" y="605" width="270" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="60" y="626" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Projects</text>
+  <rect x="48" y="650" width="294" height="154" rx="7" fill="#1D2524" stroke="#6B8078" />
+  <text x="64" y="680" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Open file…</text>
+  <text x="266" y="680" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⌘O</text>
+  <text x="64" y="718" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Open folder…</text>
+  <text x="252" y="718" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⇧⌘O</text>
+  <text x="64" y="756" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Search workspace…</text>
+  <text x="252" y="756" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">⇧⌘F</text>
+  <text x="378" y="665" fill="#E6EEEA" font-size="18" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Click Projects / its arrow, or secondary-click the tree.</text>
+  <text x="378" y="707" fill="#A8B9B1" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">The root and empty tree area open the same workspace menu.</text>
+  <text x="378" y="746" fill="#A8B9B1" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Folder and file rows retain their own short, target-specific menus.</text>
+  <text x="378" y="785" fill="#A8B9B1" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">File / Edit menus and keyboard routes remain available.</text>
+  <text x="48" y="857" fill="#91C5D6" font-size="16" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Keyboard: focus Projects, then Return / Space. Escape closes and returns focus.</text>
+  <text x="24" y="994" fill="#202826" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Shortcut hints align on the right. Commands without assigned shortcuts keep that column empty.</text>
+  <text x="24" y="1019" fill="#52615C" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">No standalone Open or Search buttons above the tree. Subfolder search remains a documented scope-support question.</text>
+  <path d="M 287 618 L 292 623 L 297 618" fill="none" stroke="#A8B9B1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

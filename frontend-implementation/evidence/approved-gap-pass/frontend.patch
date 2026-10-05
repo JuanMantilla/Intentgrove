@@ -1,0 +1,799 @@
+--- before/src/app/App.tsx
++++ after/src/app/App.tsx
+@@ -1,3 +1,4 @@
++import { commandPressed, shortcutHint, editingAvailable, isWindows } from "./platform";
+ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type DirectoryEntry, type DocumentResponse, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
+@@ -15,6 +16,7 @@
+ import StorageManagement from "./StorageManagement";
+ import DocumentLocation from "./DocumentLocation";
+ import ActionMenu from "./ActionMenu";
++import ReloadFeedback from "./ReloadFeedback";
+ import { tabFilename, distinguishingParent, workspaceSegments } from "./documentIdentity";
+ import { editReducer, type SectionEdit } from "../workspace/editState";
+ import { confirmCleanDocument, confirmDirectoryPage, noteDirectoryChange, noteFileChange, type Freshness } from "../workspace/refreshState";
+@@ -94,7 +96,7 @@
+   const inspectionSequence = useRef(0);
+   const [discardConflictConfirm, setDiscardConflictConfirm] = useState<InspectedDisk | null>(null);
+   const discardConflictRef = useRef<InspectedDisk | null>(null);
+-  const [closeIntent, setCloseIntent] = useState<{ kind: "app" | "window" | "folder" | "tab" | "read"; tabId?: string } | null>(null);
++  const [closeIntent, setCloseIntent] = useState<{ kind: "app" | "window" | "folder" | "tab" | "read"; tabId?: string; tabIds?: string[] } | null>(null);
+   const [pendingFolder, setPendingFolder] = useState<string | null>(null);
+   const [pendingNativeEntry, setPendingNativeEntry] = useState<string | null>(null);
+   const [nativeEntries, setNativeEntries] = useState<NativePreview[]>([]);
+@@ -215,6 +217,9 @@
+   const [reloadMenu, setReloadMenu] = useState<ReloadMenu | null>(null);
+   const [reloadJobs, setReloadJobs] = useState<Record<string, ReloadJobView>>({});
+   const [reloadResults, setReloadResults] = useState<Record<string, { state: RefreshItemStatus["state"]; reasonCode?: string }>>({});
++  const [manualReload, setManualReload] = useState<{ target: RefreshTarget; label: string; result: { state: RefreshItemStatus["state"]; reasonCode?: string } } | null>(null);
++  const pendingManualReloads = useRef(new Set<string>());
++  const manualJobTargets = useRef(new Map<string, string>());
+   const progressRef = useRef(new Map<string, RefreshJobProgress>());
+   const directoriesRef = useRef(directories);
+   const [pendingAnchor, setPendingAnchor] = useState<{ fileId: string; anchor: string } | null>(null);
+@@ -660,6 +665,11 @@
+       const targetKey = typeof event.targetRef === "string" ? `file:${event.targetRef}`
+         : `path:${event.targetRef.rootId}:${pathKey(event.targetRef.segments)}`;
+       setReloadResults((old) => ({ ...old, [targetKey]: { state: event.state, reasonCode: event.reasonCode } }));
++      if (pendingManualReloads.current.has(targetKey)) {
++        setManualReload((old) => old && reloadResultKey(old.target) === targetKey
++          ? { ...old, result: { state: event.state, reasonCode: event.reasonCode } } : old);
++        if (event.state !== "checking") pendingManualReloads.current.delete(targetKey);
++      }
+       if (typeof event.targetRef === "string") {
+         const large = tabsRef.current.find((tab) => tab.id === event.targetRef)?.largeOpened;
+         if (large && event.state !== "current") void api.closeLargeSource(large.snapshotId).catch(() => {});
+@@ -694,6 +704,15 @@
+     const onJobProgress = (event: RefreshJobProgress) => {
+       if (event.generation !== generationRef.current) return;
+       progressRef.current.set(event.jobId, event);
++      if (event.state === "cancelled") {
++        const key = manualJobTargets.current.get(event.jobId);
++        if (key) {
++          pendingManualReloads.current.delete(key);
++          setReloadResults((old) => ({ ...old, [key]: { state: "uncertain" } }));
++          setManualReload((old) => old && reloadResultKey(old.target) === key
++            ? { ...old, result: { state: "uncertain" } } : old);
++        }
++      }
+       setReloadJobs((old) => old[event.jobId]
+         ? { ...old, [event.jobId]: { ...old[event.jobId], progress: event } } : old);
+     };
+@@ -778,24 +797,38 @@
+       anchor });
+   }
+ 
++  useEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
++  useEffect(() => { setManualReload(null); pendingManualReloads.current.clear(); manualJobTargets.current.clear(); }, [root?.id, root?.generation]);
++  useEffect(() => {
++    if (reloadMenu || projectsMenu || goMenu) {
++      const disclosure = document.querySelector<HTMLDetailsElement>(".document-actions-disclosure");
++      if (disclosure) disclosure.open = false;
++    }
++  }, [reloadMenu, projectsMenu, goMenu]);
++
+   function reloadResultKey(target: RefreshTarget): string {
+     return target.kind === "explicit-file" ? `file:${target.fileId}`
+       : `path:${target.rootId}:${pathKey(target.segments)}`;
+   }
+ 
+   function reloadFeedback(target: RefreshTarget): string | null {
+-    const result = reloadResults[reloadResultKey(target)];
++    return reloadStatusText(reloadResults[reloadResultKey(target)]);
++  }
++
++  function reloadStatusText(result?: { state: RefreshItemStatus["state"]; reasonCode?: string }): string | null {
+     if (!result) return null;
+     if (result.reasonCode) return errorText(locale, result.reasonCode);
+     if (result.state === "checking") return t(locale, "checking");
+     if (result.state === "changed") return t(locale, "updatedFromDisk");
+     if (result.state === "current") return t(locale, "alreadyCurrent");
+     if (result.state === "uncertain") return t(locale, "unableConfirm");
++    if (result.state === "unavailable") return t(locale, "fileUnavailable");
++    if (result.state === "conflict") return t(locale, "conflictNotice");
+     return null;
+   }
+ 
+   function reloadProgress(target: RefreshTarget): React.ReactNode {
+-    const job = Object.values(reloadJobs).find((item) => reloadResultKey(item.target) === reloadResultKey(target));
++    const job = Object.values(reloadJobs).reverse().find((item) => reloadResultKey(item.target) === reloadResultKey(target));
+     if (!job) return null;
+     const { progress } = job;
+     if (progress.state === "completed" || progress.state === "failed") return null;
+@@ -809,16 +842,25 @@
+ 
+   async function startReload(menu: ReloadMenu) {
+     setReloadMenu(null);
+-    menu.anchor.focus();
++    if (menu.anchor.isConnected) menu.anchor.focus();
++    setManualReload({ target: menu.target, label: menu.label, result: { state: "checking" } });
++    pendingManualReloads.current.add(reloadResultKey(menu.target));
+     setReloadResults((old) => ({ ...old, [reloadResultKey(menu.target)]: { state: "checking" } }));
+     try {
+       const response = await api.reloadItem(menu.target, crypto.randomUUID());
+       if (response.generation !== generationRef.current) return;
++      manualJobTargets.current.set(response.jobId, reloadResultKey(menu.target));
+       const progress = progressRef.current.get(response.jobId) ?? {
+         generation: response.generation, jobId: response.jobId,
+         examinedCount: 0, confirmedCount: 0, state: "queued" as const
+       };
+       setReloadJobs((old) => ({ ...old, [response.jobId]: { target: menu.target, progress } }));
++      if (progress.state === "cancelled") {
++        pendingManualReloads.current.delete(reloadResultKey(menu.target));
++        setReloadResults((old) => ({ ...old, [reloadResultKey(menu.target)]: { state: "uncertain" } }));
++        setManualReload((old) => old && reloadResultKey(old.target) === reloadResultKey(menu.target)
++          ? { ...old, result: { state: "uncertain" } } : old);
++      }
+       const imageTab = tabsRef.current.find((tab) => tab.kind === "image" && (
+         menu.target.kind === "explicit-file" ? tab.id === menu.target.fileId
+           : menu.target.kind === "root-file" && tab.request.rootId === menu.target.rootId
+@@ -826,7 +868,10 @@
+       if (imageTab) void refreshRetainedTab(imageTab.id);
+     } catch (error) {
+       const reasonCode = readerError(error).code;
++      pendingManualReloads.current.delete(reloadResultKey(menu.target));
+       setReloadResults((old) => ({ ...old, [reloadResultKey(menu.target)]: { state: "uncertain", reasonCode } }));
++      setManualReload((old) => old && reloadResultKey(old.target) === reloadResultKey(menu.target)
++        ? { ...old, result: { state: "uncertain", reasonCode } } : old);
+     }
+   }
+ 
+@@ -891,7 +936,7 @@
+       scrollTop: scrollPositions.current.get(active.id) ?? 0, scrollLeft: 0 }));
+   }, [activeId, active?.content, active?.image, active?.imageLoading, active?.errorCode, active?.largeInspection]);
+   useEffect(() => {
+-    if (typeof api.setNativeMenuState !== "function") return;
++    if (isWindows || typeof api.setNativeMenuState !== "function") return;
+     void api.setNativeMenuState({
+       closeTab: Boolean(active),
+       save: Boolean(active && edits[active.id] && !edits[active.id].paused
+@@ -1051,7 +1096,7 @@
+ 
+   useEffect(() => {
+     if (!active?.diskVersion || active.errorCode || activeEdit) return;
+-    if (typeof api.listEditSections !== "function") return;
++    if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
+     void api.listEditSections(active.id).then((result) => {
+       if (!cancelled && result.diskVersion === active.diskVersion) {
+@@ -1064,6 +1109,7 @@
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+ 
+   async function startEdit(tabId: string, section: SectionDescriptor, diskVersion: string) {
++    if (!editingAvailable) return;
+     try {
+       const started = await api.beginSectionEdit(tabId, section.id, diskVersion);
+       setEdits((old) => editReducer(old, { type: "begin", tabId, edit: {
+@@ -1849,24 +1895,36 @@
+   }
+ 
+   async function closeTab(id: string, handled = false) {
+-    if (savingTabRef.current === id) return;
+-    if (tabs.find((tab) => tab.id === id)?.dirty
+-      || (edits[id] && edits[id].draft !== edits[id].source) || pendingRecoveries[id]) {
+-      if (!handled) {
+-        setCloseIntent({ kind: "tab", tabId: id });
+-        return;
+-      }
+-    }
+-    const edit = edits[id];
+-    if (!handled && edit && !(await discardEdit(id))) return;
+-    imageLoads.current.delete(id);
+-    if (openingLarge.current === id) void api.cancelLargeOpen().catch(() => {});
+-    const large = tabs.find((tab) => tab.id === id)?.largeOpened;
+-    if (large) void api.closeLargeSource(large.snapshotId).catch(() => {});
+-    const next = tabs.filter((tab) => tab.id !== id);
++    await closeTabs([id], handled);
++  }
++
++  async function closeTabs(ids: string[], handled = false) {
++    const targets = tabsRef.current.filter((tab) => ids.includes(tab.id));
++    if (!targets.length || targets.some((tab) => savingTabRef.current === tab.id)) return;
++    if (!handled && targets.some((tab) => tab.dirty || pendingRecoveriesRef.current[tab.id]
++      || (editsRef.current[tab.id] && editsRef.current[tab.id].draft !== editsRef.current[tab.id].source))) {
++      setCloseIntent({ kind: "tab", tabId: targets[0].id, tabIds: targets.map((tab) => tab.id) });
++      return;
++    }
++    if (!handled) {
++      for (const tab of targets) {
++        if (editsRef.current[tab.id] && !(await discardEdit(tab.id))) return;
++      }
++    }
++    for (const tab of targets) {
++      imageLoads.current.delete(tab.id);
++      if (openingLarge.current === tab.id) void api.cancelLargeOpen().catch(() => {});
++      if (tab.largeOpened) void api.closeLargeSource(tab.largeOpened.snapshotId).catch(() => {});
++    }
++    const closing = new Set(targets.map((tab) => tab.id));
++    const next = tabsRef.current.filter((tab) => !closing.has(tab.id));
++    tabsRef.current = next;
+     setTabs(next);
+-    // Session visit history retains view locations after the tab closes.
+-    if (activeId === id) setActiveId(next.at(-1)?.id ?? null);
++    // Session visit history retains view locations after the tabs close.
++    if (activeIdRef.current && closing.has(activeIdRef.current)) {
++      activeIdRef.current = next.at(-1)?.id ?? null;
++      setActiveId(activeIdRef.current);
++    }
+     requestAnimationFrame(() => {
+       (document.querySelector<HTMLButtonElement>('[role="tab"][aria-selected="true"]')
+         ?? document.querySelector<HTMLButtonElement>(".welcome-actions button"))?.focus();
+@@ -1898,7 +1956,7 @@
+     }
+     const targets = intent.kind === "app" || intent.kind === "window" || intent.kind === "folder"
+       ? Array.from(new Set([...Object.keys(edits), ...Object.keys(pendingRecoveries)]))
+-      : intent.tabId ? [intent.tabId] : [];
++      : intent.tabIds ?? (intent.tabId ? [intent.tabId] : []);
+     if (choice === "keep") {
+       if (targets.some((id) => edits[id] && edits[id].checkpointStatus !== "saved")) {
+         setNotice(t(locale, "checkpointRequired"));
+@@ -1957,7 +2015,7 @@
+         setNotice(errorText(locale, readerError(error).code));
+       }
+     } else if (intent.kind === "tab" && intent.tabId) {
+-      await closeTab(intent.tabId, true);
++      await closeTabs(intent.tabIds ?? [intent.tabId], true);
+     } else if (intent.kind === "read" && intent.tabId) {
+       setEdits((old) => editReducer(old, { type: "pause", tabId: intent.tabId!, paused: true }));
+       if (edits[intent.tabId]) focusSectionBoundary(intent.tabId, edits[intent.tabId].section);
+@@ -2403,7 +2461,7 @@
+         closeFind();
+         return;
+       }
+-      if (!event.metaKey) return;
++      if (!commandPressed(event) || document.querySelector('[aria-modal="true"]')) return;
+       const key = event.key.toLowerCase();
+       if (key === "f") {
+         event.preventDefault();
+@@ -2416,7 +2474,7 @@
+       } else if (key === "w" && activeId) {
+         event.preventDefault();
+         void closeTab(activeId);
+-      } else if (key === "s" && activeId && edits[activeId] && !edits[activeId].paused) {
++      } else if (key === "s" && editingAvailable && activeId && edits[activeId] && !edits[activeId].paused) {
+         event.preventDefault();
+         void saveEdit(activeId);
+       } else if (key === "r" && active) {
+@@ -2525,8 +2583,7 @@
+                 <span className="tree-icon" aria-hidden="true">{isFolder ? expanded ? "⌄" : "›" : entry.kind === "markdown" ? "◇" : entry.kind === "image" ? "▧" : "·"}</span>
+                 <span className="tree-name">{entry.name}</span>
+               </button>
+-              {reloadFeedback(reloadTarget) && <div className="tree-feedback" role="status">{reloadFeedback(reloadTarget)}</div>}
+-              {isFolder && reloadProgress(reloadTarget)}
++
+               {isFolder && expanded ? tree(path) : null}
+             </div>
+           );
+@@ -2768,11 +2825,12 @@
+                     aria-keyshortcuts="Alt+Shift+ArrowLeft Alt+Shift+ArrowRight"
+                     tabIndex={tab.id === activeId ? 0 : -1}
+                     title={tab.displayPath} onClick={() => { openSequence.current += 1; activeIdRef.current = tab.id; setActiveId(tab.id); }}
+-                    onContextMenu={tab.explicitFile ? (event) => showReloadMenu(event,
+-                      { kind: "explicit-file", fileId: tab.id }, tab.name) : undefined}
++                    onContextMenu={(event) => { const target = refreshTarget(tab);
++                      if (target) showReloadMenu(event, target, tab.name); }}
+                     onKeyDown={(event) => {
+-                      if (tab.explicitFile && (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey))) {
+-                        showReloadMenu(event, { kind: "explicit-file", fileId: tab.id }, tab.name);
++                      if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) {
++                        const target = refreshTarget(tab);
++                        if (target) showReloadMenu(event, target, tab.name);
+                         return;
+                       }
+                       if (event.altKey && event.shiftKey && ["ArrowLeft", "ArrowRight"].includes(event.key)) {
+@@ -2902,7 +2960,7 @@
+                 <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
+                   ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
+                 <small>{t(locale, "saveReturnsReading")}</small>
+-              </div> : <button type="button" disabled={busy || !sectionsByTab[active.id]?.length}
++              </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
+                 onClick={() => {
+                   const reader = readerRef.current;
+                   const top = reader?.getBoundingClientRect().top ?? 0;
+@@ -2912,6 +2970,7 @@
+                     ?? sectionsByTab[active.id]?.[0];
+                   if (section) void beginEdit(section);
+                 }}>{t(locale, "editSection")}</button>}
++              {!editingAvailable && <small>{t(locale, "editingUnavailable")}</small>}
+             </>} </>} />}
+           {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
+             <input ref={findInputRef} type="search" value={findQuery} autoComplete="off"
+@@ -2936,13 +2995,6 @@
+               disabled={!findResults?.count} onClick={() => moveFind(1)}>↓</button>
+             <button type="button" aria-label={t(locale, "closeFind")} onClick={closeFind}>×</button>
+           </div>}
+-          {tabs.filter((tab) => tab.explicitFile).map((tab) => {
+-            const target: RefreshTarget = { kind: "explicit-file", fileId: tab.id };
+-            return <div className="tab-reload-feedback" key={tab.id}>
+-              {reloadFeedback(target) && <span role="status">{tab.name}: {reloadFeedback(target)}</span>}
+-              {reloadProgress(target)}
+-            </div>;
+-          })}
+           {historyBusy && <div className="notice" role="status"><span>{t(locale, "loading")}</span>
+             <button type="button" onClick={cancelHistoryTraversal}>{t(locale, "cancel")}</button></div>}
+           {goMenu && <ActionMenu {...goMenu} onClose={() => setGoMenu(null)} actions={[
+@@ -2955,21 +3007,34 @@
+             { label: t(locale, "clearVisitHistory"), disabled: historyBusy || !history.entries.length, run: clearVisitHistory }
+           ]} />}
+           {projectsMenu && <ActionMenu {...projectsMenu} onClose={() => setProjectsMenu(null)} actions={[
+-            { label: t(locale, "openFile"), hint: "⌘O", disabled: busy, run: () => void chooseFile() },
+-            { label: t(locale, "openFolder"), hint: "⇧⌘O", disabled: busy, run: () => void chooseFolder() },
+-            { label: t(locale, "folderSearch"), hint: "⇧⌘F", disabled: !root,
+-              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++            { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
++            { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
++            { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
++              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } },
++            ...(root ? [
++              { label: `${t(locale, "reload")} ${root.name} ${t(locale, "folder")}`, disabled: busy,
++                run: () => void startReload({ ...projectsMenu, target: { kind: "folder", rootId: root.id, segments: [] }, label: root.name }) },
++              { label: t(locale, "copyPath"), disabled: !navigator.clipboard?.writeText,
++                reason: !navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined,
++                run: () => void copyPath(root.displayPath) }
++            ] : [])
+           ]} />}
+           {reloadMenu && <ActionMenu anchor={reloadMenu.anchor} x={reloadMenu.x} y={reloadMenu.y}
+             onClose={() => setReloadMenu(null)} actions={[
++              ...(reloadFeedback(reloadMenu.target) ? [{ label: t(locale, "lastReloadStatus"), disabled: true,
++                reason: `${reloadMenu.label}: ${reloadFeedback(reloadMenu.target)}`, run: () => {} }] : []),
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
+-                { label: t(locale, "openFile"), hint: "⌘O", run: () => void chooseFile() },
+-                { label: t(locale, "openFolder"), hint: "⇧⌘O", run: () => void chooseFolder() },
+-                { label: t(locale, "folderSearch"), hint: "⇧⌘F", run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++                { label: t(locale, "openFile"), hint: shortcutHint("O"), run: () => void chooseFile() },
++                { label: t(locale, "openFolder"), hint: shortcutHint("O", true), run: () => void chooseFolder() },
++                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
+               ] : []),
+-              ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [{ label: t(locale, "folderSearch"), disabled: true,
+-                reason: t(locale, "searchFolderUnavailable"), run: () => {} }] : []),
+-              ...(reloadMenu.target.kind === "root-file" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
++              ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [
++                { label: t(locale, directories[pathKey(reloadMenu.target.segments)]?.expanded ? "collapseFolder" : "expandFolder"),
++                  run: () => { if (reloadMenu.target.kind === "folder") toggleDirectory(reloadMenu.target.segments); } },
++                { label: t(locale, "folderSearch"), disabled: true,
++                  reason: t(locale, "searchFolderUnavailable"), run: () => {} }
++              ] : []),
++              ...(reloadMenu.target.kind === "root-file" && reloadMenu.anchor.getAttribute("role") !== "tab" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
+                 disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
+                 reason: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label) ? t(locale, "unsupported") : undefined,
+                 run: () => { if (reloadMenu.target.kind !== "root-file") return;
+@@ -2977,10 +3042,17 @@
+                     { name: reloadMenu.label, path: contextPath ?? reloadMenu.label }); } }] : []),
+               ...(contextPath ? [{ label: t(locale, "copyPath"), disabled: !navigator.clipboard?.writeText,
+                 reason: !navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined, run: () => void copyPath(contextPath) }] : []),
+-              ...(contextTab ? [{ label: `${t(locale, "closeTab")}: ${contextTab.name}`, hint: contextTab.id === activeId ? "⌘W" : undefined,
+-                disabled: busy, run: () => void closeTab(contextTab.id) }] : []),
++              ...(contextTab ? [{ label: `${t(locale, "closeTab")}: ${contextTab.name}`, hint: contextTab.id === activeId ? shortcutHint("W") : undefined,
++                disabled: busy || savingTabId === contextTab.id, run: () => void closeTab(contextTab.id) },
++                ...(reloadMenu.anchor.getAttribute("role") === "tab" ? [
++                  { label: t(locale, "closeOtherTabs"), disabled: busy || tabs.length < 2 || savingTabId !== null,
++                    run: () => void closeTabs(tabs.filter(tab => tab.id !== contextTab.id).map(tab => tab.id)) },
++                  { label: t(locale, "closeTabsRight"), disabled: busy || tabs.at(-1)?.id === contextTab.id || savingTabId !== null,
++                    run: () => void closeTabs(tabs.slice(tabs.findIndex(tab => tab.id === contextTab.id) + 1).map(tab => tab.id)) }
++                ] : [])
++              ] : []),
+               { label: `${t(locale, "reload")} ${reloadMenu.label}${reloadMenu.target.kind === "folder" ? ` ${t(locale, "folder")}` : ""}`,
+-                disabled: busy, run: () => void startReload(reloadMenu) }
++                disabled: busy, hint: contextTab?.id === activeId ? shortcutHint("R") : undefined, run: () => void startReload(reloadMenu) }
+             ]} />}
+           {notice && <div className="notice" role="status">
+             <span>{notice}</span>
+@@ -3031,6 +3103,10 @@
+             <div ref={modalRef} className="section-modal" role="alertdialog" aria-modal="true" aria-label={t(locale, "closeEditQuestion")}>
+               <strong>{t(locale, "closeEditQuestion")}</strong>
+               <p>{t(locale, "closeEditDetail")}</p>
++              {closeIntent.tabIds && closeIntent.tabIds.length > 1 && <ul>{closeIntent.tabIds.map(id => {
++                const tab = tabs.find(item => item.id === id);
++                return <li key={id}>{tab?.displayPath ?? id}</li>;
++              })}</ul>}
+               <div className="section-modal-actions">
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("cancel")}>{t(locale, "cancel")}</button>
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("discard")}>{t(locale, "discard")}</button>
+@@ -3295,7 +3371,7 @@
+                   onHeadings={(entries) => updateHeadings(active.id, entries)}
+                   sections={sectionsByTab[active.id]}
+                   activeSectionId={!activeEdit?.paused ? activeEdit?.section.id : undefined}
+-                  onEditSection={(section) => void beginEdit(section)}
++                  onEditSection={editingAvailable ? (section) => void beginEdit(section) : undefined}
+                   onNavigate={(target) => void navigate(target)} />
+               </div>
+             )}
+@@ -3325,6 +3401,11 @@
+             className={`find-overlay ${overlay.active ? "active" : ""}`} aria-hidden="true"
+             style={{ left: overlay.left, top: overlay.top,
+               width: overlay.width, height: overlay.height }} />)}
++          <ReloadFeedback message={manualReload && reloadStatusText(manualReload.result)
++            ? `${manualReload.label}: ${reloadStatusText(manualReload.result)}` : null}
++            successful={Boolean(manualReload && !manualReload.result.reasonCode
++              && ["current", "changed"].includes(manualReload.result.state))}
++            dismissLabel={t(locale, "dismiss")} progress={manualReload ? reloadProgress(manualReload.target) : null} />
+         </main>
+       </div>
+     </div>
+--- before/src/app/i18n.ts
++++ after/src/app/i18n.ts
+@@ -1,7 +1,13 @@
++import { deviceText, isWindows } from "./platform";
+ export type Locale = "en" | "es";
+ 
+ const catalog = {
+   en: {
++    lastReloadStatus: "Last reload status",
++    expandFolder: "Expand folder",
++    collapseFolder: "Collapse folder",
++    closeOtherTabs: "Close other tabs",
++    closeTabsRight: "Close tabs to the right",
+     historyClosed: "Closed",
+     historyBack: "Back",
+     historyForward: "Forward",
+@@ -179,6 +185,7 @@
+     discardDraftConfirmation: "Discard your unsaved edit and use the disk version?",
+     examinedItems: "Items checked",
+     readingPositionShifted: "The passage moved; showing the closest available position",
++    editingUnavailable: "Windows preview is read-only while safe-save and recovery are verified.",
+     editSection: "Edit section",
+     editingSection: "Editing",
+     beforeFirstHeading: "Before first heading",
+@@ -306,6 +313,11 @@
+     startFresh: "Start fresh"
+   },
+   es: {
++    lastReloadStatus: "Último estado de recarga",
++    expandFolder: "Expandir carpeta",
++    collapseFolder: "Contraer carpeta",
++    closeOtherTabs: "Cerrar las otras pestañas",
++    closeTabsRight: "Cerrar pestañas a la derecha",
+     historyClosed: "Cerrado",
+     historyBack: "Atrás",
+     historyForward: "Adelante",
+@@ -483,6 +495,7 @@
+     discardDraftConfirmation: "¿Descartar tu edición sin guardar y usar la versión del disco?",
+     examinedItems: "Elementos revisados",
+     readingPositionShifted: "El pasaje cambió de lugar; se muestra la posición disponible más cercana",
++    editingUnavailable: "La vista previa de Windows es de solo lectura hasta verificar el guardado y la recuperación.",
+     editSection: "Editar sección",
+     editingSection: "Editando",
+     beforeFirstHeading: "Antes del primer encabezado",
+@@ -614,7 +627,10 @@
+ export type MessageKey = keyof typeof catalog.en;
+ 
+ export function t(locale: Locale, key: MessageKey): string {
+-  return catalog[locale][key];
++  if (isWindows && key === "imageUnavailable") return locale === "es"
++    ? "Las imágenes no están disponibles en Windows hasta aprobar un decodificador aislado."
++    : "Images are unavailable on Windows pending approval of an isolated decoder.";
++  return deviceText(catalog[locale][key]);
+ }
+ 
+ export function errorText(locale: Locale, code: string): string {
+@@ -633,6 +649,7 @@
+     image_mismatch: "imageMismatch",
+     unsafe_image: "imageUnsafe",
+     image_unavailable: "imageUnavailable",
++    editing_unavailable: "editingUnavailable",
+     invalid_decoder_response: "imageUnavailable",
+     preview_limit: "imageUnavailable",
+     timeout: "imageTimeout",
+--- before/src/app/ActionMenu.tsx
++++ after/src/app/ActionMenu.tsx
+@@ -14,21 +14,23 @@
+   }, [x, y]);
+   useEffect(() => {
+     panel.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
+-    const dismiss = () => { closing.current(); if (anchor.isConnected) anchor.focus(); };
++    const dismiss = (restoreFocus = false) => { closing.current(); if (restoreFocus && anchor.isConnected) anchor.focus(); };
+     const outside = (event: PointerEvent) => {
+       if (!panel.current?.contains(event.target as Node) && !anchor.contains(event.target as Node)) dismiss();
+     };
+     const escape = (event: KeyboardEvent) => {
+-      if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); dismiss(); }
++      if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); dismiss(true); }
+     };
+     const resize = () => dismiss();
+     const blur = () => closing.current();
+     const scroll = (event: Event) => { if (!panel.current?.contains(event.target as Node)) dismiss(); };
++    const observer = new MutationObserver(() => { if (!anchor.isConnected) closing.current(); });
++    observer.observe(document.body, { childList: true, subtree: true });
+     window.addEventListener("keydown", escape);
+     window.addEventListener("pointerdown", outside);
+     window.addEventListener("resize", resize); window.addEventListener("blur", blur);
+     window.addEventListener("scroll", scroll, true);
+-    return () => { window.removeEventListener("keydown", escape); window.removeEventListener("pointerdown", outside); window.removeEventListener("resize", resize); window.removeEventListener("blur", blur);
++    return () => { observer.disconnect(); window.removeEventListener("keydown", escape); window.removeEventListener("pointerdown", outside); window.removeEventListener("resize", resize); window.removeEventListener("blur", blur);
+       window.removeEventListener("scroll", scroll, true); };
+   }, [anchor]);
+   return <div ref={panel} className="context-menu action-menu" role="menu" style={{ left: position.x, top: position.y }}
+--- before/src/app/FolderSearchPanel.tsx
++++ after/src/app/FolderSearchPanel.tsx
+@@ -27,7 +27,6 @@
+   const [errorCode, setErrorCode] = useState<string | null>(null);
+   const [opening, setOpening] = useState<string | null>(null);
+   const [listenerReady, setListenerReady] = useState(false);
+-  const [currentJob, setCurrentJob] = useState<FolderSearchStarted | null>(null);
+   const job = useRef<FolderSearchStarted | null>(null);
+   const starting = useRef<Promise<FolderSearchStarted> | null>(null);
+   const sequence = useRef(0);
+@@ -35,6 +34,8 @@
+   const submittedQuery = useRef("");
+   useEffect(() => { if (active) inputRef.current?.focus(); }, [active]);
+   const stoppedJob = useRef<string | null>(null);
++  const stoppedSequence = useRef<number | null>(null);
++  const openSequence = useRef(0);
+ 
+   function accept(batch: FolderSearchBatch) {
+     if (batch.jobId !== job.current?.jobId || batch.generation !== root.generation) {
+@@ -43,7 +44,7 @@
+     }
+     setHits((old) => [...old, ...batch.results].slice(0, 10_000));
+     setProgress({ scanned: batch.scanned, skipped: batch.skipped, matched: batch.matched });
+-    setStatus(stoppedJob.current === batch.jobId && batch.status === "searching"
++    setStatus(stoppedJob.current === batch.jobId
+       ? "stopped" : batch.status);
+     setErrorCode(batch.errorCode);
+   }
+@@ -58,6 +59,7 @@
+     });
+     return () => {
+       disposed = true;
++      sequence.current += 1;
+       unlisten?.();
+       const current = job.current;
+       if (current) void api.cancelFolderSearch(current.jobId).catch(() => {});
+@@ -69,8 +71,10 @@
+     sequence.current += 1;
+     const previous = job.current;
+     job.current = null;
+-    setCurrentJob(null);
+     stoppedJob.current = null;
++    stoppedSequence.current = null;
++    openSequence.current += 1;
++    setOpening(null);
+     pending.current = [];
+     if (previous) void api.cancelFolderSearch(previous.jobId).catch(() => {});
+     setHits([]);
+@@ -101,7 +105,12 @@
+         return;
+       }
+       job.current = started;
+-      setCurrentJob(started);
++      if (stoppedSequence.current === current) {
++        stoppedJob.current = started.jobId;
++        await api.cancelFolderSearch(started.jobId);
++        if (current !== sequence.current) return;
++        setStatus("stopped");
++      }
+       const buffered = pending.current;
+       pending.current = [];
+       for (const batch of buffered) accept(batch);
+@@ -116,26 +125,30 @@
+   }
+ 
+   async function stop() {
++    const owner = sequence.current;
++    stoppedSequence.current = owner;
+     const current = job.current;
+-    if (!current) return;
++    if (!current) { setStatus("stopped"); return; }
+     try {
+       if (await api.cancelFolderSearch(current.jobId)) {
++        if (owner !== sequence.current || job.current !== current) return;
+         stoppedJob.current = current.jobId;
+         setStatus("stopped");
+       }
+-    } catch (error) { setErrorCode(readerError(error).code); }
++    } catch (error) { if (owner === sequence.current) setErrorCode(readerError(error).code); }
+   }
+ 
+   async function open(hit: FolderSearchHit) {
+     const current = job.current;
+     if (!current) return;
++    const owner = ++openSequence.current;
+     setOpening(hit.id);
+     try {
+       const result = await api.openSearchHit(current.jobId, hit.id);
+       if (job.current !== current) return;
+       await onOpen(result, hit, submittedQuery.current);
+-    } catch (error) { setErrorCode(readerError(error).code); }
+-    finally { setOpening(null); }
++    } catch (error) { if (job.current === current && owner === openSequence.current) setErrorCode(readerError(error).code); }
++    finally { if (owner === openSequence.current) setOpening(null); }
+   }
+ 
+   const groups = new Map<string, FolderSearchHit[]>();
+@@ -170,7 +183,7 @@
+       {t(locale, "folderSearchIncludeIgnored")}</label>
+     <div className="folder-search-actions">
+       {status !== "searching" && <button type="button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>}
+-      {status === "searching" && <button type="button" disabled={!currentJob}
++      {status === "searching" && <button type="button"
+         onClick={() => void stop()}>{t(locale, "folderSearchStop")}</button>}
+       <button type="button" disabled={!query} onClick={() => { invalidate(); setQuery(""); inputRef.current?.focus(); }}>{t(locale, "clearSearch")}</button>
+     </div>
+--- before/src/styles/app.css
++++ after/src/styles/app.css
+@@ -632,3 +632,12 @@
+ .sidebar-scrim { position: absolute; inset: 0; z-index: 30; width: 100%; height: 100%; border: 0; border-radius: 0; background: #0004; }
+ 
+ .reader-scroll, .image-viewport { overflow-anchor: none; }
++
++/* Manual reload outcomes use stable chrome space, never extra explorer rows. */
++.reload-feedback-footer { min-height: 44px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 4px 12px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
++.reload-feedback-footer > [role="status"] { min-width: 0; flex: 1; }
++.reload-feedback-footer > button { min-width: 32px; min-height: 32px; flex-shrink: 0; }
++.reload-feedback-footer .reload-progress { padding: 0; }
++.action-menu { max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); overflow: auto; }
++.action-menu button { min-height: 32px; }
++.action-menu button > span:first-child { overflow-wrap: anywhere; }
+--- before/specs/006-view-local-images/tasks.md
++++ after/specs/006-view-local-images/tasks.md
+@@ -101,3 +101,12 @@
+ ## Phase 11: QA convergence — 2026-10-01
+ 
+ - [ ] T038 Align the draft/proposal status statements in `spec.md`, `design.md`, and `plan.md` with the recorded approval state in `docs/approvals.md`, without changing approved requirements or design/architecture content; verify the approved artifact hashes per Constitution V (partial).
++
++## Phase 12: Approved shared-shell maintenance — 2026-10-05
++
++Current user IMPLEMENT request and `design-reviews/03-10-27-01/proposals/approval-all-2026-10-05.json` authorize these bounded client changes. Installed Spec Kit resolves F006 through its supported feature-directory override with NO_PERSIST; global F007W state and Windows proposals are preserved. F006 original behavior/architecture/security scope is retained. Mapping: `frontend-maintenance-2026-10-05.md`.
++
++- [x] T039 Verify existing D history, tabs, image/Markdown navigation and loading fixes before editing; classify every approved requirement and preserve completed features in `frontend-implementation/plan.md`.
++- [x] T040 Complete folder/tab/Projects contextual actions using existing commands; preserve per-tab loss guards for batch close and cause-aware dismissal/focus. Approved frontend criteria 5–6,13; F006-R09/R10.
++- [x] T041 Put manual reload outcomes in reserved neutral footer space, retain target status, and make search pending-start/stale cancellation safe without new native contracts. Approved frontend criteria 4,17–19; F006-R08/R10.
++- [x] T042 Verify final suite/build/worker and rendered EN/ES/light/dark/narrow/enlarged states; record native checks separately and retain architecture requests IR-01–05. Approved frontend criteria 1–24; F006-R09/R10 and SC-003/005.
+--- before/specs/006-view-local-images/verification.md
++++ after/specs/006-view-local-images/verification.md
+@@ -143,3 +143,13 @@
+ DMG SHA-256: `4d2e0ae163f613801fc801cb9776b508fcf213de5c85cb3eac01d5ce55dbf657`.
+ App executable: `bcf0b8fc75018c383049591af06a3df40749e706e199461453740ee53f0277ed`.
+ Image helper: `43148ee945ee3c9b9bad977ff98030dc98a54016ffed3c3e7d368464b9ea5192`.
++
++## Approved frontend maintenance — 2026-10-05
++
++Bounded Spec Kit T039–T042 complete for client checks only. Existing D/history/zoom/loading fixes retained; menu focus, folder/tab batch actions, neutral reserved reload feedback and pending/stale search cancellation repaired. Traceability: [maintenance mapping](frontend-maintenance-2026-10-05.md), [current implementation report](../../frontend-implementation/report.md).
++
++PASS: baseline 255 tests; final current 39 files/269 tests (`npm test -- --maxWorkers=2 --reporter=dot`); final TypeScript/Vite local build (`npm run build`); production worker guard; nine actual WKWebView states/204 checks using disposable content and mocked native APIs. Rendered footer geometry/EN/ES/themes/narrow/200% layouts reviewed; original app/model/runtime architecture unchanged by this frontend pass. Current renderer source hashes verified unchanged across build and capture. Native source changes from concurrent Windows work were preserved, not tested or claimed as this pass's changes.
++
++NOT TESTED: actual Tauri grants/picker/native menus/Settings, durable native save/restart, physical input/IME/VoiceOver. Full rich-editor, HTML/resource isolation, generic-file handler, separate Settings and native Go/subtree work still depend on IR-01–05. Existing native acceptance tasks remain open. No package/release/Windows runtime claim.
++
++Feature ownership: global F007W state preserved; F006 resolved through the installed shell workflow's supported feature-directory override with NO_PERSIST. No historical approved spec/design/architecture files or design artifacts modified.
+--- /dev/null
++++ after/src/app/ReloadFeedback.tsx
+@@ -0,0 +1,32 @@
++import { useEffect, useRef, useState, type ReactNode } from "react";
++
++/** Manual reload feedback occupies reserved space; last results remain in target menus. */
++export default function ReloadFeedback({ message, successful, dismissLabel, progress }: {
++  message: string | null; successful: boolean; dismissLabel: string; progress?: ReactNode;
++}) {
++  const [dismissed, setDismissed] = useState(false);
++  const [hovered, setHovered] = useState(false);
++  const [focused, setFocused] = useState(false);
++  const remaining = useRef(5000);
++  // A new outcome replaces the prior one even when the footer has been dismissed.
++  useEffect(() => {
++    remaining.current = 5000;
++    setDismissed(false);
++  }, [message]);
++  useEffect(() => {
++    if (!message || !successful || dismissed || hovered || focused) return;
++    const started = Date.now();
++    const timer = setTimeout(() => setDismissed(true), remaining.current);
++    return () => { clearTimeout(timer); remaining.current = Math.max(0, remaining.current - (Date.now() - started)); };
++  }, [message, successful, dismissed, hovered, focused]);
++  return <div className="reload-feedback-footer" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
++    onFocus={() => setFocused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
++    {!dismissed && message && <>
++      <span role="status" className={successful ? "reload-success" : undefined}>
++        {successful && <span aria-hidden="true">✓ </span>}{message}
++      </span>
++      <button type="button" aria-label={dismissLabel} onClick={() => setDismissed(true)}>×</button>
++    </>}
++    {progress}
++  </div>;
++}
+--- /dev/null
++++ after/tests/ui/action-menu.test.tsx
+@@ -0,0 +1,39 @@
++// @vitest-environment jsdom
++import { afterEach, expect, it, vi } from "vitest";
++import { cleanup, fireEvent, render, screen } from "@testing-library/react";
++import ActionMenu from "../../src/app/ActionMenu";
++
++afterEach(cleanup);
++function setup() {
++  const close = vi.fn();
++  render(<><button>Invoker</button><button>Outside</button><div data-testid="surface" /></>);
++  const anchor = screen.getByRole("button", { name: "Invoker" });
++  render(<ActionMenu anchor={anchor} x={10} y={10} onClose={close}
++    actions={[{ label: "Action", run: vi.fn() }]} />);
++  return { anchor, close, item: screen.getByRole("menuitem") };
++}
++it("dismisses on outside pointer-down without moving focus back to the invoker", () => {
++  const { anchor, close, item } = setup();
++  expect(document.activeElement).toBe(item);
++  fireEvent.pointerDown(screen.getByTestId("surface"));
++  expect(close).toHaveBeenCalledOnce();
++  expect(document.activeElement).not.toBe(anchor);
++});
++it("dismisses on target scroll without scrolling focus back to the invoker", () => {
++  const { anchor, close } = setup();
++  fireEvent.scroll(screen.getByTestId("surface"));
++  expect(close).toHaveBeenCalledOnce();
++  expect(document.activeElement).not.toBe(anchor);
++});
++it("restores the invoker only on keyboard cancellation", () => {
++  const { anchor, close, item } = setup();
++  fireEvent.keyDown(item, { key: "Escape" });
++  expect(close).toHaveBeenCalledOnce();
++  expect(document.activeElement).toBe(anchor);
++});
++it("dismisses for Tab and resumes navigation from the invoker", () => {
++  const { anchor, close, item } = setup();
++  fireEvent.keyDown(item, { key: "Tab" });
++  expect(close).toHaveBeenCalledOnce();
++  expect(document.activeElement).toBe(anchor);
++});
+--- /dev/null
++++ after/tests/ui/reload-feedback.test.tsx
+@@ -0,0 +1,42 @@
++// @vitest-environment jsdom
++import { afterEach, expect, it, vi } from "vitest";
++import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
++import ReloadFeedback from "../../src/app/ReloadFeedback";
++
++afterEach(() => { cleanup(); vi.useRealTimers(); });
++it("expires manual success after five seconds but retains the reserved footer", () => {
++  vi.useFakeTimers();
++  const { container } = render(<ReloadFeedback message="a.md: Already current" successful dismissLabel="Dismiss" />);
++  expect(screen.getByRole("status").textContent).toContain("✓ a.md: Already current");
++  act(() => vi.advanceTimersByTime(5000));
++  expect(screen.queryByRole("status")).toBeNull();
++  expect(container.querySelector(".reload-feedback-footer")).toBeTruthy();
++});
++it("pauses the remaining time while hovered or keyboard focused", () => {
++  vi.useFakeTimers();
++  const { container } = render(<ReloadFeedback message="a.md: Updated" successful dismissLabel="Dismiss" />);
++  act(() => vi.advanceTimersByTime(2000));
++  fireEvent.mouseEnter(container.firstChild!);
++  act(() => vi.advanceTimersByTime(6000));
++  expect(screen.getByRole("status")).toBeTruthy();
++  const button = screen.getByRole("button");
++  act(() => button.focus());
++  fireEvent.mouseLeave(container.firstChild!);
++  act(() => vi.advanceTimersByTime(6000));
++  expect(screen.getByRole("status")).toBeTruthy();
++  act(() => button.blur());
++  act(() => vi.advanceTimersByTime(2999));
++  expect(screen.getByRole("status")).toBeTruthy();
++  act(() => vi.advanceTimersByTime(1));
++  expect(screen.queryByRole("status")).toBeNull();
++});
++it("keeps failures until dismissed and reveals a subsequent outcome", () => {
++  vi.useFakeTimers();
++  const view = render(<ReloadFeedback message="a.md: Cannot confirm" successful={false} dismissLabel="Dismiss" />);
++  act(() => vi.advanceTimersByTime(10000));
++  expect(screen.getByRole("status").textContent).not.toContain("✓");
++  fireEvent.click(screen.getByRole("button", { name: "Dismiss" }));
++  expect(screen.queryByRole("status")).toBeNull();
++  view.rerender(<ReloadFeedback message="b.md: Already current" successful dismissLabel="Dismiss" />);
++  expect(screen.getByRole("status").textContent).toContain("b.md");
++});
+--- /dev/null
++++ after/specs/006-view-local-images/frontend-maintenance-2026-10-05.md
+@@ -0,0 +1,16 @@
++# Approved shared-shell frontend reconciliation — 2026-10-05
++
++Authority: current user IMPLEMENT request, with existing design approval in `../../design-reviews/03-10-27-01/proposals/approval-all-2026-10-05.json`. This is a bounded client maintenance pass under the installed Spec Kit task workflow; it does not ratify unseen editor/native architecture. Global active feature F007W remains unchanged; F006 selected only for this command's duration with supported NO_PERSIST override.
++
++| Canonical boundary | Approved target | Reconciliation / evidence |
++|---|---|---|
++| F006-R08/R09/R10; shared image/Markdown shell | Neutral reload feedback, contextual navigation, guarded batch close and keyboard behavior | Native image pipeline, grants, byte-only isolation, session schema and dependencies unchanged. Existing scoped reload/close operations are reused. `../../frontend-implementation/plan.md` and `report.md` map implementation/evidence. |
++| F003F existing root search | Stop pending/scanning work; reject obsolete cancellation/open results | Existing root job contract unchanged. Subtree requests still require IR-05; action remains disabled with reason. |
++| F004 source editor/checkpoint architecture | Direct rich section editing and lossless transaction/recovery model | Current CodeMirror/source checkpoint architecture conflicts with the approved rich design. IR-01 identifies the exact amendment/migration needed. Existing source/draft safety preserved; no new serializer/checkpoint introduced in this pass. |
++| F001/F003C preference/session ownership | Separate nonmodal Settings; remembered tree filter | IR-04 defines missing window/capability and acknowledgment/persistence scope. Current controls preserved; no fake Settings window or session schema migration. |
++| Current native Markdown/image type restrictions | Isolated HTML/resources and other-file details/handler launch | IR-02/03 define missing routing/resources/isolation/metadata/launch capabilities. No native acceptance or file privileges expanded. |
++| Existing native menu commands | OS Go routes matching client history | IR-05 defines missing event IDs/state contract. Existing client Go/D/history preserved and reverified. |
++
++No change to approved original `spec.md`, `design.md`, or architecture `plan.md`. Their historical approval hashes remain tied to those versions. This supplementary mapping and T039–T042 trace the new maintenance work. Remaining material architecture/native decisions must be reconciled in their owning feature through Spec Kit before their implementation; completed client work does not imply those capabilities exist.
++
++New gap found during verification: platform-level focus/IME/physical trackpad and actual grant/save/restart acceptance are still NOT TESTED for this pass. Existing native acceptance tasks remain unchecked; browser/WKWebView evidence does not satisfy them.

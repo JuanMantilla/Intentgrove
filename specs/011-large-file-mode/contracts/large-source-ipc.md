@@ -1,0 +1,3 @@
+# F003L native source contract
+
+`inspect_large_file(grant)` returns type/size before full read. `open_large_source(grant, explicitConsent)` snapshots <=50 MiB from scoped handle and verifies one version; >50 MiB returns a limit error before full read. `read_source_window(snapshotId, range)` returns UTF-8-aligned bounded text plus line index/status. `find_large_source(snapshotId, query, token)` streams bounded result batches and progress; `cancel` invalidates generation. `copy_source_selection(snapshotId, range)` rejects >1 MiB with a clear reason. Refresh invalidates old snapshot/chunks. No command writes source or accepts arbitrary path.

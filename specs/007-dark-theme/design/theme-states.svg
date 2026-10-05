@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <title>Dark theme proposal: reading, appearance choices, and narrow Spanish layout</title>
+  <desc>Static vector sketch showing a neutral dark Markdown workspace and Light/System options. This is not a running app screenshot.</desc>
+  <rect width="1200" height="1200" fill="#E6EBE7"/>
+  <g font-family="-apple-system, Helvetica Neue, Arial, sans-serif">
+    <text x="40" y="40" fill="#202826" font-size="22" font-weight="600">Dark theme — proposal</text>
+    <text x="40" y="65" fill="#52615C" font-size="13">Existing workspace shell • Saved System / Light / Dark choice • Static sketch</text>
+    <g transform="translate(40 90)">
+      <rect width="1120" height="590" rx="10" fill="#151B1B"/>
+      <path d="M10 0H1110Q1120 0 1120 10V80H0V10Q0 0 10 0" fill="#1D2524"/>
+      <circle cx="18" cy="17" r="5" fill="#FF6058"/><circle cx="36" cy="17" r="5" fill="#FFBD2E"/><circle cx="54" cy="17" r="5" fill="#28C840"/>
+      <text x="560" y="21" text-anchor="middle" fill="#A8B9B1" font-size="12">Markdown workspace</text>
+      <g fill="#E6EEEA" font-size="13">
+        <rect x="16" y="40" width="30" height="28" rx="5" fill="#202928" stroke="#6B8078"/><text x="24" y="58">☰</text>
+        <text x="60" y="58" font-weight="600">personal</text>
+        <text x="540" y="58" fill="#A8B9B1">Appearance</text>
+        <rect x="618" y="40" width="110" height="28" rx="5" fill="#202928" stroke="#91C5D6" stroke-width="2"/><text x="630" y="58">Dark</text><text x="712" y="58">⌄</text>
+        <text x="745" y="58" fill="#A8B9B1">Language</text>
+        <rect x="807" y="40" width="84" height="28" rx="5" fill="#202928" stroke="#6B8078"/><text x="818" y="58">EN  ⌄</text>
+        <rect x="899" y="40" width="90" height="28" rx="5" fill="#202928" stroke="#6B8078"/><text x="910" y="58">Open file</text>
+        <rect x="997" y="40" width="107" height="28" rx="5" fill="#91C5D6"/><text x="1007" y="58" fill="#10272E">Open folder</text>
+      </g>
+      <rect x="0" y="80" width="228" height="510" fill="#18201F"/>
+      <path d="M228 80V590M0 80H1120" stroke="#3C4D47"/>
+      <text x="18" y="112" fill="#A8B9B1" font-size="11" letter-spacing="1.5">EXPLORER</text>
+      <text x="18" y="143" fill="#E6EEEA" font-size="14" font-weight="600">personal</text>
+      <text x="18" y="172" fill="#A8B9B1" font-size="12">☑  Markdown only</text>
+      <rect x="0" y="189" width="228" height="30" fill="#2D4547"/>
+      <text x="20" y="209" fill="#E6EEEA" font-size="13">◇  README.md</text>
+      <text x="20" y="240" fill="#A8B9B1" font-size="13">›  docs</text>
+      <text x="20" y="270" fill="#A8B9B1" font-size="13">›  notes</text>
+      <rect x="228" y="80" width="892" height="42" fill="#1D2524"/>
+      <rect x="228" y="80" width="177" height="42" fill="#202928"/>
+      <path d="M228 121H405" stroke="#91C5D6" stroke-width="2"/>
+      <text x="244" y="106" fill="#E6EEEA" font-size="13">README.md    ×</text>
+      <rect x="291" y="149" width="766" height="415" fill="#202928"/>
+      <text x="336" y="181" fill="#A8B9B1" font-size="11" letter-spacing="1">PERSONAL / README.MD</text>
+      <text x="336" y="225" fill="#E6EEEA" font-size="32" font-weight="600">Workspace guide</text>
+      <text x="336" y="257" fill="#E6EEEA" font-size="16">Read your documentation in a quieter workspace.</text>
+      <text x="336" y="290" fill="#91C5D6" font-size="16" text-decoration="underline">Open the local guide</text>
+      <text x="336" y="337" fill="#E6EEEA" font-size="23" font-weight="600">Getting started</text>
+      <path d="M336 351H1011" stroke="#3C4D47"/>
+      <rect x="336" y="371" width="675" height="78" rx="6" fill="#17201F"/>
+      <text x="353" y="399" fill="#E6EEEA" font-family="Menlo, monospace" font-size="13"># Your files stay local</text>
+      <text x="353" y="425" fill="#A8B9B1" font-family="Menlo, monospace" font-size="13">Open a folder and select a document.</text>
+      <text x="336" y="481" fill="#E6EEEA" font-size="16">Images keep their original colors.</text>
+      <g transform="translate(618 74)" font-size="13">
+        <rect width="110" height="96" rx="5" fill="#202928" stroke="#6B8078"/>
+        <text x="12" y="25" fill="#E6EEEA">System</text><text x="12" y="55" fill="#E6EEEA">Light</text>
+        <rect x="4" y="65" width="102" height="27" rx="3" fill="#2D4547"/>
+        <text x="12" y="84" fill="#91C5D6">✓ Dark</text>
+      </g>
+    </g>
+    <text x="40" y="725" fill="#202826" font-size="17" font-weight="600">Light baseline</text>
+    <g transform="translate(40 746)">
+      <rect width="440" height="255" rx="8" fill="#F4F5F3"/>
+      <rect width="440" height="38" rx="8" fill="#F8F9F7"/>
+      <text x="18" y="25" fill="#202826" font-size="13">Appearance   Light ⌄</text>
+      <rect x="20" y="58" width="400" height="173" fill="#FFFFFF"/>
+      <text x="42" y="102" fill="#202826" font-size="24" font-weight="600">Workspace guide</text>
+      <text x="42" y="133" fill="#52615C" font-size="14">The existing light direction is retained.</text>
+      <text x="42" y="174" fill="#315F70" font-size="14" text-decoration="underline">Open the local guide</text>
+    </g>
+    <text x="510" y="725" fill="#202826" font-size="17" font-weight="600">Narrow window / Español</text>
+    <g transform="translate(510 746)">
+      <rect width="650" height="255" rx="8" fill="#151B1B"/>
+      <rect width="650" height="82" rx="8" fill="#1D2524"/>
+      <text x="16" y="27" fill="#E6EEEA" font-size="13">☰    Abrir carpeta    Abrir archivo       personal</text>
+      <text x="16" y="60" fill="#A8B9B1" font-size="12">Apariencia</text>
+      <rect x="89" y="41" width="107" height="28" rx="5" fill="#202928" stroke="#6B8078"/>
+      <text x="102" y="60" fill="#E6EEEA" font-size="13">Oscuro  ⌄</text>
+      <text x="497" y="60" fill="#A8B9B1" font-size="12">Idioma</text>
+      <rect x="548" y="41" width="85" height="28" rx="5" fill="#202928" stroke="#6B8078"/>
+      <text x="561" y="60" fill="#E6EEEA" font-size="13">ES  ⌄</text>
+      <rect x="16" y="97" width="618" height="140" fill="#202928"/>
+      <text x="38" y="138" fill="#E6EEEA" font-size="24" font-weight="600">Guía de trabajo</text>
+      <text x="38" y="171" fill="#A8B9B1" font-size="14">Controles legibles y foco visible en ambas apariencias.</text>
+      <rect x="38" y="190" width="216" height="29" rx="5" fill="#35271F"/>
+      <text x="48" y="210" fill="#EFC6A7" font-size="12">Tu edición está a salvo.</text>
+    </g>
+    <text x="40" y="1035" fill="#52615C" font-size="12">No layout movement • Optional 120 ms color transition • No motion under Reduce Motion</text>
+  </g>
+</svg>

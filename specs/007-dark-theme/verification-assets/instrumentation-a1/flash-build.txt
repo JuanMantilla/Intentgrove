@@ -1,0 +1,31 @@
+tests/acceptance/startup-flash.swift:16:15: warning: 'CVDisplayLinkCreateWithCGDisplay' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+14 |                           styleMask: [.borderless], backing: .buffered, defer: false)
+15 |         window.backgroundColor = .black; window.isOpaque = true; window.makeKeyAndOrderFront(nil)
+16 |         guard CVDisplayLinkCreateWithCGDisplay(display, &link) == kCVReturnSuccess, let link else { exit(1) }
+   |               `- warning: 'CVDisplayLinkCreateWithCGDisplay' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+17 |         CVDisplayLinkSetOutputCallback(link, { _, _, target, _, _, context in
+18 |             let app = Unmanaged<Flash>.fromOpaque(context!).takeUnretainedValue()
+
+tests/acceptance/startup-flash.swift:17:9: warning: 'CVDisplayLinkSetOutputCallback' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+15 |         window.backgroundColor = .black; window.isOpaque = true; window.makeKeyAndOrderFront(nil)
+16 |         guard CVDisplayLinkCreateWithCGDisplay(display, &link) == kCVReturnSuccess, let link else { exit(1) }
+17 |         CVDisplayLinkSetOutputCallback(link, { _, _, target, _, _, context in
+   |         `- warning: 'CVDisplayLinkSetOutputCallback' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+18 |             let app = Unmanaged<Flash>.fromOpaque(context!).takeUnretainedValue()
+19 |             let host = target.pointee.hostTime
+
+tests/acceptance/startup-flash.swift:23:9: warning: 'CVDisplayLinkStart' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+21 |             return kCVReturnSuccess
+22 |         }, Unmanaged.passUnretained(self).toOpaque())
+23 |         CVDisplayLinkStart(link)
+   |         `- warning: 'CVDisplayLinkStart' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+24 |     }
+25 |     func frame(host: UInt64) {
+
+tests/acceptance/startup-flash.swift:33:26: warning: 'CVDisplayLinkStop' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+31 |             fflush(stdout)
+32 |         }
+33 |         if tick >= 240 { CVDisplayLinkStop(link!); NSApplication.shared.terminate(nil) }
+   |                          `- warning: 'CVDisplayLinkStop' was deprecated in macOS 15.0: use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) 
+34 |     }
+35 | }

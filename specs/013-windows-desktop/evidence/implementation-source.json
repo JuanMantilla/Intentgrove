@@ -1,0 +1,135 @@
+{
+  "feature": "F007W",
+  "date": "2026-10-05",
+  "status": "SOURCE IN PROGRESS; WINDOWS NOT TESTED",
+  "files": [
+    {
+      "path": "src-tauri/Cargo.lock",
+      "sha256": "590a8085ed282c2f89abe8b93e3da8eef55f6b06dddbd717521a6ca89a24d584"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "sha256": "f70291f09bd86943e4a77130d9b7e06925fe5dfad838cc8199703a5d80b5a916"
+    },
+    {
+      "path": "src-tauri/src/document.rs",
+      "sha256": "a199391513c5e53ed991b4ee8d94aadebb98793df021ec4ef18f6ab31ed1a740"
+    },
+    {
+      "path": "src-tauri/src/editing.rs",
+      "sha256": "9c75178e939fd18ce4c3222ffd32473b1a0e2e92de8ec476e3ddffaf7134db6e"
+    },
+    {
+      "path": "src-tauri/src/image.rs",
+      "sha256": "f8e32ca5a34474cb62a6560bf417fe2de6b986c03348e38c3c8e0ac129167a60"
+    },
+    {
+      "path": "src-tauri/src/large_source.rs",
+      "sha256": "2ffd47549ff86411f95cdad1ce7c42002977247f88f49d8e084b0b8fc087fe0f"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "25d53db42143fa328c6d49f68bf8c201bb473a41bae045b3a1b6443b76f35e07"
+    },
+    {
+      "path": "src-tauri/src/listing.rs",
+      "sha256": "8f3a6f78685257e8af4f6c79c9abb8c393aac3c933eea115baf6a3cb9b299b0a"
+    },
+    {
+      "path": "src-tauri/src/platform/macos.rs",
+      "sha256": "a46fe24c054824fd0fe91031253c43e1723d67322a813c8c7d171eb067fcc8b2"
+    },
+    {
+      "path": "src-tauri/src/platform/macos_save.rs",
+      "sha256": "2b4984a2a3be8ca74bf0e4a287e2a492f6405df73f3806f5844fcbe5664011d1"
+    },
+    {
+      "path": "src-tauri/src/platform/mod.rs",
+      "sha256": "703a6a462f0b2de6121be9974856ae954a72b11fd9d2065a5d42289430124c10"
+    },
+    {
+      "path": "src-tauri/src/platform/storage.rs",
+      "sha256": "205af540a15dfa6f70e323f72c3ff753496f4e6e667d18f698b2ccee99a3ab4d"
+    },
+    {
+      "path": "src-tauri/src/platform/windows.rs",
+      "sha256": "a422fdb1ede3cf476f5b792318241840361c95927ef4de3c628bda0639074570"
+    },
+    {
+      "path": "src-tauri/src/platform/windows_path.rs",
+      "sha256": "b13910cf1ca28a8a41fb5deb247ed537639b194b5db0b0d2899f3429fbe0855a"
+    },
+    {
+      "path": "src-tauri/src/platform/windows_storage.rs",
+      "sha256": "a5e55f877d675427db85732f9ff4ce8ffe121e1d6ea4a9a4e57a7c6537267da3"
+    },
+    {
+      "path": "src-tauri/src/recents.rs",
+      "sha256": "71e1ba00421b862e2ab4b0f74291de903b3b88d93553b7eec90f14db8be2ce9a"
+    },
+    {
+      "path": "src-tauri/src/recovery.rs",
+      "sha256": "22bdcdfc91956cf9ab46378d15f32903e78f565eaf70f61eb930d9ce3102c5d9"
+    },
+    {
+      "path": "src-tauri/src/save_copies.rs",
+      "sha256": "cb69ab717d43c23c3f6cfa4fcb0042fb25d59ed118d06c0b837dde8844a3690c"
+    },
+    {
+      "path": "src-tauri/src/scope.rs",
+      "sha256": "420cb973ca2210851d0db74b1a99e93a40e88bc9563836f455b007899e8b0869"
+    },
+    {
+      "path": "src-tauri/src/session.rs",
+      "sha256": "f09a1e49a833ef3ce326dbd7be169364dc683e5c00f43200675ef8f821a4b8b7"
+    },
+    {
+      "path": "src-tauri/tauri.windows.conf.json",
+      "sha256": "3a96574518aefef8b4dc1b77249f19cdc7228090cbd138ecd2b277a2d3ac3b8d"
+    },
+    {
+      "path": "src-tauri/tests/automatic_refresh.rs",
+      "sha256": "17874243259002fe9ab4b17865379e1ad234691747d4d1d6da656b8166b7e90c"
+    },
+    {
+      "path": "src-tauri/tests/manual_reload.rs",
+      "sha256": "ca432a89f0209fc84c22a3555726d57232e3cdff8e68e90fcf4faa3eb66ec4fd"
+    },
+    {
+      "path": "src-tauri/tests/refresh_conflict.rs",
+      "sha256": "20cbcc8cfabd050cb3a4fb8bcdd5a4d97044f4e5a3d3f15261b6b11e802aed0a"
+    },
+    {
+      "path": "src-tauri/tests/refresh_recovery.rs",
+      "sha256": "a8cb1f5978a8fc6a3e45a9f07773c6cc706967f365bc42c077cb6d7887a6ba51"
+    },
+    {
+      "path": "src-tauri/tests/refresh_version.rs",
+      "sha256": "0656c06eaa6656f8c875ece584c0a1ce20d71dc803d601185870614e6ff66bec"
+    },
+    {
+      "path": "src-tauri/tests/windows_scoped.rs",
+      "sha256": "67a4b2faa83563209a5d64134f167bb06f460b9d257ca479574e5770d61a739b"
+    },
+    {
+      "path": "src/app/App.tsx",
+      "sha256": "00fb0c9dcf493e406ca0d7fe374ebfecced8a79b7c86a852a6c87612fd682ba5"
+    },
+    {
+      "path": "src/app/documentIdentity.ts",
+      "sha256": "b72913c7bf9ac7c283d4648b74bfa1c3357c6dbcc342dcdb3911693ea17b7259"
+    },
+    {
+      "path": "src/app/i18n.ts",
+      "sha256": "2cb7189c09551ada9b37ac0a112b98e7546533bcc3b593ce3cfa573faa6ded3e"
+    },
+    {
+      "path": "src/app/platform.ts",
+      "sha256": "e62d1de464dc1e2101843402052559974e97e209cac4720fad0fd24ebe90edde"
+    },
+    {
+      "path": "tests/ui/windows-platform.test.tsx",
+      "sha256": "271d57bebd900089774539d2f1c1431228ab283953edba12e88dde6f2807086b"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# F003F native search contract
+
+`start_folder_search(rootGrant, query, mode, includeIgnored)` returns opaque job/generation. Native emits bounded batches of verified result metadata, progress and typed skipped-file errors. `cancel_folder_search(job)` acknowledges within the proposed 250 ms target. All work uses fd-relative no-follow traversal and bounded ignore-file reads; query never supplies a filesystem path. `open_search_hit(job, result)` reopens through the current root grant and confirms current content/identity or returns changed/missing. A new root/query invalidates old generation responses.

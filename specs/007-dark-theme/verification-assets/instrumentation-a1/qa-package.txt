@@ -1,0 +1,46 @@
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npx vite build --config tests/acceptance/qa/vite.config.ts`
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 292 modules transformed.
+rendering chunks...
+computing gzip size...
+target/qa-dist/.qa-marker                                  0.02 kB
+target/qa-dist/index.html                                  0.40 kB │ gzip:   0.27 kB
+target/qa-dist/assets/markdownBudget.worker-DUwt_vv7.js  138.55 kB
+target/qa-dist/assets/main-B2GK8wdD.css                   14.22 kB │ gzip:   3.67 kB
+target/qa-dist/assets/index-DAYQwBLi.js                    2.15 kB │ gzip:   1.09 kB
+target/qa-dist/assets/bridge-4mYXtyrl.js                 269.55 kB │ gzip:  87.82 kB
+target/qa-dist/assets/main-3cuRCYBt.js                   479.06 kB │ gzip: 147.94 kB
+
+✓ built in 275ms
+   Compiling md_reader v0.1.0 (/Users/juanmantilla/projects/personal/md-reader/src-tauri)
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src/refresh.rs:125:12
+    |
+ 55 | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_page` is never used
+   --> src/scope.rs:217:8
+    |
+217 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: `md_reader` (lib) generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 1m 51s
+       Built application at: /Users/juanmantilla/projects/personal/md-reader/target/qa-native/release/md_reader
+    Bundling Markdown workspace QA.app (/Users/juanmantilla/projects/personal/md-reader/target/qa-native/release/bundle/macos/Markdown workspace QA.app)
+    Finished 1 bundle at:
+        /Users/juanmantilla/projects/personal/md-reader/target/qa-native/release/bundle/macos/Markdown workspace QA.app
+
+/Users/juanmantilla/projects/personal/md-reader/target/qa-native/release/bundle/macos/Markdown workspace QA.app: replacing existing signature
+PASS: qa asset/binary marker boundary; runtime verification remains separate

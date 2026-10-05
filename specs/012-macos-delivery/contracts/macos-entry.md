@@ -1,0 +1,3 @@
+# F005 native entry contract
+
+Finder `Opened` and window `DragDrop` events queue until the app window/renderer is ready, then each path goes through native no-follow type/scope validation. Successful file intake issues one file-only grant; folder intake issues one root grant after explicit drop/open action. Unsupported/denied events yield localized errors, never a broad fallback. Native menu actions call the same app commands as toolbar shortcuts. Close/Quit waits for F004 choice and F003C durable final checkpoint; Cancel/failure aborts exit. Dock Reopen recreates/shows a window, restarts its refresh ownership and displays F003C state or start view.

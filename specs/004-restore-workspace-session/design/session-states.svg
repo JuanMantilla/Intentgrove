@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Workspace restoration proposal</title>
+  <desc id="desc">Three macOS Markdown workspace states: restored reading, missing folder recovery, and clear-session confirmation.</desc>
+  <rect width="1440" height="900" fill="#e8ece9"/>
+  <text x="60" y="55" fill="#202826" font-family="-apple-system, sans-serif" font-size="24" font-weight="700">F003C · Restore the workspace</text>
+  <text x="60" y="80" fill="#52615c" font-family="-apple-system, sans-serif" font-size="14">Visual proposal · app-owned surfaces · native titlebar simplified</text>
+
+  <g font-family="-apple-system, sans-serif">
+    <rect x="60" y="112" width="1320" height="430" rx="12" fill="#fff" stroke="#c8d0cb"/>
+    <rect x="60" y="112" width="1320" height="36" rx="12" fill="#f1f3f1"/>
+    <circle cx="83" cy="130" r="5" fill="#e37b72"/><circle cx="100" cy="130" r="5" fill="#e7c66c"/><circle cx="117" cy="130" r="5" fill="#82ba83"/>
+    <text x="604" y="135" fill="#52615c" font-size="13">Markdown workspace</text>
+    <rect x="60" y="148" width="264" height="394" fill="#eef0ee"/>
+    <text x="80" y="180" fill="#202826" font-size="15" font-weight="700">personal</text>
+    <text x="80" y="210" fill="#52615c" font-size="13">▾ docs</text>
+    <text x="96" y="240" fill="#202826" font-size="13">◇ README.md</text>
+    <rect x="75" y="251" width="234" height="30" rx="5" fill="#dee9e8"/>
+    <text x="96" y="271" fill="#202826" font-size="13">◇ architecture.md</text>
+    <text x="80" y="310" fill="#52615c" font-size="13">▸ notes</text>
+    <line x1="75" y1="485" x2="309" y2="485" stroke="#d8deda"/>
+    <text x="80" y="512" fill="#315f70" font-size="13">Clear session…</text>
+    <rect x="324" y="148" width="1056" height="48" fill="#f8f9f8"/>
+    <text x="348" y="178" fill="#52615c" font-size="13">README.md</text>
+    <rect x="475" y="151" width="185" height="41" rx="5" fill="#fff" stroke="#d8deda"/>
+    <text x="495" y="178" fill="#202826" font-size="13" font-weight="700">architecture.md</text>
+    <text x="684" y="178" fill="#52615c" font-size="13">notes.md</text>
+    <text x="350" y="225" fill="#315f70" font-size="13">✓ Workspace restored · 3 tabs · last session 9:42 AM</text>
+    <text x="500" y="290" fill="#202826" font-size="28" font-weight="700">Architecture</text>
+    <text x="500" y="329" fill="#52615c" font-size="15">The same passage and reading position return.</text>
+    <rect x="500" y="353" width="530" height="12" rx="5" fill="#e9eeeb"/>
+    <rect x="500" y="379" width="610" height="12" rx="5" fill="#e9eeeb"/>
+    <rect x="500" y="405" width="475" height="12" rx="5" fill="#e9eeeb"/>
+    <text x="60" y="570" fill="#202826" font-size="17" font-weight="700">1  Restored reading</text>
+
+    <rect x="60" y="598" width="625" height="242" rx="10" fill="#fff" stroke="#c8d0cb"/>
+    <text x="85" y="633" fill="#202826" font-size="18" font-weight="700">Folder needs to be selected again</text>
+    <text x="85" y="663" fill="#52615c" font-size="14">personal · the saved folder is unavailable.</text>
+    <text x="85" y="690" fill="#52615c" font-size="14">Your tabs are kept. No different folder was opened.</text>
+    <rect x="85" y="720" width="172" height="38" rx="7" fill="#315f70"/>
+    <text x="102" y="745" fill="#fff" font-size="13" font-weight="700">Select this folder</text>
+    <rect x="268" y="720" width="168" height="38" rx="7" fill="#f1f3f1" stroke="#c8d0cb"/>
+    <text x="285" y="745" fill="#202826" font-size="13">Open another folder</text>
+    <text x="60" y="867" fill="#202826" font-size="17" font-weight="700">2  Missing root</text>
+
+    <rect x="715" y="598" width="665" height="242" rx="10" fill="#fff" stroke="#c8d0cb"/>
+    <text x="740" y="633" fill="#202826" font-size="18" font-weight="700">Clear remembered session?</text>
+    <text x="740" y="663" fill="#52615c" font-size="14">personal · 3 tabs and their positions</text>
+    <text x="740" y="690" fill="#52615c" font-size="14">2 locally saved drafts will also be removed.</text>
+    <rect x="740" y="720" width="110" height="38" rx="7" fill="#f1f3f1" stroke="#315f70" stroke-width="2"/>
+    <text x="771" y="745" fill="#202826" font-size="13" font-weight="700">Cancel</text>
+    <rect x="862" y="720" width="140" height="38" rx="7" fill="#315f70"/>
+    <text x="878" y="745" fill="#fff" font-size="13">Clear session</text>
+    <text x="715" y="867" fill="#202826" font-size="17" font-weight="700">3  Draft-aware clear</text>
+  </g>
+</svg>

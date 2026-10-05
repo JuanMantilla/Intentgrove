@@ -1,0 +1,970 @@
+path,category,feature_directory,type,bytes,sha256,document_title
+.agents/skills/md-product-spec/SKILL.md,Agent and workflow infrastructure,,Text,2392,9d416e63e72e9953564038e9dfbe993f06d6a19324e2e3c949b3c79f4ca09855,Product and specification role
+.agents/skills/md-qa-engineer/SKILL.md,Agent and workflow infrastructure,,Text,2885,b54c73836eb287d9925e3d915f088ca214662f163d06b764ab6fc2b247322cc3,QA and verification role
+.agents/skills/md-release-engineer/SKILL.md,Agent and workflow infrastructure,,Text,2821,893124ee48f4063c677aaf673b5c74ee91482eec7d4fd242541a7212dcc5b554,Desktop release engineer role
+.agents/skills/md-security-reviewer/SKILL.md,Agent and workflow infrastructure,,Text,2859,6f20f11bc2bf4dc39ba0154623dd00bcb11c768b57211ed4bb20647961bf4860,Security review role
+.agents/skills/md-software-engineer/SKILL.md,Agent and workflow infrastructure,,Text,3298,8169078b3fc917f35b7581532d6ea4c290de65a3aed62d0100deac66aee07a7e,Software engineer and architect role
+.agents/skills/md-ux-designer/SKILL.md,Agent and workflow infrastructure,,Text,2748,1a90209f7dfc206ec78b8eb59c5c24f0b07deee5ad77afc3a9d4de025dd62c24,UI/UX design role
+.agents/skills/speckit-analyze/SKILL.md,Agent and workflow infrastructure,,Text,12035,0b3261b13cc33537f24b3e1f6d5320694c348302c385d0046dc6b958cf2db6cb,
+.agents/skills/speckit-checklist/SKILL.md,Agent and workflow infrastructure,,Text,22652,7ac5cba31a27151a1a7b73f691bd478d42750ce2dd734701a07eb0e235ffbd94,
+.agents/skills/speckit-clarify/SKILL.md,Agent and workflow infrastructure,,Text,19703,f6acfbc82c96c0d91b2429fd0b51ce7df7f94b003d1b73acc54470d48bcc455e,
+.agents/skills/speckit-constitution/SKILL.md,Agent and workflow infrastructure,,Text,10514,b2a6a979ef7511812b60cde4adb6f1c4a8b1b57314ea2f1861ebc3f4796bf377,
+.agents/skills/speckit-converge/SKILL.md,Agent and workflow infrastructure,,Text,13455,5859c9780ddc012f600e7d35a5691e032fe05861296f226b5665a0ec03135ccd,
+.agents/skills/speckit-implement/SKILL.md,Agent and workflow infrastructure,,Text,13081,848a5c9eff7b99e348927cbde6c35378de9fea3fd317941f58fa0b0b79301eec,
+.agents/skills/speckit-plan/SKILL.md,Agent and workflow infrastructure,,Text,8233,db2406adfa50103fc04ca8109ac934cd715086fba64365fb404630a88c62bda5,
+.agents/skills/speckit-specify/SKILL.md,Agent and workflow infrastructure,,Text,18638,a505028de7f6489878696d6656c7d057f3a66119ebb8c0cc82d69fabb7b344ff,
+.agents/skills/speckit-tasks/SKILL.md,Agent and workflow infrastructure,,Text,11576,1086d7885df1188d00e7d5eb4715e678b4340b893e8f24ae748d823b13599a56,
+.agents/skills/speckit-taskstoissues/SKILL.md,Agent and workflow infrastructure,,Text,8064,a349d410c180385215bf5180b13319bd8259199267af24917f4f4d0adcbb6ad2,
+.agents/state.md,Agent and workflow infrastructure,,Text,1624,e27ce0095606ead7d20b311ffcd3966381c07b4924be2b3f272ed6d36e28b78e,Current state — 2026-10-05
+.gitignore,Project configuration and entry files,,Text,419,6f4f2aea1cc9fc8a43238705d1b1c55aabe4eb5b929184f4e65ff2905bd58a1a,"Local secrets, runtime state, caches and build outputs"
+.specify/.gitignore,Agent and workflow infrastructure,,Text,384,8c908410d177a1ef3d0dee16d7ad55f2ac3333df3104c4d4adee1c9b82f1dbc1,Machine-local Spec Kit state — not meant to be shared.
+.specify/feature.json,Agent and workflow infrastructure,,Text,50,6e5fb59e482d74b96611a077000fed5db3a29633630ad01f0116572b979da06d,
+.specify/init-options.json,Agent and workflow infrastructure,,Text,169,6fa104b0c077bfd618670ff0cdc899da2c1d58d83d2e8fada85a24cd8c0c3954,
+.specify/integration.json,Agent and workflow infrastructure,,Text,363,0ddc59c45ea90e9258abcd7aec44da686af0dbcaddd0c04064fe448c21c23513,
+.specify/integrations/codex.manifest.json,Agent and workflow infrastructure,,Text,1284,bea0d8ac2b39b50a9ba36588a29a7f39ac929737da9fc6b232475913d31b773c,
+.specify/integrations/speckit.manifest.json,Agent and workflow infrastructure,,Text,1475,6e7b24e206a603a5fe78d952c6bc7c28d0e2eb8cf7c4bcaba6f35ffaaf21d20f,
+.specify/memory/.constitution-template.json,Agent and workflow infrastructure,,Text,103,8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711,
+.specify/memory/constitution.md,Agent and workflow infrastructure,,Text,4949,d3a7b669f8b4b71ae38751c793d1d4857f216b4c19b8ed70035fd2b1b86af26b,Markdown Workspace Constitution
+.specify/scripts/bash/check-prerequisites.sh,Agent and workflow infrastructure,,Text,8197,13be175548848bd84e96a90cf9be87665c2e68603b2eaa3e19187e7ca8b4fcb0,Consolidated prerequisite checking script
+.specify/scripts/bash/common.sh,Agent and workflow infrastructure,,Text,38885,60a6610536c71949aca803e8508bca89461d954d1de270d9f3e180ee3d677e44,Common functions and variables for all scripts
+.specify/scripts/bash/create-new-feature.sh,Agent and workflow infrastructure,,Text,16869,7f85da63527be6464b08e79578b35b33d0b259fa7653a61ae64da626a26207e2,"Trim whitespace and validate description is not empty (e.g., user passed only whitespace)"
+.specify/scripts/bash/resolve-template.sh,Agent and workflow infrastructure,,Text,1547,829e227096abc8bf0889889ec9f792f503ca5d395b7836a8a7eb739ee75214e7,
+.specify/scripts/bash/setup-plan.sh,Agent and workflow infrastructure,,Text,2540,d0bd298c026446f3c63167130d65e49e4aa4485de6bef18bcdfd57b19aa0de96,Parse command line arguments
+.specify/scripts/bash/setup-tasks.sh,Agent and workflow infrastructure,,Text,3551,0350b2def158c4dc333cd888fc5a3b10785b3d5c2cf936f93e910242ea9d507d,Parse command line arguments
+.specify/templates/checklist-template.md,Agent and workflow infrastructure,,Text,2033,70bbc48e884fab372ffb09e83e78ff983e28b69caebf8cd9964a02b6836683ac,[CHECKLIST TYPE] Checklist: [FEATURE NAME]
+.specify/templates/constitution-template.md,Agent and workflow infrastructure,,Text,2346,ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3,[PROJECT_NAME] Constitution
+.specify/templates/plan-template.md,Agent and workflow infrastructure,,Text,3682,a828ad6206526574ab3fc99be6d0154588cb1c9774c5919d71b81ab5b2dbffa0,Implementation Plan: [FEATURE]
+.specify/templates/spec-template.md,Agent and workflow infrastructure,,Text,4556,3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e,Feature Specification: [FEATURE NAME]
+.specify/templates/tasks-template.md,Agent and workflow infrastructure,,Text,9171,b0f527d41e546af0c31903e04f9b20965b6b497b573792198f663a64ce128863,Tasks: [FEATURE NAME]
+.specify/workflows/speckit/workflow.yml,Agent and workflow infrastructure,,Text,2118,177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc,
+.specify/workflows/workflow-registry.json,Agent and workflow infrastructure,,Text,369,23860e327788e881d61cc174508ee17b186b79055facccebab2ec00acd806ffe,
+AGENTS.md,Project configuration and entry files,,Text,4183,5a724254584077117a40c71ee63689ad172ec5c147812963695af5aec401c5e9,Project instructions
+README.md,Project configuration and entry files,,Text,2190,894f95c142a1707751d9c30d21e5b05a0292f097bf074fd3ef2506283c7672a2,Markdown workspace
+build-mac.sh,Project configuration and entry files,,Text,2160,629b2dfbdc26338075c1130321310ddafc5bf53b8bbf8766684ae8540e4a3d5c,"Build a native, locally signed app and DMG next to this script."
+design-reviews/03-10-27-01/Screenshot 2026-10-03 at 10.26.05 AM.png,Design and implementation artifacts,,Binary,1145623,1259c48dfe8fa9b306e1754d98dc1cb5f753cbbe42590a0d1c0eb9485d8aebc5,
+design-reviews/03-10-27-01/Screenshot 2026-10-03 at 10.30.04 AM.png,Design and implementation artifacts,,Binary,1109395,3e03b19d6a3d7dc32c03b1ed2ec99c28eec81bc845da646723611ab161b6a788,
+design-reviews/03-10-27-01/proposals/STATE.md,Design and implementation artifacts,,Text,1629,5126eb608dbea7d07f2ffa7bde24f022e5558c50a114f1a8e429e9f74ba6849b,Review state
+design-reviews/03-10-27-01/proposals/approval-all-2026-10-05.json,Design and implementation artifacts,,Text,5521,114487854a88a887bbd0f13a4b6a4ec6f63ccd077503f081726c9c998ad56a6f,
+design-reviews/03-10-27-01/proposals/approval-all-2026-10-05.md,Design and implementation artifacts,,Text,1254,b28c777f9ebfebe1d8e18b1a3a013f1bc644416a8609e768ecf858aaacc6a416,All current proposals approved — 2026-10-05
+design-reviews/03-10-27-01/proposals/approval-option-D.json,Design and implementation artifacts,,Text,6240,9da658869976c9109d8d3405d5754dfe7f8239c747a3265691106eb7e2a05945,
+design-reviews/03-10-27-01/proposals/approval-option-D.md,Design and implementation artifacts,,Text,1906,3ec769314faa1363933f10fc08aad018f348fe3fa73a10db6fad684547cfbc8f,Design approval — option D selected
+design-reviews/03-10-27-01/proposals/approval-record.json,Design and implementation artifacts,,Text,5526,5e7202d2b19dc2411185865b0ac90bafc9490f149a9ba1c4b4c5de7e1e88df0e,
+design-reviews/03-10-27-01/proposals/approval-record.md,Design and implementation artifacts,,Text,7126,148484a0887e2db339ebc5b78ba6a52ee0988a56c72a7e4653ce71da32cd7434,Partial design approval — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/STATE.md,Evidence or snapshot,,Text,1308,d8ef92f99d846809626a673481076ff35b493aaa5a7a650c5ba122bd28864203,Review state
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/approval-record.json,Evidence or snapshot,,Text,5526,5e7202d2b19dc2411185865b0ac90bafc9490f149a9ba1c4b4c5de7e1e88df0e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/approval-record.md,Evidence or snapshot,,Text,7126,148484a0887e2db339ebc5b78ba6a52ee0988a56c72a7e4653ce71da32cd7434,Partial design approval — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/STATE.md,Evidence or snapshot,,Text,964,6029014773eb507114a108782409ff0b88cb776123315b87a08777e5cea1d290,Arrow designs state
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/artifact-manifest.json,Evidence or snapshot,,Text,2682,f7880a1af8db45ec6c73161c37af00e387504b5211ad8a45e917a609983a752e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/contrast-measurements.md,Evidence or snapshot,,Text,1748,b01e829bef8c4d7cf0ca71e05bc12ddfbc43ec9b61447d027678620f20490ece,Calculated contrast — arrow designs
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/design-spec.md,Evidence or snapshot,,Text,8413,80d220e9d2250fe8e2f76a03c99f7b8cd658ce59a36264a441b128c286045b1d,Four designs for the Back/Forward arrows
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/index.html,Evidence or snapshot,,Text,7244,0b05b942945480321a410b21bc20e28dc88d2c744f8dc22360a5f9beb9036525,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/A-joined-control.svg,Evidence or snapshot,,Text,10803,bcce3d92189ed0c97f7821e2d2849e22c086454eeed419fadaf241fbba6530c1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/B-minimal-icons.svg,Evidence or snapshot,,Text,10671,080e5851690371a201e3569698f3935cc4558e707b1ae6a220fcb0d72d4bbc80,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/C-labeled-buttons.svg,Evidence or snapshot,,Text,11372,4fb37a64ced2cf633b8b3a318934d5d8945697863725d50066fadc6d21c976a0,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/D-tab-strip.svg,Evidence or snapshot,,Text,10884,7d9c3e8820ea12fe1dd99592150fa897b45d294c3bf325ef406387a5ca3c8b97,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/E-control-states.svg,Evidence or snapshot,,Text,18631,4a50ef72aafa3d6e3855bca5ed980cf0d0536d94ec15774c61835f7bfa9f1bc9,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/arrow-designs/mockups/F-narrow-comparison.svg,Evidence or snapshot,,Text,16015,5a352178777c74ee2029832f7966407f4c32090ad5155b7392374960e4e1d21e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/artifact-manifest.json,Evidence or snapshot,,Text,7031,cdba0435a0788b6faa8b37493d9e6a9446fe41f66c624bda5d0cf0f83b1aaa9c,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/audit-and-directions.md,Evidence or snapshot,,Text,11300,dc9926db6a0228530c5cdc5a7de17bbd538d994c730906c396751526b76669cb,Markdown workspace: focused UI review
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/contrast-measurements.md,Evidence or snapshot,,Text,6808,cfa66cef04d11d9cbf334fd279ac95309923ffa8601eefc8aa59146d17706db0,Measured semantic color pairings
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/critique-and-revisions.md,Evidence or snapshot,,Text,16416,bd0775f599fc34950f3ed0b59b6e289a2c74603c968ad91cc77159f3dbfd7cb5,Critique and revisions — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/file-navigation-handoff.md,Evidence or snapshot,,Text,19909,71bb1be838d06f1908f956d3606a27c6e2c01e22d48b32c7a65c061781ae0a10,Links to files and universal visit history
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/frontend-handoff.md,Evidence or snapshot,,Text,27229,2bcf8262b3c7d3c864b9eb6ed2ea0126d0bb2002b63e3c402b520b66be80f760,Compact frontend handoff
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/html-view-handoff.md,Evidence or snapshot,,Text,17631,eba423eb63642d702d0741d7845669c54622072a664280ca3e07a6765fdaacf3,Local HTML viewing addendum
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/index.html,Evidence or snapshot,,Text,11521,bfec2a31ea147a7646e444e6fad3e06c9c6e7c025f3a7d104509c8469ec20b31,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/interaction-spec.md,Evidence or snapshot,,Text,22354,cf5ad8cb0c909fb4ffa93838691796a484f91c363719ce769202817f7907800d,Interaction and Markdown preservation specification
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/01-reading-workspace.svg,Evidence or snapshot,,Text,14305,3dd4ac97b012514dfb0993065d9af4805c2f58f3a1da977301ebe198aefb0890,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/02-in-place-editing.svg,Evidence or snapshot,,Text,14064,49b1abb70dc6beab838152a99b4a6a2b6b973f7c1dfcb91665acf6d13a3bb4c7,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/03-workspace-menus.svg,Evidence or snapshot,,Text,9378,c3c57bea1a399248b2a1613f37bb353c1f71f76a3978bab8dbf9da0f901ff1a2,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/04-document-menus.svg,Evidence or snapshot,,Text,9847,26b7efe80ffa965b133e86287b88578182869a5b4235c9ec7bae0ccbc72626c7,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/05-search-open.svg,Evidence or snapshot,,Text,13793,eff74efe899078120c5041add00fabbdee051a127ad08585201b3264a4938e79,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/06-search-results.svg,Evidence or snapshot,,Text,15229,14dd9c2be590a63811f9748c65795cfab6c1a02a4eb010909ae90e26c61d5276,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/07-narrow-workspace.svg,Evidence or snapshot,,Text,5873,534cc686bb02e497e685af3de9ec29fecd479a966690bacd992d22d359367acc,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/08-settings-window.svg,Evidence or snapshot,,Text,9399,932830c69627a7d2a2e2a3db20c6a4864ac36bec0a662ef16b72ed949397e3ef,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/09-html-view.svg,Evidence or snapshot,,Text,13386,c77d31a4f82a849fab9e7a33867ba1ec84d1ad37ccefccf98f537c3cb4ada3a1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/10-html-links.svg,Evidence or snapshot,,Text,12289,9f0aa94fef0cad653120d43092a0d2483d864db9bdb53c95d38a15d9487e54e1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/11-html-link-access.svg,Evidence or snapshot,,Text,7056,a7307dc4c1783e617f92c5b5a5ee5da7d7733564f2145cf6a5d1d6595a56f6c2,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/12-universal-history.svg,Evidence or snapshot,,Text,11216,93b0ee7ef033e870ada3f077ca02e02238f11447fdb008d858828cb85d5f9a50,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/13-file-details-and-history.svg,Evidence or snapshot,,Text,9883,82efe6dab866f43d58a4bf678bd1d740e86f30f80fb06b58d869c065bb01e1fe,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/14-narrow-editing.svg,Evidence or snapshot,,Text,6639,353f9210492630c3b47d4f973a7d94adbd1c8ed571079392f905b99fdcb0588e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/15-save-recovery-states.svg,Evidence or snapshot,,Text,10960,d20f52c5fda28ada033183db0b7b39c97af6ab5911205f989248c18a67cfa505,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/mockups/16-light-enlarged-settings.svg,Evidence or snapshot,,Text,4752,93c5cfb27c0dbc71139072961924bfbf05d0b1b4b199bc6f08bf33f0a35735de,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-04-option-D/revision-record.json,Evidence or snapshot,,Text,9561,e33a07192e876b8315af3ef05271fc61f0eba7a24b17a714ad0750d3795a8de5,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/STATE.md,Evidence or snapshot,,Text,1250,46fcfb6332e8f72635cb6d2e7e81bb1d9a18bbc946761092e46576ed3a0e2d23,Review state
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/approval-option-D.json,Evidence or snapshot,,Text,6240,9da658869976c9109d8d3405d5754dfe7f8239c747a3265691106eb7e2a05945,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/approval-option-D.md,Evidence or snapshot,,Text,1906,3ec769314faa1363933f10fc08aad018f348fe3fa73a10db6fad684547cfbc8f,Design approval — option D selected
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/approval-record.json,Evidence or snapshot,,Text,5526,5e7202d2b19dc2411185865b0ac90bafc9490f149a9ba1c4b4c5de7e1e88df0e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/approval-record.md,Evidence or snapshot,,Text,7126,148484a0887e2db339ebc5b78ba6a52ee0988a56c72a7e4653ce71da32cd7434,Partial design approval — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/STATE.md,Evidence or snapshot,,Text,966,10a126479bc2a066840f36c996baf043498eff9c2ff1491cb24ae3381e19d031,Arrow designs state
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/artifact-manifest.json,Evidence or snapshot,,Text,3014,8a710a512ee94500a2f84f05a2797e6ebbdfe33ac2c0e00c5faf857e8604c40b,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/contrast-measurements.md,Evidence or snapshot,,Text,1748,b01e829bef8c4d7cf0ca71e05bc12ddfbc43ec9b61447d027678620f20490ece,Calculated contrast — arrow designs
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/design-spec.md,Evidence or snapshot,,Text,8538,b282e18f8001da1cb6023e5afacbaedeaa0fd3066131a63bd44433ac937d23af,Four designs for the Back/Forward arrows
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/index.html,Evidence or snapshot,,Text,7385,b53562302dc1174e27cc2a27d57562ec57a6faa4f1f088975376f9d0c54701ca,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/A-joined-control.svg,Evidence or snapshot,,Text,10803,bcce3d92189ed0c97f7821e2d2849e22c086454eeed419fadaf241fbba6530c1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/B-minimal-icons.svg,Evidence or snapshot,,Text,10671,080e5851690371a201e3569698f3935cc4558e707b1ae6a220fcb0d72d4bbc80,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/C-labeled-buttons.svg,Evidence or snapshot,,Text,11372,4fb37a64ced2cf633b8b3a318934d5d8945697863725d50066fadc6d21c976a0,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/D-tab-strip.svg,Evidence or snapshot,,Text,10884,7d9c3e8820ea12fe1dd99592150fa897b45d294c3bf325ef406387a5ca3c8b97,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/E-control-states.svg,Evidence or snapshot,,Text,18631,4a50ef72aafa3d6e3855bca5ed980cf0d0536d94ec15774c61835f7bfa9f1bc9,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/arrow-designs/mockups/F-narrow-comparison.svg,Evidence or snapshot,,Text,16015,5a352178777c74ee2029832f7966407f4c32090ad5155b7392374960e4e1d21e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/artifact-manifest.json,Evidence or snapshot,,Text,7519,c2aebc94e7e01b1bf6610f853d5644f2af172189d18724f61680026c2987790c,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/audit-and-directions.md,Evidence or snapshot,,Text,11709,e9a154b95824df4a7754bd00a94320cd4596f915e4b2b4e7b5627180d5d64487,Markdown workspace: focused UI review
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/contrast-measurements.md,Evidence or snapshot,,Text,6808,cfa66cef04d11d9cbf334fd279ac95309923ffa8601eefc8aa59146d17706db0,Measured semantic color pairings
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/critique-and-revisions.md,Evidence or snapshot,,Text,16825,b6b68e07710649a4995a2c73b2be1ade7668008abd78bc43319182d0b4a5ca6f,Critique and revisions — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/file-navigation-handoff.md,Evidence or snapshot,,Text,19925,1572ce6f5337aa24dfb60ac2975e8490b52ab49abe9353506b603e5b1ae363a7,Links to files and universal visit history
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/frontend-handoff.md,Evidence or snapshot,,Text,27725,2fd6382cbfb5bfd9bfd6331fcbf3d879f46695541becf8e43f55e18bab4871d9,Compact frontend handoff
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/html-view-handoff.md,Evidence or snapshot,,Text,18040,0fc49099c659ad624f9ce926a7647a13a3fa1c116c5f6e89552eb00af73b7724,Local HTML viewing addendum
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/index.html,Evidence or snapshot,,Text,11886,193a892512df17b1d116dceedc4ec46910dca5ca2ef05634aba5f0016a2b9397,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/interaction-spec.md,Evidence or snapshot,,Text,22830,f3bac47f01fb15403893af0eb88b027dae52854d1d046acdf659ca3b38957dea,Interaction and Markdown preservation specification
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/01-reading-workspace.svg,Evidence or snapshot,,Text,14305,3dd4ac97b012514dfb0993065d9af4805c2f58f3a1da977301ebe198aefb0890,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/02-in-place-editing.svg,Evidence or snapshot,,Text,14064,49b1abb70dc6beab838152a99b4a6a2b6b973f7c1dfcb91665acf6d13a3bb4c7,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/03-workspace-menus.svg,Evidence or snapshot,,Text,9378,c3c57bea1a399248b2a1613f37bb353c1f71f76a3978bab8dbf9da0f901ff1a2,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/04-document-menus.svg,Evidence or snapshot,,Text,9847,26b7efe80ffa965b133e86287b88578182869a5b4235c9ec7bae0ccbc72626c7,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/05-search-open.svg,Evidence or snapshot,,Text,13793,eff74efe899078120c5041add00fabbdee051a127ad08585201b3264a4938e79,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/06-search-results.svg,Evidence or snapshot,,Text,15229,14dd9c2be590a63811f9748c65795cfab6c1a02a4eb010909ae90e26c61d5276,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/07-narrow-workspace.svg,Evidence or snapshot,,Text,5873,534cc686bb02e497e685af3de9ec29fecd479a966690bacd992d22d359367acc,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/08-settings-window.svg,Evidence or snapshot,,Text,9399,932830c69627a7d2a2e2a3db20c6a4864ac36bec0a662ef16b72ed949397e3ef,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/09-html-view.svg,Evidence or snapshot,,Text,13386,c77d31a4f82a849fab9e7a33867ba1ec84d1ad37ccefccf98f537c3cb4ada3a1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/10-html-links.svg,Evidence or snapshot,,Text,12289,9f0aa94fef0cad653120d43092a0d2483d864db9bdb53c95d38a15d9487e54e1,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/11-html-link-access.svg,Evidence or snapshot,,Text,7056,a7307dc4c1783e617f92c5b5a5ee5da7d7733564f2145cf6a5d1d6595a56f6c2,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/12-universal-history.svg,Evidence or snapshot,,Text,11216,93b0ee7ef033e870ada3f077ca02e02238f11447fdb008d858828cb85d5f9a50,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/13-file-details-and-history.svg,Evidence or snapshot,,Text,9883,82efe6dab866f43d58a4bf678bd1d740e86f30f80fb06b58d869c065bb01e1fe,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/14-narrow-editing.svg,Evidence or snapshot,,Text,6639,353f9210492630c3b47d4f973a7d94adbd1c8ed571079392f905b99fdcb0588e,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/15-save-recovery-states.svg,Evidence or snapshot,,Text,10960,d20f52c5fda28ada033183db0b7b39c97af6ab5911205f989248c18a67cfa505,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/mockups/16-light-enlarged-settings.svg,Evidence or snapshot,,Text,4752,93c5cfb27c0dbc71139072961924bfbf05d0b1b4b199bc6f08bf33f0a35735de,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/revision-record.json,Evidence or snapshot,,Text,9998,bcd0e3750b2c22d0b31942b1d9ea65d3be5d6ab4fb039cf2f09ebb59bf3756ed,
+design-reviews/03-10-27-01/proposals/archive/approved-review-2026-10-05-all/selected-design-handoff.md,Evidence or snapshot,,Text,3534,e4646eb26008f4ae44e9104e1120c95713e8975d7f45dcb1303ffa3567207a64,Selected design handoff — option D
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/STATE.md,Evidence or snapshot,,Text,1491,21fba0bb843ecd2c12eb05db5d29cf1022ce0c941dc6957f27465e556e12a193,Review state
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/approval-record.json,Evidence or snapshot,,Text,5526,5e7202d2b19dc2411185865b0ac90bafc9490f149a9ba1c4b4c5de7e1e88df0e,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/approval-record.md,Evidence or snapshot,,Text,6255,b9ce7894cd7b2f89094c3994419ae5e3242a46692a4cf2141d2bf9e590ada6d0,Partial design approval — 2026-10-04
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/artifact-manifest.json,Evidence or snapshot,,Text,4880,984f301cca73319116703a4dfcda5645220f4bbbdc059bbb78eb55839559369f,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/audit-and-directions.md,Evidence or snapshot,,Text,9790,eab2a86db0e62ba9cd6e9628cacb38ca31708d0190fde236e18ecfe64798bae3,Markdown workspace: focused UI review
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/contrast-measurements.md,Evidence or snapshot,,Text,5743,047630acc74c65525f5d6747797da049599a84e2a181f89c3bf095879fdf847a,Measured semantic color pairings
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/file-navigation-handoff.md,Evidence or snapshot,,Text,16376,47c49fcb7c8e12fc4cfae13dd0d17d01fa9314f4a0cfb20112de5b52d9922200,Links to files and universal visit history
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/frontend-handoff.md,Evidence or snapshot,,Text,24696,234253e63c9ed40f6bd6d61afcc36360b230ec49de95b5364d97d7db934c05b4,Compact frontend handoff
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/html-view-handoff.md,Evidence or snapshot,,Text,15609,c24056737f1b6d9851c988c51f558ccd16faa5ab456b366e5de5701805ad6475,Local HTML viewing addendum
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/index.html,Evidence or snapshot,,Text,5462,d85e807c865ed28e22d74b5e54f3af73cba3b0ec0a5aef8e3aec93212a4da7c1,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/interaction-spec.md,Evidence or snapshot,,Text,19624,9f1f9a3230ce76b819833405c0b3d238256720b7a245c6a78b9ea5f4d839225f,Interaction and Markdown preservation specification
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/01-reading-workspace.svg,Evidence or snapshot,,Text,13975,a3c837b0bdd9460941686941f905c6b4d95799361f485c9b5eb65e2c026cf06c,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/02-in-place-editing.svg,Evidence or snapshot,,Text,13560,28e9e3a7a86aeceb4b4b707326cbd77d5f44434ffbdfdecf616a23ee9309ec6b,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/03-workspace-menus.svg,Evidence or snapshot,,Text,9049,2e18f27f53fd7631e17118eb1400c51b74e9a449cd38895c18d81285f92c0efd,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/04-document-menus.svg,Evidence or snapshot,,Text,9640,f5c826c07a7ecbcfcfa1394cdfd9b4bdd71050da57e05edd159448eef32e14fc,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/05-search-open.svg,Evidence or snapshot,,Text,13351,11ccb7d18e82dfb51265b5030ec5eff2bfbd9e6d8ea4229c31e29f8c0e71c3a6,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/06-search-results.svg,Evidence or snapshot,,Text,14734,84d9d585771ca6ec3deaac5967e96d28b1515eb9b9464c55539026efce43b211,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/07-narrow-workspace.svg,Evidence or snapshot,,Text,6397,6950f0d6a2dc70b1d029ae5e296781474e50c804eb65008d8abfbe8f2f2e7fbb,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/08-settings-window.svg,Evidence or snapshot,,Text,9154,b8848a60f35eb10da469a7a1bc89d1b7f4caeaf7b486acca4eb732e45297b16a,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/09-html-view.svg,Evidence or snapshot,,Text,13067,b76575fced59b975690810e9ce051deee297df62be78e60284e8f0e06866024e,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/10-html-links.svg,Evidence or snapshot,,Text,12049,c67f9ada97655846ebb9d6b6d6c744cd2a18c5aeb99116e9f76101f9ad8bc6d1,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/11-html-link-access.svg,Evidence or snapshot,,Text,6672,bf25c4829413fdaf36a21a60918d1864214d04561564efce6181d913376e60e3,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/12-universal-history.svg,Evidence or snapshot,,Text,11216,93b0ee7ef033e870ada3f077ca02e02238f11447fdb008d858828cb85d5f9a50,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/mockups/13-file-details-and-history.svg,Evidence or snapshot,,Text,9679,044ec0902918700fb9c85a56ac09ad2af47dd6d8c655b1103a491e9dfe2053f9,
+design-reviews/03-10-27-01/proposals/archive/before-critique-2026-10-04/project-state-before-critique.md,Evidence or snapshot,,Text,3050,280a2e70461e99576c0938f220c21ebb8f0cbbf069545d9bfd9dcba6c1ce3e34,Current design review — 2026-10-04
+design-reviews/03-10-27-01/proposals/arrow-designs/STATE.md,Design and implementation artifacts,,Text,1095,a561e67ddcbf1712da09e8de30939e8737bde560912a6aa1f46ac416f0e90e78,Arrow designs state
+design-reviews/03-10-27-01/proposals/arrow-designs/artifact-manifest.json,Design and implementation artifacts,,Text,3241,ed599dce447534419006627b2f13dce83aa8a230ac5610f5404c84bfe07c2916,
+design-reviews/03-10-27-01/proposals/arrow-designs/contrast-measurements.md,Design and implementation artifacts,,Text,1748,b01e829bef8c4d7cf0ca71e05bc12ddfbc43ec9b61447d027678620f20490ece,Calculated contrast — arrow designs
+design-reviews/03-10-27-01/proposals/arrow-designs/design-spec.md,Design and implementation artifacts,,Text,8538,b282e18f8001da1cb6023e5afacbaedeaa0fd3066131a63bd44433ac937d23af,Four designs for the Back/Forward arrows
+design-reviews/03-10-27-01/proposals/arrow-designs/index.html,Design and implementation artifacts,,Text,7580,53fbe2677c7f896ae13a780ba472da00daa7fa3111c7d798a6940da52adef478,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/A-joined-control.svg,Design and implementation artifacts,,Text,10803,bcce3d92189ed0c97f7821e2d2849e22c086454eeed419fadaf241fbba6530c1,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/B-minimal-icons.svg,Design and implementation artifacts,,Text,10671,080e5851690371a201e3569698f3935cc4558e707b1ae6a220fcb0d72d4bbc80,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/C-labeled-buttons.svg,Design and implementation artifacts,,Text,11372,4fb37a64ced2cf633b8b3a318934d5d8945697863725d50066fadc6d21c976a0,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/D-tab-strip.svg,Design and implementation artifacts,,Text,10884,7d9c3e8820ea12fe1dd99592150fa897b45d294c3bf325ef406387a5ca3c8b97,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/E-control-states.svg,Design and implementation artifacts,,Text,18631,4a50ef72aafa3d6e3855bca5ed980cf0d0536d94ec15774c61835f7bfa9f1bc9,
+design-reviews/03-10-27-01/proposals/arrow-designs/mockups/F-narrow-comparison.svg,Design and implementation artifacts,,Text,16015,5a352178777c74ee2029832f7966407f4c32090ad5155b7392374960e4e1d21e,
+design-reviews/03-10-27-01/proposals/artifact-manifest.json,Design and implementation artifacts,,Text,7861,63f762b84a651ab064d3efe15eff0c877fdfbcb06658dfbb073716281a845e42,
+design-reviews/03-10-27-01/proposals/audit-and-directions.md,Design and implementation artifacts,,Text,11674,7aea770b666409aabde3d0692922250ce4f267822ea179d4c4d651dc798b63e3,Markdown workspace: focused UI review
+design-reviews/03-10-27-01/proposals/contrast-measurements.md,Design and implementation artifacts,,Text,6808,cfa66cef04d11d9cbf334fd279ac95309923ffa8601eefc8aa59146d17706db0,Measured semantic color pairings
+design-reviews/03-10-27-01/proposals/critique-and-revisions.md,Design and implementation artifacts,,Text,16929,932e350c7f387e2fbff6e7b85baeedc8ec98646c426dbbd186370f3cc184783f,Critique and revisions — 2026-10-04
+design-reviews/03-10-27-01/proposals/file-navigation-handoff.md,Design and implementation artifacts,,Text,19923,30581f432dca170daea0abc2b896a4d26e9e6c402f54cfd5b466ae0e67d0d985,Links to files and universal visit history
+design-reviews/03-10-27-01/proposals/frontend-handoff.md,Design and implementation artifacts,,Text,27708,3d845605a18a79889e606c501aef68bbc7d91b1c87992efe2193b7b78735a570,Compact frontend handoff
+design-reviews/03-10-27-01/proposals/html-view-handoff.md,Design and implementation artifacts,,Text,18018,887a50eac318d1d6d0fa40a04bb2782c64ec6061f8b8a92f067bd80cd839146b,Local HTML viewing addendum
+design-reviews/03-10-27-01/proposals/index.html,Design and implementation artifacts,,Text,12079,e6c733425802d8158412c4d55b27f3c203a65c74c6a3eb110b70883e3af8702d,
+design-reviews/03-10-27-01/proposals/interaction-spec.md,Design and implementation artifacts,,Text,22808,cabaf6551c35adccb10e809171d75712732f58b21977c059e59a26f1b2a907d3,Interaction and Markdown preservation specification
+design-reviews/03-10-27-01/proposals/mockups/01-reading-workspace.svg,Design and implementation artifacts,,Text,14305,3dd4ac97b012514dfb0993065d9af4805c2f58f3a1da977301ebe198aefb0890,
+design-reviews/03-10-27-01/proposals/mockups/02-in-place-editing.svg,Design and implementation artifacts,,Text,14064,49b1abb70dc6beab838152a99b4a6a2b6b973f7c1dfcb91665acf6d13a3bb4c7,
+design-reviews/03-10-27-01/proposals/mockups/03-workspace-menus.svg,Design and implementation artifacts,,Text,9378,c3c57bea1a399248b2a1613f37bb353c1f71f76a3978bab8dbf9da0f901ff1a2,
+design-reviews/03-10-27-01/proposals/mockups/04-document-menus.svg,Design and implementation artifacts,,Text,9847,26b7efe80ffa965b133e86287b88578182869a5b4235c9ec7bae0ccbc72626c7,
+design-reviews/03-10-27-01/proposals/mockups/05-search-open.svg,Design and implementation artifacts,,Text,13793,eff74efe899078120c5041add00fabbdee051a127ad08585201b3264a4938e79,
+design-reviews/03-10-27-01/proposals/mockups/06-search-results.svg,Design and implementation artifacts,,Text,15229,14dd9c2be590a63811f9748c65795cfab6c1a02a4eb010909ae90e26c61d5276,
+design-reviews/03-10-27-01/proposals/mockups/07-narrow-workspace.svg,Design and implementation artifacts,,Text,5873,534cc686bb02e497e685af3de9ec29fecd479a966690bacd992d22d359367acc,
+design-reviews/03-10-27-01/proposals/mockups/08-settings-window.svg,Design and implementation artifacts,,Text,9399,932830c69627a7d2a2e2a3db20c6a4864ac36bec0a662ef16b72ed949397e3ef,
+design-reviews/03-10-27-01/proposals/mockups/09-html-view.svg,Design and implementation artifacts,,Text,13386,c77d31a4f82a849fab9e7a33867ba1ec84d1ad37ccefccf98f537c3cb4ada3a1,
+design-reviews/03-10-27-01/proposals/mockups/10-html-links.svg,Design and implementation artifacts,,Text,12289,9f0aa94fef0cad653120d43092a0d2483d864db9bdb53c95d38a15d9487e54e1,
+design-reviews/03-10-27-01/proposals/mockups/11-html-link-access.svg,Design and implementation artifacts,,Text,7056,a7307dc4c1783e617f92c5b5a5ee5da7d7733564f2145cf6a5d1d6595a56f6c2,
+design-reviews/03-10-27-01/proposals/mockups/12-universal-history.svg,Design and implementation artifacts,,Text,11216,93b0ee7ef033e870ada3f077ca02e02238f11447fdb008d858828cb85d5f9a50,
+design-reviews/03-10-27-01/proposals/mockups/13-file-details-and-history.svg,Design and implementation artifacts,,Text,9883,82efe6dab866f43d58a4bf678bd1d740e86f30f80fb06b58d869c065bb01e1fe,
+design-reviews/03-10-27-01/proposals/mockups/14-narrow-editing.svg,Design and implementation artifacts,,Text,6639,353f9210492630c3b47d4f973a7d94adbd1c8ed571079392f905b99fdcb0588e,
+design-reviews/03-10-27-01/proposals/mockups/15-save-recovery-states.svg,Design and implementation artifacts,,Text,10960,d20f52c5fda28ada033183db0b7b39c97af6ab5911205f989248c18a67cfa505,
+design-reviews/03-10-27-01/proposals/mockups/16-light-enlarged-settings.svg,Design and implementation artifacts,,Text,4752,93c5cfb27c0dbc71139072961924bfbf05d0b1b4b199bc6f08bf33f0a35735de,
+design-reviews/03-10-27-01/proposals/revision-record.json,Design and implementation artifacts,,Text,10132,d39e149b1eaae0130f1975fc1da2dd2dad90bedf7a5240e65a2e9b02201d21c8,
+design-reviews/03-10-27-01/proposals/selected-design-handoff.md,Design and implementation artifacts,,Text,3867,3750f8fbbc10ff78b2d052b08cc0fe7255b8e8e09dd2062c96b96350935d6213,Selected design handoff — option D
+docs/animation-implementation-2026-09-29.md,Project documentation,,Text,3389,2b8cadb160b0c69e671c425ef74fbef4548b82342c77124bc7afffb5b90eac35,Subtle shell motion implementation — 2026-09-29
+docs/animation-opportunities.md,Project documentation,,Text,4140,5518bcfe43f46f2290032dd219bbb75593d02e768377e719a6a2b51f13a5ac93,Subtle motion review — 2026-09-29
+docs/approvals.md,Project documentation,,Text,21392,a03f290fa904d9424d8a0ec47d4e89473babc6682f4e2be26bf0fc933a16e5c7,Approval record
+docs/approved-frontend-handoff.md,Project documentation,,Text,4295,def99344dfdc65193d7a795272a10cb159c5c389ee928af69c4f33d5c8443a93,Approved frontend handoff addendum
+docs/architecture-proposal.md,Project documentation,,Text,6701,2eeb83956735ae20a20ec386975a7dce13c8f65b71b1f83a487e37c654e1a4ee,Architecture proposal — not yet approved
+docs/constitution-input.md,Project documentation,,Text,1994,44d25fa4b0ca8da0d5efb6c1775dca530d0e30f66422aac207dec65b1f22f7e1,Inputs for the Spec Kit constitution
+docs/continuity-search-image-review-2026-09-29.md,Project documentation,,Text,3487,cefaba588becb42c83ba519d90842fc374adc2e8d5ab6dc8d79c3eb17d5b98bc,"F003C, F003S and F006 approval review set"
+docs/design-direction.md,Project documentation,,Text,3454,4aadc1bc1ddfae3de69d9463a72dde816c24b23debe6c7dec09e4a4e6f66f4d9,Design direction — proposal for user review
+docs/feature-briefs/001-workspace-reader.md,Project documentation,,Text,3963,29a688b214c3c10311b6719a147a4a421d202a609e25956b72ee05ec70c4f600,F001 input — workspace reader
+docs/local-build-2026-09-29.md,Project documentation,,Text,9449,3782fa84ca9201f375730a663021d95a14af8afa92d3abca763ea63e06f816c2,Local macOS build evidence — 2026-09-29
+docs/missing-work-audit.md,Project documentation,,Text,10767,8e0907608c6b0f6154fb64f8ef5ebcab3b1310c8c5c3ae9f120f8b2f925bb907,Missing-work audit — 2026-09-28
+docs/product-brief.md,Project documentation,,Text,10336,a98df04bf6b215fc18b84ac3b03a7d882642b7f461811116a82abbb671d6b746,Product brief — Markdown workspace
+docs/references.md,Project documentation,,Text,2392,9135d6bb63805e97cde3b77aac80b351bf4202050f659a82c59b22f272061745,Primary references — macOS revision
+docs/remaining-roadmap-review-2026-09-29.md,Project documentation,,Text,3724,0febad64f46095988df97773122ca676e7bfac0a879eac5baf0be201a0a04ea3,Remaining roadmap approval review set
+docs/remaining-work-review-2026-09-28.md,Project documentation,,Text,4000,ed1e09be7d723a2903fea444e3373006e6b0698a2aadeeca6c650b8c8c124ca1,Remaining-work review — 2026-09-28
+docs/requirement-retirement-2026-09-28.md,Project documentation,,Text,12544,e0d62fbfa16dd17a051d34783f73b1baba0521c9e830f5c443c828e6b3b7d1f8,Requirements retired — 2026-09-28
+docs/roadmap.md,Project documentation,,Text,3609,9e89399dd15b40c8b5b9f288e577e3b1cd58a40748e2a3d5de49cc6e0898e5e7,Delivery roadmap
+docs/workflow.md,Project documentation,,Text,12606,ea98eac8c1c6c5b4fd404695665d7a1a304c3cbea5f455c87db54d89579a50ea,How to use specs and role skills
+frontend-implementation/STATE.md,Design and implementation artifacts,,Text,1526,48d3a48e807c86e1a645db78f1b8cae21d519188ae889b1e8b566e1d27f72692,Frontend implementation state — 2026-10-05
+frontend-implementation/evidence/approved-gap-pass/baseline-tests.log,Evidence or snapshot,,Text,809,d7fe08c2e8851baac9ec1accd535d87a99fd04393f86d461538f21bad053a2d3,
+frontend-implementation/evidence/approved-gap-pass/before-hashes.json,Evidence or snapshot,,Text,97475,fe967f409c59ba626227bda41fccf61fe63de24106e4e94c366b22b01547753c,
+frontend-implementation/evidence/approved-gap-pass/before/.agents/state-before-handoff.md,Evidence or snapshot,,Text,1380,e0f166ba6a2f0d04001840213fbbe62b2561866f3385e7e41b84cd3285984f13,Current state — 2026-10-05
+frontend-implementation/evidence/approved-gap-pass/before/frontend-implementation/STATE.md,Evidence or snapshot,,Text,1817,50d9b092354ab9cf2a3edf0916065bea9d3c12e33de7b22407b5327cf7c5269a,Frontend implementation state — 2026-10-04
+frontend-implementation/evidence/approved-gap-pass/before/frontend-implementation/plan.md,Evidence or snapshot,,Text,5249,0890b6beff1263f193942f90e4c263c1d532f02b77d1698f645d43a60b006049,Approved design implementation — option D
+frontend-implementation/evidence/approved-gap-pass/before/frontend-implementation/report.md,Evidence or snapshot,,Text,14216,bad339894f7f7a90963cdee3379351afa5b29ce1f397755649e1426cb278781b,Approved option-D frontend implementation — 2026-10-04
+frontend-implementation/evidence/approved-gap-pass/before/specs/006-view-local-images/tasks.md,Evidence or snapshot,,Text,12259,744bca514d50e31f6877b0126c6862f23bcab824b89bc8e2417469dd3426adc6,Tasks: View Local Images (F006)
+frontend-implementation/evidence/approved-gap-pass/before/specs/006-view-local-images/verification.md,Evidence or snapshot,,Text,23550,6e2892977cb69c3bc50eeab2799ee1f998900289520e8b9e94e31e8067080d65,"F006 verification — 2026-09-29, updated after fresh SVG QA"
+frontend-implementation/evidence/approved-gap-pass/before/src/app/ActionMenu.tsx,Evidence or snapshot,,Text,3435,3df1356287d02a47ee6ea01885d1931d692c0848374d89d01556b64fc22c4c48,
+frontend-implementation/evidence/approved-gap-pass/before/src/app/App.tsx,Evidence or snapshot,,Text,181573,708bcd93756d045e14c05cf59406eaa42c9370de24edc0b01342e0b392001517,
+frontend-implementation/evidence/approved-gap-pass/before/src/app/FolderSearchPanel.tsx,Evidence or snapshot,,Text,9827,b8e7fb98eb22aa9a93be81da2fc4a48e25b690cdccd77956672fc6588df0814d,
+frontend-implementation/evidence/approved-gap-pass/before/src/app/i18n.ts,Evidence or snapshot,,Text,34379,85896ed31b569320bf1e2c2d2e61bd91d5f5e6cd6ab83fadf396bbceda7a4b79,
+frontend-implementation/evidence/approved-gap-pass/before/src/styles/app.css,Evidence or snapshot,,Text,40722,93f65f89f0112c66ac4677955a05573bc4d9317e063196ba5a25d0e63a34665a,
+frontend-implementation/evidence/approved-gap-pass/build.log,Evidence or snapshot,,Text,1190,348c46adcdf1d290062acceda1416e6c0f44f141413346ccfe6c720141f36566,
+frontend-implementation/evidence/approved-gap-pass/change-review.json,Evidence or snapshot,,Text,2427,47f42f87288a234f161306a534b7f62a6d8c741af1dab6bee4ed880c3db9ffc4,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reading-controls.json,Evidence or snapshot,,Text,2459,6ed5b8a37add3e9e3a7baf1c389b94e5cbe0904d6f05d7af1d20df820d80b4cf,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reading-controls.png,Evidence or snapshot,,Binary,451800,1a18879e5a6d0af921fc90c62b2962ba5466f44553d729455c1cca9ee3bcfbfd,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reading.json,Evidence or snapshot,,Text,2367,3d871ad32e4ad22f6aa4b7fec91d643a7efad4380f052a98d82ee239e46176dd,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reading.png,Evidence or snapshot,,Binary,407005,22d7a90ac0f0631e64872ac6979d561865211e713d59bbc7173dcc5174987512,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reload.json,Evidence or snapshot,,Text,3142,ac8e58a0806e94441c7c039a1d98af8af691eaf3c9de692397513a6612840f74,
+frontend-implementation/evidence/approved-gap-pass/dark-en-reload.png,Evidence or snapshot,,Binary,414784,878d0c22ecec1ba6be5b1006b3ffa9a4e1e58f53d7192878f07a53b5b1b85a06,
+frontend-implementation/evidence/approved-gap-pass/dark-es-narrow-editing.json,Evidence or snapshot,,Text,2422,da6beb18528267654d73fb7e7552a2e9f0af63b514dc97db7ec198d513eeb63a,
+frontend-implementation/evidence/approved-gap-pass/dark-es-narrow-editing.png,Evidence or snapshot,,Binary,151556,2241e01b5d5d3bf1d9ca462337bdf02fa346d5129b719cad02b9c24c19546739,
+frontend-implementation/evidence/approved-gap-pass/executed-offline-renderer.swift,Evidence or snapshot,,Text,3101,2b8ec90ad47bffeff6f2c60811df3a0dec9f1557d706011d229957bf84eb3cd7,
+frontend-implementation/evidence/approved-gap-pass/feature-state.json,Evidence or snapshot,,Text,183,57a575e96b59fd0761d828d0aab2ef4099f8f80dc19076ac5b285d30de7893fc,
+frontend-implementation/evidence/approved-gap-pass/final-current-build.log,Evidence or snapshot,,Text,1190,33d0fb6d2b5bf3a4464c83fa9049bb5327236649dbd5cd7d06af759da1338320,
+frontend-implementation/evidence/approved-gap-pass/final-current-tests.log,Evidence or snapshot,,Text,851,001b22d12aa7dbd2551f08331bf334118631c79b75feeb4567ff513e9899154d,
+frontend-implementation/evidence/approved-gap-pass/final-focused-tests.log,Evidence or snapshot,,Text,539,e122942ae156afb2f4cd38b81fee5756c1c9c56921434b9b8c86ecd4ef636811,
+frontend-implementation/evidence/approved-gap-pass/final-tests.log,Evidence or snapshot,,Text,851,00a056d102da80bf1c66ced7402f0b1474ed1c4f1a395779fb689a03209c79ab,
+frontend-implementation/evidence/approved-gap-pass/frontend.patch,Evidence or snapshot,,Text,50203,674ccc89460ad3171c7ddb518dfe25e6bced322f51fb45354024fc043278aa28,
+frontend-implementation/evidence/approved-gap-pass/light-en-narrow-search.json,Evidence or snapshot,,Text,2369,f64d37fa4294cc263b88113b4769a7916e544fd3f88031a8599fd2f0ab7cc81c,
+frontend-implementation/evidence/approved-gap-pass/light-en-narrow-search.png,Evidence or snapshot,,Binary,162311,24e8c0523c1ae7f170bd2c9b8436103a1cdb045bb5b48a077e777f32c87e9015,
+frontend-implementation/evidence/approved-gap-pass/light-en-save-recovery.json,Evidence or snapshot,,Text,2795,11a2a0d2999bbd22dff06c0534de397a5c0500bb5d48e2fa4b706d065b85580c,
+frontend-implementation/evidence/approved-gap-pass/light-en-save-recovery.png,Evidence or snapshot,,Binary,348271,183d48c2bda9f6649408db8f3a2d48dda23c45f26e199313419ad2796495929c,
+frontend-implementation/evidence/approved-gap-pass/light-es-enlarged-reading.json,Evidence or snapshot,,Text,2285,d565d44d89d6ec2dc28285142606fdaeb23039263a9e9b270d8044af287652ab,
+frontend-implementation/evidence/approved-gap-pass/light-es-enlarged-reading.png,Evidence or snapshot,,Binary,318361,4798b42fc6d8951fe95be1a34141e6c7773c47bee69883dc4d44ddb68038808a,
+frontend-implementation/evidence/approved-gap-pass/light-es-narrow-reload.json,Evidence or snapshot,,Text,3063,b3d27111b38776b357fbc93bf049493023050305eff0b4fe430af048faf75f9d,
+frontend-implementation/evidence/approved-gap-pass/light-es-narrow-reload.png,Evidence or snapshot,,Binary,141926,e222e4642a4b7756b352f4574294bfdbe067732142448fd0e00378b09bf5b036,
+frontend-implementation/evidence/approved-gap-pass/light-es-reading.json,Evidence or snapshot,,Text,2321,57a58a3aaa638385b6d5fa8c82ac9516fa873dc297af7589a4eb5b7657e83391,
+frontend-implementation/evidence/approved-gap-pass/light-es-reading.png,Evidence or snapshot,,Binary,416678,b98d24fb6abec7b94f07578f88a8d00c58f76322f125b3d4c33adffaba823321,
+frontend-implementation/evidence/approved-gap-pass/menu-before.log,Evidence or snapshot,,Text,1675,7ba190770eed4fbb7051b7f303b241ad400ae80d00966146ef968d94b0820cc9,
+frontend-implementation/evidence/approved-gap-pass/offline-interactions.js,Evidence or snapshot,,Text,14559,735929d221af67e02df2fc8e6d2b1e4d86e14396dc843d2bd91bdd8844004b8b,
+frontend-implementation/evidence/approved-gap-pass/offline-renderer.swift,Evidence or snapshot,,Text,3265,2255f3c78081ec3e34c8fc973b500d26e9d08fb08a4aece244c0b6e26e0eb217,
+frontend-implementation/evidence/approved-gap-pass/prepare-offline-renderer.mjs,Evidence or snapshot,,Text,2428,54d23b0c17c8b63af1d9222a7c54fda746b35e28c7ca84faa0276b72318ebc8b,
+frontend-implementation/evidence/approved-gap-pass/reference-D-runner.txt,Evidence or snapshot,,Text,373,7477d3ea3317c385c67c782e4d060087b5f37fb65a55b9280378b721f0966552,
+frontend-implementation/evidence/approved-gap-pass/reference-D.json,Evidence or snapshot,,Text,67,437e91b31a9d2a6230ce75fb1bdf6f9c395fbba4b8a93b214dcba24ec181babb,
+frontend-implementation/evidence/approved-gap-pass/reference-D.png,Evidence or snapshot,,Binary,347096,0dfbfa4439bdefaed37a88a0ed1c4db508a995565695b60f2cbe99ccaf0d897c,
+frontend-implementation/evidence/approved-gap-pass/reference-menus-runner.txt,Evidence or snapshot,,Text,373,7477d3ea3317c385c67c782e4d060087b5f37fb65a55b9280378b721f0966552,
+frontend-implementation/evidence/approved-gap-pass/reference-menus.json,Evidence or snapshot,,Text,67,437e91b31a9d2a6230ce75fb1bdf6f9c395fbba4b8a93b214dcba24ec181babb,
+frontend-implementation/evidence/approved-gap-pass/reference-menus.png,Evidence or snapshot,,Binary,424692,dfb9ec47ea5a9135ac68c8d83deb5faf795d012f84d45edf99eea44d65b15b3a,
+frontend-implementation/evidence/approved-gap-pass/reference-narrow-runner.txt,Evidence or snapshot,,Text,373,7477d3ea3317c385c67c782e4d060087b5f37fb65a55b9280378b721f0966552,
+frontend-implementation/evidence/approved-gap-pass/reference-narrow.json,Evidence or snapshot,,Text,67,437e91b31a9d2a6230ce75fb1bdf6f9c395fbba4b8a93b214dcba24ec181babb,
+frontend-implementation/evidence/approved-gap-pass/reference-narrow.png,Evidence or snapshot,,Binary,213825,acf8fef56a716ff3d53c648bdcdf8ed5a867dbc15c97ef7a9648ecec82e5a186,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reading-controls.json,Evidence or snapshot,,Text,2399,66c5a733d1734b2d4ac2125fcbebb5404ba233c2bcdf4992447e0b748578ab65,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reading-controls.png,Evidence or snapshot,,Binary,451816,0d1c7b29137131c3ee70ab17bc3dca021e7247ecf855e8874841fd6ac0aa208a,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reading.json,Evidence or snapshot,,Text,2379,98742911f81a0120de0a40c2210dafc63e8046d1db4a83e978713ae0f84ee4f2,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reading.png,Evidence or snapshot,,Binary,407015,3aa990d8f68274e7bc0fbcaf8a834dd168ca951b3b290a4184bb63daa3de815a,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reload.json,Evidence or snapshot,,Text,2869,24856a9ae840d2a1bae1539a32f8bfdf85cd554452523bbbd0751c4e61d9ae18,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-en-reload.png,Evidence or snapshot,,Binary,414186,a8ef4a8415341ca59ca42836cc0ba9aae7e387b54745623f6efe6c592ce650f4,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-es-narrow-editing.json,Evidence or snapshot,,Text,2443,e0c6bf908fc7f6dff6c89df1556c2812cba0ca1779e2f71d07caf0d13391494c,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/dark-es-narrow-editing.png,Evidence or snapshot,,Binary,153122,fedb3cc3bf449954eef12fedeb539fd39a5228bb7de5a44a63bee09fa6af18fb,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-en-narrow-search.json,Evidence or snapshot,,Text,2368,81eb90e6d034c3f8c45bae9940986ed2cfbb2e624124424a8028481e96e15e2e,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-en-narrow-search.png,Evidence or snapshot,,Binary,162357,87cea86aa7dda707bf2bce86f0c71f734d020da42137bf93d76b1e9d2407c6b6,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-en-save-recovery.json,Evidence or snapshot,,Text,2795,2fd250e4f3722e32c8be6c2fa2fa1ccc68993c82013f93a7c586081f8de59db2,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-en-save-recovery.png,Evidence or snapshot,,Binary,348275,8b37157c42ae39781d0e68d1c707a46d248b477a966294debe0ea298fc938395,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-enlarged-reading.json,Evidence or snapshot,,Text,2342,80cab9cfc798ee299b4de03e63016b3e58f9ab93f89e366423a2b101a84c92d4,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-enlarged-reading.png,Evidence or snapshot,,Binary,321671,59614a9b8d1ef000016ff6d3d54bccd05e8e0571f232c5fb9a9c2c71050e1aad,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-narrow-reload.json,Evidence or snapshot,,Text,2840,d02f3120a58a007b0aec6ddf91f5a2297cce0b54a3f2c64c64bcda42c5fc5e3e,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-narrow-reload.png,Evidence or snapshot,,Binary,142414,1dc0bcf71b1f71aa1bff76cfdfa7df99601741025511c4efa205ed80017e32c7,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-reading.json,Evidence or snapshot,,Text,2321,69433787724dae00b3fa62cfa0a0491c86c5f23b87ff472e7cf64255e96ccb4b,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/light-es-reading.png,Evidence or snapshot,,Binary,416697,375484ffae59ffcf3d4b5baebadf41af78a23be369558f566e34ed7d9b8cf765,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/reference-D.png,Evidence or snapshot,,Binary,352843,d6c005e159b97e15fe2276c988512b1d46c760656f7b956f6411519c0c8b60ea,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/reference-menus.png,Evidence or snapshot,,Binary,432982,0192e0fb8affed76245ad30ac0b31648c0c53c459fb174cb24460871d9f8fd58,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/reference-narrow.png,Evidence or snapshot,,Binary,218150,ce887cdc2669cc77c6b4a08e60964f7e4a38185cdf6ec9e5f7f586217fa13024,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/renderer-cases.json,Evidence or snapshot,,Text,2790,bf2074fc5590bc9a1d35e52767908e198ebc685b77a065a091c1f8e0d58a544c,
+frontend-implementation/evidence/approved-gap-pass/renderer-before-fix/renderer-results.json,Evidence or snapshot,,Text,2612,2bdc331e56130de422afac0fa6645c45002fc1502cce980340072b0d09076148,
+frontend-implementation/evidence/approved-gap-pass/renderer-build.log,Evidence or snapshot,,Text,1558,22318be9db82da18eab9d41d44c9373cdcd63f64f868eb766c87c9403d196d55,
+frontend-implementation/evidence/approved-gap-pass/renderer-cases.json,Evidence or snapshot,,Text,2791,4cc21bf51cd938cfafb04a64bb88dd78e6f95b5a9a872b6707775c13c2b8dfbd,
+frontend-implementation/evidence/approved-gap-pass/renderer-compile.log,Evidence or snapshot,,Text,248,9a1746e8a93052d8cf5f9a4e85761db06e035365407b193325deb16989c4ce15,
+frontend-implementation/evidence/approved-gap-pass/renderer-results.json,Evidence or snapshot,,Text,2198,88d5ae47bf5573413b8038f38e97483298e8c124d60662e81726c0c209bd685d,
+frontend-implementation/evidence/approved-gap-pass/renderer-source-hashes.json,Evidence or snapshot,,Text,4499,83db5c8658ad9f11e0711a9a70dfd9254f5228658125b93340bd8d2577669112,
+frontend-implementation/evidence/approved-gap-pass/slice-tests.log,Evidence or snapshot,,Text,594,4c5eb1e9ec9e01e4d99a1cdb47d931cfeafdbf53adcf99226420567a0b391fa8,
+frontend-implementation/evidence/approved-gap-pass/verified-source-hashes.json,Evidence or snapshot,,Text,5677,61c658d3c4c13c81926c565fd3db4a867ca3a929b7efb967a032e21c61e86c83,
+frontend-implementation/evidence/approved-gap-pass/worker-bundle.log,Evidence or snapshot,,Text,174,2836db7347e0672da11e2eef0c0373d3d10d04102e17c024aed04afd6baa4ec8,
+frontend-implementation/evidence/option-D/after-hashes.json,Evidence or snapshot,,Text,33910,5108aee6466064e19bf2ee43794793e668a4ba8f9299547eb28211d3d7586200,
+frontend-implementation/evidence/option-D/baseline-tests.log,Evidence or snapshot,,Text,749,4a97d6011c4dc9b564c2730311e383b50fd7ff199cc3fc9aee8ddcd564946e2f,
+frontend-implementation/evidence/option-D/before-hashes.json,Evidence or snapshot,,Text,33910,6799ecbe31e0f223d594306e50b39b5f4afaa2f8f2084a5c992603038ea5855b,
+frontend-implementation/evidence/option-D/build.log,Evidence or snapshot,,Text,1190,3f67199163b31c98ae3cc4ecb496208708a962c593fc7b7b160be8d171b0eac7,
+frontend-implementation/evidence/option-D/change-review.json,Evidence or snapshot,,Text,1092,abd6f02810eec3747890ebd4d421f1cc35d46723c499aae1963892be68fa7f75,
+frontend-implementation/evidence/option-D/dark-en-reading-controls.json,Evidence or snapshot,,Text,2443,b603bf3ac8f97b47ace95341e03e8495da3d79c1cb12cca8cccc4896c373b209,
+frontend-implementation/evidence/option-D/dark-en-reading-controls.png,Evidence or snapshot,,Binary,454734,b03d377142b9a7c3a7c046feedb4c80f659b1e0d275ce63ddfcf2f815afcc4b0,
+frontend-implementation/evidence/option-D/dark-en-reading.json,Evidence or snapshot,,Text,2382,e71acb173e189fad9436ea971b73b2db7711774bb6d5d52c226883a03eb8ccde,
+frontend-implementation/evidence/option-D/dark-en-reading.png,Evidence or snapshot,,Binary,410009,8418560b8775ab54f96a871a8dc18d439761fd38449f5238310de0892f5a600c,
+frontend-implementation/evidence/option-D/dark-es-narrow-editing.json,Evidence or snapshot,,Text,2422,8d96905ef461b0bc7aa758a2c13997d0d05d2c528dc4ca73b109d9fefd4ae83e,
+frontend-implementation/evidence/option-D/dark-es-narrow-editing.png,Evidence or snapshot,,Binary,153139,a38edc99fc4841c9a9b4c1a8600c02887e3e65f5aaf9785a27321b151f6bbadc,
+frontend-implementation/evidence/option-D/feature-state.json,Evidence or snapshot,,Text,183,57a575e96b59fd0761d828d0aab2ef4099f8f80dc19076ac5b285d30de7893fc,
+frontend-implementation/evidence/option-D/final-targeted.log,Evidence or snapshot,,Text,46141,1f8ef1e360ddfdaad139012cc6bb72be548bc84bd269aa56be58ea6784e60a23,
+frontend-implementation/evidence/option-D/frontend.patch,Evidence or snapshot,,Text,106191,5606a8da92d4ba58f46dddf120f4a561f668269cba7a8910c22c503c3dd47fbf,
+frontend-implementation/evidence/option-D/full-fifth.log,Evidence or snapshot,,Text,40296,180f049115a31f053dc9ea029386ccf71d53976a446010c287f668ccd0195c2c,
+frontend-implementation/evidence/option-D/full-final.log,Evidence or snapshot,,Text,5155,ca1085f309e4dd6f0e2a28e45ab8de9c14a1ec04e23a12120d7576636ca769b1,
+frontend-implementation/evidence/option-D/full-first.log,Evidence or snapshot,,Text,117239,cc536dce7b67151bc33e8901669779b98455680877f0a2b88532c8a61d8291cc,
+frontend-implementation/evidence/option-D/full-fourth.log,Evidence or snapshot,,Text,782,44bd77e59ae61718bd86b77ac1cadbad6d2c40c2761c84f18c1757fd1240eea2,
+frontend-implementation/evidence/option-D/full-second.log,Evidence or snapshot,,Text,110639,7d026c62535da4e415d806bfcb8c7a5aceedae7a9d2d596e902dc9428bd58e8b,
+frontend-implementation/evidence/option-D/full-third.log,Evidence or snapshot,,Text,15779,81edd5b8a909da14a2b388cff0a792465df27361bb370d5722eca656b81549b7,
+frontend-implementation/evidence/option-D/full-verified.log,Evidence or snapshot,,Text,46289,3cfc8704e4c3e542776ff39cbfb275ab0c9f3c2a0f26a35a5bcbe3dcb1f11f09,
+frontend-implementation/evidence/option-D/light-en-narrow-search.json,Evidence or snapshot,,Text,2360,4826fc71e88b5292dfd507a83986e5202d3dae087abd67065bae6a2bf41b12d1,
+frontend-implementation/evidence/option-D/light-en-narrow-search.png,Evidence or snapshot,,Binary,161996,0075af945b0e12069123ce3205efa7ddc93391b9a46bcf6fa705cdb25054c507,
+frontend-implementation/evidence/option-D/light-en-save-recovery.json,Evidence or snapshot,,Text,2810,e6949761cccc68d43c8fe36375ffffc86a86b98335364b61a530bc8072130b59,
+frontend-implementation/evidence/option-D/light-en-save-recovery.png,Evidence or snapshot,,Binary,353045,c3fe83d2a67947fbc938869b7f138a867c18675326279e6ed4dd67f82d1833db,
+frontend-implementation/evidence/option-D/light-es-enlarged-reading.json,Evidence or snapshot,,Text,2342,184dc1099e340f3f5aafdbea6c2a37f5adaa740c13b5986c268229ec19a15df5,
+frontend-implementation/evidence/option-D/light-es-enlarged-reading.png,Evidence or snapshot,,Binary,339788,db79d643d0f07b9a9f872f000eb7d2bb36dd51dbf32d4cb79e83de2536cde0ae,
+frontend-implementation/evidence/option-D/light-es-reading.json,Evidence or snapshot,,Text,2321,8e3bcdc5448422c7b58d81cf40d39c42c1d7ba6a0b16a32cb7f98bddf41beebb,
+frontend-implementation/evidence/option-D/light-es-reading.png,Evidence or snapshot,,Binary,419238,e22dcda087b3c213c3dbe9088eb31a080d77f50f0cd795254e7a79109610851a,
+frontend-implementation/evidence/option-D/navigation-first.log,Evidence or snapshot,,Text,80549,b23a3d290a199eec1c29a0e946ae8105a752591ca45af20783bd408b5fadbcbb,
+frontend-implementation/evidence/option-D/offline-interactions.js,Evidence or snapshot,,Text,11664,e9f88c1c4950c387d75e37b667743081fc2c59df1cec140b4eee69d39ab5cab2,
+frontend-implementation/evidence/option-D/offline-renderer.swift,Evidence or snapshot,,Text,3101,2b8ec90ad47bffeff6f2c60811df3a0dec9f1557d706011d229957bf84eb3cd7,
+frontend-implementation/evidence/option-D/prepare-offline-renderer.mjs,Evidence or snapshot,,Text,2205,4c852f8865f3d63bd52c40bf97015bd2584b4be890e523497c805ee5c7bae6ae,
+frontend-implementation/evidence/option-D/ready-targeted.log,Evidence or snapshot,,Text,470,62f99534e542da820d02f7c4930bdcb8080ca7c4a3b5cb4e165976ec7e8c0b6d,
+frontend-implementation/evidence/option-D/regression-before.log,Evidence or snapshot,,Text,4803,ca1bf1ee2b9546be283a39b297f4d7a9c3fe8aab0982a216c19924ec0f5f528a,
+frontend-implementation/evidence/option-D/renderer-build.log,Evidence or snapshot,,Text,1522,6ad2cc34fbf8678b02ae801761abb065cc42ebbb0f852a46386529b975b6d89b,
+frontend-implementation/evidence/option-D/renderer-cases.json,Evidence or snapshot,,Text,1711,1c332e4f22164128adba1c6bdb3ff5ce9e814172020b86589d191f970ed6d6cc,
+frontend-implementation/evidence/option-D/renderer-results.json,Evidence or snapshot,,Text,1878,f9b8b432da20dd0c81736bc1d716aee1e4b2d33580e094782f40b6fb8f951ff1,
+frontend-implementation/evidence/option-D/targeted-fifth.log,Evidence or snapshot,,Text,1654,1110da9ba56f291cdb2d8a0ec56b35001fb74cffaea801f49e0cfc76e218748b,
+frontend-implementation/evidence/option-D/targeted-fourth.log,Evidence or snapshot,,Text,445,8f77e83fb9b51853acb2b90a03c8adcddee65e4cf500586b1bd5c4b455369c4c,
+frontend-implementation/evidence/option-D/targeted-second.log,Evidence or snapshot,,Text,526,28735194b41fed960f39858f86ae47575d240821353dcee5def8b1dcb0e0ec0d,
+frontend-implementation/evidence/option-D/targeted-sixth.log,Evidence or snapshot,,Text,519,ec5f3635653b0755bd444613304a4d92fd28fa861dffc89304a59b896b993de2,
+frontend-implementation/evidence/option-D/targeted-third.log,Evidence or snapshot,,Text,496,ef0cca03913ddc69d9e0abc01d921990c296851033b47cc9c9af2b4deab4adc8,
+frontend-implementation/evidence/option-D/tests.log,Evidence or snapshot,,Text,823,69db60d155e5538d33326794a69685e7f688d6e4b32e23a8471ba14eb9e94528,
+frontend-implementation/evidence/option-D/typecheck-first.log,Evidence or snapshot,,Text,0,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,
+frontend-implementation/evidence/option-D/typecheck.log,Evidence or snapshot,,Text,0,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,
+frontend-implementation/evidence/option-D/verified-source-hashes.json,Evidence or snapshot,,Text,4906,963a38c6f944b7b3d2773d3bfcc637bf0f16b6dd4d543b54bf5095159314fb18,
+frontend-implementation/evidence/option-D/worker-bundle.log,Evidence or snapshot,,Text,174,2836db7347e0672da11e2eef0c0373d3d10d04102e17c024aed04afd6baa4ec8,
+frontend-implementation/integration-requests.md,Design and implementation artifacts,,Text,8205,989d1c468508c29f2380456297461324b5b6f039235deb25f7f8c6c028782a24,Integration requests for the approved option-D package
+frontend-implementation/plan.md,Design and implementation artifacts,,Text,9617,98bbe5e36a139819249f1e955840ab79714a1fde588414c5dc088a35b66ada1b,Approved design implementation — option D
+frontend-implementation/report.md,Design and implementation artifacts,,Text,10033,f3baef468dc9bc07511e3c466b2f4affc01871ee3a376bb888f6791d6daf6fba,Approved frontend gap pass — 2026-10-05
+index.html,Project configuration and entry files,,Text,305,ee4a8366902a886ec2f47ee2e50e3f11bfbc451553055d26fe741efb88d80e20,
+package-lock.json,Project configuration and entry files,,Text,159045,5be37d7a60a0356ca0735e562238cf061d05232f5e1ade7ba7106e9ef629165b,
+package.json,Project configuration and entry files,,Text,1189,c7d31157165cf0d2717b502e5252052d9e3186efda90795530cbfba01b532809,
+prompts/00-migrate-existing-to-macos.md,Agent and workflow infrastructure,,Text,2613,b90c244dd9c73ce36af2a64e6142af23b9bfba444b9be0b1b0f2c95cb7690b7b,
+prompts/00-verify-setup.md,Agent and workflow infrastructure,,Text,1504,e499c1791e3d2d6ed6758b59eb3e4b3fbf177dc9d7b9bc8145f22e59282337f9,
+prompts/01-constitution.md,Agent and workflow infrastructure,,Text,790,2ae6b50a7a04f6277066f973779d99c97957bd70f52efa026ac89b650a972991,
+prompts/02-specify-first-feature.md,Agent and workflow infrastructure,,Text,865,06b8efe0385c9a023d50f01e491db561328db7a3530d6c221039d09ce1c58a59,
+prompts/03-clarify-feature.md,Agent and workflow infrastructure,,Text,707,c0057fa71a62b26d58637fb697e2e083b9078e5b140e15b691de589a8f08c050,
+prompts/04-design-feature.md,Agent and workflow infrastructure,,Text,893,d597688e1014b4d0c50a294215f808f7466c881cd12d4c08f6d4638b76a1ec34,
+prompts/05-plan-feature.md,Agent and workflow infrastructure,,Text,904,e10b643ccfa4db38629ee6c1b0d7bb338123d6cb9575847c6186a11fd621f4df,
+prompts/06-generate-tasks.md,Agent and workflow infrastructure,,Text,732,014145366272d4508967f9a8353ce75c5ab73c839e8de19637a8af7425720389,
+prompts/07-preimplementation-review.md,Agent and workflow infrastructure,,Text,873,f9478cc212c79e322653bfe471dea9faec0a9b6993c617d3ee70ebf6389e21aa,
+prompts/08-implement-one-batch.md,Agent and workflow infrastructure,,Text,1022,7c1101ff16f35e8bb5d58539503bc7127dc03523de3e681bcbb34748b23e8a45,
+prompts/09-verify-batch.md,Agent and workflow infrastructure,,Text,874,3da1d353a6b9b7a515594179e9dca6665a80105e6f5325051d70636b164680b7,
+prompts/10-converge-feature.md,Agent and workflow infrastructure,,Text,779,9d510ee9fe17ab44a71883927ed23f7c1b994c20d00e4ba2c0b0010be145172e,
+prompts/11-release-macos.md,Agent and workflow infrastructure,,Text,1156,1887f53eea13fadbd1ddf7d56289ce7c83e0f2517e988385e1cb4778b056e042,
+prompts/12-next-feature-template.md,Agent and workflow infrastructure,,Text,767,dcab55eb5204adfd040b705607124b87e3adce285fc6dbad6f5e4681412c32d4,
+public/licenses/Roboto-OFL.txt,Third party license,,Text,4394,061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41,
+public/licenses/RobotoMono-OFL.txt,Third party license,,Text,4395,50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215,
+public/licenses/highlightjs-BSD.txt,Third party license,,Text,1514,6c081431591d9df696c82dc598fe1423765b8a299b200ed00b281afd0f64c490,
+public/licenses/lowlight-MIT.txt,Third party license,,Text,1094,dd1081884a92952802f4803110a6bb543acea9a814c786d58605b4c1219b5ebb,
+specs/001-workspace-reader/checklists/requirements.md,Feature specification and workflow,001-workspace-reader,Text,1393,50b72978825bbe6e20b5fc3e27ff9e92dac410becc1dad123004df14eb33bb06,Specification Quality Checklist: Workspace Reader
+specs/001-workspace-reader/contracts/native-commands.md,Feature specification and workflow,001-workspace-reader,Text,1803,09e94b25acf9a9ce7510a3535c385e1c650368b9d6b91ec9638ef9a35f023180,F001 native command contracts — proposed
+specs/001-workspace-reader/data-model.md,Feature specification and workflow,001-workspace-reader,Text,1517,a3d50274ca6eb0f14af6f0baddddce99ca470542b63a2a282de657c37f71ebe9,F001 data model
+specs/001-workspace-reader/design.md,Feature specification and workflow,001-workspace-reader,Text,5510,01958222a06e8781d2f2a2901dd65f5c799e31ca8c4d9cef53a1c01f7f037cdb,Workspace Reader — visual and interaction proposal
+specs/001-workspace-reader/design/window.svg,Feature specification and workflow,001-workspace-reader,Text,5489,5cb1dd4cdcd91ddcef28189afaed5b4602a868e2505f6f813ea852f4d86a31c9,
+specs/001-workspace-reader/plan.md,Feature specification and workflow,001-workspace-reader,Text,7375,f97164a340d18ffc9302d82a3cdb687da2dffa9df456d38cac8231621143b6f9,Implementation Plan: Workspace Reader
+specs/001-workspace-reader/preimplementation-review.md,Feature specification and workflow,001-workspace-reader,Text,2145,1c77d0e4ff0664fcd183530795a6758f025ace0abf3f280199b63d88898f95cb,F001 preimplementation review — 2026-09-25
+specs/001-workspace-reader/quickstart.md,Feature specification and workflow,001-workspace-reader,Text,1802,896f2dc6a91e3d49c05652dbe254090f57321b57adde1961a5528aece38723c3,F001 local build and acceptance
+specs/001-workspace-reader/research.md,Feature specification and workflow,001-workspace-reader,Text,2848,685f376974ec9e4ecb00d9d698c384c7ac1016218db925863d8756a8c08da4d8,F001 architecture research — 2026-09-25
+specs/001-workspace-reader/security-review.md,Feature specification and workflow,001-workspace-reader,Text,3598,45137c8bd66cb372ea7905ef6b5ef75a98eb466c8ae5e31c6711040d5e50b957,F001 security review — 2026-09-25
+specs/001-workspace-reader/spec.md,Feature specification and workflow,001-workspace-reader,Text,8604,92155028c3ea90abe2f0733d595654d8ce71c3feed81351a49283de617e6c4a9,Feature Specification: Workspace Reader
+specs/001-workspace-reader/tasks.md,Feature specification and workflow,001-workspace-reader,Text,9378,27186862aa4530c2e54237d05f18006d18c12feee2658ab1287d538d2b964116,Tasks: Workspace Reader
+specs/001-workspace-reader/test-matrix.md,Feature specification and workflow,001-workspace-reader,Text,5931,77c74fd22411a2ad8adec5f95c8b5254eb78a07ef0e36b4e006c7c173d82255f,F001 test matrix
+specs/001-workspace-reader/verification.md,Feature evidence,001-workspace-reader,Text,31410,a531bf56c51c72c2fe815d1a2d675f6424da4d36d9392adee03914606bd24271,F001 verification — 2026-09-25
+specs/002-section-editing-recovery/checklists/requirements.md,Feature specification and workflow,002-section-editing-recovery,Text,2207,480a12f2041a71a653521e5d3ad217f6ad2e5d0cdcc932fc306f941f3cde7ec7,Specification Quality Checklist: Section Editing and Recovery
+specs/002-section-editing-recovery/contracts/editing-ipc.md,Feature specification and workflow,002-section-editing-recovery,Text,5360,6903fbda4d801a588fc03aa51a1b79b00473773d19f9bca804ebb5c85b5cfaf2,F004 Native/UI Contract Proposal
+specs/002-section-editing-recovery/data-model.md,Feature specification and workflow,002-section-editing-recovery,Text,5074,69355c48d8f4f4a5c707d308f2480cfa985bd5ff435b621650a0e91629fed175,F004 Data Model
+specs/002-section-editing-recovery/design.md,Feature specification and workflow,002-section-editing-recovery,Text,8412,49339d96c80d7e2854d83ff990364aeec70377c1d90ecdabd6646f3bc73abafd,Section Editing and Recovery — visual and interaction proposal
+specs/002-section-editing-recovery/design/section-editing-states.svg,Feature specification and workflow,002-section-editing-recovery,Text,6697,54c93eb73ebb1fe2b144167b93035abc7eb62ddf9ebf65953beee4197429301e,
+specs/002-section-editing-recovery/evidence.md,Feature evidence,002-section-editing-recovery,Text,19536,3afe3fc2e8111d979e995eec1f2408f0abe5fa0d200f186b3d9892661650996f,F004 implementation evidence — 2026-09-26
+specs/002-section-editing-recovery/plan.md,Feature specification and workflow,002-section-editing-recovery,Text,12976,1cfc77af8de935c22e87ccc5435dc1c63bb5966f296079af6a2627ea8f5b1825,Implementation Plan: Section Editing and Recovery
+specs/002-section-editing-recovery/quickstart.md,Feature specification and workflow,002-section-editing-recovery,Text,4449,b2b3ad29da8601bff809fb7746a13a0e5d23cdc4ab4f2d853008ae8271e3d995,F004 Implementation and Verification Path
+specs/002-section-editing-recovery/recovery-amendment-review-2026-09-29.md,Feature specification and workflow,002-section-editing-recovery,Text,1653,0e431ad45c632728bda5d179a423ab2829e6f6e2234438624c1990c7434a5aff,F004 moved-path recovery and safety-copy amendment
+specs/002-section-editing-recovery/recovery-storage-decision.md,Feature specification and workflow,002-section-editing-recovery,Text,3256,aeb1a1ce9f5904f1297b194a4318ad611cc5f50687637fc283ae58839135c160,Recovery storage decisions for review
+specs/002-section-editing-recovery/research.md,Feature specification and workflow,002-section-editing-recovery,Text,5182,10e4c11ca4b339f2849b139a05e01078aab7dac7c2153b3abbb0571717798135,F004 Phase 0 Research
+specs/002-section-editing-recovery/security-review.md,Feature specification and workflow,002-section-editing-recovery,Text,5797,c44cf8f33002b2041c087d53322b0772ad6cc64fa622e6b0b505688a687464b5,F004 scoped security review — 2026-09-26
+specs/002-section-editing-recovery/spec.md,Feature specification and workflow,002-section-editing-recovery,Text,22539,d84758e7524b974a2221ed6d55d38d2446a9692ef3c0244b47576077dac81ae7,Feature Specification: Section Editing and Recovery
+specs/002-section-editing-recovery/tasks.md,Feature specification and workflow,002-section-editing-recovery,Text,13778,5621a0c0165150e59ac7bec4c90d6a8312c08c3e7a5a9f7878c6f35004a1fb24,Tasks: Section Editing and Recovery
+specs/003-document-text-search/checklists/requirements.md,Feature specification and workflow,003-document-text-search,Text,1633,ab22d0dbbd612403aa268f867739a0e5daed00e9a4b2f49229c5c52a86162594,Specification Quality Checklist: Find Text in a Document
+specs/003-document-text-search/contracts/find-session.md,Feature specification and workflow,003-document-text-search,Text,667,1128823a8f307f188e4e64b25fd56c88713f33944967562aa471a2173258e26e,F003S renderer contract
+specs/003-document-text-search/data-model.md,Feature specification and workflow,003-document-text-search,Text,837,4ac3653c2edda68447e9bc9f93075dea73f76f42f3aa25a14bd0b32459386f09,F003S data model
+specs/003-document-text-search/design.md,Feature specification and workflow,003-document-text-search,Text,2871,a54a59ec36dd81fe174d733e8d14831c1aed2a30cea2a944d2df6c51c8af9920,F003S document Find — visual proposal
+specs/003-document-text-search/design/find-states.svg,Feature specification and workflow,003-document-text-search,Text,3633,7b380538beff091df96a2ef22d33030433926a62cd4333d9f1735caa9c3647ab,
+specs/003-document-text-search/plan.md,Feature specification and workflow,003-document-text-search,Text,3965,7fd271a24ab1ac3cac74e62af9f91fe4aa4b41c4dd27a3a08368727b656a8cd5,Implementation Plan: Find Text in a Document
+specs/003-document-text-search/quickstart.md,Feature specification and workflow,003-document-text-search,Text,1066,0cdd160480671f24859a4c6175ca88badbff0a8e7c310d534f69bb75a3eef4ae,F003S verification guide
+specs/003-document-text-search/research.md,Feature specification and workflow,003-document-text-search,Text,1549,7d7cacf53533cf5cf2ab5510678d6a8a2ca6a17e2d758b792703a0f951ba2394,F003S research decisions
+specs/003-document-text-search/spec.md,Feature specification and workflow,003-document-text-search,Text,10783,d18e3a8c5ff05573eaf2f365c24fda5defcc973999edbee166faca5658f1e378,Feature Specification: Find Text in a Document
+specs/003-document-text-search/tasks.md,Feature specification and workflow,003-document-text-search,Text,3840,6c23a61dd3fbc1d99674344bd3b6656c8f294d07fd7c1d49c99034cde1f3a0eb,Tasks: Find Text in a Document (F003S)
+specs/003-document-text-search/verification.md,Feature evidence,003-document-text-search,Text,2005,8cf21e95606551adba14dad5044c40bf4d54c072cb6888142a6e8334c23d76ae,F003S verification ledger
+specs/004-restore-workspace-session/checklists/requirements.md,Feature specification and workflow,004-restore-workspace-session,Text,1656,af43718c651e65e22f7db13f211fd8778825b5ad261c6662b0a9d4ba77463c28,Specification Quality Checklist: Restore Workspace Session
+specs/004-restore-workspace-session/contracts/session-ipc.md,Feature specification and workflow,004-restore-workspace-session,Text,2968,17c90f15601ea3c1acf67eefe07650ed5b3cbe4578ed890c92a798adb7e7748d,F003C native/session contract — proposal
+specs/004-restore-workspace-session/data-model.md,Feature specification and workflow,004-restore-workspace-session,Text,3845,2197e11cb53355ab7c2fa8de52efa0a1d31acfec9ecb8839a74744acba14f118,F003C session data model — proposal
+specs/004-restore-workspace-session/design.md,Feature specification and workflow,004-restore-workspace-session,Text,4643,ccb23e35957b1268ac5e6357787f56f43f6a2f81c48f8109ff3e58173ce0c472,F003C workspace restoration — visual proposal
+specs/004-restore-workspace-session/design/session-states.svg,Feature specification and workflow,004-restore-workspace-session,Text,4559,b93398712d84afa13267609da2a2f30818ac1c5a079650b536f7df39af7206ac,
+specs/004-restore-workspace-session/plan.md,Feature specification and workflow,004-restore-workspace-session,Text,9559,5ab03986a60601c60f86d35d66e270bef95301cbb9fab759a0d7fee323b1e073,Implementation Plan: Restore Workspace Session
+specs/004-restore-workspace-session/quickstart.md,Feature specification and workflow,004-restore-workspace-session,Text,3375,dbb8c4e6c64c96624380ac8a057b20020b42da14e8388b09e033f33d49ea1c99,F003C validation guide — proposed
+specs/004-restore-workspace-session/research.md,Feature specification and workflow,004-restore-workspace-session,Text,4312,1fb97b68187c433913fff8731470315455ba651cc954bc9dbdbb691c3b9026d8,F003C research and decisions — 2026-09-29
+specs/004-restore-workspace-session/spec.md,Feature specification and workflow,004-restore-workspace-session,Text,17475,0dc8066e4a90ca1131027563e0bc660ac05b1bb9a47c96d2bd6bfef2f0bcb43d,Feature Specification: Restore Workspace Session
+specs/004-restore-workspace-session/tasks.md,Feature specification and workflow,004-restore-workspace-session,Text,5886,5ae5730d46b1ba0b730832326abb5f46f3116d2abf57836d506c9356e340ce9e,Tasks: Restore Workspace Session (F003C)
+specs/004-restore-workspace-session/verification.md,Feature evidence,004-restore-workspace-session,Text,2548,c2e81b9ea5cf964325d64ed2e715247074bb580520d3a512a640aa96748bac6b,F003C verification ledger
+specs/005-external-change-refresh/checklists/requirements.md,Feature specification and workflow,005-external-change-refresh,Text,1573,d396741faed49918f883a94529aa57714f2b858105d28c6142aa1452bb473477,Specification Quality Checklist: Refresh External Changes
+specs/005-external-change-refresh/contracts/refresh-ipc.md,Feature specification and workflow,005-external-change-refresh,Text,7167,dc3fbcaee317b409887c982daf11555084127581bf83f244c9ae337b24ac4ad9,Native/UI Contract: External Change Refresh
+specs/005-external-change-refresh/data-model.md,Feature specification and workflow,005-external-change-refresh,Text,6923,9c406a615213d987ba05ac29497e42b3209fe5a4520ae7c78c6ae8af8fa46469,Data Model: External Change Refresh
+specs/005-external-change-refresh/design.md,Feature specification and workflow,005-external-change-refresh,Text,7963,1d5de1659374c085ec860b8cfee48387390c8aa1fb57c399294ba873d26dd9f1,External Change Refresh — visual and interaction proposal
+specs/005-external-change-refresh/design/refresh-states.svg,Feature specification and workflow,005-external-change-refresh,Text,6966,a94667c6ea3a0bc65859f026eda25d3409a4e2bb575921d24735aa274b38350c,
+specs/005-external-change-refresh/evidence.md,Feature evidence,005-external-change-refresh,Text,18778,421dc363e0de7195bbf890cc53e4135740352a008679526345d3e8bb3006ee16,F003D implementation evidence
+specs/005-external-change-refresh/plan.md,Feature specification and workflow,005-external-change-refresh,Text,13580,869c844da3a0fd275caa2d1c90a940c6f8772c7d1009a945e628a4be5b1cc747,Implementation Plan: Refresh External Changes
+specs/005-external-change-refresh/quickstart.md,Feature specification and workflow,005-external-change-refresh,Text,5961,b79e144b5657fcc10be1568c4e86b58dca4377a3e1ee5780a61bfe56f1d3b9eb,Validation Guide: External Change Refresh
+specs/005-external-change-refresh/research.md,Feature specification and workflow,005-external-change-refresh,Text,8399,44ae626ebdb56475ca2869ef43c2d732274abf09f884825319f8bf43b6b71d24,Research: External Change Refresh
+specs/005-external-change-refresh/spec.md,Feature specification and workflow,005-external-change-refresh,Text,18986,d5cd8853fe318ff0be591d955b8ac83e267865d17e614649438bfcde9979611d,Feature Specification: Refresh External Changes
+specs/005-external-change-refresh/tasks.md,Feature specification and workflow,005-external-change-refresh,Text,14681,c79852e686d0c2d2abfb0f80ecf176268b83c5820829eeca68169ae32d204d9e,Tasks: Refresh External Changes
+specs/006-view-local-images/checklists/requirements.md,Feature specification and workflow,006-view-local-images,Text,1130,9b18f337f29adc9ee516dc1af8d3d378776b97e450ec60f29ceead8d09855a8f,Specification Quality Checklist: View Local Images
+specs/006-view-local-images/contracts/image-decoder.md,Feature specification and workflow,006-view-local-images,Text,1101,990727d2e2ad45df2e8b1f5341e146b7bee5b9317870d48944067b78c7e6ec94,F006 image boundary contracts
+specs/006-view-local-images/data-model.md,Feature specification and workflow,006-view-local-images,Text,1169,d07f17fb2d7467dd6024dedee9e8a3f5506990b25b3523af3595bbd1cc653200,F006 data model
+specs/006-view-local-images/design.md,Feature specification and workflow,006-view-local-images,Text,2932,f131f06a6d07b1c3f867888f8ff4fa0a016ae10b4a6d59b5edd01547fe0042d9,F006 local image viewer — visual proposal
+specs/006-view-local-images/design/image-states.svg,Feature specification and workflow,006-view-local-images,Text,4119,a2ac8e2fc68bd8830dcbd2196911a3857338ca005c9893df01c73b7766c2440f,
+specs/006-view-local-images/engineering-fix-2026-09-29.md,Feature specification and workflow,006-view-local-images,Text,2817,5d59da472741d96b2aecc2a4635b7ca3d1a409c94c54b50ace89e54b9fa99140,"F006 SVG repair — engineering verification, 2026-09-29"
+specs/006-view-local-images/evidence/contract-probes-2026-09-29.txt,Feature evidence,006-view-local-images,Text,724,d68cef5cf12b0ba160b547b7c1a43052dcac11a72626b654e4958d843ef500f0,
+specs/006-view-local-images/evidence/format-matrix-2026-09-29.txt,Feature evidence,006-view-local-images,Text,1105,88eafac3bdd516084e9d86b06bfac78871773865ed5cdba213f77019814dffed,
+specs/006-view-local-images/evidence/format-matrix-fix-2026-09-29.txt,Feature evidence,006-view-local-images,Text,1105,88eafac3bdd516084e9d86b06bfac78871773865ed5cdba213f77019814dffed,
+specs/006-view-local-images/evidence/qa-probe-2026-09-29.txt,Feature evidence,006-view-local-images,Text,3862,666c65ce1a50f675eda369772f5d840b9cdde84bbf86d799de9f95f651b4f3d7,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-bmp.png,Feature evidence,006-view-local-images,Binary,192,8e690bab5848262f89263593e2894b0914736f11cc0e3bc517b71e37b2cae322,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-gif.png,Feature evidence,006-view-local-images,Binary,192,8e690bab5848262f89263593e2894b0914736f11cc0e3bc517b71e37b2cae322,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-heic.png,Feature evidence,006-view-local-images,Binary,192,c9ef38345f61c6825349d9ec3fd3318021e5ef3742563c9803877c87e0e5ec2c,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-jpeg.png,Feature evidence,006-view-local-images,Binary,186,9257f52eecfc844dc20c61dd72f3ec6d94f1ff7f8e8e3f935021c82f28db3fdc,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-png.png,Feature evidence,006-view-local-images,Binary,192,8e690bab5848262f89263593e2894b0914736f11cc0e3bc517b71e37b2cae322,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-tiff.png,Feature evidence,006-view-local-images,Binary,192,8e690bab5848262f89263593e2894b0914736f11cc0e3bc517b71e37b2cae322,
+specs/006-view-local-images/evidence/qa-raster-pixels/visual-webp.png,Feature evidence,006-view-local-images,Binary,348,ef145e8e33159f57e67e5336159ca69d7b1a9c0c790267926c160952e857ca86,
+specs/006-view-local-images/evidence/qa-raster-pixels/webp-reference.png,Feature evidence,006-view-local-images,Binary,348,ef145e8e33159f57e67e5336159ca69d7b1a9c0c790267926c160952e857ca86,
+specs/006-view-local-images/evidence/qa-svg-fixtures/control.svg,Feature evidence,006-view-local-images,Text,110,b8743a7b1bbdda3ecb093b6d70088980bbb35cac9275c61a32a32564af83008f,
+specs/006-view-local-images/evidence/qa-svg-fixtures/gradient-quoted.svg,Feature evidence,006-view-local-images,Text,193,6ea80592dfa3d841317bdff2998739f2dc5ddef6e3d3127b7683b627364cd566,
+specs/006-view-local-images/evidence/qa-svg-fixtures/gradient.svg,Feature evidence,006-view-local-images,Text,238,8d916b365b62e72da5e44e308af489d7ef13a67bf8d64aa19a73810e2cd0e418,
+specs/006-view-local-images/evidence/qa-svg-fixtures/project-image-states.png,Feature evidence,006-view-local-images,Binary,9463,a8ef48f7282036b24408e12d7cced540db8927b19cab3f9778a31cf1cc6718ee,
+specs/006-view-local-images/evidence/qa-svg-fixtures/project-window.png,Feature evidence,006-view-local-images,Binary,10303,493bf00e14cf7ae2cb3181c9a20718e43ba39a44d8590af5c62c011e8c36b793,
+specs/006-view-local-images/evidence/qa-svg-fixtures/symbols.png,Feature evidence,006-view-local-images,Binary,4420,f3e9afaf34fb64500da63b77863aebbfa3f5103ac61b054d1240a4bf6f6f67f6,
+specs/006-view-local-images/evidence/qa-svg-fixtures/symbols.svg,Feature evidence,006-view-local-images,Text,219,085782b690355de05a9c78223665bd978212e8c92193775c1ebf668bb7224060,
+specs/006-view-local-images/evidence/qa-svg-fixtures/text-only.svg,Feature evidence,006-view-local-images,Text,204,2aa04c3bcbf2c662a0f90eda0978ccbe7651581b3a55d55de00a8bb9eff377f6,
+specs/006-view-local-images/evidence/qa-svg-fixtures/theme-roboto.png,Feature evidence,006-view-local-images,Binary,76301,b8028985032cad0f9b7ee8489a955d9d198112087dc9a09ec95e1743665db810,
+specs/006-view-local-images/evidence/qa-svg-fixtures/theme-roboto.svg,Feature evidence,006-view-local-images,Text,6657,e4b1d0b046542fdcb35bbad1f2772650ad13b4c8c75b8c7a7c92e438250e65ec,
+specs/006-view-local-images/evidence/qa-svg-fixtures/theme-states.png,Feature evidence,006-view-local-images,Binary,12547,c46586b9c073e6ef90abbc9b0a1eefba0c44d7c5a3213215a662e630f6a9fd53,
+specs/006-view-local-images/evidence/qa-svg-fixtures/url-label.svg,Feature evidence,006-view-local-images,Text,115,bbb575b4328ed5466d9a16289ebb0cfe217b66c4032f55df6f30c5bccdf44d12,
+specs/006-view-local-images/evidence/svg-fix-2026-09-29/gradient-quoted-fixed.png,Feature evidence,006-view-local-images,Binary,117,722e28fecddfb773aa1721f4c6db7d02209f07c3074ed0aec2b29471e5d2b3fe,
+specs/006-view-local-images/evidence/svg-fix-2026-09-29/symbols-wide-fixed.png,Feature evidence,006-view-local-images,Binary,5145,139af423308a50f746e1a5e8e9681849cbbe6b94a6c20c9f93535c90e936a842,
+specs/006-view-local-images/evidence/svg-fix-2026-09-29/symbols-wide.svg,Feature evidence,006-view-local-images,Text,219,4320d1c767a7432a573f5e0f561b4d00aa6c606522a2fd9468cabed306ccd55b,
+specs/006-view-local-images/evidence/svg-fix-2026-09-29/theme-states-fixed.png,Feature evidence,006-view-local-images,Binary,80389,1062ba975c6da8d62b1c2e4bae4ff69848e806a1fe006fa6bfff17dbf53cad5c,
+specs/006-view-local-images/evidence/svg-fix-2026-09-29/url-label-fixed.png,Feature evidence,006-view-local-images,Binary,1004,e1774b9a79f6daa760d0f3c89da12f88e8235a9fbef7fe11ec21cb7c9eadb4b8,
+specs/006-view-local-images/frontend-maintenance-2026-10-05.md,Feature specification and workflow,006-view-local-images,Text,2888,0c04f90a7a82e797511bd6afa3c66693b2c34c9bc4f7f87311d2f8e7b82c659d,Approved shared-shell frontend reconciliation — 2026-10-05
+specs/006-view-local-images/plan.md,Feature specification and workflow,006-view-local-images,Text,6847,b51332d53c2f620c74e47c28aa94a765d242c93e7f31fe5575391d2f4e726c44,Implementation Plan: View Local Images
+specs/006-view-local-images/qa-bugs-2026-09-29.md,Feature specification and workflow,006-view-local-images,Text,5088,ef38dbff446cfe479f75ac755d6a1ee1b08dab21db72675fe4aa55922336ca0a,F006 image QA bugs — 2026-09-29
+specs/006-view-local-images/quickstart.md,Feature specification and workflow,006-view-local-images,Text,1452,f405c818dc9a4ead4fbb43820867392493de0d625f85545dbdbbf1ed6e245b98,F006 verification guide
+specs/006-view-local-images/research.md,Feature specification and workflow,006-view-local-images,Text,2249,3168c1b3ac4c7e39d6c6d5e024380a889dc02b0b4de5032cf049d0b897be08e6,F006 research decisions
+specs/006-view-local-images/security-review.md,Feature specification and workflow,006-view-local-images,Text,3018,b8b210cd5d99aaebccb6e324e76627bba864102e4c93cbfa93b36bbbd4b5235b,F006 image security review — 2026-09-29
+specs/006-view-local-images/spec.md,Feature specification and workflow,006-view-local-images,Text,10719,b8ee8619282446852ce955e04e1d027cd298c7982bfa658fc227c4fb25873fea,Feature Specification: View Local Images
+specs/006-view-local-images/tasks.md,Feature specification and workflow,006-view-local-images,Text,13624,70325b5cc0238f1db7c068d55c3cebad5f92d1387cd53a3a85507168d24b594f,Tasks: View Local Images (F006)
+specs/006-view-local-images/test-matrix.md,Feature specification and workflow,006-view-local-images,Text,9247,656419f93ef1e7b4eb0e4317e057fceb5f80a4e91769b23ba55772121de0eb9c,F006 acceptance matrix — updated 2026-09-29 after fresh SVG QA
+specs/006-view-local-images/toolchain-amendment-review-2026-09-29.md,Feature specification and workflow,006-view-local-images,Text,2404,bbd6ebbd72056b6a10a4c90ad076043db48576161915b77ac031748478a6933a,F006 toolchain amendment for review — 2026-09-29
+specs/006-view-local-images/verification.md,Feature evidence,006-view-local-images,Text,25169,3d524e2c99ea6668a8548027eb602b515648cc9a8ac678302f6d19e257c38ec8,"F006 verification — 2026-09-29, updated after fresh SVG QA"
+specs/007-dark-theme/architecture-amendment-review.md,Feature specification and workflow,007-dark-theme,Text,3508,22acfd0d5b7ffb742d860b926137f48d8135023ad6474124537b45fe900030c6,F002A architecture amendment A1 — approval review set
+specs/007-dark-theme/checklists/requirements.md,Feature specification and workflow,007-dark-theme,Text,868,493bf45b9192dba7a3960d58fc3864b3b6555484e697edd2fbc820deea2857de,Specification Quality Checklist: Dark Theme
+specs/007-dark-theme/contracts/acceptance-harness.md,Feature specification and workflow,007-dark-theme,Text,5872,25c7c1e17f7008e4047976602bbbf926d577b203f49d4d15978b72650c42f077,F002A acceptance harness contract — amendment A1
+specs/007-dark-theme/contracts/appearance.md,Feature specification and workflow,007-dark-theme,Text,1757,d347a70234c457b07f3b0d75a1d22c9aa60b8b5385d0cd77a8840150675653bf,Appearance interface contract
+specs/007-dark-theme/contracts/capture-evidence.md,Feature specification and workflow,007-dark-theme,Text,8617,fcca19ab29df738563f4ff3e3d75e101bd288e40f36a93aeff180e47bedb8081,F002A capture and request evidence contract — amendment A1
+specs/007-dark-theme/data-model.md,Feature specification and workflow,007-dark-theme,Text,974,6fab754ad76e23983752ccfedbcfd48858af7f8fdab2433055aa6ad90537b9e5,Appearance model
+specs/007-dark-theme/design.md,Feature specification and workflow,007-dark-theme,Text,4982,cba99ae6674f33a109de890fe75830056ec0358b46df7b6ed58611f07eacf592,Dark Theme — visual and interaction proposal
+specs/007-dark-theme/design/theme-states.svg,Feature specification and workflow,007-dark-theme,Text,6699,fc9bba6fc65e61d2538818738f07f595cd7fa0159463561900d4cd64b0686303,
+specs/007-dark-theme/evidence.md,Feature evidence,007-dark-theme,Text,11438,72bc672aa8a78a033a33c66034f952f031bf706c9e2c60f4715b5256deccd8e7,F002A implementation evidence — 2026-09-28
+specs/007-dark-theme/instrumentation-decision.md,Feature specification and workflow,007-dark-theme,Text,4100,68dfc4fb76ad3dc52cd49d7d986d5e9368604d81a55fb9cd7925c4b19b3db3f7,F002A architecture amendment A1 — 2026-09-28
+specs/007-dark-theme/instrumentation-implementation.md,Feature specification and workflow,007-dark-theme,Text,6151,d9bd61052412a53dea59316bed888bcb6f840c7404866267b7a81276ba7c32cd,F002A A1 implementation — 2026-09-28
+specs/007-dark-theme/plan.md,Feature specification and workflow,007-dark-theme,Text,13564,fb5bb0264ee83421e3d19d3200ab2f0d1ccd54da58c3c9ed81711cc51c737c4b,Implementation Plan: Dark Theme
+specs/007-dark-theme/proposal-review.md,Feature specification and workflow,007-dark-theme,Text,1782,066f25ee05068a4d45b3c9eefb52b9ce7ceb3339a2ee068c15ff6f4909613f1a,Proposal checks — 2026-09-28
+specs/007-dark-theme/qa-followup.md,Feature specification and workflow,007-dark-theme,Text,5952,35d36dbedb769f17668c73f3db9df5d67d4a617b0c7103894c167bedd108a141,Dark-theme acceptance follow-up — 2026-09-28
+specs/007-dark-theme/quickstart.md,Feature specification and workflow,007-dark-theme,Text,2013,2323fa9bc0dba38cdce60aa25fae0733f0fce613659908dbabf8be7ee5b0039c,Dark theme implementation and acceptance
+specs/007-dark-theme/research.md,Feature specification and workflow,007-dark-theme,Text,2782,90f0e432bca236cc2d39326e09ea92fe767a124ba3ec01c4b501a631cec19658,Dark theme decisions — 2026-09-28
+specs/007-dark-theme/security-review.md,Feature specification and workflow,007-dark-theme,Text,3300,c8dc6ef00a3cdbdf853e9095d82ca32ec115ed2c8c1337a3d652f36fbb4f47c7,F002A A1 security review — 2026-09-29
+specs/007-dark-theme/spec.md,Feature specification and workflow,007-dark-theme,Text,8672,79ab557c930b001f40bc9f4bd128a9040e8b07abb676550c55972dafc49aa5b6,Feature Specification: Dark Theme
+specs/007-dark-theme/tasks.md,Feature specification and workflow,007-dark-theme,Text,10240,59038ff8b3a9766227ed099f7578577066bf9a93285220686f88b04bf63a694e,Tasks: Dark Theme
+specs/007-dark-theme/test-matrix.md,Feature specification and workflow,007-dark-theme,Text,8286,437a6a6f594ec007b7d1e0e3bb8cc58534b4b3ffd5c97c540da1a5cc68eb8c0d,F002A requirement-to-verification matrix
+specs/007-dark-theme/verification-assets/architecture-amendment-a1.diff,Feature evidence,007-dark-theme,Text,36438,f73144d4d2491c53d1f85ac810d26df640a4aad2807cdafc0e4530171a0a04df,
+specs/007-dark-theme/verification-assets/close-dialog-dark.png,Feature evidence,007-dark-theme,Binary,431473,35cb6ab4f177fded771edbdbf3f8da2001c3d10d52577e12e8bf73bf9825a29f,
+specs/007-dark-theme/verification-assets/close-dialog-light.png,Feature evidence,007-dark-theme,Binary,458874,2d91e19dd737c6acbefdd7d206c40d1591e764b5cd12f8b78370ad2f591de79c,
+specs/007-dark-theme/verification-assets/cold-01-document.png,Feature evidence,007-dark-theme,Binary,325123,a5285e83233c38dbd750e879cd3779460cbdf728a55f10623a2b91164860212c,
+specs/007-dark-theme/verification-assets/cold-01-frames.jsonl,Feature evidence,007-dark-theme,Text,158115,903208c6f7086fc44c1cf39c7e6ea7b8946050d285585b2c34596671475854e6,
+specs/007-dark-theme/verification-assets/cold-02-frames.jsonl,Feature evidence,007-dark-theme,Text,131722,d96b43f174acf1c155dc60f2d3b83a5b35e5da280ff52379b58a18ee8ad2d04e,
+specs/007-dark-theme/verification-assets/cold-03-frames.jsonl,Feature evidence,007-dark-theme,Text,154102,02701bfbfd482eb3ba72f091903d8b16750cc716274f99024a12275fbbef523f,
+specs/007-dark-theme/verification-assets/cold-04-frames.jsonl,Feature evidence,007-dark-theme,Text,123827,9519984f630fe4738d1af8b2b8ad875507eb33651b98b598f68ed14d7181c827,
+specs/007-dark-theme/verification-assets/cold-last-document.png,Feature evidence,007-dark-theme,Binary,325123,a5285e83233c38dbd750e879cd3779460cbdf728a55f10623a2b91164860212c,
+specs/007-dark-theme/verification-assets/cold-restart-results.json,Feature evidence,007-dark-theme,Text,1905,dcc0af6a16225ca4f9effe13ab3f451426b3c78210bf67d349e30227e208f276,
+specs/007-dark-theme/verification-assets/conflict-dark.png,Feature evidence,007-dark-theme,Binary,450525,c5d86a0fe228dc7f4adc51874e79e7cff5a82aee6ff5a5a68e2c87bd14c0df6b,
+specs/007-dark-theme/verification-assets/conflict-light.png,Feature evidence,007-dark-theme,Binary,450227,4242ed4b91a3b320d4c348a115adcefc86f874a86add6a5a77d4d714d9880520,
+specs/007-dark-theme/verification-assets/dialog-conflict-results.json,Feature evidence,007-dark-theme,Text,928,65754cce1afcc6dccaa465315a5182340f744dba0134ae6f9f15dea349a5246e,
+specs/007-dark-theme/verification-assets/editor-start-dark.png,Feature evidence,007-dark-theme,Binary,461764,d17f1a7c4bd7c92ac7dfb374ce793fac9e1635cc5787be83e1907612b3ed8854,
+specs/007-dark-theme/verification-assets/explicit-dialog-results.json,Feature evidence,007-dark-theme,Text,2558,dd8db980d250680f228a76e2c94b518463a962bc8421625af52c0db13b9f3a44,
+specs/007-dark-theme/verification-assets/final-editor-after.png,Feature evidence,007-dark-theme,Binary,482959,2ada694715324d73dc14f091e79f8ffbf98bfb7fbbc7e6721643e76ec7f715e6,
+specs/007-dark-theme/verification-assets/final-editor-before.png,Feature evidence,007-dark-theme,Binary,483076,7a657c6b97e869d7b5e72b4869e09d03b3bb01a60123db3c5dcf8556cba83dc6,
+specs/007-dark-theme/verification-assets/final-editor-system-results.json,Feature evidence,007-dark-theme,Text,2902,e61e053bb17d389eae5f2be0be44dbc3e916d3db9d86bcc028a7ef6e17da83a2,
+specs/007-dark-theme/verification-assets/final-package-build.log,Feature evidence,007-dark-theme,Text,2236,15c2ed48192b6b9c5e19df2bb5d3ce701fd956935cad83b831d220b022c136cb,
+specs/007-dark-theme/verification-assets/final-ui-regression.log,Feature evidence,007-dark-theme,Text,282,374a893bf374efff1c0d0c0d97511a99e618e82f48172e71ae9a3e775d1d238b,
+specs/007-dark-theme/verification-assets/final-worker.log,Feature evidence,007-dark-theme,Text,140,85b204698f707812b97c904cc1f2f2e9401f341d92f9d4399a211468a9295087,
+specs/007-dark-theme/verification-assets/fixture-baseline.json,Feature evidence,007-dark-theme,Text,819,4a394c186765424e83ee0358f278ec30d63b5818f7ba8aa60cfa8a588d683481,
+specs/007-dark-theme/verification-assets/image-pixels.json,Feature evidence,007-dark-theme,Text,5015,e7c62ec880d896a861b33a03ffb04e5a900400a890ba72ac7dbbe11a70b1de74,
+specs/007-dark-theme/verification-assets/images-dark.png,Feature evidence,007-dark-theme,Binary,533793,1442040445411c805af1b3b5a4dc69fbee4318a636c8773374211f12f89dc767,
+specs/007-dark-theme/verification-assets/images-light.png,Feature evidence,007-dark-theme,Binary,534667,6a32609a998a7b26dbd98594a24069f79e6e61e870ed3d2c3d2227b43e366e31,
+specs/007-dark-theme/verification-assets/instrumentation-a1/build-guards.json,Feature evidence,007-dark-theme,Text,292,b5ede855cf34bc3eba241a650d63d1c5fb8a386ecd3a54198c4214002e4ddc45,
+specs/007-dark-theme/verification-assets/instrumentation-a1/evidence-tests.txt,Feature evidence,007-dark-theme,Text,113,61ed70cbf74aeb8bebb69325d71e04ff5f731b534a2985b95c780c5575e50543,
+specs/007-dark-theme/verification-assets/instrumentation-a1/flash-build.txt,Feature evidence,007-dark-theme,Text,3057,b25b5b369b0cc7b7ac5deb96d7e32a5a417b2c43cde5f76735c0c1cc01b7c9ae,
+specs/007-dark-theme/verification-assets/instrumentation-a1/harness-tests.txt,Feature evidence,007-dark-theme,Text,1643,7d2fe0b34bf01f365e525119d309c0b830415d25d324664a6f69e61c2685ef23,
+specs/007-dark-theme/verification-assets/instrumentation-a1/native-regression.txt,Feature evidence,007-dark-theme,Text,32820,14e50b9d270c6dfba6e27feae8d392bef1a5368d2cb1b349852076f9a1fd9b9f,
+specs/007-dark-theme/verification-assets/instrumentation-a1/package-boundary.txt,Feature evidence,007-dark-theme,Text,162,3f4679ca6d964046164a424005f421e1cc49ad63862f28bd5cbf7b2d61777909,
+specs/007-dark-theme/verification-assets/instrumentation-a1/production-package.txt,Feature evidence,007-dark-theme,Text,2182,b9b29ff27568f9eb3d5ecf6d0762932d492172ec9978afcbbf19390159c8b662,
+specs/007-dark-theme/verification-assets/instrumentation-a1/qa-adapters.txt,Feature evidence,007-dark-theme,Text,304,3bcf4dcfa411887831ddc5f0dee52a381bbb514371a7988611a412d54d484214,
+specs/007-dark-theme/verification-assets/instrumentation-a1/qa-package.txt,Feature evidence,007-dark-theme,Text,2321,09ac5913bc43580f8178937e52fbf541a6f2d85fcc61d6fd27e0c37f538dadb0,
+specs/007-dark-theme/verification-assets/instrumentation-a1/qa-protocol.jsonl,Feature evidence,007-dark-theme,Text,1635,5408c15e976fc458a4977a0615ba5e8b612555f726caa080516e29618f61b516,
+specs/007-dark-theme/verification-assets/instrumentation-a1/qa-smoke.json,Feature evidence,007-dark-theme,Text,206,657c5fd62d843cc8680eecac506dbb44321601d4f748ba73aa75f092486e7d97,
+specs/007-dark-theme/verification-assets/instrumentation-a1/receipt.json,Feature evidence,007-dark-theme,Text,8302,76df7847a4a3bef2e9160a97949f94b7a0b3c68587df7b4c24302b3ffca70cfe,
+specs/007-dark-theme/verification-assets/instrumentation-a1/recorder-clock.json,Feature evidence,007-dark-theme,Text,245,b95fb9a6961dcd8b67de516912d161aae0ea0c1f500d0ac87cd2a2bce21a9cc4,
+specs/007-dark-theme/verification-assets/instrumentation-a1/ui-regression.txt,Feature evidence,007-dark-theme,Text,288,2db0c2fa6d5ca2fd44e0022033e77173771e420690a39146007d499e7182638e,
+specs/007-dark-theme/verification-assets/instrumentation-a1/worker.txt,Feature evidence,007-dark-theme,Text,140,85b204698f707812b97c904cc1f2f2e9401f341d92f9d4399a211468a9295087,
+specs/007-dark-theme/verification-assets/instrumentation-preparation.json,Feature evidence,007-dark-theme,Text,2376,a26f7ff20352a2633c7a8093415a9f6cbc6cecaa271cab44b2d3a9096322c3c2,
+specs/007-dark-theme/verification-assets/layout-1440-es-light.png,Feature evidence,007-dark-theme,Binary,235362,40d6d38d8577e65b69dc10e7027d5d261b4639e678d72459471dd9fc1b3fe80e,
+specs/007-dark-theme/verification-assets/layout-640-en-dark.png,Feature evidence,007-dark-theme,Binary,159809,b9025f55cbdc9c60cdbab453aa08051ba952ad65a405bb506ce0aa0041f89118,
+specs/007-dark-theme/verification-assets/layout-results.json,Feature evidence,007-dark-theme,Text,12237,393134c5adfa13a564e8d17446d2551a44bdbef6299fc317af861e72dca9e258,
+specs/007-dark-theme/verification-assets/manifest.json,Feature evidence,007-dark-theme,Text,7341,c24dcafd2937fc69297c4dac8c392ec1bf427d62ec135a5339455d9ec9327a07,
+specs/007-dark-theme/verification-assets/native-editor-state.json,Feature evidence,007-dark-theme,Text,4226,6f84ae16d7eb19f0fc64751afe63be56bbd795acbcf56a6140854bb38e200331,
+specs/007-dark-theme/verification-assets/offline-dark.png,Feature evidence,007-dark-theme,Binary,324902,3f016220b37e9263fa7d39bbb459fcbd716ae5fc966d6afb8ba450305beba113,
+specs/007-dark-theme/verification-assets/offline-results.json,Feature evidence,007-dark-theme,Text,2486,79082d4fa55a2fb661af90761212b131cce65674778d2842ecb35af25b406fe1,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-en-dark.json,Feature evidence,007-dark-theme,Text,5016,b0cee1b3246caac9222643b8dfd932d80b472483a4c7b5142957dfaf2c6dedc8,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,423999,5b4dbd9c5e08558a9b753dbe92120aecbee145db9068c564987760ef1722b5d0,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-en-light.json,Feature evidence,007-dark-theme,Text,5016,b0cee1b3246caac9222643b8dfd932d80b472483a4c7b5142957dfaf2c6dedc8,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-en-light.png,Feature evidence,007-dark-theme,Binary,452390,e8037ca711415bfd25576a3455be19d8ecc105691c82af7ac577dcd3e350e52c,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-es-dark.json,Feature evidence,007-dark-theme,Text,5049,0165e5ab2277ab0ab274baeb283bd6076a96588d6fa0a569b4a096b56ce3259d,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,445866,e5046976c4f09261dd35b28b2424c98d8d78a193b41695a1b554174df92e3ce8,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-es-light.json,Feature evidence,007-dark-theme,Text,5049,0165e5ab2277ab0ab274baeb283bd6076a96588d6fa0a569b4a096b56ce3259d,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-1440-es-light.png,Feature evidence,007-dark-theme,Binary,475745,69b28bbb4b58a61111b1fe32d477513b49abf9afeb29d16e2adc0413ed869b2b,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-en-dark.json,Feature evidence,007-dark-theme,Text,5011,2e04fdae9c30134f8d01ba36e27270ef366c13d9c08e6d228a63468f6defb339,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-en-dark.png,Feature evidence,007-dark-theme,Binary,288851,63001e39933cb70ae426b444c97485ee060923716abade0229b03b86329a2efb,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-en-light.json,Feature evidence,007-dark-theme,Text,5011,2e04fdae9c30134f8d01ba36e27270ef366c13d9c08e6d228a63468f6defb339,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-en-light.png,Feature evidence,007-dark-theme,Binary,314936,5151dcab2295fcc594c2dbaae3c52b71ddddc02f340fe57234a22f6384097c39,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-es-dark.json,Feature evidence,007-dark-theme,Text,5044,a1df81f10ac8a629ce549af4d19949ecf7365d420dcf7e1442f4e72086382602,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-es-dark.png,Feature evidence,007-dark-theme,Binary,306589,c2843373e0c590b48eeddbbd8644e8cf4efd161fffd270c904ec1f6a5cfbf3c5,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-es-light.json,Feature evidence,007-dark-theme,Text,5044,a1df81f10ac8a629ce549af4d19949ecf7365d420dcf7e1442f4e72086382602,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-640-es-light.png,Feature evidence,007-dark-theme,Binary,333510,6b52a3aa6971bce1b6b519329e59de00ea1ae332c8c5d0747741a90d58d17ceb,
+specs/007-dark-theme/verification-assets/qa-followup/close-dialog-matrix.json,Feature evidence,007-dark-theme,Text,1954,127525129aa9e41c14fc85bf02a4fa5e49e1e488573647b63f729c986fb1243d,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-en-dark.json,Feature evidence,007-dark-theme,Text,42997,5d99620e145fde26e9449080f71d113e7bb84e8195cd3ccd2dd88a36331a56cf,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,417194,eeda27368547487283d2d726722acd4d67295e0fb9c47ac7a6933cb12f82ebe8,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-en-light.json,Feature evidence,007-dark-theme,Text,42998,ec451c48f77439865ff0e31ce68844b75661c807d2e5af7c078863dd8f468b8f,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-en-light.png,Feature evidence,007-dark-theme,Binary,415811,96525f7c961fc401261bd24f1180fdfb7035a3f901e4bd899371a4f86c33789e,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-es-dark.json,Feature evidence,007-dark-theme,Text,43251,4bf5306c4e38433f75c829bbbb6b362561d5cd7eb3cef06e21ff5fc54e07bd7e,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,432561,6108cebea2746e50ed487d38a55c50642a71b7fb6a987c82cb62ca99dde9a9b5,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-es-light.json,Feature evidence,007-dark-theme,Text,43250,14f1088b949b4e27abb9ad0c2655ce99409549ee50e10c66a406ae6400b72f77,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-1440-es-light.png,Feature evidence,007-dark-theme,Binary,431402,770f423ad0708f4a2b9b675e0e362c9e9c426c0ae65f51a383bea630201a9340,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-en-dark.json,Feature evidence,007-dark-theme,Text,42173,76b8d01ecb6a2d77951574c35f288e785b833be7ebc2d4c08a9d48ebb7390fe2,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-en-dark.png,Feature evidence,007-dark-theme,Binary,280528,994bc3acec606756b36c7599d264d60aa2767647aecad93542590170b40de510,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-en-light.json,Feature evidence,007-dark-theme,Text,42174,811f03e5886a1a3793c3ef7b9e14234c66ba50d385f5e13fdcc2d0bc127fa65b,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-en-light.png,Feature evidence,007-dark-theme,Binary,280842,d29ca4c3e2e8a6fffb54cccdb785ee631a26373d0e8345154879638a8ef5e203,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-dark.json,Feature evidence,007-dark-theme,Text,42397,5216286d3b5cabbe3bb8d1bef3fada2f24e0a220accba0e96d239d4cbfea002d,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-dark.png,Feature evidence,007-dark-theme,Binary,298529,4c06a1164f004d4bbf1c97dce51ace9880b158a8af485fc6ee14727163d4ff5a,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-dark.png.palette.json,Feature evidence,007-dark-theme,Text,4649,7a0ec83a88539979352e42cb85485e4abac294f27014af4e7e0da082fcf5e6b0,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-light.json,Feature evidence,007-dark-theme,Text,42396,c90b1a9d13a96ebca4c7eff5b701b739036adf58a5eba67b6f0417cc759fa869,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-light.png,Feature evidence,007-dark-theme,Binary,298144,7362643dd4ad8a700f0ee2cacc565148ba24060008e00eaba93396313008e2e4,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-640-es-light.png.palette.json,Feature evidence,007-dark-theme,Text,4651,75cb364b1b4e359a3ebd3aa0ad716ab3bf20472e75b6c6215687d8ac113ce5e1,
+specs/007-dark-theme/verification-assets/qa-followup/conflict-matrix.json,Feature evidence,007-dark-theme,Text,1670,9cea2665120e6d3d57befe55b14fcf47c2f93565a98e86735959c8634ed6922c,
+specs/007-dark-theme/verification-assets/qa-followup/context-menu-dark.json,Feature evidence,007-dark-theme,Text,29643,ad53b99441833bb59266c8c5359ac6ad31fb86d1a6e3169c5c0b7eba6362cef3,
+specs/007-dark-theme/verification-assets/qa-followup/context-menu-dark.png,Feature evidence,007-dark-theme,Binary,329131,67312add4c3e80acde474b927c8d1d2137ec244f786d94c817164a3acd54499b,
+specs/007-dark-theme/verification-assets/qa-followup/contrast-results.json,Feature evidence,007-dark-theme,Text,10198,29484d766dfc2c9cba659f0a7484ac292255eee7ef2060b27311618d572b6d15,
+specs/007-dark-theme/verification-assets/qa-followup/contrast.py,Feature evidence,007-dark-theme,Text,1713,6e67a67f0a7cbbd54d11a283c5d5c90d6941fb97abd346df83816e38e32e370e,
+specs/007-dark-theme/verification-assets/qa-followup/dialog-qa.py,Feature evidence,007-dark-theme,Text,1725,92e27aa13f7a21cc27b382566c23806c2e010951806e74393c453c78d00a3e7a,
+specs/007-dark-theme/verification-assets/qa-followup/dialog-timeout.json,Feature evidence,007-dark-theme,Text,3002,edd88dad2bb9e635842e92914cef03bb30c3b5ba00ce01d29f9e11b67e6d946d,
+specs/007-dark-theme/verification-assets/qa-followup/edit-baseline.json,Feature evidence,007-dark-theme,Text,2269,2304d5574ddbbdbdbade9bed5ed8c8a7c6c7df28b9e9744a7e92de9dcfbfb390,
+specs/007-dark-theme/verification-assets/qa-followup/edit-qa.py,Feature evidence,007-dark-theme,Text,2706,1aae67928cb669318229183008060ba13edc7296315b49167f43ef1e3657a64c,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-en-dark.json,Feature evidence,007-dark-theme,Text,40596,3d443e33684ca7e1061acb8a33076d3298a973b70b8e159007489ddd7dc80009,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,402507,13af140969fa600e3364b8d90e6872c31beb550b79d8f8f83eecae526802dd17,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-en-light.json,Feature evidence,007-dark-theme,Text,40597,e5816aeffb7edf6bbea98acea1be006deb342c06a0a3585f831a1174e207eeba,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-en-light.png,Feature evidence,007-dark-theme,Binary,400802,929c7d851a363e7888e13343535d66b63ab32c5fa7eba6710006741ce919577b,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-es-dark.json,Feature evidence,007-dark-theme,Text,40755,0235351df18658a4923d17052f3d4a6d6f08b08dcd3d14ef2804cc7cb5599299,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,408463,382fbae1a5f307147bb0e34a638419719afcf34219333c876cd9b955864106c8,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-es-light.json,Feature evidence,007-dark-theme,Text,40754,74b19014efec2c0c75b37359c71434213c73c0af99f817f0c8a2209e87652b9a,
+specs/007-dark-theme/verification-assets/qa-followup/editor-1440-es-light.png,Feature evidence,007-dark-theme,Binary,407180,44afb4aab61bfba4a8c2e3a24a3b69f1731f0da24655cf295a52c5e0a9224568,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-en-dark.json,Feature evidence,007-dark-theme,Text,39775,9fc3e72880f9ac0794a5278a0343a83b12292b670b8ad8d5e302f244e50b54ed,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-en-dark.png,Feature evidence,007-dark-theme,Binary,261560,e0b0e183d2fdf36362d941feec2ce53c664e9191b5326ea9969f35bf5dcc2190,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-en-light.json,Feature evidence,007-dark-theme,Text,39776,e32c7e382a4a04e218502fdcbe1eeec7dd0a8d5289690814360d5ee425626cc5,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-en-light.png,Feature evidence,007-dark-theme,Binary,262405,6760dfb615ed9e9a2ad4bae2bd82176c1aacb6a626386d8bdbd7288ef36a3ec7,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-dark.json,Feature evidence,007-dark-theme,Text,39931,ccd84cf9fa40569212f2c3d53ee53a2db6e0ce18d78428497662e4798922f945,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-dark.png,Feature evidence,007-dark-theme,Binary,273495,7c24473a9935ea35283635bc6d0ae7b0aacdf8e92f41f90fd03bc80c2dae4383,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-dark.png.palette.json,Feature evidence,007-dark-theme,Text,4637,395bce8e58cd0704e1a331b714cecef2bf6fcd78ec2aa04a98d638fa1f50b5f8,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-light.json,Feature evidence,007-dark-theme,Text,39930,18f98af957923982e343dabcf7a63735063ad3b6be5a9144b9d6d9a852627f8b,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-light.png,Feature evidence,007-dark-theme,Binary,273970,2703cf2d2e7c1df2495c7c46197cdd1d698fa9c94d6f84281c1c3f6fc9ab215b,
+specs/007-dark-theme/verification-assets/qa-followup/editor-640-es-light.png.palette.json,Feature evidence,007-dark-theme,Text,4649,09650c672753a2820632cbab10b4b59faa523c0bbff16eaabf0c612e8632c762,
+specs/007-dark-theme/verification-assets/qa-followup/editor-matrix.json,Feature evidence,007-dark-theme,Text,1654,efe50edd00c166984d77c2931b91adac35fb5db075fba0cf4211bc86449ec32b,
+specs/007-dark-theme/verification-assets/qa-followup/editor-preservation.json,Feature evidence,007-dark-theme,Text,96,49284c056b07f2dc1c8cfed5c5138e507dd0e0c165b54d98e555686b0e5b2958,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-en-dark.json,Feature evidence,007-dark-theme,Text,9951,65a8ded4725aaf9ffb591373e667d18c83ef622fa40a60511fc1256afc6fa51e,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,202888,09bedda83dc861ca7cf7fb7189d2f6b090ccaf13f2380f68bc2172ba2a243a18,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-en-light.json,Feature evidence,007-dark-theme,Text,9952,46cd4d04277343020bbcc55b0b49e0cb682e4f14147ec97d72e2315d96808c5e,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-en-light.png,Feature evidence,007-dark-theme,Binary,202813,2e8e5b4042ff2c74abbcd8982c08bc4eafc941e2b818a551739d0e748718efcf,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-es-dark.json,Feature evidence,007-dark-theme,Text,10018,2f82f78753758235db12b0d9196802395c8710fe52f20a53b3b0c35afb852cf1,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,213164,b36856c3fca8013cd2de5c5e9d4cf3dbf57311b3b6e1374ca8fa593c57db4a24,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-es-light.json,Feature evidence,007-dark-theme,Text,10017,ddaa480e34f49ca56ed13f49459bd1fca99fc109114d577c10117ea7edd31438,
+specs/007-dark-theme/verification-assets/qa-followup/empty-1440-es-light.png,Feature evidence,007-dark-theme,Binary,213372,9055d9ef39e7199f6788ab9ceb1f43500978b8301f31bea68db62c78f6063606,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-en-dark.json,Feature evidence,007-dark-theme,Text,9098,557febdb3b32740be24b09431a32c320ddd4ae1ae5651ecdf623892f622766eb,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-en-dark.png,Feature evidence,007-dark-theme,Binary,141877,3b486eecbab4d872f7431ce017697f9c703c8c80e92fe1aa5f16e0a4e53a5c54,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-en-light.json,Feature evidence,007-dark-theme,Text,9099,6d1236d03087d19af5274fa9f2088de1457ab8b5b38f5b1bd9a8ba797c872e69,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-en-light.png,Feature evidence,007-dark-theme,Binary,142216,4cc63b43e31a3e624adec294662dee9a3411f2d19efe126e9fab3f7a90ba3061,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-dark.json,Feature evidence,007-dark-theme,Text,9160,c455b6b09f3f3b49b7615bc67de812ceca946b04d5040831d0cf1cb8a6a60a40,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-dark.png,Feature evidence,007-dark-theme,Binary,148559,2c544122a09f28654fe875b42dc1965ded8aa3fad6f56518fd640061dffeeeb1,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-dark.png.palette.json,Feature evidence,007-dark-theme,Text,4562,0a5430108bd1c17abc7fb438c125d3a42465929045d10289acf120b2f1334920,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-light.json,Feature evidence,007-dark-theme,Text,9159,0f438c22d01f5d697dc2b1784163e7c89ab0b07b98f470bf9b478f5b84407c17,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-light.png,Feature evidence,007-dark-theme,Binary,147676,f6447921ea5630c603b6417cb4714c0e4a0d5150655907dbac39582f0ccbc50a,
+specs/007-dark-theme/verification-assets/qa-followup/empty-640-es-light.png.palette.json,Feature evidence,007-dark-theme,Text,4639,422b0c56c99ad47c126ddf3420ebcdbd1cf6da105d3fff147323480a046e8127,
+specs/007-dark-theme/verification-assets/qa-followup/empty-matrix.json,Feature evidence,007-dark-theme,Text,1638,f9f0c99f06c61380b238ab2672b54b9c1c81ecb1490e676230aea16d9c0791f3,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-en-dark.json,Feature evidence,007-dark-theme,Text,14122,b11bc99855297508423855e799d0cc644c2bd1c31f310ad3ae99edf4aca1b97f,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,224685,96b89001a682261919b21f604050058c2607d20a3fb78b238c6ef61d955ea576,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-en-light.json,Feature evidence,007-dark-theme,Text,14123,52c03bb2a2f8f2b1ee1a70ed60a0941d35040a96576af09aa194fedaace38d48,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-en-light.png,Feature evidence,007-dark-theme,Binary,224840,7d737d87d398937e253833a27bcb3504396904f012b4ab7d9a79e260cc5017ae,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-es-dark.json,Feature evidence,007-dark-theme,Text,14241,dec6a5e77bcaf9712000ee2e58a2003f299f92ad92aaf76159fdfdfb0e6742ec,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,239075,0b068cf3e317ab926f6cc1cb205f1be398cb4c901ecaf645011b6da00b02ed2b,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-es-light.json,Feature evidence,007-dark-theme,Text,14240,85541dbfad58b4261a04dad7a7d4a72a2f68c8c11347544be21ac31a344bfadd,
+specs/007-dark-theme/verification-assets/qa-followup/error-1440-es-light.png,Feature evidence,007-dark-theme,Binary,239187,f60bc81cf689783867800aa532a490488c2145433efbb0a85e6c014621653473,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-en-dark.json,Feature evidence,007-dark-theme,Text,13269,0fe9d9a50ec967cf0a08237dee1c0e3a30e0ad888797cc41aa90ff94e99ea7a5,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-en-dark.png,Feature evidence,007-dark-theme,Binary,164200,c31464f3c6141d49c22462a5b43e84f7edce61b4f74d03f56d8f912b53c769c3,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-en-light.json,Feature evidence,007-dark-theme,Text,13270,05ac09fdfc9112ad9fa91f36ac8177e9abcaeb8e56c54b5151fb16543c6bf1c5,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-en-light.png,Feature evidence,007-dark-theme,Binary,164489,55cff251a5be5b96bfff7bcdc92056b58da258242fdadb4098cea18ef1b29963,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-dark.json,Feature evidence,007-dark-theme,Text,13383,14fb23b69c49d79ee2f4a7682e5fe6815f20350adc994dd4378ca8336fe79b9d,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-dark.png,Feature evidence,007-dark-theme,Binary,180173,062faeaaa590591adfa66788dda329f69f9b2f926651f4dd5dde3d80c4c196d0,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-dark.png.palette.json,Feature evidence,007-dark-theme,Text,4557,6e433e83542a1e665541769517777befd4a76de6bc5d26aaa4b6a1ebbc581a0f,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-light.json,Feature evidence,007-dark-theme,Text,13382,9d19ff3b0058fdd1ef2bf85be6fea3cb8d9448b74b4197e4722427772891dfa1,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-light.png,Feature evidence,007-dark-theme,Binary,180304,ea4143fb6991671dfbef7eedd3654b3a772f14d77e14659bb1c14fff7ab37f46,
+specs/007-dark-theme/verification-assets/qa-followup/error-640-es-light.png.palette.json,Feature evidence,007-dark-theme,Text,4625,987be6b8a024c20bfed71a95be1c9a0bc41113b38945b59714388a9c0489a56a,
+specs/007-dark-theme/verification-assets/qa-followup/error-matrix.json,Feature evidence,007-dark-theme,Text,1646,5b71e8f66c8493bc0691f0588ff20ea3a99568d7f1770a697806c963b480cf91,
+specs/007-dark-theme/verification-assets/qa-followup/manifest.json,Feature evidence,007-dark-theme,Text,23818,6101d1104903bfc437317f121b28a105f52a6c5970f2d2d4420cc9480507b0e9,
+specs/007-dark-theme/verification-assets/qa-followup/qa.py,Feature evidence,007-dark-theme,Text,3626,a417987b3f0133d6401e6428dc438aac1a56ff450cbe30f250ee462e7f8bf03c,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-en-dark.json,Feature evidence,007-dark-theme,Text,28527,4a52ed4739aa8fd3ae9ab7e92b51b23d1a83e391afdc3220f015b18d7642aaee,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,315949,9f78abecdbce78abe6bd38616b23c9f02154a7d7ba9466bddbb3132b72842879,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-en-light.json,Feature evidence,007-dark-theme,Text,28528,fa444e048e0f76047251f58f126986d10ed812f5d2750ec1832b58388404f08c,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-en-light.png,Feature evidence,007-dark-theme,Binary,316574,7c881ae8bb7b0f0be342fc6e8ae1a5e21468f4d0f95da169d7aa477e66462343,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-es-dark.json,Feature evidence,007-dark-theme,Text,28626,026944ea3428ddf177a7c589359d127c1570b693971d4dcc3dd6fd39058a2f20,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,326264,e8031db24f8fc64f83d6ba6b07385fc3434e203fb7cdc971a6bf04338a43a5c6,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-es-light.json,Feature evidence,007-dark-theme,Text,28625,1eda5107085c3d13d4333a656c18a80f05927e394dc033ba72d9e2f092727331,
+specs/007-dark-theme/verification-assets/qa-followup/reader-1440-es-light.png,Feature evidence,007-dark-theme,Binary,327173,52e133c9ef5af1f0893ecce8cf1b4fa6611ace2de018358ccc57b73c06a7e732,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-en-dark.json,Feature evidence,007-dark-theme,Text,27673,fa97448642e5db2ed778d0b110ce2bb3a1f3ea9b05b8f82163439c68649237a9,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-en-dark.png,Feature evidence,007-dark-theme,Binary,228967,c21289d6c6070bf2e72cef0923197a30d4b5f91a804da84ce262b7614d7fc5f0,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-en-light.json,Feature evidence,007-dark-theme,Text,27674,f2fb0aff0d7203c019dc85a1d50f2b05e0be38c3b163a375288730d87561886b,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-en-light.png,Feature evidence,007-dark-theme,Binary,229821,3b637484b4497fc7b5b895a10e1e3fa20cddad522ad71d255da2757fb7c178ad,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-dark.json,Feature evidence,007-dark-theme,Text,27767,b21f5f20dfc20b7911471ee0327a3ff2364895d6a36d0a099c4dbe318dead739,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-dark.png,Feature evidence,007-dark-theme,Binary,238880,767ff7daeae4e5de9af49531f23853b11385df9f4559a72ed093a3fbe9fb1584,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-dark.png.palette.json,Feature evidence,007-dark-theme,Text,4632,e1318b2936c8fd4cf008f45e2c82e0ed16dc5dc247ca774606df8934851221ba,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-light.json,Feature evidence,007-dark-theme,Text,27766,609f49e5ddf78471163fcb3e2cb96e5d1016e91436f53f0c72ba797081a70515,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-light.png,Feature evidence,007-dark-theme,Binary,239365,a9bb68028dd9558b5d179f95282d81208fec739d93584165d957a23fbbf48fa3,
+specs/007-dark-theme/verification-assets/qa-followup/reader-640-es-light.png.palette.json,Feature evidence,007-dark-theme,Text,4630,ef5def73b12b88edd45bff87fb2b45a8b3ac96e68e86298b68ff956a1daf8edf,
+specs/007-dark-theme/verification-assets/qa-followup/reader-initial.json,Feature evidence,007-dark-theme,Text,28527,4a52ed4739aa8fd3ae9ab7e92b51b23d1a83e391afdc3220f015b18d7642aaee,
+specs/007-dark-theme/verification-assets/qa-followup/reader-initial.png,Feature evidence,007-dark-theme,Binary,315949,9f78abecdbce78abe6bd38616b23c9f02154a7d7ba9466bddbb3132b72842879,
+specs/007-dark-theme/verification-assets/qa-followup/reader-matrix.json,Feature evidence,007-dark-theme,Text,1654,51b4bb4b1d6eca17b91d67e7f62e54a8486709cdb3d24f257f7dcae2730f6a49,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-en-dark.json,Feature evidence,007-dark-theme,Text,30303,a5f505343b4a6502c325993df3f6d4cc8e5703ab68c0f466fc735e0db1d8174a,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-en-dark.png,Feature evidence,007-dark-theme,Binary,340296,a4cc6400f95d44027993f26ebaf8dc0a0738dcd2d2edd7abe8b0bee6b14c504e,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-en-light.json,Feature evidence,007-dark-theme,Text,30304,95cfda8f49a4b2a586d621d7ba4532dea612419cd3500cd11717f6917122c515,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-en-light.png,Feature evidence,007-dark-theme,Binary,340760,7bc3cc88e772fd46fa8df453949819b4f29991e5a47dd12fc53c94f614087671,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-es-dark.json,Feature evidence,007-dark-theme,Text,30468,5fad17452c0fce6b3e489470ffc947750f41505815e60e37599341448223d022,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-es-dark.png,Feature evidence,007-dark-theme,Binary,357004,bf33764b53590fb52dd61469585db0070e14c980dc19ed407638584c66e904e5,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-es-light.json,Feature evidence,007-dark-theme,Text,30467,db62047e5cf01beb13de6bbb547f68a486bfe69034dd7cc2be938d23add7ab2f,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-1440-es-light.png,Feature evidence,007-dark-theme,Binary,357799,026c147f3393bfb147fbe0c4c1e3c7cc52d8bd33209956b8385d67e0466bc20e,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-en-dark.json,Feature evidence,007-dark-theme,Text,29445,457ba7379c1a9506ad297ad4bd8c1c8772dec8eafddc621c3d1a524d60ca5628,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-en-dark.png,Feature evidence,007-dark-theme,Binary,265335,422a142d65c25ef0d33b492905282beb58afcf849a170b5372cd6262355a70d4,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-en-light.json,Feature evidence,007-dark-theme,Text,29446,377b4137ddc5005287f89451c68f48f569ae3bc508377bbfff045ffa9a4ef634,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-en-light.png,Feature evidence,007-dark-theme,Binary,266240,4d54e803f83b4fb6ddbd1e82014cf987258f96ff9015b5a4cf1d8d4fe5699be0,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-es-dark.json,Feature evidence,007-dark-theme,Text,29605,3b9a1fd84407ae6d98dc4d010557e069b246009a3f46369896cfb98ae305dedf,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-es-dark.png,Feature evidence,007-dark-theme,Binary,284225,6f38d35a291cc72134fb278a2b3b6122171044a53367a1d45a35780da829ccad,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-es-light.json,Feature evidence,007-dark-theme,Text,29604,7e5eab95ca2c43ffa83a4d637e41589b684a629e85e64e9b7bb382503246d2c1,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-640-es-light.png,Feature evidence,007-dark-theme,Binary,284365,23fa61f2623143aaf0abe32444d1dbb961ce6599393318385ad6470c314f879e,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-matrix.json,Feature evidence,007-dark-theme,Text,1670,1cafe4fbb1216b5759a85775ef4ad72fda2ea959d18417a850cd8f6021280151,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-qa.py,Feature evidence,007-dark-theme,Text,658,e6e77136632a01a0e8155703cfd3736a662a3b5767443acb6abc18d93599adb2,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-restart.py,Feature evidence,007-dark-theme,Text,724,e22b75fbd84c67b08667df8086de9db820112d47d0112166c35d9dda7e4425be,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-resumed.json,Feature evidence,007-dark-theme,Text,43320,80187305a16b7773eba5cfd5723d471c55364b255e2fd9d7fed53d8f60dbe74b,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-resumed.png,Feature evidence,007-dark-theme,Binary,425957,553abe573e550ebbe9bdff29d762d560c2d4c82d742c889ec969188f9854f0db,
+specs/007-dark-theme/verification-assets/qa-followup/recovery-timeout.json,Feature evidence,007-dark-theme,Text,26653,7a0aff852957b0f64684be9753b772acc79816425ac7e48bd62a667687ac63d0,
+specs/007-dark-theme/verification-assets/qa-followup/restoration.json,Feature evidence,007-dark-theme,Text,272,da7d86739504375fbbbb4abfe13d67da28601fd5c049525d72eca97a9ae46f85,
+specs/007-dark-theme/verification-assets/qa-followup/summary.json,Feature evidence,007-dark-theme,Text,1061,54e53bb10ffd7781734424d0f89fa5a029dff1f3fd33c9415fca20a1b2b447a9,
+specs/007-dark-theme/verification-assets/reduce-motion-native.json,Feature evidence,007-dark-theme,Text,138,16ec96a79bdb5e8e1cbb0ecf5c3e84787be6ff5e56326a3e62bb7a21ee1c7a1b,
+specs/007-dark-theme/verification-assets/rendered-contrast.json,Feature evidence,007-dark-theme,Text,7970,46ac42f94c2a14de52db53c4d88d19e2a8b78b3139f43e6bbd398e02a9f72ed6,
+specs/007-dark-theme/verification-assets/restoration-results.json,Feature evidence,007-dark-theme,Text,1832,7810ea3b820b1ab604dc78f88496476e6033e6a5210e80f02c71a37ace8d563e,
+specs/007-dark-theme/verification-assets/selection-dark.png,Feature evidence,007-dark-theme,Binary,421073,3d95a86c0b9db84e2cedc47da366c0567002dace624af80c95b0242d788d3343,
+specs/007-dark-theme/verification-assets/selection-light.png,Feature evidence,007-dark-theme,Binary,415629,09e312fa981947f4b0bbb79adf62ca88ce1a5df67d211c6d23947c0d8ed3e311,
+specs/007-dark-theme/verification-assets/selection-results.json,Feature evidence,007-dark-theme,Text,397,e43378bbf74cd0368205220d390efe33ac4d5161734a3dd6f7aa531ff0dbcac6,
+specs/007-dark-theme/verification-assets/system-01.png,Feature evidence,007-dark-theme,Binary,437215,3df026fd5cbfaec10ad36a4bbe42d499e64c118b637ecc67f0adb45d96fc516e,
+specs/007-dark-theme/verification-assets/system-02.png,Feature evidence,007-dark-theme,Binary,441240,91836437d86d30109a053bc6c5bbd59a76ac8981f42d7e37c8d1e3d4087b368e,
+specs/007-dark-theme/verification-assets/voiceover-results.json,Feature evidence,007-dark-theme,Text,308,8d8c3287e6940e2ddd6642e149579bdcb133676b9533185c4bcf0e5e08f26653,
+specs/007-dark-theme/verification.md,Feature evidence,007-dark-theme,Text,12493,70bdc4801860361844ec699bbe3898ba1b7da0d58e89a766b6e072e20b80dc39,F002A packaged verification — 2026-09-28
+specs/008-rich-reading/checklists/requirements.md,Feature specification and workflow,008-rich-reading,Text,434,5d3baa1e467af1dda281ee284b96b2dd475bca44aead4c9a515bc01243424297,F002R specification quality
+specs/008-rich-reading/contracts/reading.md,Feature specification and workflow,008-rich-reading,Text,695,863a69f54a2f362def0113d2a083dfd424ed8cb01e0f4ac7181dd3175e23dc14,F002R renderer contracts
+specs/008-rich-reading/data-model.md,Feature specification and workflow,008-rich-reading,Text,883,e2941ea872c5faeedf495bae3f56c4a221f7b689532af1e87b8a124145443c36,F002R data model
+specs/008-rich-reading/design.md,Feature specification and workflow,008-rich-reading,Text,2396,bf418d97b2faa27bcc1fce501d4a094d1011c99c8de456225cbdcbc8190cd943,F002R rich reading — visual proposal
+specs/008-rich-reading/design/reading-states.svg,Feature specification and workflow,008-rich-reading,Text,1843,f443d3d5d5ccfb4e6aa04d361cede8b2f79d23acb63faa1864cfbdd77057f622,
+specs/008-rich-reading/plan.md,Feature specification and workflow,008-rich-reading,Text,4227,9eea6a7c05662da764cb0ae86c93f8fb368361afbb6ffed8c5218617b0cfe38f,Implementation Plan: Rich Reading Completion
+specs/008-rich-reading/quickstart.md,Feature specification and workflow,008-rich-reading,Text,1025,f523550e55a9498308ff83b2f5275ce95e826172b2de857c42d24e87394859fa,F002R verification guide
+specs/008-rich-reading/research.md,Feature specification and workflow,008-rich-reading,Text,2813,7744d151476efd85cf5696c9aed140580869392018c43b7abffa3e73832bc9e9,F002R research decisions
+specs/008-rich-reading/spec.md,Feature specification and workflow,008-rich-reading,Text,5443,59c46b5b809da796ab66a403a4b9441349b64f2ad3d2b0767186ac80f127f79c,Feature Specification: Rich Reading Completion
+specs/008-rich-reading/tasks.md,Feature specification and workflow,008-rich-reading,Text,5756,a16d2e0d551df3c33605147253beae32cf119c13fa3202e4967ade01812c598f,Tasks: Rich Reading Completion (F002R)
+specs/008-rich-reading/verification.md,Feature evidence,008-rich-reading,Text,5405,18184d874de48465022563308c28e247019b50cfe66425e0212afc286e775f9a,F002R verification — 2026-09-29
+specs/009-folder-search/checklists/requirements.md,Feature specification and workflow,009-folder-search,Text,394,d257b4ebb951252c6a24eab5a89d7251dda495e88350f2d9aee1bd847c622e04,F003F specification quality
+specs/009-folder-search/contracts/search-ipc.md,Feature specification and workflow,009-folder-search,Text,607,9f900d4163fe639ee51bcf8f8438dd0818e3d8ab7785f1253f6d73e71560239b,F003F native search contract
+specs/009-folder-search/data-model.md,Feature specification and workflow,009-folder-search,Text,428,d1afae887ea7a02a3d08d09a47b825a4d2bbb8ce9581c03f519e978a46007374,F003F data model
+specs/009-folder-search/design.md,Feature specification and workflow,009-folder-search,Text,1616,aaf0bbf539d56e6c2507d3f3a7bec04aac6db1d3c2e973760971e729016a339d,F003F folder search — visual proposal
+specs/009-folder-search/design/search-states.svg,Feature specification and workflow,009-folder-search,Text,1713,c063662943d7c2a28dbcdaceb3df25e068755966f6e4325fc9048751af2291f0,
+specs/009-folder-search/plan.md,Feature specification and workflow,009-folder-search,Text,2984,009a2eb847ef59cf51f4c05695c4e2de58b48e292e86548d967ddbb57052a206,Implementation Plan: Search the Selected Folder
+specs/009-folder-search/quickstart.md,Feature specification and workflow,009-folder-search,Text,594,80fb40f996a56276733256bfee375b8728c1053c546b7208769b8a2fc129b6a2,F003F verification guide
+specs/009-folder-search/research.md,Feature specification and workflow,009-folder-search,Text,1655,1a265775fdc406882b12cfa97c4a2b0b5520a7ad2cf974869e2824822526f8e8,F003F research decisions
+specs/009-folder-search/spec.md,Feature specification and workflow,009-folder-search,Text,4658,683b8f432b08105a907058aaa024acb3e9da059d9be1044d2142eab7274466d9,Feature Specification: Search the Selected Folder
+specs/009-folder-search/tasks.md,Feature specification and workflow,009-folder-search,Text,4977,2c4dbfcc4ce2b8b6f296a79e6a8d695bdfebe867c7351a6e0329581745964ea6,Tasks: Search the Selected Folder (F003F)
+specs/009-folder-search/verification.md,Feature evidence,009-folder-search,Text,5045,70a3ed86245132a8f31e6d17bec8235e2a760743d65178b57ebf78bb5e798b37,F003F verification — 2026-09-29
+specs/010-recent-items/checklists/requirements.md,Feature specification and workflow,010-recent-items,Text,345,04f5b31767f63ba7237ae673944a577dc63ee263c8a51587c538fe5099b04561,F003R specification quality
+specs/010-recent-items/contracts/recents-ipc.md,Feature specification and workflow,010-recent-items,Text,526,2ea544abb1b2878416c45462c51ea3acc1417d4ed7b372d36b79ba1d375f48f9,F003R recents contract
+specs/010-recent-items/data-model.md,Feature specification and workflow,010-recent-items,Text,470,0e8eb9bd87c35b60af61350fcbaf0cf24699d425e9b5718f3e82a721d6d1a4df,F003R data model
+specs/010-recent-items/design.md,Feature specification and workflow,010-recent-items,Text,1406,a69dd7a7753e0643aafa55f8c654d624f7b209637079d2191ed087b2cb7df48a,F003R recent items — visual proposal
+specs/010-recent-items/design/recent-states.svg,Feature specification and workflow,010-recent-items,Text,1655,4493a1d3f66ca61da3bbd198197ee08b6b642e058bed1406f9c711a61130afc0,
+specs/010-recent-items/plan.md,Feature specification and workflow,010-recent-items,Text,2330,332cffbaaadb94674e9d4231a2f00df089cd5b538f7aa6c3cbd76d5f760e1559,Implementation Plan: Recent Local Items
+specs/010-recent-items/quickstart.md,Feature specification and workflow,010-recent-items,Text,465,9c01ec7c18c274c5d29fd8a71dcc62c444111516f1c5a6463b61bccbfb4e2b46,F003R verification guide
+specs/010-recent-items/research.md,Feature specification and workflow,010-recent-items,Text,1103,a4f051f87f2343c8f0ad1cd06cb2af3eebb368db55d6a9546b7e77f108b05851,F003R research decisions
+specs/010-recent-items/spec.md,Feature specification and workflow,010-recent-items,Text,3705,bfd8a9f3ad41c42edd8e289d2750e786196fbc639c8b1677b7187a4d5cdc4a34,Feature Specification: Recent Local Items
+specs/010-recent-items/tasks.md,Feature specification and workflow,010-recent-items,Text,4106,133dfd225e1255dc1ba3e3d45d5cf681736c8b1ec4753c752f53bded9e6c023d,Tasks: Recent Local Items (F003R)
+specs/010-recent-items/verification.md,Feature evidence,010-recent-items,Text,1737,7f0e4ffe92763194b4cbcde9c0b909c9fb07f380c48ce3c309b08c32047db3b1,F003R verification ledger
+specs/011-large-file-mode/checklists/requirements.md,Feature specification and workflow,011-large-file-mode,Text,356,1d79a433e155051eba134273e5c09441444300644b3ace44ba96d11a21fff7fa,F003L specification quality
+specs/011-large-file-mode/contracts/large-source-ipc.md,Feature specification and workflow,011-large-file-mode,Text,647,7a2a5d159d32d028bc75c9c97c0cecae2ef0f7fd1dd77fa1c58bf8bb80b6a841,F003L native source contract
+specs/011-large-file-mode/data-model.md,Feature specification and workflow,011-large-file-mode,Text,497,1bad0d2a59b572d66a6259e8b6bc421d9ad5de08b51241c4614af3c7219ffd2b,F003L data model
+specs/011-large-file-mode/design.md,Feature specification and workflow,011-large-file-mode,Text,1442,004746fef0df50e5c24086705eb3eeeaec936a508428e4fd08725381438bc7fb,F003L large-file source — visual proposal
+specs/011-large-file-mode/design/large-file-states.svg,Feature specification and workflow,011-large-file-mode,Text,1440,d231870068bb2aeb8b2a395fa0e3c3001139cb42c19354cfacf2920da2212f33,
+specs/011-large-file-mode/plan.md,Feature specification and workflow,011-large-file-mode,Text,2715,8c1fec312b9e3c9f58ce36712667d1609eba5f80560f150db1be20c8e9791392,Implementation Plan: Bounded Large-File Source Mode
+specs/011-large-file-mode/quickstart.md,Feature specification and workflow,011-large-file-mode,Text,518,cdf3abf78dab255e1377de3975c231ac51f4f5168376a9aa007c1f0173c8afd5,F003L verification guide
+specs/011-large-file-mode/research.md,Feature specification and workflow,011-large-file-mode,Text,1358,568e78b805b1b13cd6f82e792f899232a4ee1902e226d531200f0a898d49f5d5,F003L research decisions
+specs/011-large-file-mode/spec.md,Feature specification and workflow,011-large-file-mode,Text,4545,a48b3a3697438d8a2d8a75808c25231ba40fcb057d8ea09f0856d037dd476173,Feature Specification: Bounded Large-File Source Mode
+specs/011-large-file-mode/tasks.md,Feature specification and workflow,011-large-file-mode,Text,5247,c4e93b4e413679fc378b2ac28f2d494138af78a0060b964adda9c0b98644c5ad,Tasks: Bounded Large-File Source Mode (F003L)
+specs/011-large-file-mode/verification.md,Feature evidence,011-large-file-mode,Text,4190,7708781cebc7df4e687a45daceaf16e743d309b7cea960e20f190a8820c8dcda,F003L verification — 2026-09-29
+specs/012-macos-delivery/checklists/requirements.md,Feature specification and workflow,012-macos-delivery,Text,398,85559ed4e488085c1725d8e64575342e9f141caea7c05cf4a4ad71c36f9259b7,F005 specification quality
+specs/012-macos-delivery/contracts/macos-entry.md,Feature specification and workflow,012-macos-delivery,Text,658,96fe39c7cb94ce05d8648e2e8af0285977ad5dfe73c599eea2486521c9d835b7,F005 native entry contract
+specs/012-macos-delivery/data-model.md,Feature specification and workflow,012-macos-delivery,Text,470,5437c4cf34a802850320bcaff97cf29ed4c02c7e2d2a1180c4990e870a89fc03,F005 data model
+specs/012-macos-delivery/design.md,Feature specification and workflow,012-macos-delivery,Text,1625,d583072f8f124ef0624c23c95746d3a8cf606a4538b1475cf44a1484965a7ee6,F005 macOS delivery — visual and interaction proposal
+specs/012-macos-delivery/design/macos-entry-states.svg,Feature specification and workflow,012-macos-delivery,Text,1661,2dbb40b361ca5a2373345ad22d3c01af2993b88b9e0b48f0113e744a9ff931f1,
+specs/012-macos-delivery/plan.md,Feature specification and workflow,012-macos-delivery,Text,3188,b2f1ef5af5216a64c0d28e8e2269d8bc95bdfc15326c0acca33429f1a721d5f1,Implementation Plan: Private macOS Delivery
+specs/012-macos-delivery/quickstart.md,Feature specification and workflow,012-macos-delivery,Text,697,19842bd1d1b8a955d197c514ffd3d92a0281f0e5a20641b9a692982c5b846ff1,F005 verification guide
+specs/012-macos-delivery/research.md,Feature specification and workflow,012-macos-delivery,Text,1953,62b31467039ebb2958a125206658c0cabc5326cdf7d32777c2883abe2bc8fda5,F005 research decisions
+specs/012-macos-delivery/spec.md,Feature specification and workflow,012-macos-delivery,Text,5121,6d91f74c399c03e28be1c04efc826e99b9f6e843abdfba6e3715124ee68f0707,Feature Specification: Private macOS Delivery
+specs/012-macos-delivery/tasks.md,Feature specification and workflow,012-macos-delivery,Text,4023,e3b34b4bb085cd2ffdfc8e7eaf9b5f2a7eb0cdb1acfd6b3cb09865a2f0c0fcdc,Tasks: Private macOS Delivery (F005)
+specs/012-macos-delivery/verification.md,Feature evidence,012-macos-delivery,Text,5647,0edfb9cccb317d22bb11ff957422ebee3b754f740cd3987333036921f8aff4ec,F005 private macOS delivery verification ledger
+specs/013-windows-desktop/checklists/requirements.md,Feature specification and workflow,013-windows-desktop,Text,1479,1a587ea7268b1437df7b29874ccfe30151ae9712578faef922f5323aca281d83,Specification Quality Checklist: Windows desktop port
+specs/013-windows-desktop/contracts/platform-boundaries.md,Feature specification and workflow,013-windows-desktop,Text,2193,65ebcf7dc65b5160d1bb1653ef57f97995a8d620eebe813a7b883b9181475cd5,Platform boundary contracts — F007W
+specs/013-windows-desktop/data-model.md,Feature specification and workflow,013-windows-desktop,Text,1600,4ae43edb4e145d358c509c8f0b826873d9cf0417004091fc51a52b9e2e963add,Data model — F007W
+specs/013-windows-desktop/design.md,Feature specification and workflow,013-windows-desktop,Text,1491,0e55900159ec37f9247fa83095bca5e1184b2b150dd3a48c2a74e26dfaf93ba5,Windows experience delta — F007W
+specs/013-windows-desktop/evidence/assessment.md,Feature evidence,013-windows-desktop,Text,1725,e37afdd3dc2c2c9148f181377bb830fbb60f0797cccbef0e4b955447d0da88b2,Assessment evidence — F007W / 2026-10-05
+specs/013-windows-desktop/evidence/documentation-validation.json,Feature evidence,013-windows-desktop,Text,696,32cd99b6da0bfc49ad5143747cb4645a9b3de47a1af407c298366d385dfaeb54,
+specs/013-windows-desktop/evidence/implementation-logs/frontend-build.txt,Feature evidence,013-windows-desktop,Text,1190,d93515681490ce021bd5bf1b7d979633f1491a8ffabe3b7d422f6d4cebece8b1,
+specs/013-windows-desktop/evidence/implementation-logs/frontend-final.txt,Feature evidence,013-windows-desktop,Text,283,b7ae0405c78f40f4775442b5853fd7b3644478ebf5b53da0d8a827b12230abaf,
+specs/013-windows-desktop/evidence/implementation-logs/frontend-first-failure.txt,Feature evidence,013-windows-desktop,Text,25623,4c9c60c8dbd204bd5e774f77d222435678ee9bbc5d3c6bb549b6fdd66eb83dc3,
+specs/013-windows-desktop/evidence/implementation-logs/frontend-targeted.txt,Feature evidence,013-windows-desktop,Text,470,9378b26fbf6dbfc9b6bc70e9ba7dad5b29933f43bf516729f7db8af4e42d9540,
+specs/013-windows-desktop/evidence/implementation-logs/macos-full-extraction.txt,Feature evidence,013-windows-desktop,Text,39979,72ce7ff4a72466109c26d205b7e06b454abc47e0d7b4fe8df44b7d2e4056838c,
+specs/013-windows-desktop/evidence/implementation-logs/macos-native-final.txt,Feature evidence,013-windows-desktop,Text,47964,e7d398a94f97809d54747b3df5c70aa1a0bc6b353100250e02b3f7bab7838add,
+specs/013-windows-desktop/evidence/implementation-logs/macos-watchers-retry.txt,Feature evidence,013-windows-desktop,Text,23788,3083e890434f1e31ea2691382f23eeb7ad6485afc805313769263b805f652a2a,
+specs/013-windows-desktop/evidence/implementation-logs/worker-bundle.txt,Feature evidence,013-windows-desktop,Text,174,2836db7347e0672da11e2eef0c0373d3d10d04102e17c024aed04afd6baa4ec8,
+specs/013-windows-desktop/evidence/implementation-source.json,Feature evidence,013-windows-desktop,Text,4664,130e3e0eac0d44e7ea51b524e3256e702063f83f7e1e7956b9e13f77101dcf94,
+specs/013-windows-desktop/evidence/implementation.md,Feature evidence,013-windows-desktop,Text,11648,75d58534604dcedd9e8a0e2f92e1bd54571418f6b999557b1869c00b15287fd1,F007W implementation evidence — 2026-10-05
+specs/013-windows-desktop/plan.md,Feature specification and workflow,013-windows-desktop,Text,8484,e0bbdc3d27277a95ebe6bc2e3a483e41a59243f06921f8a27a69b432992960e1,Implementation Plan: Windows desktop port (F007W)
+specs/013-windows-desktop/quickstart.md,Feature specification and workflow,013-windows-desktop,Text,2028,501f08b861a6aaf66aad723f7d0ccf9e0f8d42a1c44b8620a7483f1059fc0a99,Windows validation guide — F007W
+specs/013-windows-desktop/research.md,Feature specification and workflow,013-windows-desktop,Text,6470,8bca1d0bdf89b45dc4aa11eaec61d21f127e2b180be89f58a580125888024ad0,Windows port research — F007W
+specs/013-windows-desktop/review.json,Feature specification and workflow,013-windows-desktop,Text,1990,6c796f77b7a170d8b7d69366b8abc17860cf0b31f349e7102434c32701245e80,
+specs/013-windows-desktop/review.md,Feature specification and workflow,013-windows-desktop,Text,2824,3a27c39c856857a56bd6b2cf044671bf0fa8af97107b8b590f90f4cd191bfe4b,Windows review set — F007W
+specs/013-windows-desktop/spec.md,Feature specification and workflow,013-windows-desktop,Text,9055,45b8b7be5edca1f5546652b9768f84af9be97d60d2ca8d9a5886243f234ce860,Feature Specification: Windows desktop port (F007W)
+specs/013-windows-desktop/tasks.md,Feature specification and workflow,013-windows-desktop,Text,3479,0902df104568a47ef36cded9eeffc081d4d1247c64681a45ccc8f2540e319abe,Tasks: Windows desktop port (F007W)
+src-tauri/.gitignore,Native source and packaging,,Text,86,646a917f23a3d76736252fac394b218e99c3f2d7f5c4dad9e334563452574cde,Generated by Cargo
+src-tauri/Cargo.lock,Dependency lockfile,,Text,118250,590a8085ed282c2f89abe8b93e3da8eef55f6b06dddbd717521a6ca89a24d584,This file is automatically @generated by Cargo.
+src-tauri/Cargo.toml,Native source and packaging,,Text,1164,f70291f09bd86943e4a77130d9b7e06925fe5dfad838cc8199703a5d80b5a916,See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+src-tauri/build.rs,Native source and packaging,,Text,4266,c02700e13f2f71b0da255ae5dc1754fcaf72df204f4a8559204c06adf52d0b5b,
+src-tauri/capabilities/main.json,Native source and packaging,,Text,207,4db63c35c885ae81b671afe6353fde3661a79bb668e2482a3630de0049e51efb,
+src-tauri/gen/schemas/acl-manifests.json,Native source and packaging,,Text,68210,d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699,
+src-tauri/gen/schemas/capabilities.json,Native source and packaging,,Text,159,e732badbc09a1034f5cd14603a1a15f789cd7ad8c7891e8c7493d4a09361581f,
+src-tauri/gen/schemas/desktop-schema.json,Native source and packaging,,Text,120083,2a16f62c90a059a1b67e4501216bb3476f402087e99ba659dd38c9d0521f3b07,
+src-tauri/gen/schemas/macOS-schema.json,Native source and packaging,,Text,120083,2a16f62c90a059a1b67e4501216bb3476f402087e99ba659dd38c9d0521f3b07,
+src-tauri/icons/128x128.png,Native source and packaging,,Binary,11059,eeebf55d8ffe07348786b9057af253e3ca08c56b6a8f8893826381430e3c0b7b,
+src-tauri/icons/128x128@2x.png,Native source and packaging,,Binary,23137,2998b41d0c9278b08e8b3874e094920034fe983a46053c9d62764225f58ab7b0,
+src-tauri/icons/32x32.png,Native source and packaging,,Binary,2225,aaa96d0c53b756b77c7f46aeb72290f42256c786c69be68f6bcdeb9c7492a48e,
+src-tauri/icons/Square107x107Logo.png,Native source and packaging,,Binary,9202,33446a858d982a529554e562114673f8b15620588137cf0bf6c56a7441c78cd7,
+src-tauri/icons/Square142x142Logo.png,Native source and packaging,,Binary,12530,633d6dba504faa844b309e01272386e4523cddd4a3639c77c0eb5d2ce3eac752,
+src-tauri/icons/Square150x150Logo.png,Native source and packaging,,Binary,13032,d90061ad71e6f5882b759d80cf58cc16aa5021fa29ba4b2614adea982a4d7ee5,
+src-tauri/icons/Square284x284Logo.png,Native source and packaging,,Binary,25943,5feaa4f18f404843551756dd2791d7654ef471b6b007767ae40f60c7aebcad5b,
+src-tauri/icons/Square30x30Logo.png,Native source and packaging,,Binary,2078,68bc1b585f5685e0922f14b1ca7eb2d618213c684c89e759c6a5eb8578c3fe8d,
+src-tauri/icons/Square310x310Logo.png,Native source and packaging,,Binary,28507,5df8d779ab57c63ee06ed237b94c3c0954711e88117dccfa72b2aec5d83b0d80,
+src-tauri/icons/Square44x44Logo.png,Native source and packaging,,Binary,3419,c46208286b1ea1b4841b714972f3cb0a8abc6d3bfa71a29238f7b4d62f511f89,
+src-tauri/icons/Square71x71Logo.png,Native source and packaging,,Binary,6027,cb0ea93cbd13509d32c6bc06da71687e73d673d166fde91b23061771abe16b86,
+src-tauri/icons/Square89x89Logo.png,Native source and packaging,,Binary,7551,2208da1d741a20e902a59d7c39a5e58af74ec823db13113bf8ac6f555fa25bca,
+src-tauri/icons/StoreLogo.png,Native source and packaging,,Binary,3971,9f84d0ce09df51bac0a4855042b3e49b190cc2b9761cd5eab61ebec5cd343820,
+src-tauri/icons/icon.icns,Native source and packaging,,Binary,277003,1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693,
+src-tauri/icons/icon.ico,Native source and packaging,,Binary,37710,e38ca88e1d5490f3dcbc3c3fa525f7fcb7b80fff3cb2f3a4eb1b2d018c0915c1,
+src-tauri/icons/icon.png,Native source and packaging,,Binary,49979,6413bfe9d546e5225fc9256a0ecec48df3a1272ea4bdc91c15b8e000222a95d3,
+src-tauri/src/acceptance_harness.rs,Native source and packaging,,Text,21529,37262727becf6ce5819abf82e8df4b98b4aa1f69d100a8cf74287c8518610ffd,
+src-tauri/src/assets.rs,Native source and packaging,,Text,10456,59dd16fcc851c97815cd392c6387cf6fceaf5a14bdb0a5c7072d82a8ebc80476,
+src-tauri/src/document.rs,Native source and packaging,,Text,14178,a199391513c5e53ed991b4ee8d94aadebb98793df021ec4ef18f6ab31ed1a740,
+src-tauri/src/editing.rs,Native source and packaging,,Text,49863,9c75178e939fd18ce4c3222ffd32473b1a0e2e92de8ec476e3ddffaf7134db6e,
+src-tauri/src/image.rs,Native source and packaging,,Text,17702,f8e32ca5a34474cb62a6560bf417fe2de6b986c03348e38c3c8e0ac129167a60,
+src-tauri/src/image_xpc_client.m,Native source and packaging,,Text,9178,a0648e3b8502732246901d3dace18faf29617c2135a4dbf41e313ae18442cb2c,
+src-tauri/src/large_source.rs,Native source and packaging,,Text,30069,2ffd47549ff86411f95cdad1ce7c42002977247f88f49d8e084b0b8fc087fe0f,
+src-tauri/src/lib.rs,Native source and packaging,,Text,18853,25d53db42143fa328c6d49f68bf8c201bb473a41bae045b3a1b6443b76f35e07,
+src-tauri/src/listing.rs,Native source and packaging,,Text,4868,8f3a6f78685257e8af4f6c79c9abb8c393aac3c933eea115baf6a3cb9b299b0a,
+src-tauri/src/macos_quit.m,Native source and packaging,,Text,1462,151acd0c132cb1d3174f48079de330d83cc8dd66b12eb664c1dd97bb00eb6cf5,
+src-tauri/src/main.rs,Native source and packaging,,Text,185,47a7cf9780140c35359f39343ddb74264d3b845197b5702f4a90d2ffdb2e5427,
+src-tauri/src/native_entry.rs,Native source and packaging,,Text,6315,9b2ed4d2b367ecc3d75dd4c6d5f17d453703e4142f8e52d87fc9e64383289d38,
+src-tauri/src/platform/macos.rs,Native source and packaging,,Text,17197,a46fe24c054824fd0fe91031253c43e1723d67322a813c8c7d171eb067fcc8b2,
+src-tauri/src/platform/macos_save.rs,Native source and packaging,,Text,3598,2b4984a2a3be8ca74bf0e4a287e2a492f6405df73f3806f5844fcbe5664011d1,
+src-tauri/src/platform/mod.rs,Native source and packaging,,Text,2560,703a6a462f0b2de6121be9974856ae954a72b11fd9d2065a5d42289430124c10,
+src-tauri/src/platform/storage.rs,Native source and packaging,,Text,4305,205af540a15dfa6f70e323f72c3ff753496f4e6e667d18f698b2ccee99a3ab4d,
+src-tauri/src/platform/windows.rs,Native source and packaging,,Text,15259,a422fdb1ede3cf476f5b792318241840361c95927ef4de3c628bda0639074570,
+src-tauri/src/platform/windows_path.rs,Native source and packaging,,Text,3038,b13910cf1ca28a8a41fb5deb247ed537639b194b5db0b0d2899f3429fbe0855a,
+src-tauri/src/platform/windows_storage.rs,Native source and packaging,,Text,14394,a5e55f877d675427db85732f9ff4ce8ffe121e1d6ea4a9a4e57a7c6537267da3,
+src-tauri/src/recents.rs,Native source and packaging,,Text,18605,71e1ba00421b862e2ab4b0f74291de903b3b88d93553b7eec90f14db8be2ce9a,
+src-tauri/src/recovery.rs,Native source and packaging,,Text,43441,22bdcdfc91956cf9ab46378d15f32903e78f565eaf70f61eb930d9ce3102c5d9,
+src-tauri/src/refresh.rs,Native source and packaging,,Text,40312,1958c145c9b1a0a9653652868f2336614e8ccb46caf268091d0f3bbc0f7516ca,
+src-tauri/src/save_copies.rs,Native source and packaging,,Text,8534,cb69ab717d43c23c3f6cfa4fcb0042fb25d59ed118d06c0b837dde8844a3690c,
+src-tauri/src/scope.rs,Native source and packaging,,Text,2514,420cb973ca2210851d0db74b1a99e93a40e88bc9563836f455b007899e8b0869,
+src-tauri/src/search.rs,Native source and packaging,,Text,22154,90c8098e7cf73310c7fca2ce2a59215c46177f6954cea7172495376ae673ca2b,
+src-tauri/src/selection.rs,Native source and packaging,,Text,5026,9abde5139384ef3a26e275ac4270816e8bae37bb961de382d03768e05c46656e,
+src-tauri/src/session.rs,Native source and packaging,,Text,44096,f09a1e49a833ef3ce326dbd7be169364dc683e5c00f43200675ef8f821a4b8b7,
+src-tauri/src/state.rs,Native source and packaging,,Text,19129,571f347c05f696ac6add353b6d2adf08ab882cf206af37ef75dc0da3d1729b02,
+src-tauri/tauri.conf.json,Native source and packaging,,Text,1410,307f2887ffd373d9b39f953b33be0de4e2651032955a8710a4af604a6025a99e,
+src-tauri/tauri.windows.conf.json,Native source and packaging,,Text,292,3a96574518aefef8b4dc1b77249f19cdc7228090cbd138ecd2b277a2d3ac3b8d,
+src-tauri/tests/automatic_refresh.rs,Native tests,,Text,5186,17874243259002fe9ab4b17865379e1ad234691747d4d1d6da656b8166b7e90c,
+src-tauri/tests/manual_reload.rs,Native tests,,Text,6412,ca432a89f0209fc84c22a3555726d57232e3cdff8e68e90fcf4faa3eb66ec4fd,
+src-tauri/tests/refresh_conflict.rs,Native tests,,Text,2598,20cbcc8cfabd050cb3a4fb8bcdd5a4d97044f4e5a3d3f15261b6b11e802aed0a,
+src-tauri/tests/refresh_recovery.rs,Native tests,,Text,5781,a8cb1f5978a8fc6a3e45a9f07773c6cc706967f365bc42c077cb6d7887a6ba51,
+src-tauri/tests/refresh_version.rs,Native tests,,Text,5663,0656c06eaa6656f8c875ece584c0a1ce20d71dc803d601185870614e6ff66bec,
+src-tauri/tests/windows_scoped.rs,Native tests,,Text,7653,67a4b2faa83563209a5d64134f167bb06f460b9d257ca479574e5770d61a739b,
+src-tauri/xpc/Cargo.lock,Dependency lockfile,,Text,12740,ef14772284e2096590635608f9867b8715814dea8859ebab2324f14fd5b07525,This file is automatically @generated by Cargo.
+src-tauri/xpc/Cargo.toml,Native source and packaging,,Text,281,f6011a7590373dc4485843ae4409b5a6cfcc2f61aa28928ddade4ae09fee4431,
+src-tauri/xpc/Info.plist,Native source and packaging,,Text,728,9bb836f58aa891de62d109b6782510d1943ba2c3ff95ce55b98d9064f4d249cf,
+src-tauri/xpc/bridge.m,Native source and packaging,,Text,13328,baf3f46411824defad42d00f939cfaabbdb1d96ab5e6f99401313dc8b28856e6,
+src-tauri/xpc/build.rs,Native source and packaging,,Text,1266,2514fd79746b430879babe8e83f773376814dc05f3c9e117a220e32c3079fc0c,
+src-tauri/xpc/package-app.sh,Native source and packaging,,Text,640,93b9089a292f9c8882fba4926f2a6bf7f95b28b20db92ea5da367174e8379716,
+src-tauri/xpc/package-dmg.sh,Native source and packaging,,Text,567,d33f7cc3433bc069f611d927c93575c0ae95239db6159fced3022298a870c9cd,
+src-tauri/xpc/src/main.rs,Native source and packaging,,Text,11106,b457e3b55b04858dd39147416187e4ec8b1fcf26ad0d7f8c3c26f81c66726b55,
+src-tauri/xpc/verify-dmg.sh,Native source and packaging,,Text,878,190926eeb652bfb49a7b68879d4b0c6e126b4789aefb25dba85b91c015eb52e3,
+src/app/ActionMenu.tsx,Application source,,Text,3669,679920de9d74e40f058eab4c82fe9d0b5022287e89f1963e02a2242839279f5a,
+src/app/App.tsx,Application source,,Text,187575,00fb0c9dcf493e406ca0d7fe374ebfecced8a79b7c86a852a6c87612fd682ba5,
+src/app/DocumentLocation.tsx,Application source,,Text,3069,5ceadb0c8152463b80bd77e7bff53b66d1e148d2bbb9e2921eb21dc9f796c432,
+src/app/FolderSearchPanel.tsx,Application source,,Text,10423,ea6ed33027d887871009c7fe84d653790d7db46e4f61d477c8305ee9786c03ac,
+src/app/ReloadFeedback.tsx,Application source,,Text,1687,045315d0d3be70504a93b6c686a937b3b9f274fe8edad34129fe6e3af45905b7,
+src/app/StorageManagement.tsx,Application source,,Text,2627,5f8fd71df67a012d5c338256d82b9f3fb2baeaf0d7f9536ec1eed8be0b5a609e,
+src/app/WorkspaceDialog.tsx,Application source,,Text,2206,728d2972d81b821ce50a1b68750d89b7e7707aefe71a59ef481c3bb535aaa1db,
+src/app/api.ts,Application source,,Text,14689,e0d28e50459bb87bd863c908846234d7845d0f8f725abd3f92b9196cfc9890b6,
+src/app/appearance.ts,Application source,,Text,6126,ca92e6f44a6e9d6c0b2e48d0314afbd590921463dd4361ae88d617b5bf73bdc9,
+src/app/documentIdentity.ts,Application source,,Text,1891,b72913c7bf9ac7c283d4648b74bfa1c3357c6dbcc342dcdb3911693ea17b7259,
+src/app/i18n.ts,Application source,,Text,35396,2cb7189c09551ada9b37ac0a112b98e7546533bcc3b593ce3cfa573faa6ded3e,
+src/app/platform.ts,Application source,,Text,864,e62d1de464dc1e2101843402052559974e97e209cac4720fad0fd24ebe90edde,
+src/app/session.ts,Application source,,Text,1585,19e0456ec7927d37848c2c788d37b461deeeeae7f3c95406d77c85b04a6f717a,
+src/app/useRetainedOverlay.ts,Application source,,Text,984,6deb04b9cecb9b82e8767cd22194bdd2c44e3941ace79ebc566de4e8784f5ecc,
+src/assets/fonts/NotoSansSymbols-OFL.txt,Third party font or provenance,,Text,4383,b118dd41337806a5d4797052c77caf3bd096aed783e5eb21b4d11154351e1ac0,
+src/assets/fonts/NotoSansSymbols-source.md,Third party font or provenance,,Text,840,832d0b587db21e5a10c796d6054cb2860d6a65349ccd22aa2a016acf5ebeb4fe,Noto Sans Symbols
+src/assets/fonts/NotoSansSymbols2-OFL.txt,Third party font or provenance,,Text,4383,b118dd41337806a5d4797052c77caf3bd096aed783e5eb21b4d11154351e1ac0,
+src/assets/fonts/NotoSansSymbols2-Regular.ttf,Third party font or provenance,,Binary,1233128,7d5fb73b7ca67a6798101741f5d280a3d016a56a197afcd4199dbb57b4b82a21,
+src/assets/fonts/NotoSansSymbols[wght].ttf,Third party font or provenance,,Binary,372684,f7e7e04b4a24b6c78893d50cbfd2b2f6cae49617ab047bfef668d252adb128f7,
+"src/assets/fonts/Roboto-Italic[wdth,wght].ttf",Third party font or provenance,,Binary,530944,9725a847af6b460ffca162ae66d20dad48b01876137947180b42d7dcd7887182,
+src/assets/fonts/Roboto-OFL.txt,Third party font or provenance,,Text,4394,061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41,
+src/assets/fonts/RobotoMono-Italic[wght].ttf,Third party font or provenance,,Binary,196792,49ac343bb7b070071e53f0a8a501d68d140ed98ebd0a43b6b8fb96cf22f09ff7,
+src/assets/fonts/RobotoMono-OFL.txt,Third party font or provenance,,Text,4395,50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215,
+src/assets/fonts/RobotoMono[wght].ttf,Third party font or provenance,,Binary,183700,66a80e79d17e4c7cabd162e2916578a4cc08fd19eef6e2a643305eae9c567b2b,
+"src/assets/fonts/Roboto[wdth,wght].ttf",Third party font or provenance,,Binary,488584,d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134,
+src/main.tsx,Application source,,Text,309,5be95159c7cf1cb52cb07ba463feb9ce18d65c3f37648a10d060701e689300a7,
+src/reader/CodeBlock.tsx,Application source,,Text,3363,bb0d27762f434a558b45720d4565aceebcd8fc9345917a6f36b5957884eb44b9,
+src/reader/ImageView.tsx,Application source,,Text,11667,172243fbf5341888ab76ba4b1e9b32c39204a7f043357e7dac62d26970ec8303,
+src/reader/LargeSourceView.tsx,Application source,,Text,10028,f1f6717c56c5bd7da0afdc224cf5faabce6c3c57b76d249dbbb61ac1de11fad4,
+src/reader/MarkdownView.tsx,Application source,,Text,16308,d21dde4fa6fd895c15f7186df76c59b2900c82912ea26e513f57e9663b9137c1,
+src/reader/SectionEditor.tsx,Application source,,Text,10985,91f5c9702e130abb9d748004cbc5f178f6d557c6c76d0170ff04715e8481c147,
+src/reader/code-tokens.ts,Application source,,Text,3294,b5fd3da234f29dc00b226c63b1b5f7fbce5e037d7a40179527e9b53eb777eade,
+src/reader/codeTokens.worker.ts,Application source,,Text,445,a0de7c71cbe947d974be5c1c443f6de157ef1893173b81b367994b9b02bfdbff,
+src/reader/find-index.ts,Application source,,Text,7129,68eddfd27e8c313f2ef881c821f6460920d5a3aac7b3e94b904bce8113dba9d0,
+src/reader/frontmatter.ts,Application source,,Text,1430,56f97716d22a23ca029b6f8ce9b88b27db72a97f745980d5fd642b188673ded3,
+src/reader/heading-model.ts,Application source,,Text,1341,2403f3aecdf489920ac6b5f5d7a2e89800c13f3fa6bbeb0e043e9cde20623f51,
+src/reader/markdownBudget.worker.ts,Application source,,Text,1453,02ae9c3b6a78414a0e0bdb6ed37f49d15fb8f64f5593e8f2b2675a7accf8dc61,
+src/reader/sectionMap.ts,Application source,,Text,2174,021fa2434973c00c7d01dee46f3d1f49408c8d74bea4dc540447fcb1a3267937,
+src/reader/usePinchZoom.ts,Application source,,Text,3661,cf32b59023e9b5981ac80bdcedff46c1e416a7a281e8386c7e5f6847f7316ae5,
+src/styles/app.css,Application source,,Text,41451,319b4dbeec8c05175cffa3cd7b702686c497bd079bef32ba79516560ec8f078b,
+src/vite-env.d.ts,Application source,,Text,38,65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5,
+src/workspace/editState.ts,Application source,,Text,2452,0ba9181f734e10b8afcb8c5be2e56fc688adac0738d7e1a66b78842e8e11071e,
+src/workspace/refreshState.ts,Application source,,Text,2648,c4242a890d287d8aada5f8b3aa30d2c99f380fb73e827a902839b8cc7fa48590,
+src/workspace/visitHistory.ts,Application source,,Text,996,52e0d5cfef74e1c6321dca0b951f0493f315b2f5bf9b622a9c2357abd62dd73c,
+tests/acceptance/.gitignore,Tests and QA tooling,,Text,13,32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b,
+tests/acceptance/README.md,Tests and QA tooling,,Text,12012,76a4a44200354122e2576a557f5ffbfed33cdcca77fab69ffaddca7dc57086e8,F002A acceptance tooling
+tests/acceptance/build_qa.sh,Tests and QA tooling,,Text,791,f1366c955f9577a6988a500bf4860baba0be30703d1ee6f274e7f5bae0c3a405,Caller supplies the installed Rust toolchain on PATH; no downloads/installation.
+tests/acceptance/check_build_boundary.py,Tests and QA tooling,,Text,1618,9d392a613a9df1800e4b405a90278d35bd6b36ca274145cf5716a81ca2b3a168,
+tests/acceptance/check_build_guards.py,Tests and QA tooling,,Text,1505,31c4d6a19ea51dc58a764e538f2ca8bf8d98c18c26b3e537721c5ef13d8d48bd,
+tests/acceptance/f002a_evidence.py,Tests and QA tooling,,Text,9618,626bf732ee360cc2356e62468fb1ca66153c1c052424838c82ff660828436b10,
+tests/acceptance/qa/bridge.ts,Tests and QA tooling,,Text,3272,615623dd8f67537b63ff757745d3fb468a86db423739b67876f4be3dd8e74eb7,
+tests/acceptance/qa/main.ts,Tests and QA tooling,,Text,96,01346c916bd01148aa037e0f3c1144abdbdea3b4238e3669d34cd18c55326468,
+tests/acceptance/qa/tauri.conf.json,Tests and QA tooling,,Text,248,8ca2f57915d092b51b7d27a20ce39d20a936fdb08409dbf5cac8606e9e76c887,
+tests/acceptance/qa/vite.config.ts,Tests and QA tooling,,Text,2375,326101d4a4e99cba7243f79d59d1f313e448619de6337314a58a08a6c37b4706,
+tests/acceptance/qa_runner.py,Tests and QA tooling,,Text,5076,4bb2a6306ae807612e8a813c9fb795a60524b6ec14ac7e7fb785023660adddd1,
+tests/acceptance/qa_smoke.py,Tests and QA tooling,,Text,2763,c96cf06519c89954e6af27aec80fd9ec07e9e462a2c5238eba2395263820143f,
+tests/acceptance/startup-flash.swift,Tests and QA tooling,,Text,2236,a0abeded021e3e3e883462ac0331e075c8657bb6a4f1387fddc7be1eca785a8c,
+tests/acceptance/startup-recorder.swift,Tests and QA tooling,,Text,12680,2e62b41b63e6a23a17b5cffc85178573e8c202760010d6e7347b82dfc607e79a,
+tests/acceptance/startup_trial.py,Tests and QA tooling,,Text,5410,7a7f2df92e8a949dd468defd4f4dbbb17d9fed9fa2490e7a98142e6c7e08d276,
+tests/acceptance/templates/requests.json,Tests and QA tooling,,Text,1143,f25477e1f75e92dd8b616588675fa3c93f2966493ad93b5614b8018c64264b60,
+tests/acceptance/templates/startup.json,Tests and QA tooling,,Text,8079,33162d184878200d6043da03305dbe2b317688ec136761fc67491fee8f8dcea2,
+tests/acceptance/test_f002a_evidence.py,Tests and QA tooling,,Text,6938,6259bcec30bd45c1e9dec49d01b7d62f0f97c1bde70f078ed8c532e9b6af599c,
+tests/acceptance/test_startup_tools.py,Tests and QA tooling,,Text,1788,f6aedd6f79fa91ebda090ffb2dcb084ce192fec5e6939a31ff50535f3824ff19,
+tests/behavior/visit-history.test.ts,Tests and QA tooling,,Text,1724,b594b773944f583263c625a3caf6e3fc27c97d96cb1b7d7b5ca668ca39113817,
+tests/fixtures/f001.mjs,Tests and QA tooling,,Text,3890,77b7ccd8c7848bafa404cf7e80ba07f0c8c034566b8afda0036ecebe250c622f,
+tests/fixtures/redesign-preview.html,Tests and QA tooling,,Text,291,ae6b19a036928c97b6058907be5a84a14026a0259c1d3f379be77354d5f11ce0,
+tests/fixtures/redesign-preview.tsx,Tests and QA tooling,,Text,9002,7118333c4924a8782b5f1d4e35d4454071a825e9f33182ff84401f210e6920e5,
+tests/native/image-xpc-probe.m,Tests and QA tooling,,Text,4080,e0f4f45c655156f6428a9bc6e16463d3b3f634a3fac00cc600b5d5b482d0af44,
+tests/native/macos-quit.m,Tests and QA tooling,,Text,1851,d6524a6d8fc559d86aa16f79918b0505f36592de4ef6d00ee4fea8203516cea8,
+tests/native/xpc-contract-probes.sh,Tests and QA tooling,,Text,1341,bb6307d1286c981b22d1754cdf65c3de6683dc1fd93908121886111c9aaa5b3c,
+tests/native/xpc-fault-probe.m,Tests and QA tooling,,Text,8171,9222e3fa1ea264c435021fe9530297cfcaaf9bc090ccc1fc355a35a28a7da2e5,
+tests/native/xpc-fault-probes.sh,Tests and QA tooling,,Text,1134,3b34c54cdee85203868e49a4880bc9e65e65f0a00737c3e5b7193f35bc37f8c4,
+tests/native/xpc-format-matrix.sh,Tests and QA tooling,,Text,1296,642d586afde7a1c742cba8c29f537cda4a806125652064b2d52c6f5abd017a89,
+tests/ui/action-menu.test.tsx,Tests and QA tooling,,Text,1712,725de49ba593e36df2ce295d071ab29e7f34b1aa9df4856cccb519350e27c4a8,
+tests/ui/appearance-contrast.test.ts,Tests and QA tooling,,Text,2132,6329771a0cb1a86c7c8c8e1bda075e08c6c3e4d6e730f62e6561a2aa01266b7d,
+tests/ui/appearance-editor.test.tsx,Tests and QA tooling,,Text,2731,7be9f1c9f483f7b911443331274165356f3fecd7a373f0057ba00901c8162286,
+tests/ui/appearance-operations.test.tsx,Tests and QA tooling,,Text,8464,e790ceff6c73afc5a16af3bbb76562587d9ce8d8062fb3f59def05844be1bb32,
+tests/ui/appearance.test.tsx,Tests and QA tooling,,Text,7064,e8a3c42ad071810de750c094d99959487d1e637b825d45786e602bf3df35bb20,
+tests/ui/approved-navigation.test.tsx,Tests and QA tooling,,Text,15160,1ba8ab50900d3167412085dbce1300bf87599649af12b2e3293c973b1145c896,
+tests/ui/automatic-refresh.test.tsx,Tests and QA tooling,,Text,6259,3d6a9a0744c622ea7b47ea7d2ac5cc28f97dac1d1753ae63360274323dc40c07,
+tests/ui/close-edit.test.tsx,Tests and QA tooling,,Text,9063,6990fb554eddb41e2d7549c6b03951b83143b0d748e45a5b669afdd77e013686,
+tests/ui/code-block.test.tsx,Tests and QA tooling,,Text,3545,f6757fbbe046bd9ada89320a126a693d400196898956acb1871c58a9b41e2f0a,
+tests/ui/document-identity.test.ts,Tests and QA tooling,,Text,1483,81eea93072143f60109659741f53def6578d0d0c7fcdde7c166c9e4087b804c0,
+tests/ui/edit-flow.test.tsx,Tests and QA tooling,,Text,8399,2aa787bbc70a220e1a95e3b344858d07460148dacb9f51c7950a31ea0b1089e2,
+tests/ui/edit-state.test.ts,Tests and QA tooling,,Text,2646,d8d53820c27d29530462e9c12684de4522b7bc5aa3e822347583da23abd5088a,
+tests/ui/find-index.test.ts,Tests and QA tooling,,Text,2599,a9b1eb4db1718598b0415f26110210b2f978c78aeff5631ff2fb3429d3770341,
+tests/ui/find.test.tsx,Tests and QA tooling,,Text,9121,ca09679de16e90cd09e3cd653989ae9604158c2bd975d10364040f30c996ce3f,
+tests/ui/folder-search.test.tsx,Tests and QA tooling,,Text,7177,7fc13a484b3a2aff9af2e497d291212ea05c15fa18af574c723a1206f3d74c5c,
+tests/ui/frontmatter.test.tsx,Tests and QA tooling,,Text,2684,bb77a7159d58c6981c7c7c10397d67f17f65c0b2ee9dcea369be3265229776d6,
+tests/ui/heading-model.test.tsx,Tests and QA tooling,,Text,1335,1e80ee810664e3787ef238e5a3b5279d50a8f6e2f49ad819ecd3b422ccab0395,
+tests/ui/image-refresh.test.tsx,Tests and QA tooling,,Text,3718,c5cf2798e5dc4bbdbdbbed957c4da9a797282b0110d9d8e0cdef403db44a96f0,
+tests/ui/image-view.test.tsx,Tests and QA tooling,,Text,4593,f1a809dc80bd42c27b13a42900b30de2d7ab8398045a34d8a7cef194362155ad,
+tests/ui/large-source.test.tsx,Tests and QA tooling,,Text,7165,1dee2bf3b70fdbaafa730d4c10181a54a2ac7266e96220651ac59f8237c9ecfb,
+tests/ui/manual-reload.test.tsx,Tests and QA tooling,,Text,7947,a6cb46691630e9f1e527eb8ec9fdb9b1f66b7df5e342f95bcf8a73a5e0c000cd,
+tests/ui/markdown.test.tsx,Tests and QA tooling,,Text,7301,7a136acac5c5ed81a76dea54b1ac21da19bb6602e3c718f72055d8745153ca9e,
+tests/ui/native-entry.test.tsx,Tests and QA tooling,,Text,4528,b78b5d31e5b0161211a5674427eb762cdaa5d5659567fe06f5a13978df1c804f,
+tests/ui/pinch-zoom.test.tsx,Tests and QA tooling,,Text,4218,c96c6573fbc2751116e57b472934e2797293729158037f21738be2b8e4b3e0bd,
+tests/ui/qa-adapters.test.ts,Tests and QA tooling,,Text,1782,483d30705f489da27a2d401ab3215b2db3f25555379ff76d433970ce7004e57c,
+tests/ui/recents.test.tsx,Tests and QA tooling,,Text,5188,c9fdef76eeb6489e631a4bdc2a1611ff1f3e03fc35975d9e11c395b551c393f9,
+tests/ui/recovery.test.tsx,Tests and QA tooling,,Text,3366,00fa49f9a75bc5c9acb1690cb41d70f168121acbb22dc5a861bcbafd92c76561,
+tests/ui/refresh-conflict.test.tsx,Tests and QA tooling,,Text,9113,5f8414f726a725d4e044f9e3e64aaca93e2f42c5da56c63ac7c82c161ed9f364,
+tests/ui/refresh-recovery.test.tsx,Tests and QA tooling,,Text,6642,a6d814d6e4d0f67f02892bc5989693c81e98a0ea432cdaf740b53a8172de98df,
+tests/ui/refresh-state.test.ts,Tests and QA tooling,,Text,2481,51bb6860b5c8e56510ebdc4e497096ee0857e37eebb428176b843ed5af017648,
+tests/ui/reload-feedback.test.tsx,Tests and QA tooling,,Text,2213,bb82224250304daafc38a679dd168b94f09f5f42823936926ad6ce4ddab7089a,
+tests/ui/section-editing.test.tsx,Tests and QA tooling,,Text,3572,c93f8b56a2eb00ae4708516065ff5f67ddabf9ad2fcbe8cd2ba140e13064fdbf,
+tests/ui/section-map.test.ts,Tests and QA tooling,,Text,2106,a4ee15d7dbd1b96f28efa5141f34bc63d64fde260c0c77167cb6bdf09370db09,
+tests/ui/session.test.tsx,Tests and QA tooling,,Text,13966,d3916244b0db60084b8f185114b14fbf2e7268efc064ae395b1a9b12cb5d75c1,
+tests/ui/windows-platform.test.tsx,Tests and QA tooling,,Text,4182,271d57bebd900089774539d2f1c1431228ab283953edba12e88dde6f2807086b,
+tests/ui/worker.test.ts,Tests and QA tooling,,Text,824,751923b655db79bcbaf6fbb029cf61e3c71774b71d1452f1867171d63c2f2a01,
+tests/ui/workspace-handoff.test.tsx,Tests and QA tooling,,Text,18727,3428d0c40aa156f6393a526cb252ebdc41fe2f03dc468bc50d93949246d27227,
+tests/ui/workspace.test.tsx,Tests and QA tooling,,Text,20042,056302e5223da49f05bf215e2a639ac0cc8e0aacbd75c77775f32376e77de388,
+tests/ui/zoom-geometry.test.tsx,Tests and QA tooling,,Text,1333,7b9d61e7c84731d469dfb4590d549d4d1d6f8514ba8d08d08534a437af4715f0,
+tests/worker-bundle.mjs,Tests and QA tooling,,Text,3041,074762beff86f265ce4c7c2003363928977cbd8b257b11a24c4703873aebd711,
+tsconfig.json,Project configuration and entry files,,Text,535,bd514c0fdf61748a71941e7ded932eb576efca738cc5aca92a462a40c1679d57,
+vite.config.ts,Project configuration and entry files,,Text,597,1841e2c68abf516c764e0f9f44b69350683e6ee316e02bc6cba6fc2e35f160a6,

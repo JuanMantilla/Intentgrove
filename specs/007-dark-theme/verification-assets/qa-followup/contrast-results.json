@@ -1,0 +1,545 @@
+{
+  "method": "Solid screenshot colors in reader/status region; native helper converts embedded color profile to sRGB. Does not establish every surface or antialiased pixel contrast.",
+  "rows": [
+    {
+      "state": "empty",
+      "theme": "light",
+      "pair": "primary text",
+      "source": "empty-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          32,
+          40,
+          38,
+          255
+        ],
+        "pixels": 6870
+      },
+      "background": {
+        "rgba": [
+          244,
+          245,
+          243,
+          255
+        ],
+        "pixels": 1085987
+      },
+      "threshold": 4.5,
+      "ratio": 13.785281508583298,
+      "result": "PASS"
+    },
+    {
+      "state": "empty",
+      "theme": "light",
+      "pair": "secondary text",
+      "source": "empty-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          82,
+          97,
+          92,
+          255
+        ],
+        "pixels": 4143
+      },
+      "background": {
+        "rgba": [
+          244,
+          245,
+          243,
+          255
+        ],
+        "pixels": 1085987
+      },
+      "threshold": 4.5,
+      "ratio": 5.957394729152985,
+      "result": "PASS"
+    },
+    {
+      "state": "empty",
+      "theme": "dark",
+      "pair": "primary text",
+      "source": "empty-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          229,
+          238,
+          234,
+          255
+        ],
+        "pixels": 6870
+      },
+      "background": {
+        "rgba": [
+          21,
+          27,
+          27,
+          255
+        ],
+        "pixels": 1085974
+      },
+      "threshold": 4.5,
+      "ratio": 14.73618437166574,
+      "result": "PASS"
+    },
+    {
+      "state": "empty",
+      "theme": "dark",
+      "pair": "secondary text",
+      "source": "empty-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          168,
+          185,
+          177,
+          255
+        ],
+        "pixels": 105
+      },
+      "background": {
+        "rgba": [
+          21,
+          27,
+          27,
+          255
+        ],
+        "pixels": 1085974
+      },
+      "threshold": 4.5,
+      "ratio": 8.501070662463437,
+      "result": "PASS"
+    },
+    {
+      "state": "reader",
+      "theme": "light",
+      "pair": "primary text",
+      "source": "reader-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          32,
+          40,
+          38,
+          255
+        ],
+        "pixels": 22989
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 919543
+      },
+      "threshold": 4.5,
+      "ratio": 15.076241883954369,
+      "result": "PASS"
+    },
+    {
+      "state": "reader",
+      "theme": "light",
+      "pair": "secondary text",
+      "source": "reader-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          82,
+          97,
+          92,
+          255
+        ],
+        "pixels": 2930
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 919543
+      },
+      "threshold": 4.5,
+      "ratio": 6.515291245882976,
+      "result": "PASS"
+    },
+    {
+      "state": "reader",
+      "theme": "dark",
+      "pair": "primary text",
+      "source": "reader-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          229,
+          238,
+          234,
+          255
+        ],
+        "pixels": 22989
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 919281
+      },
+      "threshold": 4.5,
+      "ratio": 12.595183533790552,
+      "result": "PASS"
+    },
+    {
+      "state": "reader",
+      "theme": "dark",
+      "pair": "secondary text",
+      "source": "reader-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          168,
+          185,
+          177,
+          255
+        ],
+        "pixels": 110
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 919281
+      },
+      "threshold": 4.5,
+      "ratio": 7.265961291399493,
+      "result": "PASS"
+    },
+    {
+      "state": "error",
+      "theme": "light",
+      "pair": "primary text",
+      "source": "error-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          32,
+          40,
+          38,
+          255
+        ],
+        "pixels": 9180
+      },
+      "background": {
+        "rgba": [
+          244,
+          245,
+          243,
+          255
+        ],
+        "pixels": 1102471
+      },
+      "threshold": 4.5,
+      "ratio": 13.785281508583298,
+      "result": "PASS"
+    },
+    {
+      "state": "error",
+      "theme": "light",
+      "pair": "secondary text",
+      "source": "error-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          82,
+          97,
+          92,
+          255
+        ],
+        "pixels": 3588
+      },
+      "background": {
+        "rgba": [
+          244,
+          245,
+          243,
+          255
+        ],
+        "pixels": 1102471
+      },
+      "threshold": 4.5,
+      "ratio": 5.957394729152985,
+      "result": "PASS"
+    },
+    {
+      "state": "error",
+      "theme": "dark",
+      "pair": "primary text",
+      "source": "error-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          229,
+          238,
+          234,
+          255
+        ],
+        "pixels": 9180
+      },
+      "background": {
+        "rgba": [
+          21,
+          27,
+          27,
+          255
+        ],
+        "pixels": 1102464
+      },
+      "threshold": 4.5,
+      "ratio": 14.73618437166574,
+      "result": "PASS"
+    },
+    {
+      "state": "error",
+      "theme": "dark",
+      "pair": "secondary text",
+      "source": "error-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          168,
+          185,
+          177,
+          255
+        ],
+        "pixels": 63
+      },
+      "background": {
+        "rgba": [
+          21,
+          27,
+          27,
+          255
+        ],
+        "pixels": 1102464
+      },
+      "threshold": 4.5,
+      "ratio": 8.501070662463437,
+      "result": "PASS"
+    },
+    {
+      "state": "editor",
+      "theme": "light",
+      "pair": "primary text",
+      "source": "editor-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          32,
+          40,
+          38,
+          255
+        ],
+        "pixels": 12827
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 980947
+      },
+      "threshold": 4.5,
+      "ratio": 15.076241883954369,
+      "result": "PASS"
+    },
+    {
+      "state": "editor",
+      "theme": "light",
+      "pair": "secondary text",
+      "source": "editor-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          82,
+          97,
+          92,
+          255
+        ],
+        "pixels": 4213
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 980947
+      },
+      "threshold": 4.5,
+      "ratio": 6.515291245882976,
+      "result": "PASS"
+    },
+    {
+      "state": "editor",
+      "theme": "dark",
+      "pair": "primary text",
+      "source": "editor-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          229,
+          238,
+          234,
+          255
+        ],
+        "pixels": 12719
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 981068
+      },
+      "threshold": 4.5,
+      "ratio": 12.595183533790552,
+      "result": "PASS"
+    },
+    {
+      "state": "editor",
+      "theme": "dark",
+      "pair": "secondary text",
+      "source": "editor-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          168,
+          185,
+          177,
+          255
+        ],
+        "pixels": 127
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 981068
+      },
+      "threshold": 4.5,
+      "ratio": 7.265961291399493,
+      "result": "PASS"
+    },
+    {
+      "state": "conflict",
+      "theme": "light",
+      "pair": "primary text",
+      "source": "conflict-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          32,
+          40,
+          38,
+          255
+        ],
+        "pixels": 18322
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 705426
+      },
+      "threshold": 4.5,
+      "ratio": 15.076241883954369,
+      "result": "PASS"
+    },
+    {
+      "state": "conflict",
+      "theme": "light",
+      "pair": "secondary text",
+      "source": "conflict-640-es-light.png",
+      "foreground": {
+        "rgba": [
+          82,
+          97,
+          92,
+          255
+        ],
+        "pixels": 2651
+      },
+      "background": {
+        "rgba": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "pixels": 705426
+      },
+      "threshold": 4.5,
+      "ratio": 6.515291245882976,
+      "result": "PASS"
+    },
+    {
+      "state": "conflict",
+      "theme": "dark",
+      "pair": "primary text",
+      "source": "conflict-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          229,
+          238,
+          234,
+          255
+        ],
+        "pixels": 18430
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 705426
+      },
+      "threshold": 4.5,
+      "ratio": 12.595183533790552,
+      "result": "PASS"
+    },
+    {
+      "state": "conflict",
+      "theme": "dark",
+      "pair": "secondary text",
+      "source": "conflict-640-es-dark.png",
+      "foreground": {
+        "rgba": [
+          168,
+          186,
+          176,
+          255
+        ],
+        "pixels": 2651
+      },
+      "background": {
+        "rgba": [
+          32,
+          41,
+          40,
+          255
+        ],
+        "pixels": 705426
+      },
+      "threshold": 4.5,
+      "ratio": 7.319912985811533,
+      "result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npm run build`
+
+> md-reader@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 289 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                  0.40 kB │ gzip:   0.27 kB
+dist/assets/markdownBudget.worker-DUwt_vv7.js  138.55 kB
+dist/assets/index-B2GK8wdD.css                  14.22 kB │ gzip:   3.67 kB
+dist/assets/index-Blkv7lky.js                  747.46 kB │ gzip: 235.16 kB
+
+✓ built in 1.17s
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling md_reader v0.1.0 (/Users/juanmantilla/projects/personal/md-reader/src-tauri)
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src/refresh.rs:125:12
+    |
+ 55 | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_page` is never used
+   --> src/scope.rs:217:8
+    |
+217 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: `md_reader` (lib) generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 4m 17s
+       Built application at: /Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/md_reader
+    Bundling Markdown workspace.app (/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Markdown workspace.app)
+    Finished 1 bundle at:
+        /Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Markdown workspace.app
+

@@ -1,0 +1,64 @@
+{
+  "files_edited_by_this_pass": [
+    "src/app/App.tsx",
+    "src/app/i18n.ts",
+    "src/app/ActionMenu.tsx",
+    "src/app/FolderSearchPanel.tsx",
+    "src/styles/app.css",
+    "tests/ui/workspace-handoff.test.tsx",
+    "tests/ui/folder-search.test.tsx",
+    "tests/ui/manual-reload.test.tsx",
+    "tests/fixtures/redesign-preview.tsx",
+    "specs/006-view-local-images/tasks.md",
+    "specs/006-view-local-images/verification.md"
+  ],
+  "new_files_created_by_this_pass": [
+    "src/app/ReloadFeedback.tsx",
+    "tests/ui/action-menu.test.tsx",
+    "tests/ui/reload-feedback.test.tsx",
+    "specs/006-view-local-images/frontend-maintenance-2026-10-05.md"
+  ],
+  "shared_files_also_edited_concurrently": [
+    "src/app/App.tsx",
+    "src/app/i18n.ts"
+  ],
+  "concurrent_changes_observed_not_edited_by_this_pass": [
+    "src-tauri/Cargo.toml",
+    "src-tauri/Cargo.lock",
+    "src-tauri/tests/automatic_refresh.rs",
+    "src-tauri/tests/refresh_version.rs",
+    "src-tauri/tests/manual_reload.rs",
+    "src-tauri/tests/refresh_conflict.rs",
+    "src-tauri/tests/refresh_recovery.rs",
+    "src-tauri/src/listing.rs",
+    "src-tauri/src/session.rs",
+    "src-tauri/src/save_copies.rs",
+    "src-tauri/src/large_source.rs",
+    "src-tauri/src/editing.rs",
+    "src-tauri/src/recovery.rs",
+    "src-tauri/src/lib.rs",
+    "src-tauri/src/recents.rs",
+    "src-tauri/src/scope.rs",
+    "src-tauri/src/image.rs",
+    "src-tauri/src/document.rs",
+    "src-tauri/src/native_entry.rs",
+    "specs/013-windows-desktop/review.md",
+    "specs/013-windows-desktop/review.json",
+    "specs/013-windows-desktop/checklists/requirements.md"
+  ],
+  "concurrent_new_files_not_created_by_this_pass": [
+    "src/app/platform.ts",
+    "src-tauri/tauri.windows.conf.json",
+    "src-tauri/tests/windows_scoped.rs",
+    "src-tauri/src/platform/windows_path.rs",
+    "src-tauri/src/platform/macos.rs",
+    "src-tauri/src/platform/mod.rs",
+    "src-tauri/src/platform/windows.rs",
+    "src-tauri/src/platform/macos_save.rs",
+    "src-tauri/src/platform/storage.rs",
+    "src-tauri/src/platform/windows_storage.rs",
+    "specs/013-windows-desktop/tasks.md"
+  ],
+  "unchanged_design_artifact_count": 156,
+  "notes": "Git baseline is untracked. frontend.patch is a current delta against captured source copies; shared files include concurrent platform changes. No native files were edited by this pass. Current renderer source is fingerprinted separately."
+}

@@ -1,0 +1,54 @@
+# Local secrets and machine-specific state
+.env
+.env.*
+!.env.example
+.codex/
+.aws/
+.ssh/
+*.p12
+*.pfx
+.codegraph/
+/.specify/feature.json
+
+# Dependencies, caches and generated build outputs
+node_modules/
+.venv/
+target/
+dist/
+build/
+/src-tauri/gen/
+coverage/
+test-results/
+playwright-report/
+artifacts/
+.mac-build.*/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.tsbuildinfo
+
+# Generated desktop bundles, installers and their checksums
+*.app/
+*.dmg
+*.dmg.sha256
+*.exe
+*.msi
+*.msix
+*.msixbundle
+*.pkg
+*.deb
+*.rpm
+*.AppImage
+
+# Local logs and OS/editor temporary files
+*.log
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+# Keep .agents/skills, .specify templates, approved specs and lockfiles tracked.

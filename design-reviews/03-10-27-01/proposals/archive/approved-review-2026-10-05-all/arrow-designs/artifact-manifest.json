@@ -1,0 +1,52 @@
+{
+  "status": "APPROVED DESIGN — OPTION D SELECTED",
+  "date": "2026-10-04",
+  "preferred_navigation_direction": "Back/Forward arrows",
+  "selected_visual_variant": "D — Beside the tabs",
+  "variants": [
+    "A — Joined control",
+    "B — Minimal icons",
+    "C — Labeled buttons",
+    "D — Beside the tabs"
+  ],
+  "scope": "Revised design package approved, including shared file-navigation/history. Arrow D selected; A/B/C are unselected references. Runtime verification remains separate.",
+  "artifact_sha256": {
+    "STATE.md": "10a126479bc2a066840f36c996baf043498eff9c2ff1491cb24ae3381e19d031",
+    "contrast-measurements.md": "b01e829bef8c4d7cf0ca71e05bc12ddfbc43ec9b61447d027678620f20490ece",
+    "design-spec.md": "b282e18f8001da1cb6023e5afacbaedeaa0fd3066131a63bd44433ac937d23af",
+    "index.html": "b53562302dc1174e27cc2a27d57562ec57a6faa4f1f088975376f9d0c54701ca",
+    "mockups/A-joined-control.svg": "bcce3d92189ed0c97f7821e2d2849e22c086454eeed419fadaf241fbba6530c1",
+    "mockups/B-minimal-icons.svg": "080e5851690371a201e3569698f3935cc4558e707b1ae6a220fcb0d72d4bbc80",
+    "mockups/C-labeled-buttons.svg": "4fb37a64ced2cf633b8b3a318934d5d8945697863725d50066fadc6d21c976a0",
+    "mockups/D-tab-strip.svg": "7d9c3e8820ea12fe1dd99592150fa897b45d294c3bf325ef406387a5ca3c8b97",
+    "mockups/E-control-states.svg": "4a50ef72aafa3d6e3855bca5ed980cf0d0536d94ec15774c61835f7bfa9f1bc9",
+    "mockups/F-narrow-comparison.svg": "5a352178777c74ee2029832f7966407f4c32090ad5155b7392374960e4e1d21e"
+  },
+  "checks": {
+    "six_svg_files_parse": "PASS",
+    "six_compositions_visually_reviewed": "PASS — disposable AppKit primitive previews; approximate system fonts",
+    "four_640_by_480_reference_frames": "PASS",
+    "19_selected_opaque_color_pairs": "PASS",
+    "all_current_local_proposal_gallery_document_links": "PASS (223 links/anchors)",
+    "original_16_mockups_approval_records_app_spec_test_bytes": "PASS (568 fingerprints)",
+    "withdrawn_alternative_directory_removed": "PASS",
+    "SVG_only_mockup_deliverables": "PASS",
+    "native_keyboard_focus_commands_targets": "NOT TESTED",
+    "native_access_and_routing": "NOT TESTED",
+    "draft_and_reading_position_restoration": "NOT TESTED",
+    "EN_ES_200_percent_reflow_VoiceOver": "NOT TESTED",
+    "usability": "NOT TESTED",
+    "all_current_local_document_gallery_links": "PASS (223 links/anchors)",
+    "approval_snapshot_reviewed_hashes": "PASS (40 files)",
+    "resolved_approval_handoff_hashes": "PASS",
+    "all_22_svg_and_historical_partial_records_unchanged": "PASS"
+  },
+  "limitations": [
+    "Static SVG compositions are proposals, not live application screenshots.",
+    "No application code inspected or changed in this phase.",
+    "Native point mapping, actual focus/hover/disabled semantics and runtime behavior unverified.",
+    "Recommendation is a design judgment, not a measured user outcome."
+  ],
+  "approval_record": "../approval-option-D.json",
+  "historical_recommended_visual_variant": "A — Joined control"
+}

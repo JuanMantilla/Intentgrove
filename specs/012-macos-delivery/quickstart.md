@@ -1,0 +1,3 @@
+# F005 verification guide
+
+Use a disposable test user/workspace and a locally built DMG. Record host macOS/CPU, app/DMG/executable hashes, plist associations, codesign and Gatekeeper output. Mount DMG, copy to Applications, eject and launch without dev tools. Test Finder Open With cold/warm for `.md`/`.markdown` and F006 formats only if approved, drag file/folder/unsupported/symlink, five Close/Quit routes with clean/dirty/failure states and Dock Reopen after last-window close. Compare fixture hashes and app-data state. Check native menus/EN/ES keyboard at narrow width. Produce full v1 matrix with PASS/FAIL/BLOCKED/NOT TESTED; ad-hoc results do not claim notarization/public distribution.

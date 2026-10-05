@@ -1,0 +1,34 @@
+{
+  "platform": "macOS 26.2 (25C56) arm64",
+  "artifactExecutableSHA256": "4f50089cffac345c56fe394c1a386a1baaa569216e3899cdd965c20be42ff067",
+  "focusedRegression": {
+    "command": "npm test -- --run tests/ui/appearance.test.tsx tests/ui/appearance-editor.test.tsx tests/ui/appearance-contrast.test.ts",
+    "result": "PASS",
+    "files": 3,
+    "tests": 70,
+    "durationSeconds": 1.3
+  },
+  "signature": {
+    "command": "codesign --verify --deep --strict src-tauri/target/release/bundle/macos/Markdown workspace.app",
+    "exitCode": 0
+  },
+  "nativeLayoutCases": 56,
+  "layoutStates": [
+    "empty",
+    "reader",
+    "error",
+    "editor",
+    "conflict",
+    "close-dialog",
+    "recovery"
+  ],
+  "contrastSamples": 20,
+  "minimumSampledTextContrast": 5.957394729152985,
+  "requestObserver": {
+    "command": "/usr/bin/fs_usage -w -f network -t 2 5774",
+    "exitCode": 1,
+    "output": "'fs_usage' must be run as root...",
+    "result": "BLOCKED"
+  },
+  "scope": "Follow-up in the existing conversation; not independent review. No production changes."
+}

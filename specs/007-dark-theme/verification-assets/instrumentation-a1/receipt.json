@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "date": "2026-09-28",
+  "phase": "A1 QA harness and startup recorder implementation",
+  "platform": "macOS 26.2 (25C56), arm64; Swift 6.1.2; SDK 15.5",
+  "approval": "docs/approvals.md: F002A A1 approved \u2014 2026-09-28",
+  "results": {
+    "existingUI": "PASS: 148 tests / 18 files",
+    "qaAdapters": "PASS: 3 tests",
+    "nativeRegression": "PASS: 126; 7 existing ignored",
+    "nativeHarness": "PASS: 10 tests",
+    "evidenceAndLauncher": "PASS: 14 tests",
+    "buildRejections": "PASS: 4 configurations",
+    "typecheck": "PASS",
+    "worker": "PASS",
+    "packages": "PASS: production/QA built and ad-hoc signatures verified",
+    "qaPackageSmoke": "PASS: native channel and renderer, no documents opened",
+    "recorder": "PASS: compile and native clock self-test only",
+    "liveDisplayCapture": "NOT TESTED",
+    "freshProductionRuntime": "NOT TESTED: existing user session left running",
+    "nativeAcceptance": "NOT TESTED this phase; T015/T018\u2013T021 remain open",
+    "productionRequestObserver": "BLOCKED; excluded from this implementation batch"
+  },
+  "packages": {
+    "production": {
+      "path": "src-tauri/target/release/bundle/macos/Markdown workspace.app/Contents/MacOS/md_reader",
+      "sha256": "03ef5f661cb3dfa19873469e504389a90ae690b38523ef9bf957023fa3c29d55"
+    },
+    "qa": {
+      "path": "target/qa-native/release/bundle/macos/Markdown workspace QA.app/Contents/MacOS/md_reader",
+      "sha256": "ff569ffe0565b48f23684de9884b39f64d641864c5c3a15db017a423b9b2bbb3"
+    },
+    "recorder": {
+      "path": "target/acceptance-tools/startup-recorder",
+      "sha256": "9482fa3e0dfa82145090913c48cad3816fb9cb650d7f2ad1a4e7c8175973bcab"
+    },
+    "flash": {
+      "path": "target/acceptance-tools/startup-flash",
+      "sha256": "c10cb4a6ad421d630185626cde5e53dddbce220aca5f405846b8269a02c2db6e"
+    }
+  },
+  "sourceHashes": {
+    "src-tauri/Cargo.toml": "1f67e4cc874559e632c8a497206d105ed0ff4db7228c828e8a87210bfa5877cb",
+    "src-tauri/build.rs": "cc29e6c6d34a3ad5d2941920c75d791c7a4a246e2753713674b321d3cca1a90a",
+    "src-tauri/src/acceptance_harness.rs": "37262727becf6ce5819abf82e8df4b98b4aa1f69d100a8cf74287c8518610ffd",
+    "src-tauri/src/document.rs": "2591f7632fdbed0c8fb42349e8f5c3e773af21a10327b1bae6a410d965cd82b6",
+    "src-tauri/src/editing.rs": "a467e9f74e8c2d048d73f0d47a66c6ac1b9643164b2401675f053403cf193785",
+    "src-tauri/src/lib.rs": "cb6f0493c95ede9525b747ed2dd618befcebcb3a8571afc29f20d2bbe4bf8bcc",
+    "src-tauri/src/refresh.rs": "e125cee0af0fd1782302038e6ca1084674c209a855ba8b5d15d5a1fb8be819be",
+    "tests/acceptance/.gitignore": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+    "tests/acceptance/README.md": "76a4a44200354122e2576a557f5ffbfed33cdcca77fab69ffaddca7dc57086e8",
+    "tests/acceptance/build_qa.sh": "f1366c955f9577a6988a500bf4860baba0be30703d1ee6f274e7f5bae0c3a405",
+    "tests/acceptance/check_build_boundary.py": "9d392a613a9df1800e4b405a90278d35bd6b36ca274145cf5716a81ca2b3a168",
+    "tests/acceptance/check_build_guards.py": "31c4d6a19ea51dc58a764e538f2ca8bf8d98c18c26b3e537721c5ef13d8d48bd",
+    "tests/acceptance/f002a_evidence.py": "626bf732ee360cc2356e62468fb1ca66153c1c052424838c82ff660828436b10",
+    "tests/acceptance/qa/bridge.ts": "615623dd8f67537b63ff757745d3fb468a86db423739b67876f4be3dd8e74eb7",
+    "tests/acceptance/qa/main.ts": "01346c916bd01148aa037e0f3c1144abdbdea3b4238e3669d34cd18c55326468",
+    "tests/acceptance/qa/tauri.conf.json": "8ca2f57915d092b51b7d27a20ce39d20a936fdb08409dbf5cac8606e9e76c887",
+    "tests/acceptance/qa/vite.config.ts": "326101d4a4e99cba7243f79d59d1f313e448619de6337314a58a08a6c37b4706",
+    "tests/acceptance/qa_runner.py": "4bb2a6306ae807612e8a813c9fb795a60524b6ec14ac7e7fb785023660adddd1",
+    "tests/acceptance/qa_smoke.py": "c96cf06519c89954e6af27aec80fd9ec07e9e462a2c5238eba2395263820143f",
+    "tests/acceptance/startup-flash.swift": "a0abeded021e3e3e883462ac0331e075c8657bb6a4f1387fddc7be1eca785a8c",
+    "tests/acceptance/startup-recorder.swift": "2e62b41b63e6a23a17b5cffc85178573e8c202760010d6e7347b82dfc607e79a",
+    "tests/acceptance/startup_trial.py": "7a7f2df92e8a949dd468defd4f4dbbb17d9fed9fa2490e7a98142e6c7e08d276",
+    "tests/acceptance/templates/requests.json": "f25477e1f75e92dd8b616588675fa3c93f2966493ad93b5614b8018c64264b60",
+    "tests/acceptance/templates/startup.json": "33162d184878200d6043da03305dbe2b317688ec136761fc67491fee8f8dcea2",
+    "tests/acceptance/test_f002a_evidence.py": "6259bcec30bd45c1e9dec49d01b7d62f0f97c1bde70f078ed8c532e9b6af599c",
+    "tests/acceptance/test_startup_tools.py": "f6aedd6f79fa91ebda090ffb2dcb084ce192fec5e6939a31ff50535f3824ff19",
+    "tests/ui/qa-adapters.test.ts": "483d30705f489da27a2d401ab3215b2db3f25555379ff76d433970ce7004e57c"
+  },
+  "unchangedProtectedHashes": {
+    "src/main.tsx": "5be95159c7cf1cb52cb07ba463feb9ce18d65c3f37648a10d060701e689300a7",
+    "src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "src/reader/markdownBudget.worker.ts": "1fd3214f14d48803e5da1552f6b8c1e0e383127435d52d4d82c3f9d9c977abbd",
+    "src/reader/SectionEditor.tsx": "238825a7a25796fda842b4fe96ab3d631f351cf46f62e7f9a9fc42b000a28d62",
+    "src/reader/MarkdownView.tsx": "8a14f0dd6c251f344f5097a8a07bf8f068d4f419808978cb1059e0658488370f",
+    "src/reader/sectionMap.ts": "021fa2434973c00c7d01dee46f3d1f49408c8d74bea4dc540447fcb1a3267937",
+    "src/app/appearance.ts": "ca92e6f44a6e9d6c0b2e48d0314afbd590921463dd4361ae88d617b5bf73bdc9",
+    "src/app/App.tsx": "27ea5d9cdd839bbbde8dc461f5d726244136994d4093209fe16d1694c4b214aa",
+    "src/app/i18n.ts": "3e232fa375b1635559df8799c06f53968cafb0b6db3f43d87be3d36eb6605684",
+    "src/app/api.ts": "ff92d9a16e28ec17c72e8041aa621f8ae3c8469aed7665c27a1369a52398198c",
+    "src/workspace/editState.ts": "0ba9181f734e10b8afcb8c5be2e56fc688adac0738d7e1a66b78842e8e11071e",
+    "src/workspace/refreshState.ts": "c4242a890d287d8aada5f8b3aa30d2c99f380fb73e827a902839b8cc7fa48590",
+    "src/styles/app.css": "f3cda6ece3c439be6c3b4fc158925caceb61d56806e22bf76adf8340d1435442",
+    "src-tauri/capabilities/main.json": "4db63c35c885ae81b671afe6353fde3661a79bb668e2482a3630de0049e51efb",
+    "src-tauri/Cargo.lock": "9f38bdf00d1b0ef1e2d32e32340005663ef1aba55f47d0368e98fd3a5ec5e13e",
+    "src-tauri/tauri.conf.json": "9b52d54738da4a073d72d6d45f99d3ca7f87eca49308deb152045e7a1f6c8507",
+    "package-lock.json": "276bd86c90b2e7a660f523b3ac62988f7ba7ebce60f620b07532f70e18af859a",
+    "specs/007-dark-theme/spec.md": "79ab557c930b001f40bc9f4bd128a9040e8b07abb676550c55972dafc49aa5b6",
+    "specs/007-dark-theme/design.md": "cba99ae6674f33a109de890fe75830056ec0358b46df7b6ed58611f07eacf592"
+  },
+  "evidence": {
+    "evidence-tests.txt": "61ed70cbf74aeb8bebb69325d71e04ff5f731b534a2985b95c780c5575e50543",
+    "ui-regression.txt": "2db0c2fa6d5ca2fd44e0022033e77173771e420690a39146007d499e7182638e",
+    "qa-protocol.jsonl": "5408c15e976fc458a4977a0615ba5e8b612555f726caa080516e29618f61b516",
+    "native-regression.txt": "14e50b9d270c6dfba6e27feae8d392bef1a5368d2cb1b349852076f9a1fd9b9f",
+    "harness-tests.txt": "7d2fe0b34bf01f365e525119d309c0b830415d25d324664a6f69e61c2685ef23",
+    "qa-package.txt": "09ac5913bc43580f8178937e52fbf541a6f2d85fcc61d6fd27e0c37f538dadb0",
+    "qa-smoke.json": "657c5fd62d843cc8680eecac506dbb44321601d4f748ba73aa75f092486e7d97",
+    "production-package.txt": "b9b29ff27568f9eb3d5ecf6d0762932d492172ec9978afcbbf19390159c8b662",
+    "flash-build.txt": "b25b5b369b0cc7b7ac5deb96d7e32a5a417b2c43cde5f76735c0c1cc01b7c9ae",
+    "worker.txt": "85b204698f707812b97c904cc1f2f2e9401f341d92f9d4399a211468a9295087",
+    "qa-adapters.txt": "3bcf4dcfa411887831ddc5f0dee52a381bbb514371a7988611a412d54d484214",
+    "build-guards.json": "b5ede855cf34bc3eba241a650d63d1c5fb8a386ecd3a54198c4214002e4ddc45",
+    "package-boundary.txt": "3f4679ca6d964046164a424005f421e1cc49ad63862f28bd5cbf7b2d61777909",
+    "recorder-clock.json": "b95fb9a6961dcd8b67de516912d161aae0ea0c1f500d0ac87cd2a2bce21a9cc4"
+  },
+  "limitations": [
+    "No actual capture/flash calibration or ten-startup series run",
+    "Native gates establish pending-command overlap, not physical write-syscall overlap",
+    "Independent security/QA review remains required before acceptance",
+    "No T021 request observer was implemented"
+  ]
+}

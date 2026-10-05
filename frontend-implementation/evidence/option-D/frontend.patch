@@ -1,0 +1,1774 @@
+--- before/src/app/ActionMenu.tsx
++++ after/src/app/ActionMenu.tsx
+@@ -0,0 +1,55 @@
++import { useEffect, useLayoutEffect, useRef, useState } from "react";
++
++export interface MenuAction { label: string; run: () => void; disabled?: boolean; hint?: string; reason?: string }
++export default function ActionMenu({ anchor, x, y, actions, onClose }: {
++  anchor: HTMLElement; x: number; y: number; actions: MenuAction[]; onClose: () => void;
++}) {
++  const panel = useRef<HTMLDivElement>(null);
++  const closing = useRef(onClose); closing.current = onClose;
++  const [position, setPosition] = useState({ x, y });
++  useLayoutEffect(() => {
++    const bounds = panel.current?.getBoundingClientRect();
++    setPosition({ x: Math.max(8, Math.min(x, window.innerWidth - (bounds?.width ?? 0) - 8)),
++      y: Math.max(8, Math.min(y, window.innerHeight - (bounds?.height ?? 0) - 8)) });
++  }, [x, y]);
++  useEffect(() => {
++    panel.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
++    const dismiss = () => { closing.current(); if (anchor.isConnected) anchor.focus(); };
++    const outside = (event: PointerEvent) => {
++      if (!panel.current?.contains(event.target as Node) && !anchor.contains(event.target as Node)) dismiss();
++    };
++    const escape = (event: KeyboardEvent) => {
++      if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); dismiss(); }
++    };
++    const resize = () => dismiss();
++    const blur = () => closing.current();
++    const scroll = (event: Event) => { if (!panel.current?.contains(event.target as Node)) dismiss(); };
++    window.addEventListener("keydown", escape);
++    window.addEventListener("pointerdown", outside);
++    window.addEventListener("resize", resize); window.addEventListener("blur", blur);
++    window.addEventListener("scroll", scroll, true);
++    return () => { window.removeEventListener("keydown", escape); window.removeEventListener("pointerdown", outside); window.removeEventListener("resize", resize); window.removeEventListener("blur", blur);
++      window.removeEventListener("scroll", scroll, true); };
++  }, [anchor]);
++  return <div ref={panel} className="context-menu action-menu" role="menu" style={{ left: position.x, top: position.y }}
++    onKeyDown={(event) => {
++      const buttons = Array.from(panel.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") ?? []);
++      const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
++      if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
++        event.preventDefault();
++        const next = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1
++          : (current + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length;
++        buttons[next]?.focus();
++      } else if (event.key === "Escape" || event.key === "Tab") {
++        if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); }
++        onClose(); if (anchor.isConnected) anchor.focus();
++      }
++    }}>
++    {actions.map((action) => <div key={action.label}>
++      <button type="button" role="menuitem" aria-label={action.label} disabled={action.disabled} aria-description={action.reason}
++        onClick={() => { onClose(); if (anchor.isConnected) anchor.focus(); action.run(); }}>
++        <span>{action.label}</span>{action.hint && <span className="menu-shortcut" aria-hidden="true">{action.hint}</span>}
++      </button>{action.reason && <div className="context-menu-reason">{action.reason}</div>}
++    </div>)}
++  </div>;
++}
+--- before/src/app/App.tsx
++++ after/src/app/App.tsx
+@@ -5,13 +5,16 @@
+ import { useAppearance, type AppearanceMode } from "./appearance";
+ import { useRetainedOverlay } from "./useRetainedOverlay";
+ import MarkdownView, { exceedsRenderBudget, headingSlug } from "../reader/MarkdownView";
+-import ImageView from "../reader/ImageView";
++import ImageView, { type ImageViewState } from "../reader/ImageView";
++import { boundZoom, usePinchZoom, zoomRect, normalizeZoomRect } from "../reader/usePinchZoom";
++import { emptyHistory, recordVisit, updateVisit, type VisitHistory } from "../workspace/visitHistory";
+ import SectionEditor, { type DraftFindAdapter } from "../reader/SectionEditor";
+ import LargeSourceView from "../reader/LargeSourceView";
+ import FolderSearchPanel from "./FolderSearchPanel";
+ import WorkspaceDialog from "./WorkspaceDialog";
+ import StorageManagement from "./StorageManagement";
+ import DocumentLocation from "./DocumentLocation";
++import ActionMenu from "./ActionMenu";
+ import { tabFilename, distinguishingParent, workspaceSegments } from "./documentIdentity";
+ import { editReducer, type SectionEdit } from "../workspace/editState";
+ import { confirmCleanDocument, confirmDirectoryPage, noteDirectoryChange, noteFileChange, type Freshness } from "../workspace/refreshState";
+@@ -57,6 +60,7 @@
+   largeOpened?: LargeOpened;
+   largeConsent?: boolean;
+ }
++type VisitTarget = Pick<Tab, "id" | "request" | "name" | "displayPath" | "kind" | "explicitFile"> & { imageView?: ImageViewState; zoom?: number };
+ 
+ type ReloadMenu = { target: RefreshTarget; label: string; x: number; y: number; anchor: HTMLElement };
+ type ReloadJobView = { target: RefreshTarget; progress: RefreshJobProgress };
+@@ -98,6 +102,7 @@
+   const [clearCopiesConfirm, setClearCopiesConfirm] = useState(false);
+   const [safetyCopies, setSafetyCopies] = useState<SafetyCopyInventory | null>(null);
+   const [documentsOpen, setDocumentsOpen] = useState(false);
++  const [projectsMenu, setProjectsMenu] = useState<{ anchor: HTMLElement; x: number; y: number } | null>(null);
+   const [storageOpen, setStorageOpen] = useState(false);
+   const [storageLoading, setStorageLoading] = useState(false);
+   const [cleanupBusy, setCleanupBusy] = useState(false);
+@@ -125,8 +130,22 @@
+   const sessionSequence = useRef(0);
+   const sessionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+   const sessionWrite = useRef<Promise<unknown>>(Promise.resolve());
+-  const restoreLoads = useRef(new Set<string>());
++  const restoreLoads = useRef(new Map<string, symbol>());
+   const imageLoads = useRef(new Map<string, symbol>());
++  const documentLoads = useRef(new Map<string, symbol>());
++  const openSequence = useRef(0);
++  const [history, setHistory] = useState<VisitHistory<VisitTarget>>(emptyHistory);
++  const historyRef = useRef(history);
++  const traversal = useRef<symbol | null>(null);
++  const [goMenu, setGoMenu] = useState<{ anchor: HTMLElement; x: number; y: number } | null>(null);
++  const [historyDirection, setHistoryDirection] = useState<-1 | 1 | null>(null);
++  const [historyBusy, setHistoryBusy] = useState(false);
++  const [historyOpen, setHistoryOpen] = useState(false);
++  const [historyAnnouncement, setHistoryAnnouncement] = useState("");
++  const imageViews = useRef(new Map<string, ImageViewState>());
++  const documentZooms = useRef(new Map<string, number>());
++  const [zoomRevision, setZoomRevision] = useState(0);
++  const documentZoomAnchor = useRef<{ id: string; reader: HTMLDivElement; anchor: HTMLElement; x: number; y: number; point: { x: number; y: number }; next: number } | null>(null);
+   const draggedTab = useRef<string | null>(null);
+   const restoredDisposition = useRef<"running" | "normal">("normal");
+   const closeInProgress = useRef(false);
+@@ -166,9 +185,14 @@
+     setReadingSettings(next);
+   }
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
++  const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+   const [sidebarWidth, setSidebarWidth] = useState(264);
++  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
++  const [compactSidebarOpen, setCompactSidebarOpen] = useState(false);
++  const compactSidebar = viewportWidth < sidebarWidth + 480;
++  const sidebarVisible = compactSidebar ? compactSidebarOpen : sidebarOpen;
+   const sidebarWidthRef = useRef(264);
+   const pendingTreeScroll = useRef<number | null>(null);
+   const [markdownOnly, setMarkdownOnly] = useState(true);
+@@ -189,13 +213,11 @@
+   const menuActionRef = useRef<(id: string) => void>(() => {});
+   const findRootRef = useCallback((node: HTMLElement | null) => setFindRoot(node), []);
+   const [reloadMenu, setReloadMenu] = useState<ReloadMenu | null>(null);
+-  const reloadMenuRef = useRef<HTMLDivElement>(null);
+-  const reloadOverlay = useRetainedOverlay(reloadMenu, 90);
+   const [reloadJobs, setReloadJobs] = useState<Record<string, ReloadJobView>>({});
+   const [reloadResults, setReloadResults] = useState<Record<string, { state: RefreshItemStatus["state"]; reasonCode?: string }>>({});
+   const progressRef = useRef(new Map<string, RefreshJobProgress>());
+   const directoriesRef = useRef(directories);
+-  const [pendingAnchor, setPendingAnchor] = useState<string | null>(null);
++  const [pendingAnchor, setPendingAnchor] = useState<{ fileId: string; anchor: string } | null>(null);
+   const [busy, setBusy] = useState(false);
+   const readerRef = useRef<HTMLDivElement>(null);
+   const toolbarRef = useRef<HTMLElement>(null);
+@@ -377,7 +399,8 @@
+       panel: { ...defaultSessionPanel, ...readingSettingsRef.current, sidebarOpen: sidebarOpenRef.current,
+         outlineOpen,
+         sidebarWidth: Math.min(800, Math.max(160,
+-          document.querySelector<HTMLElement>(".sidebar")?.getBoundingClientRect().width
++          (window.innerWidth < sidebarWidthRef.current + 480 ? sidebarWidthRef.current
++            : document.querySelector<HTMLElement>(".sidebar")?.getBoundingClientRect().width)
+             || sidebarWidthRef.current)) }
+     }, ++sessionSequence.current);
+   }
+@@ -515,24 +538,34 @@
+     if (!tab?.request.fileId || (tab.kind !== "image" && !tab.restoredKey)
+       || tab.content !== undefined || tab.image || tab.imageLoading || tab.largeInspection || tab.errorCode
+       || restoreLoads.current.has(tab.id)) return;
+-    restoreLoads.current.add(tab.id);
++    const token = Symbol("restored file load");
++    restoreLoads.current.set(tab.id, token);
+     const generation = generationRef.current;
++    const owned = () => generation === generationRef.current && restoreLoads.current.get(tab.id) === token;
+     if (imageName(tab.name)) {
++      imageLoads.current.set(tab.id, token);
++      setTabs((old) => old.map((item) => item.id === tab.id ? { ...item, imageLoading: true } : item));
+       void api.openImage({ fileId: tab.request.fileId }).then((image) => {
+-        if (generation !== generationRef.current) return;
++        if (generation !== generationRef.current || imageLoads.current.get(tab.id) !== token) return;
+         setTabs((old) => old.map((item) => item.id === tab.id ? {
+-          ...item, kind: "image", image, identityKey: image.identityKey,
++          ...item, kind: "image", image: activeIdRef.current === tab.id ? image : undefined, imageLoading: false, identityKey: image.identityKey,
+           diskVersion: image.diskVersion, name: image.name, displayPath: image.displayPath,
+           freshness: "current", errorCode: undefined
+         } : item));
+       }).catch((error) => {
+-        if (generation === generationRef.current) setTabs((old) => old.map((item) => item.id === tab.id
+-          ? { ...item, kind: "image", errorCode: readerError(error).code } : item));
+-      }).finally(() => restoreLoads.current.delete(tab.id));
++        if (generation === generationRef.current && imageLoads.current.get(tab.id) === token)
++          setTabs((old) => old.map((item) => item.id === tab.id
++            ? { ...item, kind: "image", imageLoading: false, errorCode: readerError(error).code } : item));
++      }).finally(() => {
++        if (imageLoads.current.get(tab.id) === token) imageLoads.current.delete(tab.id);
++        if (restoreLoads.current.get(tab.id) === token) restoreLoads.current.delete(tab.id);
++      });
+       return;
+     }
++    documentLoads.current.set(tab.request.fileId, token);
++    const current = () => owned() && documentLoads.current.get(tab.request.fileId!) === token;
+     void api.readDocument({ fileId: tab.request.fileId }).then((document) => {
+-      if (generation !== generationRef.current) return;
++      if (!current()) return;
+       setTabs((old) => old.map((item) => item.id === tab.id ? {
+         ...item, identityKey: document.identityKey, content: document.content,
+         diskVersion: document.diskVersion, name: document.name, displayPath: document.displayPath,
+@@ -540,21 +573,21 @@
+         errorCode: undefined
+       } : item));
+       if (typeof api.loadSectionRecovery === "function") {
+-        void api.loadSectionRecovery(tab.request.fileId!).then((recovery) => {
+-          if (!recovery || generation !== generationRef.current) return;
++        return api.loadSectionRecovery(tab.request.fileId!).then((recovery) => {
++          if (!recovery || !current()) return;
+           setPendingRecoveries((old) => ({ ...old, [tab.id]: recovery }));
+           if (recovery.conflict) setTabs((old) => old.map((item) => item.id === tab.id
+             ? { ...item, freshness: "conflict" } : item));
+           if (restoredDisposition.current === "normal" && tab.editingActive)
+             activateRecovery(tab.id, recovery);
+-        }).catch((error) => setNotice(errorText(localeRef.current, readerError(error).code)));
++        }).catch((error) => { if (current()) setNotice(errorText(localeRef.current, readerError(error).code)); });
+       }
+     }).catch(async (error) => {
+-      if (generation !== generationRef.current) return;
++      if (!current()) return;
+       if (readerError(error).code === "oversize") {
+         try {
+           const inspected = await api.inspectLargeFile({ fileId: tab.request.fileId });
+-          if (generation === generationRef.current) setTabs((old) => old.map((item) => item.id === tab.id
++          if (current()) setTabs((old) => old.map((item) => item.id === tab.id
+             ? { ...item, largeInspection: inspected, name: inspected.name,
+               displayPath: inspected.displayPath, errorCode: undefined } : item));
+           return;
+@@ -562,7 +595,10 @@
+       }
+       setTabs((old) => old.map((item) => item.id === tab.id
+         ? { ...item, errorCode: readerError(error).code } : item));
+-    }).finally(() => restoreLoads.current.delete(tab.id));
++    }).finally(() => {
++      if (restoreLoads.current.get(tab.id) === token) restoreLoads.current.delete(tab.id);
++      if (documentLoads.current.get(tab.request.fileId!) === token) documentLoads.current.delete(tab.request.fileId!);
++    });
+   }, [activeId, tabs]);
+ 
+   useEffect(() => {
+@@ -691,19 +727,6 @@
+   }, []);
+ 
+   useEffect(() => {
+-    if (!reloadMenu) return;
+-    reloadMenuRef.current?.querySelector<HTMLButtonElement>("[role=menuitem]")?.focus();
+-    const close = (event: KeyboardEvent) => {
+-      if (event.key === "Escape") {
+-        setReloadMenu(null);
+-        reloadMenu.anchor.focus();
+-      }
+-    };
+-    window.addEventListener("keydown", close);
+-    return () => window.removeEventListener("keydown", close);
+-  }, [reloadMenu]);
+-
+-  useEffect(() => {
+     if (!closeIntent && !pendingSaveAs && !pendingSection && !discardConflictConfirm
+       && !clearDraftsConfirm && !clearCopiesConfirm && !clearSessionConfirm && !clearRecentsConfirm && !restoreOffer) return;
+     const previous = document.activeElement as HTMLElement | null;
+@@ -746,6 +769,7 @@
+ 
+   function showReloadMenu(event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>, target: RefreshTarget, label: string) {
+     event.preventDefault();
++    setProjectsMenu(null); setGoMenu(null);
+     const anchor = event.currentTarget;
+     const bounds = anchor.getBoundingClientRect();
+     setReloadMenu({ target, label,
+@@ -829,6 +853,43 @@
+   }, [root, visibleFileIds, expandedDirectoryKeys]);
+ 
+   const active = tabs.find((tab) => tab.id === activeId) ?? null;
++  const documentZoom = documentZooms.current.get(activeId ?? "") ?? 1;
++  usePinchZoom(readerRef, activeId ?? "", Boolean(active?.content !== undefined && active.kind !== "image"),
++    documentZoom, (next, point) => {
++      const reader = readerRef.current;
++      const page = reader?.querySelector<HTMLElement>(".document-page");
++      if (!reader || !page || !activeId) return;
++      const hit = document.elementFromPoint?.(point.x, point.y);
++      const anchor = hit instanceof HTMLElement && page.contains(hit)
++        ? hit.closest<HTMLElement>("p,li,h1,h2,h3,h4,h5,h6,pre,td,th") ?? hit : page;
++      const bounds = zoomRect(anchor, documentZoom);
++      const x = (point.x - bounds.left) / documentZoom;
++      const y = (point.y - bounds.top) / documentZoom;
++      const bounded = boundZoom(next);
++      documentZooms.current.set(activeId, bounded);
++      setZoomRevision((value) => value + 1);
++      documentZoomAnchor.current = { id: activeId, reader, anchor, x, y, point, next: bounded };
++    });
++  useLayoutEffect(() => {
++    const pending = documentZoomAnchor.current;
++    documentZoomAnchor.current = null;
++    if (!pending || pending.id !== activeId || !pending.anchor.isConnected) return;
++    // Restore after React has committed the zoomed layout, before it paints.
++    const bounds = zoomRect(pending.anchor, pending.next);
++    pending.reader.scrollLeft += bounds.left + pending.x * pending.next - pending.point.x;
++    pending.reader.scrollTop += bounds.top + pending.y * pending.next - pending.point.y;
++    captureReadingPosition(pending.id, pending.reader);
++  }, [documentZoom, activeId, zoomRevision]);
++  function changeHistory(next: VisitHistory<VisitTarget>) { historyRef.current = next; setHistory(next); }
++  useLayoutEffect(() => {
++    if (traversal.current || !active || active.errorCode || active.imageLoading
++      || (active.kind === "image" ? !active.image : active.content === undefined && !active.largeInspection)) return;
++    if (historyRef.current.entries[historyRef.current.cursor]?.key === active.id) return;
++    changeHistory(recordVisit(historyRef.current, { key: active.id,
++      target: { id: active.id, request: active.request, kind: active.kind, name: active.name, displayPath: active.displayPath, explicitFile: active.explicitFile,
++        imageView: imageViews.current.get(active.id), zoom: documentZooms.current.get(active.id) },
++      scrollTop: scrollPositions.current.get(active.id) ?? 0, scrollLeft: 0 }));
++  }, [activeId, active?.content, active?.image, active?.imageLoading, active?.errorCode, active?.largeInspection]);
+   useEffect(() => {
+     if (typeof api.setNativeMenuState !== "function") return;
+     void api.setNativeMenuState({
+@@ -885,7 +946,7 @@
+       return;
+     }
+     const viewport = readerRef.current.getBoundingClientRect();
+-    const visible = findIndex.visibleBounds(viewport);
++    const visible = findIndex.visibleBounds(viewport, element => zoomRect(element, documentZoom));
+     const starts = findResults.starts;
+     let lower = 0;
+     if (visible) {
+@@ -920,7 +981,8 @@
+       for (const [range, activeMatch] of [...ordinary.map((item) => [item, false] as const),
+         ...(activeRange ? [[activeRange, true] as const] : [])]) {
+         const rects = typeof range.getClientRects === "function" ? Array.from(range.getClientRects()) : [];
+-        for (const rect of rects) {
++        for (const raw of rects) {
++          const rect = normalizeZoomRect(raw, documentZoom);
+           if (rect.width <= 0 || rect.height <= 0 || rect.bottom < viewport.top
+             || rect.top > viewport.bottom) continue;
+           overlays.push({ left: rect.left, top: rect.top, width: rect.width,
+@@ -930,7 +992,7 @@
+     }
+     setFindOverlays(overlays);
+     return () => { registry?.delete("md-reader-find"); registry?.delete("md-reader-find-active"); };
+-  }, [findOpen, findInDraft, findIndex, findResults, activeFindOrdinal, findScrollVersion]);
++  }, [findOpen, findInDraft, findIndex, findResults, activeFindOrdinal, findScrollVersion, documentZoom]);
+ 
+   function openFind() {
+     if (!active || active.kind === "image") return;
+@@ -1367,17 +1429,32 @@
+ 
+   async function openDocument(request: OpenRequest, fallback?: { name: string; path: string }) {
+     setNotice(null);
++    const requestKey = request.fileId ?? `${request.rootId}:${pathKey(request.segments ?? [])}`;
++    const token = Symbol("document load");
++    documentLoads.current.set(requestKey, token);
++    const sequence = ++openSequence.current;
++    const generation = generationRef.current;
++    const current = () => generation === generationRef.current && documentLoads.current.get(requestKey) === token;
++    const activate = (id: string) => {
++      if (sequence !== openSequence.current) return;
++      activeIdRef.current = id;
++      setActiveId(id); setCompactSidebarOpen(false);
++    };
+     try {
+       const document: DocumentResponse = await api.readDocument(request);
++      if (!current()) return;
+       if (typeof api.rememberRecentDocument === "function") {
+         void api.rememberRecentDocument(document.fileId).then(refreshRecents).catch(() => {});
+       }
+       const failedId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
+-      const existing = tabsRef.current.find((tab) => tab.identityKey === document.identityKey);
++      const existing = tabsRef.current.find((tab) => tab.identityKey === document.identityKey || tab.id === document.fileId);
+       if (existing) {
+-        setTabs((old) => old.filter((tab) => tab.id !== failedId || tab.id === existing.id));
+-        setActiveId(existing.id);
+-        return;
++        if (requestKey !== document.fileId) documentLoads.current.delete(document.fileId);
++        setTabs((old) => old.filter((tab) => tab.id !== failedId || tab.id === existing.id).map((tab) =>
++          tab.id === existing.id && tab.content === undefined && !editsRef.current[tab.id]
++            ? { ...tab, identityKey: document.identityKey, name: document.name, displayPath: document.displayPath, content: document.content, diskVersion: document.diskVersion, errorCode: undefined, freshness: "current" } : tab));
++        activate(existing.id);
++        return existing.id;
+       }
+       const tab: Tab = {
+         id: document.fileId,
+@@ -1401,26 +1478,29 @@
+         ...old.filter((item) => item.id !== failedId && item.identityKey !== document.identityKey),
+         tab
+       ]);
+-      setActiveId(tab.id);
++      activate(tab.id);
+       if (!openEdit && typeof api.loadSectionRecovery === "function") {
+         try {
+           const recovery = await api.loadSectionRecovery(document.fileId);
+-          if (recovery) setPendingRecoveries((old) => ({ ...old, [document.fileId]: recovery }));
++          if (recovery && current()) setPendingRecoveries((old) => ({ ...old, [document.fileId]: recovery }));
+         } catch (recoveryError) {
+-          setNotice(errorText(locale, readerError(recoveryError).code));
++          if (current() && activeIdRef.current === tab.id) setNotice(errorText(locale, readerError(recoveryError).code));
+         }
+       }
++      return tab.id;
+     } catch (error) {
++      if (!current()) return;
+       const detail = readerError(error);
+       if (detail.code === "oversize") {
+         try {
+           const inspected = await api.inspectLargeFile(request);
++          if (!current()) return;
+           const existing = tabsRef.current.find((item) => item.id === inspected.fileId);
+           if (existing) {
+             if (editsRef.current[existing.id]) {
+               setTabs((old) => old.map((item) => item.id === existing.id
+                 ? { ...item, freshness: "conflict", freshnessReason: "oversize" } : item));
+-              setActiveId(existing.id);
++              activate(existing.id);
+               return;
+             }
+             setTabs((old) => old.map((item) => item.id === existing.id
+@@ -1429,16 +1509,17 @@
+                   largeConsent: false, errorCode: undefined, freshness: undefined,
+                   diskVersion: undefined, name: inspected.name,
+                   displayPath: inspected.displayPath } : item));
+-            setActiveId(existing.id);
++            activate(existing.id);
+             return;
+           }
+           const tab: Tab = { id: inspected.fileId, name: inspected.name,
+             displayPath: inspected.displayPath, request: { ...request, fileId: inspected.fileId },
+             explicitFile: request.explicitFile, largeInspection: inspected };
+           setTabs((old) => [...old, tab]);
+-          setActiveId(tab.id);
++          activate(tab.id);
+           return;
+         } catch (inspectionError) {
++          if (!current()) return;
+           setNotice(errorText(locale, readerError(inspectionError).code));
+         }
+       }
+@@ -1456,18 +1537,21 @@
+       setTabs((old) => old.some((item) => item.id === id)
+         ? old.map((item) => item.id === id ? tab : item)
+         : [...old, tab]);
+-      setActiveId(id);
++      activate(id);
++    } finally {
++      if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+     }
+   }
+ 
+   async function openImage(request: OpenRequest, fallback?: { name: string; path: string },
+     force = false, activate = true) {
++    if (activate) openSequence.current += 1;
+     setNotice(null);
+     setFindOpen(false);
+     const pendingId = request.fileId ?? `image:${request.rootId}:${pathKey(request.segments ?? [])}`;
+     const alreadyOpen = tabsRef.current.find((tab) => tab.id === pendingId && tab.kind === "image" && tab.image);
+     if (alreadyOpen && !force) {
+-      if (activate) { activeIdRef.current = pendingId; setActiveId(pendingId); }
++      if (activate) { activeIdRef.current = pendingId; setActiveId(pendingId); setCompactSidebarOpen(false); }
+       return;
+     }
+     const token = Symbol("image load");
+@@ -1484,7 +1568,7 @@
+         ? { ...tab, imageLoading: true, image: undefined, errorCode: undefined,
+           freshness: force ? "checking" : tab.freshness } : tab));
+     }
+-    if (activate) { setActiveId(pendingId); activeIdRef.current = pendingId; }
++    if (activate) { setActiveId(pendingId); activeIdRef.current = pendingId; setCompactSidebarOpen(false); }
+     const generation = generationRef.current;
+     try {
+       const image = await api.openImage(request);
+@@ -1494,7 +1578,7 @@
+         && tab.identityKey === image.identityKey);
+       if (duplicate) {
+         setTabs((old) => old.filter((tab) => tab.id !== pendingId));
+-        if (activate && activeIdRef.current === pendingId) setActiveId(duplicate.id);
++        if (activate && activeIdRef.current === pendingId) { activeIdRef.current = duplicate.id; setActiveId(duplicate.id); }
+         return;
+       }
+       const tab: Tab = { id: image.fileId, kind: "image",
+@@ -1505,7 +1589,7 @@
+         explicitFile: request.explicitFile,
+         request: { fileId: image.fileId, rootId: request.rootId, segments: request.segments } };
+       setTabs((old) => [...old.filter((item) => item.id !== pendingId && item.id !== image.fileId), tab]);
+-      if (activate && activeIdRef.current === pendingId) setActiveId(image.fileId);
++      if (activate && activeIdRef.current === pendingId) { activeIdRef.current = image.fileId; setActiveId(image.fileId); }
+     } catch (error) {
+       if (generation !== generationRef.current || imageLoads.current.get(pendingId) !== token) return;
+       imageLoads.current.delete(pendingId);
+@@ -1781,8 +1865,7 @@
+     if (large) void api.closeLargeSource(large.snapshotId).catch(() => {});
+     const next = tabs.filter((tab) => tab.id !== id);
+     setTabs(next);
+-    scrollPositions.current.delete(id);
+-    readingAnchors.current.delete(id);
++    // Session visit history retains view locations after the tab closes.
+     if (activeId === id) setActiveId(next.at(-1)?.id ?? null);
+     requestAnimationFrame(() => {
+       (document.querySelector<HTMLButtonElement>('[role="tab"][aria-selected="true"]')
+@@ -1916,6 +1999,7 @@
+       setTabs([]); setRoot(null); setActiveId(null); setPriorRoot(false);
+       setDirectories({}); setRootProblem(null);
+       readingAnchors.current.clear(); scrollPositions.current.clear();
++      documentZooms.current.clear(); imageViews.current.clear(); changeHistory(emptyHistory());
+       setRestoreOffer(null); setClearSessionConfirm(false);
+       setNotice(t(locale, "sessionCleared"));
+       sessionClearedRef.current = true;
+@@ -1998,6 +2082,19 @@
+     if (!currentRoot) return null;
+     return tab.request.rootId === currentRoot.id && tab.request.segments?.length
+       ? tab.request.segments : workspaceSegments(tab.displayPath, currentRoot.displayPath);
++  }
++
++  function refreshTarget(tab: Tab): RefreshTarget | null {
++    if (tab.explicitFile) return { kind: "explicit-file", fileId: tab.id };
++    const segments = documentSegments(tab), grantedRoot = rootRef.current;
++    return grantedRoot && segments ? { kind: "root-file", rootId: grantedRoot.id, segments } : null;
++  }
++
++  async function copyPath(path: string) {
++    try {
++      if (!navigator.clipboard?.writeText) { setNotice(t(locale, "pathCopyUnavailable")); return; }
++      await navigator.clipboard.writeText(path); setNotice(t(locale, "pathCopied"));
++    } catch { setNotice(t(locale, "pathCopyFailed")); }
+   }
+ 
+   function documentStatus(tab: Tab): string {
+@@ -2088,13 +2185,20 @@
+ 
+   async function navigate(target: string) {
+     if (!active?.identityKey) return;
++    const sourceId = active.id, generation = generationRef.current, sequence = ++openSequence.current;
++    const current = () => sourceId === activeIdRef.current && generation === generationRef.current && sequence === openSequence.current;
+     try {
+-      const result = await api.resolveLink(active.id, target);
++      const result = await api.resolveLink(sourceId, target);
++      if (!current()) return;
+       if (result.kind === "anchor" && result.anchor) {
++        noteLocationVisit(result.anchor);
+         scrollToAnchor(result.anchor);
+       } else if (result.kind === "document" && result.fileId) {
+-        await openDocument({ fileId: result.fileId });
+-        if (result.anchor) setPendingAnchor(result.anchor);
++        const loading = openDocument({ fileId: result.fileId });
++        const openIntent = openSequence.current;
++        const loadedId = await loading;
++        if (loadedId && loadedId === activeIdRef.current && generation === generationRef.current
++          && openIntent === openSequence.current && result.anchor) setPendingAnchor({ fileId: loadedId, anchor: result.anchor });
+       } else if (result.kind === "image" && result.fileId) {
+         await openImage({ fileId: result.fileId });
+       } else {
+@@ -2103,12 +2207,15 @@
+             : t(locale, "linkBlocked"));
+       }
+     } catch (error) {
+-      const detail = readerError(error);
+-      setNotice(errorText(locale, detail.code));
++      if (current()) setNotice(errorText(locale, readerError(error).code));
+     }
+   }
+ 
+   function captureReadingPosition(id: string, reader: HTMLDivElement) {
++    // A worker's pending view has no passage geometry; keep the retained position.
++    const tab = tabsRef.current.find(item => item.id === id);
++    if (tab && tab.kind !== "image" && !tab.largeInspection
++      && (tab.content === undefined || !reader.querySelector(".document-page .markdown-body"))) return;
+     const scrollTop = reader.scrollTop;
+     scrollPositions.current.set(id, scrollTop);
+     const headings = Array.from(reader.querySelectorAll<HTMLElement>(
+@@ -2116,23 +2223,120 @@
+     const readerTop = reader.getBoundingClientRect().top;
+     let closest: { headingId: string | null; offset: number; scrollTop: number } = { headingId: null, offset: 0, scrollTop };
+     for (const heading of headings) {
+-      const top = heading.getBoundingClientRect().top - readerTop + scrollTop;
++      const top = zoomRect(heading, documentZooms.current.get(id) ?? 1).top - readerTop + scrollTop;
+       if (top <= scrollTop + 24) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
+     }
+     readingAnchors.current.set(id, closest);
++    historyRef.current = updateVisit(historyRef.current, id, { scrollTop, scrollLeft: reader.scrollLeft });
++    const currentVisit = historyRef.current.entries[historyRef.current.cursor];
++    if (currentVisit?.key === id) currentVisit.target.zoom = documentZooms.current.get(id);
+     setActiveOutlineId((prior) => prior === closest.headingId ? prior : closest.headingId);
++  }
++
++  async function traverseHistory(cursor: number) {
++    if (traversal.current || busy) return;
++    if (activeIdRef.current && readerRef.current) captureReadingPosition(activeIdRef.current, readerRef.current);
++    const entry = historyRef.current.entries[cursor];
++    if (!entry) return;
++    const invoking = document.activeElement as HTMLElement | null;
++    const generation = generationRef.current;
++    const sequence = ++openSequence.current;
++    const token = Symbol("history traversal");
++    traversal.current = token; setHistoryBusy(true); setBusy(true); setNotice(null);
++    const valid = () => generation === generationRef.current && sequence === openSequence.current;
++    try {
++      const target = entry.target;
++      const existing = tabsRef.current.find((tab) => tab.id === target.id);
++      let loaded: Tab;
++      if (target.kind === "image") {
++        const image = await api.openImage(target.request);
++        loaded = { ...existing, ...target, id: image.fileId, image, kind: "image", imageLoading: false,
++          identityKey: image.identityKey, diskVersion: image.diskVersion, freshness: "current", errorCode: undefined };
++      } else {
++        try {
++          const document = await api.readDocument(target.request);
++          const edit = editsRef.current[document.fileId];
++          loaded = { ...existing, ...target, id: document.fileId, name: document.name, displayPath: document.displayPath,
++            identityKey: document.identityKey, content: edit ? existing?.content ?? document.content : document.content,
++            diskVersion: edit?.diskVersion ?? document.diskVersion,
++            freshness: edit && edit.diskVersion !== document.diskVersion ? "conflict" : "current",
++            errorCode: undefined, dirty: edit ? edit.draft !== edit.source : false, editingActive: Boolean(edit) };
++          if (!existing && typeof api.loadSectionRecovery === "function") {
++            const recovery = await api.loadSectionRecovery(document.fileId);
++            if (recovery && valid()) setPendingRecoveries((old) => ({ ...old, [document.fileId]: recovery }));
++          }
++        } catch (error) {
++          if (readerError(error).code !== "oversize") throw error;
++          const inspected = await api.inspectLargeFile(target.request);
++          loaded = { ...existing, ...target, id: inspected.fileId, largeInspection: inspected,
++            content: undefined, errorCode: undefined, largeOpened: undefined, largeConsent: false };
++        }
++      }
++      if (!valid()) return;
++      // Supersede older pending reads only after the validated traversal succeeds.
++      imageLoads.current.delete(target.id); documentLoads.current.delete(target.id);
++      documentLoads.current.delete(`${target.request.rootId}:${pathKey(target.request.segments ?? [])}`);
++      restoreLoads.current.delete(target.id);
++      // Commit file identity and cursor together, only after access succeeds.
++      if (target.imageView) imageViews.current.set(loaded.id, target.imageView);
++      documentZooms.current.set(loaded.id, target.zoom ?? 1);
++      scrollPositions.current.set(loaded.id, entry.scrollTop);
++      readingAnchors.current.set(loaded.id, { headingId: null, offset: 0, scrollTop: entry.scrollTop });
++      setTabs((old) => old.some((tab) => tab.id === loaded.id)
++        ? old.map((tab) => tab.id === loaded.id ? loaded : tab) : [...old, loaded]);
++      const direction = cursor < historyRef.current.cursor ? "historyBack" : "historyForward";
++      const entries = [...historyRef.current.entries];
++      entries[cursor] = { ...entry, key: loaded.id, target: { ...target, id: loaded.id, name: loaded.name, displayPath: loaded.displayPath } };
++      changeHistory({ ...historyRef.current, entries, cursor });
++      activeIdRef.current = loaded.id; setActiveId(loaded.id);
++      setFindOpen(false); setReloadMenu(null); setHistoryOpen(false);
++      setHistoryAnnouncement(`${t(locale, direction)}: ${loaded.name}`);
++      requestAnimationFrame(() => {
++        if (!valid()) return;
++        if (readerRef.current) {
++          readerRef.current.scrollTop = entry.scrollTop;
++          readerRef.current.scrollLeft = entry.scrollLeft;
++        }
++        if (invoking?.isConnected && !(invoking instanceof HTMLButtonElement && invoking.disabled)) invoking.focus();
++        else document.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus();
++      });
++    } catch (error) {
++      if (valid()) setNotice(`${entry.target.name}: ${errorText(locale, readerError(error).code)}`);
++    } finally {
++      if (traversal.current === token) { traversal.current = null; setHistoryBusy(false); setBusy(false); }
++    }
++  }
++
++  function cancelHistoryTraversal() {
++    openSequence.current += 1; traversal.current = null; setHistoryBusy(false); setBusy(false);
++  }
++
++  function clearVisitHistory() {
++    const current = historyRef.current.entries[historyRef.current.cursor];
++    changeHistory(current ? { entries: [current], cursor: 0 } : emptyHistory());
++  }
++
++  function noteLocationVisit(anchor: string) {
++    if (!active) return;
++    if (readerRef.current) captureReadingPosition(active.id, readerRef.current);
++    changeHistory(recordVisit(historyRef.current, { key: active.id, anchor,
++      target: { id: active.id, name: active.name, displayPath: active.displayPath, kind: active.kind, explicitFile: active.explicitFile,
++        request: active.request, zoom: documentZoom }, scrollTop: readerRef.current?.scrollTop ?? 0, scrollLeft: 0 }));
+   }
+ 
+   useLayoutEffect(() => {
+     const reader = readerRef.current;
+     if (!reader) return;
++    if (!active || (active.kind !== "image" && !active.largeInspection
++      && (active.content === undefined || renderedMarkdown?.id !== active.id
++        || renderedMarkdown.content !== active.content))) return;
+     const saved = readingAnchors.current.get(activeId ?? "");
+     setActiveOutlineId((prior) => prior === (saved?.headingId ?? null)
+       ? prior : saved?.headingId ?? null);
+     if (saved?.headingId) {
+       const heading = document.getElementById(saved.headingId);
+       if (heading && reader.contains(heading)) {
+-        const headingBox = heading.getBoundingClientRect();
++        const headingBox = zoomRect(heading, documentZooms.current.get(activeId ?? "") ?? 1);
+         const readerBox = reader.getBoundingClientRect();
+         const top = headingBox.top - readerBox.top + reader.scrollTop;
+         reader.scrollTop = headingBox.height === 0 && readerBox.height === 0
+@@ -2142,9 +2346,27 @@
+       setNotice(t(locale, "readingPositionShifted"));
+     }
+     reader.scrollTop = saved?.scrollTop ?? scrollPositions.current.get(activeId ?? "") ?? 0;
+-  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen]);
++  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown]);
++
++  useEffect(() => {
++    const resize = () => {
++      if (activeIdRef.current && readerRef.current) captureReadingPosition(activeIdRef.current, readerRef.current);
++      setViewportWidth(window.innerWidth);
++    };
++    window.addEventListener("resize", resize);
++    return () => window.removeEventListener("resize", resize);
++  }, []);
++
++  function focusActionTrigger(trigger: HTMLElement | null) {
++    const disclosure = trigger?.closest("details");
++    (disclosure && !disclosure.open ? disclosure.querySelector("summary") : trigger)?.focus();
++  }
+ 
+   function toggleSidebar() {
++    if (compactSidebar) {
++      if (compactSidebarOpen) sidebarTriggerRef.current?.focus();
++      setCompactSidebarOpen((open) => !open); return;
++    }
+     if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
+     if (sidebarElementRef.current?.contains(document.activeElement)) sidebarTriggerRef.current?.focus();
+     if (sidebarAnimationTimer.current) clearTimeout(sidebarAnimationTimer.current);
+@@ -2155,21 +2377,27 @@
+ 
+   function toggleOutline() {
+     if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
+-    if (outlineElementRef.current?.contains(document.activeElement)) outlineTriggerRef.current?.focus();
++    if (outlineElementRef.current?.contains(document.activeElement)) focusActionTrigger(outlineTriggerRef.current);
+     setOutlineOpen((open) => !open);
+   }
+ 
+   useEffect(() => {
+     if (!pendingAnchor || !activeId) return;
++    if (pendingAnchor.fileId !== activeId) { setPendingAnchor(null); return; }
++    if (renderedMarkdown?.id !== activeId || renderedMarkdown.content !== active?.content) return;
+     const frame = requestAnimationFrame(() => {
+-      scrollToAnchor(pendingAnchor);
++      scrollToAnchor(pendingAnchor.anchor);
+       setPendingAnchor(null);
+     });
+     return () => cancelAnimationFrame(frame);
+-  }, [activeId, pendingAnchor]);
++  }, [activeId, active?.content, pendingAnchor, renderedMarkdown]);
+ 
+   useEffect(() => {
+     const handler = (event: KeyboardEvent) => {
++      if (event.key === "Escape" && compactSidebar && compactSidebarOpen) {
++        event.preventDefault(); setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); return;
++      }
++      if (event.key === "Escape" && historyBusy) { event.preventDefault(); cancelHistoryTraversal(); return; }
+       if (event.key === "Escape" && findOpen) {
+         event.preventDefault();
+         closeFind();
+@@ -2179,7 +2407,8 @@
+       const key = event.key.toLowerCase();
+       if (key === "f") {
+         event.preventDefault();
+-        openFind();
++        if (event.shiftKey && root) { setSidebarOpen(true); setSidebarPanel("search"); }
++        else openFind();
+       } else if (key === "o") {
+         event.preventDefault();
+         if (event.shiftKey) void chooseFolder();
+@@ -2253,6 +2482,7 @@
+               <button
+                 type="button"
+                 className="tree-row"
++                disabled={historyBusy}
+                 data-tree-path={pathKey(path)}
+                 aria-current={!isFolder && active && pathKey(documentSegments(active) ?? []) === pathKey(path) ? "page" : undefined}
+                 aria-expanded={isFolder ? expanded : undefined}
+@@ -2320,6 +2550,14 @@
+     );
+   }
+ 
++  const contextTab = reloadMenu && tabs.find(tab => {
++    const target = refreshTarget(tab);
++    return target && reloadResultKey(target) === reloadResultKey(reloadMenu.target);
++  });
++  const contextPath = reloadMenu?.target.kind === "explicit-file" ? contextTab?.displayPath
++    : reloadMenu && root?.id === reloadMenu.target.rootId
++      ? [root.displayPath, ...reloadMenu.target.segments].join("/") : undefined;
++
+   return (
+     <div className="app-shell">
+       <header ref={toolbarRef} className="toolbar">
+@@ -2328,14 +2566,11 @@
+         <span className="workspace-title">{root?.name ?? t(locale, "workspace")}</span>
+         <span className="toolbar-spacer" />
+         <span className="local-badge">{t(locale, "localOnly")}</span>
+-        <div className="toolbar-group">
+-        <button ref={outlineTriggerRef} type="button" aria-pressed={outlineOpen} disabled={!active?.content}
+-          title={active?.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
+-          aria-description={active?.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
+-          onClick={toggleOutline}>{t(locale, "outline")}</button>
+-        <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-          onClick={() => setReadingSettingsOpen((open) => !open)}>{t(locale, "readingSettings")}</button>
+-        </div>
++        {!active && <div className="toolbar-group">
++          <button type="button" disabled>{t(locale, "outline")}</button>
++          <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
++            onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
++        </div>}
+         <div className="toolbar-group">
+         <label className="appearance-control">
+           <span>{t(locale, "appearance")}</span>
+@@ -2354,12 +2589,12 @@
+           </select>
+         </label>
+         </div>
+-        <div className="toolbar-group">
++        {!root && <div className="toolbar-group">
+         <button type="button" onClick={() => void chooseFile()} disabled={busy}>{t(locale, "openFile")}</button>
+         <button className={root ? undefined : "primary-button"} type="button" onClick={() => void chooseFolder()} disabled={busy}>
+           {t(locale, "openFolder")}
+         </button>
+-        </div>
++        </div>}
+       </header>
+ 
+       {settingsOverlay.shown && <section id="reading-settings-panel" className="reading-settings-panel"
+@@ -2369,12 +2604,12 @@
+           if (event.key === "Escape" && readingSettingsOpen) {
+             event.stopPropagation();
+             setReadingSettingsOpen(false);
+-            settingsTriggerRef.current?.focus();
++            focusActionTrigger(settingsTriggerRef.current);
+           }
+         }}>
+         <div className="reading-settings-heading"><strong>{t(locale, "readingSettings")}</strong>
+           <button type="button" aria-label={t(locale, "closeReadingSettings")}
+-            onClick={() => { setReadingSettingsOpen(false); settingsTriggerRef.current?.focus(); }}>×</button></div>
++            onClick={() => { setReadingSettingsOpen(false); focusActionTrigger(settingsTriggerRef.current); }}>×</button></div>
+         <label>{t(locale, "readingFont")}
+           <select value={readingSettings.readingFont} onChange={(event) => applyReadingSettings({
+             ...readingSettings, readingFont: event.target.value as SessionPanel["readingFont"] })}>
+@@ -2423,18 +2658,22 @@
+ 
+       <div className="workspace-layout">
+         <aside ref={sidebarElementRef} className="sidebar" aria-label={t(locale, "explorer")}
+-          data-open={sidebarOpen} data-animate={sidebarAnimating}
+-          aria-hidden={!sidebarOpen} inert={!sidebarOpen}
+-          style={{ width: sidebarOpen ? sidebarWidth : 0 }} onPointerUp={(event) => {
+-            if (!sidebarOpen) return;
++          data-open={sidebarVisible} data-compact={compactSidebar} data-animate={sidebarAnimating}
++          aria-hidden={!sidebarVisible} inert={!sidebarVisible}
++          style={{ width: sidebarVisible ? sidebarWidth : 0 }} onPointerUp={(event) => {
++            if (!sidebarVisible || compactSidebar) return;
+             const width = event.currentTarget.getBoundingClientRect().width;
+             if (Math.abs(width - sidebarWidth) > 1) setSidebarWidth(width);
+           }}>
+             <div className="sidebar-heading sidebar-modes">
+-              <button type="button" aria-pressed={sidebarPanel === "explorer"}
+-                onClick={() => setSidebarPanel("explorer")}>{t(locale, "explorer")}</button>
+-              <button ref={searchTrigger} className="folder-search-entry" type="button" aria-pressed={sidebarPanel === "search"}
+-                disabled={!root} onClick={() => setSidebarPanel("search")}>{t(locale, "folderSearch")}</button>
++              <button ref={searchTrigger} type="button" className="projects-trigger" aria-haspopup="menu"
++                aria-expanded={Boolean(projectsMenu)} disabled={busy} onClick={(event) => {
++                  if (projectsMenu) { setProjectsMenu(null); return; }
++                  setReloadMenu(null); setGoMenu(null);
++                  const bounds = event.currentTarget.getBoundingClientRect();
++                  setProjectsMenu({ anchor: event.currentTarget, x: bounds.left, y: bounds.bottom + 4 });
++                }}><span>{t(locale, "projects")}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
++                <path d="M1 3 L6 8 L11 3" fill="none" stroke="currentColor" strokeWidth="1.75" /></svg></button>
+             </div>
+             {root ? (
+               <>
+@@ -2445,7 +2684,9 @@
+                     onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+                 </div>
+                 <div hidden={sidebarPanel !== "explorer"} inert={sidebarPanel !== "explorer"} className="explorer-host">
+-                <div className="root-label" title={root.displayPath}>{root.name}</div>
++                <div className="root-label" tabIndex={0} title={root.displayPath}
++                  onContextMenu={(event) => showReloadMenu(event, { kind: "folder", rootId: root.id, segments: [] }, root.name)}
++                  onKeyDown={(event) => { if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) showReloadMenu(event, { kind: "folder", rootId: root.id, segments: [] }, root.name); }}>{root.name}</div>
+                 {rootProblem && <div className="tree-feedback" role="status">
+                   <span>{errorText(locale, rootProblem)}</span>
+                   <button type="button" disabled={busy} onClick={() => void reselectFolder()}>{t(locale, "selectFolderAgain")}</button>
+@@ -2454,7 +2695,8 @@
+                   <input type="checkbox" checked={markdownOnly} onChange={(event) => setMarkdownOnly(event.target.checked)} />
+                   {t(locale, "filterMarkdown")}
+                 </label>
+-                <div className="tree-scroll" ref={treeRef} onScroll={() => scheduleSessionCheckpoint()}>
++                <div className="tree-scroll" ref={treeRef} onScroll={() => scheduleSessionCheckpoint()}
++                  onContextMenu={(event) => { if (!(event.target as HTMLElement).closest(".tree-row")) showReloadMenu(event, { kind: "folder", rootId: root.id, segments: [] }, root.name); }}>
+                   {tree([])}
+                   {directories[pathKey([])]?.loaded
+                     && !directories[pathKey([])]?.entries.some((entry) =>
+@@ -2482,8 +2724,30 @@
+             </div>
+           </aside>
+ 
++        {compactSidebar && compactSidebarOpen && <button type="button" className="sidebar-scrim" aria-label={t(locale, "closeSidebar")}
++          onClick={() => { setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); }} />}
+         <main className="main-panel">
+-          <div className="document-tabs"><div className="tab-strip" role="tablist" aria-label={t(locale, "documents")}>
++          <div className="document-tabs">
++          <div className="history-controls" role="group" aria-label={t(locale, "visitHistory")}>
++            {([-1, 1] as const).map((direction) => {
++              const cursor = direction === -1 && !active ? history.cursor : history.cursor + direction;
++              const destination = history.entries[cursor];
++              const label = t(locale, direction === -1 ? "historyBack" : "historyForward");
++              const reason = t(locale, direction === -1 ? "historyNoPrevious" : "historyNoNext");
++              return <button key={direction} type="button" className="history-arrow" aria-label={label}
++                disabled={historyBusy || !destination || (direction === 1 && !active)}
++                aria-description={historyBusy ? t(locale, "loading") : destination
++                  ? `${destination.target.name} · ${destination.target.displayPath}` : reason}
++                title={destination ? `${label}: ${destination.target.name}\n${destination.target.displayPath}` : reason}
++                onContextMenu={(event) => { event.preventDefault(); setHistoryDirection(direction); setHistoryOpen(true); }}
++                onClick={() => void traverseHistory(cursor)}>
++                <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
++                  <path d={direction === -1 ? "M9 0 L3 6 L9 12" : "M3 0 L9 6 L3 12"}
++                    fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
++                </svg>
++              </button>;
++            })}
++          </div><div className="tab-strip" role="tablist" aria-label={t(locale, "documents")}>
+             {tabs.map((tab) => {
+               const parent = distinguishingParent(tab, tabs);
+               return (
+@@ -2498,11 +2762,12 @@
+                     draggedTab.current = null;
+                   }}>
+                   <button type="button" role="tab" aria-selected={tab.id === activeId}
++                    disabled={historyBusy}
+                     aria-label={[tab.name, parent, documentStatus(tab)].filter(Boolean).join(" · ")}
+                     aria-description={tab.displayPath}
+                     aria-keyshortcuts="Alt+Shift+ArrowLeft Alt+Shift+ArrowRight"
+                     tabIndex={tab.id === activeId ? 0 : -1}
+-                    title={tab.displayPath} onClick={() => { activeIdRef.current = tab.id; setActiveId(tab.id); }}
++                    title={tab.displayPath} onClick={() => { openSequence.current += 1; activeIdRef.current = tab.id; setActiveId(tab.id); }}
+                     onContextMenu={tab.explicitFile ? (event) => showReloadMenu(event,
+                       { kind: "explicit-file", fileId: tab.id }, tab.name) : undefined}
+                     onKeyDown={(event) => {
+@@ -2522,6 +2787,7 @@
+                       const index = tabs.findIndex((item) => item.id === tab.id);
+                       const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
+                         : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
++                      openSequence.current += 1;
+                       activeIdRef.current = tabs[next].id;
+                       setActiveId(tabs[next].id);
+                       const buttons = event.currentTarget.closest(".tab-strip")?.querySelectorAll<HTMLButtonElement>("[role=tab]");
+@@ -2537,20 +2803,45 @@
+                     {tab.freshness === "conflict" && <small className="tab-refresh-status">{t(locale, "conflictNotice")}</small>}
+                   </button>
+                   <button className="tab-close" type="button" title={t(locale, "closeTab")}
+-                    disabled={savingTabId === tab.id}
++                    disabled={historyBusy || savingTabId === tab.id}
+                     aria-label={`${t(locale, "closeTab")}: ${tab.name}`} onClick={() => void closeTab(tab.id)}>×</button>
+                 </div>
+               );
+             })}
+           </div>
++          <button type="button" className="history-menu-trigger" aria-label={t(locale, "goMenuLabel")} aria-haspopup="menu" aria-expanded={Boolean(goMenu)}
++            onClick={(event) => {
++              if (goMenu) { setGoMenu(null); return; }
++              setProjectsMenu(null); setReloadMenu(null);
++              const bounds = event.currentTarget.getBoundingClientRect();
++              setGoMenu({ anchor: event.currentTarget, x: bounds.left, y: bounds.bottom + 4 });
++            }}>{t(locale, "goMenu")}</button>
+           <button className="document-list-trigger" type="button" aria-expanded={documentsOpen}
+             disabled={!tabs.length} onClick={() => setDocumentsOpen(true)}>{t(locale, "openDocuments")} ({tabs.length})</button>
+           </div>
++          {historyAnnouncement && <span className="sr-only" role="status" aria-label={t(locale, "visitHistory")}>{historyAnnouncement}</span>}
++          {historyOpen && <WorkspaceDialog title={t(locale, "visitHistory")} closeLabel={t(locale, "closeSurface")}
++            closeDisabled={historyBusy} onClose={() => { if (!historyBusy) setHistoryOpen(false); }}>
++            <p>{t(locale, "historySessionLimit")}</p>
++            <ol className="open-document-list">{history.entries.map((entry, index) => (historyDirection === -1
++              && (index > history.cursor || (Boolean(active) && index === history.cursor)))
++              || (historyDirection === 1 && index <= history.cursor) ? null : <li key={index}>
++              <button type="button" disabled={historyBusy || (index === history.cursor && Boolean(active))}
++                aria-current={index === history.cursor ? "step" : undefined} onClick={() => void traverseHistory(index)}>
++                <strong>{entry.target.name}</strong><span>{entry.target.displayPath}</span>
++                {entry.anchor && <span>{entry.anchor}</span>}
++                <span>{entry.target.kind === "image" ? t(locale, "imageType") : "Markdown"}
++                  {tabs.find(tab => tab.id === entry.key)?.dirty && ` · ${t(locale, "unsaved")}`}
++                  {!tabs.some(tab => tab.id === entry.key) && ` · ${t(locale, "historyClosed")}`}</span>
++                {index === history.cursor && <span>{t(locale, "currentDocument")}</span>}
++              </button></li>)}</ol>
++            <button type="button" disabled={historyBusy || !history.entries.length} onClick={clearVisitHistory}>{t(locale, "clearVisitHistory")}</button>
++          </WorkspaceDialog>}
+           {documentsOpen && <WorkspaceDialog title={t(locale, "openDocuments")} closeLabel={t(locale, "closeSurface")}
+             onClose={() => setDocumentsOpen(false)}>
+             <ol className="open-document-list">{tabs.map((tab) => <li key={tab.id}>
+               <button type="button" aria-current={tab.id === activeId ? "page" : undefined} onClick={() => {
+-                setActiveId(tab.id); activeIdRef.current = tab.id; setDocumentsOpen(false);
++                openSequence.current += 1; setActiveId(tab.id); activeIdRef.current = tab.id; setDocumentsOpen(false);
+                 requestAnimationFrame(() => document.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus());
+               }}><strong>{tab.name}</strong><span>{tab.displayPath}</span>
+                 {tab.id === activeId && <span>{t(locale, "currentDocument")}</span>}
+@@ -2577,7 +2868,51 @@
+           </WorkspaceDialog>}
+           {active && <DocumentLocation key={active.id} name={active.name} path={active.displayPath} locale={locale}
+             folders={documentSegments(active)?.slice(0, -1).join(" / ") ?? null}
+-            onReveal={documentSegments(active) ? () => void revealDocument(active) : undefined} revealing={revealing} />}
++            onReveal={documentSegments(active) ? () => void revealDocument(active) : undefined} revealing={revealing}
++            onMenuOpen={() => { setProjectsMenu(null); setReloadMenu(null); setGoMenu(null); }}
++            menuActions={<>
++              {compactSidebar && <>
++                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineOpen} disabled={!active.content}
++                  aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
++                  onClick={toggleOutline}>{t(locale, "outline")}</button>
++                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
++                  onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
++              </>}
++              <button type="button" disabled={!navigator.clipboard?.writeText} aria-description={!navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined}
++                onClick={() => void copyPath(active.displayPath)}>{t(locale, "copyPath")}</button>
++              <button type="button" disabled={busy || (!active.largeInspection && !refreshTarget(active))} onClick={() => {
++                if (active.largeInspection) { void reloadLargeTab(active.id); return; }
++                const target = refreshTarget(active);
++                if (target) void startReload({ target, label: active.name, x: 0, y: 0, anchor: readerRef.current ?? document.body });
++              }}>{t(locale, "reload")}</button>
++            </>}
++            actions={<>
++              {!compactSidebar && <>
++                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineOpen} disabled={!active.content}
++                  aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
++                  onClick={toggleOutline}>{t(locale, "outline")}</button>
++                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
++                  onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
++              </>}
++              {active.kind !== "image" && !active.largeInspection && !active.errorCode && <>
++              {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
++                <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
++                  || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
++                  onClick={() => void saveEdit(active.id)}>{t(locale, "saveFile")}</button>
++                <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
++                  ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
++                <small>{t(locale, "saveReturnsReading")}</small>
++              </div> : <button type="button" disabled={busy || !sectionsByTab[active.id]?.length}
++                onClick={() => {
++                  const reader = readerRef.current;
++                  const top = reader?.getBoundingClientRect().top ?? 0;
++                  const region = Array.from(reader?.querySelectorAll<HTMLElement>("[data-section-id]") ?? [])
++                    .find((element) => zoomRect(element, documentZoom).bottom > top + 24);
++                  const section = sectionsByTab[active.id]?.find((item) => item.id === region?.dataset.sectionId)
++                    ?? sectionsByTab[active.id]?.[0];
++                  if (section) void beginEdit(section);
++                }}>{t(locale, "editSection")}</button>}
++            </>} </>} />}
+           {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
+             <input ref={findInputRef} type="search" value={findQuery} autoComplete="off"
+               maxLength={4096}
+@@ -2608,16 +2943,45 @@
+               {reloadProgress(target)}
+             </div>;
+           })}
+-          {reloadOverlay.shown && <div ref={reloadMenuRef} className="context-menu" role="menu"
+-            data-closing={reloadOverlay.closing} inert={reloadOverlay.closing}
+-            aria-hidden={reloadOverlay.closing}
+-            style={{ left: reloadOverlay.shown.x, top: reloadOverlay.shown.y }}>
+-            <button type="button" role="menuitem"
+-              aria-label={`${t(locale, "reload")} ${reloadOverlay.shown.label}${reloadOverlay.shown.target.kind === "folder" ? ` ${t(locale, "folder")}` : ""}`}
+-              onClick={() => void startReload(reloadOverlay.shown!)}>
+-              {t(locale, "reload")}
+-            </button>
+-          </div>}
++          {historyBusy && <div className="notice" role="status"><span>{t(locale, "loading")}</span>
++            <button type="button" onClick={cancelHistoryTraversal}>{t(locale, "cancel")}</button></div>}
++          {goMenu && <ActionMenu {...goMenu} onClose={() => setGoMenu(null)} actions={[
++            { label: t(locale, "historyBack"), disabled: historyBusy || !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]),
++              reason: !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]) ? t(locale, "historyNoPrevious") : undefined,
++              run: () => void traverseHistory(active ? history.cursor - 1 : history.cursor) },
++            { label: t(locale, "historyForward"), disabled: historyBusy || !active || !history.entries[history.cursor + 1],
++              reason: !active || !history.entries[history.cursor + 1] ? t(locale, "historyNoNext") : undefined, run: () => void traverseHistory(history.cursor + 1) },
++            { label: t(locale, "visitHistory"), run: () => { setHistoryDirection(null); setHistoryOpen(true); } },
++            { label: t(locale, "clearVisitHistory"), disabled: historyBusy || !history.entries.length, run: clearVisitHistory }
++          ]} />}
++          {projectsMenu && <ActionMenu {...projectsMenu} onClose={() => setProjectsMenu(null)} actions={[
++            { label: t(locale, "openFile"), hint: "⌘O", disabled: busy, run: () => void chooseFile() },
++            { label: t(locale, "openFolder"), hint: "⇧⌘O", disabled: busy, run: () => void chooseFolder() },
++            { label: t(locale, "folderSearch"), hint: "⇧⌘F", disabled: !root,
++              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++          ]} />}
++          {reloadMenu && <ActionMenu anchor={reloadMenu.anchor} x={reloadMenu.x} y={reloadMenu.y}
++            onClose={() => setReloadMenu(null)} actions={[
++              ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
++                { label: t(locale, "openFile"), hint: "⌘O", run: () => void chooseFile() },
++                { label: t(locale, "openFolder"), hint: "⇧⌘O", run: () => void chooseFolder() },
++                { label: t(locale, "folderSearch"), hint: "⇧⌘F", run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++              ] : []),
++              ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [{ label: t(locale, "folderSearch"), disabled: true,
++                reason: t(locale, "searchFolderUnavailable"), run: () => {} }] : []),
++              ...(reloadMenu.target.kind === "root-file" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
++                disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
++                reason: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label) ? t(locale, "unsupported") : undefined,
++                run: () => { if (reloadMenu.target.kind !== "root-file") return;
++                  void (imageName(reloadMenu.label) ? openImage : openDocument)({ rootId: reloadMenu.target.rootId, segments: reloadMenu.target.segments },
++                    { name: reloadMenu.label, path: contextPath ?? reloadMenu.label }); } }] : []),
++              ...(contextPath ? [{ label: t(locale, "copyPath"), disabled: !navigator.clipboard?.writeText,
++                reason: !navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined, run: () => void copyPath(contextPath) }] : []),
++              ...(contextTab ? [{ label: `${t(locale, "closeTab")}: ${contextTab.name}`, hint: contextTab.id === activeId ? "⌘W" : undefined,
++                disabled: busy, run: () => void closeTab(contextTab.id) }] : []),
++              { label: `${t(locale, "reload")} ${reloadMenu.label}${reloadMenu.target.kind === "folder" ? ` ${t(locale, "folder")}` : ""}`,
++                disabled: busy, run: () => void startReload(reloadMenu) }
++            ]} />}
+           {notice && <div className="notice" role="status">
+             <span>{notice}</span>
+             <button type="button" aria-label={t(locale, "dismiss")} onClick={() => setNotice(null)}>×</button>
+@@ -2811,7 +3175,8 @@
+               </div>
+             ) : active.largeInspection ? (
+               <div className="large-source-page" role="tabpanel" aria-label={active.name}>
+-                {active.largeOpened ? <LargeSourceView opened={active.largeOpened} locale={locale}
++                {active.largeOpened ? <LargeSourceView key={active.id} opened={active.largeOpened} locale={locale}
++                  zoom={documentZoom} onZoom={value => { documentZooms.current.set(active.id, value); setZoomRevision(revision => revision + 1); }}
+                   onReload={() => void reloadLargeTab(active.id)} /> : <div className="error-state">
+                   <h1>{active.errorCode ? errorText(locale, active.errorCode)
+                     : active.largeInspection.overLimit ? t(locale, "largeSourceLimit")
+@@ -2842,15 +3207,22 @@
+                     </button>}
+               </div>
+             ) : active.kind === "image" ? (
+-              active.image ? <ImageView image={active.image} locale={locale} hideIdentity />
+-                : active.imageLoading ? <div className="error-state" role="status">{t(locale, "imageLoading")}</div>
++              active.image ? <ImageView key={active.id} image={active.image} locale={locale} hideIdentity
++                initialView={imageViews.current.get(active.id)} onViewChange={(view) => {
++                  imageViews.current.set(active.id, view);
++                  const visit = historyRef.current.entries[historyRef.current.cursor];
++                  if (visit?.key === active.id) visit.target.imageView = { ...view };
++                }} />
++                : active.imageLoading || (active.freshness !== "unavailable" && active.freshness !== "uncertain")
++                  ? <div className="error-state" role="status">{t(locale, "imageLoading")}</div>
+                   : <div className="error-state" role="alert">
+                     <h1>{active.freshnessReason ? errorText(locale, active.freshnessReason)
+                       : t(locale, "imageUnavailable")}</h1>
+                     <button type="button" onClick={() => void refreshRetainedTab(active.id)}>{t(locale, "retry")}</button>
+                   </div>
+             ) : (
+-              <div className="document-page" role="tabpanel" aria-label={active.name}>
++              <div className="document-page" role="tabpanel" aria-label={active.name}
++                style={{ zoom: documentZoom } as CSSProperties} data-document-zoom={documentZoom}>
+                 {(active.freshness === "unavailable" || active.freshness === "uncertain") && <div className="notice" role="status">
+                   <span>{active.freshnessReason ? errorText(locale, active.freshnessReason) : t(locale, "unableConfirm")}</span>
+                   {active.freshnessReason === "reselection_required" && active.explicitFile
+@@ -2896,6 +3268,7 @@
+                   locale={locale}
+                   busy={busy}
+                   saving={savingTabId === active.id}
++                  headerActions
+                   checkpointStatus={activeEdit.checkpointStatus}
+                   findIndex={findOpen && findInDraft ? findIndex : null}
+                   findResults={findOpen && findInDraft ? findResults : null}
+@@ -2918,6 +3291,7 @@
+                 />}
+                 <MarkdownView content={active.content ?? ""} fileId={active.id} locale={locale}
+                   findRootRef={findRootRef}
++                  onRendered={(id, content) => setRenderedMarkdown({ id, content })}
+                   onHeadings={(entries) => updateHeadings(active.id, entries)}
+                   sections={sectionsByTab[active.id]}
+                   activeSectionId={!activeEdit?.paused ? activeEdit?.section.id : undefined}
+@@ -2933,7 +3307,7 @@
+               <strong>{t(locale, "outline")}</strong>
+               <button type="button" aria-label={t(locale, "closeOutline")}
+                 onClick={() => { if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
+-                  setOutlineOpen(false); outlineTriggerRef.current?.focus(); }}>×</button>
++                  setOutlineOpen(false); focusActionTrigger(outlineTriggerRef.current); }}>×</button>
+             </div>
+             {(headingsByTab[active.id] ?? []).length === 0
+               ? <p role="status">{t(locale, "outlineEmpty")}</p>
+@@ -2942,7 +3316,7 @@
+                   <button type="button" className={`outline-item outline-level-${entry.level}`}
+                     aria-current={activeOutlineId === entry.id ? "location" : undefined}
+                     title={entry.label || entry.id}
+-                    onClick={() => scrollToAnchor(entry.id)}>{entry.label || entry.id}</button>
++                    onClick={() => { noteLocationVisit(entry.id); scrollToAnchor(entry.id); }}>{entry.label || entry.id}</button>
+                 </li>)}
+               </ol></nav>}
+           </aside>}
+--- before/src/app/DocumentLocation.tsx
++++ after/src/app/DocumentLocation.tsx
+@@ -1,13 +1,43 @@
+-import { useRef } from "react";
++import { useEffect, useRef, type ReactNode } from "react";
+ import { t, type Locale } from "./i18n";
+ 
+-export default function DocumentLocation({ name, path, folders, locale, onReveal, revealing = false }:
+-  { name: string; path: string; folders: string | null; locale: Locale; onReveal?: () => void; revealing?: boolean }) {
++export default function DocumentLocation({ name, path, folders, locale, onReveal, revealing = false, actions, menuActions, onMenuOpen }:
++  { name: string; path: string; folders: string | null; locale: Locale; onReveal?: () => void; revealing?: boolean;
++    actions?: ReactNode; menuActions?: ReactNode; onMenuOpen?: () => void }) {
+   const disclosure = useRef<HTMLDetailsElement>(null);
++  const menu = useRef<HTMLDetailsElement>(null);
++  useEffect(() => {
++    if (menu.current) menu.current.open = false;
++    if (disclosure.current) disclosure.current.open = false;
++  }, [path]);
++  useEffect(() => {
++    const close = () => { if (menu.current) menu.current.open = false; };
++    const outside = (event: PointerEvent) => { if (!menu.current?.contains(event.target as Node)) close(); };
++    window.addEventListener("pointerdown", outside); window.addEventListener("resize", close); window.addEventListener("blur", close);
++    window.addEventListener("scroll", close, true);
++    return () => { window.removeEventListener("pointerdown", outside); window.removeEventListener("resize", close);
++      window.removeEventListener("blur", close); window.removeEventListener("scroll", close, true); };
++  }, []);
+   return <div className="document-location" role="group" aria-label={name}>
+     <div className="document-identity"><strong>{name}</strong>
+       <span>{folders === null ? t(locale, "outsideWorkspace") : folders || t(locale, "workspaceRoot")}</span></div>
+     <div className="document-location-actions">
++      {actions}
++      <details ref={menu} className="document-actions-disclosure" onToggle={(event) => {
++        if (event.currentTarget.open) onMenuOpen?.();
++      }} onKeyDown={(event) => {
++        if (event.key === "Escape" && !disclosure.current?.open && menu.current?.open) {
++          event.preventDefault(); event.stopPropagation(); menu.current.open = false;
++          menu.current.querySelector("summary")?.focus();
++        }
++      }}>
++      <summary>{t(locale, "documentMenu")}</summary>
++      <div className="document-actions-body" onClick={(event) => {
++        if ((event.target as HTMLElement).closest("button")) {
++          if (menu.current) { menu.current.open = false; menu.current.querySelector("summary")?.focus(); }
++        }
++      }}>
++      {menuActions}
+       <details ref={disclosure} className="path-disclosure" onKeyDown={(event) => {
+         if (event.key === "Escape" && disclosure.current?.open) {
+           event.preventDefault(); event.stopPropagation(); disclosure.current.open = false;
+@@ -19,6 +49,7 @@
+       </details>
+       {onReveal && <button type="button" disabled={revealing} onClick={onReveal}>
+         {t(locale, revealing ? "revealingFile" : "revealInExplorer")}</button>}
++      </div></details>
+     </div>
+   </div>;
+ }
+--- before/src/app/FolderSearchPanel.tsx
++++ after/src/app/FolderSearchPanel.tsx
+@@ -132,10 +132,14 @@
+     setOpening(hit.id);
+     try {
+       const result = await api.openSearchHit(current.jobId, hit.id);
++      if (job.current !== current) return;
+       await onOpen(result, hit, submittedQuery.current);
+     } catch (error) { setErrorCode(readerError(error).code); }
+     finally { setOpening(null); }
+   }
++
++  const groups = new Map<string, FolderSearchHit[]>();
++  for (const hit of hits) groups.set(hit.path, [...(groups.get(hit.path) ?? []), hit]);
+ 
+   return <section className="folder-search" role="search" aria-label={t(locale, "folderSearch") }
+     onKeyDown={(event) => {
+@@ -152,23 +156,25 @@
+     </label>
+     <p className="folder-search-scope">{t(locale, "searchScope")}: {root.name} · {t(locale,
+       mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</p>
+-    <label className="folder-search-label">{t(locale, "folderSearchMode")}
+-      <select value={mode} onChange={(event) => { invalidate(); setMode(event.target.value as typeof mode); }}>
+-        <option value="both">{t(locale, "folderSearchBoth")}</option>
+-        <option value="name">{t(locale, "folderSearchName")}</option>
+-        <option value="content">{t(locale, "folderSearchContent")}</option>
+-      </select>
+-    </label>
++    <div className="search-modes" role="group" aria-label={t(locale, "folderSearchMode")}>
++      {(["both", "name", "content"] as const).map((choice) => <button type="button" key={choice}
++        aria-pressed={mode === choice} onClick={() => { invalidate(); setMode(choice); }}>
++        {mode === choice && <span aria-hidden="true">✓ </span>}
++        {t(locale, choice === "both" ? "folderSearchBoth" : choice === "name" ? "folderSearchName" : "folderSearchContent")}
++      </button>)}
++    </div>
++    <p className="folder-search-scope">{t(locale, "searchMarkdownCoverage")}</p>
+     <label className="folder-search-check"><input type="checkbox" checked={includeIgnored}
+       onChange={(event) => { const checked = event.target.checked; setIncludeIgnored(checked);
+-        void search(checked); }} />
++        invalidate(); }} />
+       {t(locale, "folderSearchIncludeIgnored")}</label>
+     <div className="folder-search-actions">
+-      <button type="button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>
+-      <button type="button" disabled={status !== "searching" || !currentJob}
+-        onClick={() => void stop()}>{t(locale, "folderSearchStop")}</button>
++      {status !== "searching" && <button type="button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>}
++      {status === "searching" && <button type="button" disabled={!currentJob}
++        onClick={() => void stop()}>{t(locale, "folderSearchStop")}</button>}
+       <button type="button" disabled={!query} onClick={() => { invalidate(); setQuery(""); inputRef.current?.focus(); }}>{t(locale, "clearSearch")}</button>
+     </div>
++    {!query.trim() && <p className="folder-search-scope">{t(locale, "searchQueryRequired")}</p>}
+     <p className="folder-search-status" role="status" aria-live="polite">
+       {errorCode ? errorText(locale, errorCode) : status === "idle"
+         ? t(locale, "folderSearchGuidance") : status === "searching"
+@@ -179,13 +185,16 @@
+       {status !== "idle" && ` · ${progress.scanned.toLocaleString(locale)} ${t(locale, "folderSearchScanned")}, ${progress.skipped.toLocaleString(locale)} ${t(locale, "folderSearchSkipped")}`}
+       {status !== "idle" && ` · ${t(locale, "searchResultCount")}: ${hits.length.toLocaleString(locale)}`}
+     </p>
+-    <ol className="folder-search-results">{hits.map((hit) => <li key={hit.id}>
+-      <button type="button" disabled={opening !== null} title={hit.path}
+-        onClick={() => void open(hit)}>
+-        <strong>{hit.path}</strong>
+-        <span>{hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}{hit.context}</span>
+-        {hit.ignored && <small>{t(locale, "folderSearchIgnored")}</small>}
+-      </button>
+-    </li>)}</ol>
++    <div className="folder-search-groups">{Array.from(groups, ([path, matches]) => <section key={path} aria-label={path}>
++      <h3 title={path}>{path}<span>{matches.length.toLocaleString(locale)}</span></h3>
++      <ol className="folder-search-results">{matches.map((hit) => <li key={hit.id}>
++        <button type="button" disabled={opening !== null} title={hit.path}
++          aria-label={`${hit.path} · ${hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}${hit.context}`}
++          onClick={() => void open(hit)}>
++          <span>{hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}{hit.context}</span>
++          {hit.ignored && <small>{t(locale, "folderSearchIgnored")}</small>}
++        </button>
++      </li>)}</ol>
++    </section>)}</div>
+   </section>;
+ }
+--- before/src/app/i18n.ts
++++ after/src/app/i18n.ts
+@@ -2,6 +2,28 @@
+ 
+ const catalog = {
+   en: {
++    historyClosed: "Closed",
++    historyBack: "Back",
++    historyForward: "Forward",
++    visitHistory: "Visited files",
++    goMenuLabel: "Go menu",
++    goMenu: "Go",
++    historyNoPrevious: "No previous file",
++    historyNoNext: "No next file",
++    historySessionLimit: "This window keeps up to 100 visits for this session.",
++    clearVisitHistory: "Clear visit history",
++    closeSidebar: "Close sidebar",
++    projects: "Projects",
++    documentMenu: "Document…",
++    pathCopied: "Path copied",
++    pathCopyFailed: "The path could not be copied",
++    pathCopyUnavailable: "Copy is unavailable. Use Show path to select and copy the path.",
++    copyPath: "Copy path",
++    searchFolderUnavailable: "Subfolder search is not available yet.",
++    searchQueryRequired: "Enter a query to enable Search.",
++    searchMarkdownCoverage: "Contents search covers Markdown files.",
++    saveReturnsReading: "Save returns to reading.",
++
+     outlineMarkdownOnly: "Available for Markdown documents",
+     openDocuments: "Open documents",
+     currentDocument: "Current document",
+@@ -110,6 +132,7 @@
+     invalidGrant: "This file selection has expired",
+     genericError: "The document could not be opened",
+     localOnly: "Local files only",
++    imageType: "Image",
+     imageLoading: "Loading local image…",
+     imageBlocked: "Image blocked or unsupported",
+     imageFormat: "Format",
+@@ -283,6 +306,28 @@
+     startFresh: "Start fresh"
+   },
+   es: {
++    historyClosed: "Cerrado",
++    historyBack: "Atrás",
++    historyForward: "Adelante",
++    visitHistory: "Archivos visitados",
++    goMenuLabel: "Menú Ir",
++    goMenu: "Ir",
++    historyNoPrevious: "No hay archivo anterior",
++    historyNoNext: "No hay archivo siguiente",
++    historySessionLimit: "Esta ventana conserva hasta 100 visitas durante esta sesión.",
++    clearVisitHistory: "Borrar historial de visitas",
++    closeSidebar: "Cerrar explorador",
++    projects: "Proyectos",
++    documentMenu: "Documento…",
++    pathCopied: "Ruta copiada",
++    pathCopyFailed: "No se pudo copiar la ruta",
++    pathCopyUnavailable: "No se puede copiar aquí. Usa Mostrar ruta para seleccionarla y copiarla.",
++    copyPath: "Copiar ruta",
++    searchFolderUnavailable: "La búsqueda en subcarpetas aún no está disponible.",
++    searchQueryRequired: "Introduce una consulta para habilitar la búsqueda.",
++    searchMarkdownCoverage: "La búsqueda de contenido incluye archivos Markdown.",
++    saveReturnsReading: "Guardar vuelve a la lectura.",
++
+     outlineMarkdownOnly: "Disponible para documentos Markdown",
+     openDocuments: "Documentos abiertos",
+     currentDocument: "Documento actual",
+@@ -391,6 +436,7 @@
+     invalidGrant: "El permiso de este archivo caducó",
+     genericError: "No se pudo abrir el documento",
+     localOnly: "Solo archivos locales",
++    imageType: "Imagen",
+     imageLoading: "Cargando imagen local…",
+     imageBlocked: "Imagen bloqueada o no admitida",
+     imageFormat: "Formato",
+--- before/src/reader/ImageView.tsx
++++ after/src/reader/ImageView.tsx
+@@ -2,18 +2,27 @@
+ import { api } from "../app/api";
+ import type { ImageResponse } from "../app/api";
+ import { t, type Locale } from "../app/i18n";
++import { boundZoom, usePinchZoom } from "./usePinchZoom";
+ 
+ const ZOOM_STEPS = [0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4];
+ type Tile = { x: number; y: number; width: number; height: number; url: string };
+-
+-export default function ImageView({ image, locale, hideIdentity = false }: { image: ImageResponse; locale: Locale; hideIdentity?: boolean }) {
++export type ImageViewState = { mode: "fit" | "manual"; scale: number; left: number; top: number };
++
++export default function ImageView({ image, locale, hideIdentity = false, initialView, onViewChange }: {
++  image: ImageResponse; locale: Locale; hideIdentity?: boolean;
++  initialView?: ImageViewState; onViewChange?: (view: ImageViewState) => void;
++}) {
+   const viewportRef = useRef<HTMLDivElement>(null);
+   const [url, setUrl] = useState<string | null>(null);
+   const [failed, setFailed] = useState(false);
+   const [fitScale, setFitScale] = useState(1);
+   const [fitMeasured, setFitMeasured] = useState(false);
+-  const [mode, setMode] = useState<"fit" | "manual">("fit");
+-  const [manualScale, setManualScale] = useState(1);
++  const [mode, setMode] = useState<"fit" | "manual">(initialView?.mode ?? "fit");
++  const [manualScale, setManualScale] = useState(initialView?.scale ?? 1);
++  const viewChange = useRef(onViewChange);
++  viewChange.current = onViewChange;
++  const zoomAnchor = useRef<{ viewport: HTMLDivElement; surface: HTMLElement; x: number; y: number; focus: { x: number; y: number } } | null>(null);
++  const pendingView = useRef(initialView);
+   const [viewportTick, setViewportTick] = useState(0);
+   const [tiles, setTiles] = useState<Tile[]>([]);
+   const [tileError, setTileError] = useState(false);
+@@ -36,7 +45,9 @@
+     return () => URL.revokeObjectURL(objectUrl);
+   }, [image.bytes]);
+ 
+-  useEffect(() => { setMode("fit"); setManualScale(1); }, [image.width, image.height, image.diskVersion]);
++  useLayoutEffect(() => {
++    return () => { zoomAnchor.current = null; };
++  }, [image.fileId]);
+ 
+   useEffect(() => {
+     tileGeneration.current += 1;
+@@ -75,6 +86,18 @@
+   }, [image.width, image.height]);
+ 
+   const scale = mode === "fit" ? fitScale : manualScale;
++  useLayoutEffect(() => {
++    const viewport = viewportRef.current;
++    if (!viewport || !url || !fitMeasured || !pendingView.current) return;
++    viewport.scrollLeft = pendingView.current.left;
++    viewport.scrollTop = pendingView.current.top;
++    pendingView.current = undefined;
++  }, [url, fitMeasured]);
++  useEffect(() => {
++    const viewport = viewportRef.current;
++    if (viewport && url && fitMeasured && !pendingView.current)
++      viewChange.current?.({ mode, scale, left: viewport.scrollLeft, top: viewport.scrollTop });
++  }, [mode, scale, url, fitMeasured]);
+   useEffect(() => {
+     const viewport = viewportRef.current;
+     if (!viewport) return;
+@@ -130,19 +153,30 @@
+       });
+     }
+   }, [image, previewWidth, previewHeight, scale, viewportTick, fitMeasured]);
+-  function changeScale(next: number) {
+-    const viewport = viewportRef.current;
+-    const x = viewport ? (viewport.scrollLeft + viewport.clientWidth / 2) / scale : 0;
+-    const y = viewport ? (viewport.scrollTop + viewport.clientHeight / 2) / scale : 0;
+-    const bounded = Math.max(0.25, Math.min(4, next));
++  function changeScale(next: number, point?: { x: number; y: number }) {
++    const viewport = viewportRef.current;
++    const surface = viewport?.querySelector<HTMLElement>(".image-surface");
++    const bounds = surface?.getBoundingClientRect();
++    const viewportBounds = viewport?.getBoundingClientRect();
++    const focus = point ?? { x: (viewportBounds?.left ?? 0) + (viewport?.clientWidth ?? 0) / 2,
++      y: (viewportBounds?.top ?? 0) + (viewport?.clientHeight ?? 0) / 2 };
++    const x = bounds ? (focus.x - bounds.left) / scale : 0;
++    const y = bounds ? (focus.y - bounds.top) / scale : 0;
++    const bounded = boundZoom(next);
+     setManualScale(bounded);
+     setMode("manual");
+-    requestAnimationFrame(() => {
+-      if (!viewport) return;
+-      viewport.scrollLeft = Math.max(0, x * bounded - viewport.clientWidth / 2);
+-      viewport.scrollTop = Math.max(0, y * bounded - viewport.clientHeight / 2);
+-    });
++    zoomAnchor.current = viewport && surface ? { viewport, surface, x, y, focus } : null;
+   }
++  useLayoutEffect(() => {
++    const pending = zoomAnchor.current;
++    zoomAnchor.current = null;
++    if (!pending || !pending.surface.isConnected) return;
++    const bounds = pending.surface.getBoundingClientRect();
++    pending.viewport.scrollLeft += bounds.left + pending.x * scale - pending.focus.x;
++    pending.viewport.scrollTop += bounds.top + pending.y * scale - pending.focus.y;
++    viewChange.current?.({ mode, scale, left: pending.viewport.scrollLeft, top: pending.viewport.scrollTop });
++  }, [scale, mode]);
++  usePinchZoom(viewportRef, image.fileId, Boolean(url) && !failed, scale, changeScale);
+   function stepZoom(direction: -1 | 1) {
+     const next = direction > 0
+       ? ZOOM_STEPS.find((step) => step > scale + 0.001) ?? 4
+@@ -172,7 +206,10 @@
+       {tileError && <p className="image-detail-error" role="status">{t(locale, "imageDetailUnavailable")}</p>}
+     </div>
+     <div className="image-viewport" ref={viewportRef} tabIndex={0} aria-label={image.name}
+-      onScroll={() => setViewportTick((tick) => tick + 1)}>
++      onScroll={(event) => {
++        setViewportTick((tick) => tick + 1);
++        viewChange.current?.({ mode, scale, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop });
++      }}>
+       {failed ? <p role="alert">{t(locale, "imageCorrupt")}</p>
+         : url ? <div className="image-stage" style={{
+           width: Math.max(image.width * scale, viewportRef.current?.clientWidth ?? 0),
+--- before/src/reader/LargeSourceView.tsx
++++ after/src/reader/LargeSourceView.tsx
+@@ -1,15 +1,18 @@
+-import { useEffect, useRef, useState } from "react";
++import { useEffect, useLayoutEffect, useRef, useState } from "react";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type LargeOpened, type SourceWindow } from "../app/api";
+ import { errorText, t, type Locale } from "../app/i18n";
++import { usePinchZoom } from "./usePinchZoom";
+ 
+ interface Props {
+   opened: LargeOpened;
+   locale: Locale;
+   onReload: () => void;
++  zoom?: number;
++  onZoom?: (value: number) => void;
+ }
+ 
+-export default function LargeSourceView({ opened, locale, onReload }: Props) {
++export default function LargeSourceView({ opened, locale, onReload, zoom = 1, onZoom }: Props) {
+   const [windowData, setWindowData] = useState<SourceWindow | null>(null);
+   const [position, setPosition] = useState(0);
+   const [line, setLine] = useState("1");
+@@ -22,6 +25,24 @@
+   const lastMatch = useRef<number | null>(null);
+   const sourceRef = useRef<HTMLPreElement>(null);
+   const lastScrollTop = useRef(0);
++  const zoomAnchor = useRef<{ x: number; y: number; offsetX: number; offsetY: number } | null>(null);
++  usePinchZoom(sourceRef, opened.fileId, Boolean(windowData) && Boolean(onZoom), zoom, (next, point) => {
++    const source = sourceRef.current;
++    if (!source) return;
++    const bounds = source.getBoundingClientRect(), styles = getComputedStyle(source);
++    const offsetX = point.x - bounds.left - (parseFloat(styles.paddingLeft) || 0);
++    const offsetY = point.y - bounds.top - (parseFloat(styles.paddingTop) || 0);
++    zoomAnchor.current = { x: (source.scrollLeft + offsetX) / zoom, y: (source.scrollTop + offsetY) / zoom, offsetX, offsetY };
++    onZoom?.(next);
++  });
++  useLayoutEffect(() => {
++    const source = sourceRef.current, anchor = zoomAnchor.current;
++    zoomAnchor.current = null;
++    if (!source || !anchor) return;
++    source.scrollLeft = anchor.x * zoom - anchor.offsetX;
++    source.scrollTop = anchor.y * zoom - anchor.offsetY;
++    lastScrollTop.current = source.scrollTop;
++  }, [zoom]);
+ 
+   async function load(offset: number, preserveFind = false) {
+     if (!preserveFind) lastMatch.current = null;
+@@ -168,7 +189,7 @@
+         ? `${windowData.startByte.toLocaleString(locale)}–${windowData.endByte.toLocaleString(locale)} / ${opened.sizeBytes.toLocaleString(locale)} bytes · ${t(locale, "largeSourceLine")} ${windowData.lineNumber}`
+         : t(locale, "largeSourceLoading"))}
+     </div>
+-    <pre ref={sourceRef} className="large-source-text" tabIndex={0} aria-label={t(locale, "largeSourceWindow")}
++    <pre ref={sourceRef} className="large-source-text" style={{ fontSize: `${12 * zoom}px` }} data-source-zoom={zoom} tabIndex={0} aria-label={t(locale, "largeSourceWindow")}
+       onScroll={scrollSource}>{windowData?.text ?? ""}</pre>
+   </section>;
+ }
+--- before/src/reader/MarkdownView.tsx
++++ after/src/reader/MarkdownView.tsx
+@@ -1,4 +1,4 @@
+-import { Component, createElement, useEffect, useMemo, useRef, useState, type ReactNode, type Ref } from "react";
++import { Component, createElement, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type Ref } from "react";
+ import Markdown, { type Components } from "react-markdown";
+ import remarkGfm from "remark-gfm";
+ import type { Root } from "mdast";
+@@ -109,7 +109,7 @@
+ }
+ 
+ export default function MarkdownView({ content, fileId, locale, onNavigate, sections, activeSectionId,
+-  onEditSection, findRootRef, onHeadings }: {
++  onEditSection, findRootRef, onHeadings, onRendered }: {
+   content: string;
+   fileId: string;
+   locale: Locale;
+@@ -119,6 +119,7 @@
+   onEditSection?: (section: SectionDescriptor) => void;
+   findRootRef?: Ref<HTMLElement>;
+   onHeadings?: (entries: HeadingEntry[]) => void;
++  onRendered?: (fileId: string, content: string) => void;
+ }) {
+   const parseContent = content.startsWith("\uFEFF") ? content.slice(1) : content;
+   const overBudget = useMemo(() => exceedsRenderBudget(parseContent), [parseContent]);
+@@ -165,6 +166,12 @@
+   const workerMetadata = parsed?.content === parseContent ? parsed.metadata : undefined;
+   const parseFailed = parsed?.content === parseContent && parsed.error;
+   const canParseInline = !overBudget && parseContent.length <= 256 * 1024;
++  const renderReady = !overBudget && (Boolean(tree) || ((!hasWorker || parseFailed) && canParseInline));
++  const renderedCallback = useRef(onRendered);
++  renderedCallback.current = onRendered;
++  useLayoutEffect(() => {
++    if (renderReady) renderedCallback.current?.(fileId, content);
++  }, [fileId, content, renderReady]);
+   const sectionTree = useMemo(() => tree ?? (canParseInline
+     ? unified().use(remarkParse).use(remarkFrontmatter).parse(parseContent) as Root : undefined),
+     [tree, canParseInline, parseContent]);
+--- before/src/reader/SectionEditor.tsx
++++ after/src/reader/SectionEditor.tsx
+@@ -16,7 +16,7 @@
+   sessionId, fileId, label, initialSource, initialDraft, initialEditorJson,
+   initialScrollTop, initialScrollLeft, lineSeparator, locale,
+   onChange, onCheckpoint, onSave, onSaveAs, onDiscard, onReturn, busy, checkpointStatus, conflict = false, saving = false,
+-  findIndex, findResults, findOrdinal, onFindReady
++  findIndex, findResults, findOrdinal, onFindReady, headerActions = false
+ }: {
+   sessionId: string;
+   fileId: string;
+@@ -42,6 +42,7 @@
+   findResults?: FindResults | null;
+   findOrdinal?: number;
+   onFindReady?: (adapter: DraftFindAdapter | null) => void;
++  headerActions?: boolean;
+ }) {
+   const host = useRef<HTMLDivElement>(null);
+   const { resolved } = useAppearance();
+@@ -212,12 +213,12 @@
+       <button type="button" disabled={!historyAvailable.redo || saving} onClick={() => view.current && redo(view.current)}>{t(locale, "redo")}</button>
+       <span className="toolbar-spacer" />
+       <button type="button" onClick={onDiscard} disabled={busy}>{t(locale, "discardChanges")}</button>
+-      <button type="button" onClick={onReturn} disabled={busy}>{t(locale, "returnReading")}</button>
++      {!headerActions && <button type="button" onClick={onReturn} disabled={busy}>{t(locale, "returnReading")}</button>}
+       <button type="button" onClick={onSaveAs} disabled={busy}>{t(locale, "saveAsCopy")}</button>
+-      <button type="button" className="primary-button" onClick={onSave} disabled={busy || conflict || draft === initialSource}
++      {!headerActions && <button type="button" className="primary-button" onClick={onSave} disabled={busy || conflict || draft === initialSource}
+         title={draft === initialSource ? t(locale, "noChangesToSave") : conflict ? t(locale, "saveConflict") : undefined}>
+         {t(locale, "saveFile")}
+-      </button>
++      </button>}
+     </div>
+   </section>;
+ }
+--- before/src/reader/find-index.ts
++++ after/src/reader/find-index.ts
+@@ -118,11 +118,12 @@
+     return range;
+   }
+ 
+-  visibleBounds(viewport: DOMRect): FindSpan | null {
++  visibleBounds(viewport: DOMRect, bounds: (element: HTMLElement) => DOMRect = element => element.getBoundingClientRect()): FindSpan | null {
+     let start = Infinity;
+     let end = -Infinity;
+     for (const part of this.parts) {
+-      const rect = part.node.parentElement?.getBoundingClientRect();
++      const element = part.node.parentElement;
++      const rect = element ? bounds(element) : undefined;
+       if (!rect || rect.bottom < viewport.top || rect.top > viewport.bottom
+         || rect.right < viewport.left || rect.left > viewport.right) continue;
+       start = Math.min(start, part.start);
+--- before/src/reader/usePinchZoom.ts
++++ after/src/reader/usePinchZoom.ts
+@@ -0,0 +1,73 @@
++import { useEffect, useRef, type RefObject } from "react";
++
++type Point = { x: number; y: number };
++type Gesture = Event & { scale: number; clientX: number; clientY: number };
++export const boundZoom = (scale: number) => Math.max(0.25, Math.min(4, scale));
++
++let unscaledRects: boolean | undefined;
++/** Normalize CSS-zoom rectangles to the same viewport coordinates as pointer events.
++ * WebKit versions can divide all rectangle coordinates by the element's CSS zoom.
++ * Measure that behavior instead of relying on a browser name/version. */
++export function normalizeZoomRect(rect: DOMRect, scale: number) {
++  if (scale !== 1 && unscaledRects === undefined) {
++    const probe = document.createElement("div");
++    probe.style.cssText = "position:fixed;left:0;top:0;width:100px;height:1px;zoom:2;visibility:hidden;pointer-events:none";
++    document.body.append(probe);
++    unscaledRects = Math.abs(probe.getBoundingClientRect().width - 100) < 0.5;
++    probe.remove();
++  }
++  const multiplier = unscaledRects ? scale : 1;
++  return new DOMRect(rect.left * multiplier, rect.top * multiplier, rect.width * multiplier, rect.height * multiplier);
++}
++
++export const zoomRect = (element: HTMLElement, scale: number) => normalizeZoomRect(element.getBoundingClientRect(), scale);
++
++/** WebKit gestures and ctrl-wheel trackpad pinch; ordinary scrolling is untouched. */
++export function usePinchZoom(ref: RefObject<HTMLElement | null>, identity: string,
++  enabled: boolean, scale: number, change: (scale: number, point: Point) => void) {
++  const current = useRef({ scale, change });
++  current.current = { scale, change };
++  useEffect(() => {
++    const element = ref.current;
++    if (!element || !enabled) return;
++    let gestureBase: number | null = null;
++    const apply = (next: number, event: { clientX: number; clientY: number }) => {
++      if (!Number.isFinite(next) || next <= 0) return;
++      current.current.scale = boundZoom(next);
++      const bounds = element.getBoundingClientRect();
++      current.current.change(current.current.scale, {
++        x: Number.isFinite(event.clientX) ? event.clientX : bounds.left + bounds.width / 2,
++        y: Number.isFinite(event.clientY) ? event.clientY : bounds.top + bounds.height / 2
++      });
++    };
++    const start = (event: Event) => {
++      event.preventDefault();
++      gestureBase = current.current.scale;
++    };
++    const gesture = (event: Event) => {
++      event.preventDefault();
++      const value = event as Gesture;
++      if (gestureBase === null) gestureBase = current.current.scale;
++      apply(gestureBase * value.scale, value);
++    };
++    const end = (event: Event) => { event.preventDefault(); gestureBase = null; };
++    const wheel = (event: WheelEvent) => {
++      if (!event.ctrlKey) return;
++      event.preventDefault();
++      // WebKit can deliver both representations for one gesture.
++      if (gestureBase !== null) return;
++      const units = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientHeight : 1;
++      apply(current.current.scale * Math.exp(-Math.max(-100, Math.min(100, event.deltaY * units)) / 300), event);
++    };
++    element.addEventListener("wheel", wheel, { passive: false });
++    element.addEventListener("gesturestart", start, { passive: false });
++    element.addEventListener("gesturechange", gesture, { passive: false });
++    element.addEventListener("gestureend", end, { passive: false });
++    return () => {
++      element.removeEventListener("wheel", wheel);
++      element.removeEventListener("gesturestart", start);
++      element.removeEventListener("gesturechange", gesture);
++      element.removeEventListener("gestureend", end);
++    };
++  }, [ref, identity, enabled]);
++}
+--- before/src/styles/app.css
++++ after/src/styles/app.css
+@@ -594,3 +594,41 @@
+   .section-editor-actions .toolbar-spacer { display: none; }
+   .sidebar-footnote { padding: 10px 12px; }
+ }
++
++/* Approved option D: visit controls stay fixed outside the scrollable tab lane. */
++.history-controls { display: flex; align-items: center; flex: 0 0 auto; gap: 8px; padding: 6px 12px; position: relative; }
++.history-controls::after { content: ""; width: 1px; height: 24px; margin-inline-start: 4px; background: var(--control-border); }
++.history-arrow { display: grid; place-items: center; width: 32px; height: 32px; min-width: 32px; padding: 0; border-radius: 6px; border: 1px solid var(--control-border); background: var(--chrome); color: var(--text); }
++.history-arrow:hover:not(:disabled) { background: var(--hover); border-color: var(--muted); }
++.history-arrow:active:not(:disabled) { background: var(--hover); border-color: var(--text); }
++.history-arrow:disabled { color: var(--control-border); opacity: 1; }
++.history-arrow:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
++.history-menu-trigger { flex: 0 0 auto; align-self: center; margin: 6px 4px; }
++.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
++@media (max-width: 700px) {
++  .history-controls { padding-inline: 8px; }
++  .history-menu-trigger { font-size: 12px; padding-inline: 5px; }
++  .document-list-trigger { max-width: 36%; overflow-wrap: anywhere; }
++}
++.projects-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px; min-height: 32px; border: 1px solid var(--control-border) !important; color: var(--text) !important; }
++.action-menu { max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); overflow-y: auto; border-color: var(--control-border); }
++.action-menu button { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 32px; }
++.menu-shortcut { color: var(--muted); white-space: nowrap; }
++.search-modes { display: flex; flex-wrap: wrap; gap: 6px; }
++.search-modes button[aria-pressed="true"] { background: var(--hover); border-color: var(--muted); }
++.document-actions-disclosure > summary { list-style: none; padding: 6px 12px; border: 1px solid var(--control-border); border-radius: 6px; cursor: pointer; }
++.document-actions-body { display: flex; flex-wrap: wrap; gap: 8px; padding-block-start: 8px; max-width: 100%; }
++.document-actions-disclosure:not([open]) .document-actions-body { display: none; }
++.header-edit-actions { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
++.header-edit-actions small { flex-basis: 100%; color: var(--muted); }
++
++.folder-search-groups { overflow: auto; min-height: 0; }
++.folder-search-groups h3 { display: flex; gap: 8px; justify-content: space-between; margin: 12px 0 4px; font-size: 13px; overflow-wrap: anywhere; }
++.folder-search-groups h3 span { flex: none; font-weight: 400; }
++.folder-search-groups .folder-search-results { overflow: visible; }
++
++.workspace-layout { position: relative; }
++.sidebar[data-compact="true"] { position: absolute; top: 0; bottom: 0; left: 0; z-index: 31; max-width: calc(100% - 32px); resize: none; box-shadow: 8px 0 24px #0004; }
++.sidebar-scrim { position: absolute; inset: 0; z-index: 30; width: 100%; height: 100%; border: 0; border-radius: 0; background: #0004; }
++
++.reader-scroll, .image-viewport { overflow-anchor: none; }
+--- before/src/workspace/visitHistory.ts
++++ after/src/workspace/visitHistory.ts
+@@ -0,0 +1,15 @@
++export interface Visit<T> { target: T; key: string; scrollTop: number; scrollLeft: number; anchor?: string }
++export interface VisitHistory<T> { entries: Visit<T>[]; cursor: number }
++export const emptyHistory = <T>(): VisitHistory<T> => ({ entries: [], cursor: -1 });
++export function recordVisit<T>(history: VisitHistory<T>, visit: Visit<T>): VisitHistory<T> {
++  const current = history.entries[history.cursor];
++  if (current?.key === visit.key && current.anchor === visit.anchor) return history;
++  const entries = [...history.entries.slice(0, history.cursor + 1), visit].slice(-100);
++  return { entries, cursor: entries.length - 1 };
++}
++export function updateVisit<T>(history: VisitHistory<T>, key: string, position: Pick<Visit<T>, "scrollTop" | "scrollLeft">): VisitHistory<T> {
++  if (history.entries[history.cursor]?.key !== key) return history;
++  const entries = [...history.entries];
++  entries[history.cursor] = { ...entries[history.cursor], ...position };
++  return { ...history, entries };
++}
