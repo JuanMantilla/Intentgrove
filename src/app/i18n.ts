@@ -126,6 +126,11 @@ const catalog = {
     toggleSidebar: "Toggle sidebar",
     noDocument: "Open a Markdown file to start reading.",
     blocked: "This link is blocked",
+    sessionLoadFailed: "The remembered workspace could not be loaded. Your documents can still be opened.",
+    sessionCheckpointFailed: "Workspace progress could not be saved. Recent tabs and reading positions may not be restored.",
+    sessionCloseFailed: "The app could not close safely. Retry closing after resolving the failure.",
+    sessionStorageUnsafe: "Private storage access or protection could not be confirmed.",
+    sessionOperationFailed: "The workspace operation failed.",
     unsupported: "This content is not supported in this version",
     missing: "This file is missing",
     denied: "Permission denied",
@@ -155,6 +160,7 @@ const catalog = {
     imageUnavailable: "The isolated image decoder is unavailable",
     imageTimeout: "The image decoder took too long",
     linkBlocked: "This target is outside the selected folder or unsupported",
+    singleFileLinkBlocked: "This file was opened individually. Open its folder, then open the file from the folder tree to follow links to other files.",
     copyTarget: "Copy target",
     readOnly: "Reading mode",
     language: "Language",
@@ -264,6 +270,10 @@ const catalog = {
     closeOutline: "Close outline",
     outlineEmpty: "No headings in this document",
     readingSettings: "Reading settings",
+    readingPreview: "Reading preview",
+    readingPreviewText: "Adjust the type to find a comfortable reading rhythm. Your document stays unchanged.",
+    readingValueRange: "Enter a value between",
+    languageSaveFailed: "Language changed, but could not be saved.",
     closeReadingSettings: "Close reading settings",
     readingFont: "Font",
     systemSerif: "System serif",
@@ -436,6 +446,11 @@ const catalog = {
     toggleSidebar: "Mostrar u ocultar explorador",
     noDocument: "Abre un archivo Markdown para empezar a leer.",
     blocked: "Este enlace está bloqueado",
+    sessionLoadFailed: "No se pudo cargar el espacio de trabajo recordado. Puedes seguir abriendo tus documentos.",
+    sessionCheckpointFailed: "No se pudo guardar el progreso del espacio de trabajo. Es posible que no se restauren las pestañas y posiciones recientes.",
+    sessionCloseFailed: "La app no pudo cerrarse de forma segura. Vuelve a intentar cerrarla después de resolver el fallo.",
+    sessionStorageUnsafe: "No se pudo confirmar el acceso o la protección del almacenamiento privado.",
+    sessionOperationFailed: "La operación del espacio de trabajo falló.",
     unsupported: "Este contenido no se admite en esta versión",
     missing: "Falta este archivo",
     denied: "Permiso denegado",
@@ -465,6 +480,7 @@ const catalog = {
     imageUnavailable: "El decodificador aislado no está disponible",
     imageTimeout: "El decodificador tardó demasiado",
     linkBlocked: "Este destino está fuera de la carpeta seleccionada o no se admite",
+    singleFileLinkBlocked: "Este archivo se abrió individualmente. Abre su carpeta y luego el archivo desde el árbol de la carpeta para seguir enlaces a otros archivos.",
     copyTarget: "Copiar destino",
     readOnly: "Modo lectura",
     language: "Idioma",
@@ -574,6 +590,10 @@ const catalog = {
     closeOutline: "Cerrar índice",
     outlineEmpty: "Este documento no tiene títulos",
     readingSettings: "Ajustes de lectura",
+    readingPreview: "Vista previa de lectura",
+    readingPreviewText: "Ajusta la tipografía para leer con comodidad. Tu documento no cambia.",
+    readingValueRange: "Introduce un valor entre",
+    languageSaveFailed: "El idioma cambió, pero no se pudo guardar.",
     closeReadingSettings: "Cerrar ajustes de lectura",
     readingFont: "Fuente",
     systemSerif: "Serif del sistema",
@@ -625,6 +645,14 @@ const catalog = {
 } as const;
 
 export type MessageKey = keyof typeof catalog.en;
+
+// Session/storage errors describe the failed operation, never document support.
+export function sessionErrorText(locale: Locale, operation: "load" | "checkpoint" | "close", code: string): string {
+  const key = { load: "sessionLoadFailed", checkpoint: "sessionCheckpointFailed", close: "sessionCloseFailed" } as const;
+  const reason = code.endsWith("_permissions") || code === "denied"
+    ? "sessionStorageUnsafe" : "sessionOperationFailed";
+  return `${t(locale, key[operation])} ${t(locale, reason)} (${code})`;
+}
 
 export function t(locale: Locale, key: MessageKey): string {
   if (isWindows && key === "imageUnavailable") return locale === "es"

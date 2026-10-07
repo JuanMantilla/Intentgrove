@@ -1,0 +1,27 @@
+
+> intentgrove@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 C:/Users/jsman/projects/personal/Intentgrove
+
+✔ installer gate requires both completed desktop tasks, not historical prose (1.8619ms)
+✔ invalid CLI arguments cannot silently change the requested build (2.8159ms)
+✔ packaging refuses elevation, runtime downloads and associations (0.4168ms)
+✔ unreviewed lifecycle scripts, sidecars and custom installer hooks stop construction (0.4033ms)
+✔ stale and unrelated installer files are not delivered (0.8322ms)
+✔ unknown companion imports and missing inspection evidence are not called portable (0.5914ms)
+ ❯ scripts/build-windows.test.mjs (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  scripts/build-windows.test.mjs [ scripts/build-windows.test.mjs ]
+Error: No test suite found in file C:/Users/jsman/projects/personal/Intentgrove/scripts/build-windows.test.mjs
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 40 passed (41)
+      Tests  272 passed (272)
+   Start at  13:02:09
+   Duration  33.51s (transform 10.27s, setup 0ms, import 140.25s, tests 63.29s, environment 252.33s)
+

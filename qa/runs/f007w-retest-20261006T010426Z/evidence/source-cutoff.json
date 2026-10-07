@@ -1,0 +1,42 @@
+{
+  "capturedUtc": "2026-10-06T01:09:48.956Z",
+  "buildStarted": "2026-10-06T01:06:06.306Z",
+  "buildFinished": "2026-10-06T01:07:04.063Z",
+  "sourceIdentity": "Working-tree file hashes; not a commit or full builder source attestation",
+  "sourceManifestBefore": "product-hashes-before.json",
+  "sourceManifestAfter": "product-hashes-after.json",
+  "unchangedAcrossBuild": true,
+  "qa0004ManifestMatches": [
+    {
+      "path": "src/app/App.tsx",
+      "engineeringSha256": "03113ede8014e1b6c61dbab59fc40b6aa5aadd112d8a89e8d3434c70c4e364ac",
+      "currentSha256": "03113ede8014e1b6c61dbab59fc40b6aa5aadd112d8a89e8d3434c70c4e364ac"
+    },
+    {
+      "path": "src/app/i18n.ts",
+      "engineeringSha256": "398e63f6cbdd236f11aa094a5e8366af0c7a27e7064af0bb94d9a7e971f13375",
+      "currentSha256": "398e63f6cbdd236f11aa094a5e8366af0c7a27e7064af0bb94d9a7e971f13375"
+    },
+    {
+      "path": "tests/ui/session.test.tsx",
+      "engineeringSha256": "c762a574b3d977ebaba8f1061785015950ce2de58c46f7d128153c3ae06f5218",
+      "currentSha256": "c762a574b3d977ebaba8f1061785015950ce2de58c46f7d128153c3ae06f5218"
+    },
+    {
+      "path": "tests/ui/workspace.test.tsx",
+      "engineeringSha256": "584dbdf323a77d6a872033360e389a38ca8fb48b9953512b686477f3f2111934",
+      "currentSha256": "584dbdf323a77d6a872033360e389a38ca8fb48b9953512b686477f3f2111934"
+    },
+    {
+      "path": "tests/fixtures/qa0004-preview.tsx",
+      "engineeringSha256": "778d585b52ab7f38a97681b94011cd9034543c2fa4094667293d5eedaf94a5f8",
+      "currentSha256": "778d585b52ab7f38a97681b94011cd9034543c2fa4094667293d5eedaf94a5f8"
+    },
+    {
+      "path": "tests/fixtures/qa0004-preview.html",
+      "engineeringSha256": "13af46b842e8add2e8eded26afba14e267dff141025a5fb3d76d80b2c2668502",
+      "currentSha256": "13af46b842e8add2e8eded26afba14e267dff141025a5fb3d76d80b2c2668502"
+    }
+  ],
+  "provenance": "QA captured source hashes before build and verified unchanged after build; builder receipt separately hashes eight build inputs. QA-0004 engineering report states no native candidate built at its prior cutoff."
+}

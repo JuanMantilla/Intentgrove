@@ -17,6 +17,7 @@ mod save_copies;
 mod search;
 mod scope;
 mod session;
+mod settings;
 mod selection;
 mod state;
 use tauri::{Emitter, Manager};
@@ -36,13 +37,28 @@ struct NativeMenuControls {
     appearance_system: tauri::menu::MenuItem<tauri::Wry>,
     appearance_light: tauri::menu::MenuItem<tauri::Wry>,
     appearance_dark: tauri::menu::MenuItem<tauri::Wry>,
+    settings: tauri::menu::MenuItem<tauri::Wry>,
+    reading_settings: tauri::menu::MenuItem<tauri::Wry>,
+    go: tauri::menu::Submenu<tauri::Wry>,
+    back: tauri::menu::MenuItem<tauri::Wry>,
+    forward: tauri::menu::MenuItem<tauri::Wry>,
+    visited: tauri::menu::MenuItem<tauri::Wry>,
+    clear_history: tauri::menu::MenuItem<tauri::Wry>,
 }
 
 #[cfg(target_os = "macos")]
 #[tauri::command]
 fn set_native_menu_state(controls: tauri::State<'_, NativeMenuControls>,
-    close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
+    close_tab: bool, save: bool, find: bool, reload: bool, locale: String,
+    back: Option<bool>, forward: Option<bool>, visited: Option<bool>, clear_history: Option<bool>) -> scope::AppResult<()> {
     let es = locale == "es";
+    for (item, enabled) in [(&controls.back, back), (&controls.forward, forward),
+        (&controls.visited, visited), (&controls.clear_history, clear_history)] {
+        item.set_enabled(enabled.unwrap_or(false))
+            .map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
+    }
+    controls.go.set_text(if es { "Ir" } else { "Go" })
+        .map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
     controls.close_tab.set_enabled(close_tab).map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
     controls.save.set_enabled(save).map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
     controls.find.set_enabled(find).map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
@@ -58,9 +74,15 @@ fn set_native_menu_state(controls: tauri::State<'_, NativeMenuControls>,
             if find { "Buscar en el documento" } else { "Buscar en el documento (abre uno primero)" }),
         (&controls.reload, if reload { "Reload" } else { "Reload (open a document)" },
             if reload { "Recargar" } else { "Recargar (abre un documento primero)" }),
+        (&controls.back, "Back", "Atrás"),
+        (&controls.forward, "Forward", "Adelante"),
+        (&controls.visited, "Visited Documents…", "Documentos visitados…"),
+        (&controls.clear_history, "Clear Visit History", "Borrar historial de visitas"),
         (&controls.appearance_system, "System Appearance", "Apariencia del sistema"),
         (&controls.appearance_light, "Light Appearance", "Apariencia clara"),
         (&controls.appearance_dark, "Dark Appearance", "Apariencia oscura"),
+        (&controls.settings, "Settings…", "Ajustes…"),
+        (&controls.reading_settings, "Reading Settings…", "Ajustes de lectura…"),
     ] {
         item.set_text(if es { spanish } else { en })
             .map_err(|err| scope::AppError::new("menu_error", err.to_string()))?;
@@ -70,8 +92,9 @@ fn set_native_menu_state(controls: tauri::State<'_, NativeMenuControls>,
 
 #[cfg(target_os = "windows")]
 #[tauri::command]
-fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
-    let _ = (close_tab, save, find, reload, locale);
+fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String,
+    back: Option<bool>, forward: Option<bool>, visited: Option<bool>, clear_history: Option<bool>) -> scope::AppResult<()> {
+    let _ = (close_tab, save, find, reload, locale, back, forward, visited, clear_history);
     Err(scope::AppError::new("unsupported_type", "Native application menu controls are macOS-only"))
 }
 
@@ -108,12 +131,15 @@ fn install_native_quit_guard(app: &tauri::AppHandle) -> Result<(), Box<dyn std::
 fn install_quit_menu(app: &mut tauri::App) -> tauri::Result<()> {
     use tauri::menu::{Menu, MenuItem, MenuItemKind, PredefinedMenuItem};
     let menu = Menu::default(app.handle())?;
+    let settings = MenuItem::with_id(app.handle(), "workspace_settings", "Settings…", true, Some("Cmd+,"))?;
+    let reading_settings = MenuItem::with_id(app.handle(), "workspace_reading_settings", "Reading Settings…", true, None::<&str>)?;
     if let Some(MenuItemKind::Submenu(app_menu)) = menu.items()?.first() {
         let items = app_menu.items()?;
         if !items.is_empty() {
             app_menu.remove_at(items.len() - 1)?;
         }
         let safe_quit = MenuItem::with_id(app.handle(), "editing_quit", "Quit", true, Some("Cmd+Q"))?;
+        app_menu.append(&settings)?;
         app_menu.append(&safe_quit)?;
     }
     let items = menu.items()?;
@@ -140,16 +166,28 @@ fn install_quit_menu(app: &mut tauri::App) -> tauri::Result<()> {
     let appearance_dark = MenuItem::with_id(app.handle(), "workspace_appearance_dark", "Dark Appearance", true, None::<&str>)?;
     if let Some(MenuItemKind::Submenu(view_menu)) = items.get(3) {
         view_menu.prepend(&find)?;
+        view_menu.append(&reading_settings)?;
         view_menu.append(&reload)?;
         view_menu.append(&PredefinedMenuItem::separator(app.handle())?)?;
         view_menu.append(&appearance_system)?;
         view_menu.append(&appearance_light)?;
         view_menu.append(&appearance_dark)?;
     }
+    let back = MenuItem::with_id(app.handle(), "go_back", "Back", false, None::<&str>)?;
+    let forward = MenuItem::with_id(app.handle(), "go_forward", "Forward", false, None::<&str>)?;
+    let visited = MenuItem::with_id(app.handle(), "go_visited", "Visited Documents…", false, None::<&str>)?;
+    let clear_history = MenuItem::with_id(app.handle(), "go_clear", "Clear Visit History", false, None::<&str>)?;
+    let go = tauri::menu::Submenu::with_items(app.handle(), "Go", true,
+        &[&back, &forward, &PredefinedMenuItem::separator(app.handle())?, &visited, &clear_history])?;
+    menu.insert(&go, 4)?;
     app.set_menu(menu)?;
     app.manage(NativeMenuControls { open_file, open_folder, close_tab, save,
-        find, reload, appearance_system, appearance_light, appearance_dark });
+        find, reload, appearance_system, appearance_light, appearance_dark, settings, reading_settings, go, back, forward, visited, clear_history });
     Ok(())
+}
+
+fn is_go_menu_action(id: &str) -> bool {
+    matches!(id, "go_back" | "go_forward" | "go_visited" | "go_clear")
 }
 
 fn allowed_navigation(url: &tauri::Url) -> bool {
@@ -215,7 +253,17 @@ pub fn run() {
         .manage(search::SearchState::default())
         .manage(refresh)
         .manage(native_entry::NativeEntryState::default())
-        .invoke_handler(tauri::generate_handler![
+        .manage(settings::SettingsState::default())
+        .invoke_handler(|invoke: tauri::ipc::Invoke| {
+            let Some(invoke) = settings::authorize_invoke(invoke) else { return true; };
+            let handler: fn(tauri::ipc::Invoke) -> bool = tauri::generate_handler![
+            settings::show_settings,
+            settings::get_settings_state,
+            settings::apply_settings_change,
+            settings::acknowledge_settings_change,
+            settings::publish_workspace_preferences,
+            settings::get_workspace_preferences,
+            settings::close_settings,
             selection::select_root,
             selection::prepare_root_selection,
             selection::commit_root_selection,
@@ -274,17 +322,31 @@ pub fn run() {
             assets::read_image,
             image::open_image,
             image::open_image_tile,
-        ])
+        ];
+            handler(invoke)
+        })
         .on_menu_event(|app, event| {
             let id = event.id().as_ref();
+            if let Some(window) = app.get_webview_window("settings").filter(|w| w.is_focused().unwrap_or(false)) {
+                if matches!(id, "workspace_close_window" | "workspace_close_tab") { let _ = window.close(); return; }
+                // Native menu shortcuts must not mutate a background workspace
+                // while a preference field owns keyboard focus.
+                if (id.starts_with("workspace_") || is_go_menu_action(id)) && !matches!(id, "workspace_settings" | "workspace_reading_settings") { return; }
+            }
+            if id == "workspace_settings" || id == "workspace_reading_settings" {
+                #[cfg(target_os = "macos")]
+                show_or_create_main_window(app);
+                let _ = settings::show(app, if id == "workspace_settings" { settings::Group::General } else { settings::Group::Reading });
+                return;
+            }
             if id == "workspace_close_window" {
                 if let Some(window) = app.get_webview_window("main") { let _ = window.close(); }
                 return;
             }
-            if id.starts_with("workspace_") {
+            if id.starts_with("workspace_") || is_go_menu_action(id) {
                 #[cfg(target_os = "macos")]
                 show_or_create_main_window(app);
-                let _ = app.emit("native:menu", id.to_owned());
+                if let Some(window) = app.get_webview_window("main") { let _ = window.emit("native:menu", id.to_owned()); }
                 return;
             }
             if id != "editing_quit" { return; }
@@ -299,6 +361,14 @@ pub fn run() {
         .setup(|app| {
             #[cfg(target_os = "macos")]
             install_quit_menu(app)?;
+            // Tauri's Windows WebView preparation calls create_dir_all on the
+            // app-local directory. Own its first creation with the existing
+            // private-storage policy, before WebView2 can inherit a broad DACL.
+            // Existing unsafe directories still fail closed; never repair them.
+            #[cfg(target_os = "windows")]
+            recovery::private_storage_dir(app.handle(), "session")
+                .map_err(|error| format!("Could not initialize protected workspace storage: {}: {}",
+                    error.code, error.message))?;
             app.state::<refresh::RefreshService>()
                 .start_worker(app.handle().clone());
             let config = app
@@ -330,6 +400,8 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| {
+            if settings::handle_window_event(window, event) { return; }
+            if window.label() != "main" { return; }
             if let tauri::WindowEvent::DragDrop(tauri::DragDropEvent::Drop { paths, .. }) = event {
                 if window.state::<native_entry::NativeEntryState>().enqueue(paths.clone(), "drop") {
                     let _ = window.emit("native:entry_pending", ());
@@ -340,6 +412,8 @@ pub fn run() {
                 let _ = window.emit("editing:close_requested", "window");
             }
             if matches!(event, tauri::WindowEvent::Destroyed) {
+                let settings = window.state::<settings::SettingsState>();
+                if let Ok(mut coordinator) = settings.0.lock() { coordinator.owner_closed(); }
                 window.state::<refresh::RefreshService>().suspend_watches();
             }
         })

@@ -1,0 +1,5 @@
+﻿Initial Git Bash Spec Kit attempts from the inherited tool-shell PATH failed:
+.specify/scripts/bash/check-prerequisites.sh: line 96: dirname: command not found
+.specify/scripts/bash/check-prerequisites.sh: line 96: cd: null directory
+Corrected only the child shell PATH with export PATH=/usr/bin:/bin:$PATH;
+then the installed script resolved the same existing feature. No new workflow.

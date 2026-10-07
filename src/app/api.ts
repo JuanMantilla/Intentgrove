@@ -61,7 +61,7 @@ export interface FolderSearchBatch {
   status: "searching" | "stopped" | "complete" | "partial";
   errorCode: string | null;
 }
-export interface FolderSearchStarted { jobId: string; generation: number }
+export interface FolderSearchStarted { jobId: string; generation: number; scopeSegments: string[] }
 export interface OpenFolderSearchHit {
   document: DocumentResponse;
   line: number;
@@ -187,6 +187,7 @@ export interface SessionPanel {
   readingFont: "roboto" | "serif" | "sans" | "mono";
   readingSize: number;
   readingLineHeight: number;
+  documentsAndImagesOnly?: boolean;
 }
 
 export interface SessionCheckpointInput {
@@ -326,7 +327,8 @@ export const api = {
   listNativeEntries: () => invoke<NativePreview[]>("list_native_entries"),
   acceptNativeEntry: (entryId: string) => invoke<NativeAccepted>("accept_native_entry", { entryId }),
   dismissNativeEntry: (entryId: string) => invoke<void>("dismiss_native_entry", { entryId }),
-  setNativeMenuState: (state: { closeTab: boolean; save: boolean; find: boolean; reload: boolean; locale: string }) =>
+  setNativeMenuState: (state: { closeTab: boolean; save: boolean; find: boolean; reload: boolean; locale: string;
+    back?: boolean; forward?: boolean; visited?: boolean; clearHistory?: boolean }) =>
     invoke<void>("set_native_menu_state", state),
   selectRoot: (reselectId?: string) => invoke<GrantInfo | null>("select_root", reselectId ? { reselectId } : {}),
   prepareRootSelection: () => invoke<string | null>("prepare_root_selection"),
@@ -336,8 +338,8 @@ export const api = {
   listEntries: (rootId: string, segments: string[], offset: number, token: string, snapshotId?: string) =>
     invoke<DirectoryPage>("list_entries", { rootId, segments, offset, token, snapshotId }),
   cancelListing: (token: string) => invoke<void>("cancel_listing", { token }),
-  startFolderSearch: (rootId: string, query: string, mode: "name" | "content" | "both", includeIgnored: boolean) =>
-    invoke<FolderSearchStarted>("start_folder_search", { rootId, query, mode, includeIgnored }),
+  startFolderSearch: (rootId: string, query: string, mode: "name" | "content" | "both", includeIgnored: boolean, scopeSegments?: string[]) =>
+    invoke<FolderSearchStarted>("start_folder_search", { rootId, query, mode, includeIgnored, scopeSegments }),
   cancelFolderSearch: (jobId: string) => invoke<boolean>("cancel_folder_search", { jobId }),
   openSearchHit: (jobId: string, resultId: string) =>
     invoke<OpenFolderSearchHit>("open_search_hit", { jobId, resultId }),

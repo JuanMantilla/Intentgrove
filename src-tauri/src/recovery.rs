@@ -132,17 +132,26 @@ fn write_durable(path: &PathBuf, bytes: &[u8]) -> AppResult<()> {
     }
     let result = (|| {
         let previous = path.with_extension("previous");
-        if path.exists() {
-            let current = fs::read(path).map_err(io_error)?;
-            if decode(&current).is_ok() {
-                match crate::platform::storage::remove_private_file(&previous) {
-                    Ok(()) => {},
-                    Err(error) if error.kind() == std::io::ErrorKind::NotFound => {},
-                    Err(error) => return Err(io_error(error)),
-                }
-                crate::platform::storage::preserve_previous(path, &previous)?;
-                crate::platform::storage::sync_private_directory(dir)?;
+        #[cfg(target_os = "macos")]
+        let valid_current = if path.exists() {
+            decode(&fs::read(path).map_err(io_error)?).is_ok()
+        } else { false };
+        #[cfg(target_os = "windows")]
+        let valid_current = match read_payload(path) {
+            Ok(Some(_)) => true,
+            Ok(None) | Err(AppError { code: "recovery_corrupt" | "recovery_size", .. }) => false,
+            // Inspect an anchored, private, bounded handle before reading. An
+            // unsafe DACL/reparse/recall failure must not become permission to replace.
+            Err(error) => return Err(error),
+        };
+        if valid_current {
+            match crate::platform::storage::remove_private_file(&previous) {
+                Ok(()) => {},
+                Err(error) if error.kind() == std::io::ErrorKind::NotFound => {},
+                Err(error) => return Err(io_error(error)),
             }
+            crate::platform::storage::preserve_previous(path, &previous)?;
+            crate::platform::storage::sync_private_directory(dir)?;
         }
         crate::platform::storage::publish_private(&temp, path)?;
         crate::platform::storage::sync_private_directory(dir)?;
@@ -580,6 +589,13 @@ mod tests {
             recovery_paths: Vec::new() }
     }
 
+    fn checkpoint_fixture(prefix: &str) -> (crate::platform::test_support::FixtureDir, PathBuf) {
+        let fixture = crate::platform::test_support::FixtureDir::new(prefix);
+        let dir = fixture.path().join("drafts");
+        ensure_private_dir(&dir).unwrap();
+        (fixture, dir)
+    }
+
     #[test]
     #[cfg(target_os = "macos")]
     fn moved_draft_preserves_complete_state_and_cleans_only_its_owner() {
@@ -821,10 +837,8 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn prior_checkpoint_survives_replacement_and_corrupt_latest() {
-        let dir = std::env::temp_dir().join(format!("md-reader-recovery-{}", Uuid::new_v4()));
-        fs::create_dir(&dir).unwrap();
+        let (_fixture, dir) = checkpoint_fixture("md-reader-recovery");
         let path = dir.join("draft.json");
         let encode = |sequence| {
             let record = payload(sequence);
@@ -859,10 +873,8 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn one_hundred_checkpoints_keep_latest_and_previous_without_temp_files() {
-        let dir = std::env::temp_dir().join(format!("md-reader-sequence-{}", Uuid::new_v4()));
-        fs::create_dir(&dir).unwrap();
+        let (_fixture, dir) = checkpoint_fixture("md-reader-sequence");
         let path = dir.join("draft.json");
         for sequence in 1..=100 {
             let record = payload(sequence);
@@ -888,10 +900,9 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn failed_checkpoint_replacement_preserves_the_last_acknowledged_record() {
-        let dir = std::env::temp_dir().join(format!("md-reader-failed-checkpoint-{}", Uuid::new_v4()));
-        fs::create_dir(&dir).unwrap(); let path = dir.join("draft.json");
+        let (_fixture, dir) = checkpoint_fixture("md-reader-failed-checkpoint");
+        let path = dir.join("draft.json");
         let record = payload(1);
         let raw = serde_json::to_vec(&record).unwrap();
         let bytes = serde_json::to_vec(&RecoveryEnvelope { checksum: digest(&raw), payload: record }).unwrap();
@@ -906,29 +917,52 @@ mod tests {
     }
 
     #[test]
+    #[cfg(target_os = "windows")]
+    fn checkpoint_reparse_failure_preserves_previous_and_outside_data() {
+        let (fixture, dir) = checkpoint_fixture("md-reader-reparse-checkpoint");
+        let outside = fixture.path().join("outside");
+        fs::create_dir(&outside).unwrap();
+        fs::write(outside.join("marker.md"), b"outside marker").unwrap();
+        let path = dir.join("draft.json");
+        let previous = path.with_extension("previous");
+        let bytes = encode_payload(payload(1)).unwrap();
+        write_durable(&previous, &bytes).unwrap();
+        let junction = crate::platform::test_support::directory_link(&outside, &path).unwrap();
+        assert!(write_durable(&path, &encode_payload(payload(2)).unwrap()).is_err());
+        assert_eq!(fs::read(&previous).unwrap(), bytes);
+        assert_eq!(fs::read(outside.join("marker.md")).unwrap(), b"outside marker");
+        assert!(fs::read_dir(&dir).unwrap().all(|entry|
+            !entry.unwrap().file_name().to_string_lossy().ends_with(".tmp")));
+        drop(junction);
+    }
+
+    #[test]
     #[ignore = "subprocess harness; executed by checkpoint_survives_process_exit_after_ack"]
-    #[cfg(target_os = "macos")]
     fn checkpoint_child_after_ack() {
-        let Some(value) = std::env::var_os("MD_READER_RECOVERY_FIXTURE") else { return; };
+        let value = std::env::var_os("MD_READER_RECOVERY_FIXTURE").expect("parent fixture required");
         let path = PathBuf::from(value);
         let directory = path.parent().unwrap();
         assert_eq!(path.file_name().unwrap(), "draft.json");
-        assert!(directory.file_name().unwrap().to_string_lossy().starts_with("md-reader-crash-fixture-"));
-        assert_eq!(directory.parent().unwrap().canonicalize().unwrap(), std::env::temp_dir().canonicalize().unwrap());
+        assert_eq!(directory.file_name().unwrap(), "drafts");
+        let fixture = directory.parent().unwrap();
+        assert!(fixture.file_name().unwrap().to_string_lossy().starts_with("md-reader-crash-fixture-"));
+        assert_eq!(fixture.parent().unwrap().canonicalize().unwrap(), std::env::temp_dir().canonicalize().unwrap());
         let record = payload(42); let raw = serde_json::to_vec(&record).unwrap();
         let bytes = serde_json::to_vec(&RecoveryEnvelope { checksum: digest(&raw), payload: record }).unwrap();
         write_durable(&path, &bytes).unwrap();
         println!("CHECKPOINT_ACK_42");
         std::io::stdout().flush().unwrap();
         // Exit this disposable test child without Rust/application cleanup.
+        #[cfg(target_os = "macos")]
         unsafe { libc::_exit(72) }
+        #[cfg(target_os = "windows")]
+        unsafe { windows_sys::Win32::System::Threading::ExitProcess(72) }
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn checkpoint_survives_process_exit_after_ack() {
-        let dir = std::env::temp_dir().join(format!("md-reader-crash-fixture-{}", Uuid::new_v4()));
-        fs::create_dir(&dir).unwrap(); let path = dir.join("draft.json");
+        let (_fixture, dir) = checkpoint_fixture("md-reader-crash-fixture");
+        let path = dir.join("draft.json");
         let result = std::process::Command::new(std::env::current_exe().unwrap())
             .args(["--exact", "recovery::tests::checkpoint_child_after_ack", "--ignored", "--nocapture"])
             .env("MD_READER_RECOVERY_FIXTURE", &path).output().unwrap();
@@ -938,5 +972,85 @@ mod tests {
         assert_eq!(restored.sequence, 42); assert_eq!(restored.draft, "# A\nchanged\n");
         assert_eq!(fs::read_dir(&dir).unwrap().count(), 1);
         fs::remove_dir_all(dir).unwrap();
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    #[ignore = "subprocess driver; explicitly executed by interrupted_save_retains_draft_stage_and_private_copies"]
+    fn interrupted_save_child() {
+        let fixture = PathBuf::from(std::env::var_os("F007W_SAVE_INTERRUPT_ROOT").unwrap());
+        assert_eq!(fixture.parent().unwrap().canonicalize().unwrap(), std::env::temp_dir().canonicalize().unwrap());
+        let name = fixture.file_name().unwrap().to_str().unwrap();
+        assert!(Uuid::parse_str(name.strip_prefix("md-save-interruption-").unwrap()).is_ok());
+        let path = fixture.join("source.md");
+        let original = crate::scope::open_selected(&path, false).unwrap();
+        let mut record = payload(73);
+        record.display_path = path.to_str().unwrap().to_owned();
+        let base = record.base.clone();
+        let draft = record.draft.clone();
+        let drafts = fixture.join("drafts");
+        ensure_private_dir(&drafts).unwrap();
+        write_durable(&drafts.join("draft.json"), &encode_payload(record).unwrap()).unwrap();
+        let mut copies = crate::save_copies::SafetyCopyBatch::begin_fixture(fixture.join("copies"), 1024).unwrap();
+        copies.preserve("original", base.as_bytes()).unwrap();
+        copies.preserve("staged", draft.as_bytes()).unwrap();
+        let parent = crate::scope::open_selected(&fixture, true).unwrap();
+        let phase = std::env::var("F007W_SAVE_INTERRUPT_PHASE").unwrap();
+        assert!(matches!(phase.as_str(), "partial" | "complete"));
+        if phase == "partial" {
+            crate::platform::stage_fixture_with_writer(&parent, draft.as_bytes(), Some(&original), |file, bytes| {
+                file.write_all(&bytes[..5])?;
+                file.sync_all()?;
+                println!("SAVE_STAGE_ACK_73");
+                std::io::stdout().flush()?;
+                unsafe { windows_sys::Win32::System::Threading::ExitProcess(73) }
+            }).unwrap();
+            unreachable!("partial stage child exits inside the real writer");
+        }
+        let (_name, _stage) = crate::platform::stage_document_bytes(&parent, draft.as_bytes(), Some(&original)).unwrap();
+        println!("SAVE_STAGE_ACK_73");
+        std::io::stdout().flush().unwrap();
+        // No Rust destructors: this tests process interruption, not power loss.
+        unsafe { windows_sys::Win32::System::Threading::ExitProcess(73) }
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn interrupted_save_retains_draft_stage_and_private_copies() {
+        for phase in ["partial", "complete"] {
+        let fixture = crate::platform::test_support::FixtureDir::new("md-save-interruption");
+        let source = fixture.join("source.md");
+        fs::write(&source, b"# A\nbody\n").unwrap();
+        let result = std::process::Command::new(std::env::current_exe().unwrap())
+            .args(["--exact", "recovery::tests::interrupted_save_child", "--ignored", "--nocapture"])
+            .env("F007W_SAVE_INTERRUPT_ROOT", fixture.path())
+            .env("F007W_SAVE_INTERRUPT_PHASE", phase).output().unwrap();
+        assert_eq!(result.status.code(), Some(73), "{} {}", String::from_utf8_lossy(&result.stdout), String::from_utf8_lossy(&result.stderr));
+        assert!(String::from_utf8_lossy(&result.stdout).contains("SAVE_STAGE_ACK_73"));
+        assert_eq!(fs::read(&source).unwrap(), b"# A\nbody\n");
+        let restored = read_payload(&fixture.join("drafts").join("draft.json")).unwrap().unwrap();
+        assert_eq!(restored.sequence, 73);
+        assert_eq!(restored.draft, "# A\nchanged\n");
+        let copies = fixture.join("copies");
+        let inventory = crate::save_copies::fixture_inventory(&copies).unwrap();
+        assert_eq!((inventory.resolved_count, inventory.unresolved_count), (0, 2));
+        for entry in fs::read_dir(&copies).unwrap() {
+            let entry = entry.unwrap();
+            let name = entry.file_name().to_string_lossy().into_owned();
+            if name == "copies.lock" { continue; }
+            let file = crate::scope::open_selected(&entry.path(), false).unwrap();
+            crate::platform::storage::verify_private_file(&file).unwrap();
+            let expected = if name.ends_with("-original.pending") { restored.base.as_bytes() }
+                else { assert!(name.ends_with("-staged.pending")); restored.draft.as_bytes() };
+            assert_eq!(fs::read(entry.path()).unwrap(), expected);
+        }
+        let stages: Vec<_> = fs::read_dir(fixture.path()).unwrap().map(|entry| entry.unwrap())
+            .filter(|entry| entry.file_name().to_string_lossy().starts_with(".md-reader-")).collect();
+        assert_eq!(stages.len(), 1);
+        let expected_stage = if phase == "partial" { &restored.draft.as_bytes()[..5] } else { restored.draft.as_bytes() };
+        assert_eq!(fs::read(stages[0].path()).unwrap(), expected_stage);
+        // Restart inspection preserves the interrupted artifacts for recovery.
+        assert_eq!(fs::read(&source).unwrap(), restored.base.as_bytes());
+        }
     }
 }

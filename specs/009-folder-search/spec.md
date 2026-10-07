@@ -35,3 +35,7 @@ Find Markdown by filename or text within the selected local root, then open a re
 ## Assumptions
 
 Default exclusions follow the approved F001 tree policy where applicable and are disclosed in UI. Binary/non-Markdown files are skipped. The exact search indexing strategy belongs in a technical plan; persistent full-text indexing is not required by this draft.
+
+## IR-05 native supplement � 2026-10-06
+
+The authorized optional subtree and native Go extension is specified in [ir05-native-amendment.md](ir05-native-amendment.md). Original approved artifacts and packaged acceptance remain intact.

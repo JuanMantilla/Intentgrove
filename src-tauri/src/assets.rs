@@ -210,6 +210,7 @@ pub async fn read_image(
 mod tests {
     use super::*;
     use crate::scope::Identity;
+    #[cfg(target_os = "macos")]
     use std::os::unix::fs::symlink;
 
     fn source() -> FileGrant {
@@ -247,7 +248,8 @@ mod tests {
 
     #[test]
     fn follows_only_in_scope_documents_and_raster_assets() {
-        let base = std::env::temp_dir().join(format!("md-reader-assets-{}", uuid::Uuid::new_v4()));
+        let fixture = crate::platform::test_support::FixtureDir::new("md-reader-assets");
+        let base = fixture.path();
         let root_path = base.join("root");
         std::fs::create_dir_all(root_path.join("docs")).unwrap();
         std::fs::write(root_path.join("docs/index.md"), b"# Index").unwrap();
@@ -260,7 +262,14 @@ mod tests {
         )
         .unwrap();
         std::fs::write(root_path.join("docs/vector.svg"), b"<svg></svg>").unwrap();
+        #[cfg(target_os = "macos")]
         symlink(base.join("outside.md"), root_path.join("docs/shortcut.md")).unwrap();
+        #[cfg(target_os = "macos")]
+        let blocked_link = "shortcut.md";
+        #[cfg(target_os = "windows")]
+        let junction = crate::platform::test_support::directory_link(base, &root_path.join("docs/shortcut")).unwrap();
+        #[cfg(target_os = "windows")]
+        let blocked_link = "shortcut/outside.md";
 
         let state = AppState::default();
         let root = state.register_root(&root_path).unwrap();
@@ -287,7 +296,7 @@ mod tests {
             "blocked"
         );
         assert_eq!(
-            resolve_link_impl(&state, &source.file_id, "shortcut.md")
+            resolve_link_impl(&state, &source.file_id, blocked_link)
                 .unwrap()
                 .kind,
             "blocked"
@@ -320,6 +329,7 @@ mod tests {
                 .kind,
             "blocked"
         );
-        std::fs::remove_dir_all(base).unwrap();
+        #[cfg(target_os = "windows")]
+        drop(junction);
     }
 }

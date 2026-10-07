@@ -1,13 +1,11 @@
-# Current state — 2026-10-05
+﻿# Current state - 2026-10-06
 
-Active feature: F007W `specs/013-windows-desktop`; IMPLEMENT, Windows read-only source foundation prepared. Seven approval hashes match; gate artifacts preserved.
+F007W globally active; os-senior-expert IMPLEMENT IR-05 native COMPLETE_IN_SCOPE. macOS Go routes reuse committed client history/events without shortcuts. Optional native subtree search confirms scope beneath current grant, retains no-follow directory identity/handle and constrains emission/open; ignores, Stop and stale-job/root protection retained. Evidence: os-engineering/ir05-report.md, ir05-frontend-handoff.md, evidence/ir05/. Windows library85/frontend301/default-target/build/worker PASS; final focused native search7 PASS.
 
-Evidence: feature `evidence/implementation.md`, `implementation-logs/`, and `tasks.md`. Prior PASS: frontend 272 tests, TypeScript/Vite build, worker checks; Mac library 79 tests plus affected integrations. Status audit: 170 native executions PASS, eight ignored. Packaged Mac UX not reverified.
+IR-04 Settings remains complete: separate preference-only coordinator/window and functional consumers; report/handoff/evidence/ir04 preserved, including WebView2 command/plugin denial and focus evidence. Historical schema/checksum compatibility and Reading/QA-0004/sibling edits retained.
 
-Windows compilation/runtime, persistence/DACL/locking/recovery/save/desktop/DPI and installer construction NOT TESTED: no Windows runner. Windows editing remains disabled; image-worker approval separate.
+Spec Kit keeps F007W; F003F IR-05 non-persisting reconciliation: specs/009-folder-search/ir05-native-amendment.md. F003C IR-04 amendment remains. Approval records/original hashes preserved; F002R T020 complete/T021 acceptance open. Rich/HTML/details/image-worker work remains separately scoped.
 
-Next: run documented native Windows fixtures on a provisioned standard-user runner. Verify persistence/safe-save before enabling edits; construct NSIS after native gates and bundler-tool checks. IR-01–05/full acceptance remain open.
+Frontend folder-action/panel scope integration remains; macOS native menu/build/runtime and packaged QA/visual/DPI/accessibility/restart/draft acceptance NOT TESTED. QA transport history/ad594484 evidence unchanged. QA-0003/4/5 and T036/37/39/12/24/33 remain open; T038 acceptance retained. Linux unsupported; no install/sign/publish/commit.
 
-Brand: user selected Intentgrove; `docs/brand.md` and `docs/approvals.md` record scope. Updated titles, package metadata, packaging/QA scripts and active product docs; technical identities/data locations preserved. PASS: frontend build, metadata consistency, five shell syntax checks and generated-output ignore checks. Native packages require rebuilding; no native rebuild performed.
-
-Audit/cleanup: `docs/implementation-status-2026-10-05.md`; deletion receipt in `docs/status-audit-2026-10-05/`. Deleted 19 superseded PNGs/one obsolete report; ongoing tasks/code preserved. `.gitignore` excludes packages/caches/local state. User authorized commit/push to `JuanMantilla/Intentgrove`; preserve its existing license and history. No release publication.
+Next: frontend follows IR-05 handoff; QA executes disposable native journeys on Windows/Mac and existing IR-04 handoff.

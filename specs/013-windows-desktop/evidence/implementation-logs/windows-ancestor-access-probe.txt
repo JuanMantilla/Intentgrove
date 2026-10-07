@@ -1,0 +1,16 @@
+EXIT: 1
+Fixture: C:\Users\jsman\projects\personal\Intentgrove\.cache\f007w-native-probe-8ec7e16517744519b0bbeed2aed74220
+Inspect ancestor: Users
+  list/read-control open: PASS
+  attributes/traverse open: PASS
+Inspect ancestor: jsman
+  list/read-control open: Win32 5
+Exception calling "Run" with "1" argument(s): "NTSTATUS 0xc0000022"
+At line:185 char:1
++ [F007WNativeProbe]::Run($fixture)
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : Win32Exception
+ 
+
+

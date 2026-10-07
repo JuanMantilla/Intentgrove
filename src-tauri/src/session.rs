@@ -77,7 +77,12 @@ pub(crate) struct PanelState {
     pub reading_size: f64,
     #[serde(default = "default_reading_line_height", skip_serializing_if = "is_default_reading_line_height")]
     pub reading_line_height: f64,
+    #[serde(default = "default_documents_and_images_only", skip_serializing_if = "is_true")]
+    pub documents_and_images_only: bool,
 }
+
+fn default_documents_and_images_only() -> bool { true }
+fn is_true(value: &bool) -> bool { *value }
 
 fn default_reading_font() -> String { "roboto".to_owned() }
 fn default_reading_size() -> f64 { 16.0 }
@@ -128,7 +133,7 @@ fn hash(bytes: &[u8]) -> String {
 }
 
 fn bounded_path(path: &str) -> bool {
-    !path.is_empty() && path.len() <= MAX_PATH_BYTES && path.starts_with('/') && !path.contains('\0')
+    crate::platform::bounded_record_path(path, MAX_PATH_BYTES)
 }
 
 fn valid_segments(segments: &[String]) -> bool {
@@ -509,8 +514,12 @@ pub async fn checkpoint_workspace_session(app: AppHandle, state: State<'_, AppSt
 pub async fn finish_workspace_session(app: AppHandle, state: State<'_, AppState>,
     window: Window, input: CheckpointInput) -> AppResult<CheckpointAck> {
     let state = state.inner().clone();
-    tauri::async_runtime::spawn_blocking(move || checkpoint_impl(&app, &state, &window, input, "normal"))
-        .await.map_err(|error| AppError::new("session_error", error.to_string()))?
+    let result = tauri::async_runtime::spawn_blocking(move || checkpoint_impl(&app, &state, &window, input, "normal"))
+        .await.map_err(|error| AppError::new("session_error", error.to_string()))?;
+    if let Err(error) = &result {
+        eprintln!("finish_workspace_session failed: {}: {}", error.code, error.message);
+    }
+    result
 }
 
 #[tauri::command]
@@ -760,7 +769,46 @@ mod tests {
             active_key: Some("one".into()), tree: TreeState { expanded: vec![], selected: None, scroll_top: 0.0 },
             panel: PanelState { sidebar_open: true, sidebar_width: 260.0, outline_open: false,
                 outline_width: 220.0, reading_width: 760.0, reading_font: default_reading_font(),
-                reading_size: default_reading_size(), reading_line_height: default_reading_line_height() }, window: None,
+                reading_size: default_reading_size(), reading_line_height: default_reading_line_height(),
+                documents_and_images_only: true }, window: None,
+        }
+    }
+
+    #[test]
+    fn recorded_selection_paths_are_bounded_without_rewriting() {
+        #[cfg(target_os = "macos")]
+        let paths = ["/private/tmp/Café space/Read.MD", "/tmp/back\\slash.md"];
+        #[cfg(target_os = "windows")]
+        let paths = [r"C:\Café space\Read.MD", r"\\?\c:\Café space\Read.MD"];
+        for path in paths {
+            let mut payload = sample(1);
+            payload.root.as_mut().unwrap().path = path.into();
+            payload.tabs[0].source = StoredTabSource::Explicit {
+                selection: StoredSelection { path: path.into(), identity: Identity {
+                    device: u64::MAX, inode: u64::MAX - 1 } },
+            };
+            let decoded = decode(&encode(&payload).unwrap()).unwrap();
+            assert_eq!(decoded.root.unwrap().path, path);
+            let StoredTabSource::Explicit { selection } = &decoded.tabs[0].source else { panic!("explicit selection lost") };
+            assert_eq!(selection.path, path);
+            assert_eq!(selection.identity.inode, u64::MAX - 1);
+        }
+        for path in ["", "relative.md", "bad\0path"] { assert!(!bounded_path(path)); }
+        assert!(!bounded_path(&"x".repeat(MAX_PATH_BYTES + 1)));
+        #[cfg(target_os = "macos")]
+        let (prefix, separator) = ("/", "/");
+        #[cfg(target_os = "windows")]
+        let (prefix, separator) = ("C:\\", "\\");
+        let within_bound = format!("{prefix}{}", vec!["a".repeat(240); 16].join(separator));
+        assert!(bounded_path(&within_bound));
+        let above_bound = format!("{prefix}{}", vec!["a".repeat(240); 18].join(separator));
+        assert!(!bounded_path(&above_bound));
+        #[cfg(target_os = "windows")]
+        for path in ["/tmp/file", r"C:relative", r"\\server\share", r"\\.\pipe\x",
+            r"C:\a:stream", r"C:\a\..\x", r"C:\NUL.md"] {
+            let mut payload = sample(1);
+            payload.root.as_mut().unwrap().path = path.into();
+            assert!(encode(&payload).is_err(), "{path}");
         }
     }
 
@@ -800,6 +848,29 @@ mod tests {
         assert_eq!(restored.panel.reading_font, "roboto");
         assert_eq!(restored.panel.reading_size, 16.0);
         assert_eq!(restored.panel.reading_line_height, 1.6);
+        assert!(restored.panel.documents_and_images_only);
+    }
+
+    #[test]
+    fn tree_filter_roundtrip_is_backward_compatible_and_preserves_workspace_and_drafts() {
+        let mut payload = sample(3);
+        payload.tabs[0].editing_active = true;
+        payload.tabs[0].recovery_owner = Some(Uuid::new_v4().to_string());
+        payload.tree.expanded = vec![vec!["docs".into()]];
+        let original = serde_json::to_value(&payload).unwrap();
+        assert!(original["panel"].get("documentsAndImagesOnly").is_none());
+        let legacy = decode(&encode(&payload).unwrap()).unwrap();
+        assert!(legacy.panel.documents_and_images_only);
+        payload.panel.documents_and_images_only = false;
+        let mut restored = decode(&encode(&payload).unwrap()).unwrap();
+        assert!(!restored.panel.documents_and_images_only);
+        restored.panel.documents_and_images_only = true;
+        assert_eq!(serde_json::to_value(&restored).unwrap(), original);
+        // Bool type is enforced even when an attacker recomputes the checksum.
+        let mut malformed = original.clone(); malformed["panel"]["documentsAndImagesOnly"] = "true".into();
+        let raw = serde_json::to_vec(&malformed).unwrap();
+        let envelope = serde_json::to_vec(&serde_json::json!({ "checksum": hash(&raw), "payload": malformed })).unwrap();
+        assert!(decode(&envelope).is_err());
     }
 
     #[test]
@@ -838,6 +909,59 @@ mod tests {
         assert_eq!(write_at(&dir, &sample(2)).unwrap_err().code, "session_stale");
         assert_eq!(load_at(&dir).unwrap().unwrap().sequence, 3);
         fs::remove_dir_all(dir).unwrap();
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn windows_private_initialization_precedes_webview_directory_creation() {
+        let fixture = crate::platform::test_support::FixtureDir::new("qa0003-window-storage");
+        let base = fixture.join("app-local");
+        crate::platform::storage::ensure_private_dir(&base).unwrap();
+        let dir = base.join("session");
+        crate::platform::storage::ensure_private_dir(&dir).unwrap();
+        // Tauri prepare_webview creates this same directory with create_dir_all.
+        // It must be a no-op after our protected first creation.
+        fs::create_dir_all(&base).unwrap();
+        crate::platform::storage::ensure_private_dir(&base).unwrap();
+        let mut payload = sample(1);
+        {
+            let _lock = lock_store(&dir).unwrap();
+            write_at(&dir, &payload).unwrap();
+        }
+        payload.sequence = 2;
+        payload.exit_disposition = "normal".into();
+        {
+            let _lock = lock_store(&dir).unwrap();
+            write_at(&dir, &payload).unwrap();
+        }
+        // Reopen the store as on restart; normal disposition is acknowledged
+        // only after publication. A corrupt latest record retains running state.
+        let restored = load_at(&dir).unwrap().unwrap();
+        assert_eq!(restored.sequence, 2);
+        assert_eq!(restored.exit_disposition, "normal");
+        fs::write(record_path(&dir), b"invalid").unwrap();
+        let prior = load_at(&dir).unwrap().unwrap();
+        assert_eq!(prior.sequence, 1);
+        assert_eq!(prior.exit_disposition, "running");
+    }
+
+    #[cfg(target_os = "windows")]
+    #[test]
+    fn windows_webview_created_directory_is_rejected_without_acl_or_record_repair() {
+        let fixture = crate::platform::test_support::FixtureDir::new("qa0003-inherited-storage");
+        let base = fixture.join("app-local");
+        // Reproduce the original ordering: runtime creates an inherited-DACL
+        // directory before private_storage_dir attempts to claim it.
+        fs::create_dir_all(&base).unwrap();
+        let marker = base.join("existing-record");
+        fs::write(&marker, b"preserve unsafe profile evidence").unwrap();
+        for _ in 0..2 {
+            let error = crate::platform::storage::ensure_private_dir(&base).unwrap_err();
+            assert_eq!(error.code, "recovery_permissions");
+            assert_eq!(error.message, "Private directory DACL is not protected");
+        }
+        assert_eq!(fs::read(&marker).unwrap(), b"preserve unsafe profile evidence");
+        assert!(!base.join("session").exists());
     }
 
     #[test]

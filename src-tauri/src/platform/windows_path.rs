@@ -39,7 +39,13 @@ pub(crate) fn selected(path: &str) -> AppResult<(&str, Vec<String>)> {
             "Select an absolute local NTFS drive path",
         ));
     }
-    let tail = path[3..].strip_suffix('\\').unwrap_or(&path[3..]);
+    let raw_tail = &path[3..];
+    // A drive root already includes its separator. Do not turn an additional
+    // empty component into a valid root by removing the trailing separator.
+    if raw_tail == "\\" {
+        return Err(AppError::new("invalid_path", "Empty Windows path component"));
+    }
+    let tail = raw_tail.strip_suffix('\\').unwrap_or(raw_tail);
     let components: Vec<String> = if tail.is_empty() {
         vec![]
     } else {
@@ -81,12 +87,23 @@ mod tests {
     #[test]
     fn only_accepts_absolute_drive_paths_and_preserves_case_unicode() {
         for path in [
+            "",
+            "/tmp/fixture",
+            "C:/fixture",
             "C:foo",
             "\\\\server\\share",
             "\\\\.\\pipe\\x",
             "C:\\a\\..\\x",
             "C:\\a:stream",
             "C:\\\\foo",
+            "C:\\\\",
+            "\\\\?\\UNC\\server\\share",
+            "\\\\?\\GLOBALROOT\\Device\\HarddiskVolume1\\x",
+            "\\\\?\\C:relative",
+            "C:\\a\\.\\x",
+            "C:\\a\\NUL.md",
+            "C:\\a\\tail.\\x",
+            "C:\\a\0b",
         ] {
             assert!(selected(path).is_err(), "{path:?}");
         }
@@ -94,5 +111,10 @@ mod tests {
             selected("C:\\Café space\\Read.MD").unwrap().1,
             ["Café space", "Read.MD"]
         );
+        assert_eq!(selected(r"\\?\c:\Café space\Read.MD").unwrap(),
+            ("c:\\", vec!["Café space".into(), "Read.MD".into()]));
+        assert!(selected("C:\\").unwrap().1.is_empty());
+        assert!(selected(&format!("C:\\{}", "a\\".repeat(129))).is_err());
+        assert!(selected(&format!("C:\\{}", "é".repeat(256))).is_err());
     }
 }

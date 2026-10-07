@@ -19,3 +19,7 @@ The renderer owns the in-flow Search sidebar in [design.md](design.md). A result
 ## Source and validation map
 
 `src-tauri/src/scope.rs`, `listing.rs`, new `search.rs`, `lib.rs` handle native traversal/IPC; `src/app/App.tsx`, `api.ts`, `i18n.ts`, CSS handle sidebar; `tests/ui/`, Rust fixtures and feature `verification.md` hold evidence. R01–R05 map to result/ignore/skip fixture manifest; R06/R07/R11 to cancellation/25,000-entry timing; R08 to changed-result reopen; R09/R10 to no-write/request and EN/ES keyboard tests. Follow [quickstart](quickstart.md). [Research](research.md), [model](data-model.md) and [contract](contracts/search-ipc.md) retain scope. Approval of spec, visual direction and architecture is required before production edits.
+
+## IR-05 native supplement � 2026-10-06
+
+The authorized optional subtree and native Go extension is specified in [ir05-native-amendment.md](ir05-native-amendment.md). Original approved artifacts and packaged acceptance remain intact.

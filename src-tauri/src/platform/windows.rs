@@ -12,19 +12,30 @@ use std::{
     os::windows::io::{AsRawHandle, FromRawHandle},
     path::Path,
 };
-use windows_sys::Wdk::Foundation::{OBJECT_ATTRIBUTES, OBJ_DONT_REPARSE};
+use windows_sys::Wdk::Foundation::OBJECT_ATTRIBUTES;
 use windows_sys::Wdk::Storage::FileSystem::{
     FileFsDeviceInformation, NtCreateFile, NtQueryVolumeInformationFile,
-    FILE_FS_DEVICE_INFORMATION, FILE_OPEN, FILE_OPEN_NO_RECALL, FILE_OPEN_REPARSE_POINT,
+    FileRenameInformation, FileRenameInformationEx, NtSetInformationFile, FILE_RENAME_INFORMATION,
+    FILE_RENAME_REPLACE_IF_EXISTS, FILE_RENAME_POSIX_SEMANTICS,
+    FILE_CREATE, FILE_DIRECTORY_FILE, FILE_OPEN, FILE_OPEN_NO_RECALL, FILE_OPEN_REPARSE_POINT,
     FILE_SYNCHRONOUS_IO_NONALERT,
 };
 use windows_sys::Win32::Foundation::{
-    RtlNtStatusToDosError, ERROR_NO_MORE_FILES, HANDLE, UNICODE_STRING,
+    RtlNtStatusToDosError, ERROR_NO_MORE_FILES, HANDLE, UNICODE_STRING, OBJ_DONT_REPARSE,
 };
 use windows_sys::Win32::Storage::FileSystem::*;
 use windows_sys::Win32::System::IO::IO_STATUS_BLOCK;
 
-fn nt_error(status: i32) -> AppError {
+// FILE_FS_DEVICE_INFORMATION is two ULONGs in ntifs.h. The binding places this
+// small record behind unrelated Wdk_System_SystemServices; keep the ABI here
+// instead of enabling that service surface for a filesystem metadata query.
+#[repr(C)]
+struct FsDeviceInformation {
+    device_type: u32,
+    characteristics: u32,
+}
+
+pub(super) fn nt_error(status: i32) -> AppError {
     let win = unsafe { RtlNtStatusToDosError(status) };
     let mut error = io_error(io::Error::from_raw_os_error(win as i32));
     if status as u32 == 0xC000050B || status as u32 == 0xC0000279 {
@@ -95,6 +106,15 @@ pub(super) fn native_open_with_share(
     };
     let mut handle = std::ptr::null_mut();
     let mut status: IO_STATUS_BLOCK = unsafe { zeroed() };
+    // NT rejects DIRECTORY_FILE combined with OPEN_NO_RECALL. Only exclusive
+    // directory creation omits no-recall: FILE_CREATE cannot open an existing
+    // object, even if one appears after the caller's metadata probe. Existing
+    // directories are always opened without DIRECTORY_FILE and with no-recall.
+    let recall = if disposition == FILE_CREATE && options & FILE_DIRECTORY_FILE != 0 {
+        0
+    } else {
+        FILE_OPEN_NO_RECALL
+    };
     let code = unsafe {
         NtCreateFile(
             &mut handle,
@@ -105,7 +125,7 @@ pub(super) fn native_open_with_share(
             attrs,
             share,
             disposition,
-            FILE_SYNCHRONOUS_IO_NONALERT | FILE_OPEN_REPARSE_POINT | FILE_OPEN_NO_RECALL | options,
+            FILE_SYNCHRONOUS_IO_NONALERT | FILE_OPEN_REPARSE_POINT | recall | options,
             std::ptr::null(),
             0,
         )
@@ -116,7 +136,7 @@ pub(super) fn native_open_with_share(
     // NtCreateFile was synchronous; File now owns exactly this non-inheritable handle.
     Ok(unsafe { File::from_raw_handle(handle) })
 }
-fn info<T>(file: &File, class: FILE_INFO_BY_HANDLE_CLASS) -> AppResult<T> {
+pub(super) fn info<T>(file: &File, class: FILE_INFO_BY_HANDLE_CLASS) -> AppResult<T> {
     let mut out: T = unsafe { zeroed() };
     if unsafe {
         GetFileInformationByHandleEx(
@@ -130,6 +150,39 @@ fn info<T>(file: &File, class: FILE_INFO_BY_HANDLE_CLASS) -> AppResult<T> {
         return Err(io_error(io::Error::last_os_error()));
     }
     Ok(out)
+}
+pub(super) fn rename_file(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+    rename_with_flags(file, parent, target, replace as u32, FileRenameInformation)
+}
+pub(super) fn rename_document(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+    // Document grants retain readable handles to the old version. Ex semantics
+    // permit those handles; the commit guard still requests DELETE and denies
+    // concurrent write opens. No ignore-readonly/access-check-bypass flags.
+    let flags = if replace { FILE_RENAME_REPLACE_IF_EXISTS | FILE_RENAME_POSIX_SEMANTICS } else { 0 };
+    rename_with_flags(file, parent, target, flags, FileRenameInformationEx)
+}
+fn rename_with_flags(file: &File, parent: &File, target: &str, flags: u32,
+    class: windows_sys::Wdk::Storage::FileSystem::FILE_INFORMATION_CLASS) -> AppResult<()> {
+    checked(file, false)?;
+    checked(parent, true)?;
+    validate_segment(target)?;
+    // Win32 FileRenameInfo rejects a held-parent relative name (native error 87).
+    // The NT setter retains that anchor and normal sharing restrictions. It is
+    // namespace replacement, not compare-and-swap against external writers.
+    let wide: Vec<u16> = target.encode_utf16().chain(Some(0)).collect();
+    let length = size_of::<FILE_RENAME_INFORMATION>() + wide.len() * 2;
+    let mut buffer = vec![0u64; length.div_ceil(8)];
+    let rename = buffer.as_mut_ptr().cast::<FILE_RENAME_INFORMATION>();
+    unsafe {
+        (*rename).Anonymous.Flags = flags;
+        (*rename).RootDirectory = parent.as_raw_handle();
+        (*rename).FileNameLength = ((wide.len() - 1) * 2) as u32;
+        std::ptr::copy_nonoverlapping(wide.as_ptr(), (*rename).FileName.as_mut_ptr(), wide.len());
+    }
+    let mut status: IO_STATUS_BLOCK = unsafe { zeroed() };
+    let code = unsafe { NtSetInformationFile(file.as_raw_handle(), &mut status, rename.cast(), length as u32, class) };
+    if code < 0 { return Err(nt_error(code)); }
+    Ok(())
 }
 pub(super) fn checked(file: &File, directory: bool) -> AppResult<()> {
     let tag: FILE_ATTRIBUTE_TAG_INFO = info(file, FileAttributeTagInfo)?;
@@ -149,20 +202,20 @@ pub(super) fn checked(file: &File, directory: bool) -> AppResult<()> {
         ));
     }
     let standard: FILE_STANDARD_INFO = info(file, FileStandardInfo)?;
-    if (standard.Directory != 0) != directory || standard.DeletePending != 0 {
+    if standard.Directory != directory || standard.DeletePending {
         return Err(AppError::new(
             "unsupported_type",
             "Expected a regular file or directory",
         ));
     }
     let mut status: IO_STATUS_BLOCK = unsafe { zeroed() };
-    let mut device: FILE_FS_DEVICE_INFORMATION = unsafe { zeroed() };
+    let mut device: FsDeviceInformation = unsafe { zeroed() };
     let code = unsafe {
         NtQueryVolumeInformationFile(
             file.as_raw_handle(),
             &mut status,
-            (&mut device as *mut FILE_FS_DEVICE_INFORMATION).cast(),
-            size_of::<FILE_FS_DEVICE_INFORMATION>() as u32,
+            (&mut device as *mut FsDeviceInformation).cast(),
+            size_of::<FsDeviceInformation>() as u32,
             FileFsDeviceInformation,
         )
     };
@@ -170,7 +223,7 @@ pub(super) fn checked(file: &File, directory: bool) -> AppResult<()> {
         return Err(nt_error(code));
     }
     // FILE_DEVICE_DISK (7), FILE_REMOTE_DEVICE (0x10). Unknown devices fail closed.
-    if !matches!(device.DeviceType, 7 | 8) || device.Characteristics & 0x10 != 0 {
+    if !matches!(device.device_type, 7 | 8) || device.characteristics & 0x10 != 0 {
         return Err(AppError::new(
             "unsupported_mount",
             "Only local NTFS disks are supported",
@@ -322,8 +375,9 @@ fn entries(
     apply_exclusions: bool,
 ) -> AppResult<Vec<Entry>> {
     checked(dir, true)?;
-    // Independent directory handle/cursor, anchored to the same directory object.
-    let scan = open_child(dir.as_raw_handle(), ".", true)?;
+    // An empty NT relative name reopens the held directory itself with an
+    // independent cursor. "." is rejected by NT; no pathname is reconstructed.
+    let scan = open_child(dir.as_raw_handle(), "", true)?;
     let mut buffer = vec![0u64; 8192]; // 64 KiB, aligned for FILE_FULL_DIR_INFO
     let mut result = Vec::new();
     let mut seen = 0;

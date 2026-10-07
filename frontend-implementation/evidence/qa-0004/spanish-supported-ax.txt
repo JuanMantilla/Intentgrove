@@ -1,0 +1,63 @@
+Browser tab: 1244853929, Title: "QA-0004 — synthetic native bridge", URL: "http://127.0.0.1:5173/tests/fixtures/qa0004-preview.html?scenario=load-failure".
+1 AXWebArea QA-0004 — synthetic native bridge, URL: 127.0.0.1:5173/tests/fixtures/qa0004-preview.html?scenario=load-failure
+	2 container
+		3 button Mostrar u ocultar explorador
+		4 text QA fixture Solo archivos locales
+		7 container
+			8 text Apariencia
+			9 pop up button (collapsed, settable) Description: Apariencia, Value: Sistema, Secondary Actions: Expand
+				10 menu
+					11 (selected) Sistema
+					12 Claro
+					13 Oscuro
+		14 container
+			15 text Idioma
+			16 pop up button (collapsed, settable) Description: Idioma, Value: Español, Secondary Actions: Expand
+				17 menu
+					18 English
+					19 (selected) Español
+		22 container Explorador
+			23 pop up button (collapsed) Proyectos, Secondary Actions: Expand
+			45 container /fixture
+				46 text QA fixture
+			47 checkbox (settable, integer) Description: Solo documentos e imágenes, Value: 1
+			48 container
+				49 button first.md
+				50 button second.md
+			26 text Almacenamiento y recuperación
+			27 container
+				28 text Ediciones abiertas y avisos de recuperación :  0
+			29 button Gestionar…
+		30 container
+			31 container Archivos visitados
+				32 button Atrás
+				33 button (disabled) Adelante
+			34 tab group Documentos
+				51 tab (selectable, settable, boolean) Description: first.md, Value: 0
+				52 button Description: Cerrar pestaña: first.md, Help: Cerrar pestaña
+				66 tab (selected, settable, boolean) Description: second.md, Value: 1
+				67 button Description: Cerrar pestaña: second.md, Help: Cerrar pestaña
+			35 pop up button (collapsed) Description: Menú Ir, Secondary Actions: Expand
+			36 button (collapsed) Documentos abiertos (2), Secondary Actions: Expand
+				37 text Documentos abiertos
+				53 text  (
+				54 text 2
+				55 text )
+			68 container second.md
+				69 text second.md
+				70 text Raíz de la carpeta
+				71 checkbox Índice, Value: 0
+				72 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+				73 button (disabled) Editar sección, Help: La vista previa de Windows es de solo lectura hasta verificar el guardado y la recuperación.
+				74 text La vista previa de Windows es de solo lectura hasta verificar el guardado y la recuperación.
+				75 button (collapsed) Documento…, Secondary Actions: Expand
+					76 text Documento…
+			38 text No se pudo cargar el espacio de trabajo recordado. Puedes seguir abriendo tus documentos. No se pudo confirmar el acceso o la protección del almacenamiento privado. (recovery_permissions)
+			39 button Cerrar aviso
+			65 container second.md
+				77 container
+					78 heading Second, Value: 1, ID: second
+						79 text Second
+					80 text Disposable supported Markdown.
+
+The focused UI element is 16 pop up button (collapsed, settable) Description: Idioma, Value: Español, Secondary Actions: Expand

@@ -62,6 +62,12 @@ pub struct SafetyCopyBatch {
 }
 
 impl SafetyCopyBatch {
+    #[cfg(all(test, target_os = "windows"))]
+    pub(crate) fn begin_fixture(dir: PathBuf, reserve_bytes: u64) -> AppResult<Self> {
+        crate::platform::storage::ensure_private_dir(&dir)?;
+        let guard = lock(&dir)?;
+        Self::begin_locked(dir, guard, reserve_bytes)
+    }
     pub fn begin(app: &AppHandle, reserve_bytes: u64) -> AppResult<Self> {
         let dir = private_storage_dir(app, "save-backups")?;
         let lock = lock(&dir)?;
@@ -107,6 +113,12 @@ impl SafetyCopyBatch {
         }
         crate::platform::storage::sync_private_directory(&self.dir)
     }
+}
+
+#[cfg(all(test, target_os = "windows"))]
+pub(crate) fn fixture_inventory(dir: &Path) -> AppResult<SafetyCopyInventory> {
+    let _guard = lock(dir)?;
+    inventory_at(dir)
 }
 
 #[tauri::command]

@@ -50,3 +50,6 @@
 ## Dependencies and execution strategy
 
 T001–T006 are foundation. US1 T007–T012 is the MVP and precedes US2/US3. US2 and US3 can proceed after foundation and share App/session files sequentially. T011 depends on F004 close choice; T019 depends on US1 and existing F004 recovery. T020/T021 follow implementation. Independent tests above use disposable fixtures and do not claim packaged success from unit tests. Parallel opportunity: T005 native identity fixtures and T007 renderer snapshot logic can be designed separately after T003/T006, but edits to `session.rs` and `App.tsx` must serialize.
+## IR-04 scoped native delivery — 2026-10-06
+
+The user-authorized native Settings/preference-coordinator amendment is implemented. See [shared amendment](ir04-settings-amendment.md), [native report](../../os-engineering/report.md) and [exact frontend handoff](../../os-engineering/frontend-handoff.md). Native/session checksum/default/filter/draft-owner regression, actual Windows/WebView2 IPC denial/singleton/close/focus, frontend regressions and default-target checks PASS. Current Mac execution and full product acceptance remain NOT TESTED; no prior acceptance/release task is closed by this note.

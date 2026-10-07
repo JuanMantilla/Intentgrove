@@ -1,0 +1,13 @@
+Retained diagnostic failure summary, captured from direct tool results (not a fabricated raw process log).
+The current script is the corrected diagnostic; earlier logs retain output captured by those invocations.
+
+First invocation: exit 1. Scriptblock PSScriptRoot was empty; Join-Path failed before fixture execution.
+Second invocation: exit 1. Unicode/held-parent checks passed; locked-rename expectation for Win32 32 failed.
+Third invocation: exit 1. Diagnostic attempted a .NET read without deletion sharing while the stage had DELETE access; stage read was denied as being used by another process.
+Fourth invocation: exit 1. Relative Win32 rename returned 87, current=acknowledged, stage=pending. Locked-rename expectation failed.
+Fifth invocation: exit 1. Win32 wrapper returned 87; NT setter returned mapped Win32 5 while preserving current=acknowledged/stage=pending. Diagnostic still expected 32.
+
+Corrected setup: explicit EvidenceDirectory; diagnostic reads share read/write/delete; explicit assertion that Win32 held-parent wrapper returns 87; NT locked destination must return 5 and preserve both byte strings. No original application test assertions were relaxed.
+Sixth and final pre-interleaving diagnostic invocations: exit 0.
+Latest controlled writer interleaving invocation: exit 0; windows-native-probe-with-race.txt captures full direct tool output. That diagnostic proves ReplaceFileW does not compare-and-swap, not that application conflict handling passes.
+Rust application and fixture compilation/execution remain NOT RUN.

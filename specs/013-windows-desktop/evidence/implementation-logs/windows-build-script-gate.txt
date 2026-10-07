@@ -1,0 +1,8 @@
+﻿cmd.exe : Installer BLOCKED: F007W T012/T024 desktop verification is incomplete (specs/013-windows-desktop/tasks.md).
+At line:2 char:444
++ ... der preflight failed' }; cmd.exe /d /c build-windows.cmd 2>&1 | Out-F ...
++                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Installer BLOCK...ktop/tasks.md).:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Use build-windows.cmd --no-bundle to compile the read-only executable. No gate override is provided.

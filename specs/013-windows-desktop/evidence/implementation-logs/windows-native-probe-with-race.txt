@@ -1,0 +1,20 @@
+COMMAND: built-in PowerShell Add-Type native probe with owned .cache fixture
+EXIT: 0
+Fixture: C:\Users\jsman\projects\personal\Intentgrove\.cache\f007w-native-probe-45bf856be840475b90f10d83c87d6678
+PASS: anchored Unicode/spaced NT open with no-recall flags
+PASS: held parent survives replacement and preserves BOM/CRLF bytes
+Win32 relative rename result: 87
+PASS: Win32 wrapper rejects held-parent relative rename (87)
+Rename locked destination: Win32 5; current=acknowledged; stage=pending
+PASS: native denied-delete sharing keeps current/stage (Win32 5)
+Win32 relative rename result: 87
+PASS: Win32 wrapper rejects held-parent relative rename (87)
+PASS: anchored publication succeeds after lock release
+Win32 relative rename result: 87
+PASS: Win32 wrapper rejects held-parent relative rename (87)
+PASS: no-replace publication retains collision bytes (Win32 183)
+PASS: ReplaceFileW rejects still-open stage (Win32 32)
+PASS: closed-stage replacement keeps observed DACL/creation time and backup bytes
+PASS: ReplaceFileW overwrites an intervening write: replacement is not compare-and-swap
+Diagnostic experiments complete; Rust adapter and durability gates remain NOT RUN.
+

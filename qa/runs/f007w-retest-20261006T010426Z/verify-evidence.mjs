@@ -1,0 +1,34 @@
+import { readFile, writeFile, access } from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const run='qa/runs/f007w-retest-20261006T010426Z';
+const read=async p=>(await readFile(p,'utf8')).replace(/^\uFEFF/,'');
+const replacements=[['15969792bytes','15,969,792 bytes'],['and197','and 197'],['from22','from 22'],['in4','in 4'],["builder's287","builder's 287"],['on3c1521','on 3c1521'],['builder287','builder 287'],['actual3','actual 3'],['PID14840','PID 14840'],['PID11552','PID 11552'],['denied0x','denied 0x'],['build197','build 197'],['across80','across 80'],['PASS,71','PASS, 71'],['BLOCKED,3','BLOCKED, 3'],['NOT_RUN,1','NOT_RUN, 1'],['across80','across 80'],['.52 focused','. 52 focused'],['.197 product','. 197 product'],['.80 rows', '. 80 rows'],['rows:5','rows: 5'],['PASS:287','PASS: 287'],[';52','; 52'],['/Settings11552','/Settings 11552'],['across80','across 80'],['code2','code 2'],['error2','error 2'],['/output79','/output 79'],['across80','across 80'],['probe3','probe 3'],['across80','across 80'],['input197','input 197'],['all197','all 197'],['across80','across 80'],['across80','across 80'],['in4','in 4'],['in3','in 3'],['across80','across 80']];
+const docs=['report.md','coverage.md','plan.md','connection-investigation.md','department-handoff.md','evidence/index.md'].map(p=>run+'/'+p);
+const appended=['qa/STATE.md','qa/findings/QA-0003.md','qa/findings/QA-0004.md','qa/findings/QA-0005.md','specs/013-windows-desktop/tasks.md','specs/013-windows-desktop/evidence/implementation.md'];
+for(const p of [...docs,...appended,'.agents/state.md']){
+  const original=await read(p);
+  const cut=appended.includes(p)?original.lastIndexOf('\n## '):0;
+  assert(cut>=0);
+  let tail=original.slice(cut);
+  for(const [a,b] of replacements)tail=tail.replaceAll(a,b);
+  await writeFile(p,original.slice(0,cut)+tail);
+}
+await writeFile(run+'/evidence/provider-log-inventory.json',JSON.stringify({provenance:'Actual read-only shell directory inventory in this turn',roots:['C:/Users/jsman/.codex/computer-use','C:/Users/jsman/.codex/node_repl'],extensions:['.log','.txt','.jsonl'],matchingFiles:[],scope:'Only direct files in these roots; no recursive or helper-executable search'},null,2)+'\n');
+await writeFile(run+'/evidence/metadata-discovery.json',JSON.stringify({provenance:'Actual supplied tool metadata and plugin search in this turn',query:'Windows Computer Use',searchReturned:['Wolfram','Remote Desktop Commander','Databricks Genie','Docusign','Superpowers'],nativeRecoveryToolReturned:false,pluginsInstalled:0,permissionChanges:0,documentation:'https://developers.openai.com/plugins/deploy/troubleshooting',manifestVersion:'26.917.71314',manifestLifecycle:'node_repl turn_ended hooks only'},null,2)+'\n');
+await writeFile(run+'/evidence/index.md',(await read(run+'/evidence/index.md'))+'\n- metadata-discovery.json: actual supplied tool metadata/plugin discovery summary; no native recovery actuator returned.\n- helper-first-failure.txt: retained QA reconciliation-helper guard failure and correction, not a product failure.\n- reconciliation-verification.json: counts, case IDs, cited artifact existence and preserved historical row IDs.\n');
+const ledger=JSON.parse(await read(run+'/coverage.json'));
+assert.equal(ledger.rows.length,80);
+assert.equal(new Set(ledger.rows.map(r=>r.id)).size,80);
+const counts={};for(const r of ledger.rows)counts[r.status]=(counts[r.status]??0)+1;
+assert.deepEqual(counts,ledger.counts);
+assert.equal(ledger.nativeProductExecuted,0);
+assert(ledger.rows.filter(r=>r.scale===100||r.scale===150||r.scale===200).every(r=>r.status==='BLOCKED'&&r.attempts===0));
+const old=JSON.parse(await read('qa/runs/f007w-retest-20261006T004857Z/coverage.json'));
+assert(old.rows.every(r=>ledger.rows.some(n=>n.id===r.id)));
+for(const r of ledger.rows)for(const p of r.evidence.split(';').map(s=>s.trim()))await access(path.join(run,p));
+const stateWords=(await read('.agents/state.md')).split(/\s+/).filter(Boolean).length;
+assert(stateWords<=200);
+const result={status:'PASS',counts,rows:ledger.rows.length,uniqueCaseIds:80,inheritedCaseIdsPreserved:old.rows.length,nativeCaseAttempts:0,citedLedgerEvidenceExists:true,stateWords,limitations:'Artifact existence does not establish native runtime acceptance; no screenshots/AX'};
+await writeFile(run+'/evidence/reconciliation-verification.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));

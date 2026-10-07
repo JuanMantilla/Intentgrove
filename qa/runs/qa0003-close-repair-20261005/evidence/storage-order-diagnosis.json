@@ -1,0 +1,13 @@
+{
+    "evidence":  "USER_ASSISTED exact diagnostic notice; independent read-only profile ACL inspection",
+    "command":  "finish_workspace_session",
+    "code":  "recovery_permissions",
+    "message":  "Private directory DACL is not protected",
+    "profileIdentifier":  "com.juanmantilla.markdownworkspace.windowsfixture20261005T233048855Z7724c397",
+    "areAccessRulesProtected":  false,
+    "entries":  [
+                    "EBWebView"
+                ],
+    "mechanismSource":  "tauri-2.11.6/src/manager/webview.rs:534-550",
+    "repair":  "existing private_storage_dir before WebView construction; existing unsafe directories rejected without ACL repair"
+}

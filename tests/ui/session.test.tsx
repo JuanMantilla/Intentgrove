@@ -12,7 +12,8 @@ const mocks = vi.hoisted(() => ({
   finishEditingClose: vi.fn(), listEntries: vi.fn(), cancelListing: vi.fn(),
   readDocument: vi.fn(), loadSectionRecovery: vi.fn(),
   selectRoot: vi.fn(), selectFile: vi.fn(),
-  reselectSessionRoot: vi.fn(), reselectSessionFile: vi.fn(),
+  reselectSessionRoot: vi.fn(), reselectSessionFile: vi.fn(), resolveLink: vi.fn(),
+  reloadItem: vi.fn(),
   listeners: {} as Record<string, (event: { payload: unknown }) => void>
 }));
 
@@ -62,6 +63,7 @@ beforeEach(() => {
   mocks.finishEditingClose.mockResolvedValue(undefined);
   mocks.listEntries.mockResolvedValue({ entries: [], nextOffset: null });
   mocks.cancelListing.mockResolvedValue(undefined);
+  mocks.reloadItem.mockResolvedValue({ jobId: "qa0004-reload", generation: 1, accepted: true });
   mocks.loadSectionRecovery.mockResolvedValue(null);
   mocks.reselectSessionRoot.mockResolvedValue(saved());
   mocks.reselectSessionFile.mockResolvedValue({ id: "new-file", name: "second.md",
@@ -73,9 +75,126 @@ beforeEach(() => {
   }));
 });
 
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); });
 
 describe("workspace session", () => {
+  it("starts empty without a content warning when no session exists (QA-0004)", async () => {
+    mocks.loadWorkspaceSession.mockResolvedValue(null);
+    render(<App />);
+    await waitFor(() => expect(mocks.loadWorkspaceSession).toHaveBeenCalledOnce());
+    expect(screen.queryByText("This content is not supported in this version")).toBeNull();
+    expect(mocks.checkpointWorkspaceSession).not.toHaveBeenCalled();
+  });
+
+  it.each(["unsupported_type", "recovery_permissions"])("names startup session failure %s and retains it during supported reading (QA-0004)", async (code) => {
+    mocks.loadWorkspaceSession.mockRejectedValue({ code, message: "private storage failed" });
+    mocks.selectFile.mockResolvedValue({ id: "grant-first", name: "first.md", displayPath: "/tmp/fixture/first.md" });
+    mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+    mocks.listEntries.mockResolvedValue({ entries: [{ name: "first.md", kind: "markdown" }], nextOffset: null });
+    mocks.resolveLink.mockResolvedValue({ kind: "document", fileId: "grant-second", anchor: null });
+    mocks.readDocument.mockImplementation(async ({ fileId }: { fileId?: string }) => ({
+      fileId: fileId ?? "grant-first", identityKey: fileId ?? "grant-first", name: fileId === "grant-second" ? "second.md" : "first.md",
+      displayPath: fileId === "grant-second" ? "/tmp/fixture/second.md" : "/tmp/fixture/first.md", diskVersion: "v1",
+      content: fileId === "grant-second" ? "# Second" : "# First\n\n[Read second](second.md)"
+    }));
+    render(<App />);
+    const failure = await screen.findByText(/The remembered workspace could not be loaded/);
+    expect(failure.textContent).toContain(code);
+    expect(screen.queryByText("This content is not supported in this version")).toBeNull();
+    fireEvent.keyDown(window, { key: "o", metaKey: true });
+    await screen.findByRole("heading", { name: "First" });
+    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(await screen.findByTitle("first.md"));
+    await screen.findByRole("heading", { name: "First" });
+    fireEvent.click(screen.getByRole("button", { name: "Read second" }));
+    await screen.findByRole("heading", { name: "Second" });
+    await waitFor(() => expect(mocks.checkpointWorkspaceSession).toHaveBeenCalled());
+    fireEvent.contextMenu(screen.getByRole("tab", { name: /second.md/ }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "Reload second.md" }));
+    await waitFor(() => expect(mocks.reloadItem).toHaveBeenCalled());
+    await act(async () => mocks.listeners["refresh:item_status"]({ payload: {
+      generation: 1, targetRef: { rootId: "root", segments: ["second.md"] }, state: "current", reasonCode: "", checkedAt: 1
+    } }));
+    await act(async () => mocks.listeners["refresh:job_progress"]({ payload: {
+      generation: 1, jobId: "qa0004-reload", examinedCount: 1, confirmedCount: 1, state: "completed"
+    } }));
+    expect(within(document.querySelector<HTMLElement>(".reload-feedback-footer")!).getByRole("status").textContent)
+      .toContain("Already current");
+    expect(screen.getByText(/The remembered workspace could not be loaded/)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+    expect(screen.getByText(/No se pudo cargar el espacio de trabajo recordado/).textContent).toContain(code);
+    expect(screen.queryByText(/The remembered workspace could not be loaded/)).toBeNull();
+    fireEvent.change(screen.getByLabelText("Idioma"), { target: { value: "en" } });
+    expect(screen.getByText(/The remembered workspace could not be loaded/)).toBeTruthy();
+    fireEvent.click(screen.getByText(/The remembered workspace could not be loaded/).closest(".notice")!
+      .querySelector<HTMLButtonElement>("button")!);
+    expect(screen.queryByText(/The remembered workspace could not be loaded/)).toBeNull();
+  });
+
+  it("keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)", async () => {
+    mocks.checkpointWorkspaceSession.mockRejectedValueOnce({ code: "recovery_permissions", message: "DACL is not protected" });
+    render(<App />);
+    await screen.findByRole("heading", { name: "second" });
+    expect((await screen.findByText(/Workspace progress could not be saved/)).textContent).toContain("recovery_permissions");
+    fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+    expect(screen.getByText(/No se pudo guardar el progreso/)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("Idioma"), { target: { value: "en" } });
+    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
+    await waitFor(() => expect(mocks.checkpointWorkspaceSession).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(screen.queryByText(/Workspace progress could not be saved/)).toBeNull());
+  });
+
+  it.each(["none", "pending", "editing"])("preserves checkpoint keys when reopening a picker tab from the tree (recovery: %s)", async (recoveryState) => {
+    const pendingRecovery = recoveryState !== "none";
+    const restored = saved();
+    restored.tabs = [{ ...restored.tabs[0], fileId: "explicit-first", explicitFile: true, rootSegments: null }];
+    restored.activeKey = "first";
+    if (pendingRecovery) { restored.tabs = []; restored.activeKey = null; }
+    mocks.loadWorkspaceSession.mockResolvedValue(restored);
+    mocks.selectFile.mockResolvedValue({ id: "explicit-first", name: "first.md", displayPath: "/tmp/fixture/first.md" });
+    mocks.listEntries.mockResolvedValue({ entries: [{ name: "first.md", kind: "markdown" }], nextOffset: null });
+    mocks.readDocument.mockImplementation(async ({ fileId }: { fileId?: string }) => ({
+      fileId: fileId ?? "root-first", identityKey: "same-first", name: "first.md",
+      displayPath: "/tmp/fixture/first.md", content: "# First\n\n[Read second](second.md)", diskVersion: "v1"
+    }));
+    if (pendingRecovery) mocks.loadSectionRecovery.mockResolvedValue({ sessionId: "retained-recovery", diskVersion: "v1",
+      section: { id: "section", kind: "whole", ordinal: 0, label: "First", startByte: 0, endByte: 7, sourceHash: "hash" },
+      source: "# First", draft: "# Saved draft", lineSeparator: "\n", editorJson: null,
+      editorScrollTop: 0, editorScrollLeft: 0, readerScrollTop: 0, sequence: 1, savedAtMs: 123456789, conflict: false });
+    mocks.resolveLink.mockResolvedValue({ kind: "blocked", fileId: null, anchor: null, reason: "fixture boundary" });
+    render(<App />);
+    if (pendingRecovery) {
+      await screen.findByTitle("first.md");
+      fireEvent.keyDown(window, { key: "o", metaKey: true });
+    }
+    await screen.findByRole("heading", { name: "First" });
+    if (pendingRecovery) await screen.findByRole("button", { name: "Recover unsaved edit" });
+    if (recoveryState === "editing") {
+      fireEvent.click(screen.getByRole("button", { name: "Recover unsaved edit" }));
+      expect(await screen.findByTestId("restored-editor")).toBeTruthy();
+    }
+    fireEvent.click(await screen.findByTitle("first.md"));
+    await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledWith({ rootId: "root-new", segments: ["first.md"] }));
+    await waitFor(() => expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].tabs[0].fileId)
+      .toBe(pendingRecovery ? "explicit-first" : "root-first"));
+    expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].tabs[0].key).toBe(pendingRecovery ? "explicit-first" : "first");
+    expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].activeKey).toBe(pendingRecovery ? "explicit-first" : "first");
+    expect(screen.getAllByRole("tab")).toHaveLength(1);
+    if (recoveryState !== "editing") {
+      fireEvent.click(screen.getByRole("button", { name: "Read second" }));
+      await waitFor(() => expect(mocks.resolveLink).toHaveBeenCalledWith(pendingRecovery ? "explicit-first" : "root-first", "second.md"));
+      if (pendingRecovery) expect(screen.getByRole("button", { name: "Recover unsaved edit" })).toBeTruthy();
+    } else {
+      expect(screen.getByTestId("restored-editor").textContent).toContain("# Saved draft");
+      expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].tabs[0].editingActive).toBe(true);
+    }
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: "window" }));
+    if (!pendingRecovery) {
+      await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(false));
+      expect(mocks.finishWorkspaceSession.mock.lastCall?.[0].tabs[0]).toMatchObject({ key: "first", fileId: "root-first" });
+    } else expect(mocks.finishEditingClose).not.toHaveBeenCalled();
+  });
+
   it("waits for actual Markdown rendering before restoring a retained passage", async () => {
     const processor = unified().use(remarkParse);
     let worker!: DeferredWorker;
@@ -118,6 +237,22 @@ describe("workspace session", () => {
       .toBe(20));
     fireEvent.click(within(panel).getByRole("button", { name: "Reset reading settings" }));
     expect((within(panel).getByRole("combobox") as HTMLSelectElement).value).toBe("roboto");
+  });
+
+  it("reports language storage failure, keeps reading and retries the selected language", async () => {
+    const store = vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("denied"); });
+    try {
+      render(<App />);
+      await screen.findByRole("heading", { name: "second" });
+      fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+      expect(screen.getByText("El idioma cambió, pero no se pudo guardar.")).toBeTruthy();
+      expect(screen.getByRole("heading", { name: "second" })).toBeTruthy();
+      store.mockRestore();
+      fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
+      expect(localStorage.getItem("md-reader-locale")).toBe("es");
+      expect(screen.queryByText("El idioma cambió, pero no se pudo guardar.")).toBeNull();
+      expect(screen.getAllByRole("tab").map(tab => tab.textContent)).toEqual(["first.md", "second.md", "third.md"]);
+    } finally { store.mockRestore(); }
   });
 
   it("keeps tab order and loads the active tab before inactive tabs", async () => {
@@ -237,6 +372,52 @@ describe("workspace session", () => {
     mocks.listeners["editing:close_requested"]({ payload: "quit" });
     await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(true));
     expect(calls).toEqual(["checkpoint", "quit"]);
+  });
+
+  it.each(["window", "quit"])("keeps %s open on checkpoint failure and permits a protected retry (QA-0003)", async (route) => {
+    mocks.finishWorkspaceSession.mockRejectedValueOnce({ code: "session_error", message: "checkpoint failed" });
+    render(<App />);
+    await screen.findByRole("heading", { name: "second" });
+    await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: route }));
+    await waitFor(() => expect(mocks.finishWorkspaceSession).toHaveBeenCalledOnce());
+    expect(mocks.finishEditingClose).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "second" })).toBeTruthy();
+    expect(screen.getByText(/The app could not close safely/).textContent).toContain("session_error");
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: route }));
+    await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(route === "quit"));
+    expect(mocks.finishWorkspaceSession).toHaveBeenCalledTimes(2);
+  });
+
+  it("shows the actual returned close error only in an explicit diagnostic build (QA-0003)", async () => {
+    vi.stubEnv("VITE_CLOSE_DIAGNOSTICS", "1");
+    mocks.finishWorkspaceSession.mockRejectedValueOnce({ code: "unsupported_type", message: "Expected a regular file or directory" });
+    render(<App />);
+    await screen.findByRole("heading", { name: "second" });
+    await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: "window" }));
+    expect(await screen.findByText("finish_workspace_session: unsupported_type: Expected a regular file or directory")).toBeTruthy();
+    expect(mocks.finishEditingClose).not.toHaveBeenCalled();
+  });
+
+  it("serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)", async () => {
+    let releaseRunning!: (value: { sequence: number; completedAtMs: number }) => void;
+    let releaseFinal!: (value: { sequence: number; completedAtMs: number }) => void;
+    mocks.checkpointWorkspaceSession.mockImplementationOnce(() => new Promise((resolve) => { releaseRunning = resolve; }));
+    mocks.finishWorkspaceSession.mockImplementationOnce(() => new Promise((resolve) => { releaseFinal = resolve; }));
+    render(<App />);
+    await screen.findByRole("heading", { name: "second" });
+    await waitFor(() => expect(releaseRunning).toBeTypeOf("function"));
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: "window" }));
+    expect(mocks.finishWorkspaceSession).not.toHaveBeenCalled();
+    expect(mocks.finishEditingClose).not.toHaveBeenCalled();
+    await act(async () => releaseRunning({ sequence: 10, completedAtMs: 123456790 }));
+    await waitFor(() => expect(releaseFinal).toBeTypeOf("function"));
+    await act(async () => mocks.listeners["editing:close_requested"]({ payload: "window" }));
+    expect(mocks.finishWorkspaceSession).toHaveBeenCalledOnce();
+    expect(mocks.finishEditingClose).not.toHaveBeenCalled();
+    await act(async () => releaseFinal({ sequence: 11, completedAtMs: 123456791 }));
+    await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledOnce());
   });
 
   it("checkpoints keyboard tab reordering", async () => {

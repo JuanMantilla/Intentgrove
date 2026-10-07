@@ -1,0 +1,71 @@
+{
+    "scope":  "Static only; no compiler/tests executed",
+    "diff_check_command":  "git -c safe.directory=C:/Users/jsman/projects/personal/Intentgrove diff --check",
+    "diff_check_exit":  0,
+    "diff_check_output":  [
+
+                          ],
+    "protected_diff_exit":  0,
+    "protected_paths":  [
+                            "package.json",
+                            "package-lock.json",
+                            "src-tauri/Cargo.toml",
+                            "src-tauri/Cargo.lock",
+                            "specs/013-windows-desktop/review.json",
+                            "specs/013-windows-desktop/spec.md",
+                            "specs/013-windows-desktop/design.md",
+                            "specs/013-windows-desktop/plan.md",
+                            "specs/013-windows-desktop/research.md",
+                            "specs/013-windows-desktop/data-model.md",
+                            "specs/013-windows-desktop/contracts/platform-boundaries.md",
+                            "specs/013-windows-desktop/quickstart.md",
+                            "src-tauri/tauri.windows.conf.json",
+                            "src-tauri/src/platform/macos.rs",
+                            "src-tauri/src/platform/macos_save.rs",
+                            "src-tauri/xpc",
+                            "src/app/App.tsx",
+                            "src/app/platform.ts"
+                        ],
+    "protected_diff_output":  [
+
+                              ],
+    "approvals":  [
+                      {
+                          "path":  "specs/013-windows-desktop/spec.md",
+                          "sha256":  "45b8b7be5edca1f5546652b9768f84af9be97d60d2ca8d9a5886243f234ce860",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/design.md",
+                          "sha256":  "0e55900159ec37f9247fa83095bca5e1184b2b150dd3a48c2a74e26dfaf93ba5",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/plan.md",
+                          "sha256":  "e0bbdc3d27277a95ebe6bc2e3a483e41a59243f06921f8a27a69b432992960e1",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/research.md",
+                          "sha256":  "8bca1d0bdf89b45dc4aa11eaec61d21f127e2b180be89f58a580125888024ad0",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/data-model.md",
+                          "sha256":  "4ae43edb4e145d358c509c8f0b826873d9cf0417004091fc51a52b9e2e963add",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/contracts/platform-boundaries.md",
+                          "sha256":  "65ebcf7dc65b5160d1bb1653ef57f97995a8d620eebe813a7b883b9181475cd5",
+                          "match":  true
+                      },
+                      {
+                          "path":  "specs/013-windows-desktop/quickstart.md",
+                          "sha256":  "501f08b861a6aaf66aad723f7d0ccf9e0f8d42a1c44b8620a7483f1059fc0a99",
+                          "match":  true
+                      }
+                  ],
+    "missing_historical_native_host_log":  true,
+    "state_words":  161
+}

@@ -1,4 +1,8 @@
-use crate::platform::{stage_bytes, remove_stage, rename_stage, link_stage_new, document_mode};
+use crate::platform::{stage_document_bytes, open_document_for_commit,
+    remove_document_stage as remove_stage, rename_document_stage as rename_stage,
+    link_document_stage_new as link_stage_new};
+#[cfg(all(test, target_os = "macos"))]
+use crate::platform::stage_bytes;
 use crate::document::{immediate_bytes_and_version, read_document_impl};
 use crate::recovery::clear_owned_recovery;
 use crate::save_copies::SafetyCopyBatch;
@@ -268,6 +272,18 @@ fn begin_section_edit_impl(
     expected_disk_version: String,
 ) -> AppResult<BeginEditResponse> {
     crate::platform::require_editing()?;
+    prepare_edit_session(state, editing, file_id, section_id, expected_disk_version)
+}
+
+// Shared policy, called by the gated entry point. Native fixtures exercise this
+// policy directly without enabling production editing or the Mac-only harness.
+fn prepare_edit_session(
+    state: &AppState,
+    editing: &EditingState,
+    file_id: String,
+    section_id: String,
+    expected_disk_version: String,
+) -> AppResult<BeginEditResponse> {
     let response = read_document_impl(state, Some(&file_id), None, None)?;
     if response.disk_version != expected_disk_version {
         return Err(AppError::new("version_changed", "File changed before editing began"));
@@ -393,13 +409,13 @@ fn target_parent(state: &AppState, file_id: &str) -> AppResult<(File, String, Fi
     Ok((parent, name, current))
 }
 
-struct StageCleanup<'a> { parent: &'a File, name: &'a str, armed: bool }
+struct StageCleanup<'a> { parent: &'a File, stage: &'a crate::platform::DocumentStage, name: &'a str, armed: bool }
 impl<'a> StageCleanup<'a> {
-    fn new(parent: &'a File, name: &'a str) -> Self { Self { parent, name, armed: true } }
+    fn new(parent: &'a File, stage: &'a crate::platform::DocumentStage, name: &'a str) -> Self { Self { parent, stage, name, armed: true } }
     fn disarm(&mut self) { self.armed = false; }
 }
 impl Drop for StageCleanup<'_> {
-    fn drop(&mut self) { if self.armed { remove_stage(self.parent, self.name); } }
+    fn drop(&mut self) { if self.armed { remove_stage(self.parent, self.stage, self.name); } }
 }
 
 
@@ -535,11 +551,12 @@ fn commit_section_save_as_with_backup(
     };
     match (destination.existing_version.as_ref(), current.as_ref()) {
         (None, None) => {
-            let (stage_name, stage) = stage_bytes(&parent, &output, 0o600)?;
-            let mut cleanup = StageCleanup::new(&parent, &stage_name);
-            let result = link_stage_new(&parent, &stage_name, &name);
+            let (stage_name, stage) = stage_document_bytes(&parent, &output, None)?;
+            let mut cleanup = StageCleanup::new(&parent, &stage, &stage_name);
+            let result = link_stage_new(&parent, &stage, &stage_name, &name);
             if result.is_ok() { cleanup.disarm(); }
-            if result.is_err() { remove_stage(&parent, &stage_name); }
+            if result.is_err() { remove_stage(&parent, &stage, &stage_name); }
+            drop(cleanup);
             drop(stage);
             result?;
         }
@@ -548,24 +565,24 @@ fn commit_section_save_as_with_backup(
             if &version != expected {
                 return Err(AppError::new("version_changed", "Save As destination changed"));
             }
-            let mode = document_mode(&current)?;
-            let (stage_name, stage) = stage_bytes(&parent, &output, mode)?;
-            let mut cleanup = StageCleanup::new(&parent, &stage_name);
+            let (stage_name, stage) = stage_document_bytes(&parent, &output, Some(current))?;
+            let mut cleanup = StageCleanup::new(&parent, &stage, &stage_name);
             if let Err(error) = backup(&hash(destination.path.as_os_str().as_encoded_bytes()), &old) {
-                remove_stage(&parent, &stage_name);
+                remove_stage(&parent, &stage, &stage_name);
                 return Err(error);
             }
-            let final_file = open_relative(&parent, &[name.clone()], false)?;
+            let final_file = open_document_for_commit(&parent, &name)?;
             let (final_bytes, final_version) = immediate_bytes_and_version(&final_file)?;
             if final_version != version || final_bytes != old || identity(&final_file)? != identity(current)? {
-                remove_stage(&parent, &stage_name);
+                remove_stage(&parent, &stage, &stage_name);
                 return Err(AppError::new("version_changed", "Save As destination changed"));
             }
-            if let Err(error) = rename_stage(&parent, &stage_name, &name) {
-                remove_stage(&parent, &stage_name);
+            if let Err(error) = rename_stage(&parent, &stage, &stage_name, &name) {
+                remove_stage(&parent, &stage, &stage_name);
                 return Err(error);
             }
             cleanup.disarm();
+            drop(cleanup);
             drop(stage);
         }
         (Some(_), Some(_)) => {
@@ -680,7 +697,7 @@ fn save_section_edit_with_operations(
     replacement: String,
     mut backup: impl FnMut(&str, &[u8]) -> AppResult<()>,
     cleanup: impl FnOnce(&str, &EditSession) -> AppResult<()>,
-    replace: impl FnOnce(&File, &str, &str) -> AppResult<()>,
+    replace: impl FnOnce(&File, &crate::platform::DocumentStage, &str, &str) -> AppResult<()>,
 ) -> AppResult<SaveEditResponse> {
     let mut sessions = editing.sessions.lock()
         .map_err(|_| AppError::new("internal", "Edit state is unavailable"))?;
@@ -696,27 +713,27 @@ fn save_section_edit_with_operations(
         return Err(AppError::new("version_changed", "The file changed in another app"));
     }
     let output = compose_section(&session.base, &session.section, &replacement)?;
-    let mode = document_mode(&current)?;
     #[cfg(feature = "acceptance-harness")]
     crate::acceptance_harness::fixture_save_failure()?;
-    let (stage_name, stage) = stage_bytes(&parent, &output, mode)?;
-    let mut stage_cleanup = StageCleanup::new(&parent, &stage_name);
+    let (stage_name, stage) = stage_document_bytes(&parent, &output, Some(&current))?;
+    let mut stage_cleanup = StageCleanup::new(&parent, &stage, &stage_name);
     if let Err(error) = backup(&session.file_id, &original)
         .and_then(|_| backup(&format!("{}.staged", session.file_id), &output)) {
-        remove_stage(&parent, &stage_name);
+        remove_stage(&parent, &stage, &stage_name);
         return Err(error);
     }
-    let fresh = open_relative(&parent, &[target_name.clone()], false)?;
+    let fresh = open_document_for_commit(&parent, &target_name)?;
     let (latest, latest_version) = immediate_bytes_and_version(&fresh)?;
     if identity(&fresh)? != grant.identity || latest_version != version || latest != original {
-        remove_stage(&parent, &stage_name);
+        remove_stage(&parent, &stage, &stage_name);
         return Err(AppError::new("version_changed", "The file changed before Save completed"));
     }
-    if let Err(error) = replace(&parent, &stage_name, &target_name) {
-        remove_stage(&parent, &stage_name);
+    if let Err(error) = replace(&parent, &stage, &stage_name, &target_name) {
+        remove_stage(&parent, &stage, &stage_name);
         return Err(error);
     }
     stage_cleanup.disarm();
+    drop(stage_cleanup);
     drop(stage);
     let committed = open_relative(&parent, &[target_name], false)?;
     let (actual, new_version) = immediate_bytes_and_version(&committed)?;
@@ -748,7 +765,6 @@ mod tests {
         sections_from_source(input.as_bytes(), "v1").unwrap()
     }
 
-    #[cfg(target_os = "macos")]
     struct SaveFixture {
         dir: std::path::PathBuf,
         state: AppState,
@@ -758,22 +774,31 @@ mod tests {
         selected: SectionDescriptor,
     }
 
-    #[cfg(target_os = "macos")]
     impl SaveFixture {
         fn new(source: &str) -> Self {
+            Self::with_setup(source, |_| {})
+        }
+        fn with_setup(source: &str, setup: impl FnOnce(&std::path::Path)) -> Self {
             let dir = std::env::temp_dir().join(format!("md-save-transaction-{}", Uuid::new_v4()));
             fs::create_dir(&dir).unwrap();
             let root_path = dir.join("root"); fs::create_dir(&root_path).unwrap();
             fs::write(root_path.join("fixture.md"), source).unwrap();
+            setup(&root_path.join("fixture.md"));
             let state = AppState::default(); let editing = EditingState::default();
             let root = state.register_root(&root_path).unwrap();
             let document = read_document_impl(&state, None, Some(&root.id), Some(vec!["fixture.md".into()])).unwrap();
             let selected = sections_from_source(source.as_bytes(), &document.disk_version).unwrap()
                 .into_iter().find(|section| section.kind == "heading").unwrap();
+            #[cfg(target_os = "macos")]
             let started = begin_section_edit_impl(&state, &editing, document.file_id, selected.id.clone(), document.disk_version).unwrap();
+            #[cfg(target_os = "windows")]
+            let started = {
+                assert_eq!(begin_section_edit_impl(&state, &editing, document.file_id.clone(), selected.id.clone(), document.disk_version.clone()).err().unwrap().code, "editing_unavailable");
+                prepare_edit_session(&state, &editing, document.file_id, selected.id.clone(), document.disk_version).unwrap()
+            };
             Self { dir, state, editing, session_id: started.session_id, source: source.into(), selected }
         }
-        fn path(&self) -> std::path::PathBuf { self.dir.join("root/fixture.md") }
+        fn path(&self) -> std::path::PathBuf { self.dir.join("root").join("fixture.md") }
         fn root_is_clean(&self) -> bool {
             fs::read_dir(self.dir.join("root")).unwrap().all(|entry|
                 !entry.unwrap().file_name().to_string_lossy().starts_with(".md-reader-"))
@@ -782,7 +807,6 @@ mod tests {
             fs::write(self.dir.join(format!("{id}.bak")), bytes).map_err(io_error)
         }
     }
-    #[cfg(target_os = "macos")]
     impl Drop for SaveFixture { fn drop(&mut self) { let _ = fs::remove_dir_all(&self.dir); } }
 
     #[cfg(target_os = "macos")]
@@ -793,8 +817,231 @@ mod tests {
         assert!(status.success());
     }
 
+    #[cfg(target_os = "windows")]
+    fn second_writer(path: &std::path::Path, text: &str) {
+        let status = std::process::Command::new(std::env::current_exe().unwrap())
+            .args(["--ignored", "--exact", "editing::tests::windows_save_writer_child", "--nocapture"])
+            .env("F007W_SAVE_WRITER_PATH", path).env("F007W_SAVE_WRITER_TEXT", text)
+            .status().unwrap();
+        assert!(status.success());
+    }
+
     #[test]
-    #[cfg(target_os = "macos")]
+    #[cfg(target_os = "windows")]
+    #[ignore = "subprocess driver; explicitly run by the competing-writer save tests"]
+    fn windows_save_writer_child() {
+        let path = std::path::PathBuf::from(std::env::var_os("F007W_SAVE_WRITER_PATH").unwrap());
+        let relative = path.strip_prefix(std::env::temp_dir()).unwrap();
+        let root = relative.components().next().unwrap().as_os_str().to_str().unwrap();
+        let id = root.strip_prefix("md-save-transaction-").unwrap();
+        assert!(Uuid::parse_str(id).is_ok(), "Writer accepts only its disposable save fixture");
+        assert!(!relative.components().any(|component| matches!(component, std::path::Component::ParentDir)));
+        fs::write(path, std::env::var("F007W_SAVE_WRITER_TEXT").unwrap()).unwrap();
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_locked_and_readonly_saves_keep_source_draft_and_owned_cleanup() {
+        use std::os::windows::{fs::OpenOptionsExt, ffi::OsStrExt};
+        use windows_sys::Win32::Storage::FileSystem::{FILE_SHARE_READ, FILE_SHARE_WRITE, SetFileAttributesW, FILE_ATTRIBUTE_READONLY, FILE_ATTRIBUTE_NORMAL};
+        for readonly in [false, true] {
+            let fixture = SaveFixture::new("# One\noriginal\n");
+            let path = fixture.path();
+            let wide: Vec<u16> = path.as_os_str().encode_wide().chain(Some(0)).collect();
+            let lock = if readonly {
+                assert_ne!(unsafe { SetFileAttributesW(wide.as_ptr(), FILE_ATTRIBUTE_READONLY) }, 0);
+                None
+            } else { Some(fs::OpenOptions::new().read(true).share_mode(FILE_SHARE_READ | FILE_SHARE_WRITE).open(&path).unwrap()) };
+            let result = save_section_edit_with_operations(&fixture.state, &fixture.editing,
+                fixture.session_id.clone(), "# One\nmy edit\n".into(), |id, bytes| fixture.backup(id, bytes),
+                |_, _| Ok(()), rename_stage);
+            if readonly { assert_ne!(unsafe { SetFileAttributesW(wide.as_ptr(), FILE_ATTRIBUTE_NORMAL) }, 0); }
+            drop(lock);
+            assert!(result.is_err());
+            assert_eq!(fs::read(path).unwrap(), fixture.source.as_bytes());
+            assert!(fixture.editing.has_sessions());
+            assert!(fixture.root_is_clean());
+        }
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_real_save_preserves_document_metadata() {
+        let fixture = SaveFixture::new("# One\r\noriginal\r\n");
+        let original = crate::scope::open_selected(&fixture.path(), false).unwrap();
+        let metadata = crate::platform::metadata_fingerprint(&original).unwrap();
+        save_section_edit_with_operations(&fixture.state, &fixture.editing,
+            fixture.session_id.clone(), "# One\r\nchanged\r\n".into(), |id, bytes| fixture.backup(id, bytes),
+            |_, _| Ok(()), rename_stage).unwrap();
+        let published = crate::scope::open_selected(&fixture.path(), false).unwrap();
+        assert_eq!(crate::platform::metadata_fingerprint(&published).unwrap(), metadata);
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_denied_stage_creation_retains_original_and_pending_draft() {
+        let fixture = SaveFixture::new("# One\noriginal\n");
+        crate::platform::with_fixture_creation_denied(&fixture.dir.join("root"), || {
+            // Changing an inheritable directory ACL legitimately updates child
+            // metadata. Start this fixture's edit under the denied ACL, rather
+            // than changing permissions after capturing its expected version.
+            let previous = fixture.editing.sessions.lock().unwrap().remove(&fixture.session_id).unwrap();
+            let document = read_document_impl(&fixture.state, Some(&previous.file_id), None, None).unwrap();
+            let section = sections_from_source(document.content.as_bytes(), &document.disk_version).unwrap()
+                .into_iter().find(|section| section.kind == "heading").unwrap();
+            let started = prepare_edit_session(&fixture.state, &fixture.editing,
+                previous.file_id, section.id, document.disk_version).unwrap();
+            let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
+                started.session_id, "# One\nmy edit\n".into(),
+                |_, _| panic!("Denied staging must stop before backup or commit"),
+                |_, _| Ok(()), rename_stage).err().unwrap();
+            assert_eq!(error.code, "denied");
+            assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
+            assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
+        }).unwrap();
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_stage_handle_blocks_substitution_and_cleanup_preserves_published_bytes() {
+        let fixture = crate::platform::test_support::FixtureDir::new("md-save-stage-ownership");
+        let parent = crate::scope::open_selected(fixture.path(), true).unwrap();
+        let (name, stage) = stage_document_bytes(&parent, b"owned stage bytes", None).unwrap();
+        let stage_path = fixture.join(&name);
+        assert!(fs::write(&stage_path, b"substitution").is_err());
+        assert!(fs::rename(&stage_path, fixture.join("moved.tmp")).is_err());
+        assert!(fs::remove_file(&stage_path).is_err());
+        assert_eq!(fs::read(&stage_path).unwrap(), b"owned stage bytes");
+        link_stage_new(&parent, &stage, &name, "published.md").unwrap();
+        fs::write(&stage_path, b"new unrelated entry").unwrap();
+        remove_stage(&parent, &stage, &name);
+        assert_eq!(fs::read(&stage_path).unwrap(), b"new unrelated entry");
+        assert_eq!(fs::read(fixture.join("published.md")).unwrap(), b"owned stage bytes");
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_partial_stage_failure_cleans_only_owned_stage() {
+        use std::io::Write;
+        let fixture = SaveFixture::new("# One\noriginal\n");
+        let parent = crate::scope::open_selected(&fixture.dir.join("root"), true).unwrap();
+        let original = crate::scope::open_selected(&fixture.path(), false).unwrap();
+        let error = crate::platform::stage_fixture_with_writer(&parent, b"# One\nchanged\n", Some(&original), |file, bytes| {
+            file.write_all(&bytes[..5])?;
+            Err(std::io::Error::new(std::io::ErrorKind::WriteZero, "injected failure after real partial stage write"))
+        }).err().unwrap();
+        assert!(error.message.contains("injected failure after real partial stage write"));
+        assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
+        assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_open_writer_is_refused_and_post_commit_uncertainty_retains_work() {
+        use std::os::windows::fs::OpenOptionsExt;
+        use windows_sys::Win32::Storage::FileSystem::{FILE_SHARE_READ, FILE_SHARE_WRITE, FILE_SHARE_DELETE};
+        let fixture = SaveFixture::new("# One\noriginal\n");
+        let writer = fs::OpenOptions::new().write(true).share_mode(FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE).open(fixture.path()).unwrap();
+        let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
+            fixture.session_id.clone(), "# One\nmy edit\n".into(), |id, bytes| fixture.backup(id, bytes),
+            |_, _| Ok(()), rename_stage).err().unwrap();
+        assert!(error.message.contains("Win32 32"), "{error:?}");
+        assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
+        assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
+        drop(writer);
+        let mut unrelated = None;
+        let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
+            fixture.session_id.clone(), "# One\nmy edit\n".into(), |id, bytes| fixture.backup(id, bytes),
+            |_, _| Ok(()), |parent, stage, name, target| {
+                rename_stage(parent, stage, name, target)?;
+                let path = fixture.dir.join("root").join(name);
+                fs::write(&path, b"unrelated entry after publication").unwrap();
+                unrelated = Some(path);
+                Err(AppError::new("save_race", "injected post-commit uncertainty"))
+            }).err().unwrap();
+        assert_eq!(error.code, "save_race");
+        assert_eq!(fs::read(fixture.path()).unwrap(), b"# One\nmy edit\n");
+        assert!(fixture.editing.has_sessions());
+        assert_eq!(fs::read(unrelated.unwrap()).unwrap(), b"unrelated entry after publication");
+        let id = fixture.editing.sessions.lock().unwrap()[&fixture.session_id].file_id.clone();
+        assert_eq!(fs::read(fixture.dir.join(format!("{id}.bak"))).unwrap(), fixture.source.as_bytes());
+        assert_eq!(fs::read(fixture.dir.join(format!("{id}.staged.bak"))).unwrap(), b"# One\nmy edit\n");
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_extra_streams_and_hard_links_are_refused_without_source_changes() {
+        for stream in [false, true] {
+            let mut companion = None;
+            let fixture = SaveFixture::with_setup("# One\noriginal\n", |source| {
+                let path = if stream {
+                    let path = std::path::PathBuf::from(format!("{}:fixture", source.display()));
+                    fs::write(&path, b"stream marker").unwrap(); path
+                } else {
+                    let path = source.parent().unwrap().parent().unwrap().join("linked.md");
+                    fs::hard_link(source, &path).unwrap(); path
+                };
+                companion = Some(path);
+            });
+            let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
+                fixture.session_id.clone(), "# One\nmy edit\n".into(), |id, bytes| fixture.backup(id, bytes),
+                |_, _| Ok(()), rename_stage).err().unwrap();
+            assert_eq!(error.code, "unsupported_type");
+            assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
+            assert_eq!(fs::read(companion.unwrap()).unwrap(), if stream { b"stream marker".as_slice() } else { fixture.source.as_bytes() });
+            assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
+        }
+    }
+
+    #[test]
+    fn actual_save_as_new_destination_and_appearing_collision() {
+        for collision in [false, true] {
+            let fixture = SaveFixture::new("# One\noriginal\n# Two\nuntouched\n");
+            let target = fixture.dir.join("new.md");
+            let token = Uuid::new_v4().to_string();
+            fixture.editing.destinations.lock().unwrap().insert(token.clone(), SaveDestination {
+                session_id: fixture.session_id.clone(), path: target.clone(), existing_version: None,
+            });
+            if collision { fs::write(&target, b"newer destination").unwrap(); }
+            let result = commit_section_save_as_with_backup(&fixture.editing, fixture.session_id.clone(),
+                token, "# One\nmy edit\n".into(), false, |_, _| panic!("New destination must not replace an existing file"));
+            if collision {
+                assert_eq!(result.unwrap_err().code, "version_changed");
+                assert_eq!(fs::read(target).unwrap(), b"newer destination");
+            } else {
+                result.unwrap(); assert_eq!(fs::read(target).unwrap(), b"# One\nmy edit\n# Two\nuntouched\n");
+            }
+            assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
+            assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
+        }
+    }
+
+    #[test]
+    #[cfg(target_os = "windows")]
+    fn windows_stage_collision_and_parent_replacement_stay_anchored() {
+        let fixture = crate::platform::test_support::FixtureDir::new("md-save-stage-parent");
+        let root_path = fixture.join("root");
+        fs::create_dir(&root_path).unwrap();
+        let parent = crate::scope::open_selected(&root_path, true).unwrap();
+        let (name, stage) = stage_document_bytes(&parent, b"staged bytes", None).unwrap();
+        fs::write(root_path.join("new.md"), b"collision marker").unwrap();
+        assert!(link_stage_new(&parent, &stage, &name, "new.md").is_err());
+        assert_eq!(fs::read(root_path.join("new.md")).unwrap(), b"collision marker");
+        assert_eq!(fs::read(root_path.join(&name)).unwrap(), b"staged bytes");
+        // Ordinary Windows directory rename disallows open child files. The
+        // parent capability stays held after the finished stage is closed.
+        drop(stage);
+        fs::rename(&root_path, fixture.join("moved")).unwrap();
+        fs::create_dir(&root_path).unwrap();
+        fs::write(root_path.join("new.md"), b"outside marker").unwrap();
+        let stage = crate::platform::reopen_fixture_stage(&parent, &name).unwrap();
+        link_stage_new(&parent, &stage, &name, "published.md").unwrap();
+        assert_eq!(fs::read(fixture.join("moved").join("published.md")).unwrap(), b"staged bytes");
+        assert!(!root_path.join("published.md").exists());
+        assert_eq!(fs::read(root_path.join("new.md")).unwrap(), b"outside marker");
+    }
+
+    #[test]
     fn twenty_actual_saves_preserve_unselected_bytes_bom_and_line_endings() {
         for index in 0..20 {
             let separator = ["\n", "\r\n", "\r"][index % 3];
@@ -813,7 +1060,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn an_external_write_before_save_or_its_final_check_keeps_the_draft() {
         for late in [false, true] {
             let fixture = SaveFixture::new("# One\noriginal\n# Two\nunchanged\n");
@@ -833,7 +1079,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn a_missing_source_during_save_does_not_leave_a_staged_repository_file() {
         let fixture = SaveFixture::new("# One\noriginal\n"); let mut calls = 0;
         let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
@@ -846,7 +1091,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn failed_backup_or_commit_keeps_original_and_pending_session() {
         for fail_backup in [false, true] {
             let fixture = SaveFixture::new("# One\noriginal\n");
@@ -854,7 +1098,7 @@ mod tests {
                 fixture.session_id.clone(), "# One\nmy edit\n".into(), |id, bytes| {
                     if fail_backup { Err(AppError::new("io_error", "fixture backup failure")) }
                     else { fixture.backup(id, bytes) }
-                }, |_, _| Ok(()), |_, _, _| Err(AppError::new("denied", "fixture commit denied"))).err().unwrap();
+                }, |_, _| Ok(()), |_, _, _, _| Err(AppError::new("denied", "fixture commit denied"))).err().unwrap();
             assert_eq!(error.code, if fail_backup { "io_error" } else { "denied" });
             assert_eq!(fs::read(fixture.path()).unwrap(), fixture.source.as_bytes());
             assert!(fixture.editing.has_sessions()); assert!(fixture.root_is_clean());
@@ -862,15 +1106,14 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn observed_post_commit_race_retains_original_staged_and_intervening_versions() {
         let fixture = SaveFixture::new("# One\noriginal\n");
         let replacement = "# One\nmy edit\n";
         let outside = "# One\nintervening\n";
         let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
             fixture.session_id.clone(), replacement.into(), |id, bytes| fixture.backup(id, bytes), |_, _| Ok(()),
-            |parent, stage, target| {
-                rename_stage(parent, stage, target)?; second_writer(&fixture.path(), outside); Ok(())
+            |parent, stage_file, stage, target| {
+                rename_stage(parent, stage_file, stage, target)?; second_writer(&fixture.path(), outside); Ok(())
             }).err().unwrap();
         assert_eq!(error.code, "save_race"); assert!(fixture.editing.has_sessions());
         let file_id = fixture.editing.sessions.lock().unwrap()[&fixture.session_id].file_id.clone();
@@ -881,7 +1124,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn an_invalid_binary_draft_is_rejected_before_any_source_write() {
         let fixture = SaveFixture::new("# One\noriginal\n");
         let error = save_section_edit_with_operations(&fixture.state, &fixture.editing,
@@ -893,7 +1135,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg(target_os = "macos")]
     fn actual_save_as_requires_confirmation_and_rechecks_the_destination() {
         for writer_phase in 0..3 {
             let fixture = SaveFixture::new("# One\noriginal\n# Two\nuntouched\n");
@@ -1036,7 +1277,7 @@ mod tests {
             let output = compose_section(input.as_bytes(), &selected, &replacement).unwrap();
             let (stage_name, stage) = stage_bytes(&parent, &output, 0o600).unwrap();
             stage.sync_all().unwrap();
-            rename_stage(&parent, &stage_name, &target_name).unwrap();
+            rename_stage(&parent, &stage, &stage_name, &target_name).unwrap();
             let saved = fs::read(dir.join(&target_name)).unwrap();
             assert_eq!(saved, output);
             assert_eq!(&saved[..selected.start_byte], &input.as_bytes()[..selected.start_byte]);
@@ -1056,12 +1297,12 @@ mod tests {
         let parent = open_selected(&dir, true).unwrap();
         let original = open_relative(&parent, &["fixture.md".to_string()], false).unwrap();
         let (_, expected) = immediate_bytes_and_version(&original).unwrap();
-        let (stage_name, _stage) = stage_bytes(&parent, b"# My edit\n", 0o600).unwrap();
+        let (stage_name, stage) = stage_bytes(&parent, b"# My edit\n", 0o600).unwrap();
         fs::write(&path, b"# External\n").unwrap();
         let current = open_relative(&parent, &["fixture.md".to_string()], false).unwrap();
         let (_, actual) = immediate_bytes_and_version(&current).unwrap();
         assert_ne!(actual, expected);
-        remove_stage(&parent, &stage_name);
+        remove_stage(&parent, &stage, &stage_name);
         assert_eq!(fs::read(&path).unwrap(), b"# External\n");
         fs::remove_dir_all(dir).unwrap();
     }
@@ -1072,11 +1313,11 @@ mod tests {
         let dir = std::env::temp_dir().join(format!("md-reader-save-as-{}", Uuid::new_v4()));
         fs::create_dir(&dir).unwrap();
         let parent = open_selected(&dir, true).unwrap();
-        let (stage_name, _stage) = stage_bytes(&parent, b"# My copy\n", 0o600).unwrap();
+        let (stage_name, stage) = stage_bytes(&parent, b"# My copy\n", 0o600).unwrap();
         fs::write(dir.join("copy.md"), b"# Someone else's file\n").unwrap();
-        assert!(link_stage_new(&parent, &stage_name, "copy.md").is_err());
+        assert!(link_stage_new(&parent, &stage, &stage_name, "copy.md").is_err());
         assert_eq!(fs::read(dir.join("copy.md")).unwrap(), b"# Someone else's file\n");
-        remove_stage(&parent, &stage_name);
+        remove_stage(&parent, &stage, &stage_name);
         fs::remove_dir_all(dir).unwrap();
     }
 
@@ -1105,12 +1346,12 @@ mod tests {
         fs::write(&path, b"# Existing\n").unwrap();
         let original = open_relative(&parent, &["copy.md".to_string()], false).unwrap();
         let (base, expected) = immediate_bytes_and_version(&original).unwrap();
-        let (stage_name, _stage) = stage_bytes(&parent, b"# My copy\n", 0o600).unwrap();
+        let (stage_name, stage) = stage_bytes(&parent, b"# My copy\n", 0o600).unwrap();
         fs::write(&path, b"# External\n").unwrap();
         let current = open_relative(&parent, &["copy.md".to_string()], false).unwrap();
         let (latest, version) = immediate_bytes_and_version(&current).unwrap();
         assert!(version != expected || latest != base);
-        remove_stage(&parent, &stage_name);
+        remove_stage(&parent, &stage, &stage_name);
         assert_eq!(fs::read(&path).unwrap(), b"# External\n");
         fs::remove_dir_all(dir).unwrap();
     }
@@ -1124,8 +1365,8 @@ mod tests {
         let path = dir.join("fixture.md");
         fs::write(&path, b"# Original\n").unwrap();
         let staged_output = b"# My edit\n";
-        let (stage_name, _stage) = stage_bytes(&parent, staged_output, 0o600).unwrap();
-        rename_stage(&parent, &stage_name, "fixture.md").unwrap();
+        let (stage_name, stage) = stage_bytes(&parent, staged_output, 0o600).unwrap();
+        rename_stage(&parent, &stage, &stage_name, "fixture.md").unwrap();
         fs::write(&path, b"# Intervening writer\n").unwrap();
         let committed = open_relative(&parent, &["fixture.md".to_string()], false).unwrap();
         assert_ne!(immediate_bytes_and_version(&committed).unwrap().0, staged_output);

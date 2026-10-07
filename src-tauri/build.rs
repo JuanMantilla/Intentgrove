@@ -1,4 +1,12 @@
 fn main() {
+    // Tauri's mock-runtime IPC tests pull in TaskDialogIndirect. Rust's lib-test
+    // executable does not inherit the app resource manifest; activate v6 only
+    // for this opt-in test build, without changing shipped privilege settings.
+    if std::env::var_os("CARGO_FEATURE_SETTINGS_CONTRACT_TESTS").is_some()
+        && std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("windows") {
+        println!("cargo:rustc-link-arg=/MANIFEST:EMBED");
+        println!("cargo:rustc-link-arg=/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'");
+    }
     println!("cargo:rerun-if-env-changed=TAURI_CONFIG");
     println!("cargo:rerun-if-changed=../target/qa-dist/.qa-marker");
     println!("cargo:rerun-if-changed=../dist/.qa-marker");

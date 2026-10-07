@@ -3,8 +3,10 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import App from "../../src/app/App";
+import { listen } from "@tauri-apps/api/event";
 const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(), openImage: vi.fn(),
-  listEditSections: vi.fn(), loadSectionRecovery: vi.fn(), resolveLink: vi.fn(), inspectLargeFile: vi.fn() }));
+  listEditSections: vi.fn(), loadSectionRecovery: vi.fn(), resolveLink: vi.fn(), inspectLargeFile: vi.fn(),
+  setNativeMenuState: vi.fn(), menu: null as null | ((event: { payload: string }) => void) }));
 vi.mock("../../src/app/api", async (original) => ({ ...await original<typeof import("../../src/app/api")>(), api: mocks }));
 vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async () => () => {}) }));
 const documentFor = (name: string) => ({ fileId: name, identityKey: name, name, displayPath: `/tmp/fixture/${name}`,
@@ -15,6 +17,12 @@ function deferred<T>() { let resolve!: (value: T) => void, reject!: (reason: unk
   const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; }
 beforeEach(() => {
   vi.resetAllMocks(); localStorage.clear();
+  mocks.menu = null;
+  mocks.setNativeMenuState.mockResolvedValue(undefined);
+  vi.mocked(listen).mockImplementation(async (event, handler) => {
+    if (event === "native:menu") mocks.menu = handler as (event: { payload: string }) => void;
+    return () => {};
+  });
   vi.stubGlobal("URL", { ...URL, createObjectURL: vi.fn(() => "blob:pixels"), revokeObjectURL: vi.fn() });
   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
   mocks.listEntries.mockResolvedValue({ entries: ["a.md","b.md","c.md","figure.png"].map(name => ({ name, kind: name.endsWith("png") ? "image" : "markdown" })), nextOffset: null });
@@ -149,6 +157,22 @@ it("Go exposes labeled traversal and clearing history keeps the current document
   expect(selected()).toContain("a.md"); expect(screen.getAllByRole("tab")).toHaveLength(2);
   expect((screen.getByRole("button", { name: "Back" }) as HTMLButtonElement).disabled).toBe(true);
   expect((screen.getByRole("button", { name: "Forward" }) as HTMLButtonElement).disabled).toBe(true);
+});
+it("native Go reuses committed client history and publishes the same enabled state", async () => {
+  await start(); await open("a.md"); await open("b.md");
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({
+    back: true, forward: false, visited: true, clearHistory: true
+  })));
+  act(() => mocks.menu?.({ payload: "go_back" }));
+  await waitFor(() => expect(selected()).toContain("a.md"));
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({ back: false, forward: true })));
+  act(() => mocks.menu?.({ payload: "go_forward" }));
+  await waitFor(() => expect(selected()).toContain("b.md"));
+  act(() => mocks.menu?.({ payload: "go_visited" }));
+  expect(await screen.findByRole("dialog", { name: "Visited files" })).toBeTruthy();
+  act(() => mocks.menu?.({ payload: "go_clear" }));
+  expect(selected()).toContain("b.md");
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({ back: false, forward: false })));
 });
 it("pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone", async () => {
   await start(); await open("a.md"); const reader = document.querySelector('.reader-scroll') ?? document.querySelector('[data-document-zoom]')?.parentElement;

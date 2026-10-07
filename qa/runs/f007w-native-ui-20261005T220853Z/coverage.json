@@ -1,0 +1,785 @@
+{
+  "run": "f007w-native-ui-20261005T220853Z",
+  "mode": "RUN/RETEST",
+  "buildSha256": "3c152124ce291119aaa6c742ee82f36352ea1bcec9086d3067415b3c72db9801",
+  "scaleProvenance": "User confirmed 100%, then manually selected 150% and 200% on requested same display. Settings not directly observable.",
+  "execution": "PARTIAL",
+  "counts": {
+    "PASS": 38,
+    "FAIL": 7,
+    "BLOCKED": 15,
+    "NOT_RUN": 16,
+    "NOT_APPLICABLE": 1
+  },
+  "rows": [
+    {
+      "id": "100-launch",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Exact candidate launches and renders",
+      "trace": "FR-001/SC-001",
+      "evidence": "evidence/01-startup.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-unicode-file",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Individually selected Unicode/spaced fixture renders",
+      "trace": "FR-001/002",
+      "evidence": "evidence/04-unicode-file-readonly.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-file-cancel",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Ctrl+O picker cancellation keeps empty workspace",
+      "trace": "FR-008",
+      "evidence": "evidence/02-cancel.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-folder-cancel",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Folder picker cancellation retains open document",
+      "trace": "FR-008",
+      "evidence": "evidence/08-folder-cancel.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-folder-enumeration",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Selected Unicode folder enumerates two original fixtures",
+      "trace": "FR-001/002",
+      "evidence": "evidence/10-folder-selected.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-sibling-tabs",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Granted sibling link renders second.md in another tab",
+      "trace": "FR-001/003",
+      "evidence": "evidence/11-sibling-tabs.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-outside-grant",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Unselected outside-grant link is refused; content remains",
+      "trace": "FR-003/010",
+      "evidence": "evidence/05-outside-link-refused.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-find-match",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Ctrl+F finds marker with one match",
+      "trace": "FR-001/008",
+      "evidence": "evidence/06-find.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-find-escape",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Escape dismisses Find and retains document",
+      "trace": "FR-008",
+      "evidence": "evidence/07-outline.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-outline",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Outline panel lists actual headings",
+      "trace": "FR-001/002",
+      "evidence": "evidence/07-outline.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-folder-search",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Ctrl+Shift+F search completes: two entries, two matches",
+      "trace": "FR-001/008",
+      "evidence": "evidence/12-folder-search.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-automatic-refresh",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Disposable external change appears without reload",
+      "trace": "FR-007",
+      "evidence": "evidence/14-refresh-after-wait.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-manual-reload",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Reload reports already current and retains changed content",
+      "trace": "FR-007",
+      "evidence": "evidence/15-manual-reload.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-readonly-gates",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Edit disabled with explanation; Ctrl+S opens no save dialog",
+      "trace": "FR-005/006 gates",
+      "evidence": "evidence/18-ctrl-save.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-spanish-controls",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Spanish controls render and retain the document",
+      "trace": "FR-002/008",
+      "evidence": "evidence/16-spanish.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-light-theme",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Light theme applies and retains document",
+      "trace": "FR-002",
+      "evidence": "evidence/17-light-theme.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-maximize-restore",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Native maximize and restore retain readable workspace",
+      "trace": "FR-002/SC-004",
+      "evidence": "evidence/21-maximized.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-runtime-origin",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Native WebView reports http://tauri.localhost/ origin",
+      "trace": "FR-003/010",
+      "evidence": "evidence/04-unicode-file-readonly.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-raw-script",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Harmless script markup renders as inert text",
+      "trace": "FR-003/010",
+      "evidence": "evidence/23-boundary-render.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-javascript-link",
+      "scale": 100,
+      "status": "PASS",
+      "description": "JavaScript-scheme link refused; origin/document unchanged",
+      "trace": "FR-003/010",
+      "evidence": "evidence/24-javascript-refused.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-file-protocol",
+      "scale": 100,
+      "status": "PASS",
+      "description": "File-scheme link refused; outside content not loaded",
+      "trace": "FR-003/010",
+      "evidence": "evidence/25-file-protocol-refused.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-image-placeholder",
+      "scale": 100,
+      "status": "PASS",
+      "description": "Unavailable disposable image renders blocked placeholder",
+      "trace": "FR-003/010",
+      "evidence": "evidence/23-boundary-render.json",
+      "scope": "Observed native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "100-alt-f4",
+      "scale": 100,
+      "status": "FAIL",
+      "description": "Alt+F4 leaves app running with unsupported error",
+      "trace": "FR-008/SC-004",
+      "evidence": "evidence/19-alt-f4-still-open.json",
+      "finding": "QA-0003",
+      "attempts": 1
+    },
+    {
+      "id": "100-title-close",
+      "scale": 100,
+      "status": "FAIL",
+      "description": "Title-bar Close leaves same app running",
+      "trace": "FR-008/SC-004",
+      "evidence": "evidence/20-title-close-still-open.json",
+      "finding": "QA-0003",
+      "attempts": 1
+    },
+    {
+      "id": "100-supported-status",
+      "scale": 100,
+      "status": "FAIL",
+      "description": "Unexplained unsupported banner accompanies supported reading; old notice stays English after locale switch",
+      "trace": "HEURISTIC; not approved-copy mismatch",
+      "evidence": "evidence/16-spanish.json",
+      "finding": "QA-0004",
+      "attempts": 4
+    },
+    {
+      "id": "100-normal-restart",
+      "scale": 100,
+      "status": "BLOCKED",
+      "description": "Normal-close session restore",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "100-abnormal-restart",
+      "scale": 100,
+      "status": "BLOCKED",
+      "description": "Forced-process-exit/restart recovery",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "100-recents-moved",
+      "scale": 100,
+      "status": "BLOCKED",
+      "description": "Restart/recents with moved/deleted selection",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "100-close-inflight",
+      "scale": 100,
+      "status": "BLOCKED",
+      "description": "Close during loading/search and verify cancellation",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "100-worker-termination",
+      "scale": 100,
+      "status": "BLOCKED",
+      "description": "Verify final app and worker termination",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "100-drag-drop",
+      "scale": 100,
+      "status": "NOT_RUN",
+      "description": "Native cross-window file drop",
+      "reason": "Not executed; no grounded cross-window drop fixture interaction.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "100-inflight-search-cancel",
+      "scale": 100,
+      "status": "NOT_RUN",
+      "description": "Cancel active folder search",
+      "reason": "Tiny query completes before an active cancellation can be observed; no stress fixture created.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "100-full-csp",
+      "scale": 100,
+      "status": "NOT_RUN",
+      "description": "Full runtime CSP/network/new-window enforcement",
+      "reason": "Origin, inert markup and protocol refusal are separate passes; no independent CSP enforcement/traffic instrumentation performed.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "150-normal-restart",
+      "scale": 150,
+      "status": "BLOCKED",
+      "description": "Normal-close session restore",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "150-abnormal-restart",
+      "scale": 150,
+      "status": "BLOCKED",
+      "description": "Forced-process-exit/restart recovery",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "150-recents-moved",
+      "scale": 150,
+      "status": "BLOCKED",
+      "description": "Restart/recents with moved/deleted selection",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "150-close-inflight",
+      "scale": 150,
+      "status": "BLOCKED",
+      "description": "Close during loading/search and verify cancellation",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "150-worker-termination",
+      "scale": 150,
+      "status": "BLOCKED",
+      "description": "Verify final app and worker termination",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "150-drag-drop",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Native cross-window file drop",
+      "reason": "Not executed; no grounded cross-window drop fixture interaction.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "150-inflight-search-cancel",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Cancel active folder search",
+      "reason": "Tiny query completes before an active cancellation can be observed; no stress fixture created.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "150-full-csp",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Full runtime CSP/network/new-window enforcement",
+      "reason": "Origin, inert markup and protocol refusal are separate passes; no independent CSP enforcement/traffic instrumentation performed.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "200-normal-restart",
+      "scale": 200,
+      "status": "BLOCKED",
+      "description": "Normal-close session restore",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "200-abnormal-restart",
+      "scale": 200,
+      "status": "BLOCKED",
+      "description": "Forced-process-exit/restart recovery",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "200-recents-moved",
+      "scale": 200,
+      "status": "BLOCKED",
+      "description": "Restart/recents with moved/deleted selection",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "200-close-inflight",
+      "scale": 200,
+      "status": "BLOCKED",
+      "description": "Close during loading/search and verify cancellation",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "200-worker-termination",
+      "scale": 200,
+      "status": "BLOCKED",
+      "description": "Verify final app and worker termination",
+      "trace": "FR-006/008/SC-004",
+      "reason": "Normal close remains broken. User-assisted cleanup removed the previous candidate; autonomous cleanup for a restarted candidate remains unavailable (Task Manager higher-integrity AX, restricted Stop-Process denial). No normal/crash restore or worker PASS inferred.",
+      "finding": "QA-0003/QA-0005",
+      "evidence": "evidence/22-owned-stop.json",
+      "attempts": 0
+    },
+    {
+      "id": "200-drag-drop",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Native cross-window file drop",
+      "reason": "Not executed; no grounded cross-window drop fixture interaction.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "200-inflight-search-cancel",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Cancel active folder search",
+      "reason": "Tiny query completes before an active cancellation can be observed; no stress fixture created.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "200-full-csp",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Full runtime CSP/network/new-window enforcement",
+      "reason": "Origin, inert markup and protocol refusal are separate passes; no independent CSP enforcement/traffic instrumentation performed.",
+      "trace": "FR-003/008/010/SC-004",
+      "attempts": 0
+    },
+    {
+      "id": "dirty-edit-close",
+      "scale": null,
+      "status": "NOT_APPLICABLE",
+      "description": "Dirty-edit close confirmation",
+      "reason": "Production Windows editing deliberately disabled; no gate bypass or fabricated draft.",
+      "attempts": 0
+    },
+    {
+      "id": "150-render",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Workspace/Unicode document render and disabled edit control",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/31-scale150-unicode.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-find",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Find locates one marker; Escape closes Find",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/32-scale150-find.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-outline",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Open outline displays the actual document headings",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/31-scale150-unicode.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-grant",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Outside-folder link refused",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/33-scale150-grant.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-sibling",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Granted sibling navigation retains tabs",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/34-scale150-sibling.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-file-dialog",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Ctrl+O chooser opens and Escape retains document/tabs",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/36-scale150-dialog-cancel.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-search",
+      "scale": 150,
+      "status": "PASS",
+      "description": "Folder search completes: three entries scanned, two matches",
+      "trace": "F007W desktop constituent; not full charter PASS",
+      "evidence": "evidence/38-scale150-search.json",
+      "attempts": 1,
+      "scope": "Native UI; Scale changed manually by user"
+    },
+    {
+      "id": "150-alt-f4",
+      "scale": 150,
+      "status": "FAIL",
+      "description": "Alt+F4 still refuses close",
+      "trace": "FR-008/SC-004",
+      "finding": "QA-0003",
+      "evidence": "evidence/37-scale150-close-failed.json",
+      "attempts": 1
+    },
+    {
+      "id": "150-title-close",
+      "scale": 150,
+      "status": "FAIL",
+      "description": "Title-bar Close still refuses close",
+      "trace": "FR-008/SC-004",
+      "finding": "QA-0003",
+      "evidence": "evidence/39-scale150-title-close-failed.json",
+      "attempts": 1
+    },
+    {
+      "id": "200-render",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Unicode document renders with read-only control",
+      "evidence": "evidence/41-scale200-unicode.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-find",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Find locates one marker; Escape dismisses it",
+      "evidence": "evidence/42-scale200-find.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-outline",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Outline displays actual headings",
+      "evidence": "evidence/41-scale200-unicode.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-grant",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Outside-grant link refused",
+      "evidence": "evidence/43-scale200-grant.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-sibling",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Granted sibling opens and renders second.md",
+      "evidence": "evidence/44-scale200-sibling.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-file-dialog",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Ctrl+O native dialog opens; Escape retains document",
+      "evidence": "evidence/47-scale200-dialog-cancel.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-search",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Folder search completes: three entries, two matches",
+      "evidence": "evidence/45-scale200-search.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-automatic-refresh",
+      "scale": 200,
+      "status": "PASS",
+      "description": "External disposable change appears after refused close",
+      "evidence": "evidence/51-scale200-refresh.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-manual-reload",
+      "scale": 200,
+      "status": "PASS",
+      "description": "Reload retains current externally changed content",
+      "evidence": "evidence/52-scale200-reload.json",
+      "trace": "F007W desktop constituent, not whole charter PASS",
+      "scope": "Native UI; scale USER_ASSISTED",
+      "attempts": 1
+    },
+    {
+      "id": "200-alt-f4",
+      "scale": 200,
+      "status": "FAIL",
+      "description": "Normal close refused; same candidate remains running",
+      "trace": "FR-008/SC-004",
+      "finding": "QA-0003",
+      "evidence": "evidence/48-scale200-close-failed.json",
+      "attempts": 1
+    },
+    {
+      "id": "200-title-close",
+      "scale": 200,
+      "status": "FAIL",
+      "description": "Normal close refused; same candidate remains running",
+      "trace": "FR-008/SC-004",
+      "finding": "QA-0003",
+      "evidence": "evidence/49-scale200-title-close-failed.json",
+      "attempts": 1
+    },
+    {
+      "id": "150-repeat-folder-selection",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Repeat new folder grant/selection/cancellation at this scale",
+      "reason": "Folder selection/cancel actually exercised at 100%; file-dialog cancel repeated at this scale. No transfer of the 100% folder PASS.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "150-repeat-theme-locale-resize",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Repeat theme/locale changes and maximize/restore at this scale",
+      "reason": "Existing Spanish/dark controls and reading layout observed; interactive theme/locale switching and maximize/restore were exercised at 100% only.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "150-repeat-protocol-boundary",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Repeat raw script and protocol-click boundary at this scale",
+      "reason": "Observed document/grant results are separate; raw-script/JavaScript/file-scheme negative fixtures exercised at 100% only.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "200-repeat-folder-selection",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Repeat new folder grant/selection/cancellation at this scale",
+      "reason": "Folder selection/cancel actually exercised at 100%; file-dialog cancel repeated at this scale. No transfer of the 100% folder PASS.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "200-repeat-theme-locale-resize",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Repeat theme/locale changes and maximize/restore at this scale",
+      "reason": "Existing Spanish/dark controls and reading layout observed; interactive theme/locale switching and maximize/restore were exercised at 100% only.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "200-repeat-protocol-boundary",
+      "scale": 200,
+      "status": "NOT_RUN",
+      "description": "Repeat raw script and protocol-click boundary at this scale",
+      "reason": "Observed document/grant results are separate; raw-script/JavaScript/file-scheme negative fixtures exercised at 100% only.",
+      "trace": "FR-002/003/008/010",
+      "attempts": 0
+    },
+    {
+      "id": "150-refresh-reload",
+      "scale": 150,
+      "status": "NOT_RUN",
+      "description": "Repeat automatic refresh/manual reload at 150%",
+      "reason": "Actually exercised at 100% and 200%; no 150% result inferred.",
+      "trace": "FR-007",
+      "attempts": 0
+    }
+  ],
+  "cleanupEvidence": "evidence/53-user-cleanup-processes.json",
+  "scaleRestoration": "User reports 100% restored; native Settings read blocked."
+}

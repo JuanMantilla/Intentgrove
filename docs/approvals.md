@@ -191,6 +191,55 @@ User instruction: **“$os-senior-expert please start working on a windows versi
 ## Windows F007W review approved — 2026-10-05
 
 User statement: **“I approve it. Give me a prompt for the os-senior-expert to work on it”**, responding to the linked Windows review package and approval question. Immediately before recording approval, all **7 artifact hashes matched, 0 mismatches**. [Exact approved scope and hashes](../specs/013-windows-desktop/review.json), [readable record](../specs/013-windows-desktop/review.md). Approval covers specification, Windows experience delta, architecture and supporting artifacts; Windows-only direct windows-sys 0.61.2 binding dependency; scoped local implementation/tests/builds and unsigned per-user NSIS package construction after native verification. Gate artifact text is preserved unchanged. No tool installation, installed-app testing, schema migration, CI/security/privilege change, associations, signing, commit/push or publication is authorized. Isolated Windows image-worker architecture remains a later review gate. Native Windows evidence remains NOT TESTED.
+## Native integration amendment and prototypes approved — 2026-10-06
+
+User statement: **“I approve all of them”**, responding to the linked integration
+proposal and supporting contracts in this conversation. Approval covers the
+current proposal's scoped Settings/Go/subfolder-search native implementation
+amendment (IR-04/05), the disposable source-backed rich-editing prototype (IR-01),
+and the disposable HTML/other-file routing/security prototype (IR-02/03).
+
+Exact reviewed artifacts (SHA-256, checked before recording):
+
+- `frontend-implementation/integration-decisions-20261006.md`:
+  `bd0fc7c5ccdb6e245d0c1e25aaafa79ca42c13e6753e3ba114d61ac442d0aec1`
+- `frontend-implementation/integration-requests.md`:
+  `989d1c468508c29f2380456297461324b5b6f039235deb25f7f8c6c028782a24`
+
+The bounded delivery scope in the decisions document governs the broader
+supporting contracts. Reconcile the owning canonical feature artifacts through
+the installed Spec Kit workflow before production implementation. Existing design
+approvals remain valid where unchanged. Production rich-editor replacement,
+checkpoint migration, HTML/default-handler integration, new dependencies and
+Windows editing enablement require the subsequent concrete results/amendments
+specified in the proposal. Approval is not runtime verification. No installation,
+signing, publishing, commit/push or privilege widening is authorized.
+
+## Remaining scope authorized — 2026-10-06
+
+User statement: **“I approve everything”**, immediately after the assistant listed
+the remaining production rich-editing/recovery, HTML/default-handler, Windows
+image-decoding, installation, signing and publishing gates. This authorizes
+completion of that remaining Intentgrove scope, including the full IR-01–05
+contracts linked above and the Windows isolated image-worker work.
+
+The user delegates routine architecture and dependency decisions needed to
+complete these features. Prepare and reconcile concrete canonical plans, preserve
+the proposed isolation, grant and lossless-editing boundaries, implement the
+prototypes and evaluate their results before production integration. Another
+approval is not required merely to move from a successful prototype to production
+or to prepare the Windows image-worker design. This supersedes the staged
+reapproval requirements and release authorization exclusions above for this
+scope. It does not assert that future artifacts have already been reviewed or
+that implementation/acceptance checks have passed.
+
+Installation/installed-app testing, signing and publishing are authorized within
+this project when ready. Release destination, signing identity and any paid
+purchase remain unspecified; resolve necessary details when concrete release
+work reaches them. Preserve user data and OS security settings. Runtime sandbox
+permissions still apply. No release action was performed when recording this
+approval.
+
 # Product name approved — 2026-10-05
 
 User instruction: **“I like Intentgrove, add it to the corresponding files”**.

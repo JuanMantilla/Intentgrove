@@ -1,0 +1,40 @@
+{
+  "run": "f007w-connection-post-reboot-20261006T134514Z",
+  "scope": "Connection RETEST after USER_REPORTED Windows restart",
+  "first": {
+    "capturedUtc": "2026-10-06T13:45:14.933Z",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"operation\":\"list_windows\",\"message\":\"Error: Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "reset": {
+    "content": [
+      {
+        "type": "text",
+        "text": "js kernel reset"
+      }
+    ],
+    "isError": false
+  },
+  "retry": {
+    "capturedUtc": "2026-10-06T13:45:28.735Z",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"operation\":\"list_apps\",\"message\":\"Error: Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "windowsReturned": 0,
+  "nativeProductCasesExecuted": 0,
+  "providerRootCause": "UNKNOWN"
+}

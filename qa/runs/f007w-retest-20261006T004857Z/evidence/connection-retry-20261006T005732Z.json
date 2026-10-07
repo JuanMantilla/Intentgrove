@@ -1,0 +1,39 @@
+{
+  "capturedUtc": "2026-10-06T00:58:14.505Z",
+  "scope": "QA-0005 dedicated connection recovery; no product execution",
+  "case": "dedicated-native-connection",
+  "status": "BLOCKED",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "BLOCKED": 1,
+    "NOT_RUN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "action": "initialize @oai/sky; list_apps",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "number": 2,
+      "action": "list_apps retry",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "number": 3,
+      "action": "js_reset; initialize @oai/sky; list_apps",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    }
+  ],
+  "resetResult": "js kernel reset succeeded; native endpoint still unavailable",
+  "rootCause": "UNKNOWN: endpoint unavailable is confirmed; no provider startup logs or diagnostic API supplied",
+  "repairBoundary": "Supported API has app/window/input operations; no native service restart or diagnostic logs command. Computer Use SKILL forbids helper executable spawning/search and custom protocol client.",
+  "productLaunch": false,
+  "productEdits": false,
+  "securityChanges": false,
+  "windowsInput": false,
+  "screenshot": false,
+  "ax": false
+}

@@ -1,0 +1,2 @@
+Actual first reconciliation helper result: exit 1, Error: Unexpected dependency restoration at reconcile.mjs:23.
+Test-helper defect: broad /restore|install/ matched read-only labels "Rust installed targets" and "Inspect installed npm dependencies". Receipt has no dependency restoration command. Guard corrected to exact restoration label/npm.cmd ci invocation; no product, receipt, assertion or baseline changed. First failure retained separately from product results.

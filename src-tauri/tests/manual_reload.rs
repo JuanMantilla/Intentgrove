@@ -15,20 +15,11 @@ use document::read_document_impl;
 use refresh::{run_reload, RefreshCore, RefreshNotice, ReloadTarget, ReloadUpdate};
 use state::AppState;
 use std::fs;
-use std::path::PathBuf;
 
-struct Fixture(PathBuf);
+struct Fixture(platform::test_support::FixtureDir);
 impl Fixture {
     fn new() -> Self {
-        let path = PathBuf::from("/private/tmp")
-            .join(format!("md-manual-reload-{}", uuid::Uuid::new_v4()));
-        fs::create_dir_all(&path).unwrap();
-        Self(path)
-    }
-}
-impl Drop for Fixture {
-    fn drop(&mut self) {
-        let _ = fs::remove_dir_all(&self.0);
+        Self(platform::test_support::FixtureDir::new("md-manual-reload"))
     }
 }
 

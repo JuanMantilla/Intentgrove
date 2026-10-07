@@ -1,0 +1,44 @@
+{
+  "recordedUtc": "2026-10-06T01:09:32.479Z",
+  "provenance": "Current-turn tool transcript; initial/post-reset exact UTC not captured separately",
+  "client": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "target": "windows"
+  },
+  "attempts": [
+    {
+      "operation": "list_apps",
+      "stage": "initial import",
+      "error": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "operation": "node_repl.js_reset",
+      "result": "js kernel reset",
+      "success": true
+    },
+    {
+      "operation": "list_windows",
+      "stage": "fresh import after reset",
+      "error": "Error: Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "started": "2026-10-06T01:07:16.127Z",
+      "finished": "2026-10-06T01:07:18.045Z",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"operation\":\"list_apps\",\"message\":\"Error: Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)\",\"name\":\"Error\",\"code\":null}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "windowsReturned": 0,
+  "screenshots": 0,
+  "accessibilityCaptures": 0,
+  "hostLifecycleActuatorAvailable": false,
+  "providerRootCause": "UNKNOWN"
+}

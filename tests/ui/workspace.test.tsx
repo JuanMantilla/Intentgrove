@@ -45,6 +45,65 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("workspace shell", () => {
+  it("renders a delayed picker failure in the language selected while waiting (QA-0004)", async () => {
+    let rejectPicker!: (error: unknown) => void;
+    mocks.selectFile.mockImplementationOnce(() => new Promise((_resolve, reject) => { rejectPicker = reject; }));
+    render(<App />);
+    fireEvent.keyDown(window, { key: "o", metaKey: true });
+    await waitFor(() => expect(rejectPicker).toBeTypeOf("function"));
+    fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+    await act(async () => rejectPicker({ code: "unsupported_type", message: "fixture refusal" }));
+    expect(await screen.findByText("Este contenido no se admite en esta versión")).toBeTruthy();
+    expect(screen.queryByText("This content is not supported in this version")).toBeNull();
+  });
+
+  it.each(["unsupported", "blocked"])("updates an existing %s link refusal in both locales (QA-0004)", async (kind) => {
+    mocks.readDocument.mockResolvedValue({ fileId: "top", identityKey: "1:1", name: "README.md",
+      displayPath: "/tmp/fixture/README.md", content: "# Top\n\n[Refused target](second.md)" });
+    mocks.resolveLink.mockResolvedValue({ kind, fileId: null, anchor: null });
+    render(<App />);
+    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(await screen.findByTitle("README.md"));
+    await screen.findByRole("heading", { name: "Top" });
+    fireEvent.click(screen.getByRole("button", { name: "Refused target" }));
+    const english = kind === "unsupported" ? "This content is not supported in this version"
+      : "This target is outside the selected folder or unsupported";
+    expect(await screen.findByText(english)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+    expect(screen.queryByText(english)).toBeNull();
+    expect(screen.getByText(kind === "unsupported" ? "Este contenido no se admite en esta versión"
+      : "Este destino está fuera de la carpeta seleccionada o no se admite")).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("Idioma"), { target: { value: "en" } });
+    expect(screen.getByText(english)).toBeTruthy();
+  });
+
+  it("keeps picker-file links scoped, then replaces the clean tab grant when reopened from the folder tree", async () => {
+    mocks.listEntries.mockResolvedValue({ entries: [{ name: "first.md", kind: "markdown" }], nextOffset: null });
+    mocks.selectFile.mockResolvedValue({ id: "explicit-first", name: "first.md", displayPath: "/tmp/fixture/first.md" });
+    mocks.readDocument.mockImplementation(async (request: { fileId?: string }) => request.fileId === "root-second"
+      ? { fileId: "root-second", identityKey: "1:2", name: "second.md", displayPath: "/tmp/fixture/second.md", content: "# Second" }
+      : { fileId: request.fileId === "explicit-first" ? "explicit-first" : "root-first", identityKey: "1:1",
+        name: "first.md", displayPath: "/tmp/fixture/first.md", content: "# First\n\n[Read second](second.md)" });
+    mocks.resolveLink.mockImplementation(async (sourceId: string) => sourceId === "root-first"
+      ? { kind: "document", fileId: "root-second", anchor: null, reason: null }
+      : { kind: "blocked", fileId: null, anchor: null, reason: "External files grant no access to nearby files" });
+    render(<App />);
+    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    const treeFile = await screen.findByTitle("first.md");
+    fireEvent.keyDown(window, { key: "o", metaKey: true });
+    await screen.findByRole("heading", { name: "First" });
+    fireEvent.click(screen.getByRole("button", { name: "Read second" }));
+    expect(await screen.findByText("This file was opened individually. Open its folder, then open the file from the folder tree to follow links to other files.")).toBeTruthy();
+    expect(mocks.resolveLink).toHaveBeenLastCalledWith("explicit-first", "second.md");
+    expect(screen.getAllByRole("tab")).toHaveLength(1);
+    fireEvent.click(treeFile);
+    await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledWith({ rootId: "root", segments: ["first.md"] }));
+    fireEvent.click(screen.getByRole("button", { name: "Read second" }));
+    expect(await screen.findByRole("heading", { name: "Second" })).toBeTruthy();
+    expect(mocks.resolveLink).toHaveBeenLastCalledWith("root-first", "second.md");
+    expect(screen.getAllByRole("tab")).toHaveLength(2);
+  });
+
   it("opens a local image from the supported-files tree in one read-only tab", async () => {
     mocks.listEntries.mockResolvedValue({ entries: [{ name: "diagram.svg", kind: "image" }], nextOffset: null });
     mocks.openImage.mockResolvedValue({ fileId: "image-1", name: "diagram.svg",

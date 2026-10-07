@@ -15,25 +15,17 @@ use document::read_document_impl;
 use refresh::{RefreshCore, RefreshNotice};
 use state::AppState;
 use std::fs;
-use std::path::PathBuf;
 use std::time::Duration;
 
-struct Fixture(PathBuf);
+struct Fixture(platform::test_support::FixtureDir);
 
 impl Fixture {
     fn new() -> Self {
-        let path =
-            PathBuf::from("/private/tmp").join(format!("md-auto-refresh-{}", uuid::Uuid::new_v4()));
-        fs::create_dir_all(&path).unwrap();
-        Self(path)
+        Self(platform::test_support::FixtureDir::new("md-auto-refresh"))
     }
 }
 
-impl Drop for Fixture {
-    fn drop(&mut self) {
-        let _ = fs::remove_dir_all(&self.0);
-    }
-}
+// The shared fixture owns cleanup; watcher/replacement assertions stay native.
 
 fn changed_file(notices: &[RefreshNotice], file_id: &str) -> bool {
     notices.iter().any(|notice| {

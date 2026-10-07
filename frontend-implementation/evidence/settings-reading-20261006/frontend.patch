@@ -1,0 +1,203 @@
+﻿diff --git "a/frontend-implementation\\evidence\\settings-reading-20261006\\App.before.tsx" b/src/app/App.tsx
+index 19697c6..6a3f8f7 100644
+--- "a/frontend-implementation\\evidence\\settings-reading-20261006\\App.before.tsx"
++++ b/src/app/App.tsx
+@@ -17,6 +17,7 @@ import StorageManagement from "./StorageManagement";
+ import DocumentLocation from "./DocumentLocation";
+ import ActionMenu from "./ActionMenu";
+ import ReloadFeedback from "./ReloadFeedback";
++import ReadingSettings from "./ReadingSettings";
+ import { tabFilename, distinguishingParent, workspaceSegments } from "./documentIdentity";
+ import { editReducer, type SectionEdit } from "../workspace/editState";
+ import { confirmCleanDocument, confirmDirectoryPage, noteDirectoryChange, noteFileChange, type Freshness } from "../workspace/refreshState";
+@@ -80,6 +81,8 @@ export default function App() {
+     try { return localStorage.getItem("md-reader-locale") === "es" ? "es" : "en"; }
+     catch { return "en"; }
+   });
++  const [localePersistenceWarning, setLocalePersistenceWarning] = useState(false);
++  const [sessionRetrying, setSessionRetrying] = useState(false);
+   const [root, setRoot] = useState<GrantInfo | null>(null);
+   const [rootProblem, setRootProblem] = useState<string | null>(null);
+   const [directories, setDirectories] = useState<Record<string, DirectoryState>>({});
+@@ -272,8 +275,12 @@ export default function App() {
+   useEffect(() => { priorRootRef.current = priorRoot; }, [priorRoot]);
+   useEffect(() => { directoriesRef.current = directories; }, [directories]);
+   useEffect(() => { localeRef.current = locale; }, [locale]);
++  function persistLocale(next: Locale) {
++    try { localStorage.setItem("md-reader-locale", next); setLocalePersistenceWarning(false); }
++    catch { setLocalePersistenceWarning(true); }
++  }
+   useEffect(() => {
+-    try { localStorage.setItem("md-reader-locale", locale); } catch { /* Keep reading available if app storage fails. */ }
++    persistLocale(locale);
+     document.documentElement.lang = locale;
+   }, [locale]);
+ 
+@@ -2715,34 +2722,7 @@ export default function App() {
+         <div className="reading-settings-heading"><strong>{t(locale, "readingSettings")}</strong>
+           <button type="button" aria-label={t(locale, "closeReadingSettings")}
+             onClick={() => { setReadingSettingsOpen(false); focusActionTrigger(settingsTriggerRef.current); }}>×</button></div>
+-        <label>{t(locale, "readingFont")}
+-          <select value={readingSettings.readingFont} onChange={(event) => applyReadingSettings({
+-            ...readingSettings, readingFont: event.target.value as SessionPanel["readingFont"] })}>
+-            <option value="roboto">Roboto</option><option value="serif">{t(locale, "systemSerif")}</option>
+-            <option value="sans">{t(locale, "systemSans")}</option>
+-            <option value="mono">{t(locale, "systemMono")}</option>
+-          </select></label>
+-        <label>{t(locale, "readingSize")}: {readingSettings.readingSize} px
+-          <input type="range" min="12" max="24" step="1" value={readingSettings.readingSize}
+-            onChange={(event) => applyReadingSettings({ ...readingSettings,
+-              readingSize: Number(event.target.value) })} /></label>
+-        <label>{t(locale, "readingLineHeight")}: {readingSettings.readingLineHeight.toFixed(1)}
+-          <input type="range" min="1.3" max="2.2" step="0.1" value={readingSettings.readingLineHeight}
+-            onChange={(event) => applyReadingSettings({ ...readingSettings,
+-              readingLineHeight: Number(event.target.value) })} /></label>
+-        <label>{t(locale, "readingWidth")}: {readingSettings.readingWidth} px
+-          <input type="range" min="480" max="1200" step="20" value={readingSettings.readingWidth}
+-            onChange={(event) => applyReadingSettings({ ...readingSettings,
+-              readingWidth: Number(event.target.value) })} /></label>
+-        <div className="reading-width-presets" aria-label={t(locale, "readingWidth")}>
+-          <button type="button" aria-pressed={readingSettings.readingWidth === 760}
+-            onClick={() => applyReadingSettings({ ...readingSettings, readingWidth: 760 })}>{t(locale, "comfortableWidth")}</button>
+-          <button type="button" aria-pressed={readingSettings.readingWidth === 1200}
+-            onClick={() => applyReadingSettings({ ...readingSettings, readingWidth: 1200 })}>{t(locale, "wideWidth")}</button>
+-          {![760, 1200].includes(readingSettings.readingWidth) && <span>{t(locale, "customWidth")}</span>}
+-        </div>
+-        <button type="button" onClick={() => applyReadingSettings({ readingFont: "roboto",
+-          readingSize: 16, readingLineHeight: 1.6, readingWidth: 760 })}>{t(locale, "resetReading")}</button>
++        <ReadingSettings locale={locale} value={readingSettings} onChange={applyReadingSettings} />
+       </section>}
+ 
+       {nativeEntries.length > 0 && <section className="native-entries notice" aria-label={t(locale, "incomingItems")}>
+@@ -2759,6 +2739,11 @@ export default function App() {
+ 
+       {(appearance.persistenceWarning || appearance.nativeWarning) && <div className="notice" role="status">
+         <span>{appearance.persistenceWarning ? t(locale, "appearanceSaveFailed") : t(locale, "appearanceNativeFailed")}</span>
++        <button type="button" onClick={() => appearance.applyPreference(appearance.preference)}>{t(locale, "retry")}</button>
++      </div>}
++      {localePersistenceWarning && <div className="notice" role="status">
++        <span>{t(locale, "languageSaveFailed")}</span>
++        <button type="button" onClick={() => persistLocale(locale)}>{t(locale, "retry")}</button>
+       </div>}
+ 
+       <div className="workspace-layout">
+@@ -3104,6 +3089,11 @@ export default function App() {
+             ]} />}
+           {sessionNotice && <div className="notice" role="status">
+             <span>{sessionNotice.diagnostic ?? sessionErrorText(locale, sessionNotice.operation, sessionNotice.code)}</span>
++            {sessionNotice.operation === "checkpoint" && <button type="button" disabled={sessionRetrying}
++              onClick={() => {
++                setSessionRetrying(true);
++                void checkpointSession().catch(() => {}).finally(() => setSessionRetrying(false));
++              }}>{t(locale, "retry")}</button>}
+             <button type="button" aria-label={t(locale, "dismiss")} onClick={() => setSessionNotice(null)}>×</button>
+           </div>}
+           {notice && <div className="notice" role="status">
+diff --git "a/frontend-implementation\\evidence\\settings-reading-20261006\\i18n.before.ts" b/src/app/i18n.ts
+index be7e333..445050f 100644
+--- "a/frontend-implementation\\evidence\\settings-reading-20261006\\i18n.before.ts"
++++ b/src/app/i18n.ts
+@@ -270,6 +270,10 @@ const catalog = {
+     closeOutline: "Close outline",
+     outlineEmpty: "No headings in this document",
+     readingSettings: "Reading settings",
++    readingPreview: "Reading preview",
++    readingPreviewText: "Adjust the type to find a comfortable reading rhythm. Your document stays unchanged.",
++    readingValueRange: "Enter a value between",
++    languageSaveFailed: "Language changed, but could not be saved.",
+     closeReadingSettings: "Close reading settings",
+     readingFont: "Font",
+     systemSerif: "System serif",
+@@ -586,6 +590,10 @@ const catalog = {
+     closeOutline: "Cerrar índice",
+     outlineEmpty: "Este documento no tiene títulos",
+     readingSettings: "Ajustes de lectura",
++    readingPreview: "Vista previa de lectura",
++    readingPreviewText: "Ajusta la tipografía para leer con comodidad. Tu documento no cambia.",
++    readingValueRange: "Introduce un valor entre",
++    languageSaveFailed: "El idioma cambió, pero no se pudo guardar.",
+     closeReadingSettings: "Cerrar ajustes de lectura",
+     readingFont: "Fuente",
+     systemSerif: "Serif del sistema",
+diff --git "a/frontend-implementation\\evidence\\settings-reading-20261006\\app.before.css" b/src/styles/app.css
+index 2a288b2..baa1366 100644
+--- "a/frontend-implementation\\evidence\\settings-reading-20261006\\app.before.css"
++++ b/src/styles/app.css
+@@ -129,7 +129,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
+   outline-offset: 2px;
+ }
+ 
+-.app-shell { display: flex; flex-direction: column; height: 100%; min-width: 640px; position: relative; }
++.app-shell { display: flex; flex-direction: column; height: 100%; min-width: 0; position: relative; }
+ .toolbar {
+   min-height: 52px;
+   flex: 0 0 auto;
+@@ -143,13 +143,21 @@ button:focus-visible, select:focus-visible, input:focus-visible {
+ .icon-button { width: 31px; height: 30px; padding: 0; font-size: 17px; }
+ .workspace-title { font-size: 14px; font-weight: 600; max-width: 28vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+ .toolbar-spacer { flex: 1; }
+-.reading-settings-panel { position: absolute; z-index: 30; top: 52px; right: 190px; width: 260px; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow); }
++.reading-settings-panel { position: absolute; z-index: 30; top: 52px; right: 190px; width: 300px; max-width: 100%; max-height: calc(100dvh - var(--toolbar-height, 52px)); overflow-y: auto; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow); }
+ .reading-settings-heading { display: flex; align-items: center; justify-content: space-between; }
+ .reading-settings-heading button { padding: 2px 6px; border: 0; background: transparent; font-size: 20px; }
+ .reading-settings-panel label { display: grid; gap: 5px; font-size: 12px; }
+ .reading-settings-panel select, .reading-settings-panel input { width: 100%; accent-color: var(--accent); }
+ .reading-settings-panel select { padding: 6px; border: 1px solid var(--control-border); border-radius: 5px; color: var(--text); background: var(--surface); }
+-@media (max-width: 700px) { .reading-settings-panel { position: static; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; } }
++.reading-settings-fields { display: grid; gap: 12px; min-width: 0; }
++.reading-number { display: grid; gap: 5px; }
++.reading-number-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(72px, 5.5em); align-items: center; gap: 12px; }
++.reading-number input[type="number"] { min-width: 0; padding: 6px; color: var(--text); background: var(--surface); border: 1px solid var(--control-border); border-radius: 5px; }
++.reading-number input[aria-invalid="true"] { border-color: var(--error); }
++.reading-value-error { color: var(--error); overflow-wrap: anywhere; }
++.reading-preview { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: var(--canvas); }
++.reading-preview-text { --reading-font: "App Roboto", -apple-system, BlinkMacSystemFont, sans-serif; margin: 8px 0 0; font-family: var(--reading-font); font-size: var(--reading-size); line-height: var(--reading-line-height); overflow-wrap: anywhere; }
++@media (max-width: 700px) { .reading-settings-panel { right: 0; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; } }
+ .local-badge { color: var(--muted); font-size: 12px; white-space: nowrap; }
+ .language-control { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+ .language-control select, .appearance-control select { padding: 5px; color: var(--text); border: 1px solid var(--control-border); border-radius: 5px; background: var(--surface); }
+@@ -582,7 +590,7 @@ summary:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--f
+ .image-meta, .image-controls { font-size: 13px; }
+ .image-header { padding: 12px 24px; }
+ @media (max-width: 900px) {
+-  .reading-settings-panel { position: static; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; }
++  .reading-settings-panel { right: 0; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; }
+   .toolbar { gap: 8px; }
+   .document-page { padding: 24px; }
+ }
+diff --git "a/frontend-implementation\\evidence\\settings-reading-20261006\\session.before.tsx" b/tests/ui/session.test.tsx
+index cf8ec5d..011faa8 100644
+--- "a/frontend-implementation\\evidence\\settings-reading-20261006\\session.before.tsx"
++++ b/tests/ui/session.test.tsx
+@@ -139,7 +139,7 @@ describe("workspace session", () => {
+     fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
+     expect(screen.getByText(/No se pudo guardar el progreso/)).toBeTruthy();
+     fireEvent.change(screen.getByLabelText("Idioma"), { target: { value: "en" } });
+-    fireEvent.click(screen.getByRole("tab", { name: /first.md/ }));
++    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
+     await waitFor(() => expect(mocks.checkpointWorkspaceSession).toHaveBeenCalledTimes(2));
+     await waitFor(() => expect(screen.queryByText(/Workspace progress could not be saved/)).toBeNull());
+   });
+@@ -239,6 +239,22 @@ describe("workspace session", () => {
+     expect((within(panel).getByRole("combobox") as HTMLSelectElement).value).toBe("roboto");
+   });
+ 
++  it("reports language storage failure, keeps reading and retries the selected language", async () => {
++    const store = vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("denied"); });
++    try {
++      render(<App />);
++      await screen.findByRole("heading", { name: "second" });
++      fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
++      expect(screen.getByText("El idioma cambió, pero no se pudo guardar.")).toBeTruthy();
++      expect(screen.getByRole("heading", { name: "second" })).toBeTruthy();
++      store.mockRestore();
++      fireEvent.click(screen.getByRole("button", { name: "Reintentar" }));
++      expect(localStorage.getItem("md-reader-locale")).toBe("es");
++      expect(screen.queryByText("El idioma cambió, pero no se pudo guardar.")).toBeNull();
++      expect(screen.getAllByRole("tab").map(tab => tab.textContent)).toEqual(["first.md", "second.md", "third.md"]);
++    } finally { store.mockRestore(); }
++  });
++
+   it("keeps tab order and loads the active tab before inactive tabs", async () => {
+     render(<App />);
+     expect(await screen.findByRole("heading", { name: "second" })).toBeTruthy();

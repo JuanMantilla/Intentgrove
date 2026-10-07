@@ -56,3 +56,13 @@ T003 can run while T002 audits dependencies. After T004, native hostile fixtures
 ## Implementation strategy
 
 Complete the native scope contract, then the independently testable US1 panel. Integrate cancellation/current-file open, followed by packaged measurements. Keep all unverified targets open.
+
+## IR-05 supplemental delivery
+
+- [x] IR05-01 Implement identity-bound optional native subtree scope with inherited ignores and result/open containment.
+- [x] IR05-02 Implement macOS Go routes/state using committed client history and existing menu events, no new accelerators.
+- [x] IR05-03 Verify disposable Windows native fixtures and frontend event regressions; evidence in os-engineering/evidence/ir05/.
+- [ ] IR05-04 Frontend connects folder action/panel scope using os-engineering/ir05-frontend-handoff.md, including scope-switch race tests.
+- [ ] IR05-05 Actual macOS native menu/build and packaged scoped-search/keyboard acceptance; existing T013-T016 remain open.
+
+See [native amendment](ir05-native-amendment.md).

@@ -17,6 +17,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 [features]
 default = []
 acceptance-harness = []
+settings-contract-tests = ["tauri/test"]
 
 [build-dependencies]
 serde_json = "=1.0.151"

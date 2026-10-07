@@ -1,0 +1,416 @@
+   Compiling md_reader v0.1.0 (C:\Users\jsman\projects\personal\Intentgrove\src-tauri)
+warning: unused imports: `CStr` and `CString`
+ --> src\image.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `read_page`
+  --> src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused variable: `code`
+   --> src\lib.rs:376:58
+    |
+376 |             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+    |                                                          ^^^^-
+    |                                                          |
+    |                                                          help: try removing the field
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `set_native_menu_state` is never used
+  --> src\lib.rs:73:4
+   |
+73 | fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `read_page` is never used
+   --> src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: constant `MAX_RESPONSE_BYTES` is never used
+  --> src\image.rs:15:7
+   |
+15 | const MAX_RESPONSE_BYTES: usize = 8 * 1024 * 1024;
+   |       ^^^^^^^^^^^^^^^^^^
+
+warning: static `DECODE_LOCK` is never used
+  --> src\image.rs:16:8
+   |
+16 | static DECODE_LOCK: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^^^^^
+
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src\refresh.rs:125:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: methods `reselect_root` and `reselect_explicit_file` are never used
+   --> src\state.rs:254:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (lib) generated 9 warnings (run `cargo fix --lib -p md_reader` to apply 3 suggestions)
+warning: unused import: `windows_save::*`
+  --> tests\..\src\platform\mod.rs:81:16
+   |
+81 | pub(crate) use windows_save::*;
+   |                ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `read_page`
+  --> tests\..\src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused import: `crate::platform::read_search_entries`
+  --> tests\..\src\scope.rs:37:16
+   |
+37 | pub(crate) use crate::platform::read_search_entries;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `read_document` is never used
+   --> tests\..\src\document.rs:219:14
+    |
+219 | pub async fn read_document(
+    |              ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `bounded_record_path` is never used
+  --> tests\..\src\platform\mod.rs:37:15
+   |
+37 | pub(crate) fn bounded_record_path(path: &str, max_bytes: usize) -> bool {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `rename_document` is never used
+   --> tests\..\src\platform\windows.rs:157:15
+    |
+157 | pub(super) fn rename_document(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `read_search_entries` is never used
+   --> tests\..\src\platform\windows.rs:470:15
+    |
+470 | pub(crate) fn read_search_entries(
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `read_page` is never used
+   --> tests\..\src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: struct `FixtureDir` is never constructed
+ --> tests\..\src\platform\test_support.rs:5:19
+  |
+5 | pub(crate) struct FixtureDir {
+  |                   ^^^^^^^^^^
+
+warning: associated items `new` and `path` are never used
+  --> tests\..\src\platform\test_support.rs:10:19
+   |
+9  | impl FixtureDir {
+   | --------------- associated items in this implementation
+10 |     pub(crate) fn new(prefix: &str) -> Self {
+   |                   ^^^
+...
+17 |     pub(crate) fn path(&self) -> &Path { &self.path }
+   |                   ^^^^
+
+warning: function `sync_private_directory` is never used
+   --> tests\..\src\platform\windows_storage.rs:311:15
+    |
+311 | pub(crate) fn sync_private_directory(dir: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `preserve_previous` is never used
+   --> tests\..\src\platform\windows_storage.rs:363:15
+    |
+363 | pub(crate) fn preserve_previous(from: &Path, to: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^
+
+warning: function `remove_private_file` is never used
+   --> tests\..\src\platform\windows_storage.rs:384:15
+    |
+384 | pub(crate) fn remove_private_file(path: &Path) -> std::io::Result<()> {
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: struct `DocumentStage` is never constructed
+  --> tests\..\src\platform\windows_save.rs:11:19
+   |
+11 | pub(crate) struct DocumentStage(std::cell::RefCell<Option<File>>);
+   |                   ^^^^^^^^^^^^^
+
+warning: struct `Security` is never constructed
+  --> tests\..\src\platform\windows_save.rs:13:8
+   |
+13 | struct Security {
+   |        ^^^^^^^^
+
+warning: function `sid_bytes` is never used
+  --> tests\..\src\platform\windows_save.rs:20:4
+   |
+20 | fn sid_bytes(sid: *mut std::ffi::c_void) -> AppResult<Vec<u8>> {
+   |    ^^^^^^^^^
+
+warning: function `security` is never used
+  --> tests\..\src\platform\windows_save.rs:30:4
+   |
+30 | fn security(file: &File) -> AppResult<Security> {
+   |    ^^^^^^^^
+
+warning: function `same_security` is never used
+  --> tests\..\src\platform\windows_save.rs:51:4
+   |
+51 | fn same_security(left: &Security, right: &Security) -> bool {
+   |    ^^^^^^^^^^^^^
+
+warning: function `document_metadata` is never used
+  --> tests\..\src\platform\windows_save.rs:54:4
+   |
+54 | fn document_metadata(file: &File) -> AppResult<(FILE_BASIC_INFO, Security)> {
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: function `delete_owned` is never used
+  --> tests\..\src\platform\windows_save.rs:85:4
+   |
+85 | fn delete_owned(file: &File) -> AppResult<()> {
+   |    ^^^^^^^^^^^^
+
+warning: function `stage_name` is never used
+  --> tests\..\src\platform\windows_save.rs:93:4
+   |
+93 | fn stage_name(name: &str) -> AppResult<()> {
+   |    ^^^^^^^^^^
+
+warning: function `open_document_for_commit` is never used
+   --> tests\..\src\platform\windows_save.rs:101:15
+    |
+101 | pub(crate) fn open_document_for_commit(parent: &File, target: &str) -> AppResult<File> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `stage_document_bytes` is never used
+   --> tests\..\src\platform\windows_save.rs:113:15
+    |
+113 | pub(crate) fn stage_document_bytes(parent: &File, bytes: &[u8], source: Option<&File>) -> AppResult<(String, DocumentStage)> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `stage_with_writer` is never used
+   --> tests\..\src\platform\windows_save.rs:116:4
+    |
+116 | fn stage_with_writer(parent: &File, bytes: &[u8], source: Option<&File>, write: impl FnOnce(&mut File, &[u8]) -> std::io::Result<()>) -> ...
+    |    ^^^^^^^^^^^^^^^^^
+
+warning: function `stage_fixture_with_writer` is never used
+   --> tests\..\src\platform\windows_save.rs:158:15
+    |
+158 | pub(crate) fn stage_fixture_with_writer(parent: &File, bytes: &[u8], source: Option<&File>, write: impl FnOnce(&mut File, &[u8]) -> std::...
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `remove_document_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:161:15
+    |
+161 | pub(crate) fn remove_document_stage(parent: &File, stage: &DocumentStage, name: &str) {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `publish` is never used
+   --> tests\..\src\platform\windows_save.rs:173:4
+    |
+173 | fn publish(parent: &File, stage: &DocumentStage, name: &str, target: &str, replace: bool) -> AppResult<()> {
+    |    ^^^^^^^
+
+warning: function `rename_document_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:204:15
+    |
+204 | pub(crate) fn rename_document_stage(parent: &File, stage: &DocumentStage, name: &str, target: &str) -> AppResult<()> { publish(parent, st...
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `link_document_stage_new` is never used
+   --> tests\..\src\platform\windows_save.rs:205:15
+    |
+205 | pub(crate) fn link_document_stage_new(parent: &File, stage: &DocumentStage, name: &str, target: &str) -> AppResult<()> { publish(parent, ...
+    |               ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reopen_fixture_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:208:15
+    |
+208 | pub(crate) fn reopen_fixture_stage(parent: &File, name: &str) -> AppResult<DocumentStage> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `with_fixture_creation_denied` is never used
+   --> tests\..\src\platform\windows_save.rs:218:15
+    |
+218 | pub(crate) fn with_fixture_creation_denied<T>(path: &std::path::Path, action: impl FnOnce() -> T) -> AppResult<T> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `metadata_fingerprint` is never used
+   --> tests\..\src\platform\windows_save.rs:267:15
+    |
+267 | pub(crate) fn metadata_fingerprint(file: &File) -> AppResult<(i64, u32, Vec<u8>, Vec<u8>, Vec<u8>, bool)> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: field `pending_root` is never read
+  --> tests\..\src\state.rs:30:5
+   |
+23 | struct Registry {
+   |        -------- field in this struct
+...
+30 |     pending_root: Option<(String, PathBuf, Identity, u64)>,
+   |     ^^^^^^^^^^^^
+   |
+   = note: `Registry` has a derived impl for the trait `Default`, but this is intentionally ignored during dead code analysis
+
+warning: variant `Explicit` is never constructed
+  --> tests\..\src\state.rs:70:5
+   |
+65 | pub enum FileSource {
+   |          ---------- variant in this enum
+...
+70 |     Explicit {
+   |     ^^^^^^^^
+   |
+   = note: `FileSource` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: fields `id`, `root_id`, `segments`, `generation`, `stamp`, and `entries` are never read
+  --> tests\..\src\state.rs:87:9
+   |
+86 | pub struct DirectorySnapshot {
+   |            ----------------- fields in this struct
+87 |     pub id: String,
+   |         ^^
+88 |     pub root_id: String,
+   |         ^^^^^^^
+89 |     pub segments: Vec<String>,
+   |         ^^^^^^^^
+90 |     pub generation: u64,
+   |         ^^^^^^^^^^
+91 |     pub stamp: String,
+   |         ^^^^^
+92 |     pub entries: Arc<Vec<Entry>>,
+   |         ^^^^^^^
+   |
+   = note: `DirectorySnapshot` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+197 |     pub fn register_explicit_file(&self, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+206 |     fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+442 |     pub fn is_cancelled(&self, token: &str) -> bool {
+    |            ^^^^^^^^^^^^
+...
+449 |     pub fn generation(&self) -> AppResult<u64> {
+    |            ^^^^^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+...
+462 |     pub fn store_snapshot(
+    |            ^^^^^^^^^^^^^^
+...
+494 |     pub fn snapshot(&self, id: &str) -> AppResult<DirectorySnapshot> {
+    |            ^^^^^^^^
+
+warning: `md_reader` (test "windows_scoped") generated 36 warnings (run `cargo fix --test "windows_scoped"` to apply 3 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.94s
+     Running tests\windows_scoped.rs (src-tauri\target\x86_64-pc-windows-msvc\debug\deps\windows_scoped-21fb5d3e719b7e38.exe)
+
+running 18 tests
+test a_disposable_junction_cannot_escape_selection_or_become_a_root ... ok
+test case_sensitive_fixture_keeps_distinct_names_and_identities ... ok
+test document::tests::preserves_fixture_inventory_and_case_variant_identity ... ok
+test document::tests::reads_without_changing_source_and_rejects_invalid_utf8 ... ok
+test document::tests::reports_binary_oversize_and_missing_files_without_partial_content ... ok
+test existing_broad_dacl_is_rejected_without_repairing_the_fixture ... ok
+test extended_long_paths_keep_names_and_enumerate_from_the_held_directory ... ok
+test locked_private_destination_preserves_current_and_stage ... ok
+test offline_attributes_are_rejected_before_content ... ok
+test parent_replacement_cannot_redirect_a_held_root ... ok
+test platform::windows_path::tests::only_accepts_absolute_drive_paths_and_preserves_case_unicode ... ok
+test platform::windows_path::tests::rejects_streams_devices_ambiguous_and_reserved_names ... ok
+test private_creation_collision_never_truncates_existing_records ... ok
+test private_lock_release_and_record_publication_use_owned_handles ... ok
+test private_locks_serialize_processes_and_release_after_exit ... ok
+test private_publication_keeps_stage_identity_and_protected_permissions ... ok
+test scoped_unicode_reads_are_bounded_cancellable_and_leave_source_unchanged ... ok
+test storage_lock_child ... ignored, subprocess driver; executed explicitly by private_locks_serialize_processes_and_release_after_exit
+
+test result: ok. 17 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 4.83s
+

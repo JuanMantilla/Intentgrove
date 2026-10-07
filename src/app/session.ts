@@ -8,7 +8,8 @@ export const defaultSessionPanel: SessionPanel = {
   readingWidth: 760,
   readingFont: "roboto",
   readingSize: 16,
-  readingLineHeight: 1.6
+  readingLineHeight: 1.6,
+  documentsAndImagesOnly: true
 };
 
 export const emptySessionTree: SessionTree = {

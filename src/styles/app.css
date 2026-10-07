@@ -129,7 +129,7 @@ button:focus-visible, select:focus-visible, input:focus-visible {
   outline-offset: 2px;
 }
 
-.app-shell { display: flex; flex-direction: column; height: 100%; min-width: 640px; position: relative; }
+.app-shell { display: flex; flex-direction: column; height: 100%; min-width: 0; position: relative; }
 .toolbar {
   min-height: 52px;
   flex: 0 0 auto;
@@ -143,13 +143,21 @@ button:focus-visible, select:focus-visible, input:focus-visible {
 .icon-button { width: 31px; height: 30px; padding: 0; font-size: 17px; }
 .workspace-title { font-size: 14px; font-weight: 600; max-width: 28vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .toolbar-spacer { flex: 1; }
-.reading-settings-panel { position: absolute; z-index: 30; top: 52px; right: 190px; width: 260px; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow); }
+.reading-settings-panel { position: absolute; z-index: 30; top: 52px; right: 190px; width: 300px; max-width: 100%; max-height: calc(100dvh - var(--toolbar-height, 52px)); overflow-y: auto; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); box-shadow: 0 8px 24px var(--shadow); }
 .reading-settings-heading { display: flex; align-items: center; justify-content: space-between; }
 .reading-settings-heading button { padding: 2px 6px; border: 0; background: transparent; font-size: 20px; }
 .reading-settings-panel label { display: grid; gap: 5px; font-size: 12px; }
 .reading-settings-panel select, .reading-settings-panel input { width: 100%; accent-color: var(--accent); }
 .reading-settings-panel select { padding: 6px; border: 1px solid var(--control-border); border-radius: 5px; color: var(--text); background: var(--surface); }
-@media (max-width: 700px) { .reading-settings-panel { position: static; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; } }
+.reading-settings-fields { display: grid; gap: 12px; min-width: 0; }
+.reading-number { display: grid; gap: 5px; }
+.reading-number-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(72px, 5.5em); align-items: center; gap: 12px; }
+.reading-number input[type="number"] { min-width: 0; padding: 6px; color: var(--text); background: var(--surface); border: 1px solid var(--control-border); border-radius: 5px; }
+.reading-number input[aria-invalid="true"] { border-color: var(--error); }
+.reading-value-error { color: var(--error); overflow-wrap: anywhere; }
+.reading-preview { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: var(--canvas); }
+.reading-preview-text { --reading-font: "App Roboto", -apple-system, BlinkMacSystemFont, sans-serif; margin: 8px 0 0; font-family: var(--reading-font); font-size: var(--reading-size); line-height: var(--reading-line-height); overflow-wrap: anywhere; }
+@media (max-width: 700px) { .reading-settings-panel { right: 0; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; } }
 .local-badge { color: var(--muted); font-size: 12px; white-space: nowrap; }
 .language-control { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
 .language-control select, .appearance-control select { padding: 5px; color: var(--text); border: 1px solid var(--control-border); border-radius: 5px; background: var(--surface); }
@@ -582,7 +590,7 @@ summary:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--f
 .image-meta, .image-controls { font-size: 13px; }
 .image-header { padding: 12px 24px; }
 @media (max-width: 900px) {
-  .reading-settings-panel { position: static; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; }
+  .reading-settings-panel { right: 0; width: 100%; border-inline: 0; border-radius: 0; box-shadow: none; }
   .toolbar { gap: 8px; }
   .document-page { padding: 24px; }
 }
@@ -641,3 +649,8 @@ summary:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--f
 .action-menu { max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); overflow: auto; }
 .action-menu button { min-height: 32px; }
 .action-menu button > span:first-child { overflow-wrap: anywhere; }
+.native-settings { height: 100dvh; overflow: auto; padding: 24px; box-sizing: border-box; }
+.native-settings section { margin-block: 24px; }
+.native-settings fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.native-settings label { display: flex; align-items: center; gap: 12px; margin-block: 12px; flex-wrap: wrap; }
+.native-settings footer { position: sticky; bottom: 0; padding-block: 12px; background: var(--surface, Canvas); text-align: end; }

@@ -1,0 +1,41 @@
+Captured tool output, Windows authorized continuation, 2026-10-05.
+
+COMMAND: npm.cmd test
+EXIT: 1
+
+> intentgrove@0.1.0 test
+> vitest run
+
+'vitest' is not recognized as an internal or external command,
+operable program or batch file.
+
+COMMAND: npm.cmd run build
+EXIT: 1
+
+> intentgrove@0.1.0 build
+> tsc --noEmit && vite build
+
+'tsc' is not recognized as an internal or external command,
+operable program or batch file.
+
+COMMAND: npm.cmd run test:bundle-worker
+EXIT: 1
+
+> intentgrove@0.1.0 test:bundle-worker
+> node tests/worker-bundle.mjs
+
+node:internal/fs/promises:1661
+  const result = await PromisePrototypeThen(
+                 ^
+
+Error: ENOENT: no such file or directory, scandir 'C:\Users\jsman\projects\personal\Intentgrove\dist\assets'
+    at async readdir (node:internal/fs/promises:1661:18)
+    at async file:///C:/Users/jsman/projects/personal/Intentgrove/tests/worker-bundle.mjs:7:22 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'C:\\Users\\jsman\\projects\\personal\\Intentgrove\\dist\\assets'
+}
+
+Node.js v24.20.0
+

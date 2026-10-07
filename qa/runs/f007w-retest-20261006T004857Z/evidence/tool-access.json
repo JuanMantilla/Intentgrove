@@ -1,0 +1,30 @@
+{
+  "source": "actual dedicated mcp__node_repl__js @oai/sky tool responses",
+  "attempts": [
+    {
+      "attempt": 1,
+      "operation": "list_apps after initialization",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "attempt": 2,
+      "operation": "list_apps retry",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    },
+    {
+      "attempt": 3,
+      "operation": "kernel reset/reinitialize/list_apps",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    }
+  ],
+  "individualTimestamp": "not exposed in tool response; sequence preserved",
+  "windowSelected": false,
+  "inputIssued": false,
+  "screenshot": "NONE",
+  "accessibility": "NONE",
+  "settings": "BLOCKED before selection; historical minimized/refresh guard preserved",
+  "taskManager": "BLOCKED before selection; historical higher integrity preserved",
+  "nativeDialogs": "BLOCKED before selection; historical popup bounds preserved",
+  "elevation": false,
+  "securityChanges": false
+}

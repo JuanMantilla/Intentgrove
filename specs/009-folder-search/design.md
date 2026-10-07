@@ -7,3 +7,7 @@ Command+Shift+F opens Search in the left panel, focusing one query field. A segm
 At 640 points the Search panel temporarily takes the sidebar width and can be hidden to read, without discarding verified results. At 900/1440 points it is resizable but cannot consume the page. Long paths wrap or truncate visually with full accessible names. Empty query gives instructions, zero results says so, skipped-file details are expandable, and cancelled scans keep verified hits marked partial. A new root/query clears old results before progress restarts.
 
 Status is text and shape, not color alone. Results use ordered list semantics, keyboard arrow/Tab behavior, visible focus, and polite throttled count announcements. EN/ES labels must fit; no progress animation is essential. Default exclusion help explains `.gitignore` and the visible ignored toggle. Hostile filenames are plain text, never HTML. Packaged focus, 200% zoom and timing need verification.
+
+## IR-05 native supplement � 2026-10-06
+
+The authorized optional subtree and native Go extension is specified in [ir05-native-amendment.md](ir05-native-amendment.md). Original approved artifacts and packaged acceptance remain intact.

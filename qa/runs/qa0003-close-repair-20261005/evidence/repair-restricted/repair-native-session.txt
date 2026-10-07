@@ -1,0 +1,188 @@
+   Compiling vswhom-sys v0.1.3
+   Compiling vswhom v0.1.0
+   Compiling embed-resource v3.0.11
+   Compiling tauri-winres v0.3.6
+   Compiling tauri-build v2.6.3
+   Compiling tauri v2.11.6
+   Compiling md_reader v0.1.0 (C:\Users\jsman\projects\personal\Intentgrove\src-tauri)
+   Compiling tauri-plugin-fs v2.5.2
+   Compiling tauri-plugin-dialog v2.7.3
+warning: unused imports: `CStr` and `CString`
+ --> src\image.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `super::*`
+   --> src\native_entry.rs:130:9
+    |
+130 |     use super::*;
+    |         ^^^^^^^^
+
+warning: unused import: `std::fs`
+   --> src\native_entry.rs:131:9
+    |
+131 |     use std::fs;
+    |         ^^^^^^^
+
+warning: unused import: `crate::scope::open_relative`
+   --> src\recovery.rs:562:9
+    |
+562 |     use crate::scope::open_relative;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `read_page`
+  --> src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused variable: `name`
+   --> src\save_copies.rs:204:13
+    |
+204 |         for name in ["old.bak", "race.pending"] {
+    |             ^^^^ help: if this is intentional, prefix it with an underscore: `_name`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `code`
+   --> src\lib.rs:376:58
+    |
+376 |             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+    |                                                          ^^^^-
+    |                                                          |
+    |                                                          help: try removing the field
+
+warning: function `set_native_menu_state` is never used
+  --> src\lib.rs:73:4
+   |
+73 | fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `read_page` is never used
+   --> src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: constant `MAX_RESPONSE_BYTES` is never used
+  --> src\image.rs:15:7
+   |
+15 | const MAX_RESPONSE_BYTES: usize = 8 * 1024 * 1024;
+   |       ^^^^^^^^^^^^^^^^^^
+
+warning: static `DECODE_LOCK` is never used
+  --> src\image.rs:16:8
+   |
+16 | static DECODE_LOCK: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^^^^^
+
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src\refresh.rs:125:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: function `session_for` is never used
+   --> src\recovery.rs:585:8
+    |
+585 |     fn session_for(record: &RecoveryPayload, owner: &str) -> EditSession {
+    |        ^^^^^^^^^^^
+
+warning: methods `reselect_root` and `reselect_explicit_file` are never used
+   --> src\state.rs:254:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (lib test) generated 14 warnings (run `cargo fix --lib -p md_reader --tests` to apply 6 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.65s
+     Running unittests src\lib.rs (src-tauri\target\x86_64-pc-windows-msvc\debug\deps\md_reader_lib-15fc16b148cf5017.exe)
+
+running 12 tests
+test session::tests::one_hundred_durable_checkpoints_retain_latest_without_temp_files ... FAILED
+test session::tests::prepared_folder_rejects_replacement_and_competing_selection ... FAILED
+test session::tests::prior_valid_checkpoint_survives_corrupt_current ... FAILED
+test session::tests::reading_settings_are_bounded_and_older_panels_restore_defaults ... ok
+test session::tests::recorded_selection_paths_are_bounded_without_rewriting ... ok
+test session::tests::rejects_bad_scope_and_layout ... ok
+test session::tests::saved_draft_owner_survives_session_serialization ... ok
+test session::tests::saved_selection_identity_cannot_authorize_replacement ... FAILED
+test session::tests::serialized_writers_keep_monotonic_sequence ... FAILED
+test session::tests::stale_sequence_never_replaces_current ... FAILED
+test session::tests::windows_private_initialization_precedes_webview_directory_creation ... FAILED
+test session::tests::windows_webview_created_directory_is_rejected_without_acl_or_record_repair ... FAILED
+
+failures:
+
+---- session::tests::one_hundred_durable_checkpoints_retain_latest_without_temp_files stdout ----
+
+thread 'session::tests::one_hundred_durable_checkpoints_retain_latest_without_temp_files' panicked at src\session.rs:1043:64:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- session::tests::prepared_folder_rejects_replacement_and_competing_selection stdout ----
+
+thread 'session::tests::prepared_folder_rejects_replacement_and_competing_selection' panicked at src\session.rs:965:64:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::prior_valid_checkpoint_survives_corrupt_current stdout ----
+
+thread 'session::tests::prior_valid_checkpoint_survives_corrupt_current' panicked at src\session.rs:864:60:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::saved_selection_identity_cannot_authorize_replacement stdout ----
+
+thread 'session::tests::saved_selection_identity_cannot_authorize_replacement' panicked at src\session.rs:944:60:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::serialized_writers_keep_monotonic_sequence stdout ----
+
+thread 'session::tests::serialized_writers_keep_monotonic_sequence' panicked at src\session.rs:1019:64:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::stale_sequence_never_replaces_current stdout ----
+
+thread 'session::tests::stale_sequence_never_replaces_current' panicked at src\session.rs:878:60:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::windows_private_initialization_precedes_webview_directory_creation stdout ----
+
+thread 'session::tests::windows_private_initialization_precedes_webview_directory_creation' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- session::tests::windows_webview_created_directory_is_rejected_without_acl_or_record_repair stdout ----
+
+thread 'session::tests::windows_webview_created_directory_is_rejected_without_acl_or_record_repair' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+
+failures:
+    session::tests::one_hundred_durable_checkpoints_retain_latest_without_temp_files
+    session::tests::prepared_folder_rejects_replacement_and_competing_selection
+    session::tests::prior_valid_checkpoint_survives_corrupt_current
+    session::tests::saved_selection_identity_cannot_authorize_replacement
+    session::tests::serialized_writers_keep_monotonic_sequence
+    session::tests::stale_sequence_never_replaces_current
+    session::tests::windows_private_initialization_precedes_webview_directory_creation
+    session::tests::windows_webview_created_directory_is_rejected_without_acl_or_record_repair
+
+test result: FAILED. 4 passed; 8 failed; 0 ignored; 0 measured; 62 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

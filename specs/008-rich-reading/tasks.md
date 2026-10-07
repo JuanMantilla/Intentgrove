@@ -59,3 +59,8 @@ T002, T003 and T006 use different artifacts. After T005, metadata fixtures can b
 ## Implementation strategy
 
 Establish bounded blocks and diagram isolation first, then complete technical content and outline/typography. Run fixture and packaged checks before marking any safety or performance criterion complete.
+
+## Approved Reading frontend maintenance — 2026-10-06
+
+- [x] T020 Implement approved REQ-P1 numeric Reading fields/validation/preview using existing fonts/ranges/session contracts; preserve custom values/anchor capture/Reading-only reset and add localized preference Retry. Focused40/full291/build/worker PASS, actual Chrome synthetic renderer reviewed at640/320px. See frontend-maintenance-20261006.md and ../../frontend-implementation/evidence/settings-reading-20261006/report.md. Separate native Settings/filter/schema contracts remain IR-04; no native/config/dependency changes.
+- [ ] T021 Verify this Reading slice in a rebuilt native candidate: persisted choices/failure Retry, source/draft/caret/anchor continuity, actual zoom/DPI and platform focus/keyboard. Current native pipe error2; Windows/Mac NOT TESTED. Existing packaged gates remain open; mocked renderer checks are not native acceptance.

@@ -1,0 +1,83 @@
+# Reconciled coverage
+
+Canonical ledger: [coverage.json](coverage.json).
+
+75 rows: 69 BLOCKED, 2 PASS, 3 NOT_RUN, 1 NOT_APPLICABLE. Zero native product cases executed; the two PASS rows are filesystem checks only.
+
+- **100-startup — BLOCKED:** Healthy empty startup: no misleading document-support banner
+- **100-supported-file — BLOCKED:** Supported Unicode/spaced file reading and truthful independent status
+- **100-folder-sibling — BLOCKED:** Folder tree, clean explicit-tab rebinding and sibling navigation
+- **100-refresh — BLOCKED:** Refresh reports actual result without clearing a session failure
+- **100-session-denial — BLOCKED:** Genuine session storage denial names operation/code and blocks guarded close
+- **100-locale-existing — BLOCKED:** Existing failure notices update EN to ES to EN
+- **100-locale-delayed — BLOCKED:** Delayed failure uses the current locale
+- **100-protocol-feedback — BLOCKED:** Protocol/grant refusal remains truthful and localized
+- **100-recents — BLOCKED:** Recents survive authorized restart and reopen only valid selections
+- **100-normal-restart — BLOCKED:** Two-tab normal restart retains session/read state and source integrity
+- **100-crash-restart — BLOCKED:** Disposable crash/interruption restart recovers valid checkpoint without modifying sources
+- **100-altf4-empty — BLOCKED:** Alt+F4 closes empty read-only workspace
+- **100-title-empty — BLOCKED:** Title-bar Close closes empty read-only workspace
+- **100-altf4-open — BLOCKED:** Alt+F4 closes supported open-file workspace
+- **100-title-open — BLOCKED:** Title-bar Close closes supported open-file workspace
+- **100-loading-cancel — BLOCKED:** Close during observable loading cancels work and exits safely
+- **100-search-cancel — BLOCKED:** Close during observable active search cancels work and exits safely
+- **100-app-exit — BLOCKED:** Normal final-window close leaves no run-owned app process
+- **100-worker-exit — BLOCKED:** Normal final-window close leaves no recorded worker descendants
+- **100-drag-drop — BLOCKED:** Native drag/drop accepts authorized copied documents and preserves read-only state
+- **100-runtime-csp — BLOCKED:** Runtime CSP prevents active document content/remote execution
+- **100-runtime-navigation — BLOCKED:** Runtime navigation prevents script/custom/outside-grant transitions
+- **150-startup — BLOCKED:** Healthy empty startup: no misleading document-support banner
+- **150-supported-file — BLOCKED:** Supported Unicode/spaced file reading and truthful independent status
+- **150-folder-sibling — BLOCKED:** Folder tree, clean explicit-tab rebinding and sibling navigation
+- **150-refresh — BLOCKED:** Refresh reports actual result without clearing a session failure
+- **150-session-denial — BLOCKED:** Genuine session storage denial names operation/code and blocks guarded close
+- **150-locale-existing — BLOCKED:** Existing failure notices update EN to ES to EN
+- **150-locale-delayed — BLOCKED:** Delayed failure uses the current locale
+- **150-protocol-feedback — BLOCKED:** Protocol/grant refusal remains truthful and localized
+- **150-recents — BLOCKED:** Recents survive authorized restart and reopen only valid selections
+- **150-normal-restart — BLOCKED:** Two-tab normal restart retains session/read state and source integrity
+- **150-crash-restart — BLOCKED:** Disposable crash/interruption restart recovers valid checkpoint without modifying sources
+- **150-altf4-empty — BLOCKED:** Alt+F4 closes empty read-only workspace
+- **150-title-empty — BLOCKED:** Title-bar Close closes empty read-only workspace
+- **150-altf4-open — BLOCKED:** Alt+F4 closes supported open-file workspace
+- **150-title-open — BLOCKED:** Title-bar Close closes supported open-file workspace
+- **150-loading-cancel — BLOCKED:** Close during observable loading cancels work and exits safely
+- **150-search-cancel — BLOCKED:** Close during observable active search cancels work and exits safely
+- **150-app-exit — BLOCKED:** Normal final-window close leaves no run-owned app process
+- **150-worker-exit — BLOCKED:** Normal final-window close leaves no recorded worker descendants
+- **150-drag-drop — BLOCKED:** Native drag/drop accepts authorized copied documents and preserves read-only state
+- **150-runtime-csp — BLOCKED:** Runtime CSP prevents active document content/remote execution
+- **150-runtime-navigation — BLOCKED:** Runtime navigation prevents script/custom/outside-grant transitions
+- **200-startup — BLOCKED:** Healthy empty startup: no misleading document-support banner
+- **200-supported-file — BLOCKED:** Supported Unicode/spaced file reading and truthful independent status
+- **200-folder-sibling — BLOCKED:** Folder tree, clean explicit-tab rebinding and sibling navigation
+- **200-refresh — BLOCKED:** Refresh reports actual result without clearing a session failure
+- **200-session-denial — BLOCKED:** Genuine session storage denial names operation/code and blocks guarded close
+- **200-locale-existing — BLOCKED:** Existing failure notices update EN to ES to EN
+- **200-locale-delayed — BLOCKED:** Delayed failure uses the current locale
+- **200-protocol-feedback — BLOCKED:** Protocol/grant refusal remains truthful and localized
+- **200-recents — BLOCKED:** Recents survive authorized restart and reopen only valid selections
+- **200-normal-restart — BLOCKED:** Two-tab normal restart retains session/read state and source integrity
+- **200-crash-restart — BLOCKED:** Disposable crash/interruption restart recovers valid checkpoint without modifying sources
+- **200-altf4-empty — BLOCKED:** Alt+F4 closes empty read-only workspace
+- **200-title-empty — BLOCKED:** Title-bar Close closes empty read-only workspace
+- **200-altf4-open — BLOCKED:** Alt+F4 closes supported open-file workspace
+- **200-title-open — BLOCKED:** Title-bar Close closes supported open-file workspace
+- **200-loading-cancel — BLOCKED:** Close during observable loading cancels work and exits safely
+- **200-search-cancel — BLOCKED:** Close during observable active search cancels work and exits safely
+- **200-app-exit — BLOCKED:** Normal final-window close leaves no run-owned app process
+- **200-worker-exit — BLOCKED:** Normal final-window close leaves no recorded worker descendants
+- **200-drag-drop — BLOCKED:** Native drag/drop accepts authorized copied documents and preserves read-only state
+- **200-runtime-csp — BLOCKED:** Runtime CSP prevents active document content/remote execution
+- **200-runtime-navigation — BLOCKED:** Runtime navigation prevents script/custom/outside-grant transitions
+- **tooling-settings — BLOCKED:** Inspect Settings Scale and restore original after 150/200%
+- **tooling-task-manager — BLOCKED:** Inspect integrity/access without elevation
+- **tooling-dialogs — BLOCKED:** Inspect chooser bounds and keyboard cancellation
+- **candidate-identity — PASS:** Reconcile latest executable hash/receipt/disposable identifier
+- **product-readonly — PASS:** Verify product/test/build inputs unchanged
+- **mac-close — NOT_RUN:** Current Mac window close/Cmd+Q
+- **mac-session — NOT_RUN:** Current Mac session/recovery
+- **mac-packaged — NOT_RUN:** Current Mac packaged acceptance
+- **linux — NOT_APPLICABLE:** Linux support
+
+Prior passes/failures remain with their original build and provenance. No whole-charter PASS.

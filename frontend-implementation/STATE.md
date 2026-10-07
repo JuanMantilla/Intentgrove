@@ -1,11 +1,9 @@
-# Frontend implementation state — 2026-10-05
+﻿# Frontend implementation state — 2026-10-06
 
-Primary skill: senior-frontend-developer, IMPLEMENT. All current design proposals approved; option D retained. User explicitly requested only remaining gaps, scoped frontend changes/tests/local builds.
+senior-frontend-developer IMPLEMENT. USER-AUTHORIZED existing-contract Reading slice COMPLETE_IN_SCOPE: numeric controls/validation/live preview and language/appearance/checkpoint Retry; responsive overlay bounded at640/320px. Full approved package remains PARTIAL. Evidence: evidence/settings-reading-20261006/report.md; focused40/full291/build/worker PASS; Chrome English/dark and Spanish/light real renderer with synthetic bridge. Actual native/Mac/DPI/200% zoom NOT TESTED; user acceptance PENDING.
 
-Full design IMPLEMENTATION: PARTIAL. Completed this pass: cause-aware menu dismissal; folder Expand/Collapse; root-tab contexts; guarded batch close; Projects Reload/Copy; neutral timed manual reload footer/retained result; pending-start/stale search cancellation. Existing D/history/zoom/loading/source Save/recovery retained.
+QA-0004 source repair and sibling continuity preserved. QA-0004/T039 remains OPEN; fresh supported native discovery and post-reset retry fail pipe error2. No native candidate built for this newer slice. Historical candidate/QA evidence unchanged. T038 user-assisted acceptance complete; T036/T037 and editing/installer gates remain open.
 
-Evidence: `plan.md`, `report.md`, `evidence/approved-gap-pass/`. Baseline 255 tests; final current suite 269 tests PASS, build/worker PASS; nine WKWebView states/204 mocked checks PASS. Native grants/durable Save/restart, physical input, IME/VoiceOver NOT TESTED; user acceptance PENDING.
+IR-04 native Settings/filter persistence and functional Settings/owner wiring are now implemented by the authorized os-senior-expert pass. Exact handoff: ../os-engineering/frontend-handoff.md; evidence/report: ../os-engineering/report.md. Windows native singleton/IPC refusal/close/focus PASS; native80/frontend300/build/worker PASS. Full visual/DPI/Mac/product acceptance remains open. Native Go/subtree, rich engine and HTML/details capabilities remain separate work. Prior approvals and original artifacts remain; no install/sign/publish/commit.
 
-Global Spec Kit feature F007W preserved; F006 selected for task/verification maintenance only through supported NO_PERSIST override. Concurrent native/Windows and shared platform edits preserved and explicitly separated in change-review evidence.
-
-Remaining: IR-01 rich source/history/checkpoint engine; IR-02 HTML/resources; IR-03 metadata/default handler; IR-04 Settings/preference ownership; IR-05 OS Go/subtree search. Exact next step: reconcile these technical/native contracts in owning canonical features, implement integrations, then run disposable packaged macOS acceptance. No repeated design approval needed. No commit, push, deploy or publish.
+Next: reconcile owning canonical amendments through installed Spec Kit, then implement authorized native work and isolated prototypes. Provider restores native transport for rebuilt-candidate verification; Mac checks require Mac host. F002R T020 complete/T021 open; global Spec Kit feature remains F007W.

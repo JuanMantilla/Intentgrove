@@ -135,7 +135,7 @@ export function getAppearance() {
     };
     appearance = createAppearanceController({ storage, root: document.documentElement, events: window,
       media: typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: dark)") : undefined,
-      native: isTauri() ? getCurrentWindow() : undefined });
+      native: isTauri() && !new URLSearchParams(location.search).has("settings") ? getCurrentWindow() : undefined });
   }
   return appearance;
 }

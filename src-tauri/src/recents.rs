@@ -71,8 +71,8 @@ fn validate(record: &Record) -> AppResult<()> {
     let mut seen = std::collections::HashSet::new();
     for entry in &record.entries {
         if entry.id.is_empty() || entry.id.len() > 128 || entry.last_used_ms == 0
-            || entry.path.len() > MAX_PATH_BYTES || !entry.path.starts_with('/')
-            || entry.path.contains('\0') || !seen.insert(&entry.id) {
+            || !crate::platform::bounded_record_path(&entry.path, MAX_PATH_BYTES)
+            || !seen.insert(&entry.id) {
             return Err(error("recents_corrupt", "Recent entry is invalid"));
         }
         if entry.root_relative.as_ref().is_some_and(|segments| entry.kind != RecentKind::Document
@@ -179,8 +179,8 @@ fn record_at(dir: &Path, kind: RecentKind, path: &Path, selected_identity: Ident
         entry.kind == kind && entry.identity == selected_identity).map(|entry| entry.id.clone()))
         .unwrap_or_else(|| Uuid::new_v4().to_string());
     record.entries.retain(|entry| entry.id != id && !(entry.kind == kind && entry.identity == selected_identity));
-    let path = canonical.to_str().filter(|value| value.starts_with('/') && value.len() <= MAX_PATH_BYTES
-        && !value.contains('\0')).ok_or_else(|| error("invalid_path", "Recent path is invalid"))?;
+    let path = canonical.to_str().filter(|value| crate::platform::bounded_record_path(value, MAX_PATH_BYTES))
+        .ok_or_else(|| error("invalid_path", "Recent path is invalid"))?;
     record.entries.insert(0, Entry { id, kind, path: path.to_owned(), identity: selected_identity, root_relative,
         last_used_ms: now_ms()? });
     let mut folders = 0;
@@ -350,6 +350,45 @@ pub async fn clear_recent_items(app: AppHandle, confirmed: bool) -> AppResult<()
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn recorded_paths_round_trip_and_invalid_locations_are_rejected() {
+        #[cfg(target_os = "macos")]
+        let paths = ["/private/tmp/Café space/Read.MD", "/tmp/back\\slash.md"];
+        #[cfg(target_os = "windows")]
+        let paths = [r"C:\Café space\Read.MD", r"\\?\c:\Café space\Read.MD"];
+        for path in paths {
+            let record = Record { schema: 1, sequence: 1, entries: vec![Entry {
+                id: "fixture".into(), kind: RecentKind::Document, path: path.into(),
+                identity: Identity { device: u64::MAX, inode: u64::MAX - 1 },
+                root_relative: None, last_used_ms: 1,
+            }] };
+            let decoded = decode(&encode(&record).unwrap()).unwrap();
+            assert_eq!(decoded.entries[0].path, path);
+            assert_eq!(decoded.entries[0].identity, record.entries[0].identity);
+            let mut invalid = record.clone();
+            for path in ["", "relative.md", "bad\0path"] {
+                invalid.entries[0].path = path.into();
+                assert!(encode(&invalid).is_err());
+            }
+            invalid.entries[0].path = "x".repeat(MAX_PATH_BYTES + 1);
+            assert!(encode(&invalid).is_err());
+            #[cfg(target_os = "macos")]
+            let (prefix, separator) = ("/", "/");
+            #[cfg(target_os = "windows")]
+            let (prefix, separator) = ("C:\\", "\\");
+            invalid.entries[0].path = format!("{prefix}{}", vec!["a".repeat(240); 16].join(separator));
+            assert!(encode(&invalid).is_ok());
+            invalid.entries[0].path = format!("{prefix}{}", vec!["a".repeat(240); 18].join(separator));
+            assert!(encode(&invalid).is_err());
+            #[cfg(target_os = "windows")]
+            for path in ["/tmp/file", r"C:relative", r"\\server\share", r"\\.\pipe\x",
+                r"C:\a:stream", r"C:\a\..\x", r"C:\NUL.md"] {
+                invalid.entries[0].path = path.into();
+                assert!(encode(&invalid).is_err(), "{path}");
+            }
+        }
+    }
 
     #[test]
     fn durable_order_cap_clear_and_corrupt_fallback() {

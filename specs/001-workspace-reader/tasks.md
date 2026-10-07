@@ -88,3 +88,7 @@ required for this project.
 - [ ] T033 Run the packaged app with a disposable 25,000-entry fixture; record first visible entries before enumeration finishes, 10 UI cancellation acknowledgements against the 250 ms target, and window responsiveness in `specs/001-workspace-reader/verification.md` per F001-R01/SC-002 and T027/T031 (partial).
 - [ ] T034 Complete the packaged folder-to-tab-to-local-link/image journey with the development server stopped; observe app network and script/native execution behavior, compare fixture SHA-256 hashes and file inventories before and after, and record results in `specs/001-workspace-reader/verification.md` per F001-R05/F001-R06/F001-R09/SC-003/SC-004/SC-005 and T019/T027/T031 (partial).
 - [ ] T035 Exercise the packaged primary journey and every recovery action by keyboard in English and Spanish, and verify essential controls at 640×480 and tested display scaling; record results and repair any failures in `specs/001-workspace-reader/verification.md` per F001-R08/F001-R10/SC-006 and T024/T030 (partial).
+
+## IR-05 shared navigation supplement
+
+Native Go/state routes reuse committed client history with no new shortcuts; see [F003F native amendment](../009-folder-search/ir05-native-amendment.md) and [handoff](../../os-engineering/ir05-frontend-handoff.md). Client event regressions pass; actual macOS menu/runtime acceptance remains open. Existing workspace acceptance tasks are unchanged.

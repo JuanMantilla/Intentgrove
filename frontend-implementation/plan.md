@@ -44,3 +44,16 @@ Implementation slices: menu focus/lifecycle and target actions; guarded batch cl
 ## Completion of the bounded gap pass
 
 Frontend criteria 4–6 and pending/stale root-search cancellation were repaired using existing APIs. Existing D/navigation/loading fixes were retained. Current tests: 39 files/269 PASS; local build and worker guard PASS. WebKit renderer: nine states/204 checks PASS with mocked native APIs. Full package remains PARTIAL due to IR-01–05. Canonical mapping and T039–T042 are recorded under F006 using Spec Kit's supported NO_PERSIST feature override. Concurrent Windows/native/platform edits were preserved; current baseline deltas include those changes and are not all attributable to this pass. See report and `evidence/approved-gap-pass/`.
+
+## Two-file continuity repair - 2026-10-05
+
+User authorized senior-frontend-developer IMPLEMENT for the sibling-link issue. Clarification: Ctrl+O single-file grant correctly blocks siblings. Reproduced a frontend defect when reopening the same file from the selected-folder tree: identity dedup retained that explicit grant. Successful tree reads now rebind only clean tabs to the returned root grant, preserving reading/history/checkpoint keys; edits/recoveries stay bound to their grant. EN/ES single-file guidance added. Focused54/full280 tests and isolated no-bundle Windows build PASS; native two-tab restart acceptance PENDING (helper pipe error2). Source unchanged after build; build-time279 tests, final extra draft-protection regression included in280. See frontend-implementation/evidence/sibling-link-repair/report.md and logs. Candidate SHA256 d95d2bcb83f5275a91c776f2d6c977f0187331c16a50e09d6120749937b32ae0. Existing QA-0003 failures/close repair, seven approvals, gates and unrelated edits preserved; no backend/security/dependency/install/sign/publish/commit changes.
+## QA-0004 repair — 2026-10-05
+
+User-authorized IMPLEMENT: trace startup/session operation errors and stale translated notice state; reuse existing notice UI, preserve storage/close/grant failures, add focused tests, run frontend/build/worker checks and renderer review. Source complete; 40 files/287 tests, build and worker PASS. Native retest pending. See [evidence](evidence/qa-0004/report.md); prior approved-gap and sibling-link plans retained.
+
+## Settings Reading continuation — 2026-10-06
+
+USER-AUTHORIZED IMPLEMENT: current request to work on QA-0004 and the remaining approved integrations. Existing-contract slice: REQ-P1 criteria22–24 numeric controls/preview and retryable preference failures, preserving reader anchors/session ownership. Completed and checked; see evidence/settings-reading-20261006/report.md. Canonical F002R prerequisite override is temporary; F007W stays globally selected.
+
+Remaining work is scoped in integration-decisions-20261006.md: Settings/Go/subfolder native amendment and two isolated rich-editor/HTML security prototypes, followed by canonical decisions before production integration. These proposed technical changes are not self-approved. QA-0004 native discovery still fails pipe error2; actual native/Mac/DPI acceptance pending.

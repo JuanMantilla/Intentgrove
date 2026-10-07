@@ -1,0 +1,56 @@
+{
+  "provenance": "Exact tool results from this native QA run; transcribed after observation",
+  "nativeInventoryRoute": "Dedicated mcp__node_repl__js importing @oai/sky",
+  "settingsInventoryMatches": 0,
+  "settingsLaunch": {
+    "path": "C:/Windows/ImmersiveControlPanel/SystemSettings.exe",
+    "result": "launched app did not expose a targetable window: process:C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe"
+  },
+  "taskManagerLaunch": {
+    "path": "C:/Windows/System32/Taskmgr.exe",
+    "result": "Computer Use app approval timed out"
+  },
+  "chooserCoordinateError": "point (1027, 682) is outside window bounds { originX: 0, originY: 0, width: 16, height: 16 }",
+  "dropdownIndexedClickError": "point (1485, 372) is over msedgewebview2.exe \"Chrome Legacy Window\", not target window Intentgrove.exe \"Intentgrove\"; activate the target or take a fresh screenshot before retrying",
+  "successfulWorkaround": "Native filename/folder set_value, access keys, Tab and Return; dropdown Down/Return",
+  "scaleEvidence": [
+    {
+      "scale": 100,
+      "source": "User reply: 100%"
+    },
+    {
+      "scale": 150,
+      "source": "User: I moved manually the scale to 150%"
+    },
+    {
+      "scale": 200,
+      "source": "User reply: 200% ready; requested same display"
+    },
+    {
+      "scale": 100,
+      "source": "User replied done to restore-to-100% and exact-PID cleanup request",
+      "phase": "cleanup"
+    }
+  ],
+  "settingsActuallyRead": false,
+  "systemSecurityChanges": false,
+  "laterWindowInventory": {
+    "settingsWindow": {
+      "app": "windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel",
+      "id": 1510992,
+      "title": "Settings"
+    },
+    "taskManagerWindow": {
+      "app": "process:C:\\Windows\\System32\\Taskmgr.exe",
+      "id": 4787866,
+      "title": "Task Manager"
+    }
+  },
+  "settingsLaterReadErrors": [
+    "window is minimized; call activate_window, refresh with get_window, then retry get_window_state",
+    "user input was detected in this window; call get_window_state before continuing",
+    "window is minimized; call activate_window, refresh with get_window, then retry get_window_state"
+  ],
+  "taskManagerLaterAX": "Accessibility is limited because the target window has higher Windows integrity than the Computer Use helper.\nWindow: \"Task Manager\", App: Taskmgr.exe.\n\t0 window Task Manager Secondary Actions: Raise\n\t\t1 title bar (settable, string) Value: Task Manager",
+  "restartDisposition": "Not relaunched: normal close failure persists and autonomous exact-PID cleanup still inaccessible"
+}

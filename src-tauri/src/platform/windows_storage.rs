@@ -1,6 +1,6 @@
 //! Protected current-user NTFS records. Native locking/restart/durability remain unverified.
 use super::*;
-use crate::platform::windows::{checked, native_open, native_open_options, native_open_with_share};
+use crate::platform::windows::{checked, native_open, native_open_options, native_open_with_share, rename_file};
 use crate::scope::{identity, open_selected};
 use std::{
     io::{Read, Write},
@@ -18,7 +18,7 @@ use windows_sys::Win32::{
     System::{Threading::*, IO::OVERLAPPED},
 };
 
-struct LocalAllocation(*mut std::ffi::c_void);
+pub(crate) struct LocalAllocation(pub(crate) *mut std::ffi::c_void);
 impl Drop for LocalAllocation {
     fn drop(&mut self) {
         if !self.0.is_null() {
@@ -67,7 +67,7 @@ fn user_sid() -> AppResult<Vec<u8>> {
     let length = unsafe { GetLengthSid(user.User.Sid) } as usize;
     Ok(unsafe { std::slice::from_raw_parts(user.User.Sid.cast::<u8>(), length) }.to_vec())
 }
-fn descriptor() -> AppResult<LocalAllocation> {
+pub(crate) fn descriptor() -> AppResult<LocalAllocation> {
     let sid = user_sid()?;
     let mut sid_text = ptr::null_mut();
     if unsafe { ConvertSidToStringSidW(sid.as_ptr().cast_mut().cast(), &mut sid_text) } == 0 {
@@ -128,14 +128,14 @@ fn verify_private(file: &File, directory: bool) -> AppResult<()> {
             "Private records must be owned by this user with a restricted DACL",
         ));
     }
-    let mut control = 0;
+    let mut control: u16 = 0;
     let mut revision = 0;
     if unsafe { GetSecurityDescriptorControl(sd, &mut control, &mut revision) } == 0 {
         return Err(io_error(std::io::Error::last_os_error()));
     }
     // File ACEs may inherit only from a protected current-user parent. Directories
     // created here are always protected; no existing broad DACL is silently repaired.
-    if directory && control & SE_DACL_PROTECTED == 0 {
+    if directory && u32::from(control) & (SE_DACL_PROTECTED as u32) == 0 {
         return Err(AppError::new(
             "recovery_permissions",
             "Private directory DACL is not protected",
@@ -166,7 +166,8 @@ fn verify_private(file: &File, directory: bool) -> AppResult<()> {
         }
         let header = unsafe { &*(ace.cast::<ACE_HEADER>()) };
         let sid_offset = std::mem::offset_of!(ACCESS_ALLOWED_ACE, SidStart);
-        if header.AceType != ACCESS_ALLOWED_ACE_TYPE as u8
+        // ACCESS_ALLOWED_ACE_TYPE is 0 in winnt.h; other ACE types fail closed.
+        if header.AceType != 0
             || (header.AceSize as usize) < sid_offset + 8
             || header.AceFlags & INHERIT_ONLY_ACE as u8 != 0
         {
@@ -177,7 +178,11 @@ fn verify_private(file: &File, directory: bool) -> AppResult<()> {
         }
         let allowed = unsafe { &*(ace.cast::<ACCESS_ALLOWED_ACE>()) };
         let ace_sid = (&allowed.SidStart as *const u32).cast_mut().cast();
-        if unsafe { IsValidSid(ace_sid) } == 0
+        // Bound the variable SID before passing it to routines that read it.
+        let sid_bytes = header.AceSize as usize - sid_offset;
+        let sub_authorities = unsafe { *((ace_sid as *const u8).add(1)) } as usize;
+        if 8 + sub_authorities * 4 > sid_bytes
+            || unsafe { IsValidSid(ace_sid) } == 0
             || unsafe { GetLengthSid(ace_sid) } as usize > header.AceSize as usize - sid_offset
             || unsafe { EqualSid(ace_sid, sid.as_ptr().cast_mut().cast()) } == 0
             || allowed.Mask & FILE_ALL_ACCESS != FILE_ALL_ACCESS
@@ -216,16 +221,26 @@ pub(crate) fn ensure_private_dir(path: &Path) -> AppResult<()> {
         .and_then(|s| s.to_str())
         .ok_or_else(|| AppError::new("invalid_path", "Invalid storage name"))?;
     crate::scope::validate_segment(name)?;
-    let sd = descriptor()?;
-    let file = native_open_options(
-        parent.as_raw_handle(),
-        name,
-        FILE_READ_ATTRIBUTES | 0x00020000,
-        FILE_OPEN_IF,
-        FILE_ATTRIBUTE_DIRECTORY,
-        sd.0.cast(),
-        FILE_DIRECTORY_FILE,
-    )?;
+    let access = FILE_READ_ATTRIBUTES | 0x00020000;
+    let open_existing = || native_open(
+        parent.as_raw_handle(), name, access, FILE_OPEN, 0, ptr::null(),
+    );
+    let file = match open_existing() {
+        Ok(file) => file,
+        Err(error) if error.code == "missing" => {
+            let sd = descriptor()?;
+            match native_open_options(
+                parent.as_raw_handle(), name, access, FILE_CREATE,
+                FILE_ATTRIBUTE_DIRECTORY, sd.0.cast(), FILE_DIRECTORY_FILE,
+            ) {
+                Ok(file) => file,
+                // A concurrent creator may win. The bounded retry keeps
+                // no-recall/reparse protection and never repairs an existing ACL.
+                Err(creation_error) => open_existing().map_err(|_| creation_error)?,
+            }
+        }
+        Err(error) => return Err(error),
+    };
     verify_private(&file, true)
 }
 pub(crate) fn create_private_file(path: &Path) -> AppResult<File> {
@@ -323,33 +338,7 @@ pub(crate) fn publish_private(from: &Path, to: &Path) -> AppResult<()> {
     verify_private_file(&file)?;
     file.sync_all().map_err(io_error)?;
     let id = identity(&file)?;
-    let wide: Vec<u16> = target.encode_utf16().chain(Some(0)).collect();
-    let header = std::mem::offset_of!(FILE_RENAME_INFO, FileName);
-    let length = header + wide.len() * 2;
-    let mut buffer = vec![
-        0u64;
-        length
-            .div_ceil(8)
-            .max(size_of::<FILE_RENAME_INFO>().div_ceil(8))
-    ];
-    let info = buffer.as_mut_ptr().cast::<FILE_RENAME_INFO>();
-    unsafe {
-        (*info).Anonymous.ReplaceIfExists = 1;
-        (*info).RootDirectory = parent.as_raw_handle();
-        (*info).FileNameLength = ((wide.len() - 1) * 2) as u32;
-        ptr::copy_nonoverlapping(wide.as_ptr(), (*info).FileName.as_mut_ptr(), wide.len());
-    }
-    if unsafe {
-        SetFileInformationByHandle(
-            file.as_raw_handle(),
-            FileRenameInfo,
-            info.cast(),
-            length as u32,
-        )
-    } == 0
-    {
-        return Err(io_error(std::io::Error::last_os_error()));
-    }
+    rename_file(&file, &parent, target, true)?;
     let verify = (|| {
         file.sync_all().map_err(io_error)?;
         let current = crate::scope::open_relative(&parent, &[target.to_owned()], false)?;
@@ -412,7 +401,7 @@ pub(crate) fn remove_private_file(path: &Path) -> std::io::Result<()> {
     )
     .map_err(as_io)?;
     verify_private_file(&file).map_err(as_io)?;
-    let info = FILE_DISPOSITION_INFO { DeleteFile: 1 };
+    let info = FILE_DISPOSITION_INFO { DeleteFile: true };
     if unsafe {
         SetFileInformationByHandle(
             file.as_raw_handle(),

@@ -1,0 +1,167 @@
+   Compiling md_reader v0.1.0 (C:\Users\jsman\projects\personal\Intentgrove\src-tauri)
+warning: unused imports: `CStr` and `CString`
+ --> src\image.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `super::*`
+   --> src\native_entry.rs:130:9
+    |
+130 |     use super::*;
+    |         ^^^^^^^^
+
+warning: unused import: `std::fs`
+   --> src\native_entry.rs:131:9
+    |
+131 |     use std::fs;
+    |         ^^^^^^^
+
+warning: unused import: `crate::scope::open_relative`
+   --> src\recovery.rs:562:9
+    |
+562 |     use crate::scope::open_relative;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `read_page`
+  --> src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused variable: `name`
+   --> src\save_copies.rs:204:13
+    |
+204 |         for name in ["old.bak", "race.pending"] {
+    |             ^^^^ help: if this is intentional, prefix it with an underscore: `_name`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `code`
+   --> src\lib.rs:368:58
+    |
+368 |             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+    |                                                          ^^^^-
+    |                                                          |
+    |                                                          help: try removing the field
+
+warning: function `set_native_menu_state` is never used
+  --> src\lib.rs:73:4
+   |
+73 | fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `read_page` is never used
+   --> src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: constant `MAX_RESPONSE_BYTES` is never used
+  --> src\image.rs:15:7
+   |
+15 | const MAX_RESPONSE_BYTES: usize = 8 * 1024 * 1024;
+   |       ^^^^^^^^^^^^^^^^^^
+
+warning: static `DECODE_LOCK` is never used
+  --> src\image.rs:16:8
+   |
+16 | static DECODE_LOCK: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^^^^^
+
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src\refresh.rs:125:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: function `session_for` is never used
+   --> src\recovery.rs:585:8
+    |
+585 |     fn session_for(record: &RecoveryPayload, owner: &str) -> EditSession {
+    |        ^^^^^^^^^^^
+
+warning: methods `reselect_root` and `reselect_explicit_file` are never used
+   --> src\state.rs:254:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (lib test) generated 14 warnings (run `cargo fix --lib -p md_reader --tests` to apply 6 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.61s
+     Running unittests src\lib.rs (src-tauri\target\x86_64-pc-windows-msvc\debug\deps\md_reader_lib-15fc16b148cf5017.exe)
+
+running 11 tests
+test recovery::tests::checkpoint_checksum_rejects_tampered_draft ... ok
+test recovery::tests::checkpoint_child_after_ack ... ignored, subprocess harness; executed by checkpoint_survives_process_exit_after_ack
+test recovery::tests::checkpoint_reparse_failure_preserves_previous_and_outside_data ... FAILED
+test recovery::tests::checkpoint_survives_process_exit_after_ack ... FAILED
+test recovery::tests::failed_checkpoint_replacement_preserves_the_last_acknowledged_record ... FAILED
+test recovery::tests::interrupted_save_child ... ignored, subprocess driver; explicitly executed by interrupted_save_retains_draft_stage_and_private_copies
+test recovery::tests::interrupted_save_retains_draft_stage_and_private_copies ... FAILED
+test recovery::tests::one_hundred_checkpoints_keep_latest_and_previous_without_temp_files ... FAILED
+test recovery::tests::previous_schema_one_record_without_saved_time_still_loads ... ok
+test recovery::tests::prior_checkpoint_survives_replacement_and_corrupt_latest ... FAILED
+test recovery::tests::recovery_record_over_quota_is_rejected ... ok
+
+failures:
+
+---- recovery::tests::checkpoint_reparse_failure_preserves_previous_and_outside_data stdout ----
+
+thread 'recovery::tests::checkpoint_reparse_failure_preserves_previous_and_outside_data' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- recovery::tests::checkpoint_survives_process_exit_after_ack stdout ----
+
+thread 'recovery::tests::checkpoint_survives_process_exit_after_ack' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- recovery::tests::failed_checkpoint_replacement_preserves_the_last_acknowledged_record stdout ----
+
+thread 'recovery::tests::failed_checkpoint_replacement_preserves_the_last_acknowledged_record' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- recovery::tests::interrupted_save_retains_draft_stage_and_private_copies stdout ----
+
+thread 'recovery::tests::interrupted_save_retains_draft_stage_and_private_copies' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- recovery::tests::one_hundred_checkpoints_keep_latest_and_previous_without_temp_files stdout ----
+
+thread 'recovery::tests::one_hundred_checkpoints_keep_latest_and_previous_without_temp_files' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+---- recovery::tests::prior_checkpoint_survives_replacement_and_corrupt_latest stdout ----
+
+thread 'recovery::tests::prior_checkpoint_survives_replacement_and_corrupt_latest' panicked at src\platform\test_support.rs:14:75:
+called `Result::unwrap()` on an `Err` value: AppError { code: "denied", message: "Windows native access failed (NTSTATUS 0xc0000022, Win32 5)" }
+
+
+failures:
+    recovery::tests::checkpoint_reparse_failure_preserves_previous_and_outside_data
+    recovery::tests::checkpoint_survives_process_exit_after_ack
+    recovery::tests::failed_checkpoint_replacement_preserves_the_last_acknowledged_record
+    recovery::tests::interrupted_save_retains_draft_stage_and_private_copies
+    recovery::tests::one_hundred_checkpoints_keep_latest_and_previous_without_temp_files
+    recovery::tests::prior_checkpoint_survives_replacement_and_corrupt_latest
+
+test result: FAILED. 3 passed; 6 failed; 2 ignored; 0 measured; 61 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

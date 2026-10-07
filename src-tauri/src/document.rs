@@ -132,6 +132,15 @@ pub fn read_document_impl(
     root_id: Option<&str>,
     segments: Option<Vec<String>>,
 ) -> AppResult<DocumentResponse> {
+    read_document_with_file(state, file_id, root_id, segments, None)
+}
+
+// Search supplies a file opened beneath its retained scope handle. The normal
+// root/generation, stable-byte and current-path postchecks still apply.
+pub(crate) fn read_document_with_file(
+    state: &AppState, file_id: Option<&str>, root_id: Option<&str>,
+    segments: Option<Vec<String>>, scoped_file: Option<File>,
+) -> AppResult<DocumentResponse> {
     let (file, mut grant, post_check) = if let Some(file_id) = file_id {
         let grant = state.file(file_id)?;
         if !markdown_name(&grant.name) {
@@ -177,7 +186,10 @@ pub fn read_document_impl(
             ));
         }
         let root = state.root(root_id)?;
-        let file = open_relative(&root.file, &segments, false)?;
+        let file = match scoped_file {
+            Some(file) => file,
+            None => open_relative(&root.file, &segments, false)?,
+        };
         let grant = state.register_root_file(&root, segments.clone(), &file)?;
         (file, grant, PostCheck::Root(root, segments))
     };

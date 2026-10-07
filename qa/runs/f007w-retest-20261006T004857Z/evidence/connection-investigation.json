@@ -1,0 +1,40 @@
+{
+  "capturedUtc": "2026-10-06T01:00:36.299Z",
+  "authorization": "User authorized necessary QA work; original no elevation/security/install/product-edit restrictions retained",
+  "status": "BLOCKED",
+  "scope": "QA-0005 connection investigation; not product execution",
+  "observations": [
+    {
+      "operation": "import.meta.resolve @oai/sky",
+      "result": "@oai/sky (no filesystem source path exposed)"
+    },
+    {
+      "operation": "ordinary Node createRequire.resolve @oai/sky",
+      "result": "MODULE_NOT_FOUND; direct tool-loader import already succeeds; this does not prove client missing"
+    },
+    {
+      "operation": "read bundled .codex-plugin/plugin.json",
+      "result": "version26.917.71314; node_repl turn_ended hooks; no helper start/reconnect/log repair command declared"
+    },
+    {
+      "operation": "inspect bundled docs/api.md and guidance",
+      "result": "App/window/input API; client-reset recovery only; no helper lifecycle/log API"
+    },
+    {
+      "operation": "sky.list_windows",
+      "result": "Computer Use native pipe is unavailable: failed to connect native pipe: The system cannot find the file specified. (os error 2)"
+    }
+  ],
+  "rootCause": "UNKNOWN beyond absent native endpoint",
+  "counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "BLOCKED": 1,
+    "NOT_RUN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "nativeProductExecution": 0,
+  "productChanges": false,
+  "policyChanges": false,
+  "endpointRepair": "Requires host/native-session lifecycle control not exposed to this agent; no further user approval needed for already authorized QA"
+}

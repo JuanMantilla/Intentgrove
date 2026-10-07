@@ -1,0 +1,8 @@
+# Department handoff
+
+- OS_ENGINEERING: QA-0003, HIGH reproduction/MEDIUM routing, S2/P1. Six close failures across user-reported 100/150/200%. Trace final checkpoint IPC and storage, then finishEditingClose. Depend on FRONTEND for command/error correlation. Retest normal close, clean/dirty close where editing is authorized, session/crash restore, loading/search cancellation and app/worker exit. Preserve the private-storage and editing gates.
+- FRONTEND: QA-0004, HIGH observation/MEDIUM routing, S3/P2. Unsupported notice accompanies supported reading; prior English notice remains after Spanish selection. Determine originating operation with OS_ENGINEERING and clarify feedback with UI_UX. Retest default startup/open/folder/sibling/refresh and locale transitions. Do not label correctly refused protocols as defects.
+- QA_AUTOMATION/native-session provider: QA-0005, HIGH routing, environment P2. Settings not targetable, Task Manager approval timeout, restricted cleanup denied and chooser bounds 16×16. Keyboard workaround and user scale changes already have actual evidence. Restore Settings/cleanup/popup access; execute remaining drag/drop/CSP/in-flight cancel/restore/worker checks after QA-0003 repair.
+- QA_AUTOMATION: historical QA-0001/0002. Dedicated node route unblocked native inventory and exact host launch; preserve separate earlier RPC and restricted setup errors. No source/permission fix was performed to erase them.
+
+Build cutoff and evidence are in [report](report.md) and [ledger](coverage.json). Native macOS/packaged XPC remain NOT_RUN; Linux unsupported; unsigned NSIS remains gated and unconstructed.

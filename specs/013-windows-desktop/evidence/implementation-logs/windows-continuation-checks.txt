@@ -1,0 +1,92 @@
+F007W Windows IMPLEMENT continuation, 2026-10-05
+This is a command/result record with verbatim diagnostic excerpts, not a passing test log.
+
+Initial: git -C Intentgrove status --short
+FAIL: detected dubious ownership; repository owner jsman differs from sandbox process account.
+Used per-command git -c safe.directory=C:/Users/jsman/projects/personal/Intentgrove thereafter.
+No global git configuration or OS security policy was changed.
+Initial per-command git status --short: exit 0, empty (clean).
+No .codegraph directory. Applicable AGENTS.md: repository root only.
+
+Spec Kit initial direct Git Bash invocation:
+.specify/scripts/bash/check-prerequisites.sh: line 96: dirname: command not found
+.specify/scripts/bash/check-prerequisites.sh: line 96: cd: null directory
+After setting PATH=/usr/bin:/bin:$PATH inside Git Bash:
+ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or run the specify command to create .specify/feature.json.
+ERROR: Failed to resolve feature paths
+The ignored .specify/feature.json is missing in this checkout.
+Explicit feature invocation without no-persist also emitted:
+mkdir: cannot create directory ‘/c/Users/jsman’: Permission denied
+No further persistence attempt made.
+
+Final successful installed Spec Kit command (PowerShell):
+& 'C:\Program Files\Git\bin\bash.exe' -c 'export PATH=/usr/bin:/bin:$PATH; export SPECIFY_FEATURE_DIRECTORY=specs/013-windows-desktop; export SPECIFY_FEATURE_NO_PERSIST=1; bash .specify/scripts/bash/check-prerequisites.sh --json --require-spec --require-tasks --include-tasks'
+Exit 0:
+{"FEATURE_DIR":"/c/Users/jsman/projects/personal/Intentgrove/specs/013-windows-desktop","AVAILABLE_DOCS":["research.md","data-model.md","contracts/","quickstart.md","tasks.md"]}
+
+Approval verification: Get-FileHash -Algorithm SHA256 for all review.json artifacts
+7 matched, 0 mismatches.
+
+Native host probes:
+[System.Environment]::OSVersion.Version.ToString() => 10.0.26200.0
+[System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture => X64
+(New-Object System.IO.DriveInfo('C')).DriveFormat => NTFS
+WindowsPrincipal.IsInRole(Administrator) => False
+node --version => v24.20.0
+npm.cmd --version => 11.19.0
+Get-Command cargo,rustc,rustup,cl and later cargo.exe,rustc.exe,rustup.exe,cl.exe,link.exe,vswhere.exe,makensis.exe returned no commands in the current PATH.
+Usual checked Rust/VS/SDK installation directories absent; exact locations described in evidence.
+WebView2 Application directory contains 154.0.4258.53 and SetupMetrics.
+No WebView2 usability/desktop launch performed.
+No WSL/container/VM/emulated execution performed.
+
+npm.cmd ci --ignore-scripts --no-audit --no-fund --cache .agents/npm-cache
+Exit 1. Original full npm log preserved in windows-npm-ci-failure.txt.
+npm warn cleanup Failed to remove some directories
+npm warn cleanup EPERM: operation not permitted, rmdir node_modules\parse-entities
+npm error code EACCES
+npm error FetchError: request to https://registry.npmjs.org/zwitch/-/zwitch-2.0.4.tgz failed
+Cache subsequently moved (not retried) into ignored .cache/f007w-npm-failure.
+Incomplete node_modules remains ignored. Lockfiles unchanged; no lifecycle scripts ran.
+
+npm.cmd test
+Exit 1 before any assertions:
+> intentgrove@0.1.0 test
+> vitest run
+'vitest' is not recognized as an internal or external command,
+operable program or batch file.
+
+npm.cmd run build
+Exit 1 before compilation:
+> intentgrove@0.1.0 build
+> tsc --noEmit && vite build
+'tsc' is not recognized as an internal or external command,
+operable program or batch file.
+
+npm.cmd run test:bundle-worker
+Exit 1 before bundle assertions:
+Error: ENOENT: no such file or directory, scandir 'C:\Users\jsman\projects\personal\Intentgrove\dist\assets'
+Node.js v24.20.0
+
+cargo +1.88.0 check --manifest-path src-tauri/Cargo.toml --locked --all-targets --target x86_64-pc-windows-msvc
+cargo +1.88.0 test --manifest-path src-tauri/Cargo.toml --locked --target x86_64-pc-windows-msvc
+cargo +1.88.0 test --manifest-path src-tauri/Cargo.toml --locked --target x86_64-pc-windows-msvc --test windows_scoped -- --test-threads=1
+Each attempt returned PowerShell CommandNotFoundException:
+cargo : The term 'cargo' is not recognized as the name of a cmdlet, function, script file, or operable program.
+No cargo subprocess/compiler/test binary executed. Native results NOT RUN.
+
+git -c safe.directory=C:/Users/jsman/projects/personal/Intentgrove diff --check
+Exit 0, no output. Whitespace/diff check only; no Rust parser/formatter/compiler.
+
+git -c safe.directory=C:/Users/jsman/projects/personal/Intentgrove diff --exit-code -- [lockfiles, manifests, approved artifacts, gates, Darwin adapters, packaging scripts/config]
+Exit 0, no output. Exact paths and final hash checks recorded in final-static-checks.txt.
+
+Historical Mac evidence reconciliation:
+Existing implementation-logs/macos-full-extraction.txt and macos-watchers-retry.txt retain the watcher failures.
+docs/implementation-status-2026-10-05.md reports a later native-host.log PASS (170 executions/8 ignored).
+The referenced docs/status-audit-2026-10-05/native-host.log is absent in this checkout.
+No current Mac suite, packaged app/XPC/lifecycle or Windows app/DPI/package was run.
+
+Native/UI editing gates unchanged and closed. Safe-save not implemented pending mandated native experiments.
+No package constructed. No tools installed, policies changed, CI edited, schemas/contracts migrated,
+dependencies upgraded/added, commit/push, app install, signing or publication performed.

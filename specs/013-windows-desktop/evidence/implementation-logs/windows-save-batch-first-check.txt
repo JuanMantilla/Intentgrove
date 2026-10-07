@@ -1,0 +1,1255 @@
+   Compiling vswhom-sys v0.1.3
+   Compiling vswhom v0.1.0
+   Compiling embed-resource v3.0.11
+   Compiling tauri-winres v0.3.6
+   Compiling tauri-build v2.6.3
+   Compiling tauri v2.11.6
+   Compiling md_reader v0.1.0 (C:\Users\jsman\projects\personal\Intentgrove\src-tauri)
+   Compiling tauri-plugin-fs v2.5.2
+   Compiling tauri-plugin-dialog v2.7.3
+warning: unused imports: `CStr` and `CString`
+ --> src\image.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `read_page`
+  --> src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused import: `super::*`
+   --> src\native_entry.rs:130:9
+    |
+130 |     use super::*;
+    |         ^^^^^^^^
+
+warning: unused import: `std::fs`
+   --> src\native_entry.rs:131:9
+    |
+131 |     use std::fs;
+    |         ^^^^^^^
+
+warning: unused import: `crate::scope::open_relative`
+   --> src\recovery.rs:562:9
+    |
+562 |     use crate::scope::open_relative;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `code`
+   --> src\lib.rs:368:58
+    |
+368 |             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+    |                                                          ^^^^-
+    |                                                          |
+    |                                                          help: try removing the field
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `set_native_menu_state` is never used
+  --> src\lib.rs:73:4
+   |
+73 | fn set_native_menu_state(close_tab: bool, save: bool, find: bool, reload: bool, locale: String) -> scope::AppResult<()> {
+   |    ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `read_page` is never used
+   --> src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: constant `MAX_RESPONSE_BYTES` is never used
+  --> src\image.rs:15:7
+   |
+15 | const MAX_RESPONSE_BYTES: usize = 8 * 1024 * 1024;
+   |       ^^^^^^^^^^^^^^^^^^
+
+warning: static `DECODE_LOCK` is never used
+  --> src\image.rs:16:8
+   |
+16 | static DECODE_LOCK: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^^^^^
+
+warning: methods `wait_for_hint` and `reconcile_visible` are never used
+   --> src\refresh.rs:125:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: methods `reselect_root` and `reselect_explicit_file` are never used
+   --> src\state.rs:254:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `name`
+   --> src\save_copies.rs:204:13
+    |
+204 |         for name in ["old.bak", "race.pending"] {
+    |             ^^^^ help: if this is intentional, prefix it with an underscore: `_name`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `code`
+   --> src\lib.rs:368:58
+    |
+368 |             if let tauri::RunEvent::ExitRequested { api, code, .. } = event {
+    |                                                          ^^^^-
+    |                                                          |
+    |                                                          help: try removing the field
+
+warning: function `session_for` is never used
+   --> src\recovery.rs:585:8
+    |
+585 |     fn session_for(record: &RecoveryPayload, owner: &str) -> EditSession {
+    |        ^^^^^^^^^^^
+
+warning: `md_reader` (lib test) generated 14 warnings (8 duplicates) (run `cargo fix --lib -p md_reader --tests` to apply 4 suggestions)
+warning: `md_reader` (lib) generated 9 warnings (run `cargo fix --lib -p md_reader` to apply 3 suggestions)
+warning: unused import: `windows_save::*`
+  --> tests\..\src\platform\mod.rs:81:16
+   |
+81 | pub(crate) use windows_save::*;
+   |                ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `read_page`
+  --> tests\..\src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^
+
+warning: unused import: `crate::platform::read_search_entries`
+  --> tests\..\src\scope.rs:37:16
+   |
+37 | pub(crate) use crate::platform::read_search_entries;
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `read_page` and `read_snapshot_entries`
+  --> tests\..\src\scope.rs:36:73
+   |
+36 | pub use crate::platform::{open_selected, open_relative, identity, size, read_page, read_snapshot_entries};
+   |                                                                         ^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `bounded_record_path` is never used
+  --> tests\..\src\platform\mod.rs:37:15
+   |
+37 | pub(crate) fn bounded_record_path(path: &str, max_bytes: usize) -> bool {
+   |               ^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `require_editing` is never used
+  --> tests\..\src\platform\mod.rs:82:15
+   |
+82 | pub(crate) fn require_editing() -> crate::scope::AppResult<()> {
+   |               ^^^^^^^^^^^^^^^
+
+warning: function `rename_file` is never used
+   --> tests\..\src\platform\windows.rs:154:15
+    |
+154 | pub(super) fn rename_file(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+    |               ^^^^^^^^^^^
+
+warning: function `rename_document` is never used
+   --> tests\..\src\platform\windows.rs:157:15
+    |
+157 | pub(super) fn rename_document(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `rename_with_flags` is never used
+   --> tests\..\src\platform\windows.rs:164:4
+    |
+164 | fn rename_with_flags(file: &File, parent: &File, target: &str, flags: u32,
+    |    ^^^^^^^^^^^^^^^^^
+
+warning: function `entries` is never used
+   --> tests\..\src\platform\windows.rs:372:4
+    |
+372 | fn entries(
+    |    ^^^^^^^
+
+warning: function `read_snapshot_entries` is never used
+   --> tests\..\src\platform\windows.rs:467:8
+    |
+467 | pub fn read_snapshot_entries(dir: &File, cancelled: impl Fn() -> bool) -> AppResult<Vec<Entry>> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `read_search_entries` is never used
+   --> tests\..\src\platform\windows.rs:470:15
+    |
+470 | pub(crate) fn read_search_entries(
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `read_page` is never used
+   --> tests\..\src\platform\windows.rs:476:8
+    |
+476 | pub fn read_page(
+    |        ^^^^^^^^^
+
+warning: struct `FixtureDir` is never constructed
+ --> tests\..\src\platform\test_support.rs:5:19
+  |
+5 | pub(crate) struct FixtureDir {
+  |                   ^^^^^^^^^^
+
+warning: associated items `new` and `path` are never used
+  --> tests\..\src\platform\test_support.rs:10:19
+   |
+9  | impl FixtureDir {
+   | --------------- associated items in this implementation
+10 |     pub(crate) fn new(prefix: &str) -> Self {
+   |                   ^^^
+...
+17 |     pub(crate) fn path(&self) -> &Path { &self.path }
+   |                   ^^^^
+
+warning: struct `DirectoryLink` is never constructed
+  --> tests\..\src\platform\test_support.rs:39:19
+   |
+39 | pub(crate) struct DirectoryLink(PathBuf);
+   |                   ^^^^^^^^^^^^^
+
+warning: function `directory_link` is never used
+  --> tests\..\src\platform\test_support.rs:48:15
+   |
+48 | pub(crate) fn directory_link(target: &Path, link: &Path) -> io::Result<DirectoryLink> {
+   |               ^^^^^^^^^^^^^^
+
+warning: struct `StorageLock` is never constructed
+ --> tests\..\src\platform\storage.rs:5:19
+  |
+5 | pub(crate) struct StorageLock {
+  |                   ^^^^^^^^^^^
+
+warning: struct `LocalAllocation` is never constructed
+  --> tests\..\src\platform\windows_storage.rs:21:19
+   |
+21 | pub(crate) struct LocalAllocation(pub(crate) *mut std::ffi::c_void);
+   |                   ^^^^^^^^^^^^^^^
+
+warning: function `user_sid` is never used
+  --> tests\..\src\platform\windows_storage.rs:31:4
+   |
+31 | fn user_sid() -> AppResult<Vec<u8>> {
+   |    ^^^^^^^^
+
+warning: function `descriptor` is never used
+  --> tests\..\src\platform\windows_storage.rs:70:15
+   |
+70 | pub(crate) fn descriptor() -> AppResult<LocalAllocation> {
+   |               ^^^^^^^^^^
+
+warning: function `verify_private` is never used
+   --> tests\..\src\platform\windows_storage.rs:100:4
+    |
+100 | fn verify_private(file: &File, directory: bool) -> AppResult<()> {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `parent_name` is never used
+   --> tests\..\src\platform\windows_storage.rs:198:4
+    |
+198 | fn parent_name(path: &Path) -> AppResult<(File, String)> {
+    |    ^^^^^^^^^^^
+
+warning: function `ensure_private_dir` is never used
+   --> tests\..\src\platform\windows_storage.rs:213:15
+    |
+213 | pub(crate) fn ensure_private_dir(path: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^^
+
+warning: function `read_document` is never used
+   --> tests\..\src\document.rs:219:14
+    |
+219 | pub async fn read_document(
+    |              ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `create_private_file` is never used
+   --> tests\..\src\platform\windows_storage.rs:246:15
+    |
+246 | pub(crate) fn create_private_file(path: &Path) -> AppResult<File> {
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `verify_private_file` is never used
+   --> tests\..\src\platform\windows_storage.rs:261:15
+    |
+261 | pub(crate) fn verify_private_file(file: &File) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `bounded_record_path` is never used
+  --> tests\..\src\platform\mod.rs:37:15
+   |
+37 | pub(crate) fn bounded_record_path(path: &str, max_bytes: usize) -> bool {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `lock_private` is never used
+   --> tests\..\src\platform\windows_storage.rs:264:15
+    |
+264 | pub(crate) fn lock_private(
+    |               ^^^^^^^^^^^^
+
+warning: function `sync_private_directory` is never used
+   --> tests\..\src\platform\windows_storage.rs:311:15
+    |
+311 | pub(crate) fn sync_private_directory(dir: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `publish_private` is never used
+   --> tests\..\src\platform\windows_storage.rs:317:15
+    |
+317 | pub(crate) fn publish_private(from: &Path, to: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `preserve_previous` is never used
+   --> tests\..\src\platform\windows_storage.rs:363:15
+    |
+363 | pub(crate) fn preserve_previous(from: &Path, to: &Path) -> AppResult<()> {
+    |               ^^^^^^^^^^^^^^^^^
+
+warning: function `remove_private_file` is never used
+   --> tests\..\src\platform\windows_storage.rs:384:15
+    |
+384 | pub(crate) fn remove_private_file(path: &Path) -> std::io::Result<()> {
+    |               ^^^^^^^^^^^^^^^^^^^
+
+warning: struct `DocumentStage` is never constructed
+  --> tests\..\src\platform\windows_save.rs:11:19
+   |
+11 | pub(crate) struct DocumentStage(std::cell::RefCell<Option<File>>);
+   |                   ^^^^^^^^^^^^^
+
+warning: struct `Security` is never constructed
+  --> tests\..\src\platform\windows_save.rs:13:8
+   |
+13 | struct Security {
+   |        ^^^^^^^^
+
+warning: function `sid_bytes` is never used
+  --> tests\..\src\platform\windows_save.rs:20:4
+   |
+20 | fn sid_bytes(sid: *mut std::ffi::c_void) -> AppResult<Vec<u8>> {
+   |    ^^^^^^^^^
+
+warning: function `security` is never used
+  --> tests\..\src\platform\windows_save.rs:30:4
+   |
+30 | fn security(file: &File) -> AppResult<Security> {
+   |    ^^^^^^^^
+
+warning: function `same_security` is never used
+  --> tests\..\src\platform\windows_save.rs:51:4
+   |
+51 | fn same_security(left: &Security, right: &Security) -> bool {
+   |    ^^^^^^^^^^^^^
+
+warning: function `document_metadata` is never used
+  --> tests\..\src\platform\windows_save.rs:54:4
+   |
+54 | fn document_metadata(file: &File) -> AppResult<(FILE_BASIC_INFO, Security)> {
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: function `delete_owned` is never used
+  --> tests\..\src\platform\windows_save.rs:85:4
+   |
+85 | fn delete_owned(file: &File) -> AppResult<()> {
+   |    ^^^^^^^^^^^^
+
+warning: function `stage_name` is never used
+  --> tests\..\src\platform\windows_save.rs:93:4
+   |
+93 | fn stage_name(name: &str) -> AppResult<()> {
+   |    ^^^^^^^^^^
+
+warning: function `open_document_for_commit` is never used
+   --> tests\..\src\platform\windows_save.rs:101:15
+    |
+101 | pub(crate) fn open_document_for_commit(parent: &File, target: &str) -> AppResult<File> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `stage_document_bytes` is never used
+   --> tests\..\src\platform\windows_save.rs:113:15
+    |
+113 | pub(crate) fn stage_document_bytes(parent: &File, bytes: &[u8], source: Option<&File>) -> AppResult<(String, DocumentStage)> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `stage_with_writer` is never used
+   --> tests\..\src\platform\windows_save.rs:116:4
+    |
+116 | fn stage_with_writer(parent: &File, bytes: &[u8], source: Option<&File>, write: impl FnOnce(&mut File, &[u8]) -> std::io::Result<()>) -> ...
+    |    ^^^^^^^^^^^^^^^^^
+
+warning: function `stage_fixture_with_writer` is never used
+   --> tests\..\src\platform\windows_save.rs:158:15
+    |
+158 | pub(crate) fn stage_fixture_with_writer(parent: &File, bytes: &[u8], source: Option<&File>, write: impl FnOnce(&mut File, &[u8]) -> std::...
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `remove_document_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:161:15
+    |
+161 | pub(crate) fn remove_document_stage(parent: &File, stage: &DocumentStage, name: &str) {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `publish` is never used
+   --> tests\..\src\platform\windows_save.rs:173:4
+    |
+173 | fn publish(parent: &File, stage: &DocumentStage, name: &str, target: &str, replace: bool) -> AppResult<()> {
+    |    ^^^^^^^
+
+warning: function `rename_document_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:204:15
+    |
+204 | pub(crate) fn rename_document_stage(parent: &File, stage: &DocumentStage, name: &str, target: &str) -> AppResult<()> { publish(parent, st...
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `link_document_stage_new` is never used
+   --> tests\..\src\platform\windows_save.rs:205:15
+    |
+205 | pub(crate) fn link_document_stage_new(parent: &File, stage: &DocumentStage, name: &str, target: &str) -> AppResult<()> { publish(parent, ...
+    |               ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reopen_fixture_stage` is never used
+   --> tests\..\src\platform\windows_save.rs:208:15
+    |
+208 | pub(crate) fn reopen_fixture_stage(parent: &File, name: &str) -> AppResult<DocumentStage> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `with_fixture_creation_denied` is never used
+   --> tests\..\src\platform\windows_save.rs:218:15
+    |
+218 | pub(crate) fn with_fixture_creation_denied<T>(path: &std::path::Path, action: impl FnOnce() -> T) -> AppResult<T> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `metadata_fingerprint` is never used
+   --> tests\..\src\platform\windows_save.rs:267:15
+    |
+267 | pub(crate) fn metadata_fingerprint(file: &File) -> AppResult<(i64, u32, Vec<u8>, Vec<u8>, Vec<u8>, bool)> {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `read_document` is never used
+   --> tests\..\src\document.rs:219:14
+    |
+219 | pub async fn read_document(
+    |              ^^^^^^^^^^^^^
+
+warning: function `image_format` is never used
+  --> tests\..\src\scope.rs:21:8
+   |
+21 | pub fn image_format(name: &str) -> Option<&'static str> {
+   |        ^^^^^^^^^^^^
+
+warning: function `excluded` is never used
+  --> tests\..\src\scope.rs:88:15
+   |
+88 | pub(crate) fn excluded(name: &str) -> bool {
+   |               ^^^^^^^^
+
+warning: field `pending_root` is never read
+  --> tests\..\src\state.rs:30:5
+   |
+23 | struct Registry {
+   |        -------- field in this struct
+...
+30 |     pending_root: Option<(String, PathBuf, Identity, u64)>,
+   |     ^^^^^^^^^^^^
+   |
+   = note: `Registry` has a derived impl for the trait `Default`, but this is intentionally ignored during dead code analysis
+
+warning: fields `id`, `root_id`, `segments`, `generation`, `stamp`, and `entries` are never read
+  --> tests\..\src\state.rs:87:9
+   |
+86 | pub struct DirectorySnapshot {
+   |            ----------------- fields in this struct
+87 |     pub id: String,
+   |         ^^
+88 |     pub root_id: String,
+   |         ^^^^^^^
+89 |     pub segments: Vec<String>,
+   |         ^^^^^^^^
+90 |     pub generation: u64,
+   |         ^^^^^^^^^^
+91 |     pub stamp: String,
+   |         ^^^^^
+92 |     pub entries: Arc<Vec<Entry>>,
+   |         ^^^^^^^
+   |
+   = note: `DirectorySnapshot` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: variant `Explicit` is never constructed
+  --> tests\..\src\state.rs:70:5
+   |
+65 | pub enum FileSource {
+   |          ---------- variant in this enum
+...
+70 |     Explicit {
+   |     ^^^^^^^^
+   |
+   = note: `FileSource` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+442 |     pub fn is_cancelled(&self, token: &str) -> bool {
+    |            ^^^^^^^^^^^^
+...
+449 |     pub fn generation(&self) -> AppResult<u64> {
+    |            ^^^^^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+...
+462 |     pub fn store_snapshot(
+    |            ^^^^^^^^^^^^^^
+...
+494 |     pub fn snapshot(&self, id: &str) -> AppResult<DirectorySnapshot> {
+    |            ^^^^^^^^
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+197 |     pub fn register_explicit_file(&self, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+206 |     fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+442 |     pub fn is_cancelled(&self, token: &str) -> bool {
+    |            ^^^^^^^^^^^^
+...
+449 |     pub fn generation(&self) -> AppResult<u64> {
+    |            ^^^^^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+...
+462 |     pub fn store_snapshot(
+    |            ^^^^^^^^^^^^^^
+...
+494 |     pub fn snapshot(&self, id: &str) -> AppResult<DirectorySnapshot> {
+    |            ^^^^^^^^
+
+warning: method `path` is never used
+  --> tests\..\src\platform\test_support.rs:17:19
+   |
+9  | impl FixtureDir {
+   | --------------- method in this implementation
+...
+17 |     pub(crate) fn path(&self) -> &Path { &self.path }
+   |                   ^^^^
+
+warning: function `list_entries` is never used
+  --> tests\..\src\listing.rs:78:14
+   |
+78 | pub async fn list_entries(
+   |              ^^^^^^^^^^^^
+
+warning: function `cancel_listing` is never used
+   --> tests\..\src\listing.rs:102:8
+    |
+102 | pub fn cancel_listing(state: tauri::State<'_, AppState>, token: String) -> AppResult<()> {
+    |        ^^^^^^^^^^^^^^
+
+warning: enum `RefreshNotice` is never used
+  --> tests\..\src\refresh.rs:15:10
+   |
+15 | pub enum RefreshNotice {
+   |          ^^^^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: function `checked_at` is never used
+  --> tests\..\src\refresh.rs:37:4
+   |
+37 | fn checked_at() -> u128 {
+   |    ^^^^^^^^^^
+
+warning: fields `state`, `watchers`, `watched_explicit_files`, `file_versions`, `directory_stamps`, and `generation` are never read
+  --> tests\..\src\refresh.rs:45:5
+   |
+44 | pub struct RefreshCore {
+   |            ----------- fields in this struct
+45 |     state: AppState,
+   |     ^^^^^
+...
+48 |     watchers: Vec<RecommendedWatcher>,
+   |     ^^^^^^^^
+49 |     watched_explicit_files: HashSet<String>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+50 |     file_versions: HashMap<String, String>,
+   |     ^^^^^^^^^^^^^
+51 |     directory_stamps: HashMap<(String, Vec<String>), String>,
+   |     ^^^^^^^^^^^^^^^^
+52 |     generation: u64,
+   |     ^^^^^^^^^^
+
+warning: methods `watch_root`, `watch_explicit_file`, `stop_watches`, `wait_for_hint`, `reconcile_visible`, and `reconcile_visible_scopes` are never used
+   --> tests\..\src\refresh.rs:70:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+70  |     pub fn watch_root(&mut self, root_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^
+...
+93  |     pub fn watch_explicit_file(&mut self, file_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+117 |     pub fn stop_watches(&mut self) {
+    |            ^^^^^^^^^^^^
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+...
+161 |     pub fn reconcile_visible(
+    |            ^^^^^^^^^^^^^^^^^
+...
+170 |     pub fn reconcile_visible_scopes(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `root_id` and `segments` are never read
+   --> tests\..\src\refresh.rs:246:9
+    |
+245 |     RootFile {
+    |     -------- fields in this variant
+246 |         root_id: String,
+    |         ^^^^^^^
+247 |         segments: Vec<String>,
+    |         ^^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `root_id` and `segments` are never read
+   --> tests\..\src\refresh.rs:250:9
+    |
+249 |     Folder {
+    |     ------ fields in this variant
+250 |         root_id: String,
+    |         ^^^^^^^
+251 |         segments: Vec<String>,
+    |         ^^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `file_id` is never read
+   --> tests\..\src\refresh.rs:254:9
+    |
+253 |     ExplicitFile {
+    |     ------------ field in this variant
+254 |         file_id: String,
+    |         ^^^^^^^
+    |
+    = note: `ReloadTarget` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReloadProgress` is never constructed
+   --> tests\..\src\refresh.rs:259:12
+    |
+259 | pub struct ReloadProgress {
+    |            ^^^^^^^^^^^^^^
+    |
+    = note: `ReloadProgress` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: enum `ReloadUpdate` is never used
+   --> tests\..\src\refresh.rs:267:10
+    |
+267 | pub enum ReloadUpdate {
+    |          ^^^^^^^^^^^^
+    |
+    = note: `ReloadUpdate` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReloadOutcome` is never constructed
+   --> tests\..\src\refresh.rs:277:12
+    |
+277 | pub struct ReloadOutcome {
+    |            ^^^^^^^^^^^^^
+    |
+    = note: `ReloadOutcome` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: function `file_in_folder` is never used
+   --> tests\..\src\refresh.rs:284:4
+    |
+284 | fn file_in_folder(grant: &crate::state::FileGrant, root_id: &str, folder: &[String]) -> bool {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `run_reload` is never used
+   --> tests\..\src\refresh.rs:291:8
+    |
+291 | pub fn run_reload(
+    |        ^^^^^^^^^^
+
+warning: fields `generation`, `root_id`, `open_file_ids`, and `expanded_directories` are never read
+   --> tests\..\src\refresh.rs:474:5
+    |
+473 | struct VisibleState {
+    |        ------------ fields in this struct
+474 |     generation: u64,
+    |     ^^^^^^^^^^
+475 |     root_id: Option<String>,
+    |     ^^^^^^^
+476 |     open_file_ids: Vec<String>,
+    |     ^^^^^^^^^^^^^
+477 |     expanded_directories: Vec<Vec<String>>,
+    |     ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `VisibleState` has derived impls for the traits `Default` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `state`, `visible`, `running`, `watch_failure`, and `reload_jobs` are never read
+   --> tests\..\src\refresh.rs:482:5
+    |
+481 | pub struct RefreshService {
+    |            -------------- fields in this struct
+482 |     state: AppState,
+    |     ^^^^^
+483 |     core: Arc<Mutex<RefreshCore>>,
+484 |     visible: Arc<Mutex<VisibleState>>,
+    |     ^^^^^^^
+485 |     running: Arc<AtomicBool>,
+    |     ^^^^^^^
+486 |     watch_failure: Arc<Mutex<Option<String>>>,
+    |     ^^^^^^^^^^^^^
+487 |     reload_jobs: Arc<Mutex<HashMap<String, Arc<AtomicBool>>>>,
+    |     ^^^^^^^^^^^
+    |
+    = note: `RefreshService` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: struct `FileChangedPayload` is never constructed
+   --> tests\..\src\refresh.rs:492:8
+    |
+492 | struct FileChangedPayload {
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: struct `DirectoryChangedPayload` is never constructed
+   --> tests\..\src\refresh.rs:502:8
+    |
+502 | struct DirectoryChangedPayload {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ItemStatusPayload` is never constructed
+   --> tests\..\src\refresh.rs:511:8
+    |
+511 | struct ItemStatusPayload {
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: enum `StatusTargetRef` is never used
+   --> tests\..\src\refresh.rs:521:6
+    |
+521 | enum StatusTargetRef {
+    |      ^^^^^^^^^^^^^^^
+
+warning: struct `JobProgressPayload` is never constructed
+   --> tests\..\src\refresh.rs:532:8
+    |
+532 | struct JobProgressPayload {
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `status_target` is never used
+   --> tests\..\src\refresh.rs:546:4
+    |
+546 | fn status_target(target: &ReloadTarget) -> StatusTargetRef {
+    |    ^^^^^^^^^^^^^
+
+warning: function `emit_progress` is never used
+   --> tests\..\src\refresh.rs:557:4
+    |
+557 | fn emit_progress(app: &AppHandle, generation: u64, job_id: &str, progress: ReloadProgress) {
+    |    ^^^^^^^^^^^^^
+
+warning: function `emit_notices` is never used
+   --> tests\..\src\refresh.rs:579:4
+    |
+579 | fn emit_notices(app: &AppHandle, notices: Vec<RefreshNotice>) -> AppResult<()> {
+    |    ^^^^^^^^^^^^
+
+warning: multiple methods are never used
+   --> tests\..\src\refresh.rs:672:12
+    |
+647 | impl RefreshService {
+    | ------------------- methods in this implementation
+...
+672 |     pub fn start_worker(&self, app: AppHandle) {
+    |            ^^^^^^^^^^^^
+...
+728 |     pub fn watch_root(&self, root_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^
+...
+736 |     pub fn watch_explicit_file(&self, file_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+744 |     pub fn stop(&self) {
+    |            ^^^^
+...
+756 |     pub fn suspend_watches(&self) {
+    |            ^^^^^^^^^^^^^^^
+...
+764 |     pub fn reload_now(
+    |            ^^^^^^^^^^
+...
+927 |     pub fn cancel_reload_now(
+    |            ^^^^^^^^^^^^^^^^^
+...
+948 |     pub fn reconcile_visible_now(
+    |            ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reload_item` is never used
+    --> tests\..\src\refresh.rs:1020:14
+     |
+1020 | pub async fn reload_item(
+     |              ^^^^^^^^^^^
+
+warning: function `cancel_reload` is never used
+    --> tests\..\src\refresh.rs:1030:8
+     |
+1030 | pub fn cancel_reload(
+     |        ^^^^^^^^^^^^^
+
+warning: function `reconcile_visible_state` is never used
+    --> tests\..\src\refresh.rs:1039:14
+     |
+1039 | pub async fn reconcile_visible_state(
+     |              ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `generation`, `disk_version`, `identity_key`, and `checked_at` are never read
+  --> tests\..\src\refresh.rs:17:9
+   |
+16 |     FileChanged {
+   |     ----------- fields in this variant
+17 |         generation: u64,
+   |         ^^^^^^^^^^
+18 |         file_id: String,
+19 |         disk_version: String,
+   |         ^^^^^^^^^^^^
+20 |         identity_key: String,
+   |         ^^^^^^^^^^^^
+21 |         checked_at: u128,
+   |         ^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: function `get_confirmed_document_impl` is never used
+    --> tests\..\src\refresh.rs:1061:8
+     |
+1061 | pub fn get_confirmed_document_impl(
+     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `get_confirmed_document` is never used
+    --> tests\..\src\refresh.rs:1075:14
+     |
+1075 | pub async fn get_confirmed_document(
+     |              ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `generation`, `root_id`, and `snapshot_id` are never read
+  --> tests\..\src\refresh.rs:24:9
+   |
+23 |     DirectoryChanged {
+   |     ---------------- fields in this variant
+24 |         generation: u64,
+   |         ^^^^^^^^^^
+25 |         root_id: String,
+   |         ^^^^^^^
+26 |         segments: Vec<String>,
+27 |         snapshot_id: String,
+   |         ^^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `generation`, `file_id`, `reason_code`, and `checked_at` are never read
+  --> tests\..\src\refresh.rs:30:9
+   |
+29 |     Uncertain {
+   |     --------- fields in this variant
+30 |         generation: u64,
+   |         ^^^^^^^^^^
+31 |         file_id: String,
+   |         ^^^^^^^
+32 |         reason_code: &'static str,
+   |         ^^^^^^^^^^^
+33 |         checked_at: u128,
+   |         ^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `watchers` and `watched_explicit_files` are never read
+  --> tests\..\src\refresh.rs:48:5
+   |
+44 | pub struct RefreshCore {
+   |            ----------- fields in this struct
+...
+48 |     watchers: Vec<RecommendedWatcher>,
+   |     ^^^^^^^^
+49 |     watched_explicit_files: HashSet<String>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: methods `watch_root`, `watch_explicit_file`, `stop_watches`, and `wait_for_hint` are never used
+   --> tests\..\src\refresh.rs:70:12
+    |
+55  | impl RefreshCore {
+    | ---------------- methods in this implementation
+...
+70  |     pub fn watch_root(&mut self, root_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^
+...
+93  |     pub fn watch_explicit_file(&mut self, file_id: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+117 |     pub fn stop_watches(&mut self) {
+    |            ^^^^^^^^^^^^
+...
+125 |     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+    |            ^^^^^^^^^^^^^
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `examined_count`, `confirmed_count`, `current_segments`, and `state` are never read
+   --> tests\..\src\refresh.rs:260:9
+    |
+259 | pub struct ReloadProgress {
+    |            -------------- fields in this struct
+260 |     pub examined_count: usize,
+    |         ^^^^^^^^^^^^^^
+261 |     pub confirmed_count: usize,
+    |         ^^^^^^^^^^^^^^^
+262 |     pub current_segments: Option<Vec<String>>,
+    |         ^^^^^^^^^^^^^^^^
+263 |     pub state: &'static str,
+    |         ^^^^^
+    |
+    = note: `ReloadProgress` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `target` and `state` are never read
+   --> tests\..\src\refresh.rs:270:9
+    |
+269 |     Status {
+    |     ------ fields in this variant
+270 |         target: ReloadTarget,
+    |         ^^^^^^
+271 |         state: &'static str,
+    |         ^^^^^
+    |
+    = note: `ReloadUpdate` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `0` is never read
+   --> tests\..\src\refresh.rs:273:14
+    |
+273 |     Progress(ReloadProgress),
+    |     -------- ^^^^^^^^^^^^^^
+    |     |
+    |     field in this variant
+    |
+    = note: `ReloadUpdate` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+    |
+273 -     Progress(ReloadProgress),
+273 +     Progress(()),
+    |
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `generation`, `file_id`, `disk_version`, `identity_key`, and `checked_at` are never read
+  --> tests\..\src\refresh.rs:17:9
+   |
+16 |     FileChanged {
+   |     ----------- fields in this variant
+17 |         generation: u64,
+   |         ^^^^^^^^^^
+18 |         file_id: String,
+   |         ^^^^^^^
+19 |         disk_version: String,
+   |         ^^^^^^^^^^^^
+20 |         identity_key: String,
+   |         ^^^^^^^^^^^^
+21 |         checked_at: u128,
+   |         ^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `generation`, `root_id`, `segments`, and `snapshot_id` are never read
+  --> tests\..\src\refresh.rs:24:9
+   |
+23 |     DirectoryChanged {
+   |     ---------------- fields in this variant
+24 |         generation: u64,
+   |         ^^^^^^^^^^
+25 |         root_id: String,
+   |         ^^^^^^^
+26 |         segments: Vec<String>,
+   |         ^^^^^^^^
+27 |         snapshot_id: String,
+   |         ^^^^^^^^^^^
+   |
+   = note: `RefreshNotice` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: multiple methods are never used
+   --> tests\..\src\state.rs:105:12
+    |
+104 | impl AppState {
+    | ------------- methods in this implementation
+105 |     pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+    |            ^^^^^^^^^^^^
+...
+116 |     pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+150 |     pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+    |                   ^^^^^^^^^^^^
+...
+154 |     pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^
+...
+197 |     pub fn register_explicit_file(&self, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+201 |     pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+206 |     fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+254 |     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^
+...
+258 |     pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^
+...
+300 |     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+306 |     pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+330 |     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
+    |            ^^^^^^^^^^^^^^^^^
+...
+348 |     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
+    |                   ^^^^^^^^^^^^^
+...
+377 |     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+433 |     pub fn cancel(&self, token: String) -> AppResult<()> {
+    |            ^^^^^^
+...
+453 |     pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+    |                   ^^^^^^^^^^^^^^^
+...
+457 |     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `watch_explicit_file` is never used
+  --> tests\..\src\refresh.rs:93:12
+   |
+55 | impl RefreshCore {
+   | ---------------- method in this implementation
+...
+93 |     pub fn watch_explicit_file(&mut self, file_id: &str) -> AppResult<()> {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+warning: `md_reader` (test "refresh_version") generated 55 warnings (2 duplicates) (run `cargo fix --test "refresh_version"` to apply 1 suggestion)
+warning: `md_reader` (test "windows_scoped") generated 36 warnings (29 duplicates) (run `cargo fix --test "windows_scoped"` to apply 3 suggestions)
+warning: `md_reader` (test "refresh_recovery") generated 80 warnings (49 duplicates)
+warning: `md_reader` (test "manual_reload") generated 75 warnings (65 duplicates)
+warning: `md_reader` (test "refresh_conflict") generated 81 warnings (78 duplicates)
+warning: `md_reader` (test "automatic_refresh") generated 80 warnings (79 duplicates)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.24s

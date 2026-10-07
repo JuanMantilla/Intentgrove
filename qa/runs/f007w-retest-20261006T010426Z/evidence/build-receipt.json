@@ -1,0 +1,233 @@
+{
+  "started": "2026-10-06T01:06:06.306Z",
+  "status": "PASS",
+  "type": "unsigned x64 release, no bundle",
+  "target": "x86_64-pc-windows-msvc",
+  "toolchain": "1.88.0",
+  "desktopGate": "INCOMPLETE",
+  "commands": [
+    {
+      "label": "Rust toolchains",
+      "executable": "C:\\Users\\jsman\\.cargo\\bin\\rustup.exe",
+      "arguments": [
+        "toolchain",
+        "list"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/01-rust-toolchains.txt"
+    },
+    {
+      "label": "Rust installed targets",
+      "executable": "C:\\Users\\jsman\\.cargo\\bin\\rustup.exe",
+      "arguments": [
+        "target",
+        "list",
+        "--installed",
+        "--toolchain",
+        "1.88.0"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/02-rust-installed-targets.txt"
+    },
+    {
+      "label": "Find MSVC tools",
+      "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe",
+      "arguments": [
+        "-latest",
+        "-products",
+        "*",
+        "-requires",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+        "-property",
+        "installationPath"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/03-find-msvc-tools.txt"
+    },
+    {
+      "label": "Rust compiler version",
+      "executable": "C:\\Users\\jsman\\.cargo\\bin\\rustc.exe",
+      "arguments": [
+        "+1.88.0",
+        "--version"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/04-rust-compiler-version.txt"
+    },
+    {
+      "label": "npm version",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd --version"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/05-npm-version.txt"
+    },
+    {
+      "label": "MSVC linker and PE inspector",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "where.exe link.exe && where.exe dumpbin.exe"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/06-msvc-linker-and-pe-inspector.txt"
+    },
+    {
+      "label": "Inspect installed npm dependencies",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd ls --depth=0"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/07-inspect-installed-npm-dependencies.txt"
+    },
+    {
+      "label": "Frontend tests",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd test"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/08-frontend-tests.txt"
+    },
+    {
+      "label": "Frontend production build",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd run build"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/09-frontend-production-build.txt"
+    },
+    {
+      "label": "Worker bundle check",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd run test:bundle-worker"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/10-worker-bundle-check.txt"
+    },
+    {
+      "label": "Windows all-target check",
+      "executable": "C:\\Users\\jsman\\.cargo\\bin\\cargo.exe",
+      "arguments": [
+        "+1.88.0",
+        "check",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--locked",
+        "--all-targets",
+        "--target",
+        "x86_64-pc-windows-msvc"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/11-windows-all-target-check.txt"
+    },
+    {
+      "label": "Windows release build",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "npm.cmd run tauri -- build --target x86_64-pc-windows-msvc --no-sign --config \"%INTENTGROVE_WINDOWS_BUILD_CONFIG%\" --no-bundle -- --locked"
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/12-windows-release-build.txt"
+    },
+    {
+      "label": "Inspect executable dependencies",
+      "executable": "C:\\Windows\\system32\\cmd.exe",
+      "arguments": [
+        "/d",
+        "/v:off",
+        "/s",
+        "/c",
+        "dumpbin.exe /dependents \"%INTENTGROVE_WINDOWS_EXE%\""
+      ],
+      "exit": 0,
+      "signal": null,
+      "log": "logs/13-inspect-executable-dependencies.txt"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "Intentgrove.exe",
+      "bytes": 15969792,
+      "sha256": "ad594484d4687ca994354cefc48ff2ab10ad81e577e185f0597e9ad13517906c"
+    }
+  ],
+  "applicationInstalled": false,
+  "signed": false,
+  "published": false,
+  "desktopTest": "NOT RUN by builder",
+  "macOS": "NOT RUN",
+  "linux": "UNSUPPORTED",
+  "nativeTests": "NOT RUN",
+  "toolVersions": {
+    "node": "v24.20.0",
+    "rust": "rustc 1.88.0 (6b00bc388 2025-06-23)",
+    "msvc": "14.44.35207",
+    "sdk": "10.0.26100.0\\",
+    "visualStudio": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools",
+    "npm": "11.19.0"
+  },
+  "bundlerTools": "Tauri-managed official NSIS tools, project target cache; acquired only during bundling",
+  "inputs": {
+    "package.json": "7995275556cd539c3987d6d4fb13689ae1c1ddc2bab61483db562adb977c3d21",
+    "package-lock.json": "6992e8251ad5f04fc335c8a79c03878b6cc86821cf50f15f033d143bc9ae345a",
+    "src-tauri/Cargo.toml": "b98eb68ef5665dd0d9e6a7e297e566608d532597595767e864a60c4cae1524d0",
+    "src-tauri/Cargo.lock": "590a8085ed282c2f89abe8b93e3da8eef55f6b06dddbd717521a6ca89a24d584",
+    "src-tauri/tauri.conf.json": "13f72918a6f8a1284cda498147ad1d5c0db0e3f41a16b7b4fb3f92f2fb521477",
+    "src-tauri/tauri.windows.conf.json": "3a96574518aefef8b4dc1b77249f19cdc7228090cbd138ecd2b277a2d3ac3b8d",
+    "scripts/build-windows.mjs": "6740ed4a4d14f4fdcf8fdc963af040619abf383e233997e80fb09f20493387eb",
+    "build-windows.cmd": "d739beaaee30ac98284431bc56b403a7f81ebed16ac1796e7463a3e4d9c63ee3"
+  },
+  "identifier": "com.juanmantilla.markdownworkspace.windowsfixture20261006T010606305Z4e8e006d",
+  "configurationOverride": {
+    "bundle": {
+      "useLocalToolsDir": true,
+      "createUpdaterArtifacts": false
+    },
+    "identifier": "com.juanmantilla.markdownworkspace.windowsfixture20261006T010606305Z4e8e006d"
+  },
+  "finished": "2026-10-06T01:07:04.063Z"
+}

@@ -1,8 +1,12 @@
 import { commandPressed, shortcutHint, editingAvailable, isWindows } from "./platform";
+import { isTauri } from "@tauri-apps/api/core";
+import { getAppearance } from "./appearance";
+import { settingsApi, type SettingsGroup } from "./settings-contract";
+import { useSettingsOwner } from "./useSettingsOwner";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { api, readerError, type DirectoryEntry, type DocumentResponse, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
-import { errorText, t, type Locale } from "./i18n";
+import { errorText, sessionErrorText, t, type Locale } from "./i18n";
 import { useAppearance, type AppearanceMode } from "./appearance";
 import { useRetainedOverlay } from "./useRetainedOverlay";
 import MarkdownView, { exceedsRenderBudget, headingSlug } from "../reader/MarkdownView";
@@ -17,6 +21,7 @@ import StorageManagement from "./StorageManagement";
 import DocumentLocation from "./DocumentLocation";
 import ActionMenu from "./ActionMenu";
 import ReloadFeedback from "./ReloadFeedback";
+import ReadingSettings from "./ReadingSettings";
 import { tabFilename, distinguishingParent, workspaceSegments } from "./documentIdentity";
 import { editReducer, type SectionEdit } from "../workspace/editState";
 import { confirmCleanDocument, confirmDirectoryPage, noteDirectoryChange, noteFileChange, type Freshness } from "../workspace/refreshState";
@@ -80,6 +85,9 @@ export default function App() {
     try { return localStorage.getItem("md-reader-locale") === "es" ? "es" : "en"; }
     catch { return "en"; }
   });
+  const [localePersistenceWarning, setLocalePersistenceWarning] = useState(false);
+  const remoteLocale = useRef<Locale | null>(null);
+  const [sessionRetrying, setSessionRetrying] = useState(false);
   const [root, setRoot] = useState<GrantInfo | null>(null);
   const [rootProblem, setRootProblem] = useState<string | null>(null);
   const [directories, setDirectories] = useState<Record<string, DirectoryState>>({});
@@ -198,7 +206,22 @@ export default function App() {
   const sidebarWidthRef = useRef(264);
   const pendingTreeScroll = useRef<number | null>(null);
   const [markdownOnly, setMarkdownOnly] = useState(true);
-  const [notice, setNotice] = useState<string | null>(null);
+  const markdownOnlyRef = useRef(true);
+  const settingsInvoker = useRef<HTMLElement | null>(null);
+  function openSettings(group: SettingsGroup) {
+    if (!isTauri()) { setReadingSettingsOpen(open => !open); return; }
+    settingsInvoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : settingsTriggerRef.current;
+    void settingsApi.show(group).catch(error => setNotice(locale => errorText(locale, readerError(error).code)));
+  }
+  // Evaluate notice recipes in the current locale, including asynchronous errors.
+  const [noticeRecipe, setNoticeRecipe] = useState<((locale: Locale) => string) | null>(null);
+  function setNotice(recipe: ((locale: Locale) => string) | null) {
+    setNoticeRecipe(() => recipe);
+  }
+  const notice = noticeRecipe?.(locale);
+  const [sessionNotice, setSessionNotice] = useState<{
+    operation: "load" | "checkpoint" | "close"; code: string; diagnostic?: string
+  } | null>(null);
   const [findOpen, setFindOpen] = useState(false);
   const [findQuery, setFindQuery] = useState("");
   const [findOrdinal, setFindOrdinal] = useState(0);
@@ -264,8 +287,13 @@ export default function App() {
   useEffect(() => { priorRootRef.current = priorRoot; }, [priorRoot]);
   useEffect(() => { directoriesRef.current = directories; }, [directories]);
   useEffect(() => { localeRef.current = locale; }, [locale]);
+  function persistLocale(next: Locale) {
+    try { localStorage.setItem("md-reader-locale", next); setLocalePersistenceWarning(false); }
+    catch { setLocalePersistenceWarning(true); }
+  }
   useEffect(() => {
-    try { localStorage.setItem("md-reader-locale", locale); } catch { /* Keep reading available if app storage fails. */ }
+    if (remoteLocale.current === locale) remoteLocale.current = null;
+    else persistLocale(locale);
     document.documentElement.lang = locale;
   }, [locale]);
 
@@ -289,7 +317,7 @@ export default function App() {
   async function refreshNativeEntries() {
     if (typeof api.listNativeEntries !== "function") return;
     try { setNativeEntries(await api.listNativeEntries()); }
-    catch (error) { setNotice(errorText(localeRef.current, readerError(error).code)); }
+    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
   }
   useEffect(() => {
     void refreshNativeEntries();
@@ -304,14 +332,14 @@ export default function App() {
 
   async function dismissNativeEntry(id: string) {
     try { await api.dismissNativeEntry(id); await refreshNativeEntries(); }
-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
   }
 
   async function acceptNativeEntry(id: string) {
     const entry = nativeEntries.find((item) => item.id === id);
     if (!entry || busy) return;
     if (entry.errorCode || entry.kind === "unsupported") {
-      setNotice(errorText(locale, entry.errorCode ?? "unsupported_type"));
+      setNotice(noticeLocale => errorText(noticeLocale, entry.errorCode ?? "unsupported_type"));
       await dismissNativeEntry(id);
       return;
     }
@@ -335,7 +363,7 @@ export default function App() {
           { name: accepted.grant.name, path: accepted.grant.displayPath });
       }
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
       await refreshNativeEntries();
     } finally { setBusy(false); }
   }
@@ -360,19 +388,19 @@ export default function App() {
       await refreshRecents();
     } catch (error) {
       const code = readerError(error).code;
-      setNotice(code === "reselect_required" ? t(locale, "recentUnavailable") : errorText(locale, code));
+      setNotice(noticeLocale => code === "reselect_required" ? t(noticeLocale, "recentUnavailable") : errorText(noticeLocale, code));
       await refreshRecents();
     } finally { setBusy(false); }
   }
 
   async function removeRecent(id: string) {
     try { await api.removeRecentItem(id); await refreshRecents(); }
-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
   }
 
   async function clearRecents() {
     try { await api.clearRecentItems(true); setClearRecentsConfirm(false); await refreshRecents(); }
-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
   }
 
   function sessionSnapshot(): SessionCheckpointInput {
@@ -401,7 +429,7 @@ export default function App() {
         selected: currentTabs.find((tab) => tab.id === currentActive)?.request.segments ?? null,
         scrollTop: treeRef.current?.scrollTop ?? 0
       },
-      panel: { ...defaultSessionPanel, ...readingSettingsRef.current, sidebarOpen: sidebarOpenRef.current,
+      panel: { ...defaultSessionPanel, ...readingSettingsRef.current, documentsAndImagesOnly: markdownOnlyRef.current, sidebarOpen: sidebarOpenRef.current,
         outlineOpen,
         sidebarWidth: Math.min(800, Math.max(160,
           (window.innerWidth < sidebarWidthRef.current + 480 ? sidebarWidthRef.current
@@ -419,10 +447,11 @@ export default function App() {
     const write = sessionWrite.current.catch(() => {}).then(async () => {
       if (final && typeof api.finishWorkspaceSession === "function") await api.finishWorkspaceSession(input);
       else await api.checkpointWorkspaceSession(input);
+      setSessionNotice(old => old?.operation === (final ? "close" : "checkpoint") ? null : old);
     });
     sessionWrite.current = write;
     return write.catch((error) => {
-      setNotice(errorText(localeRef.current, readerError(error).code));
+      setSessionNotice({ operation: final ? "close" : "checkpoint", code: readerError(error).code });
       throw error;
     });
   }
@@ -484,6 +513,8 @@ export default function App() {
     };
     readingSettingsRef.current = restoredReading;
     setReadingSettings(restoredReading);
+    markdownOnlyRef.current = saved.panel.documentsAndImagesOnly ?? true;
+    setMarkdownOnly(markdownOnlyRef.current);
     const expanded = saved.tree.expanded;
     if (restoredRoot) {
       pendingTreeScroll.current = saved.tree.scrollTop;
@@ -514,7 +545,7 @@ export default function App() {
       else { sessionReadyRef.current = true; setSessionReady(true); }
     }).catch((error) => {
       if (cancelled) return;
-      setNotice(errorText(localeRef.current, readerError(error).code));
+      setSessionNotice({ operation: "load", code: readerError(error).code });
       sessionReadyRef.current = true;
       setSessionReady(true);
     });
@@ -527,9 +558,31 @@ export default function App() {
       && readingSettings.readingFont === defaultSessionPanel.readingFont
       && readingSettings.readingSize === defaultSessionPanel.readingSize
       && readingSettings.readingLineHeight === defaultSessionPanel.readingLineHeight
-      && readingSettings.readingWidth === defaultSessionPanel.readingWidth) return;
+      && readingSettings.readingWidth === defaultSessionPanel.readingWidth && markdownOnly) return;
     scheduleSessionCheckpoint();
-  }, [sessionReady, root, priorRoot, tabs, activeId, directories, sidebarOpen, sidebarWidth, outlineOpen, readingSettings]);
+  }, [sessionReady, root, priorRoot, tabs, activeId, directories, sidebarOpen, sidebarWidth, outlineOpen, readingSettings, markdownOnly]);
+
+  useSettingsOwner({ language: locale, appearance: appearance.preference, ...readingSettings,
+    documentsAndImagesOnly: markdownOnly }, sessionReady, {
+    general: values => {
+      if (values.language !== localeRef.current) {
+        remoteLocale.current = values.language; localeRef.current = values.language; setLocale(values.language);
+      }
+      if (getAppearance().getSnapshot().preference !== values.appearance) getAppearance().applyPreference(values.appearance, false);
+    },
+    workspace: patch => {
+      if (patch.readingFont !== undefined || patch.readingSize !== undefined || patch.readingLineHeight !== undefined || patch.readingWidth !== undefined) {
+        const { readingFont, readingSize, readingLineHeight, readingWidth } = { ...readingSettingsRef.current, ...patch };
+        applyReadingSettings({ readingFont, readingSize, readingLineHeight, readingWidth });
+      }
+      if (patch.documentsAndImagesOnly !== undefined) {
+        markdownOnlyRef.current = patch.documentsAndImagesOnly; setMarkdownOnly(patch.documentsAndImagesOnly);
+      }
+    },
+    checkpoint: () => checkpointSession(),
+    focus: () => { if (settingsInvoker.current?.isConnected) settingsInvoker.current.focus(); else settingsTriggerRef.current?.focus(); },
+    opening: () => { if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) settingsInvoker.current = document.activeElement; }
+  });
 
   useLayoutEffect(() => {
     if (pendingTreeScroll.current === null || !treeRef.current) return;
@@ -585,7 +638,7 @@ export default function App() {
             ? { ...item, freshness: "conflict" } : item));
           if (restoredDisposition.current === "normal" && tab.editingActive)
             activateRecovery(tab.id, recovery);
-        }).catch((error) => { if (current()) setNotice(errorText(localeRef.current, readerError(error).code)); });
+        }).catch((error) => { if (current()) setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); });
       }
     }).catch(async (error) => {
       if (!current()) return;
@@ -622,7 +675,7 @@ export default function App() {
         }
         if (inspectedDiskRef.current?.tabId === event.fileId
           && inspectedDiskRef.current.document.diskVersion !== event.diskVersion) {
-          void inspectConflict(event.fileId).then(() => setNotice(t(localeRef.current, "diskChangedAgain")));
+          void inspectConflict(event.fileId).then(() => setNotice(noticeLocale => t(noticeLocale, "diskChangedAgain")));
         }
         return;
       }
@@ -698,7 +751,8 @@ export default function App() {
         });
       }
       if (event.reasonCode === "watch_failed" || event.reasonCode === "root_reselection_required") {
-        setNotice(errorText(localeRef.current, event.reasonCode));
+        const code = event.reasonCode;
+        setNotice(noticeLocale => errorText(noticeLocale, code));
       }
     };
     const onJobProgress = (event: RefreshJobProgress) => {
@@ -877,7 +931,7 @@ export default function App() {
 
   async function cancelReloadJob(jobId: string, generation: number) {
     try { await api.cancelReload(jobId, generation); }
-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
   }
 
   const visibleFileIds = tabs.filter((tab) => tab.request.fileId && !tab.errorCode).map((tab) => tab.id).sort().join("|");
@@ -942,9 +996,13 @@ export default function App() {
       save: Boolean(active && edits[active.id] && !edits[active.id].paused
         && edits[active.id].draft !== edits[active.id].source),
       find: Boolean(active?.content && !active.errorCode),
-      reload: Boolean(active), locale
+      reload: Boolean(active), locale,
+      back: !historyBusy && Boolean(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]),
+      forward: !historyBusy && Boolean(active && history.entries[history.cursor + 1]),
+      visited: !historyBusy && Boolean(history.entries.length),
+      clearHistory: !historyBusy && Boolean(history.entries.length)
     }).catch(() => {});
-  }, [active, edits, locale]);
+  }, [active, edits, locale, history, historyBusy]);
   const activeEdit = activeId ? edits[activeId] : undefined;
   const findInDraft = Boolean(activeEdit && !activeEdit.paused);
   const findOverBudget = useMemo(() => active?.content
@@ -1122,7 +1180,7 @@ export default function App() {
         ? { ...tab, editingActive: true, dirty: false } : tab));
       setNotice(null);
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     }
   }
 
@@ -1134,7 +1192,7 @@ export default function App() {
         setEdits((old) => editReducer(old, { type: "pause", tabId: active.id, paused: false }));
       } else if (current.section.id !== section.id) {
         setPendingSection({ tabId: active.id, section });
-      } else setNotice(t(locale, "pendingDraft"));
+      } else setNotice(noticeLocale => t(noticeLocale, "pendingDraft"));
       return;
     }
     await startEdit(active.id, section, active.diskVersion);
@@ -1163,13 +1221,13 @@ export default function App() {
       const section = current.sections.find((candidate) => candidate.kind === pending.section.kind
         && candidate.ordinal === pending.section.ordinal && candidate.label === pending.section.label);
       if (!section || current.diskVersion !== version) {
-        setNotice(t(locale, "reselectSection"));
+        setNotice(noticeLocale => t(noticeLocale, "reselectSection"));
         return;
       }
       setSectionsByTab((old) => ({ ...old, [pending.tabId]: current.sections }));
       await startEdit(pending.tabId, section, version);
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     }
   }
 
@@ -1197,7 +1255,7 @@ export default function App() {
     const edit = edits[tabId];
     if (!edit) return null;
     if (edit.conflict || tabsRef.current.find((tab) => tab.id === tabId)?.freshness === "conflict") {
-      setNotice(t(locale, "saveConflict"));
+      setNotice(noticeLocale => t(noticeLocale, "saveConflict"));
       return null;
     }
     if (savingTabRef.current) return null;
@@ -1213,8 +1271,9 @@ export default function App() {
       setSectionsByTab((old) => ({ ...old, [tabId]: saved.sections }));
       setEdits((old) => editReducer(old, { type: "remove", tabId }));
       checkpointSequence.current.delete(tabId);
-      setNotice(saved.recoveryCleanupFailed ? t(locale, "recoveryCleanupFailed") : `${t(locale, "sourceSaved")}: ${tabsRef.current.find((tab) => tab.id === tabId)?.displayPath ?? ""}`);
-      if (saved.safetyCopyStatusFailed) setNotice(t(locale, "safetyCopyStatusFailed"));
+      const savedPath = tabsRef.current.find((tab) => tab.id === tabId)?.displayPath ?? "";
+      setNotice(noticeLocale => saved.recoveryCleanupFailed ? t(noticeLocale, "recoveryCleanupFailed") : `${t(noticeLocale, "sourceSaved")}: ${savedPath}`);
+      if (saved.safetyCopyStatusFailed) setNotice(noticeLocale => t(noticeLocale, "safetyCopyStatusFailed"));
       void refreshSafetyCopies();
       const nextSection = saved.sections.find((candidate) => candidate.kind === edit.section.kind
         && candidate.ordinal === edit.section.ordinal && candidate.label === edit.section.label)
@@ -1230,7 +1289,7 @@ export default function App() {
           ? { ...tab, freshness: "conflict" } : tab));
         setEdits((old) => editReducer(old, { type: "conflict", tabId }));
       }
-      setNotice(code === "version_changed" ? t(locale, "saveConflict") : errorText(locale, code));
+      setNotice(noticeLocale => code === "version_changed" ? t(noticeLocale, "saveConflict") : errorText(noticeLocale, code));
       return null;
     } finally {
       savingTabRef.current = null;
@@ -1246,10 +1305,10 @@ export default function App() {
     try {
       await api.commitSectionSaveAs(edit.sessionId, token, edit.draft, replaceExisting);
       setPendingSaveAs(null);
-      setNotice(t(locale, "copySavedOriginalDirty").replace("{name}", copyName ?? pendingSaveAs?.name ?? ""));
+      setNotice(noticeLocale => t(noticeLocale, "copySavedOriginalDirty").replace("{name}", copyName ?? pendingSaveAs?.name ?? ""));
       void refreshSafetyCopies();
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally {
       setBusy(false);
     }
@@ -1265,7 +1324,7 @@ export default function App() {
       if (choice.exists) setPendingSaveAs({ tabId, token: choice.token, name: choice.name });
       else void commitSaveAs(tabId, choice.token, false, choice.name);
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally {
       setBusy(false);
     }
@@ -1290,7 +1349,7 @@ export default function App() {
       if (edit && !pendingSection) focusSectionBoundary(tabId, edit.section);
       return true;
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
       return false;
     }
   }
@@ -1313,7 +1372,7 @@ export default function App() {
       if (generation === generationRef.current && sequence === inspectionSequence.current) {
         inspectedDiskRef.current = null;
         setInspectedDisk(null);
-        setNotice(errorText(localeRef.current, readerError(error).code));
+        setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
       }
       return null;
     }
@@ -1350,8 +1409,8 @@ export default function App() {
       if (choice.generation !== generationRef.current) return;
       if (readerError(error).code === "version_changed") {
         await inspectConflict(choice.tabId);
-        setNotice(t(localeRef.current, "diskChangedAgain"));
-      } else setNotice(errorText(localeRef.current, readerError(error).code));
+        setNotice(noticeLocale => t(noticeLocale, "diskChangedAgain"));
+      } else setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally {
       setBusy(false);
     }
@@ -1459,7 +1518,7 @@ export default function App() {
         activateFolder(await api.commitRootSelection(token));
       } else {
         if (Object.keys(editsRef.current).length || Object.keys(pendingRecoveriesRef.current).length) {
-          setNotice(t(locale, "pendingDraft"));
+          setNotice(noticeLocale => t(noticeLocale, "pendingDraft"));
           return;
         }
         const selected = await api.selectRoot();
@@ -1467,7 +1526,7 @@ export default function App() {
       }
     } catch (error) {
       const detail = readerError(error);
-      setNotice(errorText(locale, detail.code));
+      setNotice(noticeLocale => errorText(noticeLocale, detail.code));
     } finally {
       setBusy(false);
     }
@@ -1496,6 +1555,35 @@ export default function App() {
       const existing = tabsRef.current.find((tab) => tab.identityKey === document.identityKey || tab.id === document.fileId);
       if (existing) {
         if (requestKey !== document.fileId) documentLoads.current.delete(document.fileId);
+        // A successful tree read supplies a root-bound grant. Reuse the clean
+        // document tab with that grant, rather than retaining its picker-only
+        // grant (which correctly cannot resolve sibling links). Never rebind
+        // an edit or recovery session underneath its owning native grant.
+        if (existing.explicitFile && request.rootId && request.segments?.length && !request.explicitFile
+          && !existing.dirty && !existing.editingActive && !editsRef.current[existing.id]
+          && !pendingRecoveriesRef.current[existing.id]) {
+          const rebound: Tab = { ...existing, id: document.fileId,
+            restoredKey: existing.restoredKey ?? existing.id, identityKey: document.identityKey,
+            name: document.name, displayPath: document.displayPath, content: document.content,
+            diskVersion: document.diskVersion, errorCode: undefined, freshness: "current", freshnessReason: undefined,
+            explicitFile: false, request: { fileId: document.fileId, rootId: request.rootId, segments: request.segments } };
+          const retain = <T,>(map: Map<string, T>) => {
+            const value = map.get(existing.id);
+            if (value !== undefined) map.set(rebound.id, value);
+            map.delete(existing.id);
+          };
+          if (rebound.id !== existing.id) {
+            retain(scrollPositions.current); retain(readingAnchors.current); retain(documentZooms.current);
+            documentLoads.current.delete(existing.id);
+          }
+          changeHistory({ ...historyRef.current, entries: historyRef.current.entries.map((visit) =>
+            visit.key === existing.id ? { ...visit, key: rebound.id,
+              target: { ...visit.target, id: rebound.id, request: rebound.request, explicitFile: false } } : visit) });
+          setTabs((old) => old.filter((tab) => tab.id !== failedId || tab.id === existing.id)
+            .map((tab) => tab.id === existing.id ? rebound : tab));
+          activate(rebound.id);
+          return rebound.id;
+        }
         setTabs((old) => old.filter((tab) => tab.id !== failedId || tab.id === existing.id).map((tab) =>
           tab.id === existing.id && tab.content === undefined && !editsRef.current[tab.id]
             ? { ...tab, identityKey: document.identityKey, name: document.name, displayPath: document.displayPath, content: document.content, diskVersion: document.diskVersion, errorCode: undefined, freshness: "current" } : tab));
@@ -1530,7 +1618,7 @@ export default function App() {
           const recovery = await api.loadSectionRecovery(document.fileId);
           if (recovery && current()) setPendingRecoveries((old) => ({ ...old, [document.fileId]: recovery }));
         } catch (recoveryError) {
-          if (current() && activeIdRef.current === tab.id) setNotice(errorText(locale, readerError(recoveryError).code));
+          if (current() && activeIdRef.current === tab.id) setNotice(noticeLocale => errorText(noticeLocale, readerError(recoveryError).code));
         }
       }
       return tab.id;
@@ -1566,7 +1654,7 @@ export default function App() {
           return;
         } catch (inspectionError) {
           if (!current()) return;
-          setNotice(errorText(locale, readerError(inspectionError).code));
+          setNotice(noticeLocale => errorText(noticeLocale, readerError(inspectionError).code));
         }
       }
       const id = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
@@ -1650,8 +1738,8 @@ export default function App() {
     if (rootRef.current?.id !== selectedRootId) return;
     await openDocument({ rootId: selectedRootId, segments: hit.segments },
       { name: hit.segments.at(-1) ?? hit.path, path: hit.path });
-    if (result.matchMoved) setNotice(t(locale, "folderSearchMoved"));
-    else if (result.changed) setNotice(t(locale, "folderSearchChanged"));
+    if (result.matchMoved) setNotice(noticeLocale => t(noticeLocale, "folderSearchMoved"));
+    else if (result.changed) setNotice(noticeLocale => t(noticeLocale, "folderSearchChanged"));
     if (hit.kind === "content" && result.ordinal !== null) {
       pendingSearchReveal.current = true;
       requestAnimationFrame(() => {
@@ -1817,7 +1905,7 @@ export default function App() {
       const retained = [...tabsRef.current].sort((a, b) => Number(b.id === activeId) - Number(a.id === activeId));
       for (const tab of retained) await refreshRetainedTab(tab.id);
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally { setBusy(false); }
   }
 
@@ -1828,7 +1916,7 @@ export default function App() {
       const restored = await api.reselectSessionRoot();
       if (restored) applyRestoredSession(restored);
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally { setBusy(false); }
   }
 
@@ -1854,7 +1942,7 @@ export default function App() {
         setActiveId(selected.id);
       }
     } catch (error) {
-      setNotice(errorText(locale, readerError(error).code));
+      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     } finally { setBusy(false); }
   }
 
@@ -1869,7 +1957,7 @@ export default function App() {
         inspectionSequence.current += 1;
         await refreshRetainedTab(tabId);
       }
-    } catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    } catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
     finally { setBusy(false); }
   }
 
@@ -1888,7 +1976,7 @@ export default function App() {
       }
     } catch (error) {
       const detail = readerError(error);
-      setNotice(errorText(locale, detail.code));
+      setNotice(noticeLocale => errorText(noticeLocale, detail.code));
     } finally {
       setBusy(false);
     }
@@ -1959,7 +2047,7 @@ export default function App() {
       : intent.tabIds ?? (intent.tabId ? [intent.tabId] : []);
     if (choice === "keep") {
       if (targets.some((id) => edits[id] && edits[id].checkpointStatus !== "saved")) {
-        setNotice(t(locale, "checkpointRequired"));
+        setNotice(noticeLocale => t(noticeLocale, "checkpointRequired"));
         return;
       }
       if (intent.kind === "folder") {
@@ -1968,13 +2056,13 @@ export default function App() {
             edits[id]?.sessionId ?? pendingRecoveries[id]?.sessionId).filter((id): id is string => Boolean(id))))
             await api.suspendSectionEdit(sessionId);
         } catch (error) {
-          setNotice(errorText(locale, readerError(error).code));
+          setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
           return;
         }
       }
     } else if (choice === "save") {
       if (targets.some((id) => pendingRecoveries[id])) {
-        setNotice(t(locale, "recoverEdit"));
+        setNotice(noticeLocale => t(noticeLocale, "recoverEdit"));
         return;
       }
       for (const id of targets) {
@@ -2000,7 +2088,7 @@ export default function App() {
         editsRef.current = {}; pendingRecoveriesRef.current = {};
         activateFolder(selected);
       } catch (error) {
-        setNotice(errorText(locale, readerError(error).code));
+        setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
       }
     } else if (intent.kind === "folder" && pendingNativeEntry) {
       try {
@@ -2012,7 +2100,7 @@ export default function App() {
         editsRef.current = {}; pendingRecoveriesRef.current = {};
         activateFolder(accepted.grant);
       } catch (error) {
-        setNotice(errorText(locale, readerError(error).code));
+        setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
       }
     } else if (intent.kind === "tab" && intent.tabId) {
       await closeTabs(intent.tabIds ?? [intent.tabId], true);
@@ -2025,13 +2113,20 @@ export default function App() {
   async function finishClose(quit: boolean) {
     if (closeInProgress.current) return;
     closeInProgress.current = true;
+    let closeOperation = "finish_workspace_session";
     try {
       if (!sessionReadyRef.current && !sessionClearedRef.current) return;
       if (!sessionClearedRef.current && typeof api.finishWorkspaceSession === "function"
         && typeof api.checkpointWorkspaceSession === "function") await checkpointSession(true);
+      closeOperation = "finish_editing_close";
       await api.finishEditingClose(quit);
     } catch (error) {
-      setNotice(errorText(localeRef.current, readerError(error).code));
+      const failure = readerError(error);
+      // Explicit diagnostic builds expose the returned error without changing
+      // checkpoint policy, command permissions, or the native exit mechanism.
+      setSessionNotice({ operation: "close", code: failure.code,
+        diagnostic: import.meta.env.VITE_CLOSE_DIAGNOSTICS === "1"
+          ? `${closeOperation}: ${failure.code}: ${failure.message}` : undefined });
     } finally {
       closeInProgress.current = false;
     }
@@ -2059,10 +2154,10 @@ export default function App() {
       readingAnchors.current.clear(); scrollPositions.current.clear();
       documentZooms.current.clear(); imageViews.current.clear(); changeHistory(emptyHistory());
       setRestoreOffer(null); setClearSessionConfirm(false);
-      setNotice(t(locale, "sessionCleared"));
+      setNotice(noticeLocale => t(noticeLocale, "sessionCleared"));
       sessionClearedRef.current = true;
     } catch (error) {
-      setNotice(`${t(locale, "cleanupFailed")} ${errorText(locale, readerError(error).code)}`);
+      setNotice(noticeLocale => `${t(noticeLocale, "cleanupFailed")} ${errorText(noticeLocale, readerError(error).code)}`);
       if (!restoreOffer) {
         sessionReadyRef.current = true;
         setSessionReady(true);
@@ -2073,14 +2168,14 @@ export default function App() {
   async function clearSavedDrafts() {
     try {
       for (const tabId of new Set([...Object.keys(edits), ...Object.keys(pendingRecoveries)])) {
-        if (!(await discardEdit(tabId))) { setNotice(t(locale, "cleanupFailed")); return; }
+        if (!(await discardEdit(tabId))) { setNotice(noticeLocale => t(noticeLocale, "cleanupFailed")); return; }
       }
       await api.clearAllRecovery();
       setClearDraftsConfirm(false);
-      setNotice(t(locale, "draftsCleared"));
+      setNotice(noticeLocale => t(noticeLocale, "draftsCleared"));
     } catch (error) {
       setClearDraftsConfirm(false);
-      setNotice(`${t(locale, "cleanupFailed")} ${errorText(locale, readerError(error).code)}`);
+      setNotice(noticeLocale => `${t(noticeLocale, "cleanupFailed")} ${errorText(noticeLocale, readerError(error).code)}`);
     }
   }
 
@@ -2096,12 +2191,12 @@ export default function App() {
     try {
       setSafetyCopies(await api.clearResolvedSafetyCopies(true));
       setClearCopiesConfirm(false);
-      setNotice(t(locale, "safetyCopiesCleared"));
+      setNotice(noticeLocale => t(noticeLocale, "safetyCopiesCleared"));
     } catch (error) {
       setClearCopiesConfirm(false);
       setSafetyCopies(null);
       await refreshSafetyCopies();
-      setNotice(`${t(locale, "cleanupFailed")} ${errorText(locale, readerError(error).code)}`);
+      setNotice(noticeLocale => `${t(noticeLocale, "cleanupFailed")} ${errorText(noticeLocale, readerError(error).code)}`);
     }
   }
 
@@ -2129,7 +2224,7 @@ export default function App() {
       delete next[tabId];
       return next;
     });
-    if (recovery.conflict) setNotice(t(locale, "draftConflict"));
+    if (recovery.conflict) setNotice(noticeLocale => t(noticeLocale, "draftConflict"));
     requestAnimationFrame(() => {
       if (readerRef.current) readerRef.current.scrollTop = recovery.readerScrollTop;
     });
@@ -2150,9 +2245,9 @@ export default function App() {
 
   async function copyPath(path: string) {
     try {
-      if (!navigator.clipboard?.writeText) { setNotice(t(locale, "pathCopyUnavailable")); return; }
-      await navigator.clipboard.writeText(path); setNotice(t(locale, "pathCopied"));
-    } catch { setNotice(t(locale, "pathCopyFailed")); }
+      if (!navigator.clipboard?.writeText) { setNotice(noticeLocale => t(noticeLocale, "pathCopyUnavailable")); return; }
+      await navigator.clipboard.writeText(path); setNotice(noticeLocale => t(noticeLocale, "pathCopied"));
+    } catch { setNotice(noticeLocale => t(noticeLocale, "pathCopyFailed")); }
   }
 
   function documentStatus(tab: Tab): string {
@@ -2174,7 +2269,7 @@ export default function App() {
   async function revealDocument(tab: Tab) {
     const selectedRoot = rootRef.current;
     const segments = documentSegments(tab);
-    if (!selectedRoot || !segments) { setNotice(t(locale, "revealUnavailable")); return; }
+    if (!selectedRoot || !segments) { setNotice(noticeLocale => t(noticeLocale, "revealUnavailable")); return; }
     const sequence = ++revealSequence.current;
     const current = () => sequence === revealSequence.current && rootRef.current?.id === selectedRoot.id
       && activeIdRef.current === tab.id;
@@ -2208,7 +2303,7 @@ export default function App() {
         .find((element) => element.dataset.treePath === pathKey(segments));
       if (!row) throw new Error("unavailable");
       row.scrollIntoView?.({ block: "nearest", behavior: "instant" }); row.focus();
-    } catch { if (current()) setNotice(t(locale, "revealUnavailable")); }
+    } catch { if (current()) setNotice(noticeLocale => t(noticeLocale, "revealUnavailable")); }
     finally { if (sequence === revealSequence.current) setRevealing(false); }
   }
 
@@ -2237,7 +2332,7 @@ export default function App() {
     const decoded = headingSlug(anchor);
     const element = document.getElementById(decoded) ?? document.getElementById(anchor);
     element?.scrollIntoView({ block: "start", behavior: "instant" });
-    if (!element) setNotice(t(locale, "missing"));
+    if (!element) setNotice(noticeLocale => t(noticeLocale, "missing"));
     else setActiveOutlineId(element.id);
   }
 
@@ -2260,12 +2355,12 @@ export default function App() {
       } else if (result.kind === "image" && result.fileId) {
         await openImage({ fileId: result.fileId });
       } else {
-        setNotice(result.kind === "missing" ? t(locale, "missing")
-          : result.kind === "unsupported" ? t(locale, "unsupported")
-            : t(locale, "linkBlocked"));
+        setNotice(noticeLocale => result.kind === "missing" ? t(noticeLocale, "missing")
+          : result.kind === "unsupported" ? t(noticeLocale, "unsupported")
+            : t(noticeLocale, active.explicitFile ? "singleFileLinkBlocked" : "linkBlocked"));
       }
     } catch (error) {
-      if (current()) setNotice(errorText(locale, readerError(error).code));
+      if (current()) setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
     }
   }
 
@@ -2359,7 +2454,7 @@ export default function App() {
         else document.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus();
       });
     } catch (error) {
-      if (valid()) setNotice(`${entry.target.name}: ${errorText(locale, readerError(error).code)}`);
+      if (valid()) setNotice(noticeLocale => `${entry.target.name}: ${errorText(noticeLocale, readerError(error).code)}`);
     } finally {
       if (traversal.current === token) { traversal.current = null; setHistoryBusy(false); setBusy(false); }
     }
@@ -2401,7 +2496,7 @@ export default function App() {
           ? saved.scrollTop : Math.max(0, top + saved.offset);
         return;
       }
-      setNotice(t(locale, "readingPositionShifted"));
+      setNotice(noticeLocale => t(noticeLocale, "readingPositionShifted"));
     }
     reader.scrollTop = saved?.scrollTop ?? scrollPositions.current.get(activeId ?? "") ?? 0;
   }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown]);
@@ -2495,7 +2590,11 @@ export default function App() {
   });
 
   menuActionRef.current = (payload: string) => {
-      if (payload === "workspace_open_file") void chooseFile();
+      if (payload === "go_back" && !historyBusy) void traverseHistory(active ? history.cursor - 1 : history.cursor);
+      else if (payload === "go_forward" && !historyBusy && active) void traverseHistory(history.cursor + 1);
+      else if (payload === "go_visited" && !historyBusy && history.entries.length) { setHistoryDirection(null); setHistoryOpen(true); }
+      else if (payload === "go_clear" && !historyBusy && history.entries.length) clearVisitHistory();
+      else if (payload === "workspace_open_file") void chooseFile();
       else if (payload === "workspace_open_folder") void chooseFolder();
       else if (payload === "workspace_close_tab" && activeId) void closeTab(activeId);
       else if (payload === "workspace_save" && activeId && edits[activeId]) void saveEdit(activeId);
@@ -2579,7 +2678,7 @@ export default function App() {
                     ? void openDocument({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
                     : entry.kind === "image" && root
                       ? void openImage({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
-                    : setNotice(t(locale, "unsupported"))}
+                    : setNotice(noticeLocale => t(noticeLocale, "unsupported"))}
               >
                 <span className="tree-icon" aria-hidden="true">{isFolder ? expanded ? "⌄" : "›" : entry.kind === "markdown" ? "◇" : entry.kind === "image" ? "▧" : "·"}</span>
                 <span className="tree-name">{entry.name}</span>
@@ -2627,9 +2726,9 @@ export default function App() {
         {!active && <div className="toolbar-group">
           <button type="button" disabled>{t(locale, "outline")}</button>
           <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
-            onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
+            onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
         </div>}
-        <div className="toolbar-group">
+        {isTauri() ? <button type="button" onClick={() => openSettings("General")}>{locale === "es" ? "Ajustes" : "Settings"}</button> : <div className="toolbar-group">
         <label className="appearance-control">
           <span>{t(locale, "appearance")}</span>
           <select aria-label={t(locale, "appearance")} value={appearance.preference}
@@ -2646,7 +2745,7 @@ export default function App() {
             <option value="es">Español</option>
           </select>
         </label>
-        </div>
+        </div>}
         {!root && <div className="toolbar-group">
         <button type="button" onClick={() => void chooseFile()} disabled={busy}>{t(locale, "openFile")}</button>
         <button className={root ? undefined : "primary-button"} type="button" onClick={() => void chooseFolder()} disabled={busy}>
@@ -2668,34 +2767,7 @@ export default function App() {
         <div className="reading-settings-heading"><strong>{t(locale, "readingSettings")}</strong>
           <button type="button" aria-label={t(locale, "closeReadingSettings")}
             onClick={() => { setReadingSettingsOpen(false); focusActionTrigger(settingsTriggerRef.current); }}>×</button></div>
-        <label>{t(locale, "readingFont")}
-          <select value={readingSettings.readingFont} onChange={(event) => applyReadingSettings({
-            ...readingSettings, readingFont: event.target.value as SessionPanel["readingFont"] })}>
-            <option value="roboto">Roboto</option><option value="serif">{t(locale, "systemSerif")}</option>
-            <option value="sans">{t(locale, "systemSans")}</option>
-            <option value="mono">{t(locale, "systemMono")}</option>
-          </select></label>
-        <label>{t(locale, "readingSize")}: {readingSettings.readingSize} px
-          <input type="range" min="12" max="24" step="1" value={readingSettings.readingSize}
-            onChange={(event) => applyReadingSettings({ ...readingSettings,
-              readingSize: Number(event.target.value) })} /></label>
-        <label>{t(locale, "readingLineHeight")}: {readingSettings.readingLineHeight.toFixed(1)}
-          <input type="range" min="1.3" max="2.2" step="0.1" value={readingSettings.readingLineHeight}
-            onChange={(event) => applyReadingSettings({ ...readingSettings,
-              readingLineHeight: Number(event.target.value) })} /></label>
-        <label>{t(locale, "readingWidth")}: {readingSettings.readingWidth} px
-          <input type="range" min="480" max="1200" step="20" value={readingSettings.readingWidth}
-            onChange={(event) => applyReadingSettings({ ...readingSettings,
-              readingWidth: Number(event.target.value) })} /></label>
-        <div className="reading-width-presets" aria-label={t(locale, "readingWidth")}>
-          <button type="button" aria-pressed={readingSettings.readingWidth === 760}
-            onClick={() => applyReadingSettings({ ...readingSettings, readingWidth: 760 })}>{t(locale, "comfortableWidth")}</button>
-          <button type="button" aria-pressed={readingSettings.readingWidth === 1200}
-            onClick={() => applyReadingSettings({ ...readingSettings, readingWidth: 1200 })}>{t(locale, "wideWidth")}</button>
-          {![760, 1200].includes(readingSettings.readingWidth) && <span>{t(locale, "customWidth")}</span>}
-        </div>
-        <button type="button" onClick={() => applyReadingSettings({ readingFont: "roboto",
-          readingSize: 16, readingLineHeight: 1.6, readingWidth: 760 })}>{t(locale, "resetReading")}</button>
+        <ReadingSettings locale={locale} value={readingSettings} onChange={applyReadingSettings} />
       </section>}
 
       {nativeEntries.length > 0 && <section className="native-entries notice" aria-label={t(locale, "incomingItems")}>
@@ -2712,6 +2784,11 @@ export default function App() {
 
       {(appearance.persistenceWarning || appearance.nativeWarning) && <div className="notice" role="status">
         <span>{appearance.persistenceWarning ? t(locale, "appearanceSaveFailed") : t(locale, "appearanceNativeFailed")}</span>
+        <button type="button" onClick={() => appearance.applyPreference(appearance.preference)}>{t(locale, "retry")}</button>
+      </div>}
+      {localePersistenceWarning && <div className="notice" role="status">
+        <span>{t(locale, "languageSaveFailed")}</span>
+        <button type="button" onClick={() => persistLocale(locale)}>{t(locale, "retry")}</button>
       </div>}
 
       <div className="workspace-layout">
@@ -2749,10 +2826,10 @@ export default function App() {
                   <span>{errorText(locale, rootProblem)}</span>
                   <button type="button" disabled={busy} onClick={() => void reselectFolder()}>{t(locale, "selectFolderAgain")}</button>
                 </div>}
-                <label className="filter-control">
-                  <input type="checkbox" checked={markdownOnly} onChange={(event) => setMarkdownOnly(event.target.checked)} />
+                {isTauri() ? <button type="button" onClick={() => openSettings("ProjectTree")}>{locale === "es" ? "Ajustes del árbol" : "Project tree settings"}</button> : <label className="filter-control">
+                  <input type="checkbox" checked={markdownOnly} onChange={(event) => { markdownOnlyRef.current = event.target.checked; setMarkdownOnly(event.target.checked); }} />
                   {t(locale, "filterMarkdown")}
-                </label>
+                </label>}
                 <div className="tree-scroll" ref={treeRef} onScroll={() => scheduleSessionCheckpoint()}
                   onContextMenu={(event) => { if (!(event.target as HTMLElement).closest(".tree-row")) showReloadMenu(event, { kind: "folder", rootId: root.id, segments: [] }, root.name); }}>
                   {tree([])}
@@ -2838,7 +2915,7 @@ export default function App() {
                         event.preventDefault();
                         moveTab(tab.id, tabs.findIndex((item) => item.id === tab.id)
                           + (event.key === "ArrowRight" ? 1 : -1));
-                        setNotice(t(locale, "tabMoved"));
+                        setNotice(noticeLocale => t(noticeLocale, "tabMoved"));
                         return;
                       }
                       if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
@@ -2935,7 +3012,7 @@ export default function App() {
                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
                   onClick={toggleOutline}>{t(locale, "outline")}</button>
                 <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
-                  onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
+                  onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
               </>}
               <button type="button" disabled={!navigator.clipboard?.writeText} aria-description={!navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined}
                 onClick={() => void copyPath(active.displayPath)}>{t(locale, "copyPath")}</button>
@@ -2951,7 +3028,7 @@ export default function App() {
                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : undefined}
                   onClick={toggleOutline}>{t(locale, "outline")}</button>
                 <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
-                  onClick={() => setReadingSettingsOpen(open => !open)}>{t(locale, "readingSettings")}</button>
+                  onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
               </>}
               {active.kind !== "image" && !active.largeInspection && !active.errorCode && <>
               {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
@@ -3055,6 +3132,15 @@ export default function App() {
               { label: `${t(locale, "reload")} ${reloadMenu.label}${reloadMenu.target.kind === "folder" ? ` ${t(locale, "folder")}` : ""}`,
                 disabled: busy, hint: contextTab?.id === activeId ? shortcutHint("R") : undefined, run: () => void startReload(reloadMenu) }
             ]} />}
+          {sessionNotice && <div className="notice" role="status">
+            <span>{sessionNotice.diagnostic ?? sessionErrorText(locale, sessionNotice.operation, sessionNotice.code)}</span>
+            {sessionNotice.operation === "checkpoint" && <button type="button" disabled={sessionRetrying}
+              onClick={() => {
+                setSessionRetrying(true);
+                void checkpointSession().catch(() => {}).finally(() => setSessionRetrying(false));
+              }}>{t(locale, "retry")}</button>}
+            <button type="button" aria-label={t(locale, "dismiss")} onClick={() => setSessionNotice(null)}>×</button>
+          </div>}
           {notice && <div className="notice" role="status">
             <span>{notice}</span>
             <button type="button" aria-label={t(locale, "dismiss")} onClick={() => setNotice(null)}>×</button>

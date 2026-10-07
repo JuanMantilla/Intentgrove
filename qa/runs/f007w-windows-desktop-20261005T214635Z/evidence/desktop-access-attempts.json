@@ -1,0 +1,18 @@
+{
+  "provenance": "Exact errors transcribed from live mcp__cua_repl results; not a helper-generated raw log",
+  "attempts": [
+    {
+      "attempt": 1,
+      "method": "import('@oai/sky'); sky.list_windows()",
+      "error": "Error: Trusted RPC service is not configured: sky"
+    },
+    {
+      "attempt": 2,
+      "method": "mcp__cua_repl reset; initialize; sky.list_windows()",
+      "error": "Error: Trusted RPC service is not configured: sky"
+    }
+  ],
+  "cuaInventory": "No native app inventory was returned. Browser inventory existed; unrelated tabs were neither used nor saved.",
+  "actualScreenshots": 0,
+  "actualNativeInputActions": 0
+}

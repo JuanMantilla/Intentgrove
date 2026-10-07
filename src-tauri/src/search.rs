@@ -1,5 +1,5 @@
-use crate::document::{immediate_bytes_and_version, read_document_impl};
-use crate::scope::{excluded, open_relative, read_search_entries, AppError, AppResult};
+use crate::document::{immediate_bytes_and_version, read_document_with_file};
+use crate::scope::{excluded, identity, open_relative, read_search_entries, AppError, AppResult, Identity};
 use crate::state::{AppState, RootGrant};
 use ignore::gitignore::{Gitignore, GitignoreBuilder};
 use regex::{Regex, RegexBuilder};
@@ -19,15 +19,74 @@ const MAX_HITS_PER_FILE: usize = 5;
 #[derive(Default)]
 pub struct SearchState { active: Mutex<Option<Arc<SearchJob>>> }
 
+impl SearchState {
+    fn replace(&self, job: Arc<SearchJob>) -> AppResult<()> {
+        let mut active = self.active.lock()
+            .map_err(|_| AppError::new("internal", "Search state unavailable"))?;
+        if let Some(previous) = active.replace(job) {
+            previous.superseded.store(true, Ordering::SeqCst);
+            previous.cancelled.store(true, Ordering::SeqCst);
+        }
+        Ok(())
+    }
+
+    fn cancel(&self, job_id: &str) -> AppResult<bool> {
+        let active = self.active.lock()
+            .map_err(|_| AppError::new("internal", "Search state unavailable"))?;
+        if let Some(job) = active.as_ref().filter(|job| job.id == job_id) {
+            job.cancelled.store(true, Ordering::SeqCst);
+            Ok(true)
+        } else { Ok(false) }
+    }
+}
+
 struct SearchJob {
+    state: AppState,
     id: String,
     root_id: String,
     generation: u64,
     query: String,
     mode: SearchMode,
     include_ignored: bool,
+    scope: SearchScope,
     cancelled: AtomicBool,
+    superseded: AtomicBool,
     results: Mutex<HashMap<String, SearchHit>>,
+}
+
+struct SearchScope {
+    segments: Vec<String>,
+    file: std::fs::File,
+    identity: Identity,
+}
+
+impl SearchScope {
+    fn confirm(root: &RootGrant, segments: Vec<String>) -> AppResult<Self> {
+        root.verify_current()?;
+        let file = open_relative(&root.file, &segments, true)?;
+        let identity = identity(&file)?;
+        Ok(Self { segments, file, identity })
+    }
+
+    fn verify(&self, root: &RootGrant) -> AppResult<()> {
+        root.verify_current()?;
+        let current = open_relative(&root.file, &self.segments, true)
+            .map_err(|_| AppError::new("scope_changed", "Search folder changed; start a new search"))?;
+        if identity(&current)? != self.identity {
+            return Err(AppError::new("scope_changed", "Search folder changed; start a new search"));
+        }
+        Ok(())
+    }
+
+    fn open(&self, root: &RootGrant, segments: &[String], directory: bool) -> AppResult<std::fs::File> {
+        if segments.len() > 128 {
+            return Err(AppError::new("invalid_path", "Path is too deep"));
+        }
+        self.verify(root)?;
+        let relative = segments.strip_prefix(self.segments.as_slice())
+            .ok_or_else(|| AppError::new("invalid_path", "Result is outside the confirmed search scope"))?;
+        open_relative(&self.file, relative, directory)
+    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -61,7 +120,7 @@ pub struct SearchHit {
 
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SearchStarted { job_id: String, generation: u64 }
+pub struct SearchStarted { job_id: String, generation: u64, scope_segments: Vec<String> }
 
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -87,7 +146,21 @@ pub struct OpenSearchHit {
 }
 
 impl SearchJob {
+    fn check_root(&self) -> AppResult<()> {
+        let root = self.state.root_recorded(&self.root_id)?;
+        if root.generation != self.generation {
+            Err(AppError::new("invalid_grant", "Search root changed"))
+        } else { Ok(()) }
+    }
+
+    fn check_open(&self) -> AppResult<()> {
+        self.check_root()?;
+        if self.superseded.load(Ordering::SeqCst) {
+            Err(AppError::new("invalid_grant", "Search result expired"))
+        } else { Ok(()) }
+    }
     fn check(&self) -> AppResult<()> {
+        self.check_root()?;
         if self.cancelled.load(Ordering::SeqCst) {
             Err(AppError::new("cancelled", "Folder search stopped"))
         } else { Ok(()) }
@@ -168,11 +241,16 @@ struct Scan<'a> {
 
 impl Scan<'_> {
     fn flush(&mut self, status: &'static str, error_code: Option<&'static str>) {
-        let results = std::mem::take(&mut self.batch.results);
+        let mut results = std::mem::take(&mut self.batch.results);
+        let invalid = self.job.check_root().and_then(|_| self.job.scope.verify(self.root)).err();
+        if invalid.is_some() { results.clear(); }
+        let (status, error_code) = invalid.map_or((status, error_code), |error| ("partial", Some(error.code)));
         (self.emit)(SearchBatch { results, status, error_code, ..self.batch.clone() });
     }
 
     fn push(&mut self, hit: SearchHit) -> AppResult<()> {
+        self.job.check()?;
+        self.job.scope.open(self.root, &hit.segments, false)?;
         let mut stored = self.job.results.lock()
             .map_err(|_| AppError::new("internal", "Search results unavailable"))?;
         if stored.len() >= MAX_RESULTS {
@@ -189,8 +267,9 @@ impl Scan<'_> {
 
     fn file(&mut self, segments: &[String], name: &str, ignored: bool) -> AppResult<()> {
         self.job.check()?;
-        let file = match open_relative(&self.root.file, segments, false) {
+        let file = match self.job.scope.open(self.root, segments, false) {
             Ok(file) => file,
+            Err(error) if matches!(error.code, "scope_changed" | "root_reselection_required" | "invalid_grant") => return Err(error),
             Err(_) => { self.batch.skipped += 1; return Ok(()); }
         };
         let bytes_and_version = match immediate_bytes_and_version(&file) {
@@ -228,7 +307,7 @@ impl Scan<'_> {
     fn directory(&mut self, segments: Vec<String>, inherited: &[Arc<Gitignore>]) -> AppResult<()> {
         self.job.check()?;
         self.root.verify_current()?;
-        let dir = open_relative(&self.root.file, &segments, true)?;
+        let dir = self.job.scope.open(self.root, &segments, true)?;
         let mut skipped = 0;
         let mut matchers = inherited.to_vec();
         if let Some(matcher) = scoped_ignore(self.root, &segments, &mut skipped) {
@@ -253,7 +332,7 @@ impl Scan<'_> {
                     match self.directory(path, &matchers) {
                         Ok(()) => {},
                         Err(error) if matches!(error.code, "cancelled" | "result_limit" | "entry_limit"
-                            | "root_reselection_required" | "invalid_grant") => return Err(error),
+                            | "root_reselection_required" | "invalid_grant" | "scope_changed") => return Err(error),
                         Err(_) => self.batch.skipped += 1,
                     }
                 },
@@ -280,7 +359,24 @@ fn scan_root(root: &RootGrant, job: &SearchJob, emit: &mut dyn FnMut(SearchBatch
         batch: SearchBatch { job_id: job.id.clone(), generation: job.generation,
             results: vec![], scanned: 0, skipped: 0, matched: 0,
             status: "searching", error_code: None } };
-    let result = scan.directory(vec![], &[]);
+    // Load ancestor rules in the same order as a root traversal. An ignored
+    // ancestor remains pruned unless includeIgnored was explicitly requested.
+    let result = (|| {
+        let mut inherited = Vec::new();
+        for depth in 0..job.scope.segments.len() {
+            job.check()?;
+            job.scope.verify(root)?;
+            if let Some(matcher) = scoped_ignore(root, &job.scope.segments[..depth], &mut scan.batch.skipped) {
+                inherited.push(matcher);
+            }
+            let path = &job.scope.segments[..=depth];
+            if !job.include_ignored && (path.iter().any(|name| excluded(name)) || ignored_by(&inherited, path, true)) {
+                return Ok(());
+            }
+        }
+        scan.directory(job.scope.segments.clone(), &inherited)?;
+        job.scope.verify(root)
+    })();
     match result {
         Ok(()) => scan.flush("complete", None),
         Err(error) if error.code == "cancelled" => scan.flush("stopped", None),
@@ -291,24 +387,20 @@ fn scan_root(root: &RootGrant, job: &SearchJob, emit: &mut dyn FnMut(SearchBatch
 #[tauri::command]
 pub async fn start_folder_search(app: AppHandle, state: tauri::State<'_, AppState>,
     searches: tauri::State<'_, SearchState>, root_id: String, query: String,
-    mode: String, include_ignored: bool) -> AppResult<SearchStarted> {
+    mode: String, include_ignored: bool, scope_segments: Option<Vec<String>>) -> AppResult<SearchStarted> {
     let query = query.trim().to_string();
     if query.is_empty() || query.len() > MAX_QUERY_BYTES {
         return Err(AppError::new("invalid_query", "Search text must be 1 to 256 bytes"));
     }
     let mode = SearchMode::parse(&mode)?;
     let root = state.root(&root_id)?;
-    let job = Arc::new(SearchJob { id: Uuid::new_v4().to_string(), root_id,
-        generation: root.generation, query, mode, include_ignored,
-        cancelled: AtomicBool::new(false), results: Mutex::new(HashMap::new()) });
-    {
-        let mut active = searches.active.lock()
-            .map_err(|_| AppError::new("internal", "Search state unavailable"))?;
-        if let Some(previous) = active.replace(job.clone()) {
-            previous.cancelled.store(true, Ordering::SeqCst);
-        }
-    }
-    let started = SearchStarted { job_id: job.id.clone(), generation: job.generation };
+    let scope = SearchScope::confirm(&root, scope_segments.unwrap_or_default())?;
+    let job = Arc::new(SearchJob { state: state.inner().clone(), id: Uuid::new_v4().to_string(), root_id,
+        generation: root.generation, query, mode, include_ignored, scope,
+        cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false), results: Mutex::new(HashMap::new()) });
+    searches.replace(job.clone())?;
+    let started = SearchStarted { job_id: job.id.clone(), generation: job.generation,
+        scope_segments: job.scope.segments.clone() };
     tauri::async_runtime::spawn_blocking(move || scan_root(&root, &job,
         &mut |batch| { let _ = app.emit("folder-search:batch", batch); }));
     Ok(started)
@@ -316,12 +408,7 @@ pub async fn start_folder_search(app: AppHandle, state: tauri::State<'_, AppStat
 
 #[tauri::command]
 pub fn cancel_folder_search(searches: tauri::State<'_, SearchState>, job_id: String) -> AppResult<bool> {
-    let active = searches.active.lock()
-        .map_err(|_| AppError::new("internal", "Search state unavailable"))?;
-    if let Some(job) = active.as_ref().filter(|job| job.id == job_id) {
-        job.cancelled.store(true, Ordering::SeqCst);
-        Ok(true)
-    } else { Ok(false) }
+    searches.cancel(&job_id)
 }
 
 fn open_hit_impl(state: &AppState, job: &SearchJob, hit: SearchHit) -> AppResult<OpenSearchHit> {
@@ -329,7 +416,11 @@ fn open_hit_impl(state: &AppState, job: &SearchJob, hit: SearchHit) -> AppResult
     if root.generation != job.generation {
         return Err(AppError::new("invalid_grant", "Search root changed"));
     }
-    let document = read_document_impl(state, None, Some(&job.root_id), Some(hit.segments))?;
+    job.check_open()?;
+    let file = job.scope.open(&root, &hit.segments, false)?;
+    let document = read_document_with_file(state, None, Some(&job.root_id), Some(hit.segments), Some(file))?;
+    job.scope.verify(&root)?;
+    job.check_open()?;
     let changed = document.disk_version != hit.version;
     let mut best: Option<(usize, u64, u64)> = None;
     if hit.kind == "content" {
@@ -350,6 +441,8 @@ fn open_hit_impl(state: &AppState, job: &SearchJob, hit: SearchHit) -> AppResult
     let match_moved = hit.kind == "content" && changed && best.is_none();
     let line = best.map(|(_, line, _)| line).unwrap_or(1);
     let ordinal = best.map(|(ordinal, _, _)| ordinal);
+    job.scope.verify(&root)?;
+    job.check_open()?;
     Ok(OpenSearchHit { document, line, ordinal, changed, match_moved })
 }
 
@@ -374,6 +467,7 @@ pub async fn open_search_hit(state: tauri::State<'_, AppState>,
 mod tests {
     use super::*;
     use std::fs;
+    #[cfg(target_os = "macos")]
     use std::os::unix::fs::symlink;
 
     fn fixture() -> (PathBuf, AppState, RootGrant) {
@@ -385,6 +479,161 @@ mod tests {
         (dir, state, root)
     }
 
+    fn scoped_job(state: &AppState, root: &RootGrant, segments: &[&str], include_ignored: bool) -> SearchJob {
+        SearchJob { state: state.clone(), id: Uuid::new_v4().to_string(), root_id: root.id.clone(), generation: root.generation,
+            query: "needle".into(), mode: SearchMode::Both, include_ignored,
+            scope: SearchScope::confirm(root, segments.iter().map(|s| s.to_string()).collect()).unwrap(),
+            cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false), results: Mutex::new(HashMap::new()) }
+    }
+
+    #[test]
+    fn subtree_preserves_ancestor_rules_and_cannot_open_sibling_hits() {
+        let dir = crate::platform::test_support::FixtureDir::new("ir05-subtree");
+        fs::create_dir_all(dir.join("notes/deep")).unwrap();
+        fs::write(dir.join("sibling.md"), "needle").unwrap();
+        fs::write(dir.join(".gitignore"), "notes/deep/secret.md\n").unwrap();
+        fs::write(dir.join("notes/.gitignore"), "deep/hidden.md\n").unwrap();
+        fs::write(dir.join("notes/deep/visible.md"), "needle").unwrap();
+        fs::write(dir.join("notes/deep/secret.md"), "needle").unwrap();
+        fs::write(dir.join("notes/deep/hidden.md"), "needle").unwrap();
+        let state = AppState::default();
+        let info = state.register_root(&dir).unwrap();
+        let root = state.root(&info.id).unwrap();
+        let job = scoped_job(&state, &root, &["notes", "deep"], false);
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| batches.push(batch));
+        let hits: Vec<_> = batches.iter().flat_map(|batch| &batch.results).collect();
+        assert_eq!(hits.len(), 1);
+        assert_eq!(hits[0].path, "notes/deep/visible.md");
+        assert_eq!(open_hit_impl(&state, &job, hits[0].clone()).unwrap().document.content, "needle");
+        let mut forged = hits[0].clone();
+        forged.segments = vec!["sibling.md".into()];
+        assert_eq!(open_hit_impl(&state, &job, forged).err().unwrap().code, "invalid_path");
+        let include = scoped_job(&state, &root, &["notes", "deep"], true);
+        let mut batches = Vec::new();
+        scan_root(&root, &include, &mut |batch| batches.push(batch));
+        let hits: Vec<_> = batches.iter().flat_map(|batch| &batch.results).collect();
+        assert_eq!(hits.len(), 3);
+        assert_eq!(hits.iter().filter(|hit| hit.ignored).count(), 2);
+        fs::write(dir.join("notes/deep/.gitignore"), "!secret.md\n").unwrap();
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| batches.push(batch));
+        assert_eq!(batches.last().unwrap().matched, 2);
+        fs::write(dir.join(".gitignore"), "notes/\n").unwrap();
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| batches.push(batch));
+        assert_eq!(batches.last().unwrap().matched, 0);
+        assert_eq!(batches.last().unwrap().status, "complete");
+    }
+
+    #[test]
+    fn scope_validation_rejects_traversal_files_and_reparse_points() {
+        let dir = crate::platform::test_support::FixtureDir::new("ir05-validation");
+        let outside = crate::platform::test_support::FixtureDir::new("ir05-outside");
+        fs::write(outside.join("private.md"), "needle").unwrap();
+        fs::write(dir.join("file.md"), "needle").unwrap();
+        let state = AppState::default();
+        let info = state.register_root(&dir).unwrap();
+        let root = state.root(&info.id).unwrap();
+        for segment in ["..", ".", "", "a/b", "a\\b", "\0"] {
+            assert_eq!(SearchScope::confirm(&root, vec![segment.into()]).err().unwrap().code, "invalid_path");
+        }
+        assert!(SearchScope::confirm(&root, vec!["file.md".into()]).is_err());
+        assert!(SearchScope::confirm(&root, vec!["missing".into()]).is_err());
+        assert!(SearchScope::confirm(&root, vec!["deep".into(); 129]).is_err());
+        let link = crate::platform::test_support::directory_link(&outside, &dir.join("escape")).unwrap();
+        assert!(SearchScope::confirm(&root, vec!["escape".into()]).is_err());
+        let internal = crate::platform::test_support::directory_link(&dir, &dir.join("internal")).unwrap();
+        assert!(SearchScope::confirm(&root, vec!["internal".into()]).is_err());
+        assert_eq!(fs::read(outside.join("private.md")).unwrap(), b"needle");
+        drop(internal); drop(link);
+    }
+
+    #[test]
+    fn replacement_job_rejects_old_open_and_late_cancel_preserves_new_job() {
+        let dir = crate::platform::test_support::FixtureDir::new("ir05-job-ownership");
+        fs::write(dir.join("visible.md"), "needle").unwrap();
+        let state = AppState::default();
+        let info = state.register_root(&dir).unwrap();
+        let root = state.root(&info.id).unwrap();
+        let searches = SearchState::default();
+        let first = Arc::new(scoped_job(&state, &root, &[], false));
+        searches.replace(first.clone()).unwrap();
+        let mut batches = Vec::new();
+        scan_root(&root, &first, &mut |batch| batches.push(batch));
+        let hit = batches.iter().flat_map(|batch| &batch.results).next().unwrap().clone();
+        // Failed scope validation occurs before replace, leaving the current job usable.
+        assert!(SearchScope::confirm(&root, vec!["..".into()]).is_err());
+        assert!(open_hit_impl(&state, &first, hit.clone()).is_ok());
+        let second = Arc::new(scoped_job(&state, &root, &[], false));
+        searches.replace(second.clone()).unwrap();
+        assert_eq!(open_hit_impl(&state, &first, hit).err().unwrap().code, "invalid_grant");
+        assert!(!searches.cancel(&first.id).unwrap());
+        assert!(!second.cancelled.load(Ordering::SeqCst));
+        assert!(searches.cancel(&second.id).unwrap());
+        let mut batches = Vec::new();
+        scan_root(&root, &second, &mut |batch| batches.push(batch));
+        assert_eq!(batches.last().unwrap().status, "stopped");
+    }
+
+    #[test]
+    fn scope_replacement_between_batches_stops_scan_without_emitting_new_hits() {
+        let dir = crate::platform::test_support::FixtureDir::new("ir05-stream-replacement");
+        fs::create_dir(dir.join("notes")).unwrap();
+        for n in 0..70 { fs::write(dir.join(format!("notes/{n}.md")), "needle").unwrap(); }
+        let state = AppState::default();
+        let info = state.register_root(&dir).unwrap();
+        let root = state.root(&info.id).unwrap();
+        let job = scoped_job(&state, &root, &["notes"], false);
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| {
+            // Result flushes occur while a file is held; Windows correctly
+            // denies moving its parent then. The progress flush is between files.
+            if batch.scanned == 64 && batch.results.is_empty() && batch.status == "searching" {
+                fs::rename(dir.join("notes"), dir.join("old-notes")).unwrap();
+                fs::create_dir(dir.join("notes")).unwrap();
+                fs::write(dir.join("notes/replacement.md"), "needle").unwrap();
+            }
+            batches.push(batch);
+        });
+        assert_eq!(batches.len(), 4);
+        assert_eq!(batches[0].results.len(), 32);
+        assert_eq!(batches[1].results.len(), 32);
+        assert!(batches[3].results.is_empty());
+        assert_eq!(batches[3].status, "partial");
+        assert_eq!(batches[3].error_code, Some("scope_changed"));
+        assert_eq!(open_hit_impl(&state, &job, batches[0].results[0].clone()).err().unwrap().code, "scope_changed");
+    }
+
+    #[test]
+    fn replaced_scope_invalidates_emission_and_open_but_stop_keeps_partial_hits_openable() {
+        let dir = crate::platform::test_support::FixtureDir::new("ir05-replacement");
+        fs::create_dir(dir.join("notes")).unwrap();
+        fs::write(dir.join("notes/visible.md"), "needle").unwrap();
+        let state = AppState::default();
+        let info = state.register_root(&dir).unwrap();
+        let root = state.root(&info.id).unwrap();
+        let job = scoped_job(&state, &root, &["notes"], false);
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| batches.push(batch));
+        let hit = batches.iter().flat_map(|batch| &batch.results).next().unwrap().clone();
+        job.cancelled.store(true, Ordering::SeqCst);
+        assert!(open_hit_impl(&state, &job, hit.clone()).is_ok());
+        job.superseded.store(true, Ordering::SeqCst);
+        assert_eq!(open_hit_impl(&state, &job, hit.clone()).err().unwrap().code, "invalid_grant");
+        job.superseded.store(false, Ordering::SeqCst);
+        job.cancelled.store(false, Ordering::SeqCst);
+        fs::rename(dir.join("notes"), dir.join("old-notes")).unwrap();
+        fs::create_dir(dir.join("notes")).unwrap();
+        fs::write(dir.join("notes/visible.md"), "replacement needle").unwrap();
+        assert_eq!(open_hit_impl(&state, &job, hit).err().unwrap().code, "scope_changed");
+        let mut batches = Vec::new();
+        scan_root(&root, &job, &mut |batch| batches.push(batch));
+        assert!(batches.iter().all(|batch| batch.results.is_empty()));
+        assert_eq!(batches.last().unwrap().error_code, Some("scope_changed"));
+        assert_eq!(batches.last().unwrap().status, "partial");
+    }
+
     #[test]
     fn scoped_ignore_and_content_are_bounded_and_do_not_follow_links() {
         let (dir, state, root) = fixture();
@@ -393,12 +642,16 @@ mod tests {
         let original = b"# Needle\nOther needle\n";
         fs::write(dir.join("notes/visible.md"), original).unwrap();
         fs::write(dir.join("notes/secret.md"), "# Needle\n").unwrap();
-        let outside = dir.with_extension("outside");
-        fs::write(&outside, "# Needle\n").unwrap();
-        symlink(&outside, dir.join("notes/link.md")).unwrap();
-        let job = SearchJob { id: "job".into(), root_id: root.id.clone(),
+        let outside = crate::platform::test_support::FixtureDir::new("md-reader-search-outside");
+        let outside_file = outside.path().join("outside.md");
+        fs::write(&outside_file, "# Needle\n").unwrap();
+        #[cfg(target_os = "macos")]
+        symlink(&outside_file, dir.join("notes/link.md")).unwrap();
+        #[cfg(target_os = "windows")]
+        let junction = crate::platform::test_support::directory_link(outside.path(), &dir.join("notes/link")).unwrap();
+        let job = SearchJob { state: state.clone(), id: "job".into(), root_id: root.id.clone(),
             generation: root.generation, query: "needle".into(), mode: SearchMode::Both,
-            include_ignored: false, cancelled: AtomicBool::new(false),
+            include_ignored: false, scope: SearchScope::confirm(&root, vec![]).unwrap(), cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false),
             results: Mutex::new(HashMap::new()) };
         let mut batches = Vec::new();
         scan_root(&root, &job, &mut |batch| batches.push(batch));
@@ -407,9 +660,9 @@ mod tests {
         assert!(hits.iter().all(|hit| hit.path == "notes/visible.md"));
         assert_eq!(batches.last().unwrap().status, "complete");
         assert_eq!(fs::read(dir.join("notes/visible.md")).unwrap(), original);
-        let include = SearchJob { id: "include".into(), root_id: root.id.clone(),
+        let include = SearchJob { state: state.clone(), id: "include".into(), root_id: root.id.clone(),
             generation: root.generation, query: "needle".into(), mode: SearchMode::Both,
-            include_ignored: true, cancelled: AtomicBool::new(false),
+            include_ignored: true, scope: SearchScope::confirm(&root, vec![]).unwrap(), cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false),
             results: Mutex::new(HashMap::new()) };
         let mut included = Vec::new();
         scan_root(&root, &include, &mut |batch| included.push(batch));
@@ -418,7 +671,7 @@ mod tests {
         assert_eq!(ignored_hits.len(), 1);
         assert!(ignored_hits[0].ignored);
         assert!(included.iter().flat_map(|batch| &batch.results)
-            .all(|hit| hit.path != "notes/link.md"));
+            .all(|hit| hit.path != "notes/link.md" && !hit.path.starts_with("notes/link/")));
         fs::write(dir.join("notes/visible.md"), b"# Changed\n").unwrap();
         let opened = open_hit_impl(&state, &job, hits[0].clone()).unwrap();
         assert!(opened.changed && opened.match_moved);
@@ -427,8 +680,10 @@ mod tests {
         let mut stopped = Vec::new();
         scan_root(&root, &job, &mut |batch| stopped.push(batch));
         assert_eq!(stopped.last().unwrap().status, "stopped");
+        #[cfg(target_os = "windows")]
+        drop(junction);
+        assert_eq!(fs::read(outside_file).unwrap(), b"# Needle\n");
         fs::remove_dir_all(&dir).unwrap();
-        fs::remove_file(outside).unwrap();
     }
 
     #[test]
@@ -438,9 +693,9 @@ mod tests {
         fs::write(dir.join(".gitignore"), "notes/secret.md\n").unwrap();
         fs::write(dir.join("notes/.gitignore"), "!secret.md\n").unwrap();
         fs::write(dir.join("notes/secret.md"), "needle\n").unwrap();
-        let job = SearchJob { id: "job".into(), root_id: root.id.clone(),
+        let job = SearchJob { state: state.clone(), id: "job".into(), root_id: root.id.clone(),
             generation: root.generation, query: "needle".into(), mode: SearchMode::Content,
-            include_ignored: false, cancelled: AtomicBool::new(false),
+            include_ignored: false, scope: SearchScope::confirm(&root, vec![]).unwrap(), cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false),
             results: Mutex::new(HashMap::new()) };
         let mut batches = Vec::new();
         scan_root(&root, &job, &mut |batch| batches.push(batch));
@@ -451,6 +706,11 @@ mod tests {
         fs::create_dir(&other).unwrap();
         state.register_root(&other).unwrap();
         assert_eq!(open_hit_impl(&state, &job, hit).err().unwrap().code, "invalid_grant");
+        let mut expired = Vec::new();
+        scan_root(&root, &job, &mut |batch| expired.push(batch));
+        assert_eq!(expired.last().unwrap().status, "partial");
+        assert_eq!(expired.last().unwrap().error_code, Some("invalid_grant"));
+        assert!(expired.iter().all(|batch| batch.results.is_empty()));
         fs::remove_dir_all(other).unwrap();
         fs::remove_dir_all(dir).unwrap();
     }
@@ -459,7 +719,7 @@ mod tests {
     #[ignore = "25,000 disposable files and cancellation timing; run explicitly for F003F evidence"]
     fn twenty_five_thousand_entry_scan_and_stop() {
         use std::time::{Duration, Instant};
-        let (dir, _state, root) = fixture();
+        let (dir, state, root) = fixture();
         for number in 0..25_000 {
             let name = if number < 5_000 {
                 format!("{number:05}.md")
@@ -469,9 +729,9 @@ mod tests {
             } else { b"# Other\n" };
             fs::write(dir.join(name), content).unwrap();
         }
-        let job = Arc::new(SearchJob { id: "large".into(), root_id: root.id.clone(),
+        let job = Arc::new(SearchJob { state: state.clone(), id: "large".into(), root_id: root.id.clone(),
             generation: root.generation, query: "needle".into(), mode: SearchMode::Content,
-            include_ignored: false, cancelled: AtomicBool::new(false),
+            include_ignored: false, scope: SearchScope::confirm(&root, vec![]).unwrap(), cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false),
             results: Mutex::new(HashMap::new()) });
         let started = Instant::now();
         let mut batches = Vec::new();
@@ -485,10 +745,10 @@ mod tests {
         println!("F003F 25k complete scan: {:?}", elapsed);
         let mut stop_times = Vec::new();
         for trial in 0..10 {
-            let stop_job = Arc::new(SearchJob { id: format!("stop-{trial}"),
+            let stop_job = Arc::new(SearchJob { state: state.clone(), id: format!("stop-{trial}"),
                 root_id: root.id.clone(), generation: root.generation,
                 query: "needle".into(), mode: SearchMode::Content,
-                include_ignored: false, cancelled: AtomicBool::new(false),
+                include_ignored: false, scope: SearchScope::confirm(&root, vec![]).unwrap(), cancelled: AtomicBool::new(false), superseded: AtomicBool::new(false),
                 results: Mutex::new(HashMap::new()) });
             let root_clone = root.clone();
             let job_clone = stop_job.clone();

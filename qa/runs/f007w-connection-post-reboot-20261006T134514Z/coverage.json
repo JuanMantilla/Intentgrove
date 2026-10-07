@@ -1,0 +1,18 @@
+{
+  "run": "f007w-connection-post-reboot-20261006T134514Z",
+  "mode": "RETEST",
+  "scope": "Post-reboot connection only; parent 80-row native ledger unchanged",
+  "counts": {
+    "BLOCKED": 1
+  },
+  "nativeProductExecuted": 0,
+  "rows": [
+    {
+      "id": "native-connection-post-reboot",
+      "status": "BLOCKED",
+      "attempts": 2,
+      "observation": "list_windows before reset and list_apps after successful reset/reimport both fail native-pipe OS error 2; no returned windows",
+      "evidence": "evidence/connection.json"
+    }
+  ]
+}
