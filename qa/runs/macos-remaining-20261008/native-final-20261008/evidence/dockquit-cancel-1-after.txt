@@ -1,0 +1,75 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: rich.md
+/Users/Shared/Intentgrove-Acceptance-20261008/Test Documents/rich.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) lifecycle.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/lifecycle.md
+						14 button Close tab: lifecycle.md, Help: Close tab
+				15 pop up button Go menu
+				16 button (collapsed) Open documents (1), Secondary Actions: Expand
+				17 container lifecycle.md
+					18 text lifecycle.md
+					19 text Folder root
+					20 button Save file
+					21 button Return to reading
+					22 text Save returns to reading.
+					23 summary Document…, Value: off
+						24 text Document…
+				25 container lifecycle.md
+					26 container Editing: Lifecycle proof
+						27 text Editing: Lifecycle proof
+						28 text Changes not saved to the file
+						29 text Markdown source
+						30 text entry area (settable) Markdown source: Lifecycle proof, Secondary Actions: Show Writing Tools, Value: # Lifecycle proof
+
+RUN_FINAL_CANCEL_MARKER
+
+
+							31 text (settable) # Lifecycle proof
+
+RUN_FINAL_CANCEL_MARKER
+
+
+						32 container Live preview
+							33 text Live preview
+							34 container Lifecycle proof
+								35 heading Lifecycle proof, Value: 1
+									36 text Lifecycle proof
+								37 text RUN_FINAL_CANCEL_MARKER
+						38 button Undo
+						39 button (disabled) Redo
+						40 button Discard changes…
+						41 button Save as…
+					42 container Lifecycle proof
+						43 container Edit section: Lifecycle proof
+							44 heading Lifecycle proof, Value: 1
+								45 text Lifecycle proof
+							46 button Edit section “Lifecycle proof”
+						47 text BASELINE_FIRST
+						48 container Edit section: Following section
+							49 heading Following section, Value: 2
+								50 text Following section
+							51 button Edit section “Following section”
+						52 text DO_NOT_CHANGE_FOLLOWING
+	53 close button
+	54 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	55 minimize button
+	56 text Intentgrove
+57 menu bar
+	58 Intentgrove
+	59 File
+	60 Edit
+	61 View
+	62 Go
+	63 Window
+	64 Help

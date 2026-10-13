@@ -1,0 +1,20 @@
+{
+  "result": "PARTIAL",
+  "candidate": "native-candidate.json",
+  "observed": [
+    "OS-level synthesized macOS Cmd+T opens one native dialog",
+    "repeated Cmd+T did not stack dialogs; Escape returned to welcome",
+    "welcome entry opens same dialog",
+    "picker navigated to disposable directory; Open stayed disabled both inside it and with its row selected",
+    "Escape canceled picker; filename and normalization remained in form; Create disabled without destination",
+    "native before/after fixture hashes match; no created files",
+    "main-window action follow-up limited by elementHasNoFrame/noWindowsAvailable; owned PID50773 stopped with unsubmitted form and no draft"
+  ],
+  "not_run": [
+    "final-candidate native filesystem create/editor/save/reopen/discard/recovery/conflict journey",
+    "focused native editor shortcut/menu and Settings ownership",
+    "Windows runtime and physical human shortcuts",
+    "VoiceOver/physical IME/200% zoom"
+  ],
+  "production_root_cause": "not established"
+}

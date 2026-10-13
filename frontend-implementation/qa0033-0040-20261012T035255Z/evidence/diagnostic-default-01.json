@@ -1,0 +1,27 @@
+{
+  "id": "diagnostic-default-01",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "--config",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic.config.ts"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:55:11.000232+00:00",
+  "load_before": [
+    15.0810546875,
+    7.3359375,
+    6.5361328125
+  ],
+  "exit_code": 1,
+  "finished_at": "2026-10-12T03:58:38.857374+00:00",
+  "load_after": [
+    20.25927734375,
+    19.51953125,
+    12.4384765625
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/diagnostic-default-01.log"
+}

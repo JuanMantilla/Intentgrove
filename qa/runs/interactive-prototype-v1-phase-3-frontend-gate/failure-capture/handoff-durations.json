@@ -1,0 +1,1026 @@
+[
+  {
+    "run": "D-seeded-1",
+    "suite_duration_ms": 8008.183837890625,
+    "median_test_ms": 307.98491650000005,
+    "max_test_ms": 890.847292,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 890.847292,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 551.5444580000001,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 545.5987500000001,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 466.654583,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 457.55499999999984,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 285.30399999999963,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 386.1041670000004,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 188.64395800000057,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 122.6023750000004,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 193.10900000000038,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 296.20820900000035,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 267.38845800000036,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 322.0392919999995,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 315.22820799999954,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 501.24554200000057,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 126.12033300000076,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 138.88883299999998,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 443.9596249999995,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 320.3824999999997,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 163.2536659999996,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 236.6987080000008,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 348.10862500000076,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 300.74162500000057,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 139.18383299999914,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "recorder-seeded-1",
+    "suite_duration_ms": 51504.891845703125,
+    "median_test_ms": 2188.0431045000023,
+    "max_test_ms": 3615.0344159999986,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 2922.953292000001,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 2782.3471250000002,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 2262.728874999999,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 3615.0344159999986,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 2780.498166999998,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 2239.5760420000006,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 1578.4491669999989,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 1075.8820410000008,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 1688.3715419999971,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 2910.050625,
+        "status": "failed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 2191.1655420000025,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 2184.920667000002,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 3378.988915999995,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 2233.4192909999983,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 2738.8183749999953,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 1932.5233750000043,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 2072.8402080000014,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 1557.3341660000006,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 1023.7502499999973,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 1409.641582999997,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 1356.7355829999942,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 1361.2823749999952,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 2281.0350000000035,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 1922.8919590000005,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "A-warm-2",
+    "suite_duration_ms": 12474.045654296875,
+    "median_test_ms": 503.1678329999995,
+    "max_test_ms": 877.727083,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 877.727083,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 666.55825,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 656.8839170000001,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 563.2323340000003,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 720.3416660000003,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 508.8204999999998,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 446.75983300000007,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 259.64066699999967,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 250.69475000000057,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 661.6518749999996,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 428.8015830000004,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 373.8646669999998,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 662.2699169999996,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 548.8418750000001,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 638.5483750000003,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 497.5151659999992,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 414.0169999999998,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 576.6984589999993,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 375.4367080000011,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 452.12474999999904,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 448.4839579999989,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 379.8733749999992,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 622.306333999999,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 442.04575000000114,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "B-warm-2",
+    "suite_duration_ms": 18332.838134765625,
+    "median_test_ms": 697.1654165000009,
+    "max_test_ms": 1371.2717080000002,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 1283.191417,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 1362.8812089999997,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 1371.2717080000002,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 1032.5479999999998,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 1338.1380829999998,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 1184.0572080000002,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 886.6517919999987,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 449.32916699999987,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 409.83379200000127,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 1172.7438750000001,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 685.4310830000013,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 590.0376660000002,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 877.6618330000001,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 708.8997500000005,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 741.847749999999,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 272.37620799999786,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 441.479292,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 501.4787499999984,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 232.2062079999996,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 470.5072910000017,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 490.4282919999969,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 552.8533750000024,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 787.9933339999989,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 486.83808399999907,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "D-warm-2",
+    "suite_duration_ms": 13770.946044921875,
+    "median_test_ms": 580.7665420000003,
+    "max_test_ms": 963.5186669999998,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 963.5186669999998,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 689.65375,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 661.9003339999999,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 568.9579159999994,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 715.515375,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 450.4829580000005,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 522.8400409999995,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 260.4675420000003,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 250.82375000000047,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 668.9573329999994,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 408.99524999999994,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 374.5643339999997,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 667.0801249999995,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 570.0740420000002,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 776.3915830000005,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 475.39866600000096,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 360.6355000000003,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 605.8446250000015,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 428.5570000000007,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 610.2493749999994,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 591.4590420000004,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 528.2677920000006,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 919.1463750000003,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 699.9460419999996,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "B-seeded-1",
+    "suite_duration_ms": 12184.23388671875,
+    "median_test_ms": 473.3189585,
+    "max_test_ms": 858.2795420000001,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 858.2795420000001,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 744.613542,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 750.3104590000003,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 618.9978330000004,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 681.259458,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 457.38179200000013,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 412.6611670000002,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 265.51787500000046,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 262.1246250000004,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 678.8012500000004,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 349.6525410000004,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 341.8865420000002,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 696.1405420000001,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 619.2640419999998,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 710.929333,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 489.2561249999999,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 348.0349590000005,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 548.1543330000004,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 354.4500000000007,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 380.08095799999865,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 423.7509169999994,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 275.65429199999926,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 643.6073750000014,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 272.2338749999999,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "A-seeded-1",
+    "suite_duration_ms": 29697.8447265625,
+    "median_test_ms": 1115.3845625000004,
+    "max_test_ms": 3067.496667,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 3067.496667,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 1316.4059579999994,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 1391.1554999999998,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 1135.4394999999986,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 1782.6888749999998,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 1552.7164589999993,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 985.0332499999986,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 497.36291699999856,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 505.05433399999856,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 1059.524042000001,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 649.5304169999999,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 528.0310420000023,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 1032.4361659999995,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 907.4833749999998,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 1372.1475000000028,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 1198.3478749999995,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 1163.4201250000006,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 1095.3296250000021,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 830.8265829999982,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 1991.614375000001,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 1488.8836249999986,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 1073.947666,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 1992.8267079999969,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 1077.8446670000012,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "run": "C-seeded-1",
+    "suite_duration_ms": 9082.472412109375,
+    "median_test_ms": 364.2071040000001,
+    "max_test_ms": 734.583208,
+    "tests": [
+      {
+        "name": "follows a link from a dropped individual file while retaining the workspace and existing dirty draft",
+        "duration_ms": 734.583208,
+        "status": "passed"
+      },
+      {
+        "name": "names Go destinations with distinguishing paths from the shared visit history",
+        "duration_ms": 468.2931249999999,
+        "status": "passed"
+      },
+      {
+        "name": "exposes folder expansion and context actions on root-owned tabs without changing selection",
+        "duration_ms": 462.199167,
+        "status": "passed"
+      },
+      {
+        "name": "closes only tabs to the right and disables an empty range",
+        "duration_ms": 460.5975830000002,
+        "status": "passed"
+      },
+      {
+        "name": "preserves every tab and dirty draft when a batch close is cancelled",
+        "duration_ms": 255.21945800000003,
+        "status": "passed"
+      },
+      {
+        "name": "retains tabs and drafts when a batch Save fails",
+        "duration_ms": 548.8242500000001,
+        "status": "passed"
+      },
+      {
+        "name": "lists full identities in stable tab order and selects without closing",
+        "duration_ms": 314.7312500000003,
+        "status": "passed"
+      },
+      {
+        "name": "discloses a selectable full path by keyboard without changing the document",
+        "duration_ms": 171.38004100000035,
+        "status": "passed"
+      },
+      {
+        "name": "marks the current row independently from keyboard browsing focus",
+        "duration_ms": 212.37562500000058,
+        "status": "passed"
+      },
+      {
+        "name": "reveals collapsed branches only after explicit request",
+        "duration_ms": 555.3092500000002,
+        "status": "passed"
+      },
+      {
+        "name": "keeps an outside-root explicit file outside explorer membership",
+        "duration_ms": 242.6346249999997,
+        "status": "passed"
+      },
+      {
+        "name": "uses the visible edit route while keeping heading identity and Find content clean",
+        "duration_ms": 300.71379199999956,
+        "status": "passed"
+      },
+      {
+        "name": "confirms discard, preserves input on cancel and returns to the section button",
+        "duration_ms": 481.2952919999998,
+        "status": "passed"
+      },
+      {
+        "name": "keeps dirty source status after confirmed recovery and protects a submitted save revision",
+        "duration_ms": 349.9768330000006,
+        "status": "passed"
+      },
+      {
+        "name": "retains draft, selection and Undo while traversing away and back, without saving or discarding",
+        "duration_ms": 551.9487079999999,
+        "status": "passed"
+      },
+      {
+        "name": "returns to reading only after the submitted header Save succeeds",
+        "duration_ms": 141.54824999999983,
+        "status": "passed"
+      },
+      {
+        "name": "cancels Save As without clearing the original dirty state",
+        "duration_ms": 352.9417919999996,
+        "status": "passed"
+      },
+      {
+        "name": "waits for the real Save As adapter cancellation while retaining the dirty editor owner",
+        "duration_ms": 484.63395799999944,
+        "status": "passed"
+      },
+      {
+        "name": "preserves search query and returns focus on Escape",
+        "duration_ms": 163.31895900000018,
+        "status": "passed"
+      },
+      {
+        "name": "saves a separate copy while preserving the original unsaved editor",
+        "duration_ms": 307.32808300000033,
+        "status": "passed"
+      },
+      {
+        "name": "discloses broad draft cleanup and cannot invoke deletion until confirmation",
+        "duration_ms": 390.9156670000011,
+        "status": "passed"
+      },
+      {
+        "name": "edits only the mapped rendered section and updates its outline without changing surrounding content",
+        "duration_ms": 266.9638329999998,
+        "status": "passed"
+      },
+      {
+        "name": "routes native rich commands to the focused owner and publishes source-history availability",
+        "duration_ms": 488.9728749999995,
+        "status": "passed"
+      },
+      {
+        "name": "keeps surrounding outline anchors stable when the selected heading is renamed to a duplicate",
+        "duration_ms": 375.4724160000005,
+        "status": "passed"
+      }
+    ]
+  }
+]

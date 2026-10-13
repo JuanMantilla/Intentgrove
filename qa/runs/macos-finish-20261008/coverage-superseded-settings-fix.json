@@ -1,0 +1,311 @@
+[
+  {
+    "id": "NF01",
+    "case": "Isolated final-source launch",
+    "status": "PASS",
+    "evidence": [
+      "01-final-cold-open.png",
+      "02-finder-document.txt",
+      "final-running-process.txt"
+    ],
+    "reason": "Exact final acceptance executable, isolated identifier; initial empty workspace and actual Markdown load."
+  },
+  {
+    "id": "NF02",
+    "case": "Settings menu and Command-comma",
+    "status": "PASS",
+    "evidence": [
+      "05-native-application-menu.txt",
+      "06-settings-18.png"
+    ],
+    "reason": "Native application Settings menu and Command-comma each opened the preference-only window."
+  },
+  {
+    "id": "NF03",
+    "case": "Settings focus and Command-O suppression",
+    "status": "PASS",
+    "evidence": [
+      "04-settings-command-o.txt"
+    ],
+    "reason": "Command-O while Settings focused opened no picker/workspace document."
+  },
+  {
+    "id": "NF04",
+    "case": "Numeric first/second Escape",
+    "status": "PASS",
+    "evidence": [
+      "03-settings-first-escape.png",
+      "04-settings-command-o.txt"
+    ],
+    "reason": "Typed 23; first Escape reverted to16 and retained Settings, second Escape returned to workspace."
+  },
+  {
+    "id": "NF05",
+    "case": "Go Back/Forward",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF06",
+    "case": "Visited list/Clear visited",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF07",
+    "case": "Command-F and Escape focus",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF08",
+    "case": "Finder cold open",
+    "status": "PASS",
+    "evidence": [
+      "finder-exact-app-picker.txt",
+      "02-finder-document.png"
+    ],
+    "reason": "Finder Other picker selected exact final bundle while no candidate process ran; queued second.md accepted and rendered. Initial wrong-archive attempt excluded."
+  },
+  {
+    "id": "NF09",
+    "case": "Finder warm open",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF10",
+    "case": "File drop",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF11",
+    "case": "Folder drop",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF12",
+    "case": "Settings drop refusal",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF13",
+    "case": "Clean Close",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF14",
+    "case": "Actual Dock reopen",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF15",
+    "case": "Dirty Close Cancel",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF16",
+    "case": "Dirty Quit Cancel",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF17",
+    "case": "Successful Save source bytes",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF18",
+    "case": "Failed Save preserves draft",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF19",
+    "case": "Dirty Close Save",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF20",
+    "case": "Dirty Quit Save",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF21",
+    "case": "Preferences restart",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF22",
+    "case": "Session restore",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF23",
+    "case": "Draft recovery",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF24",
+    "case": "Scoped search query/open",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF25",
+    "case": "Scope changes",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF26",
+    "case": "Search cancellation",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF27",
+    "case": "Stale batches/open replies",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF28",
+    "case": "PNG same-inode refresh",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF29",
+    "case": "PNG replacement refresh",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF30",
+    "case": "PNG reopen status",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF31",
+    "case": "Image failure/recovery",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF32",
+    "case": "Image security neighbors",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF33",
+    "case": "Metadata/highlight/reference/footnote/duplicate headings",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF34",
+    "case": "Hostile per-block fallback",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF35",
+    "case": "Valid Mermaid rendering",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF36",
+    "case": "Malformed Mermaid localized error/source",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF37",
+    "case": "Hostile Mermaid isolation",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF38",
+    "case": "Mermaid cancellation/stale result",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF39",
+    "case": "1 MiB native performance ten trials",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF40",
+    "case": "10 MiB native performance ten trials",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF41",
+    "case": "Over-limit source behavior",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  },
+  {
+    "id": "NF42",
+    "case": "Final production-identifier isolated runtime",
+    "status": "NOT_RUN",
+    "evidence": [],
+    "reason": "Pending final candidate"
+  }
+]

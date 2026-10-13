@@ -1,5 +1,7 @@
 # Tasks: Find Text in a Document (F003S)
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Input:** [spec](spec.md), [design](design.md), [plan](plan.md), [model](data-model.md), [contract](contracts/find-session.md). Approved gate hashes are recorded in `docs/approvals.md`.
 
 ## Phase 1: Setup
@@ -38,7 +40,7 @@
 ## Phase 6: Verification
 
 - [X] T013 Run focused UI tests, full Vitest, `npm run build`, bundle asset/IPC checks and local `.app` build; record exact results in `verification.md`.
-- [ ] T014 Run disposable packaged AS-001–011/SC-001–004, ten 1 MiB timing trials, source hashes and app-request observation per [quickstart](quickstart.md); mark unavailable checks BLOCKED/NOT TESTED. Keep future Windows/Linux AS-002/SC-005 NOT TESTED.
+- [x] T014 Run disposable packaged AS-001–011/SC-001–004, ten 1 MiB timing trials, source hashes and app-request observation per [quickstart](quickstart.md); mark unavailable checks BLOCKED/NOT TESTED. Keep future Windows/Linux AS-002/SC-005 NOT TESTED. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Dependencies and execution strategy
 

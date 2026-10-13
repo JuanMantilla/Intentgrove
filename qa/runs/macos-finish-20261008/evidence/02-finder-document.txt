@@ -1,0 +1,56 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace Local files only
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Explorer
+				10 pop up button Projects
+				11 text Open a Markdown file to start reading.
+				12 button Open folder
+				13 text Storage and recovery
+				14 text Open edits and recovery offers: 0
+				15 button Manage…
+			16 container
+				17 container Visited files
+					18 button (disabled) Back, Help: No previous file
+					19 button (disabled) Forward, Help: No next file
+				20 tab group (selectable) Documents
+					21 container
+						22 tab (selected) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						23 button Close tab: second.md, Help: Close tab
+				24 pop up button Go menu
+				25 button (collapsed) Open documents (1), Secondary Actions: Expand
+				26 container second.md
+					27 text second.md
+					28 text Outside the open folder
+					29 toggle button Outline, Value: off
+					30 button (collapsed) Reading settings, Secondary Actions: Expand
+					31 button Edit section
+					32 summary Document…, Value: off
+						33 text Document…
+				34 container second.md
+					35 container Second
+						36 container Edit section: Second
+							37 heading Second, Value: 1
+								38 text Second
+							39 button Edit section “Second”
+						40 text needle from neighbor
+	41 close button
+	42 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	43 minimize button
+	44 text Intentgrove
+45 menu bar
+	46 Intentgrove Final Acceptance 20261008
+	47 File
+	48 Edit
+	49 View
+	50 Go
+	51 Window
+	52 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

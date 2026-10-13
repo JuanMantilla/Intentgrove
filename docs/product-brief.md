@@ -1,5 +1,7 @@
 # Product brief — Intentgrove
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](current-version-acceptance-20261010.md).
+
 Status: requirements captured from the user’s numbered answers. Platform priority
 updated by the user on 2026-09-25: macOS first; development also on macOS.
 Refinements below remain proposals until accepted in a feature specification.
@@ -123,6 +125,11 @@ Propose a native .app bundle inside a downloadable .dmg. Start with the develope
 verified CPU architecture and macOS version; minimum OS and extra architectures
 require an explicit tested compatibility decision. Do not claim Intel/universal
 support just because the code is portable. Keep platform-specific code isolated.
+
+Confirmed 2026-10-08: current delivery targets Apple Silicon on the current macOS
+release only. Older macOS, Intel/universal and older-package upgrade acceptance
+are outside scope. Fresh installation and app-data/source preservation remain
+required. See [support decision](macos-supported-scope-20261008.md).
 
 Use Command-based shortcuts, a native application menu, system window controls,
 Finder Open With/file-drop integration, Retina-aware layout and trackpad scrolling.

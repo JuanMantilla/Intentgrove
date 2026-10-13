@@ -1,0 +1,81 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - text: Local files only
+  - button "Appearance":
+  - generic: Language
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Settings":
+- button "Projects" [expanded]:
+  - text: Projects
+- group "Visited files":
+  - button "Back" [disabled]:
+  - button "Forward" [disabled]:
+- tablist "Documents":
+  - tab "short.md" [selected]:
+    - generic: short.md
+  - 'button "Close tab: short.md"': ×
+- button "Go menu": Go
+- button "Open documents (1)"
+- complementary "Explorer":
+  - button "Projects":
+    - generic: Projects
+  - button "Close Projects sidebar":
+  - button "Open file"
+  - button "Open folder"
+  - search "Search folder":
+    - button "Back to explorer"
+    - text: Search folder
+    - searchbox "Search folder" [active]
+    - button "Search" [disabled]
+    - paragraph:
+      - 'generic "Search scope: fixtures"': fixtures
+    - button "Clear search" [disabled]: Clear
+    - button "Names and content":
+      - generic: Names and content
+    - paragraph: Enter a query to enable Search.
+    - status:
+      - generic "Enter text to search the selected folder. ⌄"
+    - region "Results"
+- main:
+  - group "short.md":
+    - strong:
+      - generic "short.md"
+    - button "Find in document":
+      - text: Find in document
+    - button "Outline" [pressed]:
+      - text: Outline
+    - button "Reading settings":
+      - text: Reading settings
+    - button "Edit section":
+      - text: Edit section
+    - generic "Document…"
+    - generic: Folder root
+  - tabpanel "short.md":
+    - article:
+      - 'generic "Edit section: Native validation"':
+        - heading "Native validation" [level=1]
+        - button "Edit section “Native validation”": Edit section
+      - paragraph: A disposable document for layout validation.
+      - 'generic "Edit section: Search section"':
+        - heading "Search section" [level=2]
+        - button "Edit section “Search section”": Edit section
+      - paragraph: validationneedle short document match.
+      - 'generic "Edit section: Another section"':
+        - heading "Another section" [level=2]
+        - button "Edit section “Another section”": Edit section
+      - paragraph: Keep this reading content visible.
+  - complementary "Outline":
+    - strong: Outline
+    - button "Close outline": ×
+    - navigation "Outline":
+      - list:
+        - button "Native validation"
+        - button "Search section"
+        - button "Another section"
+- contentinfo:
+  - generic: Current on disk
+  - button "Storage and recovery"
+  - generic: Intentgrove by Theonira

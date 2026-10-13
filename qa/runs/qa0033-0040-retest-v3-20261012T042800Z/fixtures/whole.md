@@ -1,0 +1,63 @@
+WHOLE_BEGIN_C
+
+Whole passage C001: live whole document selection.
+
+Whole passage C002: live whole document selection.
+
+Whole passage C003: live whole document selection.
+
+Whole passage C004: live whole document selection.
+
+Whole passage C005: live whole document selection.
+
+Whole passage C006: live whole document selection.
+
+Whole passage C007: live whole document selection.
+
+Whole passage C008: live whole document selection.
+
+Whole passage C009: live whole document selection.
+
+Whole passage C010: live whole document selection.
+
+Whole passage C011: live whole document selection.
+
+Whole passage C012: live whole document selection.
+
+Whole passage C013: live whole document selection.
+
+Whole passage C014: live whole document selection.
+
+Whole passage C015: live whole document selection.
+
+Whole passage C016: live whole document selection.
+
+Whole passage C017: live whole document selection.
+
+Whole passage C018: live whole document selection.
+
+Whole passage C019: live whole document selection.
+
+Whole passage C020: live whole document selection.
+
+Whole passage C021: live whole document selection.
+
+Whole passage C022: live whole document selection.
+
+Whole passage C023: live whole document selection.
+
+Whole passage C024: live whole document selection.
+
+Whole passage C025: live whole document selection.
+
+Whole passage C026: live whole document selection.
+
+Whole passage C027: live whole document selection.
+
+Whole passage C028: live whole document selection.
+
+Whole passage C029: live whole document selection.
+
+Whole passage C030: live whole document selection.
+
+WHOLE_END_C

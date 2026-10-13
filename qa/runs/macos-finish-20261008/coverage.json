@@ -1,0 +1,404 @@
+[
+  {
+    "id": "NF01",
+    "case": "Isolated final-source launch",
+    "status": "PASS",
+    "evidence": [
+      "final-qa-hashes.txt",
+      "final-qa-config.json",
+      "final-process-path.txt"
+    ],
+    "reason": "Exact current candidate path/process and hashes pinned; isolated identifier and disposable fixture data."
+  },
+  {
+    "id": "NF02",
+    "case": "Settings menu and Command-comma",
+    "status": "PASS",
+    "evidence": [
+      "13-native-settings-menu.txt"
+    ],
+    "reason": "Native Settings menu and Command-comma opened Settings."
+  },
+  {
+    "id": "NF03",
+    "case": "Settings focus and Command-O suppression",
+    "status": "PASS",
+    "evidence": [
+      "09-settings-shortcut-suppression.txt"
+    ],
+    "reason": "Command-O kept Settings focused without opening a file picker."
+  },
+  {
+    "id": "NF04",
+    "case": "Numeric first/second Escape",
+    "status": "PASS",
+    "evidence": [
+      "10-first-escape-reverts.txt",
+      "11-committed-setting.txt",
+      "12-escape-after-commit-closes.txt"
+    ],
+    "reason": "Draft 23 reverted to 18 on first Escape, second closed. Enter 19 moved focus to HTML; Escape closed rebuilt Settings (QA-0009)."
+  },
+  {
+    "id": "NF05",
+    "case": "Go Back/Forward",
+    "status": "PASS",
+    "evidence": [
+      "15-visited-list.txt"
+    ],
+    "reason": "Back selected second.md; Forward restored reading.md."
+  },
+  {
+    "id": "NF06",
+    "case": "Visited list/Clear visited",
+    "status": "PASS",
+    "evidence": [
+      "15-visited-list.txt"
+    ],
+    "reason": "Visited list showed both files; Clear removed previous visit and disabled Back."
+  },
+  {
+    "id": "NF07",
+    "case": "Command-F and Escape focus",
+    "status": "PASS",
+    "evidence": [
+      "16-command-find.txt"
+    ],
+    "reason": "Command-F focused Find; query returned 1 of 2; Escape removed Find and focused reading container."
+  },
+  {
+    "id": "NF08",
+    "case": "Finder cold open",
+    "status": "PASS",
+    "evidence": [
+      "08-final-cold-finder.txt"
+    ],
+    "reason": "Finder Other picker selected exact rebuilt acceptance bundle; cold launch delivered second.md."
+  },
+  {
+    "id": "NF09",
+    "case": "Finder warm open",
+    "status": "PASS",
+    "evidence": [
+      "50-finder-warm-exact.txt"
+    ],
+    "reason": "Exact Other picker delivered hostile.md Finder item to existing current process; Open item activated existing tab. Earlier ambiguous bundle attempt excluded."
+  },
+  {
+    "id": "NF10",
+    "case": "File drop",
+    "status": "BLOCKED",
+    "evidence": [
+      "automation-boundaries.txt"
+    ],
+    "reason": "Cross-application drag did not deliver; supported drag API failed window boundary. Opening is not counted as drop."
+  },
+  {
+    "id": "NF11",
+    "case": "Folder drop",
+    "status": "BLOCKED",
+    "evidence": [
+      "automation-boundaries.txt"
+    ],
+    "reason": "No verified folder drop; cross-application transport boundary remains unresolved."
+  },
+  {
+    "id": "NF12",
+    "case": "Settings drop refusal",
+    "status": "BLOCKED",
+    "evidence": [
+      "automation-boundaries.txt"
+    ],
+    "reason": "Settings drop refusal requires actual delivered OS drop, not tested due cross-window transport."
+  },
+  {
+    "id": "NF13",
+    "case": "Clean Close",
+    "status": "BLOCKED",
+    "evidence": [
+      "automation-boundaries.txt"
+    ],
+    "reason": "Clean native Close attempted, but subsequent app observation can reactivate/reopen; no reliable disappearance proof."
+  },
+  {
+    "id": "NF14",
+    "case": "Actual Dock reopen",
+    "status": "BLOCKED",
+    "evidence": [
+      "28-native-window-close-dirty.txt"
+    ],
+    "reason": "Current CUA Dock binding timed out (-10005); Control-F3 produced no Dock accessibility surface. App activation is not counted as Dock reopen."
+  },
+  {
+    "id": "NF15",
+    "case": "Dirty Close Cancel",
+    "status": "PASS",
+    "evidence": [
+      "24-dirty-close.txt",
+      "28-native-window-close-dirty.txt"
+    ],
+    "reason": "Actual native Close also prompted for dirty stored edit and Cancel retained window; Command-W tab prompt separately recorded."
+  },
+  {
+    "id": "NF16",
+    "case": "Dirty Quit Cancel",
+    "status": "PASS",
+    "evidence": [
+      "25-dirty-quit.txt"
+    ],
+    "reason": "Command-Q prompted; Cancel retained app and editor."
+  },
+  {
+    "id": "NF17",
+    "case": "Successful Save source bytes",
+    "status": "PASS",
+    "evidence": [
+      "26-successful-save.txt",
+      "26-saved-bytes.txt"
+    ],
+    "reason": "Command-S returned to reading and actual file bytes contain final acceptance edit."
+  },
+  {
+    "id": "NF18",
+    "case": "Failed Save preserves draft",
+    "status": "PASS",
+    "evidence": [
+      "27-failed-save-preserves-draft.txt",
+      "27-failed-save-disk.txt"
+    ],
+    "reason": "Save refused changed/readonly file; unsaved draft and preview retained, disk unchanged. This exercised conflict refusal, not a direct permission error."
+  },
+  {
+    "id": "NF19",
+    "case": "Dirty Close Save",
+    "status": "PASS",
+    "evidence": [
+      "32-native-close-save.txt",
+      "32-native-close-save-bytes.txt"
+    ],
+    "reason": "Actual red native Close prompted; Save wrote window close save and closed window."
+  },
+  {
+    "id": "NF20",
+    "case": "Dirty Quit Save",
+    "status": "PASS",
+    "evidence": [
+      "33-quit-save.txt",
+      "33-quit-save-result.txt"
+    ],
+    "reason": "Quit Save wrote quit save final and process exited, confirmed by process inventory."
+  },
+  {
+    "id": "NF21",
+    "case": "Preferences restart",
+    "status": "PASS",
+    "evidence": [
+      "31-preferences-restart.txt"
+    ],
+    "reason": "Committed text size 19 persisted after normal process Quit/relaunch."
+  },
+  {
+    "id": "NF22",
+    "case": "Session restore",
+    "status": "PASS",
+    "evidence": [
+      "30-session-restart.txt"
+    ],
+    "reason": "Five tabs and active failure.md edit restored after normal process Quit/relaunch."
+  },
+  {
+    "id": "NF23",
+    "case": "Draft recovery",
+    "status": "PASS",
+    "evidence": [
+      "29-draft-recovered.txt"
+    ],
+    "reason": "Keep draft survived native window Close/reopen; recovery UI restored retained failed save draft."
+  },
+  {
+    "id": "NF24",
+    "case": "Scoped search query/open",
+    "status": "PASS",
+    "evidence": [
+      "34-scoped-search-open.txt"
+    ],
+    "reason": "docs scope needle scanned 1 entry; opened docs/scoped.md line 3."
+  },
+  {
+    "id": "NF25",
+    "case": "Scope changes",
+    "status": "PASS",
+    "evidence": [
+      "35-search-scope-more.txt"
+    ],
+    "reason": "Changing docs to more cleared prior results and new search returned more/other.md only."
+  },
+  {
+    "id": "NF26",
+    "case": "Search cancellation",
+    "status": "PASS",
+    "evidence": [
+      "54-search-running.txt",
+      "54-search-stopped.txt",
+      "54-search-stopped.png",
+      "55-stopped-search-stable.txt",
+      "55-stopped-search-stable.png"
+    ],
+    "reason": "Uncapped no-match query observed running; immediate observed Stop produced Stopped at7,527/20,000 entries. Later capture retained same stopped count, no later append."
+  },
+  {
+    "id": "NF27",
+    "case": "Stale batches/open replies",
+    "status": "BLOCKED",
+    "evidence": [
+      "automation-boundaries.txt"
+    ],
+    "reason": "Native held-batch/open-reply injection not available in this acceptance run; deterministic tests remain supplementary."
+  },
+  {
+    "id": "NF28",
+    "case": "PNG same-inode refresh",
+    "status": "PASS",
+    "evidence": [
+      "18-png-same-inode-refresh.txt",
+      "18-png-same-inode-refresh.png"
+    ],
+    "reason": "Same-inode PNG changed red to green on automatic refresh, displayed 128x128 PNG without unsupported status."
+  },
+  {
+    "id": "NF29",
+    "case": "PNG replacement refresh",
+    "status": "PASS",
+    "evidence": [
+      "19-png-replaced.txt"
+    ],
+    "reason": "Replacing explicit image inode revoked its grant and showed Select file again."
+  },
+  {
+    "id": "NF30",
+    "case": "PNG reopen status",
+    "status": "PASS",
+    "evidence": [
+      "20-png-reopen.txt"
+    ],
+    "reason": "Closing and selecting the PNG again restored PNG display with no unsupported status."
+  },
+  {
+    "id": "NF31",
+    "case": "Image failure/recovery",
+    "status": "PASS",
+    "evidence": [
+      "21-png-corrupt.txt",
+      "22-png-recovery.txt"
+    ],
+    "reason": "Corrupt same-inode PNG showed type mismatch; restored valid bytes and Retry restored display."
+  },
+  {
+    "id": "NF32",
+    "case": "Image security neighbors",
+    "status": "PASS",
+    "evidence": [
+      "23-svg-security.txt",
+      "44-image-security-placeholders.png"
+    ],
+    "reason": "Standalone hostile SVG refused unsafe content; inline local/remote/traversal references displayed blocked placeholders and hostile source stayed inert. No request-level network observation is claimed."
+  },
+  {
+    "id": "NF33",
+    "case": "Metadata/highlight/reference/footnote/duplicate headings",
+    "status": "PASS",
+    "evidence": [
+      "41-footnote-navigation.png",
+      "42-duplicate-outline-second.png",
+      "46-code-highlight.png",
+      "48-folder-reference-open.txt"
+    ],
+    "reason": "Metadata retained; JS colors visually inspected; reference opened second.md from folder-granted reading.md; footnote1 target and duplicate second outline target observed. Explicit-file sibling refusal retained as security evidence."
+  },
+  {
+    "id": "NF34",
+    "case": "Hostile per-block fallback",
+    "status": "PASS",
+    "evidence": [
+      "40-hostile-block-fallback.txt",
+      "40-hostile-block-fallback.png"
+    ],
+    "reason": "Deep nesting and 100k-character line fell back separately; Before/After/End still rendered."
+  },
+  {
+    "id": "NF35",
+    "case": "Valid Mermaid rendering",
+    "status": "FAIL",
+    "evidence": [
+      "14-rich-reading.txt"
+    ],
+    "reason": "Valid Mermaid is preserved as fenced source; no diagram renderer is enabled."
+  },
+  {
+    "id": "NF36",
+    "case": "Malformed Mermaid localized error/source",
+    "status": "FAIL",
+    "evidence": [
+      "14-rich-reading.txt"
+    ],
+    "reason": "Malformed Mermaid is preserved as source but has no diagram-specific error fallback."
+  },
+  {
+    "id": "NF37",
+    "case": "Hostile Mermaid isolation",
+    "status": "BLOCKED",
+    "evidence": [
+      "isolation-probe.txt",
+      "isolation-probe.png"
+    ],
+    "reason": "Executable isolated child not established by unchanged-CSP packaged probe. Cannot claim bridge/resource/network denial."
+  },
+  {
+    "id": "NF38",
+    "case": "Mermaid cancellation/stale result",
+    "status": "BLOCKED",
+    "evidence": [
+      "isolation-probe.txt"
+    ],
+    "reason": "Probe removed nonexecuting frame after 1005ms; busy-child termination and stale-result isolation are unproved."
+  },
+  {
+    "id": "NF39",
+    "case": "1 MiB native performance ten trials",
+    "status": "BLOCKED",
+    "evidence": [
+      "native-performance.json"
+    ],
+    "reason": "10/10 native 1 MiB trials usable; Open-click to AX upper bounds 1009\u20131119 ms include driver/read latency. Approved 1 second after-read target cannot be concluded from these timings."
+  },
+  {
+    "id": "NF40",
+    "case": "10 MiB native performance ten trials",
+    "status": "PASS",
+    "evidence": [
+      "native-performance.json",
+      "native-perf-10485760-1.png",
+      "native-perf-10485760-10.png"
+    ],
+    "reason": "10/10 native 10 MiB trials usable in 1137\u20131218 ms from Open click to AX, a conservative upper bound below approved 3 seconds after read. First/last screenshots inspected."
+  },
+  {
+    "id": "NF41",
+    "case": "Over-limit source behavior",
+    "status": "PASS",
+    "evidence": [
+      "38-over-limit.txt",
+      "39-read-only-source.txt"
+    ],
+    "reason": "11 MiB file offered source consent and opened bounded read-only 65,540-byte window with navigation."
+  },
+  {
+    "id": "NF42",
+    "case": "Final production-identifier isolated runtime",
+    "status": "BLOCKED",
+    "evidence": [
+      "final-qa-hashes.txt"
+    ],
+    "reason": "Production app not launched into existing user data. Requires disposable macOS account/host for exact production identifier runtime."
+  }
+]

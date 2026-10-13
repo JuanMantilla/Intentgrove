@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "/Users/juanmantilla/projects/personal/third_party/vectorcraft/target/release/vectorcraft-cli",
+    "run",
+    "--cmd",
+    "file.new",
+    "--params",
+    "{\"width\": 100, \"height\": 100, \"title\": \"Phase 2 minimal contract\", \"created\": 0}",
+    "--cmd",
+    "shape.rectangle",
+    "--params",
+    "{\"x\": 10, \"y\": 10, \"width\": 80, \"height\": 80}",
+    "--cmd",
+    "object.group",
+    "--params",
+    "{}",
+    "--cmd",
+    "object.setProps",
+    "--params",
+    "{\"data\": {\"prototype-id\": \"root\"}}",
+    "--cmd",
+    "document.export",
+    "--params",
+    "{\"path\": \"/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/visual.vectorcraft\", \"hiddenLayers\": true}",
+    "--cmd",
+    "document.export",
+    "--params",
+    "{\"path\": \"/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/scenes/home.svg\", \"hiddenLayers\": true, \"outlineText\": false, \"preserveEditing\": false, \"metadata\": false, \"objectIds\": \"minimal\"}"
+  ],
+  "exit": 0,
+  "stdout": "{\"command\":\"file.new\",\"result\":{\"index\":0,\"previewMode\":\"default\"},\"step\":\"cmd\"}\n{\"command\":\"shape.rectangle\",\"result\":{\"id\":2},\"step\":\"cmd\"}\n{\"command\":\"object.group\",\"result\":{\"id\":3},\"step\":\"cmd\"}\n{\"command\":\"object.setProps\",\"result\":null,\"step\":\"cmd\"}\n{\"command\":\"document.export\",\"result\":{\"bytes\":24987,\"format\":\"vectorcraft\",\"path\":\"/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/visual.vectorcraft\",\"warnings\":[]},\"step\":\"cmd\"}\n{\"command\":\"document.export\",\"result\":{\"bytes\":377,\"format\":\"svg\",\"path\":\"/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/scenes/home.svg\",\"warnings\":[]},\"step\":\"cmd\"}\n",
+  "stderr": ""
+}

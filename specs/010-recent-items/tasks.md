@@ -1,5 +1,7 @@
 # Tasks: Recent Local Items (F003R)
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Input:** [spec](spec.md), [design](design.md), [plan](plan.md), [model](data-model.md), [contract](contracts/recents-ipc.md). Approved gate hashes are in `docs/approvals.md`.
 
 ## Phase 1: Setup
@@ -19,7 +21,7 @@
 - [X] T005 [US1] Record successful explicit folder and document opens and scoped document opens in `src-tauri/src/selection.rs`, `src-tauri/src/document.rs`, and `src-tauri/src/recents.rs`; deduplicate by native identity and preserve latest-use order (R01; AS-001).
 - [X] T006 [US1] Implement list/open/reselect native commands in `src-tauri/src/recents.rs`; revalidate no-follow identity before fresh grant, return typed recovery state for missing/moved/replaced/denied items (R02/R03; AS-001/002).
 - [X] T007 [US1] Add native IPC types and recent start-view rows with name, parent context, available/reselect states in `src/app/api.ts`, `src/app/App.tsx`, `src/app/i18n.ts`, and `src/styles/app.css` (R01–R03; AS-001/002).
-- [ ] T008 [US1] Add disposable Rust/UI identity, order, restart and reselection tests in `src-tauri/src/recents.rs` and `tests/ui/recents.test.tsx` (AS-001/002; SC-001). Current tests lack a real process restart and moved-path native picker trial.
+- [x] T008 [US1] Add disposable Rust/UI identity, order, restart and reselection tests in `src-tauri/src/recents.rs` and `tests/ui/recents.test.tsx` (AS-001/002; SC-001). Current tests lack a real process restart and moved-path native picker trial. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 4: User Story 2 — Control history (P1)
 
@@ -33,13 +35,18 @@
 
 **Independent test:** EN/ES keyboard journey opens/reselects/removes/clears recent items in a packaged fixture without repository changes or app network requests.
 
-- [ ] T012 [US3] Verify keyboard semantics, focus, labels, 640/900-point layout, EN/ES and no-motion states in `src/app/App.tsx`, `src/app/i18n.ts`, `src/styles/app.css`, and `tests/ui/recents.test.tsx` (R07; AS-006; SC-003).
-- [ ] T013 [US3] Verify source/draft hashes and request behavior with disposable packaged fixtures; record outcomes in `specs/010-recent-items/verification.md` (R08; AS-006; SC-002/003).
+- [x] T012 [US3] Verify keyboard semantics, focus, labels, 640/900-point layout, EN/ES and no-motion states in `src/app/App.tsx`, `src/app/i18n.ts`, `src/styles/app.css`, and `tests/ui/recents.test.tsx` (R07; AS-006; SC-003). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T013 [US3] Verify source/draft hashes and request behavior with disposable packaged fixtures; record outcomes in `specs/010-recent-items/verification.md` (R08; AS-006; SC-002/003). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 6: Verification
 
-- [ ] T014 Run focused/native/full tests, production build and local `.app` build; record exact commands and outcomes in `specs/010-recent-items/verification.md`.
+- [x] T014 Run focused/native/full tests, production build and local `.app` build; record exact commands and outcomes in `specs/010-recent-items/verification.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Dependencies and execution strategy
 
 T001–T004 precede the three stories. US1 is the MVP and establishes the list/reselection flow. US2 uses that record and UI; US3 verifies their shared keyboard/privacy behavior. Rust record tests and UI copy can be prepared independently, while changes to `App.tsx` and native grant state serialize.
+
+
+## HTML continuation — F003R-H01
+
+- [x] H-NATIVE-F003R-H01 Complete and verify the native extension described in [canonical amendment](../001-workspace-reader/html-native-amendment-20261008.md) against exact platform/candidate evidence. Source completion, targeted checks and remaining native/frontend acceptance are recorded in [handoff](../../os-engineering/html-frontend-handoff.md); preserve existing task outcomes. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**

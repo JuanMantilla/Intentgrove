@@ -1,8 +1,10 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import App from "../../src/app/App";
-import { EditorView } from "@codemirror/view";
+import userEvent from "@testing-library/user-event";
+import { typeRich, richLeaf } from "./rich-edit-helpers";
 
 const mocks = vi.hoisted(() => ({
   selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), cancelListing: vi.fn(),
@@ -50,7 +52,7 @@ afterEach(cleanup);
 
 async function openOne() {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   fireEvent.click(await screen.findByTitle("one.md"));
   await screen.findByRole("heading", { name: "Alpha" });
 }
@@ -106,14 +108,14 @@ describe("document Find", () => {
   it("shows an unavailable state for a failed document", async () => {
     mocks.readDocument.mockRejectedValue({ code: "missing", message: "missing" });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("one.md"));
     await screen.findByRole("heading", { name: "This file is missing" });
     fireEvent.keyDown(window, { key: "f", metaKey: true });
     expect(screen.getByText("Find is unavailable for this document")).toBeTruthy();
   });
 
-  it("searches only the live CodeMirror draft and follows unsaved edits", async () => {
+  it("searches only the live rendered draft and follows unsaved edits", async () => {
     const sections = [
       { id: "one", kind: "heading", ordinal: 0, level: 1, label: "One",
         startByte: 0, endByte: 12, sourceHash: "one" },
@@ -126,19 +128,18 @@ describe("document Find", () => {
     mocks.beginSectionEdit.mockResolvedValue({ sessionId: "edit", diskVersion: "v1",
       section: sections[0], source: "# One\nalpha\n", lineSeparator: "\n" });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("one.md"));
     fireEvent.contextMenu(await screen.findByLabelText("Edit section: One"));
     fireEvent.click(screen.getByRole("menuitem", { name: "Edit section" }));
-    await waitFor(() => expect(document.querySelector(".cm-content")).toBeTruthy());
+    await waitFor(() => expect(document.querySelector(".rich-section")).toBeTruthy());
     fireEvent.keyDown(window, { key: "f", metaKey: true });
     const input = screen.getByRole("searchbox", { name: "Find in document" });
     fireEvent.change(input, { target: { value: "beta" } });
     await waitFor(() => expect(screen.getByText("No matches")).toBeTruthy());
     fireEvent.change(input, { target: { value: "alpha" } });
     await waitFor(() => expect(screen.getByText("1 of 1")).toBeTruthy());
-    const editor = EditorView.findFromDOM(document.querySelector<HTMLElement>(".cm-content")!)!;
-    editor.dispatch({ changes: { from: 6, to: 11, insert: "changed" } });
+    typeRich("changed", richLeaf("alpha"), 0, 5);
     await waitFor(() => expect(screen.getByText("No matches")).toBeTruthy());
     fireEvent.change(input, { target: { value: "changed" } });
     await waitFor(() => expect(screen.getByText("1 of 1")).toBeTruthy());
@@ -159,4 +160,25 @@ describe("document Find", () => {
     } });
     await waitFor(() => expect(screen.getByText("1 of 1")).toBeTruthy());
   });
+});
+
+it("QA-0036 preserves query focus and all draft bytes during automatic editable match revelation", async () => {
+ const source = "# MIXED_SECTION\nalpha\n";
+ const section = { id:"one",kind:"heading",ordinal:0,level:1,label:"MIXED_SECTION",startByte:0,endByte:source.length,sourceHash:"one" };
+ mocks.readDocument.mockResolvedValue({fileId:"one",identityKey:"one.md",name:"one.md",displayPath:"/tmp/fixture/one.md",diskVersion:"v1",content:source});
+ mocks.listEditSections.mockResolvedValue({sections:[section],diskVersion:"v1"});
+ mocks.beginSectionEdit.mockResolvedValue({sessionId:"edit",diskVersion:"v1",section,source,lineSeparator:"\n"});
+ render(<App/>);fireEvent.click(projectAction("Open folder"));fireEvent.click(await screen.findByTitle("one.md"));
+ fireEvent.contextMenu(await screen.findByLabelText("Edit section: MIXED_SECTION"));fireEvent.click(screen.getByRole("menuitem",{name:"Edit section"}));
+ await waitFor(()=>expect(document.querySelector(".rich-section")).toBeTruthy());
+ fireEvent.keyDown(window,{key:"f",metaKey:true});const input=screen.getByRole("searchbox",{name:"Find in document"});
+ const user=userEvent.setup();await user.keyboard("x");await screen.findByText("1 of 1");
+ expect(document.activeElement).toBe(input);await user.keyboard("y");
+ expect((input as HTMLInputElement).value).toBe("xy");expect(document.activeElement).toBe(input);
+ expect(richLeaf("MIXED_SECTION").textContent).toBe("MIXED_SECTION");
+ for(const [checkpoint] of mocks.checkpointSectionEdit.mock.calls)expect(checkpoint.draft).toBe(source);
+ await user.clear(input);await user.keyboard("x");await screen.findByText("1 of 1");await user.keyboard("q");
+ expect((input as HTMLInputElement).value).toBe("xq");expect(document.activeElement).toBe(input);
+ for(const [checkpoint] of mocks.checkpointSectionEdit.mock.calls)expect(checkpoint.draft).toBe(source);
+ fireEvent.keyDown(input,{key:"Escape"});await waitFor(()=>expect(document.activeElement?.closest(".rich-section")).not.toBeNull());
 });

@@ -1,0 +1,122 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: NAV_FINAL_TARGET_UNIQUE, Placeholder: File name or text
+							14 text (settable) NAV_FINAL_TARGET_UNIQUE
+							15 button cancel
+					16 text Search scope: fixtures · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Search complete · 8 entries scanned, 1 skipped · Results: 1
+					28 container search-navigation.md
+						29 heading search-navigation.md 1, Help: search-navigation.md, Value: 3
+							30 text search-navigation.md 1
+						31 button search-navigation.md · Line 3 · NAV_FINAL_TARGET_UNIQUE, Help: search-navigation.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 button Close sidebar
+			36 container
+				37 container Visited files
+					38 button Back, Help: Back: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					39 button (disabled) Forward, Help: No next file
+				40 tab group (selectable) Documents
+					41 container
+						42 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						43 button Close tab: search-navigation.md, Help: Close tab
+					44 container
+						45 tab (selected) rich.md, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						46 button Close tab: rich.md, Help: Close tab
+					47 container
+						48 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						49 button Close tab: qa-image.png, Help: Close tab
+				50 pop up button Go menu
+				51 button (collapsed) Open documents (3), Secondary Actions: Expand
+				52 container rich.md
+					53 text rich.md
+					54 text Folder root
+					55 button Edit section
+					56 summary Document…, Value: off
+						57 text Document…
+				58 text The passage moved; showing the closest available position
+				59 button Dismiss
+				60 container rich.md
+					61 container Reading acceptance
+						62 summary Metadata, Value: off
+							63 text Metadata
+						64 container Edit section: Reading acceptance
+							65 heading Reading acceptance, Value: 1
+								66 text Reading acceptance
+							67 button Edit section “Reading acceptance”
+						68 container
+							69 text Before diagrams. 
+							70 button Reference, Help: linked.md
+							71 text  and encoded footnote
+							72 button 1, Help: #fn-a%2520b
+							73 text .
+						74 text json
+						75 button Copy code
+						76 text {"highlight": true}
+
+						77 text Loading…
+						78 summary View source, Value: off
+							79 text View source
+						80 text Between diagrams.
+						81 text Loading…
+						82 summary View source, Value: off
+							83 text View source
+						84 text Loading…
+						85 summary View source, Value: off
+							86 text View source
+						87 text Loading…
+						88 summary View source, Value: off
+							89 text View source
+						90 text After diagrams.
+						91 container Edit section: Duplicate
+							92 heading Duplicate, Value: 2
+								93 text Duplicate
+							94 button Edit section “Duplicate”
+						95 text First duplicate target.
+						96 container Edit section: Duplicate
+							97 heading Duplicate, Value: 2
+								98 text Duplicate
+							99 button Edit section “Duplicate”
+						100 text Second duplicate target.
+						101 container
+							102 text [1] 
+							103 button ↩, Help: #fnref-a%2520b-1
+						104 text Encoded footnote body.
+	105 close button
+	106 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	107 minimize button
+	108 text Intentgrove
+109 menu bar
+	110 Intentgrove
+	111 File
+	112 Edit
+	113 View
+	114 Go
+	115 Window
+	116 Help
+
+The focused UI element is 45 tab (selected) rich.md, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md

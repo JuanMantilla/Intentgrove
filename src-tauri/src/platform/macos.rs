@@ -1,7 +1,9 @@
 // Darwin mechanisms extracted without changing access/enumeration policy.
+#[cfg(test)]
+use crate::scope::DirectoryPage;
 use crate::scope::{
-    excluded, image_format, io_error, markdown_name, validate_segment, AppError, AppResult,
-    DirectoryPage, Entry, Identity,
+    excluded, image_format, io_error, markdown_name, validate_segment, AppError, AppResult, Entry,
+    Identity,
 };
 use std::ffi::{CStr, CString};
 use std::fs::File;
@@ -141,6 +143,7 @@ fn ensure_local(file: &File) -> AppResult<()> {
     Ok(())
 }
 
+#[cfg(test)]
 pub fn read_page(
     dir: &File,
     offset: usize,
@@ -217,6 +220,10 @@ pub fn read_page(
             "directory"
         } else if file_type == libc::S_IFREG && markdown_name(name) {
             "markdown"
+        } else if file_type == libc::S_IFREG && crate::scope::prototype_name(name) {
+            "prototype"
+        } else if file_type == libc::S_IFREG && crate::scope::html_name(name) {
+            "html"
         } else if file_type == libc::S_IFREG && image_format(name).is_some() {
             "image"
         } else {
@@ -230,6 +237,10 @@ pub fn read_page(
             entries.push(Entry {
                 name: name.to_string(),
                 kind,
+                identity: (file_type == libc::S_IFREG).then_some(Identity {
+                    device: info.st_dev as u64,
+                    inode: info.st_ino,
+                }),
             });
         }
         seen += 1;
@@ -320,6 +331,10 @@ fn read_snapshot_entries_with_exclusions(
             "directory"
         } else if file_type == libc::S_IFREG && markdown_name(name) {
             "markdown"
+        } else if file_type == libc::S_IFREG && crate::scope::prototype_name(name) {
+            "prototype"
+        } else if file_type == libc::S_IFREG && crate::scope::html_name(name) {
+            "html"
         } else if file_type == libc::S_IFREG && image_format(name).is_some() {
             "image"
         } else {
@@ -328,6 +343,10 @@ fn read_snapshot_entries_with_exclusions(
         entries.push(Entry {
             name: name.to_string(),
             kind,
+            identity: (file_type == libc::S_IFREG).then_some(Identity {
+                device: info.st_dev as u64,
+                inode: info.st_ino,
+            }),
         });
         if entries.len() > 100_000 {
             return Err(AppError::new(
@@ -339,6 +358,22 @@ fn read_snapshot_entries_with_exclusions(
     entries.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(entries)
 }
+
+use super::FileStamp;
+use std::os::unix::fs::MetadataExt;
+pub(crate) fn stamp(file: &File) -> AppResult<FileStamp> {
+    let metadata = file.metadata().map_err(io_error)?;
+    Ok(FileStamp {
+        device: metadata.dev(),
+        inode: metadata.ino(),
+        length: metadata.len(),
+        modified_seconds: metadata.mtime(),
+        modified_nanos: metadata.mtime_nsec(),
+        changed_seconds: metadata.ctime(),
+        changed_nanos: metadata.ctime_nsec(),
+    })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -472,19 +507,4 @@ mod tests {
         println!("25k cancellation acknowledgement (10 runs, ms): {cancellation_ms:?}");
         std::fs::remove_dir_all(base).unwrap();
     }
-}
-
-use super::FileStamp;
-use std::os::unix::fs::MetadataExt;
-pub(crate) fn stamp(file: &File) -> AppResult<FileStamp> {
-    let metadata = file.metadata().map_err(io_error)?;
-    Ok(FileStamp {
-        device: metadata.dev(),
-        inode: metadata.ino(),
-        length: metadata.len(),
-        modified_seconds: metadata.mtime(),
-        modified_nanos: metadata.mtime_nsec(),
-        changed_seconds: metadata.ctime(),
-        changed_nanos: metadata.ctime_nsec(),
-    })
 }

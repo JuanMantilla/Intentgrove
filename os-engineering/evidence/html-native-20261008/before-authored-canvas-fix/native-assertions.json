@@ -1,0 +1,1319 @@
+{
+  "passed": 328,
+  "failed": 0,
+  "scope": "real native engine observations; direct retained selection handles, app-controlled click/inspection, no full Tauri IPC/OS picker acceptance",
+  "checks": [
+    {
+      "case": "html-native-20261008/folder/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/network",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/folder/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/network",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/explicit/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/network",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-folder/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/network",
+      "passed": true
+    },
+    {
+      "case": "html-native-20261008/resource-file/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/network",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/folder/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/network",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/explicit/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/network",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-folder/fixture-integrity",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/authored-light",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/image-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/nested-css-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/font-authority",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/find",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/outline",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/anchor-zoom",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/missing-anchor",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/deliberate-link",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/refresh",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/cancel-before-ready",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/page.html/resource-diagnostics",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/embedded-content",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/hostile.html/automatic-navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/second.htm/authored-dark",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/readiness",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/authored-js-ipc",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/navigation",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/pending-reply",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/disposal",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/empty.html/snapshot",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/network",
+      "passed": true
+    },
+    {
+      "case": "packaged-native/resource-file/fixture-integrity",
+      "passed": true
+    }
+  ]
+}

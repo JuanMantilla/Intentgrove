@@ -1,0 +1,204 @@
+Analysis of sampling swift-frontend (pid 67224) every 1 millisecond
+Process:         swift-frontend [67224]
+Path:            /Library/Developer/CommandLineTools/usr/bin/swift-frontend
+Load Address:    0x102a94000
+Identifier:      swift-frontend
+Version:         6.4.0.34.1
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  zsh [67220]
+Target Type:     live task
+
+Date/Time:       2026-10-08 16:44:08.466 -0500
+Launch Time:     2026-10-08 16:43:10.967 -0500
+OS Version:      macOS 27.0.1 (26A434)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         161.6M
+Physical footprint (peak):  161.6M
+Idle exit:                  untracked
+----
+
+Call graph:
+    2 Thread_2707320   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 2 start  (in dyld) + 6688  [0x1863efe80]
+    +   2 swift::mainEntry(int, char const**)  (in swift-frontend) + 5600  [0x102de1008]
+    +     2 swift::performFrontend(llvm::ArrayRef<char const*>, char const*, void*, swift::FrontendObserver*)  (in swift-frontend) + 3332  [0x102e61c08]
+    +       2 swift::CompilerInstance::setup(swift::CompilerInvocation const&, std::basic_string<char>&, llvm::ArrayRef<char const*>)  (in swift-frontend) + 244  [0x103295ba8]
+    +         2 swift::CompilerInstance::loadStdlibIfNeeded()  (in swift-frontend) + 296  [0x10329b7f8]
+    +           2 swift::ASTContext::getModule(swift::ImportPath::Module, bool)  (in swift-frontend) + 180  [0x10463b8c0]
+    +             2 swift::SerializedModuleLoaderBase::loadModule(swift::SourceLoc, swift::ImportPath::Module, bool)  (in swift-frontend) + 208  [0x1037006bc]
+    +               2 swift::SerializedModuleLoaderBase::findModule(swift::Located<swift::Identifier>, llvm::SmallVectorImpl<char>*, llvm::SmallVectorImpl<char>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, std::basic_string<char>*, bool, bool, bool&, bool&)  (in swift-frontend) + 2188  [0x1036fbf38]
+    +                 2 swift::SerializedModuleLoaderBase::findModule(swift::Located<swift::Identifier>, llvm::SmallVectorImpl<char>*, llvm::SmallVectorImpl<char>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, std::basic_string<char>*, bool, bool, bool&, bool&)::$_1::operator()(bool) const  (in swift-frontend) + 456  [0x1036fc524]
+    +                   2 swift::ModuleInterfaceLoader::findModuleFilesInDirectory(swift::Located<swift::Identifier>, swift::SerializedModuleBaseName const&, llvm::SmallVectorImpl<char>*, llvm::SmallVectorImpl<char>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, std::unique_ptr<llvm::MemoryBuffer>*, bool, bool, bool)  (in swift-frontend) + 8024  [0x1032b030c]
+    +                     2 swift::ImplicitModuleInterfaceBuilder::buildSwiftModule(llvm::StringRef, bool, std::unique_ptr<llvm::MemoryBuffer>*, llvm::function_ref<void ()>, llvm::ArrayRef<std::basic_string<char>>)  (in swift-frontend) + 1136  [0x1032ad818]
+    +                       2 llvm::CrashRecoveryContext::RunSafelyOnThread(llvm::function_ref<void ()>, unsigned int)  (in swift-frontend) + 168  [0x1092b4630]
+    +                         2 _pthread_join  (in libsystem_pthread.dylib) + 620  [0x1867c803c]
+    +                           2 __ulock_wait  (in libsystem_kernel.dylib) + 8  [0x186782af4]
+    2 Thread_2707374
+      2 thread_start  (in libsystem_pthread.dylib) + 8  [0x1867c0cec]
+        2 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x1867c5d00]
+          2 llvm::thread::ThreadProxy<std::tuple<void (*)(void*), (anonymous namespace)::RunSafelyOnThreadInfo*>>(void*)  (in swift-frontend) + 24  [0x1092b46d4]
+            2 RunSafelyOnThread_Dispatch(void*)  (in swift-frontend) + 52  [0x1092b46a8]
+              2 llvm::function_ref<void ()>::callback_fn<swift::ImplicitModuleInterfaceBuilder::buildSwiftModuleInternal(llvm::StringRef, bool, std::unique_ptr<llvm::MemoryBuffer>*, llvm::ArrayRef<std::basic_string<char>>)::$_0>(long)  (in swift-frontend) + 544  [0x1032ae10c]
+                2 swift::InterfaceSubContextDelegateImpl::runInSubCompilerInstance(llvm::StringRef, llvm::StringRef, llvm::StringRef, std::optional<llvm::StringRef>, llvm::StringRef, swift::SourceLoc, bool, llvm::function_ref<std::error_code (swift::SubCompilerInstanceInfo&)>)  (in swift-frontend) + 4148  [0x1032bae8c]
+                  2 llvm::function_ref<std::error_code (swift::SubCompilerInstanceInfo&)>::callback_fn<swift::ImplicitModuleInterfaceBuilder::buildSwiftModuleInternal(llvm::StringRef, bool, std::unique_ptr<llvm::MemoryBuffer>*, llvm::ArrayRef<std::basic_string<char>>)::$_0::operator()() const::'lambda'(swift::SubCompilerInstanceInfo&)>(long, swift::SubCompilerInstanceInfo&)  (in swift-frontend) + 252  [0x1032ae26c]
+                    2 swift::ExplicitModuleInterfaceBuilder::buildSwiftModuleFromInterface(llvm::StringRef, llvm::StringRef, bool, std::unique_ptr<llvm::MemoryBuffer>*, llvm::ArrayRef<std::basic_string<char>>, llvm::StringRef)  (in swift-frontend) + 460  [0x1032ab0cc]
+                      2 swift::CompilerInstance::performSema()  (in swift-frontend) + 456  [0x10329d03c]
+                        2 swift::CompilerInstance::forEachFileToTypeCheck(llvm::function_ref<bool (swift::SourceFile&)>)  (in swift-frontend) + 284  [0x10329d188]
+                          2 llvm::function_ref<bool (swift::SourceFile&)>::callback_fn<swift::CompilerInstance::performSema()::$_0>(long, swift::SourceFile&)  (in swift-frontend) + 116  [0x1032a41a4]
+                            2 swift::Evaluator::getResultCached<swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckPrimaryFileRequest>(swift::Evaluator&, swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType)::'lambda'(), (void*)0>(swift::TypeCheckPrimaryFileRequest const&, swift::TypeCheckPrimaryFileRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckPrimaryFileRequest>(swift::Evaluator&, swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType)::'lambda'())  (in swift-frontend) + 184  [0x1044aafa8]
+                              2 swift::Evaluator::getResultUncached<swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckPrimaryFileRequest>(swift::Evaluator&, swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType)::'lambda'()>(swift::TypeCheckPrimaryFileRequest const&, swift::TypeCheckPrimaryFileRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckPrimaryFileRequest>(swift::Evaluator&, swift::TypeCheckPrimaryFileRequest, swift::TypeCheckPrimaryFileRequest::OutputType)::'lambda'())  (in swift-frontend) + 648  [0x1044ab244]
+                                2 swift::TypeCheckPrimaryFileRequest::evaluate(swift::Evaluator&, swift::SourceFile*) const  (in swift-frontend) + 1248  [0x1044a2444]
+                                  2 swift::SourceFile::typeCheckDelayedFunctions()  (in swift-frontend) + 72  [0x10498370c]
+                                    2 swift::Evaluator::getResultCached<swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckFunctionBodyRequest>(swift::Evaluator&, swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType)::'lambda'(), (void*)0>(swift::TypeCheckFunctionBodyRequest const&, swift::TypeCheckFunctionBodyRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckFunctionBodyRequest>(swift::Evaluator&, swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType)::'lambda'())  (in swift-frontend) + 76  [0x1048be474]
+                                      2 swift::Evaluator::getResultUncached<swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckFunctionBodyRequest>(swift::Evaluator&, swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType)::'lambda'()>(swift::TypeCheckFunctionBodyRequest const&, swift::TypeCheckFunctionBodyRequest::OutputType swift::evaluateOrDefault<swift::TypeCheckFunctionBodyRequest>(swift::Evaluator&, swift::TypeCheckFunctionBodyRequest, swift::TypeCheckFunctionBodyRequest::OutputType)::'lambda'())  (in swift-frontend) + 680  [0x1048be838]
+                                        2 swift::TypeCheckFunctionBodyRequest::evaluate(swift::Evaluator&, swift::AbstractFunctionDecl*) const  (in swift-frontend) + 2308  [0x104446ba8]
+                                          2 (anonymous namespace)::StmtChecker::typeCheckStmt<swift::BraceStmt>(swift::BraceStmt*&)  (in swift-frontend) + 288  [0x10444f5fc]
+                                            2 swift::ASTVisitor<(anonymous namespace)::StmtChecker, void, swift::Stmt*, void, void, void, void>::visit(swift::Stmt*)  (in swift-frontend) + 300  [0x10444db04]
+                                              2 (anonymous namespace)::StmtChecker::typeCheckASTNode(swift::ASTNode&)  (in swift-frontend) + 404  [0x104445110]
+                                                2 swift::TypeChecker::typeCheckExpression(swift::constraints::SyntacticElementTarget&, swift::optionset::OptionSet<swift::TypeCheckExprFlags, unsigned int>, swift::DiagnosticTransaction*)  (in swift-frontend) + 400  [0x104339540]
+                                                  2 swift::TypeChecker::typeCheckTarget(swift::constraints::SyntacticElementTarget&, swift::optionset::OptionSet<swift::TypeCheckExprFlags, unsigned int>, swift::DiagnosticTransaction*)  (in swift-frontend) + 748  [0x10433988c]
+                                                    2 swift::constraints::SyntacticElementTarget::walk(swift::ASTWalker&) const  (in swift-frontend) + 1264  [0x10425ec98]
+                                                      2 (anonymous namespace)::SyntacticDiagnosticWalker::walkToExprPre(swift::Expr*)  (in swift-frontend) + 328  [0x104342f64]
+                                                        2 swift::performSyntacticExprDiagnostics(swift::Expr const*, swift::DeclContext const*, bool, bool, bool)  (in swift-frontend) + 3452  [0x104224134]
+                                                          2 swift::diagnoseExprAvailability(swift::Expr const*, swift::DeclContext*)  (in swift-frontend) + 236  [0x1042f478c]
+                                                            2 (anonymous namespace)::ExprAvailabilityWalker::walkToExprPre(swift::Expr*)  (in swift-frontend) + 3508  [0x1042fb88c]
+                                                              2 (anonymous namespace)::ExprAvailabilityWalker::walkToExprPre(swift::Expr*)  (in swift-frontend) + 216  [0x1042fabb0]
+                                                                2 (anonymous namespace)::ExprAvailabilityWalker::walkToExprPre(swift::Expr*)  (in swift-frontend) + 500  [0x1042faccc]
+                                                                  2 (anonymous namespace)::ExprAvailabilityWalker::diagnoseDeclRefAvailability(swift::ConcreteDeclRef, swift::SourceRange, swift::Expr const*, swift::optionset::OptionSet<swift::DeclAvailabilityFlag, unsigned char>) const  (in swift-frontend) + 1612  [0x1042fccb8]
+                                                                    1 swift::diagnoseDeclAvailability(swift::ValueDecl const*, swift::SourceRange, swift::Expr const*, swift::ExportContext const&, swift::optionset::OptionSet<swift::DeclAvailabilityFlag, unsigned char>)  (in swift-frontend) + 116  [0x1042f2f28]
+                                                                    ! 1 swift::TypeChecker::diagnoseDeclRefExportability(swift::SourceLoc, swift::ValueDecl const*, swift::ExportContext const&)  (in swift-frontend) + 316  [0x104259a1c]
+                                                                    !   1 swift::getDisallowedOriginKind(swift::Decl const*, swift::ExportContext const&, swift::DowngradeToWarning&)  (in swift-frontend) + 736  [0x1042767ec]
+                                                                    !     1 swift::Decl::getImportAccessFrom(swift::DeclContext const*) const  (in swift-frontend) + 96  [0x1047f8464]
+                                                                    1 swift::diagnoseDeclAvailability(swift::ValueDecl const*, swift::SourceRange, swift::Expr const*, swift::ExportContext const&, swift::optionset::OptionSet<swift::DeclAvailabilityFlag, unsigned char>)  (in swift-frontend) + 960  [0x1042f3274]
+                                                                      1 getDeprecated(swift::Decl const*)  (in swift-frontend) + 108  [0x1042f39e4]
+                                                                        1 swift::Decl::getDeprecatedAttr() const  (in swift-frontend) + 128  [0x104786904]
+                                                                          1 swift::Decl::getActiveAvailableAttrForCurrentPlatform() const  (in swift-frontend) + 16  [0x104786494]
+
+Total number in stack (recursive counted multiple, when >=5):
+
+Sort by top of stack, same collapsed (when >= 5):
+
+Binary Images:
+       0x102a94000 -        0x10a9b24e3 +swift-frontend (6.4.0.34.1) <181F7686-63E0-3A7B-9A2F-E2E0BD799CF8> /Library/Developer/CommandLineTools/usr/bin/swift-frontend
+       0x10d128000 -        0x10d13207f +lib_CompilerSwiftSyntaxMacros.dylib (6.4.0.34.1) <FD2DD8EA-EA6E-3850-B901-5A39B0C751C9> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftSyntaxMacros.dylib
+       0x10d15c000 -        0x10d169437 +lib_CompilerSwiftIDEUtils.dylib (6.4.0.34.1) <03227A4F-0D8B-3918-B4C7-268686A50971> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftIDEUtils.dylib
+       0x10d220000 -        0x10d23f5f7 +lib_CompilerSwiftLexicalLookup.dylib (6.4.0.34.1) <CDF31C1D-230F-3C67-9D9B-15F01AF6F30B> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftLexicalLookup.dylib
+       0x10d284000 -        0x10d290d5f +lib_CompilerSwiftWarningControl.dylib (6.4.0.34.1) <770F5A6E-7ED6-3A6C-B3FE-14D6C44B82F3> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftWarningControl.dylib
+       0x10d2e0000 -        0x10d2e5b67 +libSwiftInProcPluginServer.dylib (6.4.0.34.1) <E2DFC59D-40CF-37E1-8691-F5625DAC6C49> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftInProcPluginServer.dylib
+       0x10d398000 -        0x10d3ac8c7 +lib_CompilerSwiftDiagnostics.dylib (6.4.0.34.1) <E95C4C84-039D-3D6D-83AC-AAB7F3856883> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftDiagnostics.dylib
+       0x10d414000 -        0x10d41ba3f +libSwiftLibraryPluginProvider.dylib (6.4.0.34.1) <5E9AB0A0-F3C6-3F18-A99B-3E1B08643FC9> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftLibraryPluginProvider.dylib
+       0x10d46c000 -        0x10d4acca7 +lib_CompilerSwiftCompilerPluginMessageHandling.dylib (6.4.0.34.1) <E00EA91F-C203-3911-9EBF-CFBD6326C089> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftCompilerPluginMessageHandling.dylib
+       0x10d544000 -        0x10d5688af +lib_CompilerSwiftSyntaxMacroExpansion.dylib (6.4.0.34.1) <49C1F75D-0926-3799-8D46-7B0EEA0F3BE8> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftSyntaxMacroExpansion.dylib
+       0x10d604000 -        0x10d626057 +lib_CompilerSwiftIfConfig.dylib (6.4.0.34.1) <CF16F7D7-DD2D-3A41-96DB-728A00227578> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftIfConfig.dylib
+       0x10d6d8000 -        0x10d6ee247 +lib_CompilerSwiftOperators.dylib (6.4.0.34.1) <EBD22467-E96E-369E-9C11-AE5175F567BB> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftOperators.dylib
+       0x10d768000 -        0x10d7764bf +lib_CompilerSwiftBasicFormat.dylib (6.4.0.34.1) <CD2A8915-6ABA-3DE3-BF00-2679BE730FAD> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftBasicFormat.dylib
+       0x10d7e8000 -        0x10d7f2687 +libSwiftSyntaxMacros.dylib (6.4.0.34.1) <2A6F637D-4D87-33A2-B3BF-667ED89E6684> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftSyntaxMacros.dylib
+       0x10d814000 -        0x10d823657 +libSwiftBasicFormat.dylib (6.4.0.34.1) <04BA5088-4FEA-3F88-8A63-DFE3E043B6E1> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftBasicFormat.dylib
+       0x10d87c000 -        0x10d8aaf13 +lib_CompilerSwiftSyntaxBuilder.dylib (6.4.0.34.1) <99D88B28-9AA3-393F-891D-9AB2658D883C> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftSyntaxBuilder.dylib
+       0x10d998000 -        0x10d9bf417 +libSwiftSyntaxMacroExpansion.dylib (6.4.0.34.1) <D9F5432A-9CD7-3604-B4D9-907E63279D28> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftSyntaxMacroExpansion.dylib
+       0x10da04000 -        0x10da2928f +libSwiftIfConfig.dylib (6.4.0.34.1) <AA19394D-AE81-3826-8FB8-68EB4F12EE9F> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftIfConfig.dylib
+       0x10da6c000 -        0x10da82d47 +libSwiftOperators.dylib (6.4.0.34.1) <2B13A4E6-2E13-32E0-B114-E34E1ADEE7CF> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftOperators.dylib
+       0x10daf8000 -        0x10db492a7 +lib_CompilerSwiftParserDiagnostics.dylib (6.4.0.34.1) <3D53A529-3A6A-304A-A1B8-C98DDA037E25> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftParserDiagnostics.dylib
+       0x10dee0000 -        0x10e0136c7 +lib_CompilerSwiftParser.dylib (6.4.0.34.1) <62DD9C51-D64A-3E09-A074-1F1A192EC5B9> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftParser.dylib
+       0x10ea14000 -        0x10ea56037 +libSwiftCompilerPluginMessageHandling.dylib (6.4.0.34.1) <ABE47F63-BE7A-36A1-9614-D8ED4CFAA347> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftCompilerPluginMessageHandling.dylib
+       0x10eaf0000 -        0x10eb050ff +libSwiftDiagnostics.dylib (6.4.0.34.1) <39C1049D-1C5A-343D-ACB2-927627F58B40> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftDiagnostics.dylib
+       0x10ebec000 -        0x10ec1e3ef +libSwiftSyntaxBuilder.dylib (6.4.0.34.1) <ED8A28A5-D5D2-385C-A128-96A75E714D0B> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftSyntaxBuilder.dylib
+       0x10ecf0000 -        0x10ed34cf7 +libSwiftMacros.dylib (6.4.0.34.1) <AF42478F-BEBF-3FA6-B415-FEEC04456A18> /Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/libSwiftMacros.dylib
+       0x10ede0000 -        0x10f14c0e7 +lib_CompilerSwiftSyntax.dylib (6.4.0.34.1) <C5545926-6B71-3D07-BEF4-C8C87601E6E1> /Library/Developer/CommandLineTools/usr/lib/swift/host/compiler/lib_CompilerSwiftSyntax.dylib
+       0x113aec000 -        0x113b47c9f +libSwiftParserDiagnostics.dylib (6.4.0.34.1) <461314FA-2429-3181-872B-6A07E7755D71> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftParserDiagnostics.dylib
+       0x113e10000 -        0x113f0bec7 +libSwiftParser.dylib (6.4.0.34.1) <9D088395-FD8C-3105-894B-E27EA6EDFD1F> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftParser.dylib
+       0x114c5c000 -        0x114f83a87 +libSwiftSyntax.dylib (6.4.0.34.1) <DEF2B2F1-4722-3B1A-A2DF-E65493BA1EA5> /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftSyntax.dylib
+       0x18633c000 -        0x18638b5f7  libobjc.A.dylib (973.1) <C0680DF6-9900-3C29-A071-95A031686EF8> /usr/lib/libobjc.A.dylib
+       0x18638c000 -        0x18639623f  libsharedcache.dylib (0) <BBF95357-BEBF-3D89-8900-2BBB14A667C5> /usr/lib/libsharedcache.dylib
+       0x186397000 -        0x1863bdd3b  libdyld.dylib (27062) <62863BCA-DD60-3D32-A9DB-89099BA6F3D7> /usr/lib/system/libdyld.dylib
+       0x1863be000 -        0x18647d6e3  dyld (1.0.0 - 27062) <D341DDCB-7969-3A9C-8E03-0CF4751398A9> /usr/lib/dyld
+       0x18647e000 -        0x18648101f  libsystem_blocks.dylib (98.1) <6F304731-D95D-3501-B4AD-F2934F7F2446> /usr/lib/system/libsystem_blocks.dylib
+       0x186482000 -        0x1864d70df  libxpc.dylib (3298.1.1) <0791121F-B5FC-3F84-BF04-115E86D2D882> /usr/lib/system/libxpc.dylib
+       0x1864d8000 -        0x1864f7c13  libsystem_trace.dylib (1966.1.1) <B48A8E3E-A12A-3342-8321-428B555E965E> /usr/lib/system/libsystem_trace.dylib
+       0x1864f8000 -        0x1865acf27  libcorecrypto.dylib (2109.0.22) <807AA6C9-5D8A-3CA5-B4CE-FACE5296EF6A> /usr/lib/system/libcorecrypto.dylib
+       0x1865ad000 -        0x186602c5f  libsystem_malloc.dylib (886.0.8) <2339CB57-FE5A-3154-A206-A76059C749EB> /usr/lib/system/libsystem_malloc.dylib
+       0x186603000 -        0x18664919f  libdispatch.dylib (1605.0.2) <022BF08F-0B3A-3225-9E65-16D1553CE90D> /usr/lib/system/libdispatch.dylib
+       0x18664a000 -        0x18664cd2b  libsystem_featureflags.dylib (108) <20C1CAB2-1F13-3426-8146-9CAE9FF2A33D> /usr/lib/system/libsystem_featureflags.dylib
+       0x18664d000 -        0x1866cfca3  libsystem_c.dylib (1786.0.3) <FBA7B23E-AA60-3A90-9AA4-A7A2E0AD63EE> /usr/lib/system/libsystem_c.dylib
+       0x1866d0000 -        0x186765033  libc++.1.dylib (2200.27) <1E9BA4AA-B5DA-3CF3-80AC-4B880049573F> /usr/lib/libc++.1.dylib
+       0x186766000 -        0x18677feff  libc++abi.dylib (2200.27) <A21743EE-6E1C-3E74-97EA-7AF793DE4BDF> /usr/lib/libc++abi.dylib
+       0x186780000 -        0x1867be9ab  libsystem_kernel.dylib (13432.1.9) <F63BF418-8F75-34A4-AAF1-8CAF2B9B6A05> /usr/lib/system/libsystem_kernel.dylib
+       0x1867bf000 -        0x1867cb91b  libsystem_pthread.dylib (553.0.1) <5A1828C3-CBC2-3B85-BD07-C8ED10021A41> /usr/lib/system/libsystem_pthread.dylib
+       0x1867cc000 -        0x1867d54f3  libsystem_platform.dylib (402.0.1.0.1) <080E4444-A0FB-3913-9756-4E470015F32F> /usr/lib/system/libsystem_platform.dylib
+       0x1867d6000 -        0x186804903  libsystem_info.dylib (603) <BC387AEB-1CEF-3513-92D7-D7F913596711> /usr/lib/system/libsystem_info.dylib
+       0x18a92e000 -        0x18a937b13  libsystem_darwin.dylib (1786.0.3) <4E66C888-993C-3E6A-A8DA-A949C01C5B67> /usr/lib/system/libsystem_darwin.dylib
+       0x18ad88000 -        0x18ad99b8b  libsystem_notify.dylib (368) <58FD36D8-37A7-311C-80F2-8E64DD8710CF> /usr/lib/system/libsystem_notify.dylib
+       0x18cee5000 -        0x18ceffd93  libsystem_networkextension.dylib (2340.1.2) <22E1D190-486F-324F-ABA4-F36AB841BFE9> /usr/lib/system/libsystem_networkextension.dylib
+       0x18cf8d000 -        0x18cfa4247  libsystem_asl.dylib (409) <B4D449B7-A821-3A9A-8019-E917B291F10A> /usr/lib/system/libsystem_asl.dylib
+       0x18df38000 -        0x18df38f2f  libobjcMsgSend.dylib (973.1) <41179EDE-DC97-3BBE-8848-6400D12C1436> /usr/lib/objc/libobjcMsgSend.dylib
+       0x18f084000 -        0x18f08bedf  libsystem_symptoms.dylib (2394.0.4) <60EE7884-9F4E-3184-A6AC-FA40A7A0297D> /usr/lib/system/libsystem_symptoms.dylib
+       0x19341c000 -        0x193456aeb  libsystem_containermanager.dylib (833.0.8.0.1) <08A57205-555D-3792-8931-9D5B585AF326> /usr/lib/system/libsystem_containermanager.dylib
+       0x194a6f000 -        0x194a73317  libsystem_configuration.dylib (1446) <F3EB66A7-7A24-3AE5-B6E8-9A37BB00F119> /usr/lib/system/libsystem_configuration.dylib
+       0x194a74000 -        0x194a7ae03  libsystem_sandbox.dylib (3051.0.52) <1E892B56-092E-3832-BDE3-DCE356D7A4FA> /usr/lib/system/libsystem_sandbox.dylib
+       0x195f38000 -        0x195f38f2f  libobjcMsgSend1.dylib (973.1) <B40D9B2A-E1EE-37ED-8004-711A1F263DE1> /usr/lib/objc/libobjcMsgSend1.dylib
+       0x196658000 -        0x19665af93  libquarantine.dylib (217.0.4) <7FD4AE22-86EF-382B-83F5-ADF9336C1160> /usr/lib/system/libquarantine.dylib
+       0x196d6a000 -        0x196d701e7  libsystem_coreservices.dylib (203) <57248E07-11A5-3857-918E-4A3A63B69FE8> /usr/lib/system/libsystem_coreservices.dylib
+       0x197323000 -        0x197331b87  libz.1.dylib (105) <09881E57-159D-3E5F-B9EB-B708249AC31E> /usr/lib/libz.1.dylib
+       0x197332000 -        0x19736fb27  libsystem_m.dylib (3326.0.1) <A3FB340F-3ED5-30F4-8B64-9D5860F64D35> /usr/lib/system/libsystem_m.dylib
+       0x197371000 -        0x1973744f7  libmacho.dylib (27062) <50DEADEC-3E99-3519-AFC3-4A3FEB3F14C3> /usr/lib/system/libmacho.dylib
+       0x19738e000 -        0x19739a707  libcommonCrypto.dylib (600041) <41C99F45-C5E6-39DB-B1F2-A1BEA9D242A4> /usr/lib/system/libcommonCrypto.dylib
+       0x19739b000 -        0x1973a4c87  libunwind.dylib (2200.5) <3070AB81-B082-39E8-8A00-EF88DDE9AC47> /usr/lib/system/libunwind.dylib
+       0x1973ac000 -        0x1973b67eb  libcopyfile.dylib (260.0.3) <72D95AF9-BF5E-3A84-81A6-BCC5BDB99857> /usr/lib/system/libcopyfile.dylib
+       0x1973b7000 -        0x1973ba8bf  libcompiler_rt.dylib (103.4) <DFB5CE7F-A36E-36AA-BECE-1392D3D43607> /usr/lib/system/libcompiler_rt.dylib
+       0x1973bb000 -        0x1973c0077  libsystem_collections.dylib (1786.0.3) <1E8022D4-5A37-3A7A-8936-603E6FA88358> /usr/lib/system/libsystem_collections.dylib
+       0x1973c1000 -        0x1973c3f1f  libsystem_secinit.dylib (182) <DE037464-4C5D-3E96-A33F-2A4557CC6A20> /usr/lib/system/libsystem_secinit.dylib
+       0x1973c4000 -        0x1973c697f  libremovefile.dylib (96) <E6E6DFCF-6B2C-3F30-A59D-816CAB1190CE> /usr/lib/system/libremovefile.dylib
+       0x1973c7000 -        0x1973c7e27  libkeymgr.dylib (31) <5EC997EF-3ADA-360B-9FCD-5F940C83FA4E> /usr/lib/system/libkeymgr.dylib
+       0x1973c8000 -        0x1973d0af7  libsystem_dnssd.dylib (3111.0.5.0.1) <DE22096F-1E5B-3D6E-8164-771582DD6391> /usr/lib/system/libsystem_dnssd.dylib
+       0x1973d1000 -        0x1973d5f1b  libcache.dylib (95) <80BAE197-E285-3F6E-A1EE-B77FE37D7E5D> /usr/lib/system/libcache.dylib
+       0x1973d6000 -        0x1973d78f3  libSystem.B.dylib (1359) <4FDC9AA6-B344-37FE-B8C6-A4C94A038F57> /usr/lib/libSystem.B.dylib
+       0x19ad30000 -        0x19b2c8e2f  libswiftCore.dylib (6.4.0 - 6.4.0.31.5) <C9B36DA7-BB34-35AF-BC5D-91ECBCAA9ED0> /usr/lib/swift/libswiftCore.dylib
+       0x19df38000 -        0x19df38f2f  libobjcMsgSend2.dylib (973.1) <BD27A84B-C9AE-3282-BBEA-3B6119837B5A> /usr/lib/objc/libobjcMsgSend2.dylib
+       0x1a5f38000 -        0x1a5f38f2f  libobjcMsgSend3.dylib (973.1) <C0860D68-DDFC-3BD7-8B06-DB0645CBBED4> /usr/lib/objc/libobjcMsgSend3.dylib
+       0x1adf38000 -        0x1adf38f2f  libobjcMsgSend4.dylib (973.1) <A6153BF5-622B-3B01-81B6-F64A365EF613> /usr/lib/objc/libobjcMsgSend4.dylib
+       0x1b3abf000 -        0x1b3ac1807  libswiftDarwin.dylib (428.0.10) <B4F37828-524C-32F7-94FD-63CB8177AEEC> /usr/lib/swift/libswiftDarwin.dylib
+       0x1b5f38000 -        0x1b5f38f2f  libobjcMsgSend5.dylib (973.1) <3913A71C-B29A-3AEA-820B-BEC40AC1861A> /usr/lib/objc/libobjcMsgSend5.dylib
+       0x1bdf38000 -        0x1bdf38f2f  libobjcMsgSend6.dylib (973.1) <9BC523A3-E167-3F6C-8CAE-0F3EBA671791> /usr/lib/objc/libobjcMsgSend6.dylib
+       0x1c5f38000 -        0x1c5f38f2f  libobjcMsgSend7.dylib (973.1) <248B7BCE-5B4C-34C7-A340-43D5228628C5> /usr/lib/objc/libobjcMsgSend7.dylib
+       0x1cdf38000 -        0x1cdf38f2f  libobjcMsgSend8.dylib (973.1) <3E041BAD-A8E8-3069-B741-78CD1A45B176> /usr/lib/objc/libobjcMsgSend8.dylib
+       0x1d5f38000 -        0x1d5f38f2f  libobjcMsgSend9.dylib (973.1) <34A67969-21A0-39D6-BB81-8FDA5A2409DB> /usr/lib/objc/libobjcMsgSend9.dylib
+       0x1ddf38000 -        0x1ddf38f2f  libobjcMsgSend10.dylib (973.1) <678186C0-8EAD-3B35-8CBB-00285B41E4A0> /usr/lib/objc/libobjcMsgSend10.dylib
+       0x1e5f38000 -        0x1e5f38f2f  libobjcMsgSend11.dylib (973.1) <E05CB08C-E956-36FA-8967-AE8E346A8D2C> /usr/lib/objc/libobjcMsgSend11.dylib
+       0x20df38000 -        0x20df38f2f  libobjcMsgSend12.dylib (973.1) <10AB03AA-FF1F-3FDC-9DFB-BFC40042C501> /usr/lib/objc/libobjcMsgSend12.dylib
+       0x215f38000 -        0x215f38f2f  libobjcMsgSend13.dylib (973.1) <ABF53427-FA6F-3D0D-8F9D-7AD795CA5C92> /usr/lib/objc/libobjcMsgSend13.dylib
+       0x21df38000 -        0x21df38f2f  libobjcMsgSend14.dylib (973.1) <9A844C46-A6DA-34D4-8EBF-2AD775C30684> /usr/lib/objc/libobjcMsgSend14.dylib
+       0x225f38000 -        0x225f38f2f  libobjcMsgSend15.dylib (973.1) <7C995666-2B2D-3284-AA0A-EBF7C922838E> /usr/lib/objc/libobjcMsgSend15.dylib
+       0x22df38000 -        0x22df38f2f  libobjcMsgSend16.dylib (973.1) <B6C0E14B-53AE-3E22-9ED5-1729C49F46F2> /usr/lib/objc/libobjcMsgSend16.dylib
+       0x235f38000 -        0x235f38f2f  libobjcMsgSend17.dylib (973.1) <07B4CF85-251B-301B-832B-20B315A59E19> /usr/lib/objc/libobjcMsgSend17.dylib
+       0x23df38000 -        0x23df38f2f  libobjcMsgSend18.dylib (973.1) <43E575B7-04DB-3999-A633-1A3B638BA6E3> /usr/lib/objc/libobjcMsgSend18.dylib
+       0x245f38000 -        0x245f38f2f  libobjcMsgSend19.dylib (973.1) <736F4D85-76F7-3B28-8D87-C07E8F7A0EF4> /usr/lib/objc/libobjcMsgSend19.dylib
+       0x24df38000 -        0x24df38f2f  libobjcMsgSend20.dylib (973.1) <74E67C8B-6BCA-3184-A18E-A97F370052C6> /usr/lib/objc/libobjcMsgSend20.dylib
+       0x255f38000 -        0x255f38f2f  libobjcMsgSend21.dylib (973.1) <CC0D732F-98E7-3888-9E15-70984DA2FB04> /usr/lib/objc/libobjcMsgSend21.dylib
+       0x25df38000 -        0x25df38f2f  libobjcMsgSend22.dylib (973.1) <85A60286-5DE3-32BA-B18C-2A498B065C88> /usr/lib/objc/libobjcMsgSend22.dylib
+       0x265f38000 -        0x265f38f2f  libobjcMsgSend23.dylib (973.1) <5452A0D2-6B19-39BE-ADDD-80B7BCDE3A98> /usr/lib/objc/libobjcMsgSend23.dylib
+       0x26df38000 -        0x26df38f2f  libobjcMsgSend24.dylib (973.1) <94BBF2D6-722B-350D-8557-4D25A8E8D53A> /usr/lib/objc/libobjcMsgSend24.dylib
+       0x275f38000 -        0x275f38f2f  libobjcMsgSend25.dylib (973.1) <35481387-5A8E-3AE4-86A6-94CEB3CC8726> /usr/lib/objc/libobjcMsgSend25.dylib
+       0x28df38000 -        0x28df38f2f  libobjcMsgSend26.dylib (973.1) <9E0C8664-E7F4-39D1-AAFC-BD92B255E4E8> /usr/lib/objc/libobjcMsgSend26.dylib
+       0x295f38000 -        0x295f38f2f  libobjcMsgSend27.dylib (973.1) <FD424935-55A9-3650-955A-EED3441A1D19> /usr/lib/objc/libobjcMsgSend27.dylib
+       0x29df38000 -        0x29df38f2f  libobjcMsgSend28.dylib (973.1) <09BA7B97-7DF7-3C7F-932A-B6847662FC49> /usr/lib/objc/libobjcMsgSend28.dylib
+       0x2a5f38000 -        0x2a5f38f2f  libobjcMsgSend29.dylib (973.1) <36D5BA3F-2139-30B0-8558-556764BE9813> /usr/lib/objc/libobjcMsgSend29.dylib
+       0x2adf38000 -        0x2adf38f2f  libobjcMsgSend30.dylib (973.1) <9F05564A-9D12-372C-98FC-E9F0E6BE4F04> /usr/lib/objc/libobjcMsgSend30.dylib
+       0x2b2c52000 -        0x2b2c58fe5  libRosetta.dylib (385) <E359944B-D230-33F9-A04E-0C3B17C3326E> /usr/lib/libRosetta.dylib
+       0x2b2dae000 -        0x2b2de6007  libswiftPrespecialized.dylib (0) <6B5CC7BC-073A-3B54-B913-1C7857DD14EE> /usr/lib/libswiftPrespecialized.dylib
+       0x2b30b4000 -        0x2b30b4669  libswift_Builtin_float.dylib (6.4.0.31.5) <9CB6F7D2-F14F-3C51-9E30-EDCB674B970E> /usr/lib/swift/libswift_Builtin_float.dylib
+       0x2b3142000 -        0x2b3144ab3  libswift_DarwinFoundation1.dylib (428.0.10) <8C802776-95AE-3ED7-BF1C-D9EB9A7DB358> /usr/lib/swift/libswift_DarwinFoundation1.dylib
+       0x2b3145000 -        0x2b3145d2b  libswift_DarwinFoundation2.dylib (428.0.10) <A659D9FC-0554-33A6-9F7A-479B268F8993> /usr/lib/swift/libswift_DarwinFoundation2.dylib
+       0x2b3146000 -        0x2b314679f  libswift_DarwinFoundation3.dylib (428.0.10) <48A04494-256B-3CE1-88A6-79E4B8E9E7B8> /usr/lib/swift/libswift_DarwinFoundation3.dylib
+       0x2b3149000 -        0x2b31e18b7  libswift_RegexParser.dylib (6.4.0 - 6.4.0.31.5) <1E7009E2-B2B6-3A40-99BC-4C2D9DF18C76> /usr/lib/swift/libswift_RegexParser.dylib
+       0x2b31e4000 -        0x2b32724ef  libswift_StringProcessing.dylib (6.4.0 - 6.4.0.31.5) <DA701840-2499-3238-AF4F-4AD3C96C6C55> /usr/lib/swift/libswift_StringProcessing.dylib
+       0x2b3641000 -        0x2b364475b  libsystem_darwindirectory.dylib (129.0.1) <61264923-2AA5-3658-B8C4-550C71E9D4B3> /usr/lib/system/libsystem_darwindirectory.dylib
+       0x2b3645000 -        0x2b364fd9b  libsystem_eligibility.dylib (446.1.3) <EDDE8E9C-A2CF-3931-BBB3-321CB852EB30> /usr/lib/system/libsystem_eligibility.dylib
+       0x2b3650000 -        0x2b365942b  libsystem_sanitizers.dylib (32) <7138ED99-7AA0-34EA-B35B-20EF6ADB1EED> /usr/lib/system/libsystem_sanitizers.dylib
+       0x2b365a000 -        0x2b365aa13  libsystem_trial.dylib (511) <6AE48824-EC44-3A8C-B501-BE57DBE892E7> /usr/lib/system/libsystem_trial.dylib
+       0x2b5f38000 -        0x2b5f38f2f  libobjcMsgSend31.dylib (973.1) <0985E20F-78C3-3466-A2B2-DBB95F7104A3> /usr/lib/objc/libobjcMsgSend31.dylib
+       0x2bdf38000 -        0x2bdf38f2f  libobjcMsgSend32.dylib (973.1) <0D309D58-D576-3E5D-AD4B-6D55AB491702> /usr/lib/objc/libobjcMsgSend32.dylib
+       0x2c5f38000 -        0x2c5f38f2f  libobjcMsgSend33.dylib (973.1) <346E0484-48FA-369B-8A64-93B5F5341CFE> /usr/lib/objc/libobjcMsgSend33.dylib
+       0x2cdf38000 -        0x2cdf38f2f  libobjcMsgSend34.dylib (973.1) <6A31F809-BCBE-3E01-A367-E91FDACCE324> /usr/lib/objc/libobjcMsgSend34.dylib

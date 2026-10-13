@@ -1,0 +1,23 @@
+{
+  "name": "native-clippy-v7",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--lib",
+    "--tests",
+    "--message-format=json",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:47:15.385278+00:00",
+  "finished_at": "2026-10-12T03:47:24.881685+00:00",
+  "exit_code": 101,
+  "log": "native-clippy-v7.log",
+  "tested_snapshot": "tested-snapshot-v7.json"
+}

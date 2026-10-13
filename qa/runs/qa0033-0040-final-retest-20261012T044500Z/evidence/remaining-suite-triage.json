@@ -1,0 +1,34 @@
+{
+  "observed_at": "2026-10-12T05:28:36.616068+00:00",
+  "latest_default_failure": {
+    "path": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/evidence/logs/default-full-03.log",
+    "case": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "first_failure": "findByRole(alert) original line70",
+    "observed_dom": "Filename first.MD intact; no destination or error; enabled chooser at final timeout",
+    "root_cause": "UNKNOWN_UNTRACED",
+    "hypothesis": "API call-start wait can precede cancellation/pending-release commit; next disabled click suppressed",
+    "controlled_probe": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/picker-boundary-observer.json",
+    "probe_result": "PASS: concurrent click disabled, first call only, no alert; after release denied reply produces original Permission denied and Filename intact",
+    "matching_failed_trace_observed": false,
+    "original_unchanged": true
+  },
+  "observed_full": {
+    "path": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/final-observed-full-02.json",
+    "result": "708PASS/7FAIL; original QA0038-0040 and New Markdown target cases pass",
+    "host_load_before": [
+      7.45068359375,
+      5.8671875,
+      6.62060546875
+    ],
+    "host_load_after": [
+      42.666015625,
+      52.67822265625,
+      31.43212890625
+    ],
+    "causal_attribution": "Host pressure and trace overhead observed; they do not establish product/test/environment cause for seven failures. Outside original issue scope, retained for QA_TRIAGE."
+  },
+  "instrumentation_incident": {
+    "path": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/final-observed-full-01.json",
+    "result": "invalid obsolete capture target;325 passed/28 suites could not load; no product verdict"
+  }
+}

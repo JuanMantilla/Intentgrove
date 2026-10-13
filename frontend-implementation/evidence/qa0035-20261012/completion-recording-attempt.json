@@ -1,0 +1,23 @@
+{
+  "attempted_at": "2026-10-12T02:58:32.523874+00:00",
+  "command": [
+    "python3",
+    "-B",
+    "/Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py",
+    "--root",
+    "/Users/juanmantilla/projects/personal/md-reader",
+    "--input",
+    "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/completion.json"
+  ],
+  "exit_code": 2,
+  "error": "tested_snapshot_changed",
+  "identity_changed_bytes_identical": [
+    "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/export.source.json",
+    "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/prototype.source.json",
+    "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/scenes/home.svg",
+    "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/visual.vectorcraft"
+  ],
+  "source_content_drift": [],
+  "validated_completion_receipt": false,
+  "cleanup_eligibility": false
+}

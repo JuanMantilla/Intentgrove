@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "executable_sha256": "7ecaa4ae6eecfedb63eeba9e99f623d06426705347d01e73ecef5675edb93bdf",
+  "checks": {
+    "signature": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "readonly_diagnostic": {
+      "exit": 0,
+      "stdout": "{\n  \"requested_application\" : \"\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/release\\/bundle\\/macos\\/Intentgrove.app\",\n  \"extensions\" : {\n    \"md\" : {\n      \"handler\" : \"unknown\",\n      \"exact_application\" : false,\n      \"type\" : \"dyn.ah62d4rv4ge8043a\",\n      \"different_copy_of_intentgrove\" : 0\n    },\n    \"markdown\" : {\n      \"handler\" : \"unknown\",\n      \"exact_application\" : false,\n      \"type\" : \"dyn.ah62d4rv4ge8042pwrrwg875s\",\n      \"different_copy_of_intentgrove\" : 0\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    "disabled_consent": {
+      "exit": 4,
+      "stdout": "",
+      "stderr": "Markdown consent requires an eligible production Intentgrove.app.\n"
+    },
+    "extra_diagnostic_args": {
+      "exit": 4,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "scope": "Only read-only diagnostic and disabled consent mode executed; no setter."
+}

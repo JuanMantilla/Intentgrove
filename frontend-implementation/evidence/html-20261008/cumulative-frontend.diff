@@ -1,0 +1,566 @@
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 14264bf..7a0438f 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -4,6 +4,7 @@ import { getAppearance } from "./appearance";
+ import { settingsApi, type SettingsGroup } from "./settings-contract";
+ import { useSettingsOwner } from "./useSettingsOwner";
+ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
++import { flushSync } from "react-dom";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type DirectoryEntry, type DocumentResponse, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
+ import { errorText, sessionErrorText, t, type Locale } from "./i18n";
+@@ -28,6 +29,7 @@ import { confirmCleanDocument, confirmDirectoryPage, noteDirectoryChange, noteFi
+ import { defaultSessionPanel, makeSessionCheckpoint, sessionAnchor } from "./session";
+ import { FindIndex, findLiteral } from "../reader/find-index";
+ import type { HeadingEntry } from "../reader/heading-model";
++import { isHtmlDocument, isHtmlLink, requireMarkdownResponse } from "./htmlBoundary";
+ 
+ type OpenRequest = { fileId?: string; rootId?: string; segments?: string[]; explicitFile?: boolean };
+ const imageName = (name: string) => /\.(?:jpe?g|png|gif|webp|svg|bmp|tiff?|heic|heif)$/i.test(name);
+@@ -53,6 +55,7 @@ interface Tab {
+   kind?: "markdown" | "image";
+   image?: ImageResponse;
+   imageLoading?: boolean;
++  documentLoading?: boolean;
+   request: OpenRequest;
+   errorCode?: string;
+   diskVersion?: string;
+@@ -93,6 +96,7 @@ export default function App() {
+   const [directories, setDirectories] = useState<Record<string, DirectoryState>>({});
+   const [tabs, setTabs] = useState<Tab[]>([]);
+   const [sectionsByTab, setSectionsByTab] = useState<Record<string, SectionDescriptor[]>>({});
++  const [sectionLayoutVersions, setSectionLayoutVersions] = useState<Record<string, string>>({});
+   const [edits, setEdits] = useState<Record<string, SectionEdit>>({});
+   const editsRef = useRef(edits);
+   const [pendingRecoveries, setPendingRecoveries] = useState<Record<string, RecoveryResponse>>({});
+@@ -197,6 +201,7 @@ export default function App() {
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
+   const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
++  const [folderSearchScope, setFolderSearchScope] = useState<string[]>([]);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+   const [sidebarWidth, setSidebarWidth] = useState(264);
+   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+@@ -422,7 +427,10 @@ export default function App() {
+         savedDiskVersion: tab.diskVersion ?? null,
+         editingActive: Boolean(editsRef.current[tab.id] && !editsRef.current[tab.id].paused)
+       })),
+-      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey ?? currentActive,
++      // Opening may reserve an active ID before React commits its tab. Snapshot
++      // only committed tabs; keep the pending ID for reply ownership checks.
++      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey
++        ?? currentTabs.find((tab) => tab.id === currentActive)?.id ?? null,
+       tree: {
+         expanded: Object.entries(currentDirectories).filter(([, value]) => value.expanded)
+           .map(([key]) => JSON.parse(key) as string[]).filter((path) => path.length > 0),
+@@ -443,7 +451,12 @@ export default function App() {
+       return Promise.resolve();
+     if (sessionTimer.current) clearTimeout(sessionTimer.current);
+     sessionTimer.current = null;
+-    const input = sessionSnapshot();
++    let input: SessionCheckpointInput;
++    try { input = sessionSnapshot(); }
++    catch (error) {
++      setSessionNotice({ operation: final ? "close" : "checkpoint", code: readerError(error).code });
++      return Promise.reject(error);
++    }
+     const write = sessionWrite.current.catch(() => {}).then(async () => {
+       if (final && typeof api.finishWorkspaceSession === "function") await api.finishWorkspaceSession(input);
+       else await api.checkpointWorkspaceSession(input);
+@@ -594,7 +607,7 @@ export default function App() {
+   useEffect(() => {
+     const tab = tabs.find((item) => item.id === activeId);
+     if (!tab?.request.fileId || (tab.kind !== "image" && !tab.restoredKey)
+-      || tab.content !== undefined || tab.image || tab.imageLoading || tab.largeInspection || tab.errorCode
++      || tab.content !== undefined || tab.image || tab.imageLoading || tab.documentLoading || tab.largeInspection || tab.errorCode
+       || restoreLoads.current.has(tab.id)) return;
+     const token = Symbol("restored file load");
+     restoreLoads.current.set(tab.id, token);
+@@ -772,7 +785,7 @@ export default function App() {
+     };
+     void (async () => {
+       try {
+-        const subscriptions = await Promise.all([
++        await Promise.all([
+           listen<RefreshFileChanged>("refresh:file_changed", ({ payload }) => onFileChanged(payload)),
+           listen<RefreshDirectoryChanged>("refresh:directory_changed", ({ payload }) => onDirectoryChanged(payload)),
+           listen<RefreshItemStatus>("refresh:item_status", ({ payload }) => onItemStatus(payload)),
+@@ -788,9 +801,10 @@ export default function App() {
+               setCloseIntent({ kind: payload === "window" ? "window" : "app" });
+             else void finishClose(payload !== "window");
+           })
+-        ]);
+-        if (disposed) subscriptions.forEach((remove) => remove());
+-        else unlisten = subscriptions;
++        ].map(subscription => subscription.then(remove => {
++          // Retain each successful registration even if a sibling rejects.
++          if (disposed) remove(); else unlisten.push(remove);
++        })));
+       } catch { /* Native event bridge is unavailable in a browser-only preview. */ }
+     })();
+     return () => {
+@@ -851,7 +865,7 @@ export default function App() {
+       anchor });
+   }
+ 
+-  useEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
++  useLayoutEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
+   useEffect(() => { setManualReload(null); pendingManualReloads.current.clear(); manualJobTargets.current.clear(); }, [root?.id, root?.generation]);
+   useEffect(() => {
+     if (reloadMenu || projectsMenu || goMenu) {
+@@ -917,8 +931,9 @@ export default function App() {
+       }
+       const imageTab = tabsRef.current.find((tab) => tab.kind === "image" && (
+         menu.target.kind === "explicit-file" ? tab.id === menu.target.fileId
+-          : menu.target.kind === "root-file" && tab.request.rootId === menu.target.rootId
+-            && pathKey(tab.request.segments ?? []) === pathKey(menu.target.segments)));
++          : menu.target.kind === "root-file" && refreshTarget(tab)?.kind === "root-file"
++            && pathKey(documentSegments(tab) ?? []) === pathKey(menu.target.segments)
++            && rootRef.current?.id === menu.target.rootId));
+       if (imageTab) void refreshRetainedTab(imageTab.id);
+     } catch (error) {
+       const reasonCode = readerError(error).code;
+@@ -1153,15 +1168,19 @@ export default function App() {
+   }
+ 
+   useEffect(() => {
+-    if (!active?.diskVersion || active.errorCode || activeEdit) return;
++    if (!active?.diskVersion || active.kind === "image" || active.errorCode || activeEdit) return;
+     if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
+     void api.listEditSections(active.id).then((result) => {
+-      if (!cancelled && result.diskVersion === active.diskVersion) {
+-        setSectionsByTab((old) => ({ ...old, [active.id]: result.sections }));
++      if (!cancelled) {
++        setSectionsByTab((old) => ({ ...old, [active.id]: result.diskVersion === active.diskVersion ? result.sections : [] }));
++        setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
+       }
+     }).catch(() => {
+-      if (!cancelled) setSectionsByTab((old) => ({ ...old, [active.id]: [] }));
++      if (!cancelled) {
++        setSectionsByTab((old) => ({ ...old, [active.id]: [] }));
++        setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
++      }
+     });
+     return () => { cancelled = true; };
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+@@ -1487,6 +1506,7 @@ export default function App() {
+     for (const directory of Object.values(directoriesRef.current)) {
+       if (directory.loading) void api.cancelListing(directory.token).catch(() => {});
+     }
++    setFolderSearchScope([]);
+     setRoot(selected);
+     setRootProblem(null);
+     setDirectories({});
+@@ -1545,9 +1565,24 @@ export default function App() {
+       activeIdRef.current = id;
+       setActiveId(id); setCompactSidebarOpen(false);
+     };
++    // Keep the attempted HTML identity visible while the existing native command
++    // checks it. This is an opening/error surface, never an HTML renderer.
++    const pendingId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
++    const pendingName = fallback?.name ?? request.segments?.at(-1) ?? "";
++    if (isHtmlDocument(pendingName)) {
++      // Closing a pending tab invalidates the same token as closing a settled
++      // tab, including root-relative requests whose request key differs.
++      documentLoads.current.set(pendingId, token);
++      const pending: Tab = { id: pendingId, name: pendingName,
++        displayPath: fallback?.path ?? pendingName, request, explicitFile: request.explicitFile,
++        documentLoading: true };
++      setTabs(old => old.some(tab => tab.id === pendingId)
++        ? old.map(tab => tab.id === pendingId ? { ...tab, documentLoading: true, errorCode: undefined } : tab) : [...old, pending]);
++      activate(pendingId);
++    }
+     try {
+-      const document: DocumentResponse = await api.readDocument(request);
+-      if (!current()) return;
++      const document = requireMarkdownResponse(await api.readDocument(request));
++      if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       if (typeof api.rememberRecentDocument === "function") {
+         void api.rememberRecentDocument(document.fileId).then(refreshRecents).catch(() => {});
+       }
+@@ -1623,7 +1658,7 @@ export default function App() {
+       }
+       return tab.id;
+     } catch (error) {
+-      if (!current()) return;
++      if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       const detail = readerError(error);
+       if (detail.code === "oversize") {
+         try {
+@@ -1666,7 +1701,8 @@ export default function App() {
+         displayPath: fallback?.path ?? name,
+         request,
+         explicitFile: request.explicitFile,
+-        errorCode: detail.code
++        errorCode: detail.code === "unsupported_type" && isHtmlDocument(name)
++          ? "html_view_unavailable" : detail.code
+       };
+       setTabs((old) => old.some((item) => item.id === id)
+         ? old.map((item) => item.id === id ? tab : item)
+@@ -1674,6 +1710,7 @@ export default function App() {
+       activate(id);
+     } finally {
+       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
++      if (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+     }
+   }
+ 
+@@ -1736,14 +1773,19 @@ export default function App() {
+   async function openFolderSearchResult(result: OpenFolderSearchHit,
+     hit: FolderSearchHit, query: string, selectedRootId: string) {
+     if (rootRef.current?.id !== selectedRootId) return;
+-    await openDocument({ rootId: selectedRootId, segments: hit.segments },
++    const opening = openDocument({ rootId: selectedRootId, segments: hit.segments },
+       { name: hit.segments.at(-1) ?? hit.path, path: hit.path });
++    const owner = openSequence.current, generation = generationRef.current;
++    const current = () => rootRef.current?.id === selectedRootId
++      && owner === openSequence.current && generation === generationRef.current;
++    await opening;
++    if (!current()) return;
+     if (result.matchMoved) setNotice(noticeLocale => t(noticeLocale, "folderSearchMoved"));
+     else if (result.changed) setNotice(noticeLocale => t(noticeLocale, "folderSearchChanged"));
+     if (hit.kind === "content" && result.ordinal !== null) {
+       pendingSearchReveal.current = true;
+       requestAnimationFrame(() => {
+-        if (rootRef.current?.id !== selectedRootId) return;
++        if (!current()) return;
+         setFindOpen(true);
+         setFindQuery(query);
+         setFindOrdinal(result.ordinal ?? 0);
+@@ -1831,7 +1873,7 @@ export default function App() {
+   async function refreshRetainedTab(tabId: string) {
+     if (tabsRef.current.find((item) => item.id === tabId)?.kind === "image") {
+       const tab = tabsRef.current.find((item) => item.id === tabId)!;
+-      await openImage({ fileId: tabId }, { name: tab.name, path: tab.displayPath }, true, false);
++      await openImage({ ...tab.request, fileId: tabId, explicitFile: tab.explicitFile }, { name: tab.name, path: tab.displayPath }, true, false);
+       return;
+     }
+     if (tabsRef.current.find((item) => item.id === tabId)?.largeInspection) {
+@@ -1890,7 +1932,8 @@ export default function App() {
+       if (!selected) return;
+       generationRef.current = selected.generation;
+       rootRef.current = selected;
+-      setRoot(selected); setRootProblem(null);
++      setFolderSearchScope([]);
++    setRoot(selected); setRootProblem(null);
+       inspectionSequence.current += 1;
+       inspectedDiskRef.current = null; setInspectedDisk(null);
+       discardConflictRef.current = null; setDiscardConflictConfirm(null);
+@@ -2001,6 +2044,7 @@ export default function App() {
+     }
+     for (const tab of targets) {
+       imageLoads.current.delete(tab.id);
++      if (tab.documentLoading) documentLoads.current.delete(tab.id);
+       if (openingLarge.current === tab.id) void api.cancelLargeOpen().catch(() => {});
+       if (tab.largeOpened) void api.closeLargeSource(tab.largeOpened.snapshotId).catch(() => {});
+     }
+@@ -2075,10 +2119,13 @@ export default function App() {
+         if (!(await discardEdit(id))) return;
+       }
+     }
+-    setCloseIntent(null);
+     if (intent.kind === "app" || intent.kind === "window") {
+-      if (typeof api.finishWorkspaceSession === "function")
+-        await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
++      // Commit saved tabs/removed edits and their layout-owned snapshot refs
++      // before the final durable checkpoint. Closing must work even when an
++      // occluded WebView stops receiving animation frames.
++      flushSync(() => setCloseIntent(null));
++    } else setCloseIntent(null);
++    if (intent.kind === "app" || intent.kind === "window") {
+       await finishClose(intent.kind === "app");
+     } else if (intent.kind === "folder" && pendingFolder) {
+       try {
+@@ -2356,7 +2403,7 @@ export default function App() {
+         await openImage({ fileId: result.fileId });
+       } else {
+         setNotice(noticeLocale => result.kind === "missing" ? t(noticeLocale, "missing")
+-          : result.kind === "unsupported" ? t(noticeLocale, "unsupported")
++          : result.kind === "unsupported" ? t(noticeLocale, isHtmlLink(target) ? "htmlUnavailable" : "unsupported")
+             : t(noticeLocale, active.explicitFile ? "singleFileLinkBlocked" : "linkBlocked"));
+       }
+     } catch (error) {
+@@ -2364,11 +2411,20 @@ export default function App() {
+     }
+   }
+ 
++  function hasPendingSectionLayout(tab: Tab) {
++    return editingAvailable && typeof api.listEditSections === "function"
++      && Boolean(tab.diskVersion) && !editsRef.current[tab.id]
++      && sectionLayoutVersions[tab.id] !== tab.diskVersion;
++  }
++
+   function captureReadingPosition(id: string, reader: HTMLDivElement) {
+-    // A worker's pending view has no passage geometry; keep the retained position.
++    // Loading and partially painted replacements can clamp the native scroll
++    // position. Their geometry must not overwrite the last complete passage.
+     const tab = tabsRef.current.find(item => item.id === id);
+     if (tab && tab.kind !== "image" && !tab.largeInspection
+-      && (tab.content === undefined || !reader.querySelector(".document-page .markdown-body"))) return;
++      && (hasPendingSectionLayout(tab) || tab.content === undefined || renderedMarkdown?.id !== id
++        || renderedMarkdown.content !== tab.content
++        || !reader.querySelector(".document-page .markdown-body"))) return;
+     const scrollTop = reader.scrollTop;
+     scrollPositions.current.set(id, scrollTop);
+     const headings = Array.from(reader.querySelectorAll<HTMLElement>(
+@@ -2377,7 +2433,9 @@ export default function App() {
+     let closest: { headingId: string | null; offset: number; scrollTop: number } = { headingId: null, offset: 0, scrollTop };
+     for (const heading of headings) {
+       const top = zoomRect(heading, documentZooms.current.get(id) ?? 1).top - readerTop + scrollTop;
+-      if (top <= scrollTop + 24) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
++      // Outline navigation leaves a 24px scroll margin. Native scrollTop can
++      // round down while heading geometry retains its fractional CSS pixel.
++      if (top <= scrollTop + 25) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
+     }
+     readingAnchors.current.set(id, closest);
+     historyRef.current = updateVisit(historyRef.current, id, { scrollTop, scrollLeft: reader.scrollLeft });
+@@ -2481,7 +2539,7 @@ export default function App() {
+     const reader = readerRef.current;
+     if (!reader) return;
+     if (!active || (active.kind !== "image" && !active.largeInspection
+-      && (active.content === undefined || renderedMarkdown?.id !== active.id
++      && (hasPendingSectionLayout(active) || active.content === undefined || renderedMarkdown?.id !== active.id
+         || renderedMarkdown.content !== active.content))) return;
+     const saved = readingAnchors.current.get(activeId ?? "");
+     setActiveOutlineId((prior) => prior === (saved?.headingId ?? null)
+@@ -2492,14 +2550,21 @@ export default function App() {
+         const headingBox = zoomRect(heading, documentZooms.current.get(activeId ?? "") ?? 1);
+         const readerBox = reader.getBoundingClientRect();
+         const top = headingBox.top - readerBox.top + reader.scrollTop;
+-        reader.scrollTop = headingBox.height === 0 && readerBox.height === 0
+-          ? saved.scrollTop : Math.max(0, top + saved.offset);
++        if (headingBox.height === 0 && readerBox.height === 0) reader.scrollTop = saved.scrollTop;
++        else {
++          const position = Math.max(0, top + saved.offset);
++          reader.scrollTop = position;
++          // Some native WebKit views floor fractional scroll coordinates.
++          // Avoid accumulating that error beyond the heading's scroll margin.
++          if (reader.scrollTop < position && position - reader.scrollTop < 1)
++            reader.scrollTop = Math.ceil(position);
++        }
+         return;
+       }
+       setNotice(noticeLocale => t(noticeLocale, "readingPositionShifted"));
+     }
+     reader.scrollTop = saved?.scrollTop ?? scrollPositions.current.get(activeId ?? "") ?? 0;
+-  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown]);
++  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown, sectionLayoutVersions, sectionsByTab]);
+ 
+   useEffect(() => {
+     const resize = () => {
+@@ -2625,7 +2690,7 @@ export default function App() {
+   function tree(segments: string[]): React.ReactNode {
+     const state = directories[pathKey(segments)];
+     if (!state?.expanded) return null;
+-    const entries = state.entries.filter((entry) => entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image");
++    const entries = state.entries.filter((entry) => entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isHtmlDocument(entry.name));
+     return (
+       <div role="group" className="tree-group">
+         {entries.map((entry) => {
+@@ -2674,8 +2739,9 @@ export default function App() {
+                 }}
+                 onClick={() => isFolder
+                   ? toggleDirectory(path)
+-                  : entry.kind === "markdown" && root
+-                    ? void openDocument({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
++                  : (entry.kind === "markdown" || isHtmlDocument(entry.name)) && root
++                    ? void openDocument({ rootId: root.id, segments: path }, { name: entry.name,
++                      path: isHtmlDocument(entry.name) ? `${root.displayPath.replace(/[\\/]+$/, "")}/${path.join("/")}` : path.join("/") })
+                     : entry.kind === "image" && root
+                       ? void openImage({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
+                     : setNotice(noticeLocale => t(noticeLocale, "unsupported"))}
+@@ -2814,7 +2880,11 @@ export default function App() {
+               <>
+                 <div hidden={sidebarPanel !== "search"} inert={sidebarPanel !== "search"} className="folder-search-host">
+                   <FolderSearchPanel key={root.id} root={root} locale={locale} active={sidebarPanel === "search"}
+-                    query={folderQuery} onQueryChange={setFolderQuery}
++                    scopeSegments={folderSearchScope} query={folderQuery} onQueryChange={setFolderQuery}
++                    captureOpenIntent={() => {
++                      const owner = ++openSequence.current, generation = generationRef.current;
++                      return () => owner === openSequence.current && generation === generationRef.current;
++                    }}
+                     onClose={() => { setSidebarPanel("explorer"); searchTrigger.current?.focus(); }}
+                     onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+                 </div>
+@@ -2835,7 +2905,7 @@ export default function App() {
+                   {tree([])}
+                   {directories[pathKey([])]?.loaded
+                     && !directories[pathKey([])]?.entries.some((entry) =>
+-                      entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image") && (
++                      entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isHtmlDocument(entry.name)) && (
+                     <div className="sidebar-empty">
+                       <p>{t(locale, "emptyFolder")}</p>
+                       <button type="button" onClick={() => void chooseFolder()}>{t(locale, "chooseAnother")}</button>
+@@ -3088,7 +3158,7 @@ export default function App() {
+             { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
+             { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
+             { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
+-              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } },
++              run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } },
+             ...(root ? [
+               { label: `${t(locale, "reload")} ${root.name} ${t(locale, "folder")}`, disabled: busy,
+                 run: () => void startReload({ ...projectsMenu, target: { kind: "folder", rootId: root.id, segments: [] }, label: root.name }) },
+@@ -3104,13 +3174,16 @@ export default function App() {
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
+                 { label: t(locale, "openFile"), hint: shortcutHint("O"), run: () => void chooseFile() },
+                 { label: t(locale, "openFolder"), hint: shortcutHint("O", true), run: () => void chooseFolder() },
+-                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } }
+               ] : []),
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [
+                 { label: t(locale, directories[pathKey(reloadMenu.target.segments)]?.expanded ? "collapseFolder" : "expandFolder"),
+                   run: () => { if (reloadMenu.target.kind === "folder") toggleDirectory(reloadMenu.target.segments); } },
+-                { label: t(locale, "folderSearch"), disabled: true,
+-                  reason: t(locale, "searchFolderUnavailable"), run: () => {} }
++                { label: t(locale, "folderSearch"), run: () => {
++                  if (reloadMenu.target.kind !== "folder") return;
++                  setFolderSearchScope([...reloadMenu.target.segments]);
++                  setSidebarOpen(true); setSidebarPanel("search");
++                } }
+               ] : []),
+               ...(reloadMenu.target.kind === "root-file" && reloadMenu.anchor.getAttribute("role") !== "tab" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
+                 disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
+@@ -3354,11 +3427,13 @@ export default function App() {
+                   <button type="button" onClick={() => void closeTab(active.id)}>{t(locale, "cancel")}</button>
+                 </div>}
+               </div>
++            ) : active.documentLoading ? (
++              <div className="error-state" role="status">{t(locale, "openingHtml")}</div>
+             ) : active.errorCode ? (
+               <div className="error-state" role="alert">
+                 <div className="error-symbol" aria-hidden="true">!</div>
+                 <h1>{errorText(locale, active.errorCode)}</h1>
+-                <p>{t(locale, "retryHint")}</p>
++                <p>{t(locale, active.errorCode === "html_view_unavailable" ? "htmlUnavailableDetail" : "retryHint")}</p>
+                 {active.errorCode === "reselection_required" && active.explicitFile
+                   ? <button type="button" disabled={busy} onClick={() => void (active.request.fileId
+                     ? reselectFile(active.id) : recoverMissingFile(active))}>{t(locale, "selectFileAgain")}</button>
+@@ -3368,6 +3443,7 @@ export default function App() {
+                     : <button type="button" onClick={() => void (active.kind === "image" ? openImage : openDocument)(active.request, { name: active.name, path: active.displayPath })}>
+                       {t(locale, "retry")}
+                     </button>}
++                {isHtmlDocument(active.name) && <button type="button" onClick={() => void closeTab(active.id)}>{t(locale, "closeTab")}</button>}
+               </div>
+             ) : active.kind === "image" ? (
+               active.image ? <ImageView key={active.id} image={active.image} locale={locale} hideIdentity
+@@ -3453,6 +3529,7 @@ export default function App() {
+                     : setCloseIntent({ kind: "read", tabId: active.id })}
+                 />}
+                 <MarkdownView content={active.content ?? ""} fileId={active.id} locale={locale}
++                  layoutPending={hasPendingSectionLayout(active)}
+                   findRootRef={findRootRef}
+                   onRendered={(id, content) => setRenderedMarkdown({ id, content })}
+                   onHeadings={(entries) => updateHeadings(active.id, entries)}
+diff --git a/src/app/api.ts b/src/app/api.ts
+index b2fe7f1..31caad8 100644
+--- a/src/app/api.ts
++++ b/src/app/api.ts
+@@ -1,4 +1,5 @@
+ import { invoke } from "@tauri-apps/api/core";
++import { requireMarkdownResponse } from "./htmlBoundary";
+ 
+ export interface GrantInfo {
+   id: string;
+@@ -318,6 +319,8 @@ export function readerError(error: unknown): ReaderError {
+ }
+ 
+ export const api = {
++  renderDiagram: (source: string, jobId: string, generation: number) => invoke<import("../reader/diagram-host").DiagramPixels>("render_diagram", { source, jobId, generation }),
++  cancelDiagram: (jobId: string) => invoke<void>("cancel_diagram", { jobId }),
+   listRecentItems: () => invoke<RecentList>("list_recent_items"),
+   openRecentItem: (entryId: string) => invoke<RecentOpen>("open_recent_item", { entryId }),
+   reselectRecentItem: (entryId: string) => invoke<RecentOpen | null>("reselect_recent_item", { entryId }),
+@@ -342,9 +345,11 @@ export const api = {
+     invoke<FolderSearchStarted>("start_folder_search", { rootId, query, mode, includeIgnored, scopeSegments }),
+   cancelFolderSearch: (jobId: string) => invoke<boolean>("cancel_folder_search", { jobId }),
+   openSearchHit: (jobId: string, resultId: string) =>
+-    invoke<OpenFolderSearchHit>("open_search_hit", { jobId, resultId }),
++    invoke<OpenFolderSearchHit>("open_search_hit", { jobId, resultId }).then(result => ({
++      ...result, document: requireMarkdownResponse(result.document)
++    })),
+   readDocument: (args: { fileId?: string; rootId?: string; segments?: string[] }) =>
+-    invoke<DocumentResponse>("read_document", args),
++    invoke<DocumentResponse>("read_document", args).then(requireMarkdownResponse),
+   inspectLargeFile: (args: { fileId?: string; rootId?: string; segments?: string[] }) =>
+     invoke<LargeInspection>("inspect_large_file", args),
+   openLargeSource: (fileId: string, explicitConsent: boolean) =>
+@@ -409,5 +414,5 @@ export const api = {
+     generation: number; rootId?: string; expandedDirectories: string[][]; openFileIds: string[];
+   }) => invoke<RefreshJob>("reconcile_visible_state", args),
+   getConfirmedDocument: (fileId: string, expectedDiskVersion: string, generation: number) =>
+-    invoke<DocumentResponse>("get_confirmed_document", { fileId, expectedDiskVersion, generation })
++    invoke<DocumentResponse>("get_confirmed_document", { fileId, expectedDiskVersion, generation }).then(requireMarkdownResponse)
+ };
+diff --git a/src/app/i18n.ts b/src/app/i18n.ts
+index 445050f..3541e94 100644
+--- a/src/app/i18n.ts
++++ b/src/app/i18n.ts
+@@ -3,6 +3,9 @@ export type Locale = "en" | "es";
+ 
+ const catalog = {
+   en: {
++    openingHtml: "Opening HTML…",
++    htmlUnavailable: "HTML viewing is unavailable in this build",
++    htmlUnavailableDetail: "This file needs an isolated HTML viewer. The document has not been rendered. Retrying checks the file again; it does not enable HTML support.",
+     lastReloadStatus: "Last reload status",
+     expandFolder: "Expand folder",
+     collapseFolder: "Collapse folder",
+@@ -71,6 +74,7 @@ const catalog = {
+     wideWidth: "Wide",
+     customWidth: "Custom width",
+     searchScope: "Search scope",
++    searchScopeChanged: "The searched folder changed. Search again or select the folder again.",
+     clearSearch: "Clear search",
+     backToExplorer: "Back to explorer",
+     searchResultCount: "Results",
+@@ -266,6 +270,9 @@ const catalog = {
+     metadata: "Metadata",
+     invalidMetadata: "Invalid or unsupported YAML metadata",
+     metadataSource: "View metadata source",
++    blockSource: "View source",
++    diagramAlt: "Mermaid diagram",
++    diagramUnavailable: "Diagram unavailable. The source is preserved below.",
+     outline: "Outline",
+     closeOutline: "Close outline",
+     outlineEmpty: "No headings in this document",
+@@ -323,6 +330,9 @@ const catalog = {
+     startFresh: "Start fresh"
+   },
+   es: {
++    openingHtml: "Abriendo HTML…",
++    htmlUnavailable: "La vista HTML no está disponible en esta versión",
++    htmlUnavailableDetail: "Este archivo necesita un visor HTML aislado. No se ha renderizado el documento. Reintentar vuelve a comprobar el archivo; no habilita la vista HTML.",
+     lastReloadStatus: "Último estado de recarga",
+     expandFolder: "Expandir carpeta",
+     collapseFolder: "Contraer carpeta",
+@@ -391,6 +401,7 @@ const catalog = {
+     wideWidth: "Amplio",
+     customWidth: "Ancho personalizado",
+     searchScope: "Ámbito de búsqueda",
++    searchScopeChanged: "La carpeta buscada cambió. Busca de nuevo o vuelve a seleccionar la carpeta.",
+     clearSearch: "Borrar búsqueda",
+     backToExplorer: "Volver al explorador",
+     searchResultCount: "Resultados",
+@@ -586,6 +597,9 @@ const catalog = {
+     metadata: "Metadatos",
+     invalidMetadata: "Metadatos YAML no válidos o no compatibles",
+     metadataSource: "Ver código fuente de los metadatos",
++    blockSource: "Ver código fuente",
++    diagramAlt: "Diagrama Mermaid",
++    diagramUnavailable: "Diagrama no disponible. El código fuente se conserva abajo.",
+     outline: "Índice",
+     closeOutline: "Cerrar índice",
+     outlineEmpty: "Este documento no tiene títulos",
+@@ -670,8 +684,10 @@ export function errorText(locale: Locale, code: string): string {
+     oversize: "oversize",
+     changed: "changed",
+     cloud_placeholder: "cloudPlaceholder",
++    scope_changed: "searchScopeChanged",
+     invalid_grant: "invalidGrant",
+     unsupported_type: "unsupported",
++    html_view_unavailable: "htmlUnavailable",
+     unsupported_asset: "imageBlocked",
+     image_corrupt: "imageCorrupt",
+     image_mismatch: "imageMismatch",

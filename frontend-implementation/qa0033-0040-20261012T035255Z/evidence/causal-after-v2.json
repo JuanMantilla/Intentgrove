@@ -1,0 +1,30 @@
+{
+  "id": "causal-after-v2",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "frontend-implementation/qa0033-0040-20261012T035255Z",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/appearance-operations-causal.test.tsx",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/new-markdown-causal.test.tsx",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/selection-causal.test.tsx",
+    "-t",
+    "causal QA-003"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:03:49.950059+00:00",
+  "load_before": [
+    20.4296875,
+    15.6845703125,
+    12.39892578125
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T04:04:06.210587+00:00",
+  "load_after": [
+    44.0888671875,
+    21.00830078125,
+    14.34716796875
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/causal-after-v2.log"
+}

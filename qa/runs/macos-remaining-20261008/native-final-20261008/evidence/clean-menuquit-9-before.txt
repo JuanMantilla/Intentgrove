@@ -1,0 +1,43 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button (disabled) Back, Help: No previous file
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+				15 pop up button Go menu
+				16 button (collapsed) Open documents (1), Secondary Actions: Expand
+				17 container plain.md
+					18 text plain.md
+					19 text Folder root
+					20 button Edit section
+					21 summary Document…, Value: off
+						22 text Document…
+				23 container plain.md
+					24 container Unrelated document
+						25 container Edit section: Unrelated document
+							26 heading Unrelated document, Value: 1
+								27 text Unrelated document
+							28 button Edit section “Unrelated document”
+						29 text Responsive tab.
+	30 close button
+	31 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	32 minimize button
+	33 text Intentgrove
+34 menu bar
+	35 Intentgrove
+	36 File
+	37 Edit
+	38 View
+	39 Go
+	40 Window
+	41 Help

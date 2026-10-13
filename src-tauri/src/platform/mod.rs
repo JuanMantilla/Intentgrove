@@ -12,20 +12,28 @@ compile_error!("This workspace supports only its reviewed macOS and Windows targ
 
 #[derive(PartialEq, Eq)]
 pub(crate) struct FileStamp {
-    pub device: u64, pub inode: u64, pub length: u64,
-    pub modified_seconds: i64, pub modified_nanos: i64,
-    pub changed_seconds: i64, pub changed_nanos: i64,
+    pub device: u64,
+    pub inode: u64,
+    pub length: u64,
+    pub modified_seconds: i64,
+    pub modified_nanos: i64,
+    pub changed_seconds: i64,
+    pub changed_nanos: i64,
 }
 
-pub(crate) trait PositionalRead {
+pub trait PositionalRead {
     fn read_at(&self, buffer: &mut [u8], offset: u64) -> std::io::Result<usize>;
 }
 impl PositionalRead for std::fs::File {
     fn read_at(&self, buffer: &mut [u8], offset: u64) -> std::io::Result<usize> {
         #[cfg(target_os = "macos")]
-        { std::os::unix::fs::FileExt::read_at(self, buffer, offset) }
+        {
+            std::os::unix::fs::FileExt::read_at(self, buffer, offset)
+        }
         #[cfg(target_os = "windows")]
-        { std::os::windows::fs::FileExt::seek_read(self, buffer, offset) }
+        {
+            std::os::windows::fs::FileExt::seek_read(self, buffer, offset)
+        }
     }
 }
 #[cfg(any(target_os = "windows", test))]
@@ -39,14 +47,18 @@ pub(crate) fn bounded_record_path(path: &str, max_bytes: usize) -> bool {
         return false;
     }
     #[cfg(target_os = "macos")]
-    { path.starts_with('/') }
+    {
+        path.starts_with('/')
+    }
     #[cfg(target_os = "windows")]
-    { windows_path::selected(path).is_ok() }
+    {
+        windows_path::selected(path).is_ok()
+    }
 }
 
-#[cfg(test)]
-pub(crate) mod test_support;
 pub(crate) mod storage;
+#[cfg(any(test, feature = "document-contract-tests"))]
+pub(crate) mod test_support;
 
 #[cfg(target_os = "macos")]
 mod macos_save;
@@ -55,22 +67,42 @@ pub(crate) use macos_save::*;
 #[cfg(target_os = "macos")]
 pub(crate) type DocumentStage = std::fs::File;
 #[cfg(target_os = "macos")]
-pub(crate) fn stage_document_bytes(parent: &std::fs::File, bytes: &[u8], source: Option<&std::fs::File>) -> crate::scope::AppResult<(String, std::fs::File)> {
-    let mode = match source { Some(file) => document_mode(file)?, None => 0o600 };
+pub(crate) fn stage_document_bytes(
+    parent: &std::fs::File,
+    bytes: &[u8],
+    source: Option<&std::fs::File>,
+) -> crate::scope::AppResult<(String, std::fs::File)> {
+    let mode = match source {
+        Some(file) => document_mode(file)?,
+        None => 0o600,
+    };
     stage_bytes(parent, bytes, mode)
 }
 #[cfg(target_os = "windows")]
 mod windows_save;
 #[cfg(target_os = "macos")]
-pub(crate) fn open_document_for_commit(parent: &std::fs::File, target: &str) -> crate::scope::AppResult<std::fs::File> {
+pub(crate) fn open_document_for_commit(
+    parent: &std::fs::File,
+    target: &str,
+) -> crate::scope::AppResult<std::fs::File> {
     open_relative(parent, &[target.to_owned()], false)
 }
 #[cfg(target_os = "macos")]
-pub(crate) fn rename_document_stage(parent: &std::fs::File, _stage: &DocumentStage, name: &str, target: &str) -> crate::scope::AppResult<()> {
+pub(crate) fn rename_document_stage(
+    parent: &std::fs::File,
+    _stage: &DocumentStage,
+    name: &str,
+    target: &str,
+) -> crate::scope::AppResult<()> {
     rename_stage(parent, name, target)
 }
 #[cfg(target_os = "macos")]
-pub(crate) fn link_document_stage_new(parent: &std::fs::File, _stage: &DocumentStage, name: &str, target: &str) -> crate::scope::AppResult<()> {
+pub(crate) fn link_document_stage_new(
+    parent: &std::fs::File,
+    _stage: &DocumentStage,
+    name: &str,
+    target: &str,
+) -> crate::scope::AppResult<()> {
     link_stage_new(parent, name, target)
 }
 #[cfg(target_os = "macos")]
@@ -79,9 +111,28 @@ pub(crate) fn remove_document_stage(parent: &std::fs::File, _stage: &DocumentSta
 }
 #[cfg(target_os = "windows")]
 pub(crate) use windows_save::*;
+/// Keep the shipped Windows rollout closed until its supported metadata policy
+/// and real desktop lifecycle are verified. Native tests exercise the same
+/// commands/policy through a test-only gate, without enabling the application.
 pub(crate) fn require_editing() -> crate::scope::AppResult<()> {
-    #[cfg(target_os = "macos")]
+    #[cfg(all(target_os = "windows", not(any(test, feature="document-contract-tests"))))]
+    { Err(crate::scope::AppError::new("editing_unavailable", "Windows section editing awaits supported metadata and native lifecycle verification")) }
+    #[cfg(any(target_os = "macos", test,feature="document-contract-tests"))]
     { Ok(()) }
-    #[cfg(target_os = "windows")]
-    { Err(crate::scope::AppError::new("editing_unavailable", "Windows editing awaits native safe-save and recovery verification")) }
 }
+
+/// Refuse documents whose Windows replacement semantics cannot preserve data.
+pub(crate) fn validate_editable_document(file: &std::fs::File) -> crate::scope::AppResult<()> {
+    #[cfg(target_os = "windows")]
+    {
+        validate_document_for_edit(file)
+    }
+    #[cfg(target_os = "macos")]
+    {
+        let _ = file;
+        Ok(())
+    }
+}
+
+mod creation;
+pub(crate) use creation::create_empty;

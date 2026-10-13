@@ -1,0 +1,66 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text search-25000
+				6 button (disabled) Outline
+				7 button (collapsed) Reading settings, Secondary Actions: Expand
+				8 button Settings
+			9 container Explorer
+				10 pop up button Projects
+				11 container Search folder
+					12 button Back to explorer
+					13 container
+						14 text Search folder
+						15 search text field (settable) Search folder, Value: MANIFEST_QUERY_00_UNIQUE, Placeholder: File name or text
+							16 text (settable) MANIFEST_QUERY_00_UNIQUE
+							17 button cancel
+					18 text Search scope: search-25000 · Names and content
+					19 container Search in
+						20 toggle button Names and content, Value: on
+						21 toggle button File names, Value: off
+						22 toggle button Document text, Value: off
+					23 text Contents search covers Markdown files.
+					24 container
+						25 checkbox Include ignored files, Value: 0
+						26 text Include ignored files
+					27 button Stop
+					28 button Clear search
+					29 text Searching… · 3,712 entries scanned, 2,959 skipped · Results: 1
+					30 container group-00/café-東京.md
+						31 heading group-00/café-東京.md 1, Help: group-00/café-東京.md, Value: 3
+							32 text group-00/café-東京.md 1
+						33 button group-00/café-東京.md · Line 2 · MANIFEST_QUERY_00_UNIQUE, Help: group-00/café-東京.md
+				34 text Storage and recovery
+				35 text Open edits and recovery offers: 0
+				36 button Manage…
+			37 button Close sidebar
+			38 container
+				39 container Visited files
+					40 button Back, Help: Back: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					41 button (disabled) Forward, Help: No next file
+				42 tab group (selectable) Documents
+				43 pop up button Go menu
+				44 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+				45 heading Read your local Markdown, Value: 1
+					46 text Read your local Markdown
+				47 text Open a Markdown file to start reading.
+				48 button Open folder
+				49 button Open file
+	50 close button
+	51 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	52 minimize button
+	53 text Intentgrove
+54 menu bar
+	55 Intentgrove
+	56 File
+	57 Edit
+	58 View
+	59 Go
+	60 Window
+	61 Help
+
+The focused UI element is 15 search text field (settable) Search folder, Value: MANIFEST_QUERY_00_UNIQUE, Placeholder: File name or text

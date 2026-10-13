@@ -1,0 +1,104 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button (disabled) Back, Help: No previous file
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selected) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						25 button Close tab: reading.md, Help: Close tab
+				26 pop up button Go menu
+				27 button (collapsed) Open documents (2), Secondary Actions: Expand
+				28 container Visited files
+					29 text Forward: reading.md
+				30 container reading.md
+					31 text reading.md
+					32 text Outside the open folder
+					33 button Edit section
+					34 summary Document…, Value: off
+						35 text Document…
+				36 container reading.md
+					37 container Repeated
+						38 summary Metadata, Value: off
+							39 text Metadata
+						40 container Edit section: Repeated
+							41 heading Repeated, Value: 1
+								42 text Repeated
+							43 button Edit section “Repeated”
+						44 container
+							45 text First paragraph with 
+							46 button neighbor, Help: second.md
+							47 text  and reference 
+							48 button second, Help: second.md
+							49 text .
+						50 container
+							51 text First footnote
+							52 button 1, Help: #fn-a
+							53 text .
+						54 container Edit section: Repeated
+							55 heading Repeated, Value: 1
+								56 text Repeated
+							57 button Edit section “Repeated”
+						58 container
+							59 text Second footnote
+							60 button 2, Help: #fn-b
+							61 text , then again
+							62 button 1, Help: #fn-a
+							63 text .
+						64 text js
+						65 button Copy code
+						66 text const answer = 42;
+
+						67 text mermaid
+						68 button Copy code
+						69 text flowchart LR
+  A --> B
+
+						70 text mermaid
+						71 button Copy code
+						72 text invalid }} <script>alert(1)</script>
+
+						73 image local
+						74 container
+							75 image remote
+							76 image escape
+						77 container
+							78 text [1] 
+							79 button ↩, Help: #fnref-a-1
+						80 text alpha note
+						81 container
+							82 text [2] 
+							83 button ↩, Help: #fnref-b-1
+						84 text beta note
+	85 close button
+	86 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	87 minimize button
+	88 text Intentgrove
+89 menu bar
+	90 Intentgrove Final Acceptance 20261008
+	91 File
+	92 Edit
+	93 View
+	94 Go
+	95 Window
+	96 Help
+
+The focused UI element is 26 pop up button Go menu

@@ -1,0 +1,986 @@
+[
+  {
+    "request": {
+      "op": "prototype.open",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/four-scenes.igproto"
+    },
+    "result": {
+      "events": [
+        {
+          "textLimit": false,
+          "headings": [],
+          "empty": false,
+          "event": "ready",
+          "location": {
+            "headingId": null,
+            "zoom": 1,
+            "scrollLeft": 0,
+            "offset": 0,
+            "scrollTop": 0
+          }
+        }
+      ],
+      "state": {
+        "trace": [],
+        "scene": "login",
+        "history": [],
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "visible": true,
+            "scene": "login",
+            "id": "login-button"
+          },
+          {
+            "scene": "login",
+            "visible": true,
+            "id": "image-probe"
+          },
+          {
+            "visible": true,
+            "scene": "login",
+            "id": "transform-probe"
+          },
+          {
+            "visible": true,
+            "id": "effect-probe",
+            "scene": "login"
+          },
+          {
+            "id": "hidden-probe",
+            "scene": "login",
+            "visible": false
+          }
+        ],
+        "overlays": []
+      },
+      "loadMs": 495.6780672073364,
+      "installation": {
+        "bridge": "undefined",
+        "pageScript": false,
+        "installed": true
+      }
+    },
+    "elapsedMs": 748.1209170000001
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-login.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-login.png"
+    },
+    "elapsedMs": 124.84737499999999
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "login",
+      "target": "login-button"
+    },
+    "result": {
+      "state": {
+        "trace": [
+          {
+            "trigger": "CLICK",
+            "y": 474,
+            "scene": "login",
+            "x": 195,
+            "target": "login-button",
+            "isTrusted": true
+          },
+          {
+            "duration": 100,
+            "transition": "DISSOLVE"
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          }
+        ],
+        "scene": "dashboard",
+        "history": [
+          "login"
+        ],
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "id": "settings-button",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "menu-button"
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "profile-avatar"
+          },
+          {
+            "scene": "dashboard",
+            "visible": false,
+            "id": "menu-panel"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "image-probe"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "transform-probe"
+          },
+          {
+            "id": "effect-probe",
+            "scene": "dashboard",
+            "visible": true
+          },
+          {
+            "id": "hidden-probe",
+            "visible": false,
+            "scene": "dashboard"
+          }
+        ],
+        "overlays": []
+      },
+      "clickMs": 210.58809757232666,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "y": 474,
+        "x": 195
+      }
+    },
+    "elapsedMs": 277.77558300000004
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-dashboard.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-dashboard.png"
+    },
+    "elapsedMs": 124.27041599999988
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "dashboard",
+      "target": "profile-avatar"
+    },
+    "result": {
+      "state": {
+        "history": [
+          "login"
+        ],
+        "scene": "dashboard",
+        "trace": [
+          {
+            "trigger": "CLICK",
+            "y": 474,
+            "scene": "login",
+            "isTrusted": true,
+            "target": "login-button",
+            "x": 195
+          },
+          {
+            "transition": "DISSOLVE",
+            "duration": 100
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 64,
+            "scene": "dashboard",
+            "isTrusted": true,
+            "target": "profile-avatar",
+            "x": 324
+          },
+          {
+            "actionMs": 0,
+            "action": "OPEN_OVERLAY"
+          }
+        ],
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "id": "settings-button",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "menu-button"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "profile-avatar"
+          },
+          {
+            "visible": false,
+            "id": "menu-panel",
+            "scene": "dashboard"
+          },
+          {
+            "id": "image-probe",
+            "scene": "dashboard",
+            "visible": true
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "transform-probe"
+          },
+          {
+            "id": "effect-probe",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "visible": false,
+            "scene": "dashboard",
+            "id": "hidden-probe"
+          },
+          {
+            "id": "close-button",
+            "visible": true,
+            "scene": "profile-overlay"
+          },
+          {
+            "visible": true,
+            "scene": "profile-overlay",
+            "id": "image-probe"
+          },
+          {
+            "scene": "profile-overlay",
+            "id": "transform-probe",
+            "visible": true
+          },
+          {
+            "scene": "profile-overlay",
+            "visible": true,
+            "id": "effect-probe"
+          },
+          {
+            "visible": false,
+            "id": "hidden-probe",
+            "scene": "profile-overlay"
+          }
+        ],
+        "overlays": [
+          "profile-overlay"
+        ]
+      },
+      "clickMs": 211.8149995803833,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "y": 64,
+        "x": 324
+      }
+    },
+    "elapsedMs": 278.2852499999999
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-profile-overlay.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-profile-overlay.png"
+    },
+    "elapsedMs": 116.55695899999996
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "profile-overlay",
+      "target": "close-button"
+    },
+    "result": {
+      "state": {
+        "history": [
+          "login"
+        ],
+        "trace": [
+          {
+            "y": 474,
+            "trigger": "CLICK",
+            "scene": "login",
+            "x": 195,
+            "target": "login-button",
+            "isTrusted": true
+          },
+          {
+            "transition": "DISSOLVE",
+            "duration": 100
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          },
+          {
+            "y": 64,
+            "trigger": "CLICK",
+            "scene": "dashboard",
+            "x": 324,
+            "isTrusted": true,
+            "target": "profile-avatar"
+          },
+          {
+            "actionMs": 0,
+            "action": "OPEN_OVERLAY"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 482,
+            "scene": "profile-overlay",
+            "isTrusted": true,
+            "x": 194,
+            "target": "close-button"
+          },
+          {
+            "actionMs": 0,
+            "action": "CLOSE_OVERLAY"
+          }
+        ],
+        "scene": "dashboard",
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "id": "settings-button",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "menu-button"
+          },
+          {
+            "id": "profile-avatar",
+            "scene": "dashboard",
+            "visible": true
+          },
+          {
+            "scene": "dashboard",
+            "id": "menu-panel",
+            "visible": false
+          },
+          {
+            "id": "image-probe",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "visible": true,
+            "id": "transform-probe",
+            "scene": "dashboard"
+          },
+          {
+            "scene": "dashboard",
+            "id": "effect-probe",
+            "visible": true
+          },
+          {
+            "scene": "dashboard",
+            "visible": false,
+            "id": "hidden-probe"
+          }
+        ],
+        "overlays": []
+      },
+      "clickMs": 212.1490240097046,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "x": 194.9999885559082,
+        "y": 482.3000030517578
+      }
+    },
+    "elapsedMs": 280.7969589999999
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "dashboard",
+      "target": "settings-button"
+    },
+    "result": {
+      "state": {
+        "history": [
+          "login",
+          "dashboard"
+        ],
+        "scene": "settings",
+        "trace": [
+          {
+            "y": 474,
+            "trigger": "CLICK",
+            "scene": "login",
+            "x": 195,
+            "target": "login-button",
+            "isTrusted": true
+          },
+          {
+            "duration": 100,
+            "transition": "DISSOLVE"
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 64,
+            "scene": "dashboard",
+            "x": 324,
+            "isTrusted": true,
+            "target": "profile-avatar"
+          },
+          {
+            "actionMs": 0,
+            "action": "OPEN_OVERLAY"
+          },
+          {
+            "y": 482,
+            "trigger": "CLICK",
+            "scene": "profile-overlay",
+            "x": 194,
+            "target": "close-button",
+            "isTrusted": true
+          },
+          {
+            "actionMs": 0,
+            "action": "CLOSE_OVERLAY"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 284,
+            "scene": "dashboard",
+            "x": 108,
+            "target": "settings-button",
+            "isTrusted": true
+          },
+          {
+            "actionMs": 0,
+            "action": "NAVIGATE"
+          }
+        ],
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "visible": true,
+            "scene": "settings",
+            "id": "back-button"
+          },
+          {
+            "visible": true,
+            "id": "image-probe",
+            "scene": "settings"
+          },
+          {
+            "id": "transform-probe",
+            "scene": "settings",
+            "visible": true
+          },
+          {
+            "scene": "settings",
+            "visible": true,
+            "id": "effect-probe"
+          },
+          {
+            "id": "hidden-probe",
+            "visible": false,
+            "scene": "settings"
+          }
+        ],
+        "overlays": []
+      },
+      "clickMs": 211.80999279022217,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "x": 108,
+        "y": 284
+      }
+    },
+    "elapsedMs": 279.8330419999999
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-settings.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-settings.png"
+    },
+    "elapsedMs": 123.08124999999981
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "settings",
+      "target": "back-button"
+    },
+    "result": {
+      "state": {
+        "history": [
+          "login"
+        ],
+        "scene": "dashboard",
+        "trace": [
+          {
+            "y": 474,
+            "trigger": "CLICK",
+            "scene": "login",
+            "isTrusted": true,
+            "target": "login-button",
+            "x": 195
+          },
+          {
+            "transition": "DISSOLVE",
+            "duration": 100
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          },
+          {
+            "y": 64,
+            "trigger": "CLICK",
+            "scene": "dashboard",
+            "isTrusted": true,
+            "target": "profile-avatar",
+            "x": 324
+          },
+          {
+            "actionMs": 0,
+            "action": "OPEN_OVERLAY"
+          },
+          {
+            "y": 482,
+            "trigger": "CLICK",
+            "scene": "profile-overlay",
+            "isTrusted": true,
+            "target": "close-button",
+            "x": 194
+          },
+          {
+            "actionMs": 0,
+            "action": "CLOSE_OVERLAY"
+          },
+          {
+            "y": 284,
+            "trigger": "CLICK",
+            "scene": "dashboard",
+            "isTrusted": true,
+            "target": "settings-button",
+            "x": 108
+          },
+          {
+            "actionMs": 0,
+            "action": "NAVIGATE"
+          },
+          {
+            "y": 464,
+            "trigger": "CLICK",
+            "scene": "settings",
+            "isTrusted": true,
+            "target": "back-button",
+            "x": 103
+          },
+          {
+            "actionMs": 1,
+            "action": "BACK"
+          }
+        ],
+        "local": {},
+        "busy": false,
+        "targets": [
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "settings-button"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "menu-button"
+          },
+          {
+            "id": "profile-avatar",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "id": "menu-panel",
+            "scene": "dashboard",
+            "visible": false
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "image-probe"
+          },
+          {
+            "id": "transform-probe",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "scene": "dashboard",
+            "id": "effect-probe",
+            "visible": true
+          },
+          {
+            "id": "hidden-probe",
+            "scene": "dashboard",
+            "visible": false
+          }
+        ],
+        "overlays": []
+      },
+      "clickMs": 212.23795413970947,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "x": 103,
+        "y": 464
+      }
+    },
+    "elapsedMs": 280.00954100000007
+  },
+  {
+    "request": {
+      "op": "prototype.click",
+      "scene": "dashboard",
+      "target": "menu-button"
+    },
+    "result": {
+      "state": {
+        "history": [
+          "login"
+        ],
+        "scene": "dashboard",
+        "trace": [
+          {
+            "trigger": "CLICK",
+            "y": 474,
+            "scene": "login",
+            "x": 195,
+            "target": "login-button",
+            "isTrusted": true
+          },
+          {
+            "duration": 100,
+            "transition": "DISSOLVE"
+          },
+          {
+            "actionMs": 103,
+            "action": "NAVIGATE"
+          },
+          {
+            "y": 64,
+            "trigger": "CLICK",
+            "scene": "dashboard",
+            "x": 324,
+            "target": "profile-avatar",
+            "isTrusted": true
+          },
+          {
+            "actionMs": 0,
+            "action": "OPEN_OVERLAY"
+          },
+          {
+            "y": 482,
+            "trigger": "CLICK",
+            "scene": "profile-overlay",
+            "x": 194,
+            "isTrusted": true,
+            "target": "close-button"
+          },
+          {
+            "actionMs": 0,
+            "action": "CLOSE_OVERLAY"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 284,
+            "scene": "dashboard",
+            "isTrusted": true,
+            "x": 108,
+            "target": "settings-button"
+          },
+          {
+            "actionMs": 0,
+            "action": "NAVIGATE"
+          },
+          {
+            "trigger": "CLICK",
+            "y": 464,
+            "scene": "settings",
+            "x": 103,
+            "isTrusted": true,
+            "target": "back-button"
+          },
+          {
+            "actionMs": 1,
+            "action": "BACK"
+          },
+          {
+            "y": 284,
+            "trigger": "CLICK",
+            "scene": "dashboard",
+            "x": 284,
+            "target": "menu-button",
+            "isTrusted": true
+          },
+          {
+            "actionMs": 0,
+            "action": "TOGGLE"
+          }
+        ],
+        "local": {
+          "dashboard/menu-panel": true
+        },
+        "busy": false,
+        "targets": [
+          {
+            "id": "settings-button",
+            "scene": "dashboard",
+            "visible": true
+          },
+          {
+            "scene": "dashboard",
+            "id": "menu-button",
+            "visible": true
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "profile-avatar"
+          },
+          {
+            "id": "menu-panel",
+            "visible": true,
+            "scene": "dashboard"
+          },
+          {
+            "visible": true,
+            "scene": "dashboard",
+            "id": "image-probe"
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "transform-probe"
+          },
+          {
+            "scene": "dashboard",
+            "visible": true,
+            "id": "effect-probe"
+          },
+          {
+            "scene": "dashboard",
+            "visible": false,
+            "id": "hidden-probe"
+          }
+        ],
+        "overlays": []
+      },
+      "clickMs": 209.2529535293579,
+      "dispatch": {
+        "transport": "NSEvent"
+      },
+      "coordinates": {
+        "y": 284,
+        "x": 284
+      }
+    },
+    "elapsedMs": 279.87675000000013
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-dashboard-menu.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-dashboard-menu.png"
+    },
+    "elapsedMs": 112.78454199999999
+  },
+  {
+    "request": {
+      "op": "prototype.reset"
+    },
+    "result": {
+      "history": [],
+      "scene": "login",
+      "trace": [],
+      "local": {},
+      "busy": false,
+      "targets": [
+        {
+          "scene": "login",
+          "id": "login-button",
+          "visible": true
+        },
+        {
+          "id": "image-probe",
+          "scene": "login",
+          "visible": true
+        },
+        {
+          "scene": "login",
+          "visible": true,
+          "id": "transform-probe"
+        },
+        {
+          "visible": true,
+          "id": "effect-probe",
+          "scene": "login"
+        },
+        {
+          "visible": false,
+          "scene": "login",
+          "id": "hidden-probe"
+        }
+      ],
+      "overlays": []
+    },
+    "elapsedMs": 11.02766600000038
+  },
+  {
+    "request": {
+      "op": "prototype.screenshot",
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-reset-login.png"
+    },
+    "result": {
+      "saved": true,
+      "path": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/html-native-reset-login.png"
+    },
+    "elapsedMs": 236.35824999999988
+  },
+  {
+    "request": {
+      "op": "prototype.current_scene"
+    },
+    "result": "login",
+    "elapsedMs": 11.521042000000037
+  },
+  {
+    "request": {
+      "op": "prototype.inspect"
+    },
+    "result": {
+      "trace": [],
+      "history": [],
+      "scene": "login",
+      "local": {},
+      "busy": false,
+      "targets": [
+        {
+          "scene": "login",
+          "id": "login-button",
+          "visible": true
+        },
+        {
+          "id": "image-probe",
+          "visible": true,
+          "scene": "login"
+        },
+        {
+          "scene": "login",
+          "id": "transform-probe",
+          "visible": true
+        },
+        {
+          "scene": "login",
+          "id": "effect-probe",
+          "visible": true
+        },
+        {
+          "scene": "login",
+          "id": "hidden-probe",
+          "visible": false
+        }
+      ],
+      "overlays": []
+    },
+    "elapsedMs": 11.521833000000203
+  },
+  {
+    "request": {
+      "op": "prototype.security_probe"
+    },
+    "result": {
+      "brokerTraversalDenied": 1,
+      "pageWorld": {
+        "tauri": "undefined",
+        "scriptExecuted": false,
+        "playerExposed": "undefined"
+      },
+      "clientWorld": {
+        "tauri": "undefined",
+        "webkitHandlers": "undefined",
+        "pageScript": false
+      },
+      "events": [
+        {
+          "textLimit": false,
+          "headings": [],
+          "empty": false,
+          "event": "ready",
+          "location": {
+            "headingId": null,
+            "zoom": 1,
+            "scrollLeft": 0,
+            "offset": 0,
+            "scrollTop": 0
+          }
+        }
+      ]
+    },
+    "elapsedMs": 223.53612499999986
+  },
+  {
+    "request": {
+      "op": "prototype.broker_log"
+    },
+    "result": [
+      "ig-html://poc/index.html",
+      "ig-html://poc/assets/c6a4829e947d4e0df6fd1fa4d94fbd3c792b8737efc0b04e9e142829b93c73ff.png",
+      "ig-html://poc/../secret.png",
+      "file:///etc/passwd",
+      "ig-html://poc/assets/%2e%2e/secret.png"
+    ],
+    "elapsedMs": 0.08070800000004041
+  }
+]

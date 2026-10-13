@@ -1,0 +1,112 @@
+The following is a diff from the previous accessibility tree for Window: "Intentgrove QA0035" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 55-64, 66-67, 71-75
+~				11 button Back, Help: Back: long.md
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures/long.md
+~					53 tab (selectable) long.md, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures/long.md
++				71 container
++					72 tab (selected) second.md, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures/second.md
++					73 button Close tab: second.md, Help: Close tab
+~			15 button (collapsed) Open documents (2), Secondary Actions: Expand
++				74 container second.md
++					75 container second.md
++						76 text second.md
++					77 button Find in document
++					78 toggle button Outline, Value: on
++					79 button (collapsed) Reading settings, Secondary Actions: Expand
++					80 button Edit section
++					81 summary Document…, Value: off
++						82 text Document…
++					83 text Folder root
+~				65 container second.md
++					84 container SWITCH_BEGIN_B
++						85 container Edit section: SWITCH_BEGIN_B
++							86 heading SWITCH_BEGIN_B, Value: 1
++								87 text SWITCH_BEGIN_B
++							88 button Edit section “SWITCH_BEGIN_B”
++						89 text Passage B001: newly active document only.
++						90 text Passage B002: newly active document only.
++						91 text Passage B003: newly active document only.
++						92 text Passage B004: newly active document only.
++						93 text Passage B005: newly active document only.
++						94 text Passage B006: newly active document only.
++						95 text Passage B007: newly active document only.
++						96 text Passage B008: newly active document only.
++						97 text Passage B009: newly active document only.
++						98 text Passage B010: newly active document only.
++						99 text Passage B011: newly active document only.
++						100 text Passage B012: newly active document only.
++						101 text Passage B013: newly active document only.
++						102 text Passage B014: newly active document only.
++						103 text Passage B015: newly active document only.
++						104 text Passage B016: newly active document only.
++						105 text Passage B017: newly active document only.
++						106 text Passage B018: newly active document only.
++						107 text Passage B019: newly active document only.
++						108 text Passage B020: newly active document only.
++						109 text Passage B021: newly active document only.
++						110 text Passage B022: newly active document only.
++						111 text Passage B023: newly active document only.
++						112 text Passage B024: newly active document only.
++						113 text Passage B025: newly active document only.
++						114 text SWITCH_END_B
++					115 container Outline
++						116 content list
++							117 button SWITCH_BEGIN_B
+Selected text: ```
+SWITCH_BEGIN_B
+
+￼Edit section
+Passage B001: newly active document only.
+
+Passage B002: newly active document only.
+
+Passage B003: newly active document only.
+
+Passage B004: newly active document only.
+
+Passage B005: newly active document only.
+
+Passage B006: newly active document only.
+
+Passage B007: newly active document only.
+
+Passage B008: newly active document only.
+
+Passage B009: newly active document only.
+
+Passage B010: newly active document only.
+
+Passage B011: newly active document only.
+
+Passage B012: newly active document only.
+
+Passage B013: newly active document only.
+
+Passage B014: newly active document only.
+
+Passage B015: newly active document only.
+
+Passage B016: newly active document only.
+
+Passage B017: newly active document only.
+
+Passage B018: newly active document only.
+
+Passage B019: newly active document only.
+
+Passage B020: newly active document only.
+
+Passage B021: newly active document only.
+
+Passage B022: newly active document only.
+
+Passage B023: newly active document only.
+
+Passage B024: newly active document only.
+
+Passage B025: newly active document only.
+
+SWITCH_END_B
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

@@ -1,0 +1,16 @@
+{
+  "case": "observed-10",
+  "elapsedMs": 312.834416,
+  "events": [
+    "{\"value\":\"observe\",\"ppid\":15499,\"event\":\"started\",\"pid\":15553,\"time\":118058.84363745834}",
+    "{\"value\":{\"allowed\":0,\"errno\":1},\"ppid\":15499,\"event\":\"native-file\",\"pid\":15553,\"time\":118058.84377050001}",
+    "{\"value\":{\"result\":-1,\"errno\":1},\"ppid\":15499,\"event\":\"native-network\",\"pid\":15553,\"time\":118058.84381820833}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":15499,\"event\":\"navigation\",\"pid\":15553,\"time\":118058.92205025001}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15553,\"time\":118058.92290575001}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15553,\"time\":118058.93833862501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15553,\"time\":118059.02114058334}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15553,\"time\":118059.02116391668}"
+  ],
+  "pid": 15553,
+  "result": "diagram_rejected"
+}

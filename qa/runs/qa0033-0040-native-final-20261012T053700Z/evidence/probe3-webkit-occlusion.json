@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/usr/bin/log",
+    "show",
+    "--last",
+    "12m",
+    "--style",
+    "compact",
+    "--predicate",
+    "processID == 41294 AND eventMessage CONTAINS \"occluded\""
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T05:46:14.754822+00:00",
+  "native_process_id": 41294,
+  "source": "owned probe3 native trace matches process 41294 ActivityState",
+  "observed_occluded_1": true
+}

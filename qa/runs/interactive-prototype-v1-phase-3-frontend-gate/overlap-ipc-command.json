@@ -1,0 +1,19 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--features",
+    "settings-contract-tests",
+    "--lib",
+    "command_args::tests"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T05:06:27.032350+00:00",
+  "finished_at": "2026-10-12T05:06:48.913975+00:00",
+  "exit_code": 0
+}

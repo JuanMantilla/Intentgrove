@@ -1,0 +1,5 @@
+# Native integration authorization
+
+USER-AUTHORIZED in the current request: “I authorize the minimal native settings/session contract and storage changes needed to enable Margin, Folio and Atlas in the existing separate Settings window. All three options are accepted, with Margin as the default. Preserve explicit saved choices across restart; existing profiles without a preference must default to Margin.”
+
+Primary os-senior-expert IMPLEMENT; senior-frontend-developer IMPLEMENT for necessary integration. Reuse completed frontend and IR-04 owner/request/revision/acknowledgment/session writer. Preserve direct rendered editing and all document/data boundaries. CRLF Save DEFERRED. Local build, disposable native checks and rendered inspection authorized; no dependencies/install/privileges/destructive migrations/commit/push/publish/deploy. This supersedes the historical frontend-only prohibition on this exact missing native field, without rewriting its record. Runtime user acceptance remains pending.

@@ -1,0 +1,648 @@
+diff --git a/src-tauri/src/settings.rs b/src-tauri/src/settings.rs
+index c46a972..45f899c 100644
+--- a/src-tauri/src/settings.rs
++++ b/src-tauri/src/settings.rs
+@@ -243,9 +243,13 @@ pub fn show(app: &tauri::AppHandle, group: Group) -> AppResult<()> {
+         let builder = tauri::WebviewWindowBuilder::new(app, "settings", tauri::WebviewUrl::App("index.html?settings".into()));
+         #[cfg(test)]
+         let builder = if let Some(directory) = &state.1 { builder.data_directory(directory.clone()) } else { builder };
++        // The window-level drop switch is Windows-only. On macOS, retain
++        // Tauri interception: Settings events are consumed before workspace intake.
++        #[cfg(windows)]
++        let builder = builder.drag_and_drop(false);
+         builder
+             .title("Settings — Intentgrove").inner_size(width, height)
+-            .min_inner_size(320., 240.).position(x, y).resizable(true).drag_and_drop(false)
++            .min_inner_size(320., 240.).position(x, y).resizable(true)
+             .on_navigation(super::allowed_navigation)
+             .on_new_window(|_, _| tauri::webview::NewWindowResponse::Deny)
+             .on_download(|_, _| false).build()
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 14264bf..5df8386 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -197,6 +197,7 @@ export default function App() {
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
+   const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
++  const [folderSearchScope, setFolderSearchScope] = useState<string[]>([]);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+   const [sidebarWidth, setSidebarWidth] = useState(264);
+   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+@@ -1487,6 +1488,7 @@ export default function App() {
+     for (const directory of Object.values(directoriesRef.current)) {
+       if (directory.loading) void api.cancelListing(directory.token).catch(() => {});
+     }
++    setFolderSearchScope([]);
+     setRoot(selected);
+     setRootProblem(null);
+     setDirectories({});
+@@ -1890,7 +1892,8 @@ export default function App() {
+       if (!selected) return;
+       generationRef.current = selected.generation;
+       rootRef.current = selected;
+-      setRoot(selected); setRootProblem(null);
++      setFolderSearchScope([]);
++    setRoot(selected); setRootProblem(null);
+       inspectionSequence.current += 1;
+       inspectedDiskRef.current = null; setInspectedDisk(null);
+       discardConflictRef.current = null; setDiscardConflictConfirm(null);
+@@ -2814,7 +2817,7 @@ export default function App() {
+               <>
+                 <div hidden={sidebarPanel !== "search"} inert={sidebarPanel !== "search"} className="folder-search-host">
+                   <FolderSearchPanel key={root.id} root={root} locale={locale} active={sidebarPanel === "search"}
+-                    query={folderQuery} onQueryChange={setFolderQuery}
++                    scopeSegments={folderSearchScope} query={folderQuery} onQueryChange={setFolderQuery}
+                     onClose={() => { setSidebarPanel("explorer"); searchTrigger.current?.focus(); }}
+                     onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+                 </div>
+@@ -3088,7 +3091,7 @@ export default function App() {
+             { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
+             { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
+             { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
+-              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } },
++              run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } },
+             ...(root ? [
+               { label: `${t(locale, "reload")} ${root.name} ${t(locale, "folder")}`, disabled: busy,
+                 run: () => void startReload({ ...projectsMenu, target: { kind: "folder", rootId: root.id, segments: [] }, label: root.name }) },
+@@ -3104,13 +3107,16 @@ export default function App() {
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
+                 { label: t(locale, "openFile"), hint: shortcutHint("O"), run: () => void chooseFile() },
+                 { label: t(locale, "openFolder"), hint: shortcutHint("O", true), run: () => void chooseFolder() },
+-                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } }
+               ] : []),
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [
+                 { label: t(locale, directories[pathKey(reloadMenu.target.segments)]?.expanded ? "collapseFolder" : "expandFolder"),
+                   run: () => { if (reloadMenu.target.kind === "folder") toggleDirectory(reloadMenu.target.segments); } },
+-                { label: t(locale, "folderSearch"), disabled: true,
+-                  reason: t(locale, "searchFolderUnavailable"), run: () => {} }
++                { label: t(locale, "folderSearch"), run: () => {
++                  if (reloadMenu.target.kind !== "folder") return;
++                  setFolderSearchScope([...reloadMenu.target.segments]);
++                  setSidebarOpen(true); setSidebarPanel("search");
++                } }
+               ] : []),
+               ...(reloadMenu.target.kind === "root-file" && reloadMenu.anchor.getAttribute("role") !== "tab" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
+                 disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
+diff --git a/src/app/FolderSearchPanel.tsx b/src/app/FolderSearchPanel.tsx
+index 0da58cc..7d66ab9 100644
+--- a/src/app/FolderSearchPanel.tsx
++++ b/src/app/FolderSearchPanel.tsx
+@@ -6,6 +6,7 @@ import { errorText, t, type Locale } from "./i18n";
+ 
+ interface Props {
+   root: GrantInfo;
++  scopeSegments?: string[];
+   locale: Locale;
+   onOpen: (result: OpenFolderSearchHit, hit: FolderSearchHit, query: string) => Promise<void>;
+   active?: boolean;
+@@ -14,7 +15,9 @@ interface Props {
+   onClose?: () => void;
+ }
+ 
+-export default function FolderSearchPanel({ root, locale, onOpen, active = true, query: suppliedQuery, onQueryChange, onClose }: Props) {
++export default function FolderSearchPanel({ root, scopeSegments = [], locale, onOpen, active = true, query: suppliedQuery, onQueryChange, onClose }: Props) {
++  const scopeKey = JSON.stringify(scopeSegments);
++  const [confirmedScope, setConfirmedScope] = useState<string[] | null>(null);
+   const [localQuery, setLocalQuery] = useState("");
+   const query = suppliedQuery ?? localQuery;
+   const setQuery = onQueryChange ?? setLocalQuery;
+@@ -39,9 +42,12 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+ 
+   function accept(batch: FolderSearchBatch) {
+     if (batch.jobId !== job.current?.jobId || batch.generation !== root.generation) {
+-      if (!job.current && pending.current.length < 16) pending.current.push(batch);
++      if (!job.current && starting.current && pending.current.length < 16) pending.current.push(batch);
+       return;
+     }
++    if (batch.errorCode === "scope_changed") {
++      invalidate(); setStatus("partial"); setErrorCode("scope_changed"); return;
++    }
+     setHits((old) => [...old, ...batch.results].slice(0, 10_000));
+     setProgress({ scanned: batch.scanned, skipped: batch.skipped, matched: batch.matched });
+     setStatus(stoppedJob.current === batch.jobId
+@@ -50,6 +56,9 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+   }
+ 
+   useEffect(() => {
++    invalidate();
++    setConfirmedScope(null);
++    setListenerReady(false);
+     let disposed = false;
+     let unlisten: (() => void) | undefined;
+     void listen<FolderSearchBatch>("folder-search:batch", (event) => {
+@@ -60,12 +69,14 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+     return () => {
+       disposed = true;
+       sequence.current += 1;
+-      unlisten?.();
++      openSequence.current += 1;
+       const current = job.current;
++      job.current = null;
++      unlisten?.();
+       if (current) void api.cancelFolderSearch(current.jobId).catch(() => {});
+       void starting.current?.then((started) => api.cancelFolderSearch(started.jobId)).catch(() => {});
+     };
+-  }, [root.id, root.generation]);
++  }, [root.id, root.generation, scopeKey]);
+ 
+   function invalidate() {
+     sequence.current += 1;
+@@ -97,7 +108,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         if (old) await api.cancelFolderSearch(old.jobId).catch(() => {});
+         if (current !== sequence.current) return;
+       }
+-      const pendingStart = api.startFolderSearch(root.id, value, selectedMode, selectedIgnored);
++      const pendingStart = api.startFolderSearch(root.id, value, selectedMode, selectedIgnored, scopeSegments);
+       starting.current = pendingStart;
+       const started = await pendingStart;
+       if (current !== sequence.current) {
+@@ -105,6 +116,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         return;
+       }
+       job.current = started;
++      setConfirmedScope(started.scopeSegments ?? []);
+       if (stoppedSequence.current === current) {
+         stoppedJob.current = started.jobId;
+         await api.cancelFolderSearch(started.jobId);
+@@ -145,9 +157,13 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+     setOpening(hit.id);
+     try {
+       const result = await api.openSearchHit(current.jobId, hit.id);
+-      if (job.current !== current) return;
++      if (job.current !== current || owner !== openSequence.current) return;
+       await onOpen(result, hit, submittedQuery.current);
+-    } catch (error) { if (job.current === current && owner === openSequence.current) setErrorCode(readerError(error).code); }
++    } catch (error) { if (job.current === current && owner === openSequence.current) {
++      const code = readerError(error).code;
++      if (code === "scope_changed") invalidate();
++      setErrorCode(code);
++    } }
+     finally { if (owner === openSequence.current) setOpening(null); }
+   }
+ 
+@@ -167,7 +183,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         onChange={(event) => { invalidate(); setQuery(event.target.value); }}
+         onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); void search(); } }} />
+     </label>
+-    <p className="folder-search-scope">{t(locale, "searchScope")}: {root.name} · {t(locale,
++    <p className="folder-search-scope">{t(locale, "searchScope")}: {[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")} · {t(locale,
+       mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</p>
+     <div className="search-modes" role="group" aria-label={t(locale, "folderSearchMode")}>
+       {(["both", "name", "content"] as const).map((choice) => <button type="button" key={choice}
+diff --git a/src/app/i18n.ts b/src/app/i18n.ts
+index 445050f..7b81bba 100644
+--- a/src/app/i18n.ts
++++ b/src/app/i18n.ts
+@@ -71,6 +71,7 @@ const catalog = {
+     wideWidth: "Wide",
+     customWidth: "Custom width",
+     searchScope: "Search scope",
++    searchScopeChanged: "The searched folder changed. Search again or select the folder again.",
+     clearSearch: "Clear search",
+     backToExplorer: "Back to explorer",
+     searchResultCount: "Results",
+@@ -391,6 +392,7 @@ const catalog = {
+     wideWidth: "Amplio",
+     customWidth: "Ancho personalizado",
+     searchScope: "Ámbito de búsqueda",
++    searchScopeChanged: "La carpeta buscada cambió. Busca de nuevo o vuelve a seleccionar la carpeta.",
+     clearSearch: "Borrar búsqueda",
+     backToExplorer: "Volver al explorador",
+     searchResultCount: "Resultados",
+@@ -670,6 +672,7 @@ export function errorText(locale: Locale, code: string): string {
+     oversize: "oversize",
+     changed: "changed",
+     cloud_placeholder: "cloudPlaceholder",
++    scope_changed: "searchScopeChanged",
+     invalid_grant: "invalidGrant",
+     unsupported_type: "unsupported",
+     unsupported_asset: "imageBlocked",
+diff --git a/src/reader/MarkdownView.tsx b/src/reader/MarkdownView.tsx
+index 3db420c..c71c197 100644
+--- a/src/reader/MarkdownView.tsx
++++ b/src/reader/MarkdownView.tsx
+@@ -12,6 +12,7 @@ import { useRetainedOverlay } from "../app/useRetainedOverlay";
+ import { mapRenderedSections } from "./sectionMap";
+ import { parseFrontmatter, type MetadataResult } from "./frontmatter";
+ import { collectHeadings, headingSlug, type HeadingEntry } from "./heading-model";
++import { boundedBlocks, BLOCK_PROTOCOL, type BoundedBlock } from "./block-budget";
+ import CodeBlock, { fencedSource } from "./CodeBlock";
+ 
+ function textOf(node: ReactNode): string {
+@@ -53,16 +54,20 @@ export function exceedsRenderBudget(content: string): boolean {
+   return false;
+ }
+ 
+-class RenderBoundary extends Component<{ children: ReactNode; locale: Locale }, { failed: boolean }> {
++class RenderBoundary extends Component<{ children: ReactNode; locale: Locale; source?: string }, { failed: boolean }> {
+   state = { failed: false };
+ 
+   static getDerivedStateFromError() {
+     return { failed: true };
+   }
+ 
++  componentDidUpdate(previous: Readonly<{ children: ReactNode; locale: Locale; source?: string }>) {
++    if (previous.source !== this.props.source && this.state.failed) this.setState({ failed: false });
++  }
++
+   render() {
+     if (this.state.failed) {
+-      return <div className="error-state" role="alert"><h1>{t(this.props.locale, "renderBudget")}</h1></div>;
++      return <div className="error-state" role="alert"><p>{t(this.props.locale, "renderBudget")}</p><pre>{this.props.source}</pre></div>;
+     }
+     return this.props.children;
+   }
+@@ -125,7 +130,9 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   const overBudget = useMemo(() => exceedsRenderBudget(parseContent), [parseContent]);
+   const hasWorker = typeof Worker !== "undefined";
+   const [parsed, setParsed] = useState<{ content: string; tree?: Root;
+-    metadata?: MetadataResult | null; error?: boolean } | null>(null);
++    metadata?: MetadataResult | null; blocks?: BoundedBlock[]; error?: boolean } | null>(null);
++  const generation = useRef(0);
++  const [painted, setPainted] = useState(24);
+   const [editMenu, setEditMenu] = useState<{
+     section?: SectionDescriptor; reason?: string; x: number; y: number; anchor: HTMLElement
+   } | null>(null);
+@@ -134,6 +141,7 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   useEffect(() => {
+     if (overBudget || !hasWorker) return;
+     let live = true;
++    const owner = ++generation.current;
+     let worker: Worker;
+     setParsed(null);
+     try {
+@@ -142,19 +150,21 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+       setParsed({ content: parseContent, error: true });
+       return;
+     }
+-    const finish = (tree?: Root, metadata?: MetadataResult | null) => {
++    const finish = (tree?: Root, metadata?: MetadataResult | null, blocks?: BoundedBlock[]) => {
+       if (!live) return;
+       clearTimeout(timer);
+       worker.terminate();
+-      setParsed(tree ? { content: parseContent, tree, metadata }
++      setParsed(tree ? { content: parseContent, tree, metadata, blocks }
+         : { content: parseContent, error: true });
+     };
+     const timer = setTimeout(() => finish(), 5_000);
+     worker.onmessage = (event: MessageEvent<{ kind: string; tree?: Root;
+-      metadata?: MetadataResult | null }>) =>
+-      finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata);
++      metadata?: MetadataResult | null; version: number; generation: number; blocks?: BoundedBlock[] }>) => {
++      if (event.data.version !== BLOCK_PROTOCOL || event.data.generation !== owner) return;
++      finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata, event.data.blocks);
++    };
+     worker.onerror = () => finish();
+-    worker.postMessage(parseContent);
++    worker.postMessage({ version: BLOCK_PROTOCOL, generation: owner, source: parseContent });
+     return () => {
+       live = false;
+       clearTimeout(timer);
+@@ -167,11 +177,21 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   const parseFailed = parsed?.content === parseContent && parsed.error;
+   const canParseInline = !overBudget && parseContent.length <= 256 * 1024;
+   const renderReady = !overBudget && (Boolean(tree) || ((!hasWorker || parseFailed) && canParseInline));
++  const blocks = useMemo(() => parsed?.content === parseContent && parsed.blocks
++    ? parsed.blocks : canParseInline && (!hasWorker || parseFailed)
++      ? boundedBlocks(unified().use(remarkParse).use(remarkGfm).use(remarkFrontmatter).parse(parseContent) as Root, parseContent)
++      : [], [parsed, parseContent, canParseInline, hasWorker, parseFailed]);
++  useEffect(() => { setPainted(24); }, [fileId, parseContent]);
++  useEffect(() => {
++    if (painted >= blocks.length) return;
++    const timer = setTimeout(() => setPainted(count => Math.min(count + 24, blocks.length)), 0);
++    return () => clearTimeout(timer);
++  }, [painted, blocks]);
+   const renderedCallback = useRef(onRendered);
+   renderedCallback.current = onRendered;
+   useLayoutEffect(() => {
+-    if (renderReady) renderedCallback.current?.(fileId, content);
+-  }, [fileId, content, renderReady]);
++    if (renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
++  }, [fileId, content, renderReady, painted, blocks.length]);
+   const sectionTree = useMemo(() => tree ?? (canParseInline
+     ? unified().use(remarkParse).use(remarkFrontmatter).parse(parseContent) as Root : undefined),
+     [tree, canParseInline, parseContent]);
+@@ -188,12 +208,6 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   const headingByOffset = useMemo(() => new Map(headingEntries.map((entry) => [entry.offset, entry])),
+     [headingEntries]);
+   useEffect(() => { onHeadings?.(headingEntries); }, [fileId, headingEntries]);
+-  const parsedPlugin = useMemo(() => {
+-    if (!tree) return null;
+-    const plugin: Plugin = function () { this.parser = () => tree; };
+-    return plugin;
+-  }, [tree]);
+-
+   const slugCounts = new Map<string, number>();
+   const heading = (level: 1 | 2 | 3 | 4 | 5 | 6, children: ReactNode,
+     node?: { position?: { start?: { offset?: number } } }) => {
+@@ -302,7 +316,7 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   }
+   if (hasWorker && !tree && !parseFailed) return <p role="status">{t(locale, "loading")}</p>;
+   return (
+-    <RenderBoundary key={`${fileId}:${content.length}`} locale={locale}>
++    <RenderBoundary key={fileId} locale={locale} source={content}>
+     <article ref={findRootRef} className="markdown-body" tabIndex={onEditSection && !sectionMap?.valid ? 0 : -1}
+       onContextMenu={openSectionMenu} onKeyDown={(event) => {
+       if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) openSectionMenu(event);
+@@ -335,13 +349,14 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+         }}>{t(locale, "editSection")}</button>
+         {editOverlay.shown.reason && <div className="context-menu-reason">{editOverlay.shown.reason}</div>}
+       </div>}
+-      <Markdown
+-        remarkPlugins={parsedPlugin ? [remarkGfm, remarkFrontmatter, parsedPlugin]
+-          : [remarkGfm, remarkFrontmatter]}
+-        components={components}
+-      >
+-        {parseContent}
+-      </Markdown>
++      {blocks.slice(0, painted).map((block, index) => {
++        const plugin: Plugin = function () { this.parser = () => block.tree; };
++        return <RenderBoundary key={index} locale={locale} source={block.source}>
++          {block.fallback ? <div role="status"><p>{t(locale, "renderBudget")}</p><pre>{block.source}</pre></div>
++            : <Markdown remarkPlugins={[remarkGfm, remarkFrontmatter, plugin]} components={components}>{block.source}</Markdown>}
++        </RenderBoundary>;
++      })}
++      {painted < blocks.length && <p role="status">{t(locale, "loading")}</p>}
+     </article>
+     </RenderBoundary>
+   );
+diff --git a/src/reader/markdownBudget.worker.ts b/src/reader/markdownBudget.worker.ts
+index ccef8b5..79577c8 100644
+--- a/src/reader/markdownBudget.worker.ts
++++ b/src/reader/markdownBudget.worker.ts
+@@ -4,33 +4,23 @@ import remarkGfm from "remark-gfm";
+ import remarkFrontmatter from "remark-frontmatter";
+ import { parseFrontmatter } from "./frontmatter";
+ 
+-// Bound the tree passed back to the synchronous React render path as well as
+-// parsing work in the worker. The 1 MiB mixed acceptance fixture has 7,431 nodes.
+-const MAX_NODES = 10_000;
+-const MAX_DEPTH = 128;
++import { boundedBlocks, BLOCK_PROTOCOL } from "./block-budget";
+ const processor = unified().use(remarkParse).use(remarkGfm).use(remarkFrontmatter);
+-
+-self.onmessage = (event: MessageEvent<string>) => {
++self.onmessage = (event: MessageEvent<string | { version: number; generation: number; source: string }>) => {
++  const request = event.data;
++  const source = typeof request === "string" ? request : request.source;
++  const generation = typeof request === "string" ? 0 : request.generation;
++  if (typeof request !== "string" && request.version !== BLOCK_PROTOCOL) return;
+   try {
+-    const tree = processor.parse(event.data);
++    const tree = processor.parse(source);
+     const first = tree.children[0] as { type?: string; value?: string } | undefined;
+     const metadata = first?.type === "yaml" && typeof first.value === "string"
+       ? parseFrontmatter(first.value) : null;
+-    const pending: Array<{ node: { children?: unknown[] }; depth: number }> = [{ node: tree, depth: 0 }];
+-    let count = 0;
+-    while (pending.length) {
+-      const { node, depth } = pending.pop()!;
+-      count += 1;
+-      if (count > MAX_NODES || depth > MAX_DEPTH) {
+-        self.postMessage({ kind: "overBudget" });
+-        return;
+-      }
+-      if (node.children) {
+-        for (const child of node.children) pending.push({ node: child as { children?: unknown[] }, depth: depth + 1 });
+-      }
+-    }
+-    self.postMessage({ kind: "parsed", tree, metadata });
++    const blocks = boundedBlocks(tree, source);
++    // Return only bounded rich subtrees; fallback source cannot execute.
++    const safeTree = { ...tree, children: blocks.flatMap(block => block.tree.children) };
++    self.postMessage({ kind: "parsed", version: BLOCK_PROTOCOL, generation, tree: safeTree, blocks, metadata });
+   } catch {
+-    self.postMessage({ kind: "overBudget" });
++    self.postMessage({ kind: "overBudget", version: BLOCK_PROTOCOL, generation });
+   }
+ };
+diff --git a/tests/ui/folder-search.test.tsx b/tests/ui/folder-search.test.tsx
+index ff0bb7b..b4ebe07 100644
+--- a/tests/ui/folder-search.test.tsx
++++ b/tests/ui/folder-search.test.tsx
+@@ -77,7 +77,7 @@ describe("folder search panel", () => {
+       { target: { value: "Needle" } });
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith(
+-      "root-1", "Needle", "both", false));
++      "root-1", "Needle", "both", false, []));
+     mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [hit],
+       scanned: 12, skipped: 3, matched: 1, status: "searching", errorCode: null } });
+     expect(await screen.findByRole("button", { name: /a\.md/ })).toBeTruthy();
+@@ -116,7 +116,66 @@ describe("folder search panel", () => {
+     expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1);
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenLastCalledWith(
+-      "root-1", "Needle", "both", true));
++      "root-1", "Needle", "both", true, []));
+     expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("job-1");
+   });
+ });
++
++
++describe("selected scope ownership", () => {
++  const batch = (jobId: string, errorCode: string | null = null): FolderSearchBatch => ({
++    jobId, generation: 1, results: [hit], scanned: 1, skipped: 0, matched: 1,
++    status: "complete", errorCode
++  });
++  it("passes literal scope and displays native confirmation independently of mode", async () => {
++    mocks.startFolderSearch.mockResolvedValue({ jobId: "job-1", generation: 1, scopeSegments: ["confirmed"] });
++    render(<FolderSearchPanel root={root} scopeSegments={["requested"]} locale="en" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith("root-1", "Needle", "both", false, ["requested"]));
++    expect(await screen.findByText(/fixture \/ confirmed/)).toBeTruthy();
++    fireEvent.click(screen.getByRole("button", { name: "Clear search" }));
++    expect(screen.getByText(/fixture \/ confirmed/)).toBeTruthy();
++  });
++  it("cancels a pending scope owner and refuses its buffered and late batches", async () => {
++    let resolve!: (value: unknown) => void;
++    mocks.startFolderSearch.mockReturnValueOnce(new Promise(done => { resolve = done; }));
++    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    act(() => mocks.listener?.({ payload: batch("old") }));
++    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={vi.fn()} />);
++    await act(async () => resolve({ jobId: "old", generation: 1, scopeSegments: ["old"] }));
++    expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("old");
++    act(() => mocks.listener?.({ payload: batch("old") }));
++    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
++    expect(screen.getByText(/fixture \/ new/)).toBeTruthy();
++  });
++  it("rejects open replies after scope replacement", async () => {
++    const onOpen = vi.fn(); let resolve!: (value: unknown) => void;
++    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={onOpen} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    await act(async () => {});
++    act(() => mocks.listener?.({ payload: batch("job-1") }));
++    mocks.openSearchHit.mockReturnValueOnce(new Promise(done => { resolve = done; }));
++    fireEvent.click(screen.getByRole("button", { name: /a\.md/ }));
++    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={onOpen} />);
++    await act(async () => resolve({ line: 1 }));
++    expect(onOpen).not.toHaveBeenCalled();
++  });
++  it("discards changed-scope hits and explains Spanish recovery", async () => {
++    render(<FolderSearchPanel root={root} scopeSegments={["notes"]} locale="es" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Buscar" }));
++    await act(async () => {});
++    act(() => mocks.listener?.({ payload: batch("job-1", "scope_changed") }));
++    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
++    expect(screen.getByRole("status").textContent).toContain("La carpeta buscada cambió");
++    expect(screen.getByRole("button", { name: "Buscar" })).toBeTruthy();
++  });
++});
+diff --git a/tests/ui/frontmatter.test.tsx b/tests/ui/frontmatter.test.tsx
+index b614215..9f8e57c 100644
+--- a/tests/ui/frontmatter.test.tsx
++++ b/tests/ui/frontmatter.test.tsx
+@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+ import { unified } from "unified";
+ import remarkParse from "remark-parse";
+ import remarkFrontmatter from "remark-frontmatter";
++import { boundedBlocks } from "../../src/reader/block-budget";
+ import MarkdownView from "../../src/reader/MarkdownView";
+ import { parseFrontmatter } from "../../src/reader/frontmatter";
+ 
+@@ -24,10 +25,10 @@ describe("YAML frontmatter as inert data", () => {
+     const processor = unified().use(remarkParse).use(remarkFrontmatter);
+     class FakeWorker {
+       onmessage: ((event: MessageEvent) => void) | null = null;
+-      postMessage(content: string) {
+-        const tree = processor.parse(content);
++      postMessage(request: { source: string; version: number; generation: number }) {
++        const tree = processor.parse(request.source);
+         const first = tree.children[0] as { type?: string; value?: string };
+-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree,
++        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source),
+           metadata: first?.type === "yaml" ? parseFrontmatter(first.value ?? "") : null } } as MessageEvent));
+       }
+       terminate() {}
+diff --git a/tests/ui/markdown.test.tsx b/tests/ui/markdown.test.tsx
+index 5986d97..b988c80 100644
+--- a/tests/ui/markdown.test.tsx
++++ b/tests/ui/markdown.test.tsx
+@@ -1,6 +1,7 @@
++import { boundedBlocks } from "../../src/reader/block-budget";
+ // @vitest-environment jsdom
+ import { afterEach, describe, expect, it, vi } from "vitest";
+-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
++import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+ import MarkdownView, { exceedsRenderBudget } from "../../src/reader/MarkdownView";
+ import { api } from "../../src/app/api";
+ import { unified } from "unified";
+@@ -15,8 +16,9 @@ describe("MarkdownView", () => {
+     class FakeWorker {
+       onmessage: ((event: MessageEvent<{ kind: string; tree: ReturnType<typeof processor.parse> }>) => void) | null = null;
+       onerror: (() => void) | null = null;
+-      postMessage(content: string) {
+-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree: processor.parse(content) } } as MessageEvent));
++      postMessage(request: { version: number; generation: number; source: string }) {
++        const tree = processor.parse(request.source);
++        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source) } } as MessageEvent));
+       }
+       terminate() {}
+     }
+@@ -26,6 +28,52 @@ describe("MarkdownView", () => {
+     expect(screen.getByRole("table")).toBeTruthy();
+   });
+ 
++  it("terminates replaced workers and ignores stale and wrong-generation results", async () => {
++    const processor = unified().use(remarkParse);
++    const workers: DeferredWorker[] = [];
++    class DeferredWorker {
++      onmessage: ((event: MessageEvent) => void) | null = null;
++      request!: { source: string; version: number; generation: number };
++      terminate = vi.fn();
++      constructor() { workers.push(this); }
++      postMessage(request: DeferredWorker["request"]) { this.request = request; }
++      reply(generation = this.request.generation) {
++        const tree = processor.parse(this.request.source);
++        this.onmessage?.({ data: { kind: "parsed", version: 1, generation, tree,
++          blocks: boundedBlocks(tree, this.request.source) } } as MessageEvent);
++      }
++    }
++    vi.stubGlobal("Worker", DeferredWorker);
++    const view = render(<MarkdownView content="# Old" fileId="fixture" locale="en" onNavigate={() => {}} />);
++    view.rerender(<MarkdownView content="# New" fileId="fixture" locale="en" onNavigate={() => {}} />);
++    expect(workers[0].terminate).toHaveBeenCalled();
++    act(() => workers[0].reply());
++    act(() => workers[1].reply(999));
++    expect(screen.queryByRole("heading")).toBeNull();
++    act(() => workers[1].reply());
++    expect(await screen.findByRole("heading", { name: "New" })).toBeTruthy();
++    expect(screen.queryByRole("heading", { name: "Old" })).toBeNull();
++    view.unmount();
++    expect(workers[1].terminate).toHaveBeenCalled();
++  });
++
++  it("preserves siblings and hostile source when one block exceeds the rich budget", () => {
++    render(<MarkdownView content={"# Before\n\n" + "> ".repeat(140) + "<script>attack()</script>\n\n# After"}
++      fileId="fixture" locale="en" onNavigate={() => {}} />);
++    expect(screen.getByRole("heading", { name: "Before" })).toBeTruthy();
++    expect(screen.getByRole("heading", { name: "After" })).toBeTruthy();
++    expect(screen.getByText(/<script>attack/)).toBeTruthy();
++    expect(document.querySelector("script")).toBeNull();
++  });
++
++  it("preserves document-wide reference links across bounded blocks", () => {
++    const navigate = vi.fn();
++    render(<MarkdownView content={"# References\n\n[Read guide][guide]\n\n[guide]: guide.md"}
++      fileId="fixture" locale="en" onNavigate={navigate} />);
++    fireEvent.click(screen.getByRole("button", { name: "Read guide" }));
++    expect(navigate).toHaveBeenCalledWith("guide.md");
++  });
++
+   it("renders a small document when the worker fails", async () => {
+     class FailingWorker {
+       onerror: (() => void) | null = null;
+diff --git a/tests/ui/session.test.tsx b/tests/ui/session.test.tsx
+index 011faa8..85d28af 100644
+--- a/tests/ui/session.test.tsx
++++ b/tests/ui/session.test.tsx
+@@ -1,3 +1,4 @@
++import { boundedBlocks, BLOCK_PROTOCOL } from "../../src/reader/block-budget";
+ // @vitest-environment jsdom
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+ import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+@@ -201,8 +202,9 @@ describe("workspace session", () => {
+     class DeferredWorker {
+       onmessage: ((event: MessageEvent) => void) | null = null;
+       content = "";
++      generation = 0;
+       constructor() { worker = this; }
+-      postMessage(content: string) { this.content = content; }
++      postMessage(request: { source: string; generation: number }) { this.content = request.source; this.generation = request.generation; }
+       terminate() {}
+     }
+     vi.stubGlobal("Worker", DeferredWorker);
+@@ -214,7 +216,7 @@ describe("workspace session", () => {
+     await waitFor(() => expect(worker?.content).toBe("# second"));
+     expect(container.querySelector('.markdown-body')).toBeNull();
+     expect(screen.queryByText(/The passage moved/)).toBeNull();
+-    await act(async () => worker.onmessage?.({ data: { kind: "parsed", tree: processor.parse(worker.content) } } as MessageEvent));
++    await act(async () => worker.onmessage?.({ data: { kind: "parsed", version: BLOCK_PROTOCOL, generation: worker.generation, tree: processor.parse(worker.content), blocks: boundedBlocks(processor.parse(worker.content), worker.content) } } as MessageEvent));
+     await screen.findByRole("heading", { name: "second" });
+     await waitFor(() => expect(container.querySelector('.reader-scroll')?.scrollTop).toBe(77));
+     expect(screen.queryByText(/The passage moved/)).toBeNull();
+diff --git a/tests/worker-bundle.mjs b/tests/worker-bundle.mjs
+index 4f33fce..7ddd085 100644
+--- a/tests/worker-bundle.mjs
++++ b/tests/worker-bundle.mjs
+@@ -34,7 +34,8 @@ worker.onmessage({ data: mixedBlock.repeat(Math.ceil(1_048_576 / mixedBlock.leng
+ assert.equal(messages[0]?.kind, "parsed", "ordinary 1 MiB mixed Markdown must stay within the worker budget");
+ messages.length = 0;
+ worker.onmessage({ data: "> ".repeat(140) + "deep" });
+-assert.equal(messages[0]?.kind, "overBudget");
++assert.equal(messages[0]?.kind, "parsed");
++assert.equal(messages[0].blocks[0].fallback, true);
+ const codeFiles = (await readdir(assets)).filter((name) => /^codeTokens\.worker-.*\.js$/.test(name));
+ assert.equal(codeFiles.length, 1, "expected one production code-token worker bundle");
+ const codeMessages = [];

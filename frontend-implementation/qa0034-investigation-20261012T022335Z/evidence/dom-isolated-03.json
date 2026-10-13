@@ -1,0 +1,27 @@
+{
+  "id": "dom-isolated-03",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/dom-only.config.ts",
+    "tests/ui/appearance-operations.test.tsx",
+    "-t",
+    "preserves the active tab and reader position"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-12T02:30:20.120956+00:00",
+  "finished_at": "2026-10-12T02:30:21.760069+00:00",
+  "seconds": 1.639010125,
+  "load_after": [
+    2.83984375,
+    4.5634765625,
+    9.12158203125
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/evidence/dom-isolated-03.log"
+}

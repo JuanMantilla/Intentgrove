@@ -1,0 +1,283 @@
+// @vitest-environment jsdom
+import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-library/react";
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import filenameCases from "../fixtures/new-markdown-filenames.json";
+import NewMarkdownDialog, { markdownFilename } from "../../src/app/NewMarkdownDialog";
+import userEvent from "@testing-library/user-event";
+import { typeRich } from "./rich-edit-helpers";
+import InitialApp from "../../src/app/App";
+let App = InitialApp;
+let startupAppearance: typeof import("../../src/app/appearance").getAppearance | undefined;
+const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), chooseMarkdownDestination: vi.fn(), cancelMarkdownDestination: vi.fn(), createMarkdownFile: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(), rememberRecentDocument: vi.fn(), loadWorkspaceSession: vi.fn(), listRecentItems: vi.fn(), listNativeEntries: vi.fn(),
+  listSafetyCopies: vi.fn(), setNativeMenuState: vi.fn(), checkpointWorkspaceSession: vi.fn(), selectFile: vi.fn(), readDocument: vi.fn(), loadSectionRecovery: vi.fn(), listEditSections: vi.fn(),
+  setTheme: vi.fn(), theme: vi.fn(), onThemeChanged: vi.fn(), appearanceUnlisten: vi.fn(),
+  menu: null as null | ((event: { payload: string }) => void), native: false }));
+vi.mock("../../src/app/api", async () => ({ ...await vi.importActual("../../src/app/api"), api: mocks }));
+vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => mocks.native, invoke: vi.fn() }));
+vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name, callback) => { if (name === "native:menu") mocks.menu = callback; return () => {}; }) }));
+// Faithful window/appearance boundary for native=true jsdom scenarios.
+// This supplies the native dependency; it does not bypass production appearance.
+vi.mock("@tauri-apps/api/window", async original => ({
+  ...await original<typeof import("@tauri-apps/api/window")>(),
+  getCurrentWindow: () => ({ setTheme: mocks.setTheme, theme: mocks.theme, onThemeChanged: mocks.onThemeChanged })
+}));
+const folder = { id: "granted", name: "Disposable", displayPath: "/tmp/disposable", generation: 1 };
+beforeEach(() => { vi.resetAllMocks(); localStorage.clear(); mocks.native = false; mocks.menu = null;
+  mocks.loadWorkspaceSession.mockResolvedValue(null); mocks.listRecentItems.mockResolvedValue({ items: [], recoveredCorrupt: false });
+  mocks.listNativeEntries.mockResolvedValue([]); mocks.listSafetyCopies.mockResolvedValue(null); mocks.setNativeMenuState.mockResolvedValue(undefined);
+  mocks.cancelMarkdownDestination.mockResolvedValue(undefined); mocks.rememberRecentDocument.mockResolvedValue(undefined);
+  mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
+  mocks.chooseMarkdownDestination.mockResolvedValue(null); mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
+});
+beforeEach(async () => {
+  App = InitialApp;
+  mocks.setTheme.mockResolvedValue(undefined);
+  mocks.theme.mockResolvedValue("light");
+  mocks.onThemeChanged.mockResolvedValue(mocks.appearanceUnlisten);
+  if (expect.getState().currentTestName?.startsWith("retains the created tab on editor startup failure")) {
+    // The original scenario owns a fresh singleton. No preceding nonnative
+    // render is allowed to provide its native appearance prerequisite.
+    vi.resetModules();
+    App = (await import("../../src/app/App")).default;
+    startupAppearance = (await import("../../src/app/appearance")).getAppearance;
+  }
+});
+afterEach(() => {
+  cleanup();
+  startupAppearance?.().dispose();
+  startupAppearance = undefined;
+});
+it.each([["note", "note.md"], ["note.MD", "note.md"], ["note.md.md", "note.md"], ["Niño", "Niño.md"],
+ ["", null], [".MD", null], ["../file", null], ["a\\b", null], ["NUL.txt", null], ["file.", null], [" file", " file.md"], ["file ", null], ["CONIN$", null], ["LPT¹", null], ["a\u0000b", null], ["a".repeat(253), null]])("validates %s", (input, expected) => expect(markdownFilename(input)).toBe(expected));
+it("focuses Filename, contains Tab, cancels and restores focus without invoking native IO", async () => {
+  const trigger = document.createElement("button"); document.body.append(trigger); trigger.focus(); const close = vi.fn();
+  const view = render(<NewMarkdownDialog locale="en" defaultDestination={folder} onClose={close} />);
+  const input = screen.getByLabelText("Filename"); expect(document.activeElement).toBe(input);
+  const user = userEvent.setup();
+  await user.tab({ shift: true }); expect(document.activeElement?.textContent).toBe("Cancel");
+  await user.tab({ shift: true }); expect(document.activeElement?.outerHTML, screen.getByRole("dialog").innerHTML).toContain("Choose folder…");
+  await user.tab(); expect(document.activeElement?.textContent).toBe("Cancel"); input.focus();
+  expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(true);
+  fireEvent.keyDown(input, { key: "Escape" }); expect(close).toHaveBeenCalledOnce();
+  view.unmount(); expect(document.activeElement).toBe(trigger); expect(mocks.selectRoot).not.toHaveBeenCalled(); trigger.remove();
+});
+it("retains filename and destination through cancellation/failure, and uses an explicit grant", async () => {
+  render(<NewMarkdownDialog locale="en" defaultDestination={null} onClose={vi.fn()} />);
+  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "first.MD" } });
+  fireEvent.click(screen.getByText("Choose folder…")); await waitFor(() => expect(mocks.chooseMarkdownDestination).toHaveBeenCalledOnce());
+  expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("first.MD");
+  // Invocation is not cancellation acknowledgement: React may still expose the
+  // pending picker control after the null reply. Wait for its actual ownership.
+  await waitFor(() => expect(screen.getByText("Choose folder…").hasAttribute("disabled")).toBe(false));
+  mocks.chooseMarkdownDestination.mockRejectedValueOnce({ code: "denied", message: "test" }); fireEvent.click(screen.getByText("Choose folder…"));
+  expect((await screen.findByRole("alert")).textContent).toMatch(/Permission denied/);
+  mocks.chooseMarkdownDestination.mockResolvedValueOnce({ token: "choice", name: folder.name, displayPath: folder.displayPath }); fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);
+  expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("first.MD");
+});
+it("keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it", async () => {
+  let resolve!: (grant: null) => void; mocks.chooseMarkdownDestination.mockReturnValue(new Promise(done => { resolve = done; })); const close = vi.fn();
+  render(<NewMarkdownDialog locale="es" defaultDestination={folder} onClose={close} />);
+  fireEvent.click(screen.getByText("Elegir carpeta…")); fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
+  expect(close).not.toHaveBeenCalled(); expect(screen.getByText("Cancelar").hasAttribute("disabled")).toBe(true);
+  await act(async () => resolve(null)); expect(screen.getByText("Cancelar").hasAttribute("disabled")).toBe(false);
+});
+it("submits validation with Enter semantics without creating a file or inventing success", () => {
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} onClose={vi.fn()} />);
+  fireEvent.submit(screen.getByLabelText("Filename").closest("form")!); expect(screen.getByRole("alert").textContent).toContain("Enter a filename");
+  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "first.MD" } });
+  fireEvent.submit(screen.getByLabelText("Filename").closest("form")!); expect(screen.getByText(/No file will be created/)).toBeTruthy(); expect(mocks.createMarkdownFile).not.toHaveBeenCalled();
+});
+it("opens from empty workspace and Projects, and restores the owning trigger", async () => {
+  render(<App />); const trigger = await screen.findByRole("button", { name: "New Markdown file" }); trigger.focus(); fireEvent.click(trigger);
+  await screen.findByRole("dialog", { name: "New Markdown file" }); fireEvent.click(screen.getByText("Cancel"));
+  await waitFor(() => expect(document.activeElement).toBe(trigger));
+  fireEvent.click(screen.getByRole("button", { name: "Projects", expanded: false }));
+  const item = await screen.findByRole("menuitem", { name: "New Markdown file" }); fireEvent.click(item);
+  expect(screen.getByLabelText("Filename")).toBe(document.activeElement);
+});
+it("deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone", async () => {
+  mocks.native = true; render(<App />); await screen.findByRole("button", { name: "New Markdown file" });
+  const editor = document.createElement("div"); editor.contentEditable = "true"; document.body.append(editor); editor.focus();
+  fireEvent.keyDown(editor, { key: "t", metaKey: true });
+  act(() => mocks.menu?.({ payload: "workspace_new_markdown" }));
+  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "retained" } });
+  fireEvent.keyDown(screen.getByLabelText("Filename"), { key: "t", metaKey: true, repeat: true });
+  expect(screen.getAllByRole("dialog")).toHaveLength(1); expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("retained");
+  fireEvent.click(screen.getByText("Cancel")); editor.remove(); cleanup(); mocks.native = false; render(<App />);
+  await screen.findByRole("button", { name: "New Markdown file" });
+  expect(fireEvent.keyDown(window, { key: "t", metaKey: true })).toBe(true); expect(screen.queryByRole("dialog")).toBeNull();
+});
+it("does not open over another modal", async () => {
+  mocks.native = true; render(<App />); await screen.findByRole("button", { name: "New Markdown file" });
+  const modal = document.createElement("div"); modal.setAttribute("aria-modal", "true"); document.body.append(modal);
+  fireEvent.keyDown(window, { key: "t", metaKey: true }); act(() => mocks.menu?.({ payload: "workspace_new_markdown" }));
+  expect(screen.queryByLabelText("Filename")).toBeNull(); modal.remove();
+});
+
+it("uses the non-destructive picker with existing documents", () => {
+ render(<NewMarkdownDialog locale="en" defaultDestination={folder} onClose={vi.fn()} />);
+ fireEvent.click(screen.getByText("Choose folder…")); expect(mocks.selectRoot).not.toHaveBeenCalled();
+ expect(screen.getByText("Choose folder…").hasAttribute("disabled")).toBe(true);
+ fireEvent.change(screen.getByLabelText("Filename"), {target:{value:"bad/name"}}); fireEvent.blur(screen.getByLabelText("Filename"));
+ expect(screen.getByRole("alert").textContent).toContain("Enter a filename");
+});
+
+const createdDocument = { fileId: "native-created", identityKey: "real-native-identity", name: "first.md", displayPath: "/tmp/disposable/first.md", content: "", diskVersion: "empty-v1" };
+const whole = { id: "empty-whole", kind: "whole" as const, ordinal: 0, label: "Document", startByte: 0, endByte: 0, sourceHash: "empty" };
+const opened = { status: "opened" as const, document: createdDocument, rootId: null, explicitFile: true, segments: ["first.md"], watchFailed: false };
+function fillName() { fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "first.MD.md" } }); }
+it("uses root authority and normalized filename exactly once while create is pending", async () => {
+  let resolve!: (outcome: typeof opened) => void;
+  mocks.createMarkdownFile.mockReturnValue(new Promise(done => { resolve = done; }));
+  const created = vi.fn().mockResolvedValue(undefined), close = vi.fn();
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={close} />);
+  fillName(); const form = screen.getByLabelText("Filename").closest("form")!;
+  fireEvent.submit(form); fireEvent.submit(form); fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
+  expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: "first.md" });
+  expect(close).not.toHaveBeenCalled(); expect(screen.getByText("Cancel").hasAttribute("disabled")).toBe(true);
+  await act(async () => resolve(opened)); expect(created).toHaveBeenCalledWith(opened); expect(close).toHaveBeenCalledOnce();
+});
+it("releases superseded/current tokens and retains fields after duplicate rejection", async () => {
+  const view = render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={vi.fn()} onClose={vi.fn()} />);
+  fillName(); mocks.chooseMarkdownDestination.mockResolvedValueOnce({ token: "one", name: "One", displayPath: "/tmp/one" });
+  fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText("/tmp/one");
+  mocks.chooseMarkdownDestination.mockResolvedValueOnce({ token: "two", name: "Two", displayPath: "/tmp/two" });
+  fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText("/tmp/two");
+  await waitFor(() => expect(mocks.cancelMarkdownDestination).toHaveBeenCalledWith("one"));
+  mocks.createMarkdownFile.mockRejectedValueOnce({ code: "already_exists", message: "duplicate" });
+  fireEvent.submit(screen.getByLabelText("Filename").closest("form")!);
+  expect((await screen.findByRole("alert")).textContent).toMatch(/already exists/);
+  expect(mocks.createMarkdownFile).toHaveBeenCalledWith({ destinationToken: "two", filename: "first.md" });
+  expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("first.MD.md"); expect(screen.getByText("/tmp/two")).toBeTruthy();
+  view.unmount(); expect(mocks.cancelMarkdownDestination).toHaveBeenCalledWith("two");
+});
+it.each(["committed", "uncertain"])("prevents recreation after %s outcome", async mode => {
+  const created = vi.fn().mockResolvedValue(undefined);
+  if (mode === "committed") mocks.createMarkdownFile.mockResolvedValueOnce({ status: "committed_not_opened", name: "first.md", displayPath: createdDocument.displayPath, fileId: createdDocument.fileId, identityKey: createdDocument.identityKey, error: { code: "io_error", message: "test" } });
+  else mocks.createMarkdownFile.mockRejectedValueOnce({ code: "io_error", message: "transport" });
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />); fillName();
+  const form = screen.getByLabelText("Filename").closest("form")!; fireEvent.submit(form);
+  await screen.findByRole("alert"); fireEvent.submit(form); expect(mocks.createMarkdownFile).toHaveBeenCalledOnce();
+  expect(screen.getByText("Create file").hasAttribute("disabled")).toBe(true);
+  if (mode === "committed") { fireEvent.click(screen.getByText("Reopen created file")); await waitFor(() => expect(created).toHaveBeenCalledOnce()); }
+  else expect(created).not.toHaveBeenCalled();
+});
+it("real App mock journey opens native identity then enters the existing empty rendered section", async () => {
+  mocks.native = true;
+  mocks.chooseMarkdownDestination.mockResolvedValue({ token: "explicit-choice", name: "Disposable", displayPath: folder.displayPath });
+  mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument);
+  mocks.loadSectionRecovery.mockResolvedValue(null); mocks.listEditSections.mockResolvedValue({ diskVersion: "empty-v1", sections: [whole] });
+  mocks.beginSectionEdit.mockResolvedValue({ sessionId: "created-session", diskVersion: "empty-v1", section: whole, source: "", lineSeparator: "\n" });
+  render(<App />); fireEvent.click(await screen.findByRole("button", { name: "New Markdown file" })); fillName();
+  fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);
+  fireEvent.click(screen.getByText("Create file"));
+  await waitFor(() => expect(mocks.beginSectionEdit).toHaveBeenCalledWith(createdDocument.fileId, whole.id, "empty-v1"));
+  expect(mocks.readDocument).toHaveBeenCalledWith({ fileId: createdDocument.fileId, explicitFile: true });
+  expect(mocks.rememberRecentDocument).toHaveBeenCalledWith(createdDocument.fileId);
+  await waitFor(() => expect(document.querySelector('[contenteditable="true"]')).not.toBeNull());
+  expect(screen.queryByRole("dialog", { name: "New Markdown file" })).toBeNull();
+  expect(mocks.selectRoot).not.toHaveBeenCalled();
+});
+it("blocks composition Enter and cancels without creating", () => {
+  const close = vi.fn(); render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={vi.fn()} onClose={close} />); fillName();
+  expect(fireEvent.keyDown(screen.getByLabelText("Filename"), {key:"Enter",isComposing:true})).toBe(false);
+  fireEvent.keyDown(screen.getByLabelText("Filename"), {key:"Escape"}); expect(close).toHaveBeenCalledOnce(); expect(mocks.createMarkdownFile).not.toHaveBeenCalled();
+});
+
+it("preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu", async () => {
+ mocks.native = true;
+ mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+ mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument);
+ mocks.loadSectionRecovery.mockResolvedValue(null); mocks.listEditSections.mockResolvedValue({diskVersion:"empty-v1",sections:[whole]});
+ mocks.beginSectionEdit.mockImplementation(async fileId=>({sessionId:"edit:"+fileId,diskVersion:"empty-v1",section:whole,source:"",lineSeparator:"\n"}));
+ render(<App />); fireEvent.click(await screen.findByRole("button",{name:"New Markdown file"})); fillName();
+ fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath); fireEvent.click(screen.getByText("Create file"));
+ await waitFor(()=>expect(document.querySelector('[data-rich-leaf]')).not.toBeNull()); typeRich("Keep this draft");
+ await waitFor(()=>expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false));
+ fireEvent.keyDown(document.querySelector('[data-rich-leaf]')!,{key:"t",metaKey:true}); act(()=>mocks.menu?.({payload:"workspace_new_markdown"}));
+ expect(screen.getAllByRole("dialog",{name:"New Markdown file"})).toHaveLength(1);
+ const second={...createdDocument,fileId:"second-native-id",identityKey:"second-identity",name:"second.md"};
+ mocks.createMarkdownFile.mockResolvedValue({...opened,document:second,segments:["second.md"]}); mocks.readDocument.mockResolvedValue(second);
+ fireEvent.change(screen.getByLabelText("Filename"),{target:{value:"second"}});fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);fireEvent.click(screen.getByText("Create file"));
+ await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledWith(second.fileId,whole.id,"empty-v1"));
+ expect(mocks.discardSectionEdit).not.toHaveBeenCalled(); fireEvent.click(screen.getByRole("tab",{name:/^first\.md/}));
+ await screen.findByText("Keep this draft"); expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false);
+});
+it("retains the created tab on editor startup failure without trying to create again", async () => {
+ mocks.native=true;mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+ mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument); mocks.loadSectionRecovery.mockResolvedValue(null);
+ mocks.listEditSections.mockResolvedValue({diskVersion:"empty-v1",sections:[whole]}); mocks.beginSectionEdit.mockRejectedValue({code:"denied",message:"test"});
+ render(<App />); fireEvent.click(await screen.findByRole("button",{name:"New Markdown file"}));fillName();fireEvent.click(screen.getByText("Choose folder…"));await screen.findByText(folder.displayPath);fireEvent.click(screen.getByText("Create file"));
+ await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledOnce()); expect(await screen.findByRole("tab",{name:"first.md"})).toBeTruthy();
+ expect(mocks.createMarkdownFile).toHaveBeenCalledOnce();expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+});
+
+// QA-0028: consumer contract; bridge calls below are mocked, not filesystem evidence.
+it.each(["note ", "note.", "note.md ", "note .MD.md", "file.txt", "\u0085note\u0085", "CON .txt", "con   .notes.MD", "LPT¹ .txt", "a\u0085b", "a\u0080b", "a\u009fb"])("rejects %s inline and guards keyboard/form submission", async name => {
+  const created = vi.fn(), close = vi.fn();
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={close} />);
+  const input = screen.getByLabelText("Filename");
+  fireEvent.change(input, { target: { value: name } });
+  expect(input.getAttribute("value")).toBe(name);
+  expect(input.getAttribute("aria-invalid")).toBe("true");
+  expect(input.getAttribute("aria-describedby")?.split(" ")).toContain(screen.getByRole("alert").id);
+  expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(true);
+  await userEvent.setup().keyboard("{Enter}");
+  fireEvent.submit(input.closest("form")!);
+  expect(mocks.createMarkdownFile).not.toHaveBeenCalled();
+  expect(created).not.toHaveBeenCalled(); expect(close).not.toHaveBeenCalled();
+  expect(input.getAttribute("value")).toBe(name);
+  fireEvent.change(input, { target: { value: "Niño.🚀" } });
+  expect(screen.queryByRole("alert")).toBeNull();
+  expect(input.getAttribute("aria-invalid")).toBe("false");
+  expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(false);
+});
+it.each(["Niño", "🚀", "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\ufeffnote"])("preserves native normalization and Enter for %s", async name => {
+  mocks.createMarkdownFile.mockResolvedValue(opened);
+  const created = vi.fn().mockResolvedValue(undefined);
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />);
+  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: name } });
+  await userEvent.setup().keyboard("{Enter}");
+  const expected = `${name}.md`;
+  await waitFor(() => expect(created).toHaveBeenCalledOnce());
+  expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: expected });
+});
+it("checks every interior C1 control and exact multibyte limits", () => {
+  for (let code = 0x7f; code <= 0x9f; code++) expect(markdownFilename(`a${String.fromCharCode(code)}b`)).toBeNull();
+  for (const name of ["é".repeat(126) + "a", "🚀".repeat(63) + "a", "a".repeat(253)]) expect(markdownFilename(name)).toBeNull();
+});
+it("retains native invalid-filename rejection without success, text loss or grant reselection", async () => {
+  mocks.createMarkdownFile.mockRejectedValue({ code: "invalid_filename", message: "native rejected" });
+  const created = vi.fn(), close = vi.fn();
+  render(<NewMarkdownDialog locale="es" defaultDestination={folder} available onCreated={created} onClose={close} />);
+  fireEvent.change(screen.getByLabelText("Nombre del archivo"), { target: { value: "Niño" } });
+  await userEvent.setup().keyboard("{Enter}");
+  await screen.findByRole("alert");
+  const input = screen.getByLabelText("Nombre del archivo");
+  expect(input.getAttribute("value")).toBe("Niño");
+  expect(input.getAttribute("aria-invalid")).toBe("true");
+  expect(created).not.toHaveBeenCalled(); expect(close).not.toHaveBeenCalled();
+  expect(mocks.selectRoot).not.toHaveBeenCalled(); expect(screen.getByText(folder.displayPath)).toBeTruthy();
+});
+
+// Shared behavioral vectors are regression evidence, not policy authority.
+it.each(filenameCases)("QA-0030 UI policy: $input", ({ input, expected }) => {
+  expect(markdownFilename(input)).toBe(expected);
+});
+it.each(["release.v2.md", "note.MD", "note.md.MD.md"])("QA-0030 Enter creates %s and retains destination", async name => {
+  mocks.createMarkdownFile.mockResolvedValue(opened);
+  const created = vi.fn().mockResolvedValue(undefined);
+  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />);
+  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: name } });
+  expect(screen.getByText(folder.displayPath)).toBeTruthy();
+  await userEvent.setup().keyboard("{Enter}");
+  await waitFor(() => expect(created).toHaveBeenCalledOnce());
+  expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: markdownFilename(name) });
+});
+
+it("causal QA-0033 activation after restore resolution before ready commit",async()=>{
+ let finish!:(value:null)=>void;mocks.loadWorkspaceSession.mockReturnValue(new Promise(resolve=>{finish=resolve;}));
+ render(<App/>);const trigger=screen.getByRole('button',{name:'New Markdown file'});
+ await act(async()=>{finish(null);await Promise.resolve();fireEvent.click(trigger);});
+ expect(screen.getByLabelText('Filename')).toBe(document.activeElement);
+});

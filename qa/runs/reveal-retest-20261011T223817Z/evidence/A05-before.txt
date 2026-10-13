@@ -1,0 +1,161 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: root-dirty.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selectable) root-dirty.md · Unsaved · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+				20 container
+					21 tab (selectable) opened-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+					22 button Close tab: opened-after-rename.md, Help: Close tab
+				23 container
+					24 tab (selectable) opened-after-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-delete.md
+					25 button Close tab: opened-after-delete.md, Help: Close tab
+				26 container
+					27 tab (selectable) opened-after-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace.md
+					28 button Close tab: opened-after-replace.md, Help: Close tab
+				29 container
+					30 tab (selectable) opened-before-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-rename.md
+					31 button Close tab: opened-before-rename.md, Help: Close tab
+				32 container
+					33 tab (selectable) opened-before-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-delete.md
+					34 button Close tab: opened-before-delete.md, Help: Close tab
+				35 container
+					36 tab (selectable) opened-before-replace.md · Unsaved · This file changed in another app. Your edit is safe., Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace.md
+					37 button Close tab: opened-before-replace.md, Help: Close tab
+				38 container
+					39 tab (selectable) one.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/one.md
+					40 button Close tab: one.md, Help: Close tab
+				41 container
+					42 tab (selectable) two.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/two.md
+					43 button Close tab: two.md, Help: Close tab
+				44 container
+					45 tab (selected) explicit-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-dirty.md
+					46 button Close tab: explicit-dirty.md, Help: Close tab
+				47 container
+					48 tab (selectable) explicit-missing.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-missing.md
+					49 button Close tab: explicit-missing.md, Help: Close tab
+				50 container
+					51 tab (selectable) explicit-before-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-rename.md
+					52 button Close tab: explicit-before-rename.md, Help: Close tab
+				53 container
+					54 tab (selectable) explicit-before-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-delete.md
+					55 button Close tab: explicit-before-delete.md, Help: Close tab
+				56 container
+					57 tab (selectable) explicit-before-replace.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-replace.md
+					58 button Close tab: explicit-before-replace.md, Help: Close tab
+				59 container
+					60 tab (selectable) explicit-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-rename.md
+					61 button Close tab: explicit-after-rename.md, Help: Close tab
+				62 container
+					63 tab (selectable) explicit-after-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-delete.md
+					64 button Close tab: explicit-after-delete.md, Help: Close tab
+				65 container
+					66 tab (selectable) explicit-after-replace.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-replace.md
+					67 button Close tab: explicit-after-replace.md, Help: Close tab
+			68 pop up button Go menu
+			69 button (collapsed) Open documents (18), Secondary Actions: Expand
+			70 container Explorer
+				71 pop up button PROJECTS
+				72 button Close Projects sidebar
+				73 button Open file
+				74 button Open folder
+				75 button Search folder
+				76 text fixtures
+				77 container
+					78 button active.md
+					79 button fresh.md
+					80 button inactive.md
+					81 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					82 button opened-after-rename-moved.md
+					83 button opened-after-replace-original.md
+					84 button opened-after-replace.md
+					85 button opened-before-rename-moved.md
+					86 button opened-before-replace-original.md
+					87 button opened-before-replace.md
+					88 button root-dirty-moved.md
+					89 button root-missing-moved.md
+					90 button sentinel.md
+					91 button unopened-after-rename-moved.md
+					92 button unopened-after-replace-original.md
+					93 button unopened-after-replace.md
+					94 button unopened-before-rename-moved.md
+					95 button unopened-before-replace-original.md
+					96 button unopened-before-replace.md
+				97 text Storage and recovery
+				98 text Open edits and recovery offers: 3
+				99 button Manage…
+				100 button Settings…
+			101 container
+				102 container explicit-dirty.md
+					103 container explicit-dirty.md
+						104 text explicit-dirty.md
+					105 button Find in document
+					106 button Save file
+					107 button Return to reading
+					108 button Save As
+					109 text Save returns to reading.
+					110 summary Document…, Value: off
+						111 text Document…
+					112 text Outside the open folder
+				113 container explicit-dirty.md
+					114 container Editing: explicit-dirty.md
+						115 container Editing: explicit-dirty.md
+							116 text Editing: explicit-dirty.md
+							117 text Changes not saved to the file
+							118 toolbar Text formatting
+								119 button (disabled) Bold
+								120 button (disabled) Italic
+								121 button (disabled) Inline code
+								122 button (disabled) Strikethrough
+								123 button (disabled) Link…
+								124 summary Block type / More…, Value: off
+									125 text Block type / More…
+							126 text entry area (settable) Editing: explicit-dirty.md, Secondary Actions: Show Writing Tools, Value: QA RETEST EXPLICIT UNSAVEDexplicit-dirty.md
+
+Original explicit saved bytes.
+								127 heading (settable, integer) Editing: explicit-dirty.md, Value: 1
+									128 text entry area (settable) Editing: explicit-dirty.md, Secondary Actions: Show Writing Tools
+								129 text entry area (settable) Editing: explicit-dirty.md, Value: QA RETEST EXPLICIT UNSAVEDexplicit-dirty.md, Secondary Actions: Show Writing Tools
+									130 text (settable) QA RETEST EXPLICIT UNSAVEDexplicit-dirty.md
+								131 text entry area (settable) Editing: explicit-dirty.md, Value: Original explicit saved bytes., Secondary Actions: Show Writing Tools
+									132 text (settable) Original explicit saved bytes.
+							133 button Undo
+							134 button (disabled) Redo
+							135 button Discard changes…
+							136 button Save as…
+				137 container Outline
+					138 text OUTLINE
+					139 button Close outline
+					140 container Outline
+						141 content list
+							142 button explicit-dirtymd
+			143 container
+				144 text explicit-dirty.md Intentgrove by Theonira
+	145 close button
+	146 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	147 minimize button
+	148 text Intentgrove Reveal Retest
+149 menu bar
+	150 Intentgrove Reveal Retest
+	151 File
+	152 Edit
+	153 View
+	154 Go
+	155 Window
+	156 Help

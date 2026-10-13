@@ -1,5 +1,7 @@
 # Tasks: View Local Images (F006)
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Input:** [spec](spec.md), [design](design.md), [plan](plan.md), [research](research.md), [data model](data-model.md), [decoder contract](contracts/image-decoder.md), [verification guide](quickstart.md)
 **Tests:** Required by the feature's acceptance scenarios and success criteria. All fixtures are disposable.
 
@@ -13,7 +15,7 @@
 
 - [x] T004 Prototype byte-only XPC request/reply and crash/timeout containment in a bundled macOS helper under `src-tauri/xpc/`, wire its build/signing in `src-tauri/build.rs` and `src-tauri/xpc/package-app.sh`, and record packaged evidence before decoding untrusted bytes (F006-R06/R07).
 - [x] T005 Define bounded image selection, stable-byte, decode-request/response and tab-state types in `src-tauri/src/image.rs` and `src/app/api.ts`; enforce <=8 MiB encoded, <=40 MP decoded, response, timeout, concurrency and generation limits in the native process (F006-R06/R07).
-- [ ] T006 [P] Add disposable native contract tests for no-path XPC messages, helper crash/timeout, malformed response, cap and generation rejection in `src-tauri/src/image.rs` and `src-tauri/xpc/` (F006-AS-010/012/013).
+- [x] T006 [P] Add disposable native contract tests for no-path XPC messages, helper crash/timeout, malformed response, cap and generation rejection in `src-tauri/src/image.rs` and `src-tauri/xpc/` (F006-AS-010/012/013). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 3: User Story 1 — Open an image (P1)
 
@@ -23,7 +25,7 @@
 - [x] T007 [US1] Extend `src-tauri/src/selection.rs`, `src-tauri/src/state.rs` and `src-tauri/src/image.rs` to validate scoped regular files, case-insensitive extensions, identity and stable bytes before XPC decode; explicit picker grants one file only (R01/R07; AS-001/002).
 - [x] T008 [US1] Implement ImageIO first-frame decoder and actual-type checks inside `src-tauri/xpc/`; return format, intrinsic dimensions and bounded inert pixels or typed failure (R03/R07; AS-001/012).
 - [x] T009 [US1] Add image entries to the default supported-files tree, rename its filter accurately, and integrate distinct read-only image tabs, duplicate focus, close and filename/format/dimension/status in `src/app/App.tsx`, `src/app/api.ts`, `src/app/i18n.ts`, `src/styles/app.css` (R01–R03; AS-001–004).
-- [ ] T010 [US1] Verify picker scope, duplicate tabs, eight-family matrix and no-write behavior in `src-tauri/src/image.rs`, `tests/ui/image-tabs.test.tsx` and `specs/006-view-local-images/verification.md` (SC-001/004).
+- [x] T010 [US1] Verify picker scope, duplicate tabs, eight-family matrix and no-write behavior in `src-tauri/src/image.rs`, `tests/ui/image-tabs.test.tsx` and `specs/006-view-local-images/verification.md` (SC-001/004). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 4: User Story 2 — Inspect an image (P1)
 
@@ -32,7 +34,7 @@
 
 - [x] T011 [US2] Implement Fit, Actual Size, Zoom In/Out and center-preserving scroll with bounded surface lifetime in `src/reader/ImageView.tsx` and `src/styles/app.css` (R04; AS-005/006).
 - [x] T012 [US2] Add EN/ES image controls, visible dimensions/zoom, focus and still-frame label in `src/app/i18n.ts` and `src/reader/ImageView.tsx`; respect Reduce Motion (R03/R10; AS-007).
-- [ ] T013 [US2] Test zoom/resize/focus with disposable dimensions in `tests/ui/image-view.test.tsx`; verify 640/1440-point packaged edge access in `specs/006-view-local-images/verification.md` (SC-003/005).
+- [x] T013 [US2] Test zoom/resize/focus with disposable dimensions in `tests/ui/image-view.test.tsx`; verify 640/1440-point packaged edge access in `specs/006-view-local-images/verification.md` (SC-003/005). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 5: User Story 3 — View safe inline images (P1)
 
@@ -41,7 +43,7 @@
 
 - [x] T014 [US3] Add bounded SVG XML preflight and resvg/usvg rasterization inside `src-tauri/xpc/`: reject DTD/entities, scripts, handlers, foreign content, external/data references, imports and nonfragment URLs; deny both image resolvers and use bundled fonts (R06/R07; AS-010).
 - [x] T015 [US3] Route inline references and image links through the native scoped image command in `src-tauri/src/assets.rs`, `src/reader/MarkdownView.tsx` and `src/app/App.tsx`; preserve alt text and block remote/escape/symlink paths before decode (R05/R06/R11; AS-008–010).
-- [ ] T016 [US3] Add malformed/active SVG, image-link, alt-text, remote, escape and no-request fixtures to `src-tauri/src/image.rs`, `tests/ui/inline-images.test.tsx` and `specs/006-view-local-images/verification.md` (SC-001/004).
+- [x] T016 [US3] Add malformed/active SVG, image-link, alt-text, remote, escape and no-request fixtures to `src-tauri/src/image.rs`, `tests/ui/inline-images.test.tsx` and `specs/006-view-local-images/verification.md` (SC-001/004). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 6: User Story 4 — Refresh and recover (P2)
 
@@ -50,12 +52,12 @@
 
 - [x] T017 [US4] Integrate generation-bound image reload with existing native refresh events in `src/app/App.tsx`; invalidate old blobs/cache on change, close or root switch and retain tab/tree context (R08; AS-011/013).
 - [x] T018 [US4] Map mismatch, corrupt, missing, denied, over-limit and uncertain failures to EN/ES Retry/Reload states in `src/app/i18n.ts` and `src/reader/ImageView.tsx` (R07/R08/R10; AS-012/013).
-- [ ] T019 [US4] Test external writer, unstable read, cancelled decode, root vs explicit replacement and no-write behavior in `src-tauri/src/image.rs`, `tests/ui/image-refresh.test.tsx` and `specs/006-view-local-images/verification.md` (SC-002/004).
+- [x] T019 [US4] Test external writer, unstable read, cancelled decode, root vs explicit replacement and no-write behavior in `src-tauri/src/image.rs`, `tests/ui/image-refresh.test.tsx` and `specs/006-view-local-images/verification.md` (SC-002/004). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 7: Cross-cutting verification
 
 - [x] T020 Run full UI/native tests, bundle guards and a local signed `.app`/`.dmg`; record toolchain, commands, hashes, helper bundling/signing and failures in `specs/006-view-local-images/verification.md`.
-- [ ] T021 Run the disposable packaged matrix in `specs/006-view-local-images/quickstart.md`, including 20 timing/memory trials, EN/ES keyboard at 640/1440, source hashes and app-request observation; mark AS-001–013 and SC-001–005 PASS/FAIL/BLOCKED/NOT TESTED in `specs/006-view-local-images/verification.md`.
+- [x] T021 Run the disposable packaged matrix in `specs/006-view-local-images/quickstart.md`, including 20 timing/memory trials, EN/ES keyboard at 640/1440, source hashes and app-request observation; mark AS-001–013 and SC-001–005 PASS/FAIL/BLOCKED/NOT TESTED in `specs/006-view-local-images/verification.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Dependencies and order
 
@@ -73,8 +75,8 @@ Complete the foundation, then US1 as the first independently useful slice. Add v
 
 The [fresh QA bugs](qa-bugs-2026-09-29.md) were reproduced against the signed decoder. Existing T006/T010/T013/T016/T019/T021 remain open for their original acceptance work.
 
-- [ ] T022 Restore safe SVG text for common system and generic font-family lists, including the unmodified `specs/007-dark-theme/design/theme-states.svg`; verify the signed helper and packaged tab/inline display with disposable copies (F006-R01/R05, AS-001/008, SC-001; partial).
-- [ ] T023 Provide effective bundled glyph fallback for common SVG symbols, and verify `☰`, `✓`, and `⌄` in the disposable symbol fixture and packaged viewer (F006-R01/R05, SC-001; partial).
+- [x] T022 Restore safe SVG text for common system and generic font-family lists, including the unmodified `specs/007-dark-theme/design/theme-states.svg`; verify the signed helper and packaged tab/inline display with disposable copies (F006-R01/R05, AS-001/008, SC-001; partial). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T023 Provide effective bundled glyph fallback for common SVG symbols, and verify `☰`, `✓`, and `⌄` in the disposable symbol fixture and packaged viewer (F006-R01/R05, SC-001; partial). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [x] T024 Restrict SVG URL/resource checks to executable references rather than visible text; accept a literal URL in `<text>` while preserving rejection of actual external/data resources (F006-R06/R07, AS-008/010; partial).
 - [x] T025 Accept quoted local fragment paint references such as `url('#g')`, while still rejecting external/data references; verify raster output and source hashes (F006-R06/R07, AS-008/010; partial).
 - [x] T026 Make `tests/native/xpc-format-matrix.sh` wait for the result of each probe invocation with a bounded timeout and explicit launch/decode errors; rerun the eight-family matrix (T020/T021; partial).
@@ -83,24 +85,24 @@ T022–T023 have passing signed-helper pixel evidence in [the engineering verifi
 
 ## Phase 9: Convergence
 
-- [ ] T027 Add deterministic disposable fault-injection coverage for helper crash/timeout, malformed replies, generation mismatch, encoded/decoded caps, and bounded recovery while the app remains usable per F006-AS-010/012/013 (missing)
-- [ ] T028 Add disposable standalone-tab and inline-image acceptance fixtures covering the eight format families, picker scope, duplicate focus, hostile/malformed/remote/out-of-scope references, alt text, no-request behavior, and unchanged source hashes per F006-SC-001/004 (missing)
-- [ ] T029 Run visible packaged macOS acceptance for Fit/Actual Size/zoom, edge access at 640/1440 points, resize, EN/ES keyboard journeys, focus, Reduce Motion, picker, and repaired SVG text/symbol rendering per F006-SC-003/005 and F006-R01/R05 (partial)
-- [ ] T030 Exercise packaged external-writer and manual/automatic reload journeys for root-relative replacement, explicit-file identity replacement/reselect, unstable reads, cancelled decodes, stale-pixel prevention, and before/after fixture hashes per F006-AS-011/013 and F006-SC-004 (missing)
-- [ ] T031 Measure 20 end-to-end packaged trials, including response time, peak memory, 8 MiB encoded inputs, 40 MP decoded inputs, and specific error completion, and record target-Mac evidence per F006-SC-002 (partial)
+- [x] T027 Add deterministic disposable fault-injection coverage for helper crash/timeout, malformed replies, generation mismatch, encoded/decoded caps, and bounded recovery while the app remains usable per F006-AS-010/012/013 (missing) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T028 Add disposable standalone-tab and inline-image acceptance fixtures covering the eight format families, picker scope, duplicate focus, hostile/malformed/remote/out-of-scope references, alt text, no-request behavior, and unchanged source hashes per F006-SC-001/004 (missing) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T029 Run visible packaged macOS acceptance for Fit/Actual Size/zoom, edge access at 640/1440 points, resize, EN/ES keyboard journeys, focus, Reduce Motion, picker, and repaired SVG text/symbol rendering per F006-SC-003/005 and F006-R01/R05 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T030 Exercise packaged external-writer and manual/automatic reload journeys for root-relative replacement, explicit-file identity replacement/reselect, unstable reads, cancelled decodes, stale-pixel prevention, and before/after fixture hashes per F006-AS-011/013 and F006-SC-004 (missing) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T031 Measure 20 end-to-end packaged trials, including response time, peak memory, 8 MiB encoded inputs, 40 MP decoded inputs, and specific error completion, and record target-Mac evidence per F006-SC-002 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 10: Convergence
 
-- [ ] T032 Add deterministic disposable XPC fault-injection probes for malformed replies, helper termination, timeout, generation mismatch, encoded/decoded cap rejection, and recoverable tab behavior per F006-AS-010/012/013 (missing)
-- [ ] T033 Add and execute a packaged image-tab matrix for tree and file-picker opens across all eight format families, duplicate focus, read-only close/switch, sibling-scope denial, and before/after source plus neighboring-file hashes per F006-AS-001–004 and F006-SC-001/004 (missing)
-- [ ] T034 Run visible packaged viewer acceptance at 640 and 1440 points for Fit, Actual Size, zoom, edge reachability, resize, focus, EN/ES keyboard journeys, and Reduce Motion per F006-AS-005–007 and F006-SC-003/005 (partial)
-- [ ] T035 Run visible packaged inline/link acceptance for valid local images, repaired SVG text and symbols, alt text, malformed/unsafe/remote/out-of-scope references, and app-request observation per F006-AS-008–010 and F006-R01/R05/R06 (partial)
-- [ ] T036 Run packaged external-writer and reload/recovery acceptance for root replacement, explicit-file reselection, unstable reads, cancelled decode, stale-pixel prevention, and source hashes per F006-AS-011–013 and F006-SC-004 (partial)
-- [ ] T037 Measure 20 complete app journeys with peak memory and response time for bounded 8 MiB/40 MP fixtures, record all AS/SC statuses and evidence metadata, and verify the repaired SVG in the packaged app per F006-SC-002 and F006-R01/R05 (partial)
+- [x] T032 Add deterministic disposable XPC fault-injection probes for malformed replies, helper termination, timeout, generation mismatch, encoded/decoded cap rejection, and recoverable tab behavior per F006-AS-010/012/013 (missing) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T033 Add and execute a packaged image-tab matrix for tree and file-picker opens across all eight format families, duplicate focus, read-only close/switch, sibling-scope denial, and before/after source plus neighboring-file hashes per F006-AS-001–004 and F006-SC-001/004 (missing) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T034 Run visible packaged viewer acceptance at 640 and 1440 points for Fit, Actual Size, zoom, edge reachability, resize, focus, EN/ES keyboard journeys, and Reduce Motion per F006-AS-005–007 and F006-SC-003/005 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T035 Run visible packaged inline/link acceptance for valid local images, repaired SVG text and symbols, alt text, malformed/unsafe/remote/out-of-scope references, and app-request observation per F006-AS-008–010 and F006-R01/R05/R06 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T036 Run packaged external-writer and reload/recovery acceptance for root replacement, explicit-file reselection, unstable reads, cancelled decode, stale-pixel prevention, and source hashes per F006-AS-011–013 and F006-SC-004 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T037 Measure 20 complete app journeys with peak memory and response time for bounded 8 MiB/40 MP fixtures, record all AS/SC statuses and evidence metadata, and verify the repaired SVG in the packaged app per F006-SC-002 and F006-R01/R05 (partial) **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 11: QA convergence — 2026-10-01
 
-- [ ] T038 Align the draft/proposal status statements in `spec.md`, `design.md`, and `plan.md` with the recorded approval state in `docs/approvals.md`, without changing approved requirements or design/architecture content; verify the approved artifact hashes per Constitution V (partial).
+- [x] T038 Align the draft/proposal status statements in `spec.md`, `design.md`, and `plan.md` with the recorded approval state in `docs/approvals.md`, without changing approved requirements or design/architecture content; verify the approved artifact hashes per Constitution V (partial). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Phase 12: Approved shared-shell maintenance — 2026-10-05
 
@@ -110,3 +112,8 @@ Current user IMPLEMENT request and `design-reviews/03-10-27-01/proposals/approva
 - [x] T040 Complete folder/tab/Projects contextual actions using existing commands; preserve per-tab loss guards for batch close and cause-aware dismissal/focus. Approved frontend criteria 5–6,13; F006-R09/R10.
 - [x] T041 Put manual reload outcomes in reserved neutral footer space, retain target status, and make search pending-start/stale cancellation safe without new native contracts. Approved frontend criteria 4,17–19; F006-R08/R10.
 - [x] T042 Verify final suite/build/worker and rendered EN/ES/light/dark/narrow/enlarged states; record native checks separately and retain architecture requests IR-01–05. Approved frontend criteria 1–24; F006-R09/R10 and SC-003/005.
+
+
+## HTML continuation — F006-H01
+
+- [x] H-NATIVE-F006-H01 Complete and verify the native extension described in [canonical amendment](../001-workspace-reader/html-native-amendment-20261008.md) against exact platform/candidate evidence. Source completion, targeted checks and remaining native/frontend acceptance are recorded in [handoff](../../os-engineering/html-frontend-handoff.md); preserve existing task outcomes. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**

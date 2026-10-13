@@ -1,0 +1,52 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text drop-folder-proof Local files only
+				6 button (disabled) Outline
+				7 button (collapsed) Reading settings, Secondary Actions: Expand
+				8 button Settings
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text drop-proof.md · Dropped here
+					13 button Open item: drop-proof.md
+					14 button Dismiss: drop-proof.md
+					15 text drop-folder-proof · Dropped here
+					16 button Open item: drop-folder-proof
+					17 button Dismiss: drop-folder-proof
+			18 container Explorer
+				19 pop up button Projects
+				20 text drop-folder-proof
+				21 button Project tree settings
+				22 button inside-drop.md
+				23 text Storage and recovery
+				24 text Open edits and recovery offers: 0
+				25 button Manage…
+			26 container
+				27 container Visited files
+					28 button Back, Help: Back: drop-proof.md
+/private/tmp/intentgrove-remaining-20261008/native-gestures/drop-proof.md
+					29 button (disabled) Forward, Help: No next file
+				30 tab group (selectable) Documents
+				31 pop up button Go menu
+				32 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+				33 heading Read your local Markdown, Value: 1
+					34 text Read your local Markdown
+				35 text Open a Markdown file to start reading.
+				36 button Open folder
+				37 button Open file
+	38 close button
+	39 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	40 minimize button
+	41 text Intentgrove
+42 menu bar
+	43 Intentgrove QA
+	44 File
+	45 Edit
+	46 View
+	47 Go
+	48 Window
+	49 Help

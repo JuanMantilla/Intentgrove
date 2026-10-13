@@ -1,0 +1,753 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/session.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/session.rs
+@@ -218,11 +218,11 @@
+         && anchor
+             .heading_id
+             .as_ref()
+-            .map_or(true, |value| value.len() <= 1024)
++            .is_none_or(|value| value.len() <= 1024)
+         && anchor
+             .content_version
+             .as_ref()
+-            .map_or(true, |value| value.len() <= 256)
++            .is_none_or(|value| value.len() <= 256)
+ }
+ 
+ pub(crate) fn validate(payload: &SessionPayload) -> AppResult<()> {
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/html_broker.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_broker.rs
+@@ -489,10 +489,8 @@
+             }
+             v.image_decoded += decoded;
+         }
+-        if kind == "font" {
+-            if !font_magic(&data) {
+-                return Err(err("unsupported", "Unrecognized font signature"));
+-            }
++        if kind == "font" && !font_magic(&data) {
++            return Err(err("unsupported", "Unrecognized font signature"));
+         }
+         v.resources.insert(path, (identity, stamp_key(&file)?));
+         Ok((data, mime))
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/editing.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/editing.rs
+@@ -16,7 +16,7 @@
+ use std::borrow::Cow;
+ use std::collections::HashMap;
+ use std::fs::File;
+-use std::path::PathBuf;
++use std::path::{Path, PathBuf};
+ use std::sync::{Arc, Mutex};
+ use tauri::State;
+ use tauri_plugin_dialog::DialogExt;
+@@ -140,12 +140,13 @@
+     ordinal: usize,
+     level: Option<u8>,
+     label: String,
+-    start: usize,
+-    end: usize,
++    range: std::ops::Range<usize>,
+     bytes: &[u8],
+     version: &str,
+ ) -> SectionDescriptor {
+-    let source_hash = hash(&bytes[start..end]);
++    let start = range.start;
++    let end = range.end;
++    let source_hash = hash(&bytes[range]);
+     let id = hash(format!("{version}:{ordinal}:{start}:{end}:{source_hash}").as_bytes());
+     SectionDescriptor {
+         id,
+@@ -219,8 +220,7 @@
+             0,
+             None,
+             String::new(),
+-            bom,
+-            bytes.len(),
++            bom..bytes.len(),
+             bytes,
+             version,
+         ));
+@@ -232,8 +232,7 @@
+             0,
+             None,
+             String::new(),
+-            bom,
+-            headings[0].0,
++            bom..headings[0].0,
+             bytes,
+             version,
+         ));
+@@ -248,8 +247,7 @@
+             result.len(),
+             Some(*level),
+             label.clone(),
+-            *start,
+-            end,
++            *start..end,
+             bytes,
+             version,
+         ));
+@@ -517,7 +515,7 @@
+     }
+ }
+ 
+-fn destination_parent(path: &PathBuf) -> AppResult<(File, String)> {
++fn destination_parent(path: &Path) -> AppResult<(File, String)> {
+     let name = path
+         .file_name()
+         .and_then(|value| value.to_str())
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/recovery.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/recovery.rs
+@@ -256,34 +256,29 @@
+     }
+ }
+ 
++crate::command_args::flat_command_args! {
++    CheckpointArgs {
++        session_id: String => "sessionId",
++        sequence: u64 => "sequence",
++        draft: String => "draft",
++        editor_json: Value => "editorJson",
++        editor_scroll_top: f64 => "editorScrollTop",
++        editor_scroll_left: f64 => "editorScrollLeft",
++        reader_scroll_top: f64 => "readerScrollTop",
++    }
++}
++
+ #[tauri::command]
+ pub async fn checkpoint_section_edit(
+     app: tauri::AppHandle,
+     state: State<'_, AppState>,
+     editing: State<'_, EditingState>,
+-    session_id: String,
+-    sequence: u64,
+-    draft: String,
+-    editor_json: Value,
+-    editor_scroll_top: f64,
+-    editor_scroll_left: f64,
+-    reader_scroll_top: f64,
++    args: CheckpointArgs,
+ ) -> AppResult<CheckpointAck> {
+     let state = state.inner().clone();
+     let editing = editing.inner().clone();
+     tauri::async_runtime::spawn_blocking(move || {
+-        checkpoint_section_edit_impl(
+-            &app,
+-            &state,
+-            &editing,
+-            session_id,
+-            sequence,
+-            draft,
+-            editor_json,
+-            editor_scroll_top,
+-            editor_scroll_left,
+-            reader_scroll_top,
+-        )
++        checkpoint_section_edit_impl(&app, &state, &editing, args)
+     })
+     .await
+     .map_err(|error| AppError::new("internal", error.to_string()))?
+@@ -293,14 +288,17 @@
+     app: &tauri::AppHandle,
+     state: &AppState,
+     editing: &EditingState,
+-    session_id: String,
+-    sequence: u64,
+-    draft: String,
+-    editor_json: Value,
+-    editor_scroll_top: f64,
+-    editor_scroll_left: f64,
+-    reader_scroll_top: f64,
++    args: CheckpointArgs,
+ ) -> AppResult<CheckpointAck> {
++    let CheckpointArgs {
++        session_id,
++        sequence,
++        draft,
++        editor_json,
++        editor_scroll_top,
++        editor_scroll_left,
++        reader_scroll_top,
++    } = args;
+     let started = Instant::now();
+     let sessions = editing
+         .sessions
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/lib.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/lib.rs
+@@ -3,6 +3,7 @@
+ #[cfg(all(feature = "acceptance-harness", target_os = "macos"))]
+ mod acceptance_harness;
+ mod assets;
++mod command_args;
+ mod default_markdown;
+ #[cfg(feature = "document-contract-tests")]
+ #[doc(hidden)]
+@@ -63,26 +64,50 @@
+ }
+ 
+ #[cfg(target_os = "macos")]
++crate::command_args::flat_command_args! {
++    NativeMenuArgs {
++        close_tab: bool => "closeTab",
++        save: bool => "save",
++        find: bool => "find",
++        reload: bool => "reload",
++        locale: String => "locale",
++        back: Option<bool> => "back",
++        forward: Option<bool> => "forward",
++        visited: Option<bool> => "visited",
++        clear_history: Option<bool> => "clearHistory",
++        editing_owner: Option<bool> => "editingOwner",
++        editing_undo: Option<bool> => "editingUndo",
++        editing_redo: Option<bool> => "editingRedo",
++        editing_selection: Option<bool> => "editingSelection",
++        default_markdown_ready: Option<bool> => "defaultMarkdownReady",
++        new_markdown_ready: Option<bool> => "newMarkdownReady",
++    }
++}
++
++#[cfg(target_os = "macos")]
+ #[tauri::command]
+ fn set_native_menu_state(
+     controls: tauri::State<'_, NativeMenuControls>,
+     window: tauri::WebviewWindow,
+-    close_tab: bool,
+-    save: bool,
+-    find: bool,
+-    reload: bool,
+-    locale: String,
+-    back: Option<bool>,
+-    forward: Option<bool>,
+-    visited: Option<bool>,
+-    clear_history: Option<bool>,
+-    editing_owner: Option<bool>,
+-    editing_undo: Option<bool>,
+-    editing_redo: Option<bool>,
+-    editing_selection: Option<bool>,
+-    default_markdown_ready: Option<bool>,
+-    new_markdown_ready: Option<bool>,
++    args: NativeMenuArgs,
+ ) -> scope::AppResult<()> {
++    let NativeMenuArgs {
++        close_tab,
++        save,
++        find,
++        reload,
++        locale,
++        back,
++        forward,
++        visited,
++        clear_history,
++        editing_owner,
++        editing_undo,
++        editing_redo,
++        editing_selection,
++        default_markdown_ready,
++        new_markdown_ready,
++    } = args;
+     let es = locale == "es";
+     controls
+         .new_markdown
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/html_tests.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_tests.rs
+@@ -430,7 +430,7 @@
+     {
+         use std::os::unix::fs::PermissionsExt;
+         let denied = dir.join("c.md");
+-        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();
++        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0o0)).unwrap();
+         let destination = view_url(&service, &token, "c.md#heading");
+         lock(&service)
+             .unwrap()
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/scope.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/scope.rs
+@@ -37,9 +37,7 @@
+ }
+ 
+ pub(crate) use crate::platform::read_search_entries;
+-pub use crate::platform::{
+-    identity, open_relative, open_selected, read_page, read_snapshot_entries, size,
+-};
++pub use crate::platform::{identity, open_relative, open_selected, read_snapshot_entries, size};
+ 
+ pub fn io_error(error: io::Error) -> AppError {
+     let code = match error.kind() {
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/image.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/image.rs
+@@ -135,8 +135,7 @@
+     if status != 0
+         || actual_text != claimed
+         || output.is_null()
+-        || output_length < 24
+-        || output_length > MAX_RESPONSE_BYTES
++        || !(24..=MAX_RESPONSE_BYTES).contains(&output_length)
+         || width == 0
+         || height == 0
+         || u64::from(width) * u64::from(height) > 40_000_000
+@@ -442,8 +441,7 @@
+     if status != 0
+         || actual_text != format
+         || output.is_null()
+-        || output_length < 24
+-        || output_length > MAX_RESPONSE_BYTES
++        || !(24..=MAX_RESPONSE_BYTES).contains(&output_length)
+         || width == 0
+         || height == 0
+         || width > 1024
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/state.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/state.rs
+@@ -311,6 +311,7 @@
+     }
+ 
+     /// Called only after a new native picker choice, never from a watcher path.
++    #[cfg(feature = "document-contract-tests")]
+     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+         self.reselect_root_with(previous_id, path, |_, _| Ok(()))
+     }
+@@ -397,6 +398,7 @@
+     }
+ 
+     /// Reauthorize only this file from a picker, keeping sibling access absent.
++    #[cfg(feature = "document-contract-tests")]
+     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
+         self.reselect_explicit_file_with(id, path, |_, _| Ok(()))
+     }
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/refresh.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/refresh.rs
+@@ -6,7 +6,9 @@
+ use serde::Serialize;
+ use std::collections::{HashMap, HashSet, VecDeque};
+ use std::sync::atomic::{AtomicBool, Ordering};
+-use std::sync::mpsc::{self, Receiver, RecvTimeoutError, Sender};
++#[cfg(feature = "document-contract-tests")]
++use std::sync::mpsc::RecvTimeoutError;
++use std::sync::mpsc::{self, Receiver, Sender};
+ use std::sync::{Arc, Mutex};
+ use std::time::Duration;
+ use tauri::{AppHandle, Emitter};
+@@ -137,6 +139,7 @@
+         while self.receiver.try_recv().is_ok() {}
+     }
+ 
++    #[cfg(feature = "document-contract-tests")]
+     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
+         match self.receiver.recv_timeout(timeout) {
+             Ok(Ok(event)) => {
+@@ -174,6 +177,7 @@
+         Ok(changed)
+     }
+ 
++    #[cfg(feature = "document-contract-tests")]
+     pub fn reconcile_visible(
+         &mut self,
+         root_id: &str,
+@@ -215,8 +219,8 @@
+                         notices.push(RefreshNotice::FileChanged {
+                             generation,
+                             file_id: file_id.clone(),
+-                            disk_version: disk_version,
+-                            identity_key: identity_key,
++                            disk_version,
++                            identity_key,
+                             checked_at: checked_at(),
+                         });
+                     }
+@@ -336,8 +340,8 @@
+             emit(ReloadUpdate::Notice(RefreshNotice::FileChanged {
+                 generation,
+                 file_id: file_id.to_string(),
+-                disk_version: disk_version,
+-                identity_key: identity_key,
++                disk_version,
++                identity_key,
+                 checked_at: checked_at(),
+             }));
+         }
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/assets.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/assets.rs
+@@ -177,7 +177,7 @@
+         .collect::<AppResult<Vec<_>>>()?;
+     let parent = crate::scope::open_selected(&base, true)?;
+     let file = open_relative(&parent, &segments, false)?;
+-    let grant = state.register_linked_file(&path, file)?;
++    let grant = state.register_linked_file(path, file)?;
+     let same_document = state.file(&grant.id)?.identity == source.identity;
+     Ok(LinkResponse {
+         kind: if same_document {
+@@ -443,7 +443,7 @@
+         std::fs::write(&denied, "denied").unwrap();
+         let state = AppState::default();
+         let source = state.register_explicit_file(&source_path).unwrap();
+-        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();
++        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0o0)).unwrap();
+         let result = resolve_link_impl(&state, &source.id, "denied.md");
+         std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0o600)).unwrap();
+         assert_eq!(result.unwrap_err().code, "denied");
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/search.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/search.rs
+@@ -240,7 +240,7 @@
+     if file
+         .metadata()
+         .ok()
+-        .map_or(true, |meta| meta.len() > MAX_IGNORE_BYTES as u64)
++        .is_none_or(|meta| meta.len() > MAX_IGNORE_BYTES as u64)
+     {
+         *skipped += 1;
+         return None;
+@@ -595,17 +595,30 @@
+     }
+ }
+ 
++crate::command_args::flat_command_args! {
++    FolderSearchArgs {
++        root_id: String => "rootId",
++        query: String => "query",
++        mode: String => "mode",
++        include_ignored: bool => "includeIgnored",
++        scope_segments: Option<Vec<String>> => "scopeSegments",
++    }
++}
++
+ #[tauri::command]
+ pub async fn start_folder_search(
+     app: AppHandle,
+     state: tauri::State<'_, AppState>,
+     searches: tauri::State<'_, SearchState>,
+-    root_id: String,
+-    query: String,
+-    mode: String,
+-    include_ignored: bool,
+-    scope_segments: Option<Vec<String>>,
++    args: FolderSearchArgs,
+ ) -> AppResult<SearchStarted> {
++    let FolderSearchArgs {
++        root_id,
++        query,
++        mode,
++        include_ignored,
++        scope_segments,
++    } = args;
+     let query = query.trim().to_string();
+     if query.is_empty() || query.len() > MAX_QUERY_BYTES {
+         return Err(AppError::new(
+@@ -692,7 +705,7 @@
+                 .count() as u64;
+             prior = found.start();
+             let distance = line.abs_diff(hit.line);
+-            if best.map_or(true, |(_, _, current)| distance < current) {
++            if best.is_none_or(|(_, _, current)| distance < current) {
+                 best = Some((ordinal, line, distance));
+             }
+             if distance == 0 {
+@@ -1177,7 +1190,7 @@
+         assert_eq!(final_batch.scanned, 25_000);
+         assert_eq!(final_batch.matched, 5);
+         assert_eq!(final_batch.skipped, 20_000);
+-        println!("F003F 25k complete scan: {:?}", elapsed);
++        println!("F003F 25k complete scan: {elapsed:?}");
+         let mut stop_times = Vec::new();
+         for trial in 0..10 {
+             let stop_job = Arc::new(SearchJob {
+@@ -1208,7 +1221,7 @@
+             assert_eq!(status, "stopped");
+             stop_times.push(stop_time);
+         }
+-        println!("F003F 25k worker stop trials: {:?}", stop_times);
++        println!("F003F 25k worker stop trials: {stop_times:?}");
+         assert!(
+             stop_times
+                 .iter()
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/settings.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/settings.rs
+@@ -539,8 +539,8 @@
+             .map(|m| {
+                 let area = m.work_area();
+                 let scale = m.scale_factor();
+-                let w = (area.size.width as f64 / scale - 32.).min(800.).max(320.);
+-                let h = (area.size.height as f64 / scale - 80.).min(720.).max(240.);
++                let w = monitor_dimension(area.size.width as f64 / scale - 32., 320., 800.);
++                let h = monitor_dimension(area.size.height as f64 / scale - 80., 240., 720.);
+                 (
+                     w,
+                     h,
+@@ -617,8 +617,39 @@
+     true
+ }
+ 
++// Preserve the former min(upper).max(lower) NaN fallback.
++fn monitor_dimension(value: f64, lower: f64, upper: f64) -> f64 {
++    if value.is_nan() {
++        upper
++    } else {
++        value.clamp(lower, upper)
++    }
++}
++
+ #[cfg(test)]
+ mod tests {
++    #[test]
++    fn monitor_dimensions_preserve_finite_infinite_and_nan_behavior() {
++        for (lower, upper) in [(320., 800.), (240., 720.)] {
++            for value in [
++                f64::NAN,
++                f64::NEG_INFINITY,
++                f64::INFINITY,
++                -1.,
++                0.,
++                lower,
++                500.,
++                upper,
++                900.,
++            ] {
++                assert_eq!(
++                    super::monitor_dimension(value, lower, upper),
++                    value.min(upper).max(lower)
++                );
++            }
++        }
++    }
++
+     use super::*;
+     fn owner() -> Coordinator {
+         let mut c = Coordinator::default();
+@@ -971,8 +1002,10 @@
+     #[test]
+     fn restored_custom_width_remains_valid_until_a_deliberate_new_width() {
+         let mut c = owner();
+-        let mut restored = Preferences::default();
+-        restored.reading_width = 1400.;
++        let restored = Preferences {
++            reading_width: 1400.,
++            ..Preferences::default()
++        };
+         c.publish(0, restored).unwrap();
+         c.request(
+             "size".into(),
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/command_args.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/command_args.rs
+@@ -0,0 +1,151 @@
++//! Group Rust command inputs without changing Tauri's existing flat IPC payloads.
++//! Each field uses Tauri's own argument decoder and its original camelCase key,
++//! retaining required/optional-field semantics and error attribution.
++macro_rules! flat_command_args {
++    ($name:ident { $($field:ident : $ty:ty => $key:literal),* $(,)? }) => {
++        #[derive(Debug, serde::Serialize)]
++        #[serde(rename_all = "camelCase")]
++        pub(crate) struct $name { $(pub(crate) $field: $ty),* }
++
++        impl<'de, R: tauri::Runtime> tauri::ipc::CommandArg<'de, R> for $name {
++            fn from_command(command: tauri::ipc::CommandItem<'de, R>)
++                -> Result<Self, tauri::ipc::InvokeError>
++            {
++                Ok(Self {
++                    $($field: <$ty as tauri::ipc::CommandArg<'de, R>>::from_command(
++                        tauri::ipc::CommandItem { key: $key, ..command }
++                    )?),*
++                })
++            }
++        }
++    };
++}
++pub(crate) use flat_command_args;
++
++#[cfg(all(test, feature = "settings-contract-tests", target_os = "macos"))]
++mod tests {
++    use serde_json::{json, Value};
++    use tauri::test::{get_ipc_response, mock_builder, mock_context, noop_assets, INVOKE_KEY};
++
++    #[tauri::command]
++    fn set_native_menu_state(args: crate::NativeMenuArgs) -> Value {
++        serde_json::to_value(args).unwrap()
++    }
++    #[tauri::command]
++    fn checkpoint_section_edit(args: crate::recovery::CheckpointArgs) -> Value {
++        serde_json::to_value(args).unwrap()
++    }
++    #[tauri::command]
++    fn start_folder_search(args: crate::search::FolderSearchArgs) -> Value {
++        serde_json::to_value(args).unwrap()
++    }
++
++    #[test]
++    fn grouped_inputs_preserve_flat_ipc_fields_types_and_optional_defaults() {
++        let app = mock_builder()
++            .invoke_handler(tauri::generate_handler![
++                set_native_menu_state,
++                checkpoint_section_edit,
++                start_folder_search
++            ])
++            .build(mock_context(noop_assets()))
++            .unwrap();
++        let window = tauri::WebviewWindowBuilder::new(&app, "main", Default::default())
++            .build()
++            .unwrap();
++        let cases = [
++            (
++                "set_native_menu_state",
++                json!({"closeTab":true,"save":false,"find":true,"reload":false,"locale":"es",
++                "back":true,"forward":false,"visited":true,"clearHistory":false,"editingOwner":true,
++                "editingUndo":false,"editingRedo":true,"editingSelection":false,
++                "defaultMarkdownReady":true,"newMarkdownReady":false}),
++                vec![
++                    "back",
++                    "forward",
++                    "visited",
++                    "clearHistory",
++                    "editingOwner",
++                    "editingUndo",
++                    "editingRedo",
++                    "editingSelection",
++                    "defaultMarkdownReady",
++                    "newMarkdownReady",
++                ],
++            ),
++            (
++                "checkpoint_section_edit",
++                json!({"sessionId":"session","sequence":u64::MAX,"draft":"α\r\n",
++                "editorJson":{"history":[1,2]},"editorScrollTop":-0.5,"editorScrollLeft":4.25,
++                "readerScrollTop":10.0}),
++                vec![],
++            ),
++            (
++                "start_folder_search",
++                json!({"rootId":"root","query":"å","mode":"literal","includeIgnored":true,
++                "scopeSegments":["one","two"]}),
++                vec!["scopeSegments"],
++            ),
++        ];
++        for (command, payload, optional) in cases {
++            let invoke = |body| {
++                get_ipc_response(
++                    &window,
++                    tauri::webview::InvokeRequest {
++                        cmd: command.into(),
++                        callback: tauri::ipc::CallbackFn(0),
++                        error: tauri::ipc::CallbackFn(1),
++                        // macOS custom-protocol origin, matching production local IPC.
++                        url: "tauri://localhost".parse().unwrap(),
++                        body,
++                        headers: Default::default(),
++                        invoke_key: INVOKE_KEY.into(),
++                    },
++                )
++                .map(|body| body.deserialize::<Value>().unwrap())
++            };
++            assert_eq!(
++                invoke(tauri::ipc::InvokeBody::Json(payload.clone())).unwrap(),
++                payload
++            );
++            for (key, value) in payload.as_object().unwrap() {
++                let mut missing = payload.clone();
++                missing.as_object_mut().unwrap().remove(key);
++                if optional.contains(&key.as_str()) {
++                    let mut expected = payload.clone();
++                    expected[key] = Value::Null;
++                    assert_eq!(
++                        invoke(tauri::ipc::InvokeBody::Json(missing)).unwrap(),
++                        expected
++                    );
++                    assert_eq!(
++                        invoke(tauri::ipc::InvokeBody::Json(expected.clone())).unwrap(),
++                        expected
++                    );
++                } else {
++                    let error = invoke(tauri::ipc::InvokeBody::Json(missing))
++                        .unwrap_err()
++                        .to_string();
++                    assert!(error.contains(key), "{command}: {error}");
++                }
++                // Value accepts all JSON by contract; other field types must reject objects.
++                if key != "editorJson" {
++                    let mut invalid = payload.clone();
++                    invalid[key] = json!({"invalid":value});
++                    let error = invoke(tauri::ipc::InvokeBody::Json(invalid))
++                        .unwrap_err()
++                        .to_string();
++                    assert!(error.contains(key), "{command}: {error}");
++                }
++            }
++            let mut extra = payload.clone();
++            extra["unknown"] = json!(true);
++            assert_eq!(
++                invoke(tauri::ipc::InvokeBody::Json(extra)).unwrap(),
++                payload
++            );
++            assert!(invoke(tauri::ipc::InvokeBody::Json(json!({"args":payload}))).is_err());
++            assert!(invoke(tauri::ipc::InvokeBody::Raw(vec![1, 2, 3])).is_err());
++        }
++    }
++}
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/default_markdown.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/default_markdown.rs
+@@ -68,6 +68,6 @@
+             consent_only(&["--request-default-markdown".into()]),
+             Some(4)
+         );
+-        assert!(!ENABLED);
++        const { assert!(!ENABLED) };
+     }
+ }
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/initial-source/src-tauri/src/platform/macos.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/macos.rs
+@@ -1,7 +1,9 @@
+ // Darwin mechanisms extracted without changing access/enumeration policy.
++#[cfg(test)]
++use crate::scope::DirectoryPage;
+ use crate::scope::{
+-    excluded, image_format, io_error, markdown_name, validate_segment, AppError, AppResult,
+-    DirectoryPage, Entry, Identity,
++    excluded, image_format, io_error, markdown_name, validate_segment, AppError, AppResult, Entry,
++    Identity,
+ };
+ use std::ffi::{CStr, CString};
+ use std::fs::File;
+@@ -141,6 +143,7 @@
+     Ok(())
+ }
+ 
++#[cfg(test)]
+ pub fn read_page(
+     dir: &File,
+     offset: usize,
+@@ -355,6 +358,22 @@
+     entries.sort_by(|a, b| a.name.cmp(&b.name));
+     Ok(entries)
+ }
++
++use super::FileStamp;
++use std::os::unix::fs::MetadataExt;
++pub(crate) fn stamp(file: &File) -> AppResult<FileStamp> {
++    let metadata = file.metadata().map_err(io_error)?;
++    Ok(FileStamp {
++        device: metadata.dev(),
++        inode: metadata.ino(),
++        length: metadata.len(),
++        modified_seconds: metadata.mtime(),
++        modified_nanos: metadata.mtime_nsec(),
++        changed_seconds: metadata.ctime(),
++        changed_nanos: metadata.ctime_nsec(),
++    })
++}
++
+ #[cfg(test)]
+ mod tests {
+     use super::*;
+@@ -489,18 +508,3 @@
+         std::fs::remove_dir_all(base).unwrap();
+     }
+ }
+-
+-use super::FileStamp;
+-use std::os::unix::fs::MetadataExt;
+-pub(crate) fn stamp(file: &File) -> AppResult<FileStamp> {
+-    let metadata = file.metadata().map_err(io_error)?;
+-    Ok(FileStamp {
+-        device: metadata.dev(),
+-        inode: metadata.ino(),
+-        length: metadata.len(),
+-        modified_seconds: metadata.mtime(),
+-        modified_nanos: metadata.mtime_nsec(),
+-        changed_seconds: metadata.ctime(),
+-        changed_nanos: metadata.ctime_nsec(),
+-    })
+-}

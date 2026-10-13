@@ -1,0 +1,131 @@
+**Exploration: src-tauri/build.rs tests/acceptance/check_build_boundary.py**
+
+Found 4 symbols across 2 files. 2 files pinned from the query.
+
+**Source Code**
+
+> The code below is the **verbatim, current on-disk source** of these files — re-read from disk on this call and line-numbered, byte-for-byte identical to what the Read tool returns. It is NOT a summary, outline, or stale cache. Treat each block as a Read you have already performed: do not Read a file shown here.
+
+**`src-tauri/build.rs`** — main(function), reject_qa_assets(function) · ⚠ changed since last index sync — source below is current; the symbol list may be outdated
+
+```rust
+1	fn main() {
+2	    // Tauri's mock-runtime IPC tests pull in TaskDialogIndirect. Rust's lib-test
+3	    // executable does not inherit the app resource manifest; activate v6 only
+4	    // for this opt-in test build, without changing shipped privilege settings.
+5	    if std::env::var_os("CARGO_FEATURE_SETTINGS_CONTRACT_TESTS").is_some()
+6	        && std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("windows") {
+7	        println!("cargo:rustc-link-arg=/MANIFEST:EMBED");
+8	        println!("cargo:rustc-link-arg=/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'");
+9	    }
+10	    println!("cargo:rerun-if-env-changed=TAURI_CONFIG");
+11	    println!("cargo:rerun-if-changed=../target/qa-dist/.qa-marker");
+12	    println!("cargo:rerun-if-changed=../dist/.qa-marker");
+13	    let mut config: serde_json::Value = serde_json::from_str(&std::fs::read_to_string("tauri.conf.json").unwrap()).unwrap();
+14	    if let Ok(extra) = std::env::var("TAURI_CONFIG") {
+15	        let extra: serde_json::Value = serde_json::from_str(&extra).expect("valid Tauri override");
+16	        if let Some(id) = extra.get("identifier") { config["identifier"] = id.clone(); }
+17	        if let Some(dist) = extra.pointer("/build/frontendDist") { config["build"]["frontendDist"] = dist.clone(); }
+18	    }
+19	    let qa = std::env::var_os("CARGO_FEATURE_ACCEPTANCE_HARNESS").is_some();
+20	    let qa_id = config["identifier"] == "com.juanmantilla.markdownworkspace.qa";
+21	    let dist = std::path::Path::new(config["build"]["frontendDist"].as_str().expect("local frontend"));
+22	    let marker = std::fs::read_to_string(dist.join(".qa-marker")).unwrap_or_default();
+23	    assert_eq!(qa, qa_id, "QA feature/identifier mismatch");
+24	    assert_eq!(qa, marker == "F002A-acceptance-harness-v1", "QA feature/frontend mismatch");
+25	    if !qa {
+26	        fn reject_qa_assets(directory: &std::path::Path) {
+27	            let Ok(entries) = std::fs::read_dir(directory) else { return; };
+28	            for entry in entries {
+29	                let path = entry.expect("frontend entry").path();
+30	                if path.is_dir() { reject_qa_assets(&path); }
+31	                else if matches!(path.extension().and_then(|s|s.to_str()), Some("js"|"html"|"json")) {
+32	                    let bytes = std::fs::read(&path).expect("frontend asset");
+33	                    for marker in [b"qa:snapshot-request".as_slice(), b"__F002A_FAULT", b"F002A-acceptance-harness-v1", b"diagram_acceptance", b"INTENTGROVE_DIAG:", b"__diagMode"] {
+34	                        assert!(!bytes.windows(marker.len()).any(|v|v==marker), "QA code in production assets");
+35	                    }
+36	                }
+37	            }
+38	        }
+39	        reject_qa_assets(dist);
+40	    }
+41	    if qa { assert_eq!(dist, std::path::Path::new("../target/qa-dist"), "QA frontend must be isolated"); }
+42	
+43	    println!("cargo:rerun-if-changed=src/macos_quit.m");
+44	    println!("cargo:rerun-if-changed=src/image_xpc_client.m");
+45	    if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("macos") {
+46	        let output = std::path::PathBuf::from(std::env::var_os("OUT_DIR").expect("Cargo output directory"));
+47	        let arch = match std::env::var("CARGO_CFG_TARGET_ARCH").as_deref() {
+48	            Ok("aarch64") => "arm64",
+49	            Ok("x86_64") => "x86_64",
+50	            _ => panic!("Unsupported macOS architecture"),
+51	        };
+52	        let status = std::process::Command::new("xcrun")
+53	            .args(["clang", "-arch", arch, "-fobjc-arc", "-fblocks", "-mmacosx-version-min=14.0", "-c", "src/macos_quit.m", "-o"])
+54	            .arg(output.join("macos_quit.o")).status().expect("macOS compiler");
+55	        assert!(status.success(), "macOS quit bridge compilation failed");
+56	        let status = std::process::Command::new("xcrun").args(["ar", "crs"])
+57	            .arg(output.join("libmd_quit.a")).arg(output.join("macos_quit.o"))
+58	            .status().expect("macOS archiver");
+59	        assert!(status.success(), "macOS quit bridge archive failed");
+60	        println!("cargo:rustc-link-search=native={}", output.display());
+61	        println!("cargo:rustc-link-lib=static=md_quit");
+62	        println!("cargo:rustc-link-lib=framework=Cocoa");
+63	        let status = std::process::Command::new("xcrun")
+64	            .args(["clang", "-arch", arch, "-fobjc-arc", "-fblocks", "-mmacosx-version-min=14.0", "-c", "src/image_xpc_client.m", "-o"])
+65	            .arg(output.join("image_xpc_client.o")).status().expect("macOS compiler");
+66	        assert!(status.success(), "image XPC client compilation failed");
+67	        let status = std::process::Command::new("xcrun").args(["ar", "crs"])
+68	            .arg(output.join("libmd_image_client.a")).arg(output.join("image_xpc_client.o"))
+69	            .status().expect("macOS archiver");
+70	        assert!(status.success(), "image XPC client archive failed");
+71	        println!("cargo:rustc-link-lib=static=md_image_client");
+72	        println!("cargo:rustc-link-lib=framework=Foundation");
+73	    }
+74	    tauri_build::build()
+75	}
+```
+
+**`tests/acceptance/check_build_boundary.py`** — MARKERS(variable), main(function) · ⚠ changed since last index sync — source below is current; the symbol list may be outdated
+
+```python
+1	#!/usr/bin/env python3
+2	"""Read-only supplement to Cargo guards; verify asset and binary QA separation."""
+3	import argparse
+4	from pathlib import Path
+5	import subprocess
+6	
+7	MARKERS = [b'qa:snapshot-request', b'__F002A_FAULT', b'F002A-acceptance-harness-v1']
+8	
+9	
+10	def main():
+11	    p = argparse.ArgumentParser(description=__doc__)
+12	    p.add_argument('kind', choices=['production','qa'])
+13	    p.add_argument('assets', type=Path)
+14	    p.add_argument('executable', type=Path)
+15	    args = p.parse_args()
+16	    qa = args.kind == 'qa'
+17	    contents = b''.join(f.read_bytes() for f in args.assets.rglob('*') if f.is_file())
+18	    found = [marker in contents for marker in MARKERS]
+19	    if (qa and not all(found)) or (not qa and any(found)):
+20	        p.error('frontend QA boundary mismatch')
+21	    # Binary feature evidence is combined with cfg/build guards and runtime checks, not relied on alone.
+22	    strings = subprocess.check_output(['strings', '-a', str(args.executable)])
+23	    # Tauri's asset map retains filenames even when file bodies are compressed.
+24	    for asset in args.assets.rglob('*'):
+25	        if asset.is_file() and asset.suffix in ('.js', '.css') and asset.name.encode() not in strings:
+26	            p.error('package does not embed the current asset set: '+asset.name)
+27	    native = b'F002A_BOOTSTRAP_FD' in strings
+28	    if native != qa:
+29	        p.error('native QA boundary mismatch')
+30	    if not qa and any(marker in strings for marker in MARKERS):
+31	        p.error('QA frontend embedded in production')
+32	    if not qa and any(marker in contents or marker in strings for marker in [b'diagram_acceptance', b'INTENTGROVE_DIAGRAM_ACCEPTANCE', b'INTENTGROVE_DIAG:', b'__diagMode']):
+33	        p.error('diagram diagnostic capability in production')
+34	    print('PASS: '+args.kind+' asset/binary marker boundary; runtime verification remains separate')
+35	
+36	if __name__ == '__main__': main()
+```
+
+
+> ⚠ Changed on disk after the last index sync: src-tauri/build.rs, tests/acceptance/check_build_boundary.py. Line numbers referencing these files elsewhere in this response (flow steps, blast radius, symbol lists) may be shifted until that project's next sync re-indexes them.

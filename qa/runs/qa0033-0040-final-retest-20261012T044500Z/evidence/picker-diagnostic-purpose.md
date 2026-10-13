@@ -1,0 +1,1 @@
+Separate controlled diagnostic, not an original gate or repair. Reuses original mocked null/denied replies, Filename and Permission denied expectations; puts a concurrent action at the invocation/acknowledgement boundary to demonstrate ownership. This does not prove that the prior untraced default-03 failure had the same order. Original test stays byte-identical.

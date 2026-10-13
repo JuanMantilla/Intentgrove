@@ -1,0 +1,1276 @@
+{
+  "historicalCause": "UNKNOWN",
+  "historicalCausalResolution": false,
+  "historicalDeadlineMs": 5000,
+  "experiments": {
+    "focused": {
+      "rows": 1597,
+      "observedPIDs": [
+        31371,
+        31372
+      ],
+      "targets": {
+        "approved workspace handoff > cancels Save As without clearing the original dirty state": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.015000000000327418,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 0.23545800000010786,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 9.842040999999881,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 30.66125000000011,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:section-ready",
+              "elapsedMs": 106.51224999999977,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 134.17479100000037,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:before-click",
+              "elapsedMs": 148.37862500000028,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:invoked",
+              "elapsedMs": 181.55345800000032,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 182.97187500000018,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 184.21054100000038,
+              "pid": 31371,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 184.5635000000002,
+              "pid": 31371,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 45.318143,
+          "maxRSSKiB": 271856,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "Timeout"
+              ]
+            }
+          ]
+        },
+        "dirty editor close choices (F004-R08, R15) > quit: Cancel": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.3381249999999909,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 6.203040999999985,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 39.111916000000065,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 136.25783300000012,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 200.41137500000013,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:checkpoint-dispatched",
+              "elapsedMs": 269.08458300000007,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "close:requested:quit",
+              "elapsedMs": 276.88583300000005,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-ready",
+              "elapsedMs": 284.79641600000014,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "close:before-choice:Cancel",
+              "elapsedMs": 285.1466660000001,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "close:clicked:Cancel",
+              "elapsedMs": 291.47679100000005,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-dismissed",
+              "elapsedMs": 297.50908300000015,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 300.95570799999996,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 304.14658299999996,
+              "pid": 31372,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 304.36862500000007,
+              "pid": 31372,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 61.407231,
+          "maxRSSKiB": 176512,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        }
+      },
+      "staleListenerStops": 0
+    },
+    "isolated": {
+      "rows": 83,
+      "observedPIDs": [
+        31406,
+        31407
+      ],
+      "targets": {
+        "approved workspace handoff > cancels Save As without clearing the original dirty state": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.2074999999999818,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 8.82287499999984,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 41.159875000000056,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 129.43045800000004,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:section-ready",
+              "elapsedMs": 272.18124999999986,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 360.304083,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:before-click",
+              "elapsedMs": 368.82299999999987,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:invoked",
+              "elapsedMs": 415.34062500000005,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 418.4337499999999,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 421.21012500000006,
+              "pid": 31406,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 422.527916,
+              "pid": 31406,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 98.435071,
+          "maxRSSKiB": 189824,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        },
+        "dirty editor close choices (F004-R08, R15) > quit: Cancel": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.19020900000009533,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 5.635792000000038,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 40.82229200000006,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 123.45154200000002,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 202.47675000000004,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:checkpoint-dispatched",
+              "elapsedMs": 293.48416700000007,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "close:requested:quit",
+              "elapsedMs": 302.5117090000001,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-ready",
+              "elapsedMs": 307.4579590000001,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "close:before-choice:Cancel",
+              "elapsedMs": 307.676334,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "close:clicked:Cancel",
+              "elapsedMs": 315.643542,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-dismissed",
+              "elapsedMs": 317.49970899999994,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 320.53820900000005,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 322.86129200000005,
+              "pid": 31407,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 323.1285419999999,
+              "pid": 31407,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 83.689471,
+          "maxRSSKiB": 176608,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        }
+      },
+      "staleListenerStops": 0
+    },
+    "held-adapter": {
+      "rows": 86,
+      "observedPIDs": [
+        31501,
+        31502
+      ],
+      "targets": {
+        "approved workspace handoff > cancels Save As without clearing the original dirty state": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.18566699999996672,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 8.320375000000013,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 37.47554200000002,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 109.58754199999987,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:section-ready",
+              "elapsedMs": 211.6351249999999,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 1220.527,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 1223.619667,
+              "pid": 31501,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 1223.965792,
+              "pid": 31501,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 68.222975,
+          "maxRSSKiB": 183440,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [
+                {
+                  "owner": 1,
+                  "mock": "beginSectionEdit",
+                  "order": 15,
+                  "state": "pending"
+                }
+              ],
+              "nodeResources": [
+                "SimpleWriteWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        },
+        "dirty editor close choices (F004-R08, R15) > quit: Cancel": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.18399999999996908,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 5.140790999999922,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 36.721374999999966,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 109.29408299999989,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 164.77766600000007,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 1169.779208,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 1172.2544579999999,
+              "pid": 31502,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 1172.5652499999997,
+              "pid": 31502,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 34.471935,
+          "maxRSSKiB": 176752,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [
+                {
+                  "owner": 1,
+                  "mock": "beginSectionEdit",
+                  "order": 16,
+                  "state": "pending"
+                }
+              ],
+              "nodeResources": [
+                "SimpleWriteWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        }
+      },
+      "staleListenerStops": 0
+    },
+    "eight-worker-attempt-01": {
+      "rows": 1770,
+      "observedPIDs": [
+        32203,
+        32204
+      ],
+      "targets": {
+        "approved workspace handoff > cancels Save As without clearing the original dirty state": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.024542000001019915,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 0.7432500000013533,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 30.24962500000038,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 105.29945800000132,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:section-ready",
+              "elapsedMs": 399.3159169999999,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 513.038708,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:before-click",
+              "elapsedMs": 568.6947500000006,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:invoked",
+              "elapsedMs": 688.736667000001,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 778.4696670000012,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 785.4262920000001,
+              "pid": 32203,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 786.2025000000012,
+              "pid": 32203,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 174.981119,
+          "maxRSSKiB": 240512,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        },
+        "dirty editor close choices (F004-R08, R15) > quit: Cancel": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 6.6504580000000715,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 13.173083000000133,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 83.63483300000007,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 299.89233300000024,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 490.45795799999996,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:checkpoint-dispatched",
+              "elapsedMs": 699.5078330000001,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "close:requested:quit",
+              "elapsedMs": 731.84575,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-ready",
+              "elapsedMs": 743.583541,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "close:before-choice:Cancel",
+              "elapsedMs": 744.2236659999999,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "close:clicked:Cancel",
+              "elapsedMs": 756.2643750000002,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-dismissed",
+              "elapsedMs": 813.900791,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 816.645458,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 823.9452500000002,
+              "pid": 32204,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 824.2783330000002,
+              "pid": 32204,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 198.443007,
+          "maxRSSKiB": 180128,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        }
+      },
+      "staleListenerStops": 0,
+      "processObservation": {
+        "command": [
+          "node_modules/.bin/vitest",
+          "run",
+          "--config",
+          "tests/diagnostics/reliability/vitest.config.ts"
+        ],
+        "environment": {
+          "INTENTGROVE_TRACE": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/reliability/session-20261008/eight-worker-attempt-01",
+          "INTENTGROVE_WORKERS": "8",
+          "INTENTGROVE_FULL": "1"
+        },
+        "testPID": 32200,
+        "testExit": 0,
+        "frontendSeconds": 21.783588084,
+        "compilerPID": null,
+        "compilerActiveAtFrontendCompletion": false,
+        "compilerExit": null,
+        "elapsedSeconds": 21.78361025
+      },
+      "ownedPIDs": [
+        32200,
+        32203,
+        32204,
+        32205,
+        32206,
+        32207,
+        32208,
+        32209,
+        32210,
+        32251,
+        32254,
+        32259,
+        32260,
+        32271,
+        32283,
+        32286,
+        32293,
+        32298,
+        32300,
+        32302,
+        32307,
+        32309,
+        32314,
+        32321,
+        32323,
+        32329,
+        32330,
+        32335,
+        32337,
+        32341,
+        32345,
+        32346,
+        32347,
+        32349,
+        32352,
+        32357,
+        32359,
+        32362,
+        32365,
+        32366,
+        32367,
+        32370,
+        32372,
+        32374,
+        32376,
+        32377,
+        32380,
+        32381,
+        32382,
+        32384,
+        32385,
+        32386,
+        32388,
+        32389
+      ],
+      "maxAggregateRSSKiB": 1764848
+    },
+    "concurrent-attempt-01": {
+      "rows": 1790,
+      "observedPIDs": [
+        33892,
+        33893
+      ],
+      "targets": {
+        "approved workspace handoff > cancels Save As without clearing the original dirty state": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.01920799999970768,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 0.3282499999986612,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 17.545249999999214,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 86.33899999999994,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:section-ready",
+              "elapsedMs": 337.1014579999992,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 440.54975000000013,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:before-click",
+              "elapsedMs": 464.0479579999992,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "save-as:invoked",
+              "elapsedMs": 614.3576249999987,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 764.4545829999988,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 773.4776659999989,
+              "pid": 33892,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 774.4593329999989,
+              "pid": 33892,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 168.820735,
+          "maxRSSKiB": 210368,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        },
+        "dirty editor close choices (F004-R08, R15) > quit: Cancel": {
+          "phases": [
+            {
+              "phase": "beforeEach:before-reset-observation",
+              "elapsedMs": 0.20787499999960346,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:start",
+              "elapsedMs": 11.207082999999784,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:rendered",
+              "elapsedMs": 65.5458749999998,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:document-clicked",
+              "elapsedMs": 482.6207909999998,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:editor-ready",
+              "elapsedMs": 738.974291,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "setup:checkpoint-dispatched",
+              "elapsedMs": 947.2745829999999,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "close:requested:quit",
+              "elapsedMs": 963.7390829999999,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-ready",
+              "elapsedMs": 966.868125,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "close:before-choice:Cancel",
+              "elapsedMs": 967.2054579999999,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "close:clicked:Cancel",
+              "elapsedMs": 984.873333,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "close:dialog-dismissed",
+              "elapsedMs": 1028.1992499999997,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:before",
+              "elapsedMs": 1031.446625,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:unmounted",
+              "elapsedMs": 1038.235291,
+              "pid": 33893,
+              "threadId": 0
+            },
+            {
+              "phase": "cleanup:settled",
+              "elapsedMs": 1038.4813749999998,
+              "pid": 33893,
+              "threadId": 0
+            }
+          ],
+          "maxLoopDelayMs": 217.841663,
+          "maxRSSKiB": 163360,
+          "workerAPIs": [
+            "undefined"
+          ],
+          "nativeBridgeValues": [
+            false
+          ],
+          "postCleanup": [
+            {
+              "editors": 0,
+              "listeners": [],
+              "pending": [],
+              "nodeResources": [
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap",
+                "PipeWrap"
+              ]
+            }
+          ]
+        }
+      },
+      "staleListenerStops": 0,
+      "processObservation": {
+        "command": [
+          "node_modules/.bin/vitest",
+          "run",
+          "--config",
+          "tests/diagnostics/reliability/vitest.config.ts"
+        ],
+        "environment": {
+          "INTENTGROVE_TRACE": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/reliability/session-20261008/concurrent-attempt-01",
+          "INTENTGROVE_WORKERS": "8",
+          "INTENTGROVE_FULL": "1"
+        },
+        "testPID": 33887,
+        "testExit": 0,
+        "frontendSeconds": 24.383091416000003,
+        "compilerCommand": [
+          "cargo",
+          "check",
+          "--lib",
+          "--manifest-path",
+          "src-tauri/Cargo.toml",
+          "--locked",
+          "--offline",
+          "--jobs",
+          "2"
+        ],
+        "compilerPID": 33886,
+        "compilerActiveAtFrontendCompletion": true,
+        "compilerExit": 0,
+        "elapsedSeconds": 72.053046625
+      },
+      "ownedPIDs": [
+        33886,
+        33887,
+        33889,
+        33891,
+        33892,
+        33893,
+        33894,
+        33895,
+        33896,
+        33897,
+        33898,
+        33899,
+        33909,
+        33910,
+        33915,
+        33921,
+        33922,
+        33928,
+        33929,
+        33935,
+        33939,
+        33970,
+        33972,
+        33976,
+        33979,
+        33981,
+        33982,
+        34005,
+        34007,
+        34008,
+        34010,
+        34011,
+        34013,
+        34015,
+        34020,
+        34026,
+        34038,
+        34039,
+        34040,
+        34044,
+        34048,
+        34049,
+        34051,
+        34052,
+        34053,
+        34055,
+        34062,
+        34068,
+        34075,
+        34076,
+        34080,
+        34082,
+        34083,
+        34086,
+        34092,
+        34093,
+        34096,
+        34098,
+        34100,
+        34102,
+        34103,
+        34104,
+        34107,
+        34109,
+        34111,
+        34112,
+        34114,
+        34115,
+        34117,
+        34118,
+        34120,
+        34122,
+        34124,
+        34126,
+        34128,
+        34131,
+        34135,
+        34140,
+        34143,
+        34145,
+        34147,
+        34149,
+        34150,
+        34151,
+        34153,
+        34155,
+        34156,
+        34157,
+        34158,
+        34160,
+        34161,
+        34165,
+        34166,
+        34167,
+        34170,
+        34171,
+        34173,
+        34175,
+        34179,
+        34180,
+        34181,
+        34184,
+        34185,
+        34187,
+        34188,
+        34190,
+        34192,
+        34195,
+        34196,
+        34198,
+        34199,
+        34200,
+        34201,
+        34204,
+        34206,
+        34210,
+        34211,
+        34213,
+        34214,
+        34218,
+        34219,
+        34220,
+        34221,
+        34223,
+        34224,
+        34227,
+        34228,
+        34229,
+        34230,
+        34231,
+        34233,
+        34235,
+        34237,
+        34239,
+        34240,
+        34242,
+        34244,
+        34245,
+        34247,
+        34249,
+        34250,
+        34251,
+        34255,
+        34259
+      ],
+      "maxAggregateRSSKiB": 2264944
+    }
+  },
+  "eightWorkerContext": "QA package builds overlapped the first eight-worker run; it is a retained current passing observation, not an idle controlled baseline. The subsequent concurrent-attempt01 uses only its explicitly owned compiler/test work."
+}

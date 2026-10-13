@@ -1,0 +1,90 @@
+[
+  {
+    "input": "note ",
+    "expected": null
+  },
+  {
+    "input": "note.",
+    "expected": null
+  },
+  {
+    "input": "note.md ",
+    "expected": null
+  },
+  {
+    "input": "note .MD.md",
+    "expected": null
+  },
+  {
+    "input": "file.txt",
+    "expected": null
+  },
+  {
+    "input": "notes.v1.txt",
+    "expected": null
+  },
+  {
+    "input": "release.v2",
+    "expected": null
+  },
+  {
+    "input": "release.v2.md",
+    "expected": "release.v2.md"
+  },
+  {
+    "input": "note.MD",
+    "expected": "note.md"
+  },
+  {
+    "input": "note.md.MD.md",
+    "expected": "note.md"
+  },
+  {
+    "input": " file",
+    "expected": " file.md"
+  },
+  {
+    "input": "Niño",
+    "expected": "Niño.md"
+  },
+  {
+    "input": "Niño.🚀",
+    "expected": "Niño.🚀.md"
+  },
+  {
+    "input": "file.abcdefghi",
+    "expected": "file.abcdefghi.md"
+  },
+  {
+    "input": "file.txt.md",
+    "expected": "file.txt.md"
+  },
+  {
+    "input": "note",
+    "expected": null
+  },
+  {
+    "input": " note",
+    "expected": " note.md"
+  },
+  {
+    "input": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "expected": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé.md"
+  },
+  {
+    "input": "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééa",
+    "expected": null
+  },
+  {
+    "input": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "expected": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀.md"
+  },
+  {
+    "input": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀a",
+    "expected": null
+  },
+  {
+    "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.MD.md",
+    "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.md"
+  }
+]

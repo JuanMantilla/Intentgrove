@@ -1,0 +1,231 @@
+{
+  "exit": 0,
+  "report": {
+    "kind": "settings-integration",
+    "owner": {
+      "accepted22": true,
+      "events": [
+        {
+          "at": 160,
+          "name": "settings:state",
+          "phase": "register"
+        },
+        {
+          "at": 160,
+          "name": "settings:intent",
+          "phase": "register"
+        },
+        {
+          "at": 160,
+          "name": "settings:closed",
+          "phase": "register"
+        },
+        {
+          "at": 161,
+          "name": "settings:opening",
+          "phase": "register"
+        },
+        {
+          "at": 161,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 162,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 6637,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 6637,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 6805,
+          "persistence": "pending",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 6805,
+          "persistence": "pending",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 6822,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 22
+        },
+        {
+          "at": 6822,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 22
+        },
+        {
+          "at": 6822,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 22
+        },
+        {
+          "at": 7305,
+          "persistence": "pending",
+          "phase": "accept",
+          "size": 22
+        },
+        {
+          "at": 7305,
+          "persistence": "pending",
+          "phase": "accept",
+          "size": 22
+        },
+        {
+          "at": 7318,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 7318,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 7318,
+          "persistence": "saved",
+          "phase": "accept",
+          "size": 16
+        },
+        {
+          "at": 7323,
+          "name": "settings:state",
+          "phase": "remove-request"
+        },
+        {
+          "at": 7323,
+          "name": "settings:intent",
+          "phase": "remove-request"
+        },
+        {
+          "at": 7323,
+          "name": "settings:closed",
+          "phase": "remove-request"
+        },
+        {
+          "at": 7323,
+          "name": "settings:opening",
+          "phase": "remove-request"
+        },
+        {
+          "at": 7325,
+          "name": "settings:state",
+          "phase": "remove"
+        },
+        {
+          "at": 7325,
+          "name": "settings:intent",
+          "phase": "remove"
+        },
+        {
+          "at": 7325,
+          "name": "settings:closed",
+          "phase": "remove"
+        },
+        {
+          "at": 7325,
+          "name": "settings:opening",
+          "phase": "remove"
+        }
+      ],
+      "listeners": 0,
+      "pendingNativeStops": 0,
+      "restoredAfter22": true,
+      "stopFailures": []
+    },
+    "passed": true,
+    "readerResult": {
+      "done": true,
+      "error": "",
+      "passed": true,
+      "restorationGateAfter": {
+        "ownerListeners": 4,
+        "sessionReady": true,
+        "snapshot": {
+          "activation": 0,
+          "group": "General",
+          "nativeThemeFailed": false,
+          "ownerAvailable": true,
+          "persistence": "saved",
+          "requestId": null,
+          "retryPatch": null,
+          "revision": 1,
+          "values": {
+            "appearance": "system",
+            "documentsAndImagesOnly": true,
+            "language": "en",
+            "readingFont": "roboto",
+            "readingLineHeight": 1.6,
+            "readingSize": 16,
+            "readingWidth": 760
+          }
+        }
+      },
+      "restorationGateBefore": {
+        "ownerListeners": 0,
+        "restorePending": true,
+        "sessionReady": false,
+        "snapshot": {
+          "activation": 0,
+          "group": "General",
+          "nativeThemeFailed": false,
+          "ownerAvailable": false,
+          "persistence": "saved",
+          "requestId": null,
+          "retryPatch": null,
+          "revision": 0,
+          "values": {
+            "appearance": "system",
+            "documentsAndImagesOnly": true,
+            "language": "en",
+            "readingFont": "roboto",
+            "readingLineHeight": 1.6,
+            "readingSize": 16,
+            "readingWidth": 760
+          }
+        }
+      }
+    },
+    "snapshot": {
+      "activation": 1,
+      "group": "General",
+      "nativeThemeFailed": false,
+      "ownerAvailable": true,
+      "persistence": "saved",
+      "requestId": "4d18cfed-26b7-4d3f-b9d9-91a1dc9be15c",
+      "retryPatch": null,
+      "revision": 3,
+      "values": {
+        "appearance": "system",
+        "documentsAndImagesOnly": true,
+        "language": "en",
+        "readingFont": "roboto",
+        "readingLineHeight": 1.6,
+        "readingSize": 16,
+        "readingWidth": 760
+      }
+    }
+  }
+}

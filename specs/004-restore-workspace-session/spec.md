@@ -125,3 +125,15 @@ The developer can start fresh, remove remembered workspace state, and trust that
 - F001 supplies folder browsing and per-tab scroll state within a running session. F004 separately specifies restoration of active edit mode, cursor/selection, undo/redo history, and unsaved drafts; this feature provides the shared folder, tab, layout, and reading-position state that F004 extends.
 - The two-second unexpected-termination checkpoint is a proposed default. A normal quit records the final state before exit and is expected to restore it exactly. The user's original documents are never used as session storage.
 - The visual treatment of restoring, loading, and unavailable states belongs in a separately reviewed design. The draft constitution's UI amendment is not an approval of that design.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003C-H01**: HTML uses the existing schema1 native selection/identity restore. Optional anchor htmlZoom (0.5–3) and htmlScrollLeft preserve viewer state, restored kind identifies HTML, and HTML edit/recovery state is refused. Reopen through open_local_view, mount, then set_html_location; never restore document forms or replay resource grants.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.
+
+
+## Authorized Workspace layouts extension — 2026-10-08
+
+F003C-L01: Settings offers accepted Margin/Folio/Atlas, default Margin for new/legacy profiles, explicit choice preserved across restart. F003C-L02: Switching is immediate presentation state through existing owner/checkpoint/ack, preserving tabs/document/position/selection/edit/history/drafts/recovery/search/grants and never saving/discarding/reloading/rewriting a document. F003C-L03: failures retain applied state and expose existing Retry; supported snapshots always advertise workspaceLayout; Settings gains no document/session authority. Current user explicitly authorizes the minimal native contract/storage extension. CRLF Save remains DEFERRED; direct rendered section editing remains authoritative. Scoped evidence: ../../os-engineering/evidence/workspace-layout-native-20261008/report.md. Historical acceptance records unchanged.

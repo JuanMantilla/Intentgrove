@@ -1,0 +1,143 @@
+[
+  {
+    "kind": "cmdw",
+    "outcome": "save",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "native picker"
+  },
+  {
+    "kind": "cmdw",
+    "outcome": "save",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "native picker"
+  },
+  {
+    "kind": "cmdw",
+    "outcome": "discard",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "native picker"
+  },
+  {
+    "kind": "cmdw",
+    "outcome": "discard",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "native picker"
+  },
+  {
+    "kind": "cmdw",
+    "outcome": "keep",
+    "n": 1,
+    "status": "PASS",
+    "scope": "reopen interrupted; resumed exact picker and verified marker/Unsaved",
+    "evidence": "cmdw-keep-1-reopened-retry.txt"
+  },
+  {
+    "kind": "cmdw",
+    "outcome": "keep",
+    "n": 2,
+    "status": "PASS",
+    "scope": "capture-error retried before edit input"
+  },
+  {
+    "kind": "cmdq",
+    "outcome": "save",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "cmdq",
+    "outcome": "save",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "cmdq",
+    "outcome": "discard",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "cmdq",
+    "outcome": "discard",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "menuquit",
+    "outcome": "save",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "menuquit",
+    "outcome": "save",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "menuquit",
+    "outcome": "discard",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "menuquit",
+    "outcome": "discard",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "save",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "save",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "discard",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "discard",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "keep",
+    "n": 1,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  },
+  {
+    "kind": "title",
+    "outcome": "keep",
+    "n": 2,
+    "status": "PASS",
+    "reopen": "getApp LaunchServices; not Dock"
+  }
+]

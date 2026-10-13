@@ -1,0 +1,29 @@
+{
+  "environment": "Chrome on macOS, real App through existing synthetic renderer fixture",
+  "actualViewport": {
+    "width": 2560,
+    "height": 1262
+  },
+  "requestedViewports": [
+    {
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "viewportOverride": "Did not change measured innerWidth/innerHeight; NOT RUN narrow",
+  "observed": [
+    "four final light/dark EN/ES screenshots reviewed",
+    "Filename focused",
+    "Projects Escape focus return",
+    "Tab/Shift+Tab containment in browser",
+    "System resolved to dark matching OS preference; live OS theme change NOT RUN"
+  ],
+  "historicalAttempts": [
+    "light-en-wide.png and light-en-narrow.png names reflect requested dimensions only; actual dimensions 2560x1262; do not use as narrow evidence"
+  ],
+  "finished_at": "2026-10-11T14:11:53.701677+00:00"
+}

@@ -1,0 +1,18 @@
+{
+  "case": "cancel-render-04",
+  "elapsedMs": 4.116291,
+  "events": [
+    "{\"value\":\"observe\",\"ppid\":15499,\"event\":\"started\",\"pid\":15507,\"time\":118047.80592487501}",
+    "{\"value\":{\"allowed\":0,\"errno\":1},\"ppid\":15499,\"event\":\"native-file\",\"pid\":15507,\"time\":118047.80605145833}",
+    "{\"value\":{\"result\":-1,\"errno\":1},\"ppid\":15499,\"event\":\"native-network\",\"pid\":15507,\"time\":118047.80610225}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":15499,\"event\":\"navigation\",\"pid\":15507,\"time\":118047.88654295834}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15507,\"time\":118047.88745233334}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15507,\"time\":118047.903873}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15507,\"time\":118048.00513241667}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15507,\"time\":118048.00515370833}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-complete\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15507,\"time\":118048.108008625}",
+    "{\"value\":\"{\\\"kind\\\":\\\"render-entered\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15507,\"time\":118048.20519395835}"
+  ],
+  "pid": 15507,
+  "result": "diagram_cancelled"
+}

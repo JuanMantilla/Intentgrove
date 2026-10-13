@@ -1,0 +1,7 @@
+# QA AUTOMATE / demonstrated frontend IMPLEMENT
+
+Preserve QA-0013's original320PASS/2FAIL and5000ms limits. Target current App/CodeMirror/mock-adapter traces, not inferred historical native execution. Compare isolated target journeys, full two files, eight-worker full suite and bounded task-owned native compilation. Record monotonic phases, event-loop delay, process CPU/RSS, actual async resource types, mock settlement/ownership and cleanup after unmount/microtasks. Negative controls deliberately withhold one awaited adapter and detect pending work; label injected failures separately. No deadline/assertion weakening or retries-as-resolution.
+
+Investigate QA Settings on exact isolated package: native state/owner publication and acknowledged changes, reader restoration gating, listener registration/disposal. Use existing authenticated diagnostic report transport only; Settings retains preference-only commands. Validate faults before scoped frontend/harness repair. Native/production profiles untouched; QA test-profile state preserved. Original cause may remain UNKNOWN after discriminating experiments.
+
+Environment: macOS27.0.1 arm64, existing Node20.19.6/Vitest4.1.11/jsdom29.1.1/React19.3.0 and Tauri2.11.5. Active Spec Kit feature is013-windows-desktop (F007W); no feature switch for this scoped investigation. Existing design/preferences/contracts unchanged. No dependency upgrade, admin/security/privilege/deployment/commit/push operations.

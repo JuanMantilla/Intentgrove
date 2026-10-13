@@ -1,6 +1,8 @@
 //! Protected current-user NTFS records. Native locking/restart/durability remain unverified.
 use super::*;
-use crate::platform::windows::{checked, native_open, native_open_options, native_open_with_share, rename_file};
+use crate::platform::windows::{
+    checked, native_open, native_open_options, native_open_with_share, rename_file,
+};
 use crate::scope::{identity, open_selected};
 use std::{
     io::{Read, Write},
@@ -222,16 +224,28 @@ pub(crate) fn ensure_private_dir(path: &Path) -> AppResult<()> {
         .ok_or_else(|| AppError::new("invalid_path", "Invalid storage name"))?;
     crate::scope::validate_segment(name)?;
     let access = FILE_READ_ATTRIBUTES | 0x00020000;
-    let open_existing = || native_open(
-        parent.as_raw_handle(), name, access, FILE_OPEN, 0, ptr::null(),
-    );
+    let open_existing = || {
+        native_open(
+            parent.as_raw_handle(),
+            name,
+            access,
+            FILE_OPEN,
+            0,
+            ptr::null(),
+        )
+    };
     let file = match open_existing() {
         Ok(file) => file,
         Err(error) if error.code == "missing" => {
             let sd = descriptor()?;
             match native_open_options(
-                parent.as_raw_handle(), name, access, FILE_CREATE,
-                FILE_ATTRIBUTE_DIRECTORY, sd.0.cast(), FILE_DIRECTORY_FILE,
+                parent.as_raw_handle(),
+                name,
+                access,
+                FILE_CREATE,
+                FILE_ATTRIBUTE_DIRECTORY,
+                sd.0.cast(),
+                FILE_DIRECTORY_FILE,
             ) {
                 Ok(file) => file,
                 // A concurrent creator may win. The bounded retry keeps

@@ -1,0 +1,20 @@
+--- /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_surface.m	2026-10-08 19:33:38
++++ /Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/html_surface-poc.m	2026-10-11 16:58:10
+@@ -12,7 +12,7 @@
+ extern void ig_html_op(const char*,uint64_t,uint64_t,const char*,const char*,void(*)(uint64_t,const char*),uint64_t);
+ static void probe_ignore(uint64_t ticket,const char*raw){}
+ #endif
+-static NSString *const IGCSP=@"default-src 'none'; script-src 'none'; connect-src 'none'; style-src ig-html: 'unsafe-inline'; img-src ig-html:; font-src ig-html:; media-src 'none'; object-src 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; sandbox allow-same-origin";
++static NSString *const IGCSP=@"default-src 'none'; script-src 'none'; connect-src 'none'; style-src ig-html: 'unsafe-inline'; img-src ig-html:; font-src ig-html:; media-src 'none'; object-src 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; sandbox allow-same-origin allow-scripts";
+ static void event(NSString *token,uint64_t generation,NSDictionary *value) {
+  NSData *json=[NSJSONSerialization dataWithJSONObject:value options:0 error:nil];
+  ig_html_event(token.UTF8String,generation,[[NSString alloc]initWithData:json encoding:NSUTF8StringEncoding].UTF8String);
+@@ -136,7 +136,7 @@
+  NSWindow *window=(__bridge NSWindow*)parent;
+  IGHTMLSurface *surface=[IGHTMLSurface new];surface.token=key;surface.generation=generation;surface.request=request;surface.initialURL=[NSString stringWithUTF8String:url];surface.initialPending=YES;surface.visible=visible;surface.stopped=[NSMutableSet set];
+  WKWebViewConfiguration *config=[WKWebViewConfiguration new];config.processPool=[WKProcessPool new];config.websiteDataStore=WKWebsiteDataStore.nonPersistentDataStore;
+- config.defaultWebpagePreferences.allowsContentJavaScript=NO;config.preferences.javaScriptCanOpenWindowsAutomatically=NO;
++ config.defaultWebpagePreferences.allowsContentJavaScript=YES;config.preferences.javaScriptCanOpenWindowsAutomatically=NO;
+  config.userContentController=[WKUserContentController new];[config setURLSchemeHandler:surface forURLScheme:@"ig-html"];
+  IGHTMLWebView *web=[[IGHTMLWebView alloc]initWithFrame:frame(window.contentView,x,y,w,h) configuration:config];surface.web=web;web.owner=surface;
+  web.navigationDelegate=surface;web.UIDelegate=surface;web.allowsBackForwardNavigationGestures=NO;web.allowsLinkPreview=NO;web.inspectable=NO;web.allowsMagnification=YES;web.hidden=YES;

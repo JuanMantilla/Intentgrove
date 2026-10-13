@@ -1,0 +1,109 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: reading.md
+/private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) scoped.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/docs/scoped.md
+						14 button Close tab: scoped.md, Help: Close tab
+					15 container
+						16 tab (selectable) mixed-11534336.md · This file is over the 10 MiB rich-reading limit, Help: /private/tmp/intentgrove-finish-20261008/fixtures/mixed-11534336.md
+						17 button Close tab: mixed-11534336.md, Help: Close tab
+					18 container
+						19 tab (selectable) hostile.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/hostile.md
+						20 button Close tab: hostile.md, Help: Close tab
+					21 container
+						22 tab (selected) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						23 button Close tab: reading.md, Help: Close tab
+				24 pop up button Go menu
+				25 button (collapsed) Open documents (4), Secondary Actions: Expand
+				26 container reading.md
+					27 text reading.md
+					28 text Folder root
+					29 button Edit section
+					30 summary Document…, Value: off
+						31 text Document…
+				32 text This file was opened individually. Open its folder, then open the file from the folder tree to follow links to other files.
+				33 button Dismiss
+				34 container reading.md
+					35 container Repeated
+						36 container (expanded) Secondary Actions: Collapse
+							37 summary Metadata, Value: on
+								38 text Metadata
+							39 description list
+								40 text title
+								41 text Disposable acceptance
+							42 summary View metadata source, Value: off
+								43 text View metadata source
+						44 container Edit section: Repeated
+							45 heading Repeated, Value: 1
+								46 text Repeated
+							47 button Edit section “Repeated”
+						48 container
+							49 text First paragraph with 
+							50 button neighbor, Help: second.md
+							51 text  and reference 
+							52 button second, Help: second.md
+							53 text .
+						54 container
+							55 text First footnote
+							56 button 1, Help: #fn-a
+							57 text .
+						58 container Edit section: Repeated
+							59 heading Repeated, Value: 1
+								60 text Repeated
+							61 button Edit section “Repeated”
+						62 container
+							63 text Second footnote
+							64 button 2, Help: #fn-b
+							65 text , then again
+							66 button 1, Help: #fn-a
+							67 text .
+						68 text js
+						69 button Copy code
+						70 text const answer = 42;
+
+						71 text mermaid
+						72 button Copy code
+						73 text flowchart LR
+  A --> B
+
+						74 text mermaid
+						75 button Copy code
+						76 text invalid }} <script>alert(1)</script>
+
+						77 image local
+						78 container
+							79 image remote
+							80 image escape
+						81 container
+							82 text [1] 
+							83 button ↩, Help: #fnref-a-1
+						84 text alpha note
+						85 container
+							86 text [2] 
+							87 button ↩, Help: #fnref-b-1
+						88 text beta note
+	89 close button
+	90 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	91 minimize button
+	92 text Intentgrove
+93 menu bar
+	94 Intentgrove Final Acceptance 20261008
+	95 File
+	96 Edit
+	97 View
+	98 Go
+	99 Window
+	100 Help
+
+The focused UI element is 35 container Repeated

@@ -1,0 +1,26 @@
+{
+  "status": "USER-AUTHORIZED",
+  "quote": "I approve the revision identified below and authorize its scoped frontend implementation. Do not implement the superseded first draft.",
+  "revision": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/designer-review-20261010-215012/html-proposals-20261010-215628/revision-20261010-220535",
+  "handoff_sha256": "304d98c2db6de8ae6fbce8c5305576b7d56f51e0779159e053f5e6406689b582",
+  "scope": [
+    "DR-001",
+    "DR-002",
+    "DR-004",
+    "DR-005"
+  ],
+  "deferred": [
+    "DR-003"
+  ],
+  "baseline_paths": [
+    "src/app/App.tsx",
+    "src/app/DocumentLocation.tsx",
+    "src/app/FolderSearchPanel.tsx",
+    "src/app/i18n.ts",
+    "src/styles/app.css",
+    "tests/ui/close-edit.test.tsx",
+    "tests/ui/folder-search.test.tsx",
+    "tests/fixtures/redesign-preview.tsx"
+  ],
+  "handoff_boundary_quote": "Stop at the implementation handoff; final user acceptance and deployment are separate."
+}

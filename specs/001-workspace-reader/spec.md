@@ -154,3 +154,18 @@ are excluded from v1; the app must not deliberately trigger a cloud download.
   distribution belong to F002–F005.
 - Performance targets are provisional until benchmarked on the actual Mac. Failure
   to meet them requires evidence and an approved revision, not silent relaxation.
+
+## Authorized standalone HTML extension — 2026-10-08
+
+October 6 remaining-scope authorization and the current native IMPLEMENT instruction supersede the historical staged gates for IR-02/03. Original approval snapshots remain immutable. Existing raw-HTML-as-inert-text rules apply to embedded Markdown HTML; standalone HTML has the separate boundary below. Approved option D and `design-reviews/03-10-27-01/proposals/html-view-handoff.md` remain the experience owner.
+
+- **F001-H01**: HTML/HTM names open through native picker, root listing, native entries, recents, filename search and restored file selections using type-aware descriptors. HTML content is excluded from folder content search and Markdown editing/recovery.
+- **F001-H02**: Render authored local HTML/CSS in a separate unprivileged native surface. Document JavaScript, native IPC, remote resources, active embedded documents, forms/submission, downloads, popups, redirects and automatic navigation are unavailable. Main renderer CSP and Settings privileges remain intact.
+- **F001-H03**: Every resource read uses actual grants, no-follow handles and current source/resource identities. An explicit file never grants its siblings or parent. Deliberate per-view resource file/folder selections are independent from the workspace root.
+- **F001-H04**: Bound document/resources/CSS imports/fonts/decoded images/diagnostics/load and inspection work. SVG embedded resources are unsupported; inline SVG remains under JavaScript-off/CSP containment. Limit or missing resources leave readable HTML and diagnostic reasons where possible.
+- **F001-H05**: Opening/ready/empty/failed, source/resource changes, missing anchors, cancellation and stale ownership are typed. Visible text Find, visible headings, location, fragments, native viewport, viewer-local zoom and refresh are available without document scripts.
+- **F001-H06**: Native-captured deliberate local links route by target type to HTML/Markdown/images/File details. A file link never launches an external application. Missing/outside-grant/blocked outcomes retain the source and shared history until destination success.
+- **F001-H07**: Dispose/cancel revoke resource authority and reject late work by owner/token/generation/request. Close/root replacement/Settings transitions cannot leave a document covering shell controls. Restore retains HTML location/zoom but no form or edit state.
+- **F001-H08**: Acceptance distinguishes direct native engine/broker, Tauri IPC, mocked UI, packaged and platform execution. Actual native authored CSS/resource/security/network/lifecycle evidence is required; configuration/compilation alone is insufficient.
+
+Detailed policy, contracts, acceptance and limitations: [native amendment](html-native-amendment-20261008.md). Full frontend integration and supported-platform acceptance remain explicit tasks; these requirements do not assert completion.

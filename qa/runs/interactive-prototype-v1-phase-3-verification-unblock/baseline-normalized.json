@@ -1,0 +1,2356 @@
+[
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 216,
+        "end_line": 216,
+        "columns": [
+          29,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 55,
+            "highlight_start": 29,
+            "text": "                            disk_version: disk_version,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 217,
+        "end_line": 217,
+        "columns": [
+          29,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 55,
+            "highlight_start": 29,
+            "text": "                            identity_key: identity_key,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 337,
+        "end_line": 337,
+        "columns": [
+          17,
+          43
+        ],
+        "text": [
+          {
+            "highlight_end": 43,
+            "highlight_start": 17,
+            "text": "                disk_version: disk_version,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 338,
+        "end_line": 338,
+        "columns": [
+          17,
+          43
+        ],
+        "text": [
+          {
+            "highlight_end": 43,
+            "highlight_start": 17,
+            "text": "                identity_key: identity_key,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "unused_imports",
+    "message": "unused import: `read_page`",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/scope.rs",
+        "line": 38,
+        "end_line": 38,
+        "columns": [
+          45,
+          54
+        ],
+        "text": [
+          {
+            "highlight_end": 54,
+            "highlight_start": 45,
+            "text": "    identity, open_relative, open_selected, read_page, read_snapshot_entries, size,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 216,
+        "end_line": 216,
+        "columns": [
+          29,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 55,
+            "highlight_start": 29,
+            "text": "                            disk_version: disk_version,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 217,
+        "end_line": 217,
+        "columns": [
+          29,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 55,
+            "highlight_start": 29,
+            "text": "                            identity_key: identity_key,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 337,
+        "end_line": 337,
+        "columns": [
+          17,
+          43
+        ],
+        "text": [
+          {
+            "highlight_end": 43,
+            "highlight_start": 17,
+            "text": "                disk_version: disk_version,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "message": "redundant field names in struct initialization",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 338,
+        "end_line": 338,
+        "columns": [
+          17,
+          43
+        ],
+        "text": [
+          {
+            "highlight_end": 43,
+            "highlight_start": 17,
+            "text": "                identity_key: identity_key,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "unused_imports",
+    "message": "unused import: `read_page`",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/scope.rs",
+        "line": 38,
+        "end_line": 38,
+        "columns": [
+          45,
+          54
+        ],
+        "text": [
+          {
+            "highlight_end": 54,
+            "highlight_start": 45,
+            "text": "    identity, open_relative, open_selected, read_page, read_snapshot_entries, size,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "dead_code",
+    "message": "function `read_page` is never used",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/platform/macos.rs",
+        "line": 144,
+        "end_line": 144,
+        "columns": [
+          8,
+          17
+        ],
+        "text": [
+          {
+            "highlight_end": 17,
+            "highlight_start": 8,
+            "text": "pub fn read_page("
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "dead_code",
+    "message": "methods `wait_for_hint` and `reconcile_visible` are never used",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 138,
+        "end_line": 138,
+        "columns": [
+          12,
+          25
+        ],
+        "text": [
+          {
+            "highlight_end": 25,
+            "highlight_start": 12,
+            "text": "    pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {"
+          }
+        ]
+      },
+      {
+        "file": "src/refresh.rs",
+        "line": 175,
+        "end_line": 175,
+        "columns": [
+          12,
+          29
+        ],
+        "text": [
+          {
+            "highlight_end": 29,
+            "highlight_start": 12,
+            "text": "    pub fn reconcile_visible("
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "dead_code",
+    "message": "methods `reselect_root` and `reselect_explicit_file` are never used",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/state.rs",
+        "line": 307,
+        "end_line": 307,
+        "columns": [
+          12,
+          25
+        ],
+        "text": [
+          {
+            "highlight_end": 25,
+            "highlight_start": 12,
+            "text": "    pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {"
+          }
+        ]
+      },
+      {
+        "file": "src/state.rs",
+        "line": 393,
+        "end_line": 393,
+        "columns": [
+          12,
+          34
+        ],
+        "text": [
+          {
+            "highlight_end": 34,
+            "highlight_start": 12,
+            "text": "    pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::needless_borrow",
+    "message": "this expression creates a reference which is immediately dereferenced by the compiler",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/assets.rs",
+        "line": 180,
+        "end_line": 180,
+        "columns": [
+          44,
+          49
+        ],
+        "text": [
+          {
+            "highlight_end": 49,
+            "highlight_start": 44,
+            "text": "    let grant = state.register_linked_file(&path, file)?;"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::collapsible_if",
+    "message": "this `if` statement can be collapsed",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/html_broker.rs",
+        "line": 487,
+        "end_line": 491,
+        "columns": [
+          9,
+          10
+        ],
+        "text": [
+          {
+            "highlight_end": 28,
+            "highlight_start": 9,
+            "text": "        if kind == \"font\" {"
+          },
+          {
+            "highlight_end": 36,
+            "highlight_start": 1,
+            "text": "            if !font_magic(&data) {"
+          },
+          {
+            "highlight_end": 79,
+            "highlight_start": 1,
+            "text": "                return Err(err(\"unsupported\", \"Unrecognized font signature\"));"
+          },
+          {
+            "highlight_end": 14,
+            "highlight_start": 1,
+            "text": "            }"
+          },
+          {
+            "highlight_end": 10,
+            "highlight_start": 1,
+            "text": "        }"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (8/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/editing.rs",
+        "line": 138,
+        "end_line": 147,
+        "columns": [
+          1,
+          23
+        ],
+        "text": [
+          {
+            "highlight_end": 12,
+            "highlight_start": 1,
+            "text": "fn section("
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    kind: &'static str,"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    ordinal: usize,"
+          },
+          {
+            "highlight_end": 23,
+            "highlight_start": 1,
+            "text": "    level: Option<u8>,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    label: String,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    start: usize,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    end: usize,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    bytes: &[u8],"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    version: &str,"
+          },
+          {
+            "highlight_end": 23,
+            "highlight_start": 1,
+            "text": ") -> SectionDescriptor {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::ptr_arg",
+    "message": "writing `&PathBuf` instead of `&Path` involves a new object where a slice will do",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/editing.rs",
+        "line": 520,
+        "end_line": 520,
+        "columns": [
+          29,
+          37
+        ],
+        "text": [
+          {
+            "highlight_end": 37,
+            "highlight_start": 29,
+            "text": "fn destination_parent(path: &PathBuf) -> AppResult<(File, String)> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/image.rs",
+        "line": 138,
+        "end_line": 139,
+        "columns": [
+          12,
+          46
+        ],
+        "text": [
+          {
+            "highlight_end": 30,
+            "highlight_start": 12,
+            "text": "        || output_length < 24"
+          },
+          {
+            "highlight_end": 46,
+            "highlight_start": 1,
+            "text": "        || output_length > MAX_RESPONSE_BYTES"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/image.rs",
+        "line": 445,
+        "end_line": 446,
+        "columns": [
+          12,
+          46
+        ],
+        "text": [
+          {
+            "highlight_end": 30,
+            "highlight_start": 12,
+            "text": "        || output_length < 24"
+          },
+          {
+            "highlight_end": 46,
+            "highlight_start": 1,
+            "text": "        || output_length > MAX_RESPONSE_BYTES"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "dead_code",
+    "message": "methods `wait_for_hint` and `reconcile_visible` are never used",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/refresh.rs",
+        "line": 138,
+        "end_line": 138,
+        "columns": [
+          12,
+          25
+        ],
+        "text": [
+          {
+            "highlight_end": 25,
+            "highlight_start": 12,
+            "text": "    pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {"
+          }
+        ]
+      },
+      {
+        "file": "src/refresh.rs",
+        "line": 175,
+        "end_line": 175,
+        "columns": [
+          12,
+          29
+        ],
+        "text": [
+          {
+            "highlight_end": 29,
+            "highlight_start": 12,
+            "text": "    pub fn reconcile_visible("
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "dead_code",
+    "message": "methods `reselect_root` and `reselect_explicit_file` are never used",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/state.rs",
+        "line": 307,
+        "end_line": 307,
+        "columns": [
+          12,
+          25
+        ],
+        "text": [
+          {
+            "highlight_end": 25,
+            "highlight_start": 12,
+            "text": "    pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {"
+          }
+        ]
+      },
+      {
+        "file": "src/state.rs",
+        "line": 393,
+        "end_line": 393,
+        "columns": [
+          12,
+          34
+        ],
+        "text": [
+          {
+            "highlight_end": 34,
+            "highlight_start": 12,
+            "text": "    pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::needless_borrow",
+    "message": "this expression creates a reference which is immediately dereferenced by the compiler",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/assets.rs",
+        "line": 180,
+        "end_line": 180,
+        "columns": [
+          44,
+          49
+        ],
+        "text": [
+          {
+            "highlight_end": 49,
+            "highlight_start": 44,
+            "text": "    let grant = state.register_linked_file(&path, file)?;"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::non_octal_unix_permissions",
+    "message": "using a non-octal value to set unix file permissions",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/assets.rs",
+        "line": 442,
+        "end_line": 442,
+        "columns": [
+          75,
+          76
+        ],
+        "text": [
+          {
+            "highlight_end": 76,
+            "highlight_start": 75,
+            "text": "        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::assertions_on_constants",
+    "message": "`assert!(true)` will be optimized out by the compiler",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/default_markdown.rs",
+        "line": 71,
+        "end_line": 71,
+        "columns": [
+          9,
+          26
+        ],
+        "text": [
+          {
+            "highlight_end": 26,
+            "highlight_start": 9,
+            "text": "        assert!(!ENABLED);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (10/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/recovery.rs",
+        "line": 260,
+        "end_line": 271,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "pub async fn checkpoint_section_edit("
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    app: tauri::AppHandle,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    state: State<'_, AppState>,"
+          },
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "    editing: State<'_, EditingState>,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    session_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    sequence: u64,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    draft: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    editor_json: Value,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editor_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "    editor_scroll_left: f64,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    reader_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<CheckpointAck> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (10/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/recovery.rs",
+        "line": 292,
+        "end_line": 303,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "fn checkpoint_section_edit_impl("
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    app: &tauri::AppHandle,"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "    state: &AppState,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editing: &EditingState,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    session_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    sequence: u64,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    draft: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    editor_json: Value,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editor_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "    editor_scroll_left: f64,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    reader_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<CheckpointAck> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::collapsible_if",
+    "message": "this `if` statement can be collapsed",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/html_broker.rs",
+        "line": 487,
+        "end_line": 491,
+        "columns": [
+          9,
+          10
+        ],
+        "text": [
+          {
+            "highlight_end": 28,
+            "highlight_start": 9,
+            "text": "        if kind == \"font\" {"
+          },
+          {
+            "highlight_end": 36,
+            "highlight_start": 1,
+            "text": "            if !font_magic(&data) {"
+          },
+          {
+            "highlight_end": 79,
+            "highlight_start": 1,
+            "text": "                return Err(err(\"unsupported\", \"Unrecognized font signature\"));"
+          },
+          {
+            "highlight_end": 14,
+            "highlight_start": 1,
+            "text": "            }"
+          },
+          {
+            "highlight_end": 10,
+            "highlight_start": 1,
+            "text": "        }"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::non_octal_unix_permissions",
+    "message": "using a non-octal value to set unix file permissions",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/html_tests.rs",
+        "line": 433,
+        "end_line": 433,
+        "columns": [
+          75,
+          76
+        ],
+        "text": [
+          {
+            "highlight_end": 76,
+            "highlight_start": 75,
+            "text": "        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::items_after_test_module",
+    "message": "items after a test module",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/platform/macos.rs",
+        "line": 355,
+        "end_line": 355,
+        "columns": [
+          1,
+          10
+        ],
+        "text": [
+          {
+            "highlight_end": 10,
+            "highlight_start": 1,
+            "text": "mod tests {"
+          }
+        ]
+      },
+      {
+        "file": "src/platform/macos.rs",
+        "line": 489,
+        "end_line": 489,
+        "columns": [
+          5,
+          21
+        ],
+        "text": [
+          {
+            "highlight_end": 21,
+            "highlight_start": 5,
+            "text": "use super::FileStamp;"
+          }
+        ]
+      },
+      {
+        "file": "src/platform/macos.rs",
+        "line": 490,
+        "end_line": 490,
+        "columns": [
+          5,
+          35
+        ],
+        "text": [
+          {
+            "highlight_end": 35,
+            "highlight_start": 5,
+            "text": "use std::os::unix::fs::MetadataExt;"
+          }
+        ]
+      },
+      {
+        "file": "src/platform/macos.rs",
+        "line": 491,
+        "end_line": 491,
+        "columns": [
+          1,
+          57
+        ],
+        "text": [
+          {
+            "highlight_end": 57,
+            "highlight_start": 1,
+            "text": "pub(crate) fn stamp(file: &File) -> AppResult<FileStamp> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 240,
+        "end_line": 243,
+        "columns": [
+          8,
+          67
+        ],
+        "text": [
+          {
+            "highlight_end": 12,
+            "highlight_start": 8,
+            "text": "    if file"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "        .metadata()"
+          },
+          {
+            "highlight_end": 14,
+            "highlight_start": 1,
+            "text": "        .ok()"
+          },
+          {
+            "highlight_end": 67,
+            "highlight_start": 1,
+            "text": "        .map_or(true, |meta| meta.len() > MAX_IGNORE_BYTES as u64)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (8/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 599,
+        "end_line": 608,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 34,
+            "highlight_start": 1,
+            "text": "pub async fn start_folder_search("
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    app: AppHandle,"
+          },
+          {
+            "highlight_end": 39,
+            "highlight_start": 1,
+            "text": "    state: tauri::State<'_, AppState>,"
+          },
+          {
+            "highlight_end": 45,
+            "highlight_start": 1,
+            "text": "    searches: tauri::State<'_, SearchState>,"
+          },
+          {
+            "highlight_end": 21,
+            "highlight_start": 1,
+            "text": "    root_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    query: String,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    mode: String,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    include_ignored: bool,"
+          },
+          {
+            "highlight_end": 41,
+            "highlight_start": 1,
+            "text": "    scope_segments: Option<Vec<String>>,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<SearchStarted> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 695,
+        "end_line": 695,
+        "columns": [
+          16,
+          71
+        ],
+        "text": [
+          {
+            "highlight_end": 71,
+            "highlight_start": 16,
+            "text": "            if best.map_or(true, |(_, _, current)| distance < current) {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/session.rs",
+        "line": 200,
+        "end_line": 203,
+        "columns": [
+          12,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 18,
+            "highlight_start": 12,
+            "text": "        && anchor"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "            .heading_id"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "            .as_ref()"
+          },
+          {
+            "highlight_end": 55,
+            "highlight_start": 1,
+            "text": "            .map_or(true, |value| value.len() <= 1024)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/session.rs",
+        "line": 204,
+        "end_line": 207,
+        "columns": [
+          12,
+          54
+        ],
+        "text": [
+          {
+            "highlight_end": 18,
+            "highlight_start": 12,
+            "text": "        && anchor"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "            .content_version"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "            .as_ref()"
+          },
+          {
+            "highlight_end": 54,
+            "highlight_start": 1,
+            "text": "            .map_or(true, |value| value.len() <= 256)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (8/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/editing.rs",
+        "line": 138,
+        "end_line": 147,
+        "columns": [
+          1,
+          23
+        ],
+        "text": [
+          {
+            "highlight_end": 12,
+            "highlight_start": 1,
+            "text": "fn section("
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    kind: &'static str,"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    ordinal: usize,"
+          },
+          {
+            "highlight_end": 23,
+            "highlight_start": 1,
+            "text": "    level: Option<u8>,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    label: String,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    start: usize,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    end: usize,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    bytes: &[u8],"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    version: &str,"
+          },
+          {
+            "highlight_end": 23,
+            "highlight_start": 1,
+            "text": ") -> SectionDescriptor {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::ptr_arg",
+    "message": "writing `&PathBuf` instead of `&Path` involves a new object where a slice will do",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/editing.rs",
+        "line": 520,
+        "end_line": 520,
+        "columns": [
+          29,
+          37
+        ],
+        "text": [
+          {
+            "highlight_end": 37,
+            "highlight_start": 29,
+            "text": "fn destination_parent(path: &PathBuf) -> AppResult<(File, String)> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/image.rs",
+        "line": 138,
+        "end_line": 139,
+        "columns": [
+          12,
+          46
+        ],
+        "text": [
+          {
+            "highlight_end": 30,
+            "highlight_start": 12,
+            "text": "        || output_length < 24"
+          },
+          {
+            "highlight_end": 46,
+            "highlight_start": 1,
+            "text": "        || output_length > MAX_RESPONSE_BYTES"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "message": "clamp-like pattern without using clamp function",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/settings.rs",
+        "line": 542,
+        "end_line": 542,
+        "columns": [
+          25,
+          83
+        ],
+        "text": [
+          {
+            "highlight_end": 83,
+            "highlight_start": 25,
+            "text": "                let w = (area.size.width as f64 / scale - 32.).min(800.).max(320.);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "message": "clamp-like pattern without using clamp function",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/settings.rs",
+        "line": 543,
+        "end_line": 543,
+        "columns": [
+          25,
+          84
+        ],
+        "text": [
+          {
+            "highlight_end": 84,
+            "highlight_start": 25,
+            "text": "                let h = (area.size.height as f64 / scale - 80.).min(720.).max(240.);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/image.rs",
+        "line": 445,
+        "end_line": 446,
+        "columns": [
+          12,
+          46
+        ],
+        "text": [
+          {
+            "highlight_end": 30,
+            "highlight_start": 12,
+            "text": "        || output_length < 24"
+          },
+          {
+            "highlight_end": 46,
+            "highlight_start": 1,
+            "text": "        || output_length > MAX_RESPONSE_BYTES"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (17/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/lib.rs",
+        "line": 62,
+        "end_line": 80,
+        "columns": [
+          1,
+          26
+        ],
+        "text": [
+          {
+            "highlight_end": 26,
+            "highlight_start": 1,
+            "text": "fn set_native_menu_state("
+          },
+          {
+            "highlight_end": 52,
+            "highlight_start": 1,
+            "text": "    controls: tauri::State<'_, NativeMenuControls>,"
+          },
+          {
+            "highlight_end": 34,
+            "highlight_start": 1,
+            "text": "    window: tauri::WebviewWindow,"
+          },
+          {
+            "highlight_end": 21,
+            "highlight_start": 1,
+            "text": "    close_tab: bool,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    save: bool,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    find: bool,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    reload: bool,"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    locale: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    back: Option<bool>,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    forward: Option<bool>,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    visited: Option<bool>,"
+          },
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "    clear_history: Option<bool>,"
+          },
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "    editing_owner: Option<bool>,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    editing_undo: Option<bool>,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    editing_redo: Option<bool>,"
+          },
+          {
+            "highlight_end": 37,
+            "highlight_start": 1,
+            "text": "    editing_selection: Option<bool>,"
+          },
+          {
+            "highlight_end": 42,
+            "highlight_start": 1,
+            "text": "    default_markdown_ready: Option<bool>,"
+          },
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "    new_markdown_ready: Option<bool>,"
+          },
+          {
+            "highlight_end": 26,
+            "highlight_start": 1,
+            "text": ") -> scope::AppResult<()> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (10/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/recovery.rs",
+        "line": 260,
+        "end_line": 271,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "pub async fn checkpoint_section_edit("
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    app: tauri::AppHandle,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    state: State<'_, AppState>,"
+          },
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "    editing: State<'_, EditingState>,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    session_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    sequence: u64,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    draft: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    editor_json: Value,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editor_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "    editor_scroll_left: f64,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    reader_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<CheckpointAck> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (10/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/recovery.rs",
+        "line": 292,
+        "end_line": 303,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "fn checkpoint_section_edit_impl("
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    app: &tauri::AppHandle,"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "    state: &AppState,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editing: &EditingState,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    session_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    sequence: u64,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    draft: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    editor_json: Value,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    editor_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "    editor_scroll_left: f64,"
+          },
+          {
+            "highlight_end": 28,
+            "highlight_start": 1,
+            "text": "    reader_scroll_top: f64,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<CheckpointAck> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 240,
+        "end_line": 243,
+        "columns": [
+          8,
+          67
+        ],
+        "text": [
+          {
+            "highlight_end": 12,
+            "highlight_start": 8,
+            "text": "    if file"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "        .metadata()"
+          },
+          {
+            "highlight_end": 14,
+            "highlight_start": 1,
+            "text": "        .ok()"
+          },
+          {
+            "highlight_end": 67,
+            "highlight_start": 1,
+            "text": "        .map_or(true, |meta| meta.len() > MAX_IGNORE_BYTES as u64)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (8/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 599,
+        "end_line": 608,
+        "columns": [
+          1,
+          30
+        ],
+        "text": [
+          {
+            "highlight_end": 34,
+            "highlight_start": 1,
+            "text": "pub async fn start_folder_search("
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    app: AppHandle,"
+          },
+          {
+            "highlight_end": 39,
+            "highlight_start": 1,
+            "text": "    state: tauri::State<'_, AppState>,"
+          },
+          {
+            "highlight_end": 45,
+            "highlight_start": 1,
+            "text": "    searches: tauri::State<'_, SearchState>,"
+          },
+          {
+            "highlight_end": 21,
+            "highlight_start": 1,
+            "text": "    root_id: String,"
+          },
+          {
+            "highlight_end": 19,
+            "highlight_start": 1,
+            "text": "    query: String,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    mode: String,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    include_ignored: bool,"
+          },
+          {
+            "highlight_end": 41,
+            "highlight_start": 1,
+            "text": "    scope_segments: Option<Vec<String>>,"
+          },
+          {
+            "highlight_end": 30,
+            "highlight_start": 1,
+            "text": ") -> AppResult<SearchStarted> {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 695,
+        "end_line": 695,
+        "columns": [
+          16,
+          71
+        ],
+        "text": [
+          {
+            "highlight_end": 71,
+            "highlight_start": 16,
+            "text": "            if best.map_or(true, |(_, _, current)| distance < current) {"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::uninlined_format_args",
+    "message": "variables can be used directly in the `format!` string",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 1163,
+        "end_line": 1163,
+        "columns": [
+          9,
+          59
+        ],
+        "text": [
+          {
+            "highlight_end": 59,
+            "highlight_start": 9,
+            "text": "        println!(\"F003F 25k complete scan: {:?}\", elapsed);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::uninlined_format_args",
+    "message": "variables can be used directly in the `format!` string",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/search.rs",
+        "line": 1194,
+        "end_line": 1194,
+        "columns": [
+          9,
+          67
+        ],
+        "text": [
+          {
+            "highlight_end": 67,
+            "highlight_start": 9,
+            "text": "        println!(\"F003F 25k worker stop trials: {:?}\", stop_times);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/session.rs",
+        "line": 200,
+        "end_line": 203,
+        "columns": [
+          12,
+          55
+        ],
+        "text": [
+          {
+            "highlight_end": 18,
+            "highlight_start": 12,
+            "text": "        && anchor"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "            .heading_id"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "            .as_ref()"
+          },
+          {
+            "highlight_end": 55,
+            "highlight_start": 1,
+            "text": "            .map_or(true, |value| value.len() <= 1024)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "message": "this `map_or` can be simplified",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/session.rs",
+        "line": 204,
+        "end_line": 207,
+        "columns": [
+          12,
+          54
+        ],
+        "text": [
+          {
+            "highlight_end": 18,
+            "highlight_start": 12,
+            "text": "        && anchor"
+          },
+          {
+            "highlight_end": 29,
+            "highlight_start": 1,
+            "text": "            .content_version"
+          },
+          {
+            "highlight_end": 22,
+            "highlight_start": 1,
+            "text": "            .as_ref()"
+          },
+          {
+            "highlight_end": 54,
+            "highlight_start": 1,
+            "text": "            .map_or(true, |value| value.len() <= 256)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "message": "clamp-like pattern without using clamp function",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/settings.rs",
+        "line": 542,
+        "end_line": 542,
+        "columns": [
+          25,
+          83
+        ],
+        "text": [
+          {
+            "highlight_end": 83,
+            "highlight_start": 25,
+            "text": "                let w = (area.size.width as f64 / scale - 32.).min(800.).max(320.);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "message": "clamp-like pattern without using clamp function",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/settings.rs",
+        "line": 543,
+        "end_line": 543,
+        "columns": [
+          25,
+          84
+        ],
+        "text": [
+          {
+            "highlight_end": 84,
+            "highlight_start": 25,
+            "text": "                let h = (area.size.height as f64 / scale - 80.).min(720.).max(240.);"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::field_reassign_with_default",
+    "message": "field assignment outside of initializer for an instance created with Default::default()",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/settings.rs",
+        "line": 975,
+        "end_line": 975,
+        "columns": [
+          9,
+          40
+        ],
+        "text": [
+          {
+            "highlight_end": 40,
+            "highlight_start": 9,
+            "text": "        restored.reading_width = 1400.;"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "message": "this function has too many arguments (17/7)",
+    "level": "error",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "spans": [
+      {
+        "file": "src/lib.rs",
+        "line": 62,
+        "end_line": 80,
+        "columns": [
+          1,
+          26
+        ],
+        "text": [
+          {
+            "highlight_end": 26,
+            "highlight_start": 1,
+            "text": "fn set_native_menu_state("
+          },
+          {
+            "highlight_end": 52,
+            "highlight_start": 1,
+            "text": "    controls: tauri::State<'_, NativeMenuControls>,"
+          },
+          {
+            "highlight_end": 34,
+            "highlight_start": 1,
+            "text": "    window: tauri::WebviewWindow,"
+          },
+          {
+            "highlight_end": 21,
+            "highlight_start": 1,
+            "text": "    close_tab: bool,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    save: bool,"
+          },
+          {
+            "highlight_end": 16,
+            "highlight_start": 1,
+            "text": "    find: bool,"
+          },
+          {
+            "highlight_end": 18,
+            "highlight_start": 1,
+            "text": "    reload: bool,"
+          },
+          {
+            "highlight_end": 20,
+            "highlight_start": 1,
+            "text": "    locale: String,"
+          },
+          {
+            "highlight_end": 24,
+            "highlight_start": 1,
+            "text": "    back: Option<bool>,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    forward: Option<bool>,"
+          },
+          {
+            "highlight_end": 27,
+            "highlight_start": 1,
+            "text": "    visited: Option<bool>,"
+          },
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "    clear_history: Option<bool>,"
+          },
+          {
+            "highlight_end": 33,
+            "highlight_start": 1,
+            "text": "    editing_owner: Option<bool>,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    editing_undo: Option<bool>,"
+          },
+          {
+            "highlight_end": 32,
+            "highlight_start": 1,
+            "text": "    editing_redo: Option<bool>,"
+          },
+          {
+            "highlight_end": 37,
+            "highlight_start": 1,
+            "text": "    editing_selection: Option<bool>,"
+          },
+          {
+            "highlight_end": 42,
+            "highlight_start": 1,
+            "text": "    default_markdown_ready: Option<bool>,"
+          },
+          {
+            "highlight_end": 38,
+            "highlight_start": 1,
+            "text": "    new_markdown_ready: Option<bool>,"
+          },
+          {
+            "highlight_end": 26,
+            "highlight_start": 1,
+            "text": ") -> scope::AppResult<()> {"
+          }
+        ]
+      }
+    ]
+  }
+]

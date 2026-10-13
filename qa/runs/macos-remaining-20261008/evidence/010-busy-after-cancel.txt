@@ -1,0 +1,79 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text search-25000 Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: MANIFEST_QUERY_19_UNIQUE, Placeholder: File name or text
+							14 text (settable) MANIFEST_QUERY_19_UNIQUE
+							15 button cancel
+					16 text Search scope: search-25000 · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Search complete · 25,002 entries scanned, 19,985 skipped · Results: 1
+					28 container group-19/document-000.md
+						29 heading group-19/document-000.md 1, Help: group-19/document-000.md, Value: 3
+							30 text group-19/document-000.md 1
+						31 button group-19/document-000.md · Line 2 · MANIFEST_QUERY_19_UNIQUE, Help: group-19/document-000.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 container
+				36 container Visited files
+					37 button Back, Help: Back: busy.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/busy.md
+					38 button (disabled) Forward, Help: No next file
+				39 tab group (selectable) Documents
+					40 container
+						41 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md, Value: on
+						42 button Close tab: plain.md, Help: Close tab
+					43 container
+						44 tab (selectable) busy.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/busy.md
+						45 button Close tab: busy.md, Help: Close tab
+				46 pop up button Go menu
+				47 button (collapsed) Open documents (2), Secondary Actions: Expand
+				48 container plain.md
+					49 text plain.md
+					50 text Outside the open folder
+					51 toggle button Outline, Value: off
+					52 button (collapsed) Reading settings, Secondary Actions: Expand
+					53 button Edit section
+					54 summary Document…, Value: off
+						55 text Document…
+				56 container plain.md
+					57 container Unrelated document
+						58 container Edit section: Unrelated document
+							59 heading Unrelated document, Value: 1
+								60 text Unrelated document
+							61 button Edit section “Unrelated document”
+						62 text Responsive tab.
+	63 close button
+	64 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	65 minimize button
+	66 text Intentgrove
+67 menu bar
+	68 Intentgrove QA
+	69 File
+	70 Edit
+	71 View
+	72 Go
+	73 Window
+	74 Help
+
+The focused UI element is 41 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md, Value: on

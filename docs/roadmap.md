@@ -1,5 +1,7 @@
 # Delivery roadmap
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](current-version-acceptance-20261010.md).
+
 Each row is a vertical feature with its own approved specification, tasks and
 verification. The first slice is intentionally smaller than the full first release.
 The initial five slices and the later image-viewing request constitute the proposed v1 scope.

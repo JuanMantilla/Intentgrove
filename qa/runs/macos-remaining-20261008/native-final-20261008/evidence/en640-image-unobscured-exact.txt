@@ -1,0 +1,57 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: rich.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						14 button Close tab: search-navigation.md, Help: Close tab
+					15 container
+						16 tab (selectable) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						17 button Close tab: rich.md, Help: Close tab
+					18 container
+						19 tab (selected) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						20 button Close tab: qa-image.png, Help: Close tab
+				21 pop up button Go menu
+				22 button (collapsed) Open documents (3), Secondary Actions: Expand
+				23 container qa-image.png
+					24 text qa-image.png
+					25 text Folder root
+					26 summary Document…, Value: off
+						27 text Document…
+				28 text The passage moved; showing the closest available position
+				29 button Dismiss
+				30 container qa-image.png
+					31 text Format: PNG Dimensions: 128 × 96
+					32 container qa-image.png
+						33 toggle button Fit, Value: off
+						34 toggle button Actual size, Value: on
+						35 button Zoom out
+						36 container 100%
+							37 text 100%
+						38 button Zoom in
+					39 container qa-image.png
+						40 image qa-image.png
+	41 close button
+	42 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	43 minimize button
+	44 text Intentgrove
+45 menu bar
+	46 Intentgrove
+	47 File
+	48 Edit
+	49 View
+	50 Go
+	51 Window
+	52 Help
+
+The focused UI element is 4 button Toggle sidebar

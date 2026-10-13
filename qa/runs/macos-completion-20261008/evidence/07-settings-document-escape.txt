@@ -1,0 +1,39 @@
+The following is a diff from the previous accessibility tree for Window: "Intentgrove" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 18, 20-34, 36, 40-41, 43, 47-48, 50, 54-83
+~13 standard window Intentgrove, Secondary Actions: Raise
+~		15 HTML content Description: Intentgrove, URL: tauri://localhost
+~				17 button Toggle sidebar
++				18 text Workspace Local files only
+~				19 button (disabled) Outline
++				20 button (collapsed) Reading settings, Secondary Actions: Expand
++				21 button Settings
++				22 button Open file
++				23 button Open folder
++			24 container Explorer
++				25 pop up button Projects
++				26 text Open a Markdown file to start reading.
++				27 button Open folder
++				28 text Storage and recovery
++				29 text Open edits and recovery offers: 0
++				30 button Manage…
++			31 container
++				32 container Visited files
++					33 button (disabled) Back, Help: No previous file
++					34 button (disabled) Forward, Help: No next file
++				35 tab group (selectable) Documents
++				36 pop up button Go menu
++				37 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
++				38 heading Read your local Markdown, Value: 1
++					39 text Read your local Markdown
++				40 text Choose a repository or a file. Documents stay on this Mac.
++				41 button Open folder
++				42 button Open file
++				43 container Recent items
++					44 heading Recent items, Value: 2
++						45 text Recent items
++					46 text Items you open will appear here.
++	47 close button
++	48 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
++	49 minimize button
++	50 text Intentgrove
+The focused UI element is 20 button (collapsed) Reading settings, Secondary Actions: Expand

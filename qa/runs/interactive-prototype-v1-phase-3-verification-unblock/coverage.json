@@ -1,0 +1,180 @@
+[
+  {
+    "requirement": "ipc-contract-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "settings-contract-tests",
+      "--lib",
+      "command_args::tests"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/ipc-contract-v3.log"
+  },
+  {
+    "requirement": "native-clippy-final-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--lib",
+      "--tests",
+      "--message-format=json",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/native-clippy-final-v3.log"
+  },
+  {
+    "requirement": "native-tests-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "document-contract-tests",
+      "--lib",
+      "--tests"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/native-tests-v3.log"
+  },
+  {
+    "requirement": "native-check-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/native-check-v3.log"
+  },
+  {
+    "requirement": "frontend-v3",
+    "result": "FAIL",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-v3-results.json"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-v3.log"
+  },
+  {
+    "requirement": "types-v3",
+    "result": "PASS",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/types-v3.log"
+  },
+  {
+    "requirement": "vite-v3",
+    "result": "PASS",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vite/bin/vite.js",
+      "build",
+      "--outDir",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-build-v3"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/vite-v3.log"
+  },
+  {
+    "requirement": "phase12-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/phase12-v3.log"
+  },
+  {
+    "requirement": "crate-clippy-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/crate-clippy-v3.log"
+  },
+  {
+    "requirement": "crate-format-v3",
+    "result": "PASS",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/crate-format-v3.log"
+  },
+  {
+    "requirement": "app-boundaries-v3",
+    "result": "PASS",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/audit_boundaries.py"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/app-boundaries-v3.log"
+  },
+  {
+    "requirement": "crate-boundaries-v3",
+    "result": "PASS",
+    "command": [
+      "python3",
+      "crates/check_boundaries.py"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/crate-boundaries-v3.log"
+  },
+  {
+    "requirement": "maintenance-format-v3",
+    "result": "PASS",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/strict-clippy-baseline-cleanup/format_scope.py",
+      "--check"
+    ],
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/maintenance-format-v3.log"
+  }
+]

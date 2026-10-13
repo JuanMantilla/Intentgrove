@@ -1,0 +1,62 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - text: Local files only
+  - button "Appearance":
+  - generic: Language
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Settings":
+- button "Projects" [expanded]:
+  - text: Projects
+- group "Visited files":
+  - button "Back" [disabled]:
+  - button "Forward" [disabled]:
+- tablist "Documents"
+- button "Go menu": Go
+- button "Open documents (0)" [disabled]
+- complementary "Explorer":
+  - button "Projects":
+    - generic: Projects
+  - button "Close Projects sidebar":
+  - button "Open file"
+  - button "Open folder"
+  - button "Search folder" [disabled]:
+    - text: Search folder
+  - paragraph: Open a Markdown file to start reading.
+  - strong: Storage and recovery
+  - generic: "Open edits and recovery offers: 0"
+  - status: "Unresolved or unverified: 1"
+  - button "Manage…"
+  - button "Settings…"
+- main:
+  - dialog "New Markdown file":
+    - heading "New Markdown file" [level=2]
+    - button "Cancel" [disabled]
+    - paragraph: Name your file and choose where it belongs.
+    - generic: Filename
+    - textbox "Filename" [disabled]: failure-test
+    - paragraph: The .md extension is added once. failure-test.md
+    - generic: Destination
+    - status "Destination": /fixture/disposable
+    - button "Choose folder…" [disabled]
+    - status: Working…
+    - button "Create file" [disabled]
+  - generic: M
+  - heading "Read your local Markdown" [level=1]
+  - paragraph: Choose a repository or a file. Documents stay on this Mac.
+  - button "New Markdown file"
+  - button "Open folder"
+  - button "Open file"
+  - region "Recent items":
+    - heading "Recent items" [level=2]
+    - paragraph: Items you open will appear here.
+- contentinfo:
+  - generic: Local files only
+  - generic: Intentgrove by Theonira
+- complementary:
+  - generic: Mocked native wait
+  - button "Resolve"
+  - button "Fail"
+  - button "Reduce motion (CSS simulation)"

@@ -1,0 +1,24 @@
+{
+  "name": "native-clippy-final",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--lib",
+    "--tests",
+    "--message-format=json",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:02:24.491892+00:00",
+  "finished_at": "2026-10-12T04:03:04.066421+00:00",
+  "exit_code": 0,
+  "log": "native-clippy-final.log",
+  "tested_snapshot": "tested-snapshot-final.json"
+}

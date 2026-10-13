@@ -1,0 +1,29 @@
+{
+  "result": "MATCHES_REVIEWED_SCOPE",
+  "method": "actual App in Chrome with MOCKED native bridge in explicitly measured iframe; screenshot captures and DOM geometry",
+  "matrix": "render-matrix-final.json",
+  "canonical_captures": 24,
+  "dimensions": [
+    [
+      1280,
+      820
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "resolved_system": "dark",
+  "reviewed": "dialog/editor hierarchy, labels, controls, wrapping, sidebar dismissal, title/toolbar geometry, visible editor, no horizontal overflow",
+  "adaptations": "prior header Cancel/640px desktop dialog/explicit Choose folder retained; selected Option B structure and established editor reused",
+  "corrected_narrow_defects": [
+    "closed full-width sidebar still visually covering editor",
+    "column toolbar title percentage flex basis enlarged title to191.5px; final20px"
+  ],
+  "limits": [
+    "390px browser stress only; native min640 unchanged",
+    "live System changes/screen reader/zoom NOT RUN",
+    "fixture mock recovery/file-success labels are not native evidence"
+  ],
+  "superseded_narrow_images": "vfinal/v5 narrow editor captures retained as pre-fix evidence"
+}

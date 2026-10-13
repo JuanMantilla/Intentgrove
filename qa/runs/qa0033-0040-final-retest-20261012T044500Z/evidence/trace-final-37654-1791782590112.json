@@ -1,0 +1,3759 @@
+[
+  {
+    "n": 0,
+    "at": 2654.081416,
+    "test": "validates note",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 1,
+    "at": 2656.601916,
+    "test": "validates note.MD",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 2,
+    "at": 2658.221791,
+    "test": "validates note.md.md",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 3,
+    "at": 2659.317125,
+    "test": "validates Niño",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 4,
+    "at": 2660.302291,
+    "test": "validates ",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 5,
+    "at": 2660.975833,
+    "test": "validates .MD",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 6,
+    "at": 2661.529375,
+    "test": "validates ../file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 7,
+    "at": 2662.077791,
+    "test": "validates a\\b",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 8,
+    "at": 2662.733375,
+    "test": "validates NUL.txt",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 9,
+    "at": 2663.404083,
+    "test": "validates file.",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 10,
+    "at": 2664.130875,
+    "test": "validates  file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 11,
+    "at": 2664.760958,
+    "test": "validates file ",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 12,
+    "at": 2665.328333,
+    "test": "validates CONIN$",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 13,
+    "at": 2666.168416,
+    "test": "validates LPT¹",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 14,
+    "at": 2668.014416,
+    "test": "validates a\u0000b",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 15,
+    "at": 2668.636916,
+    "test": "validates aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 16,
+    "at": 2680.01975,
+    "test": "focuses Filename, contains Tab, cancels and restores focus without invoking native IO",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 17,
+    "at": 3012.069666,
+    "test": "focuses Filename, contains Tab, cancels and restores focus without invoking native IO",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 18,
+    "at": 3013.484958,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 19,
+    "at": 3032.604333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 20,
+    "at": 3039.072333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 21,
+    "at": 3039.918083,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 22,
+    "at": 3039.980916,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-call"
+  },
+  {
+    "n": 23,
+    "at": 3040.342333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 24,
+    "at": 3043.887583,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-ack",
+    "selected": null
+  },
+  {
+    "n": 25,
+    "at": 3043.9045,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 26,
+    "at": 3045.348083,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 27,
+    "at": 3054.026666,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 28,
+    "at": 3054.16825,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 29,
+    "at": 3054.233208,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-call"
+  },
+  {
+    "n": 30,
+    "at": 3054.820166,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 31,
+    "at": 3063.960458,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-catch",
+    "failure": {
+      "code": "denied",
+      "message": "test"
+    },
+    "mounted": true
+  },
+  {
+    "n": 32,
+    "at": 3064.232791,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 33,
+    "at": 3064.478916,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": false,
+    "error": "Permission denied",
+    "owner": false
+  },
+  {
+    "n": 34,
+    "at": 3090.023625,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 35,
+    "at": 3090.162541,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 36,
+    "at": 3090.222291,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-call"
+  },
+  {
+    "n": 37,
+    "at": 3090.939291,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 38,
+    "at": 3095.756291,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-ack",
+    "selected": {
+      "token": "choice",
+      "name": "Disposable",
+      "displayPath": "/tmp/disposable"
+    }
+  },
+  {
+    "n": 39,
+    "at": 3095.809625,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 40,
+    "at": 3099.067166,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 41,
+    "at": 3113.924333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 42,
+    "at": 3115.348791,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 43,
+    "at": 3121.373791,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "click",
+    "text": "Elegir carpeta…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 44,
+    "at": 3121.496625,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 45,
+    "at": 3121.659958,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-call"
+  },
+  {
+    "n": 46,
+    "at": 3121.904125,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-render",
+    "filename": "",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 47,
+    "at": 3132.997791,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-ack",
+    "selected": null
+  },
+  {
+    "n": 48,
+    "at": 3133.003958,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 49,
+    "at": 3133.291583,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 50,
+    "at": 3140.771,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 51,
+    "at": 3142.174125,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 52,
+    "at": 3147.866541,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 53,
+    "at": 3148.205708,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 54,
+    "at": 3174.062208,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "picker-render",
+    "filename": "first.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 55,
+    "at": 3176.34525,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 56,
+    "at": 3178.400125,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 57,
+    "at": 3340.487583,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 58,
+    "at": 3349.733875,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 59,
+    "at": 3377.347791,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 60,
+    "at": 3397.303583,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "Projects",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 61,
+    "at": 3444.549583,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "New Markdown file⌘T",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 62,
+    "at": 3449.077791,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 63,
+    "at": 3466.002166,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 64,
+    "at": 3550.919291,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 65,
+    "at": 3563.422083,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "picker-render",
+    "filename": "retained",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 66,
+    "at": 3589.41875,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 67,
+    "at": 3676.604125,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 68,
+    "at": 3781.151041,
+    "test": "does not open over another modal",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 69,
+    "at": 3782.395,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 70,
+    "at": 3792.519791,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 71,
+    "at": 3792.683291,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 72,
+    "at": 3792.720875,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-call"
+  },
+  {
+    "n": 73,
+    "at": 3792.920375,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-render",
+    "filename": "",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 74,
+    "at": 3796.306125,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-render",
+    "filename": "bad/name",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 75,
+    "at": 3801.969875,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-render",
+    "filename": "bad/name",
+    "pending": true,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": true
+  },
+  {
+    "n": 76,
+    "at": 3806.693791,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-ack",
+    "selected": null
+  },
+  {
+    "n": 77,
+    "at": 3806.700166,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 78,
+    "at": 3807.592583,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 79,
+    "at": 3812.385583,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 80,
+    "at": 3817.3875,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 81,
+    "at": 3819.32675,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 82,
+    "at": 3819.44375,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 83,
+    "at": 3825.356083,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-guard",
+    "owner": true,
+    "blocked": true,
+    "pending": true
+  },
+  {
+    "n": 84,
+    "at": 3837.461458,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 85,
+    "at": 3837.583125,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 86,
+    "at": 3840.230875,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 87,
+    "at": 3841.525708,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 88,
+    "at": 3846.223041,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 89,
+    "at": 3849.525958,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 90,
+    "at": 3849.665416,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 91,
+    "at": 3849.694041,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-call"
+  },
+  {
+    "n": 92,
+    "at": 3849.826166,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 93,
+    "at": 3853.707625,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-ack",
+    "selected": {
+      "token": "one",
+      "name": "One",
+      "displayPath": "/tmp/one"
+    }
+  },
+  {
+    "n": 94,
+    "at": 3853.742958,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 95,
+    "at": 3854.181416,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 96,
+    "at": 3858.22325,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 97,
+    "at": 3858.515375,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 98,
+    "at": 3858.5465,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-call"
+  },
+  {
+    "n": 99,
+    "at": 3858.710875,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 100,
+    "at": 3861.3365,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-ack",
+    "selected": {
+      "token": "two",
+      "name": "Two",
+      "displayPath": "/tmp/two"
+    }
+  },
+  {
+    "n": 101,
+    "at": 3861.426625,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 102,
+    "at": 3862.008916,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 103,
+    "at": 3867.229458,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 104,
+    "at": 3867.451791,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 105,
+    "at": 3869.497625,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 106,
+    "at": 3869.700833,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": "A file or folder with this name already exists. Choose another name.",
+    "owner": false
+  },
+  {
+    "n": 107,
+    "at": 3878.534875,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 108,
+    "at": 3880.080208,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 109,
+    "at": 3885.255875,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 110,
+    "at": 3889.484208,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 111,
+    "at": 3889.618041,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 112,
+    "at": 3892.060666,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 113,
+    "at": 3893.810833,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": "File created, but could not be opened or verified. Reopen it or select it through Projects: /tmp/disposable/first.md",
+    "owner": false
+  },
+  {
+    "n": 114,
+    "at": 3899.501625,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": true,
+    "pending": false
+  },
+  {
+    "n": 115,
+    "at": 3901.366958,
+    "test": "prevents recreation after committed outcome",
+    "event": "click",
+    "text": "Reopen created file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 116,
+    "at": 3901.812541,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": "File created, but could not be opened or verified. Reopen it or select it through Projects: /tmp/disposable/first.md",
+    "owner": true
+  },
+  {
+    "n": 117,
+    "at": 3903.701958,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 118,
+    "at": 3904.447916,
+    "test": "prevents recreation after committed outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": "File created, but could not be opened or verified. Reopen it or select it through Projects: /tmp/disposable/first.md",
+    "owner": false
+  },
+  {
+    "n": 119,
+    "at": 3906.536708,
+    "test": "prevents recreation after committed outcome",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 120,
+    "at": 3907.3825,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 121,
+    "at": 3911.279791,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 122,
+    "at": 3912.897083,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 123,
+    "at": 3913.031333,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 124,
+    "at": 3915.457125,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 125,
+    "at": 3915.807166,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": "Creation could not be confirmed. Inspect the destination through Projects before trying again.",
+    "owner": false
+  },
+  {
+    "n": 126,
+    "at": 3924.071625,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": true,
+    "pending": false
+  },
+  {
+    "n": 127,
+    "at": 3926.018208,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 128,
+    "at": 4021.369708,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 129,
+    "at": 4038.408458,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 130,
+    "at": 4063.824958,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 131,
+    "at": 4068.366625,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 132,
+    "at": 4068.642625,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 133,
+    "at": 4068.684541,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-call"
+  },
+  {
+    "n": 134,
+    "at": 4068.885541,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 135,
+    "at": 4079.961458,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-ack",
+    "selected": {
+      "token": "explicit-choice",
+      "name": "Disposable",
+      "displayPath": "/tmp/disposable"
+    }
+  },
+  {
+    "n": 136,
+    "at": 4080.004666,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 137,
+    "at": 4080.863208,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 138,
+    "at": 4089.451333,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 139,
+    "at": 4090.391083,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 140,
+    "at": 4090.632125,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 141,
+    "at": 4095.084333,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 142,
+    "at": 4096.589583,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 143,
+    "at": 4096.68,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 144,
+    "at": 4140.110666,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 145,
+    "at": 4140.802875,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 146,
+    "at": 4179.883875,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 147,
+    "at": 4282.055916,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 148,
+    "at": 4379.983916,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 149,
+    "at": 4381.271166,
+    "test": "blocks composition Enter and cancels without creating",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 150,
+    "at": 4388.148375,
+    "test": "blocks composition Enter and cancels without creating",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 151,
+    "at": 4399.104375,
+    "test": "blocks composition Enter and cancels without creating",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 152,
+    "at": 4521.7285,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 153,
+    "at": 4538.351,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 154,
+    "at": 4551.552958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 155,
+    "at": 4556.590875,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 156,
+    "at": 4556.756458,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 157,
+    "at": 4556.796041,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-call"
+  },
+  {
+    "n": 158,
+    "at": 4557.003083,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 159,
+    "at": 4588.155833,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-ack",
+    "selected": {
+      "token": "choice",
+      "name": "Disposable",
+      "displayPath": "/tmp/disposable"
+    }
+  },
+  {
+    "n": 160,
+    "at": 4588.204166,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 161,
+    "at": 4588.850958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 162,
+    "at": 4619.587375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 163,
+    "at": 4620.028625,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 164,
+    "at": 4620.235708,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 165,
+    "at": 4623.0545,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 166,
+    "at": 4623.637125,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 167,
+    "at": 4623.69425,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 168,
+    "at": 4659.285375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 169,
+    "at": 4659.951958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 170,
+    "at": 4704.929291,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 171,
+    "at": 4764.517791,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 172,
+    "at": 5074.841333,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 173,
+    "at": 5125.845125,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "second",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 174,
+    "at": 5132.241208,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 175,
+    "at": 5132.400958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 176,
+    "at": 5132.440583,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-call"
+  },
+  {
+    "n": 177,
+    "at": 5132.624458,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "second",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 178,
+    "at": 5164.432541,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-ack",
+    "selected": {
+      "token": "choice",
+      "name": "Disposable",
+      "displayPath": "/tmp/disposable"
+    }
+  },
+  {
+    "n": 179,
+    "at": 5164.452666,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 180,
+    "at": 5186.058,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "second",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 181,
+    "at": 5234.795875,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "second",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 182,
+    "at": 5243.802875,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 183,
+    "at": 5244.162208,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 184,
+    "at": 5247.845625,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-render",
+    "filename": "second",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 185,
+    "at": 5256.653791,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "fileId": "second-native-id",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 186,
+    "at": 5257.511291,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-activate",
+    "id": "second-native-id",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 187,
+    "at": 5257.572125,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 188,
+    "at": 5298.197625,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-start",
+    "id": "second-native-id",
+    "version": "empty-v1"
+  },
+  {
+    "n": 189,
+    "at": 5341.157333,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-resolved",
+    "id": "second-native-id",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 190,
+    "at": 5401.224291,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 191,
+    "at": 5439.416416,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "first.md",
+    "title": "/tmp/disposable/first.md",
+    "disabled": false
+  },
+  {
+    "n": 192,
+    "at": 5509.570541,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 193,
+    "at": 5697.489166,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 194,
+    "at": 5821.226166,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 195,
+    "at": 5838.880541,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 196,
+    "at": 5856.044,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 197,
+    "at": 5861.119875,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 198,
+    "at": 5861.280458,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 199,
+    "at": 5861.320125,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-call"
+  },
+  {
+    "n": 200,
+    "at": 5861.828125,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 201,
+    "at": 5881.944333,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-ack",
+    "selected": {
+      "token": "choice",
+      "name": "Disposable",
+      "displayPath": "/tmp/disposable"
+    }
+  },
+  {
+    "n": 202,
+    "at": 5882.002541,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 203,
+    "at": 5882.530583,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 204,
+    "at": 5894.975208,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 205,
+    "at": 5895.41475,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 206,
+    "at": 5895.709708,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-render",
+    "filename": "first.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 207,
+    "at": 5898.547041,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 208,
+    "at": 5899.099541,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 209,
+    "at": 5899.160041,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 210,
+    "at": 5932.345416,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 211,
+    "at": 5933.006666,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 212,
+    "at": 5989.064791,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 213,
+    "at": 6042.565875,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 214,
+    "at": 6073.550875,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 215,
+    "at": 6076.253375,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 216,
+    "at": 6080.8995,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note ",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 217,
+    "at": 6097.1005,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 218,
+    "at": 6101.880166,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 219,
+    "at": 6102.070791,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note ",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 220,
+    "at": 6104.261625,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 221,
+    "at": 6115.534791,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 222,
+    "at": 6118.019,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 223,
+    "at": 6122.866666,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note.",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 224,
+    "at": 6143.111625,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 225,
+    "at": 6146.733125,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 226,
+    "at": 6146.93475,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note.",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 227,
+    "at": 6148.571,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 228,
+    "at": 6158.897291,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 229,
+    "at": 6160.36175,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 230,
+    "at": 6171.748916,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note.md ",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 231,
+    "at": 6188.813375,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 232,
+    "at": 6193.784041,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 233,
+    "at": 6193.928125,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note.md ",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 234,
+    "at": 6195.686,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 235,
+    "at": 6211.127791,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 236,
+    "at": 6212.295916,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 237,
+    "at": 6217.897791,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note .MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 238,
+    "at": 6236.962041,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 239,
+    "at": 6240.035625,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 240,
+    "at": 6240.242,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note .MD.md",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 241,
+    "at": 6241.673083,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 242,
+    "at": 6257.392166,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 243,
+    "at": 6259.502416,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 244,
+    "at": 6266.3025,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "file.txt",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 245,
+    "at": 6282.572833,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 246,
+    "at": 6287.135833,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 247,
+    "at": 6287.356625,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "file.txt",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 248,
+    "at": 6289.094708,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 249,
+    "at": 6302.097166,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 250,
+    "at": 6303.300625,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 251,
+    "at": 6310.905375,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 252,
+    "at": 6330.920916,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 253,
+    "at": 6335.198958,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 254,
+    "at": 6335.345541,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "note",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 255,
+    "at": 6337.308375,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 256,
+    "at": 6350.418,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 257,
+    "at": 6353.598083,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 258,
+    "at": 6361.254041,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "CON .txt",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 259,
+    "at": 6374.466,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 260,
+    "at": 6377.449333,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 261,
+    "at": 6377.604833,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "CON .txt",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 262,
+    "at": 6379.015916,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 263,
+    "at": 6388.054791,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 264,
+    "at": 6390.148916,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 265,
+    "at": 6403.920291,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "con   .notes.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 266,
+    "at": 6424.629625,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 267,
+    "at": 6432.594458,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 268,
+    "at": 6432.737291,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "con   .notes.MD",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 269,
+    "at": 6435.755125,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 270,
+    "at": 6446.144375,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 271,
+    "at": 6446.989583,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 272,
+    "at": 6450.40975,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "LPT¹ .txt",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 273,
+    "at": 6464.441583,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 274,
+    "at": 6467.56875,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 275,
+    "at": 6467.69025,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "LPT¹ .txt",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 276,
+    "at": 6468.908916,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 277,
+    "at": 6478.096458,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 278,
+    "at": 6479.023958,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 279,
+    "at": 6483.146291,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 280,
+    "at": 6496.408583,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 281,
+    "at": 6502.587041,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 282,
+    "at": 6502.749083,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 283,
+    "at": 6504.894166,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 284,
+    "at": 6515.0295,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 285,
+    "at": 6516.040583,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 286,
+    "at": 6521.191,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 287,
+    "at": 6539.208416,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 288,
+    "at": 6542.002916,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 289,
+    "at": 6542.125208,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 290,
+    "at": 6543.354291,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 291,
+    "at": 6551.70575,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 292,
+    "at": 6552.560125,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 293,
+    "at": 6555.869208,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 294,
+    "at": 6567.758958,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 295,
+    "at": 6570.857833,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 296,
+    "at": 6570.988375,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "ab",
+    "pending": false,
+    "error": "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+    "owner": false
+  },
+  {
+    "n": 297,
+    "at": 6572.179708,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "picker-render",
+    "filename": "Niño.🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 298,
+    "at": 6580.416375,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 299,
+    "at": 6581.347583,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 300,
+    "at": 6585.216875,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 301,
+    "at": 6589.429625,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 302,
+    "at": 6589.664625,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 303,
+    "at": 6589.803791,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 304,
+    "at": 6594.908541,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 305,
+    "at": 6598.052083,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 306,
+    "at": 6604.673958,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 307,
+    "at": 6605.47875,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 308,
+    "at": 6611.353833,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-render",
+    "filename": "🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 309,
+    "at": 6621.987541,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 310,
+    "at": 6622.287,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 311,
+    "at": 6622.445625,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-render",
+    "filename": "🚀",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 312,
+    "at": 6624.135666,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 313,
+    "at": 6626.197916,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "picker-render",
+    "filename": "🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 314,
+    "at": 6632.81275,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 315,
+    "at": 6634.908,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 316,
+    "at": 6641.808875,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-render",
+    "filename": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 317,
+    "at": 6645.281958,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 318,
+    "at": 6645.472875,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 319,
+    "at": 6645.584,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-render",
+    "filename": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 320,
+    "at": 6650.113583,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 321,
+    "at": 6652.2295,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "picker-render",
+    "filename": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 322,
+    "at": 6656.107291,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 323,
+    "at": 6656.9205,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 324,
+    "at": 6660.096208,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-render",
+    "filename": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 325,
+    "at": 6663.972166,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 326,
+    "at": 6664.159041,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 327,
+    "at": 6664.389041,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-render",
+    "filename": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 328,
+    "at": 6667.027708,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 329,
+    "at": 6668.315791,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "picker-render",
+    "filename": "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 330,
+    "at": 6673.529583,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 331,
+    "at": 6674.527666,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 332,
+    "at": 6679.085416,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-render",
+    "filename": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 333,
+    "at": 6683.288666,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 334,
+    "at": 6684.530041,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 335,
+    "at": 6684.650083,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-render",
+    "filename": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 336,
+    "at": 6685.891041,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 337,
+    "at": 6687.12175,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "picker-render",
+    "filename": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 338,
+    "at": 6691.135416,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 339,
+    "at": 6692.259291,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 340,
+    "at": 6697.403916,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-render",
+    "filename": "﻿note",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 341,
+    "at": 6706.118958,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 342,
+    "at": 6706.336875,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 343,
+    "at": 6706.457166,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-render",
+    "filename": "﻿note",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 344,
+    "at": 6708.056416,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 345,
+    "at": 6715.6745,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "picker-render",
+    "filename": "﻿note",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 346,
+    "at": 6723.28325,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 347,
+    "at": 6724.570625,
+    "test": "checks every interior C1 control and exact multibyte limits",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 348,
+    "at": 6725.457208,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 349,
+    "at": 6729.93325,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 350,
+    "at": 6733.375041,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "click",
+    "text": "Crear archivo",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 351,
+    "at": 6734.087958,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 352,
+    "at": 6734.223583,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 353,
+    "at": 6735.227458,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 354,
+    "at": 6749.276583,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "picker-render",
+    "filename": "Niño",
+    "pending": false,
+    "error": "Escribe un nombre sin separadores de ruta, nombres reservados, espacios o puntos al final ni otra extensión (por ejemplo, .txt).",
+    "owner": false
+  },
+  {
+    "n": 355,
+    "at": 6787.086833,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 356,
+    "at": 6787.65275,
+    "test": "QA-0030 UI policy: 'note '",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 357,
+    "at": 6787.966791,
+    "test": "QA-0030 UI policy: 'note.'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 358,
+    "at": 6788.222166,
+    "test": "QA-0030 UI policy: 'note.md '",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 359,
+    "at": 6788.474125,
+    "test": "QA-0030 UI policy: 'note .MD.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 360,
+    "at": 6788.712458,
+    "test": "QA-0030 UI policy: 'file.txt'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 361,
+    "at": 6788.955166,
+    "test": "QA-0030 UI policy: 'notes.v1.txt'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 362,
+    "at": 6789.215,
+    "test": "QA-0030 UI policy: 'release.v2'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 363,
+    "at": 6789.487833,
+    "test": "QA-0030 UI policy: 'release.v2.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 364,
+    "at": 6789.913791,
+    "test": "QA-0030 UI policy: 'note.MD'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 365,
+    "at": 6790.193583,
+    "test": "QA-0030 UI policy: 'note.md.MD.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 366,
+    "at": 6790.447958,
+    "test": "QA-0030 UI policy: ' file'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 367,
+    "at": 6790.91875,
+    "test": "QA-0030 UI policy: 'Niño'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 368,
+    "at": 6791.364125,
+    "test": "QA-0030 UI policy: 'Niño.🚀'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 369,
+    "at": 6791.665083,
+    "test": "QA-0030 UI policy: 'file.abcdefghi'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 370,
+    "at": 6792.500625,
+    "test": "QA-0030 UI policy: 'file.txt.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 371,
+    "at": 6793.086041,
+    "test": "QA-0030 UI policy: '\\u0085note\\u0085'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 372,
+    "at": 6793.421333,
+    "test": "QA-0030 UI policy: ' note'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 373,
+    "at": 6793.701458,
+    "test": "QA-0030 UI policy: 'ééééééééééééééééééééééééééééééééééééé…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 374,
+    "at": 6793.96725,
+    "test": "QA-0030 UI policy: 'ééééééééééééééééééééééééééééééééééééé…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 375,
+    "at": 6794.221166,
+    "test": "QA-0030 UI policy: '🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 376,
+    "at": 6794.50275,
+    "test": "QA-0030 UI policy: '🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 377,
+    "at": 6794.776125,
+    "test": "QA-0030 UI policy: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 378,
+    "at": 6795.619916,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 379,
+    "at": 6802.256166,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-render",
+    "filename": "release.v2.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 380,
+    "at": 6808.46425,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 381,
+    "at": 6808.69175,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 382,
+    "at": 6808.815583,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-render",
+    "filename": "release.v2.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 383,
+    "at": 6810.151791,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 384,
+    "at": 6810.362333,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "picker-render",
+    "filename": "release.v2.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 385,
+    "at": 6815.729166,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 386,
+    "at": 6818.904666,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 387,
+    "at": 6823.457375,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-render",
+    "filename": "note.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 388,
+    "at": 6829.607458,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 389,
+    "at": 6829.798708,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 390,
+    "at": 6829.957666,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-render",
+    "filename": "note.MD",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 391,
+    "at": 6832.486333,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 392,
+    "at": 6832.864375,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "picker-render",
+    "filename": "note.MD",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 393,
+    "at": 6837.069416,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 394,
+    "at": 6837.988375,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 395,
+    "at": 6841.267958,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-render",
+    "filename": "note.md.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 396,
+    "at": 6847.148041,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 397,
+    "at": 6847.541916,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-guard",
+    "owner": false,
+    "blocked": false,
+    "pending": false
+  },
+  {
+    "n": 398,
+    "at": 6847.726083,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-render",
+    "filename": "note.md.MD.md",
+    "pending": true,
+    "error": null,
+    "owner": true
+  },
+  {
+    "n": 399,
+    "at": 6849.207875,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-finally",
+    "pending": false,
+    "mounted": true
+  },
+  {
+    "n": 400,
+    "at": 6849.520875,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "picker-render",
+    "filename": "note.md.MD.md",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 401,
+    "at": 6857.424958,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 402,
+    "at": 6933.275333,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 403,
+    "at": 6950.839916,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "picker-render",
+    "filename": "",
+    "pending": false,
+    "error": null,
+    "owner": false
+  },
+  {
+    "n": 404,
+    "at": 6980.04875,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

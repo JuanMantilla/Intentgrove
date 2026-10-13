@@ -1,0 +1,1370 @@
+diff --git a/.agents/state.md b/.agents/state.md
+index 44094f5..84dc84b 100644
+--- a/.agents/state.md
++++ b/.agents/state.md
+@@ -8,4 +8,21 @@ Spec Kit keeps F007W; F003F IR-05 non-persisting reconciliation: specs/009-folde
+ 
+ Frontend folder-action/panel scope integration remains; macOS native menu/build/runtime and packaged QA/visual/DPI/accessibility/restart/draft acceptance NOT TESTED. QA transport history/ad594484 evidence unchanged. QA-0003/4/5 and T036/37/39/12/24/33 remain open; T038 acceptance retained. Linux unsupported; no install/sign/publish/commit.
+ 
+-Next: frontend follows IR-05 handoff; QA executes disposable native journeys on Windows/Mac and existing IR-04 handoff.
++Mac audit 2026-10-07: cargo check FAIL, settings.rs:248 Windows-only drag_and_drop call; frontend types/XPC check PASS. See os-engineering/macos-audit-20261007.md. Next: repair Mac compile, finish IR05 frontend; rebuild/QA Mac native journeys.
++
++Current-source Mac checkpoint 2026-10-07: Settings compile fixed; IR05 frontend integrated; scoped9/native96/serialfrontend310/types/build/worker PASS. Current Intentgrove app/DMG private ad-hoc signatures/integrity PASS, Gatekeeper rejected. Bounded rich blocks partial; Mermaid gate unproven/disabled. QA combined two-candidate ledger18PASS/1FAIL/6BLOCKED/5NOTTESTED, QA-0006/7/8 open; source preserved/run app closed. macOS14/Intel/universal/install/update unverified. Reports: os-engineering/macos-20261007-report.md, frontend-implementation/evidence/macos-20261007/report.md, qa/runs/macos-20261007/report.md, specs/012-macos-delivery/current-readiness-20261007.md. Approvals/global F007W/original edits retained. Next: isolated rich proof, targeted findings and missing native environments; no install/notarize/publish.
++
++Final-source focused native MF01–03 PASS on 1243af65…; main ledger retains earlier candidate identity. Final app8139d3e0…/DMGc895c773… verified; both QA processes stopped. Full native/diagram/performance/compatibility acceptance remains partial.
++
++
++## 2026-10-08 macOS continuation
++
++macOS finish continuation: six workstreams PARTIAL, not overall complete. Final-source QA30PASS/2FAIL/10BLOCKED;322frontend tests PASS; fresh arm64 private-ad-hoc production artifacts verified. Mermaid needs concrete probe/dependency approvals; native journey/compatibility/install/update gates remain. Reports os-engineering/macos-finish-20261008-report.md and qa/runs/macos-finish-20261008/report.md are current; historical evidence preserved.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
++
++
++## Current authorization — 2026-10-08
++
++Project: user “I approve everything, make sure it's stated in the relevant documents”. Canonical docs/macos-continuation-approval-20261008.md/.json records reviewed hashes/snapshots. Disposable blob-frame isolation probe, audited Mermaid11.17.2/project lockfile addition and Applications install/update testing on disposable account/host APPROVED. Earlier pending/no-install labels superseded for these exact actions. Preserve production CSP during proof; enable diagrams only after passing isolation/termination. Unseen killable-process design requires its concrete amendment/approval. No release credentials/notarization/publish/deployment-target/security changes/commit/push. Existing30PASS/2FAIL/10BLOCKED ledger unchanged; approval is not acceptance. macOS14/Intel/disposable-host/prior-update-package prerequisites remain. Next: execute probe and dependency audit, then implement/rebuild/retest; run isolated installation checks when environment is available. This phase records authorization only; application source/artifacts unchanged. F007W global feature selection unchanged.
+diff --git a/docs/approvals.md b/docs/approvals.md
+index ecedac2..fe3375a 100644
+--- a/docs/approvals.md
++++ b/docs/approvals.md
+@@ -249,3 +249,10 @@ in [the brand decision](brand.md). The confirmed purpose is reading, organizing,
+ and refining documents exchanged with AI. Existing technical identifiers and
+ stored-data locations are preserved. Historical approval artifacts remain
+ unchanged; this decision does not add AI model integration or authorize publishing.
++
++
++## macOS continuation — approved 2026-10-08
++
++User: **“I approve everything, make sure it's stated in the relevant documents”**, replying to the scoped approval explanation. [Canonical scope](macos-continuation-approval-20261008.md), [exact reviewed hashes/statement](macos-continuation-approval-20261008.json), [unchanged approval-time snapshots](approval-records/macos-continuation-20261008/).
++
++Approves disposable blob-frame isolation probe, audited exact Mermaid11.17.2/project lockfile installation and isolated Applications install/update acceptance. Supersedes earlier dependency/install exclusions for those actions only. Keep production isolation/proof gates, user data and OS security intact. Unseen killable-process architecture still requires a concrete amendment/approval if iframe fails. Release credentials/notarization/publication/deployment-target changes/security changes/commit/push remain excluded. Approval is not execution or acceptance; unavailable environments and prior update-package prerequisites remain.
+diff --git a/frontend-implementation/STATE.md b/frontend-implementation/STATE.md
+index 6e695eb..9a28f41 100644
+--- a/frontend-implementation/STATE.md
++++ b/frontend-implementation/STATE.md
+@@ -7,3 +7,22 @@ QA-0004 source repair and sibling continuity preserved. QA-0004/T039 remains OPE
+ IR-04 native Settings/filter persistence and functional Settings/owner wiring are now implemented by the authorized os-senior-expert pass. Exact handoff: ../os-engineering/frontend-handoff.md; evidence/report: ../os-engineering/report.md. Windows native singleton/IPC refusal/close/focus PASS; native80/frontend300/build/worker PASS. Full visual/DPI/Mac/product acceptance remains open. Native Go/subtree, rich engine and HTML/details capabilities remain separate work. Prior approvals and original artifacts remain; no install/sign/publish/commit.
+ 
+ Next: reconcile owning canonical amendments through installed Spec Kit, then implement authorized native work and isolated prototypes. Provider restores native transport for rebuilt-candidate verification; Mac checks require Mac host. F002R T020 complete/T021 open; global Spec Kit feature remains F007W.
++
++## Current frontend checkpoint — 2026-10-07
++
++IR05-04 selected scope COMPLETE_IN_SCOPE; native contract unchanged, panel scope9 and actual Mac subtree query/open PASS. Bounded blocks/staged paint/generation/cancel/source fallback implemented; F002R whole-parser/performance partial, T007/T008 disabled/unproven. Approval hashes intact. Report evidence/macos-20261007/report.md; shared Mac logs and QA screenshots. Serial310/types/build/worker PASS; initial/default-worker failures retained; QA-0007 session race investigation open. QA-0006 supported image status defect reported without fixing in QA. Full Windows/locale/viewport/accessibility acceptance pending. Next: approved isolation probe and targeted defect implementation/retest; no publish.
++
++Final-source focused native MF01–03 PASS on 1243af65…; main ledger retains earlier candidate identity. Final app8139d3e0…/DMGc895c773… verified; both QA processes stopped. Full native/diagram/performance/compatibility acceptance remains partial.
++
++
++## 2026-10-08 macOS continuation
++
++Frontend IMPLEMENT source frozen: bounded parsing/fallback, committed-tab session ownership, Settings initial draft/focus and document Escape repaired; QA AUTOMATE single-dispatch edit helper and2workers. Final322tests PASS; native candidate30PASS/2FAIL/10BLOCKED. Mermaid source-only FAIL; approved isolation/dependency amendment required. Full feature incomplete. Report evidence/macos-finish-20261008/report.md.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
++
++
++## Current authorization — 2026-10-08
++
++Frontend handoff: user “I approve everything, make sure it's stated in the relevant documents”. Canonical docs/macos-continuation-approval-20261008.md/.json records reviewed hashes/snapshots. Disposable blob-frame isolation probe, audited Mermaid11.17.2/project lockfile addition and Applications install/update testing on disposable account/host APPROVED. Earlier pending/no-install labels superseded for these exact actions. Preserve production CSP during proof; enable diagrams only after passing isolation/termination. Unseen killable-process design requires its concrete amendment/approval. No release credentials/notarization/publish/deployment-target/security changes/commit/push. Existing30PASS/2FAIL/10BLOCKED ledger unchanged; approval is not acceptance. macOS14/Intel/disposable-host/prior-update-package prerequisites remain. Next: execute probe and dependency audit, then implement/rebuild/retest; run isolated installation checks when environment is available. This phase records authorization only; application source/artifacts unchanged. F007W global feature selection unchanged.
+diff --git a/os-engineering/STATE.md b/os-engineering/STATE.md
+index dd631ce..e40dad9 100644
+--- a/os-engineering/STATE.md
++++ b/os-engineering/STATE.md
+@@ -9,3 +9,24 @@ F007W globally selected; F003F non-persisting Spec Kit reconciliation/supplement
+ Frontend folder-action/panel scope wiring and macOS build/native-menu/runtime/packaged scoped-search acceptance NOT TESTED/remaining, exact steps in IR-05 handoff. Existing packaged QA/release tasks stay open. Linux unsupported; no install/sign/publish/commit.
+ 
+ Next: frontend connects confirmed scope with sequence invalidation and localized scope recovery; QA runs disposable macOS Go/Settings-focus and Windows/macOS scoped-search journeys.
++
++## Current macOS checkpoint — 2026-10-07
++
++Settings compile repaired; current Mac check/Settings8/native96 (3 ignored) PASS. IR05 frontend wired, scope9 and packaged subtree query/open PASS. Bounded blocks partial; Mermaid isolation/dependency/proof gate open, diagrams disabled. Serial frontend310/types/build/worker PASS; default-worker session exception retained (QA-0007). Current Intentgrove app/DMG created, strict signatures/DMG integrity PASS; Gatekeeper rejected. Report macos-20261007-report.md; evidence/macos-20261007/.
++
++Native QA 15 PASS/1 FAIL/6 BLOCKED/5 NOT TESTED; QA-0006 image status open. Fresh QA ID/source manifest, source hashes preserved. macOS14/Intel/universal/install/update remain unverified; specs/012 current-readiness has procedures. No dependencies/install/notarize/publish/commit. Next: isolate rich-render proof and resolve QA-0006/7/8 in authorized implementation; restore Finder/Dock test access and run missing acceptance.
++
++Final-source focused native MF01–03 PASS on 1243af65…; main ledger retains earlier candidate identity. Final app8139d3e0…/DMGc895c773… verified; both QA processes stopped. Full native/diagram/performance/compatibility acceptance remains partial.
++
++
++## 2026-10-08 macOS continuation
++
++OS IMPLEMENT/PLAN-VERIFY: PNG fingerprint defect repaired, native97PASS3ignored/refresh2PASS. Fresh final production exe7885115f… DMG0645023f… arm64/signatures/DMG/read-only mount match PASS; Gatekeeper rejects ad-hoc. Final-source QA30PASS/2FAIL/10BLOCKED; exact production runtime, mac14/Intel/universal/install/update unverified. No restricted actions. Report macos-finish-20261008-report.md; exact approvals/procedures recorded.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
++
++
++## Current authorization — 2026-10-08
++
++OS PLAN: user “I approve everything, make sure it's stated in the relevant documents”. Canonical docs/macos-continuation-approval-20261008.md/.json records reviewed hashes/snapshots. Disposable blob-frame isolation probe, audited Mermaid11.17.2/project lockfile addition and Applications install/update testing on disposable account/host APPROVED. Earlier pending/no-install labels superseded for these exact actions. Preserve production CSP during proof; enable diagrams only after passing isolation/termination. Unseen killable-process design requires its concrete amendment/approval. No release credentials/notarization/publish/deployment-target/security changes/commit/push. Existing30PASS/2FAIL/10BLOCKED ledger unchanged; approval is not acceptance. macOS14/Intel/disposable-host/prior-update-package prerequisites remain. Next: execute probe and dependency audit, then implement/rebuild/retest; run isolated installation checks when environment is available. This phase records authorization only; application source/artifacts unchanged. F007W global feature selection unchanged.
+diff --git a/qa/STATE.md b/qa/STATE.md
+index e63e164..91fe0b2 100644
+--- a/qa/STATE.md
++++ b/qa/STATE.md
+@@ -50,3 +50,22 @@ f007w-retest-20261006T010426Z: BLOCKED / INSUFFICIENT_EVIDENCE;80 ledger rows: 5
+ 
+ Windows restart USER_REPORTED. Dedicated list_windows and post-reset/reimport list_apps both fail native-pipe OS error 2. One connection case BLOCKED, two attempts, zero native product cases. QA-0005 remains OPEN; cause UNKNOWN. No native window/capture/input/launch or display/process/product change. Prior charter counts and build/scale provenance unchanged. QA_AUTOMATION/provider needs endpoint startup/session diagnostics and supported recovery. [Report](runs/f007w-connection-post-reboot-20261006T134514Z/report.md).
+ 
++
++## Current macOS native RUN — 2026-10-07
++
++Same-session candidate QA (not independent). macOS27.0.1 arm64, isolated com.juanmantilla.intentgrove.qa20261007, executable c91686db…; production differs by build identity/config. Ledger27:15 PASS/1 FAIL/6 BLOCKED/5 NOT TESTED. Real Settings/native Go dispatch/shortcuts/scoped query/dirty Cancel/failed Save/draft18px restore/helper PNG/security/large end/LaunchServices reopen tested. QA-0006 image status FAIL; QA-0007 intermittent frontend checkpoint exception open separately. Finder/drop inaccessible; Dock timeout; remaining matrix unrun. Source hashes match, disposable moved source restored, QA app exited. Report/coverage/screenshots/handoff: runs/macos-20261007/. No product fixes in QA/security/install/publish. Next: FRONTEND investigates006/007; provider restores Finder/Dock surfaces; OS compatibility/install procedures remain unrun.
++
++Final-source follow-up: 3 native cases PASS; aggregate across both isolated builds: 18 PASS, 1 FAIL, 6 BLOCKED, 5 NOT TESTED. Broad baseline acceptance was not rerun on final source. Both QA apps stopped. See qa/runs/macos-20261007/final-followup.md.
++
++
++## 2026-10-08 macOS continuation
++
++QA AUTOMATE then RUN/RETEST: final-source ledger42=30PASS/2FAIL/10BLOCKED/0NOT_RUN; application source read-only except explicit frontend implementation interruption for QA0009, followed by rebuild/new ledger.322frontend PASS, native97PASS3ignored. Native source-candidate identity differs production. Mermaid valid/malformed FAIL; drops/Dock/clean-close/cancel/stale/1MiBtiming/production-ID BLOCKED. Role-separated same-session, not independent-person certification. Report runs/macos-finish-20261008/report.md, coverage.json, handoff.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
++
++
++## Current authorization — 2026-10-08
++
++QA handoff: user “I approve everything, make sure it's stated in the relevant documents”. Canonical docs/macos-continuation-approval-20261008.md/.json records reviewed hashes/snapshots. Disposable blob-frame isolation probe, audited Mermaid11.17.2/project lockfile addition and Applications install/update testing on disposable account/host APPROVED. Earlier pending/no-install labels superseded for these exact actions. Preserve production CSP during proof; enable diagrams only after passing isolation/termination. Unseen killable-process design requires its concrete amendment/approval. No release credentials/notarization/publish/deployment-target/security changes/commit/push. Existing30PASS/2FAIL/10BLOCKED ledger unchanged; approval is not acceptance. macOS14/Intel/disposable-host/prior-update-package prerequisites remain. Next: execute probe and dependency audit, then implement/rebuild/retest; run isolated installation checks when environment is available. This phase records authorization only; application source/artifacts unchanged. F007W global feature selection unchanged.
+diff --git a/specs/008-rich-reading/tasks.md b/specs/008-rich-reading/tasks.md
+index 1e4c4ff..2d81094 100644
+--- a/specs/008-rich-reading/tasks.md
++++ b/specs/008-rich-reading/tasks.md
+@@ -64,3 +64,13 @@ Establish bounded blocks and diagram isolation first, then complete technical co
+ 
+ - [x] T020 Implement approved REQ-P1 numeric Reading fields/validation/preview using existing fonts/ranges/session contracts; preserve custom values/anchor capture/Reading-only reset and add localized preference Retry. Focused40/full291/build/worker PASS, actual Chrome synthetic renderer reviewed at640/320px. See frontend-maintenance-20261006.md and ../../frontend-implementation/evidence/settings-reading-20261006/report.md. Separate native Settings/filter/schema contracts remain IR-04; no native/config/dependency changes.
+ - [ ] T021 Verify this Reading slice in a rebuilt native candidate: persisted choices/failure Retry, source/draft/caret/anchor continuity, actual zoom/DPI and platform focus/keyboard. Current native pipe error2; Windows/Mac NOT TESTED. Existing packaged gates remain open; mocked renderer checks are not native acceptance.
++
++
++## 2026-10-08 evidence reconciliation
++
++T004 bounded parser/cancellable worker/source-fallback implementation and tests now present; full packaged busy-work cancellation and cross-region semantics gate remains, so checkbox stays open. T006 disposable1/10MiBmixed and hostile fixtures/hash manifest now recorded in verification. T007 concrete failed child-start probe and reviewable amendment recorded; T002/T007/T008/T011/T016 blocked by explicit approval/proof requirements. T01810MiBconservative native timing passed,1MiBafter-read timing/unrelated response incomplete. T012/T015/T017/T019/T021 full contracts incomplete. See verification current continuation; no diagram/network/language/compatibility gate marked complete.
++
++
++## User authorization update — 2026-10-08
++
++User approved the scoped outstanding actions: [canonical approval and boundaries](../../docs/macos-continuation-approval-20261008.md), [reviewed hashes](../../docs/macos-continuation-approval-20261008.json). Disposable blob-frame probe and audited Mermaid11.17.2 installation/lockfile changes are now authorized; isolated Applications install/update tests are authorized on a disposable account/host. Earlier approval-pending/no-install labels are historical and superseded only for these actions. Production proof gates, acceptance results and unchecked tasks stay unchanged. Separate killable-process architecture requires a concrete amendment if needed; release/security/commit restrictions remain. Environments/prior update package are still prerequisites. Next: execute the approved probe/audit, then implementation/rebuild/retest; run installation checks when the isolated environment is available.
+diff --git a/specs/008-rich-reading/verification.md b/specs/008-rich-reading/verification.md
+index a94e859..368d878 100644
+--- a/specs/008-rich-reading/verification.md
++++ b/specs/008-rich-reading/verification.md
+@@ -27,3 +27,29 @@ The current worker still applies a whole-document 10,000-node cap and the render
+ A dense synthetic 10 MiB Markdown repetition (many short headings, lists and tables) took more than 60 seconds in a direct parser benchmark and was stopped; this is a complexity probe, not the specified non-adversarial timing fixture. The current app rejects this shape via its line/node budget. It confirms why the approved per-block architecture and timing work remain necessary.
+ 
+ Current local artifact: the thin arm64 ad hoc signed `.app` has executable SHA-256 `b61bfc5864c0474caf0eef3501d12428a8422c71465598aaa7127184cd5236f4`; `codesign --verify --deep --strict` PASS. The current-source v4 DMG SHA-256 is `3c034dc6657fe148ebd1212720c0a17c27e48ae7c001968a7007fc2269125d8d`; `hdiutil verify` PASS, read-only mounted executable hash/signature and `/Applications` link PASS. This is package integrity evidence only.
++
++## Current-source rendering checkpoint — 2026-10-07
++
++See [rendering/isolation checkpoint](macos-20261007-rendering.md). Approved hashes rechecked exactly. Bounded per-block rich results/source fallback, staged painting, generation and cancellation implemented; focused UI/production-worker checks recorded under `../../os-engineering/evidence/macos-20261007/`. Whole-input parser fallback/performance acceptance remains open. T004 remains partial; T007/T008 BLOCKED by missing audited dependency and unproven packaged isolation/CSP exception. Mermaid remains disabled. Historical artifacts/results above are preserved and do not verify this source.
++
++Final frontend review also preserves reference-definition context and counts that context against rich output caps, with a scoped reference-navigation regression. Source/production package were rebuilt after the main native run; do not treat earlier candidate QA as a pass for that adjustment. Footnote numbering/shared anchors and parser-wide localized failure/performance are explicitly unverified compatibility cases.
++
++Final-source isolated native MF01–03 PASS: scoped reference-definition navigation, disabled valid/malformed/hostile Mermaid **source fallback only** with neighboring blocks intact, metadata disclosure presence and second repeated-heading outline navigation. Candidate 1243af65…/new QA identifier; final-followup.md under ../../qa/runs/macos-20261007/. These do not prove T007/T008 or complete T004/performance/footnote compatibility. Current full frontend serial retry310/types/build/worker PASS; earlier failed attempts retained.
++
++
++## Final-source macOS continuation — 2026-10-08
++
++[Implementation](../../frontend-implementation/evidence/macos-finish-20261008/report.md), [native report/ledger](../../qa/runs/macos-finish-20261008/report.md), [raw42cases](../../qa/runs/macos-finish-20261008/coverage.json), [fixture hashes](../../qa/runs/macos-finish-20261008/evidence/rich-fixture-manifest.json), [worker timings](../../qa/runs/macos-finish-20261008/evidence/worker-performance.json), [native timings](../../qa/runs/macos-finish-20261008/evidence/native-performance.json).
++
++T004 implemented bounded linear preflight,64KiBregions/128KiBcumulative rich budget/10MiBdocument limit, source fallback and generation/version/deadline worker handling; tests plus native hostile Before/After/End continuity PASS. Complex cross-region Markdown semantics and complete worker-deadline packaged busy proof remain partial; no whole-feature completion. Native metadata/highlight/folder-granted references/footnotes/repeated-heading targets PASS. Actual source-only overlimit11MiB consent/window PASS. T006 fixture files/hashes recorded, reference host macOS27.0.1arm64; exact production runtime separate.
++
++T007 unchanged-CSP packaged probe FAILS to establish child execution: parent bridge present,0childmessages, parent removesframe1005ms. This is not denial/termination proof. [Concrete architecture amendment/exact authorization](isolation-amendment-20261008.md). T002dependency installation prohibited; T007/T008diagram architecture/implementation still open. Valid Mermaid AS001 FAIL; malformed diagram fallback AS002 FAIL; metadata/code constituents pass but entire AS003/AS007/SC001 remain PARTIAL/BLOCKED without diagrams/network observations. No production diagram enablement.
++
++SC003:10native10MiB trials1137–1218ms Open→AX upper bound PASS for3s-after-read target.1MiB1009–1119ms includes driver/read latency and does not establish1s-after-read criterion; BLOCKED precise measurement. Warm worker algorithm timing is supplementary, no paint claim. T018 unrelated-tab response/complete timing contract remains open. SC002/AS008 EN/ESthreewidths/ReduceMotion full matrix NOT RUN. AS004–006/SC004 duplicate target and one restart preference/session constituents PASS; ten restarts/refreshed anchors complete contract open. AS009 large behavior constituents PASS, completeperformanceacceptancePARTIAL. T011/T012/T015–19 stay open.
++
++322frontendPASS46files; native97PASS3ignored; package checks PASS. Final app/DMG and source identities in OS report. Native isolated-source ledger30PASS/2FAIL/10BLOCKED, no historical passes carried forward, production exact identifier runtime explicitlyBLOCKED. Full feature not accepted.
++
++
++## User authorization update — 2026-10-08
++
++User approved the scoped outstanding actions: [canonical approval and boundaries](../../docs/macos-continuation-approval-20261008.md), [reviewed hashes](../../docs/macos-continuation-approval-20261008.json). Disposable blob-frame probe and audited Mermaid11.17.2 installation/lockfile changes are now authorized; isolated Applications install/update tests are authorized on a disposable account/host. Earlier approval-pending/no-install labels are historical and superseded only for these actions. Production proof gates, acceptance results and unchecked tasks stay unchanged. Separate killable-process architecture requires a concrete amendment if needed; release/security/commit restrictions remain. Environments/prior update package are still prerequisites. Next: execute the approved probe/audit, then implementation/rebuild/retest; run installation checks when the isolated environment is available.
+diff --git a/specs/009-folder-search/tasks.md b/specs/009-folder-search/tasks.md
+index 9d5f395..f328823 100644
+--- a/specs/009-folder-search/tasks.md
++++ b/specs/009-folder-search/tasks.md
+@@ -62,7 +62,15 @@ Complete the native scope contract, then the independently testable US1 panel. I
+ - [x] IR05-01 Implement identity-bound optional native subtree scope with inherited ignores and result/open containment.
+ - [x] IR05-02 Implement macOS Go routes/state using committed client history and existing menu events, no new accelerators.
+ - [x] IR05-03 Verify disposable Windows native fixtures and frontend event regressions; evidence in os-engineering/evidence/ir05/.
+-- [ ] IR05-04 Frontend connects folder action/panel scope using os-engineering/ir05-frontend-handoff.md, including scope-switch race tests.
++- [x] IR05-04 Frontend connects folder action/panel scope using os-engineering/ir05-frontend-handoff.md, including scope-switch race tests. 2026-10-07 scope9 and packaged Mac query/open PASS; frontend-implementation/evidence/macos-20261007/report.md.
+ - [ ] IR05-05 Actual macOS native menu/build and packaged scoped-search/keyboard acceptance; existing T013-T016 remain open.
+ 
+ See [native amendment](ir05-native-amendment.md).
++
++
++## Final-source verification reconciliation — 2026-10-08
++
++Scoped query/open and scope-change constituents native PASS; executing cancellation/stale batches/open replies remain native BLOCKED. Keep all full acceptance gates open; see verification continuation and current42-case ledger.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
+diff --git a/specs/009-folder-search/verification.md b/specs/009-folder-search/verification.md
+index 5df80e8..69fb208 100644
+--- a/specs/009-folder-search/verification.md
++++ b/specs/009-folder-search/verification.md
+@@ -29,3 +29,15 @@
+ **Open implementation/verification:** Prove the declared Rust MSRV or approve a corrected toolchain target; test 20 manifest queries and skip/error cases end to end; run packaged passage navigation, accessibility, timing, hash and network checks. F006 and F002R remain separate approved slices.
+ 
+ **Disposable content manifest:** `# Needle\nOther needle\n` SHA-256 `ca06c6e5ff246b2ee4d6225605215ed3d3571e0078928d56c14e3c5d3205ab25`; `# Needle\n` SHA-256 `1eb919105c79e561dcb6d22d3bedef61dc9c0f0f7a9e5dce1d3aeb682b2f8b08`. The scoped unit test verifies the visible source bytes after scanning. The 25,000-entry generator writes five `# Needle\n` Markdown files, 4,995 `# Other\n` Markdown files and 20,000 unsupported `.txt` files, then removes its temporary root.
++
++## IR05-04 frontend integration — 2026-10-07
++
++Selected folder action and native-confirmed scope display/invalidation/error handling implemented with unchanged native contracts. Nine focused mocked scope/race tests PASS, actual packaged macOS notes-only query excludes the root match and opaque-hit open PASS. Report: ../../frontend-implementation/evidence/macos-20261007/report.md; actual QA snapshots: ../../qa/runs/macos-20261007/evidence/04-scoped-search.*. Full Windows and packaged replacement/error/localization/performance matrix remain open; IR05-05 stays unchecked.
++
++
++## Final-source native continuation — 2026-10-08
++
++[Current ledger](../../qa/runs/macos-finish-20261008/coverage.json) NF24scopedneedle/openline3 PASS; NF25docs→more scope clears old results and opens new scope PASS. NF26executingcancel BLOCKED:1500/20000file searches complete/cap before observableStop; post-completionEscape is not cancellation. NF27heldstale batch/open replies BLOCKED in native run; deterministic supplementary UI/native tests do not replace this gate. Current test suite322PASS, application source frozen. Full native query/cancellation/stale contract remains incomplete.
++
++
++Final follow-up: NF26 executing cancellation PASS (uncapped query, observed Stop, Stopped7,527entries stable on later capture54–55). Earlier cancellation-blocked prose remains historical and is superseded for NF26 only. Native stale batch/open replies NF27 remain BLOCKED; ledger now30PASS/2FAIL/10BLOCKED.
+diff --git a/specs/012-macos-delivery/tasks.md b/specs/012-macos-delivery/tasks.md
+index 01fab2d..db31e08 100644
+--- a/specs/012-macos-delivery/tasks.md
++++ b/specs/012-macos-delivery/tasks.md
+@@ -45,3 +45,17 @@
+ ## Dependencies and execution strategy
+ 
+ T001–T004 precede native entry points. US1 bundle metadata and US3 lifecycle can progress after setup; final US1/US4 verification follows all approved slices. US2 depends on safe intake; US3 depends on F003C/F004. F006 image associations are added only when its decoder is implemented and verified. Test fixtures and evidence can be prepared independently; `lib.rs` mutations serialize.
++
++## Evidence reconciliation — 2026-10-07
++
++Current local package/metadata/signature/DMG integrity checks are recorded in `current-readiness-20261007.md` and `verification.md`. T005/T006 remain open because minimum OS/runtime associations/Gatekeeper/install acceptance are not complete. T002/T009/T010/T013/T014 remain open pending the full current native/compatibility/install/update ledger. Historical checked implementation tasks and earlier bounded QA evidence are retained.
++
++
++## 2026-10-08 reconciliation
++
++Fresh final-source private-ad-hoc app/DMG rebuilt and inspected/mounted read-only successfully; final-source native30PASS/2FAIL/10BLOCKED. See verification continuation and OS final report. T002/T005/T006/T009/T010/T013/T014 remain open because complete runtime/installation/native journey/compatibility contracts are unmet; no minimum-OS runtime claim from min14 metadata.
++
++
++## User authorization update — 2026-10-08
++
++User approved the scoped outstanding actions: [canonical approval and boundaries](../../docs/macos-continuation-approval-20261008.md), [reviewed hashes](../../docs/macos-continuation-approval-20261008.json). Disposable blob-frame probe and audited Mermaid11.17.2 installation/lockfile changes are now authorized; isolated Applications install/update tests are authorized on a disposable account/host. Earlier approval-pending/no-install labels are historical and superseded only for these actions. Production proof gates, acceptance results and unchecked tasks stay unchanged. Separate killable-process architecture requires a concrete amendment if needed; release/security/commit restrictions remain. Environments/prior update package are still prerequisites. Next: execute the approved probe/audit, then implementation/rebuild/retest; run installation checks when the isolated environment is available.
+diff --git a/specs/012-macos-delivery/verification.md b/specs/012-macos-delivery/verification.md
+index 5f91770..3152a0a 100644
+--- a/specs/012-macos-delivery/verification.md
++++ b/specs/012-macos-delivery/verification.md
+@@ -32,3 +32,19 @@ Host: macOS 26.2, arm64; Node 20.19.6; cached Rust 1.98.1. Configured minimum ma
+ 
+ The original isolated QA bundle crashed on a cold `open -a <QA app> <fixture.md>` at 16:12:50 local time. The captured panic in `/private/tmp/md-reader-cold-finder-panic.log` was `Failed to setup app: ... a webview with label main already exists`; macOS crash report `md_reader-2026-09-29-161254.ips` identified the QA bundle ID. The Open Documents event can precede Tauri Ready. `src-tauri/src/lib.rs` now queues those paths until setup creates the first window and skips duplicate setup creation if one already exists. Rebuilt isolated QA `.app` cold-opened the same fixture without a crash and showed the explicit Open/Dismiss panel. `cargo test --manifest-path src-tauri/Cargo.toml --locked --offline --lib`: PASS 56/56, 2 ignored; QA `npm run tauri build -- --bundles app --config /private/tmp/md-reader-qa-f005-config.json`: PASS. The original production app/DMG hashes in `docs/local-build-2026-09-29.md` predate this repair and must be rebuilt.
+ | F006 image viewing | NOT TESTED | Isolated decoder/helper, image tabs and packaged format/security trials open. |
++
++## Current-source readiness — 2026-10-07
++
++[Current readiness and exact missing-environment procedures](current-readiness-20261007.md) supersede no historical result. Host macOS 27.0.1 (26A434), thin arm64. Current Intentgrove app/helper strict signatures and DMG integrity PASS. Read-only Gatekeeper retry rejects the private ad-hoc app. macOS 14, Intel/universal, installation/update and full-v1 acceptance remain unverified. Current QA uses a separately identified disposable candidate; see `../../qa/runs/macos-20261007/`. All incomplete F005 task gates remain open.
++
++
++## Fresh final delivery continuation — 2026-10-08
++
++[OS final report, exact artifacts, checksums/source and procedures](../../os-engineering/macos-finish-20261008-report.md). Production rebuilt after Settings document Escape repair using existing offline private-ad-hoc workflow. arm64 app/helper, product metadata/min14 inspection, strictdeep signatures, DMGintegrity, read-only mounted identical exe/helper/Info.plist PASS; Gatekeeper REJECTED ad-hoc, no notarized-readiness claim. PhysicalResourcesicon, frontendassets embedded; fullfilemanifest retained. Historical packages preserved.
++
++[Final-source native ledger](../../qa/runs/macos-finish-20261008/coverage.json):30PASS/2FAIL/10BLOCKED; separate isolatedID/config, production exact runtimeNF42BLOCKED. No earlier-buildpassinheritance.322frontendPASS; native97PASS3ignored. macOS14runtime/Intelcompile+runtime/universalcompile+runtime explicitlyUNVERIFIED, onlyarm64Rusttargetinstalled. AppsApplicationsinstall/update forbidden until explicit authorization; exact isolated procedure provided, current read-only mount was permitted/executed. T002/T005/T006/T009/T010/T013/T014 remain open: their broader contract includes unmet runtime/drop/Dock/install/update/fullmatrix requirements. Compilation/metadata/architecture inspection/runtime acceptance are separate evidence classes.
++
++
++## User authorization update — 2026-10-08
++
++User approved the scoped outstanding actions: [canonical approval and boundaries](../../docs/macos-continuation-approval-20261008.md), [reviewed hashes](../../docs/macos-continuation-approval-20261008.json). Disposable blob-frame probe and audited Mermaid11.17.2 installation/lockfile changes are now authorized; isolated Applications install/update tests are authorized on a disposable account/host. Earlier approval-pending/no-install labels are historical and superseded only for these actions. Production proof gates, acceptance results and unchecked tasks stay unchanged. Separate killable-process architecture requires a concrete amendment if needed; release/security/commit restrictions remain. Environments/prior update package are still prerequisites. Next: execute the approved probe/audit, then implementation/rebuild/retest; run installation checks when the isolated environment is available.
+diff --git a/src-tauri/src/image.rs b/src-tauri/src/image.rs
+index f0709f1..ca28dec 100644
+--- a/src-tauri/src/image.rs
++++ b/src-tauri/src/image.rs
+@@ -209,6 +209,21 @@ fn open_image_file(state: &AppState, file_id: Option<&str>, root_id: Option<&str
+     Ok((file, grant, post_check))
+ }
+ 
++// Refresh verifies granted bytes and identity without repeatedly decoding pixels.
++// The frontend's image consumer owns decode failures and recovery.
++pub(crate) fn image_fingerprint(state: &AppState, file_id: Option<&str>,
++    root_id: Option<&str>, segments: Option<Vec<String>>) -> AppResult<(String, String, String)> {
++    let generation = state.generation()?;
++    let (file, mut grant, post_check) = open_image_file(state, file_id, root_id, segments)?;
++    let opened_identity = identity(&file)?;
++    let (_, version) = stable_bytes(&file)?;
++    if state.generation()? != generation {
++        return Err(AppError::new("cancelled", "Image selection changed during refresh"));
++    }
++    verify_postcheck(state, &mut grant, post_check, opened_identity)?;
++    Ok((grant.id, version, format!("{}:{}", opened_identity.device, opened_identity.inode)))
++}
++
+ pub fn open_image_impl(state: &AppState, file_id: Option<&str>, root_id: Option<&str>,
+     segments: Option<Vec<String>>, max_dimension: u32) -> AppResult<ImageResponse> {
+     let (file, grant, post_check) = open_image_file(state, file_id, root_id, segments)?;
+diff --git a/src-tauri/src/refresh.rs b/src-tauri/src/refresh.rs
+index 022990b..8048df5 100644
+--- a/src-tauri/src/refresh.rs
++++ b/src-tauri/src/refresh.rs
+@@ -11,6 +11,16 @@ use std::sync::{Arc, Mutex};
+ use std::time::Duration;
+ use tauri::{AppHandle, Emitter};
+ 
++fn file_fingerprint(state: &AppState, file_id: &str) -> AppResult<(String, String)> {
++    if crate::scope::image_format(&state.file(file_id)?.name).is_some() {
++        let (_, version, identity) = crate::image::image_fingerprint(state, Some(file_id), None, None)?;
++        Ok((version, identity))
++    } else {
++        let document = read_document_impl(state, Some(file_id), None, None)?;
++        Ok((document.disk_version, document.identity_key))
++    }
++}
++
+ #[derive(Clone, Debug)]
+ pub enum RefreshNotice {
+     FileChanged {
+@@ -190,17 +200,17 @@ impl RefreshCore {
+             if !in_scope {
+                 continue;
+             }
+-            match read_document_impl(&self.state, Some(file_id), None, None) {
+-                Ok(document) => {
++            match file_fingerprint(&self.state, file_id) {
++                Ok((disk_version, identity_key)) => {
+                     let prior = self
+                         .file_versions
+-                        .insert(file_id.clone(), document.disk_version.clone());
+-                    if prior.as_deref() != Some(document.disk_version.as_str()) {
++                        .insert(file_id.clone(), disk_version.clone());
++                    if prior.as_deref() != Some(disk_version.as_str()) {
+                         notices.push(RefreshNotice::FileChanged {
+                             generation,
+                             file_id: file_id.clone(),
+-                            disk_version: document.disk_version,
+-                            identity_key: document.identity_key,
++                            disk_version: disk_version,
++                            identity_key: identity_key,
+                             checked_at: checked_at(),
+                         });
+                     }
+@@ -311,17 +321,17 @@ pub fn run_reload(
+         if cancelled() || state.generation()? != generation {
+             return Err(AppError::new("cancelled", "Reload stopped"));
+         }
+-        let document = read_document_impl(state, Some(file_id), None, None)?;
++        let (disk_version, identity_key) = file_fingerprint(state, file_id)?;
+         let previous = core
+             .file_versions
+-            .insert(file_id.to_string(), document.disk_version.clone());
+-        let changed = previous.as_deref() != Some(document.disk_version.as_str());
++            .insert(file_id.to_string(), disk_version.clone());
++        let changed = previous.as_deref() != Some(disk_version.as_str());
+         if changed && open_file_ids.iter().any(|open| open == file_id) {
+             emit(ReloadUpdate::Notice(RefreshNotice::FileChanged {
+                 generation,
+                 file_id: file_id.to_string(),
+-                disk_version: document.disk_version,
+-                identity_key: document.identity_key,
++                disk_version: disk_version,
++                identity_key: identity_key,
+                 checked_at: checked_at(),
+             }));
+         }
+@@ -353,8 +363,12 @@ pub fn run_reload(
+                 validate_segment(segment)?;
+             }
+             state.root(root_id)?;
+-            let document = read_document_impl(state, None, Some(root_id), Some(segments.clone()))?;
+-            check_file(&document.file_id, target, &mut emit)?;
++            let file_id = if segments.last().is_some_and(|name| crate::scope::image_format(name).is_some()) {
++                crate::image::image_fingerprint(state, None, Some(root_id), Some(segments.clone()))?.0
++            } else {
++                read_document_impl(state, None, Some(root_id), Some(segments.clone()))?.file_id
++            };
++            check_file(&file_id, target, &mut emit)?;
+             outcome.examined_count = 1;
+             outcome.confirmed_count = 1;
+         }
+@@ -1092,6 +1106,27 @@ pub async fn get_confirmed_document(
+ mod worker_tests {
+     use super::*;
+ 
++    #[test]
++    fn image_refresh_uses_granted_fingerprint_and_preserves_reselection() {
++        use std::fs;
++        let dir = std::env::temp_dir().join(format!("intentgrove-refresh-{}", uuid::Uuid::new_v4()));
++        fs::create_dir(&dir).unwrap();
++        let path = dir.join("pixel.png");
++        fs::write(&path, b"first-image-bytes").unwrap();
++        let state = AppState::default();
++        let grant = state.register_explicit_file(&path).unwrap();
++        let mut core = RefreshCore::new(state.clone());
++        let first = core.reconcile_visible_scopes(None, &[grant.id.clone()], &[]).unwrap();
++        assert!(matches!(&first[0], RefreshNotice::FileChanged { .. }));
++        assert!(core.reconcile_visible_scopes(None, &[grant.id.clone()], &[]).unwrap().is_empty());
++        fs::write(&path, b"second-image-bytes").unwrap();
++        assert!(matches!(&core.reconcile_visible_scopes(None, &[grant.id.clone()], &[]).unwrap()[0], RefreshNotice::FileChanged { .. }));
++        fs::rename(&path, dir.join("old.png")).unwrap();
++        fs::write(&path, b"replacement").unwrap();
++        assert!(matches!(&core.reconcile_visible_scopes(None, &[grant.id], &[]).unwrap()[0], RefreshNotice::Uncertain { reason_code: "reselection_required", .. }));
++        fs::remove_dir_all(dir).unwrap();
++    }
++
+     #[test]
+     fn idle_worker_does_not_hold_the_scope_mutex() {
+         let service = RefreshService::new(AppState::default());
+diff --git a/src-tauri/src/settings.rs b/src-tauri/src/settings.rs
+index c46a972..45f899c 100644
+--- a/src-tauri/src/settings.rs
++++ b/src-tauri/src/settings.rs
+@@ -243,9 +243,13 @@ pub fn show(app: &tauri::AppHandle, group: Group) -> AppResult<()> {
+         let builder = tauri::WebviewWindowBuilder::new(app, "settings", tauri::WebviewUrl::App("index.html?settings".into()));
+         #[cfg(test)]
+         let builder = if let Some(directory) = &state.1 { builder.data_directory(directory.clone()) } else { builder };
++        // The window-level drop switch is Windows-only. On macOS, retain
++        // Tauri interception: Settings events are consumed before workspace intake.
++        #[cfg(windows)]
++        let builder = builder.drag_and_drop(false);
+         builder
+             .title("Settings — Intentgrove").inner_size(width, height)
+-            .min_inner_size(320., 240.).position(x, y).resizable(true).drag_and_drop(false)
++            .min_inner_size(320., 240.).position(x, y).resizable(true)
+             .on_navigation(super::allowed_navigation)
+             .on_new_window(|_, _| tauri::webview::NewWindowResponse::Deny)
+             .on_download(|_, _| false).build()
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 14264bf..38582f8 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -197,6 +197,7 @@ export default function App() {
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
+   const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
++  const [folderSearchScope, setFolderSearchScope] = useState<string[]>([]);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+   const [sidebarWidth, setSidebarWidth] = useState(264);
+   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+@@ -422,7 +423,10 @@ export default function App() {
+         savedDiskVersion: tab.diskVersion ?? null,
+         editingActive: Boolean(editsRef.current[tab.id] && !editsRef.current[tab.id].paused)
+       })),
+-      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey ?? currentActive,
++      // Opening may reserve an active ID before React commits its tab. Snapshot
++      // only committed tabs; keep the pending ID for reply ownership checks.
++      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey
++        ?? currentTabs.find((tab) => tab.id === currentActive)?.id ?? null,
+       tree: {
+         expanded: Object.entries(currentDirectories).filter(([, value]) => value.expanded)
+           .map(([key]) => JSON.parse(key) as string[]).filter((path) => path.length > 0),
+@@ -443,7 +447,12 @@ export default function App() {
+       return Promise.resolve();
+     if (sessionTimer.current) clearTimeout(sessionTimer.current);
+     sessionTimer.current = null;
+-    const input = sessionSnapshot();
++    let input: SessionCheckpointInput;
++    try { input = sessionSnapshot(); }
++    catch (error) {
++      setSessionNotice({ operation: final ? "close" : "checkpoint", code: readerError(error).code });
++      return Promise.reject(error);
++    }
+     const write = sessionWrite.current.catch(() => {}).then(async () => {
+       if (final && typeof api.finishWorkspaceSession === "function") await api.finishWorkspaceSession(input);
+       else await api.checkpointWorkspaceSession(input);
+@@ -851,7 +860,7 @@ export default function App() {
+       anchor });
+   }
+ 
+-  useEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
++  useLayoutEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
+   useEffect(() => { setManualReload(null); pendingManualReloads.current.clear(); manualJobTargets.current.clear(); }, [root?.id, root?.generation]);
+   useEffect(() => {
+     if (reloadMenu || projectsMenu || goMenu) {
+@@ -1153,7 +1162,7 @@ export default function App() {
+   }
+ 
+   useEffect(() => {
+-    if (!active?.diskVersion || active.errorCode || activeEdit) return;
++    if (!active?.diskVersion || active.kind === "image" || active.errorCode || activeEdit) return;
+     if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
+     void api.listEditSections(active.id).then((result) => {
+@@ -1487,6 +1496,7 @@ export default function App() {
+     for (const directory of Object.values(directoriesRef.current)) {
+       if (directory.loading) void api.cancelListing(directory.token).catch(() => {});
+     }
++    setFolderSearchScope([]);
+     setRoot(selected);
+     setRootProblem(null);
+     setDirectories({});
+@@ -1890,7 +1900,8 @@ export default function App() {
+       if (!selected) return;
+       generationRef.current = selected.generation;
+       rootRef.current = selected;
+-      setRoot(selected); setRootProblem(null);
++      setFolderSearchScope([]);
++    setRoot(selected); setRootProblem(null);
+       inspectionSequence.current += 1;
+       inspectedDiskRef.current = null; setInspectedDisk(null);
+       discardConflictRef.current = null; setDiscardConflictConfirm(null);
+@@ -2814,7 +2825,7 @@ export default function App() {
+               <>
+                 <div hidden={sidebarPanel !== "search"} inert={sidebarPanel !== "search"} className="folder-search-host">
+                   <FolderSearchPanel key={root.id} root={root} locale={locale} active={sidebarPanel === "search"}
+-                    query={folderQuery} onQueryChange={setFolderQuery}
++                    scopeSegments={folderSearchScope} query={folderQuery} onQueryChange={setFolderQuery}
+                     onClose={() => { setSidebarPanel("explorer"); searchTrigger.current?.focus(); }}
+                     onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+                 </div>
+@@ -3088,7 +3099,7 @@ export default function App() {
+             { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
+             { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
+             { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
+-              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } },
++              run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } },
+             ...(root ? [
+               { label: `${t(locale, "reload")} ${root.name} ${t(locale, "folder")}`, disabled: busy,
+                 run: () => void startReload({ ...projectsMenu, target: { kind: "folder", rootId: root.id, segments: [] }, label: root.name }) },
+@@ -3104,13 +3115,16 @@ export default function App() {
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
+                 { label: t(locale, "openFile"), hint: shortcutHint("O"), run: () => void chooseFile() },
+                 { label: t(locale, "openFolder"), hint: shortcutHint("O", true), run: () => void chooseFolder() },
+-                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } }
+               ] : []),
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [
+                 { label: t(locale, directories[pathKey(reloadMenu.target.segments)]?.expanded ? "collapseFolder" : "expandFolder"),
+                   run: () => { if (reloadMenu.target.kind === "folder") toggleDirectory(reloadMenu.target.segments); } },
+-                { label: t(locale, "folderSearch"), disabled: true,
+-                  reason: t(locale, "searchFolderUnavailable"), run: () => {} }
++                { label: t(locale, "folderSearch"), run: () => {
++                  if (reloadMenu.target.kind !== "folder") return;
++                  setFolderSearchScope([...reloadMenu.target.segments]);
++                  setSidebarOpen(true); setSidebarPanel("search");
++                } }
+               ] : []),
+               ...(reloadMenu.target.kind === "root-file" && reloadMenu.anchor.getAttribute("role") !== "tab" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
+                 disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
+diff --git a/src/app/FolderSearchPanel.tsx b/src/app/FolderSearchPanel.tsx
+index 0da58cc..7d66ab9 100644
+--- a/src/app/FolderSearchPanel.tsx
++++ b/src/app/FolderSearchPanel.tsx
+@@ -6,6 +6,7 @@ import { errorText, t, type Locale } from "./i18n";
+ 
+ interface Props {
+   root: GrantInfo;
++  scopeSegments?: string[];
+   locale: Locale;
+   onOpen: (result: OpenFolderSearchHit, hit: FolderSearchHit, query: string) => Promise<void>;
+   active?: boolean;
+@@ -14,7 +15,9 @@ interface Props {
+   onClose?: () => void;
+ }
+ 
+-export default function FolderSearchPanel({ root, locale, onOpen, active = true, query: suppliedQuery, onQueryChange, onClose }: Props) {
++export default function FolderSearchPanel({ root, scopeSegments = [], locale, onOpen, active = true, query: suppliedQuery, onQueryChange, onClose }: Props) {
++  const scopeKey = JSON.stringify(scopeSegments);
++  const [confirmedScope, setConfirmedScope] = useState<string[] | null>(null);
+   const [localQuery, setLocalQuery] = useState("");
+   const query = suppliedQuery ?? localQuery;
+   const setQuery = onQueryChange ?? setLocalQuery;
+@@ -39,9 +42,12 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+ 
+   function accept(batch: FolderSearchBatch) {
+     if (batch.jobId !== job.current?.jobId || batch.generation !== root.generation) {
+-      if (!job.current && pending.current.length < 16) pending.current.push(batch);
++      if (!job.current && starting.current && pending.current.length < 16) pending.current.push(batch);
+       return;
+     }
++    if (batch.errorCode === "scope_changed") {
++      invalidate(); setStatus("partial"); setErrorCode("scope_changed"); return;
++    }
+     setHits((old) => [...old, ...batch.results].slice(0, 10_000));
+     setProgress({ scanned: batch.scanned, skipped: batch.skipped, matched: batch.matched });
+     setStatus(stoppedJob.current === batch.jobId
+@@ -50,6 +56,9 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+   }
+ 
+   useEffect(() => {
++    invalidate();
++    setConfirmedScope(null);
++    setListenerReady(false);
+     let disposed = false;
+     let unlisten: (() => void) | undefined;
+     void listen<FolderSearchBatch>("folder-search:batch", (event) => {
+@@ -60,12 +69,14 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+     return () => {
+       disposed = true;
+       sequence.current += 1;
+-      unlisten?.();
++      openSequence.current += 1;
+       const current = job.current;
++      job.current = null;
++      unlisten?.();
+       if (current) void api.cancelFolderSearch(current.jobId).catch(() => {});
+       void starting.current?.then((started) => api.cancelFolderSearch(started.jobId)).catch(() => {});
+     };
+-  }, [root.id, root.generation]);
++  }, [root.id, root.generation, scopeKey]);
+ 
+   function invalidate() {
+     sequence.current += 1;
+@@ -97,7 +108,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         if (old) await api.cancelFolderSearch(old.jobId).catch(() => {});
+         if (current !== sequence.current) return;
+       }
+-      const pendingStart = api.startFolderSearch(root.id, value, selectedMode, selectedIgnored);
++      const pendingStart = api.startFolderSearch(root.id, value, selectedMode, selectedIgnored, scopeSegments);
+       starting.current = pendingStart;
+       const started = await pendingStart;
+       if (current !== sequence.current) {
+@@ -105,6 +116,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         return;
+       }
+       job.current = started;
++      setConfirmedScope(started.scopeSegments ?? []);
+       if (stoppedSequence.current === current) {
+         stoppedJob.current = started.jobId;
+         await api.cancelFolderSearch(started.jobId);
+@@ -145,9 +157,13 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+     setOpening(hit.id);
+     try {
+       const result = await api.openSearchHit(current.jobId, hit.id);
+-      if (job.current !== current) return;
++      if (job.current !== current || owner !== openSequence.current) return;
+       await onOpen(result, hit, submittedQuery.current);
+-    } catch (error) { if (job.current === current && owner === openSequence.current) setErrorCode(readerError(error).code); }
++    } catch (error) { if (job.current === current && owner === openSequence.current) {
++      const code = readerError(error).code;
++      if (code === "scope_changed") invalidate();
++      setErrorCode(code);
++    } }
+     finally { if (owner === openSequence.current) setOpening(null); }
+   }
+ 
+@@ -167,7 +183,7 @@ export default function FolderSearchPanel({ root, locale, onOpen, active = true,
+         onChange={(event) => { invalidate(); setQuery(event.target.value); }}
+         onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); void search(); } }} />
+     </label>
+-    <p className="folder-search-scope">{t(locale, "searchScope")}: {root.name} · {t(locale,
++    <p className="folder-search-scope">{t(locale, "searchScope")}: {[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")} · {t(locale,
+       mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</p>
+     <div className="search-modes" role="group" aria-label={t(locale, "folderSearchMode")}>
+       {(["both", "name", "content"] as const).map((choice) => <button type="button" key={choice}
+diff --git a/src/app/ReadingSettings.tsx b/src/app/ReadingSettings.tsx
+index df5fbbe..73bd812 100644
+--- a/src/app/ReadingSettings.tsx
++++ b/src/app/ReadingSettings.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useId, useState, type CSSProperties } from "react";
++import { useLayoutEffect, useId, useState, type CSSProperties } from "react";
+ import type { SessionPanel } from "./api";
+ import { t, type Locale } from "./i18n";
+ import { defaultSessionPanel } from "./session";
+@@ -13,7 +13,7 @@ function ReadingNumber({ locale, label, value, min, max, step, unit, onChange }:
+   const id = useId();
+   const [draft, setDraft] = useState(String(value));
+   const [invalid, setInvalid] = useState(false);
+-  useEffect(() => { setDraft(String(value)); setInvalid(false); }, [value]);
++  useLayoutEffect(() => { setDraft(String(value)); setInvalid(false); }, [value]);
+   function commit() {
+     // Merely focusing a restored value must not normalize or reject it.
+     if (draft === String(value)) { setInvalid(false); return; }
+diff --git a/src/app/SettingsWindow.tsx b/src/app/SettingsWindow.tsx
+index 53ba8bf..8da7fbf 100644
+--- a/src/app/SettingsWindow.tsx
++++ b/src/app/SettingsWindow.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useRef, useState } from "react";
++import { useEffect, useLayoutEffect, useRef, useState } from "react";
+ import ReadingSettings from "./ReadingSettings";
+ import { settingsApi, newerSettings, type PreferencePatch, type SettingsSnapshot } from "./settings-contract";
+ import { getAppearance, useAppearance, APPEARANCE_KEY } from "./appearance";
+@@ -12,6 +12,15 @@ export default function SettingsWindow() {
+   const lastPatch = useRef<PreferencePatch | null>(null);
+   const appearance = useAppearance();
+   const accept = (snapshot: SettingsSnapshot) => setState(current => newerSettings(current, snapshot));
++  useEffect(() => {
++    const escape = (event: KeyboardEvent) => {
++      if (event.key === "Escape" && !event.defaultPrevented) {
++        event.preventDefault(); void settingsApi.close();
++      }
++    };
++    window.addEventListener("keydown", escape);
++    return () => window.removeEventListener("keydown", escape);
++  }, []);
+   useEffect(() => {
+     let disposed = false;
+     const refresh = () => { void settingsApi.get().then(next => { if (!disposed) accept(next); })
+@@ -25,7 +34,7 @@ export default function SettingsWindow() {
+     document.documentElement.lang = state.values.language;
+     getAppearance().applyPreference(state.values.appearance, false);
+   }, [state?.values.language, state?.values.appearance]);
+-  useEffect(() => {
++  useLayoutEffect(() => {
+     if (!state) return;
+     const id = { General: "settings-general", Reading: "settings-reading", ProjectTree: "settings-project-tree" }[state.group];
+     const target = document.getElementById(id);
+@@ -50,9 +59,7 @@ export default function SettingsWindow() {
+   }
+   const locale = state?.values.language ?? "en";
+   const es = locale === "es";
+-  return <main className="native-settings" onKeyDown={event => {
+-    if (event.key === "Escape" && !event.defaultPrevented) { event.preventDefault(); void settingsApi.close(); }
+-  }}>
++  return <main className="native-settings">
+     <h1>{es ? "Ajustes" : "Settings"}</h1>
+     {!state ? <p role="status">{error ? (es ? "No se pudieron cargar los ajustes." : "Could not load preferences.") : (es ? "Cargando…" : "Loading…")}</p> : <>
+       <section aria-labelledby="settings-general"><h2 id="settings-general" tabIndex={-1}>General</h2>
+diff --git a/src/app/i18n.ts b/src/app/i18n.ts
+index 445050f..12900d0 100644
+--- a/src/app/i18n.ts
++++ b/src/app/i18n.ts
+@@ -71,6 +71,7 @@ const catalog = {
+     wideWidth: "Wide",
+     customWidth: "Custom width",
+     searchScope: "Search scope",
++    searchScopeChanged: "The searched folder changed. Search again or select the folder again.",
+     clearSearch: "Clear search",
+     backToExplorer: "Back to explorer",
+     searchResultCount: "Results",
+@@ -266,6 +267,7 @@ const catalog = {
+     metadata: "Metadata",
+     invalidMetadata: "Invalid or unsupported YAML metadata",
+     metadataSource: "View metadata source",
++    blockSource: "View source",
+     outline: "Outline",
+     closeOutline: "Close outline",
+     outlineEmpty: "No headings in this document",
+@@ -391,6 +393,7 @@ const catalog = {
+     wideWidth: "Amplio",
+     customWidth: "Ancho personalizado",
+     searchScope: "Ámbito de búsqueda",
++    searchScopeChanged: "La carpeta buscada cambió. Busca de nuevo o vuelve a seleccionar la carpeta.",
+     clearSearch: "Borrar búsqueda",
+     backToExplorer: "Volver al explorador",
+     searchResultCount: "Resultados",
+@@ -586,6 +589,7 @@ const catalog = {
+     metadata: "Metadatos",
+     invalidMetadata: "Metadatos YAML no válidos o no compatibles",
+     metadataSource: "Ver código fuente de los metadatos",
++    blockSource: "Ver código fuente",
+     outline: "Índice",
+     closeOutline: "Cerrar índice",
+     outlineEmpty: "Este documento no tiene títulos",
+@@ -670,6 +674,7 @@ export function errorText(locale: Locale, code: string): string {
+     oversize: "oversize",
+     changed: "changed",
+     cloud_placeholder: "cloudPlaceholder",
++    scope_changed: "searchScopeChanged",
+     invalid_grant: "invalidGrant",
+     unsupported_type: "unsupported",
+     unsupported_asset: "imageBlocked",
+diff --git a/src/reader/MarkdownView.tsx b/src/reader/MarkdownView.tsx
+index 3db420c..127d0df 100644
+--- a/src/reader/MarkdownView.tsx
++++ b/src/reader/MarkdownView.tsx
+@@ -3,8 +3,7 @@ import Markdown, { type Components } from "react-markdown";
+ import remarkGfm from "remark-gfm";
+ import type { Root } from "mdast";
+ import type { Plugin } from "unified";
+-import { unified } from "unified";
+-import remarkParse from "remark-parse";
++import { parseBounded, MAX_DOCUMENT } from "./bounded-parser";
+ import remarkFrontmatter from "remark-frontmatter";
+ import { api, type SectionDescriptor } from "../app/api";
+ import { t, type Locale } from "../app/i18n";
+@@ -12,6 +11,7 @@ import { useRetainedOverlay } from "../app/useRetainedOverlay";
+ import { mapRenderedSections } from "./sectionMap";
+ import { parseFrontmatter, type MetadataResult } from "./frontmatter";
+ import { collectHeadings, headingSlug, type HeadingEntry } from "./heading-model";
++import { BLOCK_PROTOCOL, type BoundedBlock } from "./block-budget";
+ import CodeBlock, { fencedSource } from "./CodeBlock";
+ 
+ function textOf(node: ReactNode): string {
+@@ -53,16 +53,20 @@ export function exceedsRenderBudget(content: string): boolean {
+   return false;
+ }
+ 
+-class RenderBoundary extends Component<{ children: ReactNode; locale: Locale }, { failed: boolean }> {
++class RenderBoundary extends Component<{ children: ReactNode; locale: Locale; source?: string }, { failed: boolean }> {
+   state = { failed: false };
+ 
+   static getDerivedStateFromError() {
+     return { failed: true };
+   }
+ 
++  componentDidUpdate(previous: Readonly<{ children: ReactNode; locale: Locale; source?: string }>) {
++    if (previous.source !== this.props.source && this.state.failed) this.setState({ failed: false });
++  }
++
+   render() {
+     if (this.state.failed) {
+-      return <div className="error-state" role="alert"><h1>{t(this.props.locale, "renderBudget")}</h1></div>;
++      return <div className="error-state" role="alert"><p>{t(this.props.locale, "renderBudget")}</p><pre>{this.props.source}</pre></div>;
+     }
+     return this.props.children;
+   }
+@@ -122,10 +126,12 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   onRendered?: (fileId: string, content: string) => void;
+ }) {
+   const parseContent = content.startsWith("\uFEFF") ? content.slice(1) : content;
+-  const overBudget = useMemo(() => exceedsRenderBudget(parseContent), [parseContent]);
++  const overBudget = useMemo(() => parseContent.length > MAX_DOCUMENT, [parseContent]);
+   const hasWorker = typeof Worker !== "undefined";
+   const [parsed, setParsed] = useState<{ content: string; tree?: Root;
+-    metadata?: MetadataResult | null; error?: boolean } | null>(null);
++    metadata?: MetadataResult | null; blocks?: BoundedBlock[]; error?: boolean } | null>(null);
++  const generation = useRef(0);
++  const [painted, setPainted] = useState(24);
+   const [editMenu, setEditMenu] = useState<{
+     section?: SectionDescriptor; reason?: string; x: number; y: number; anchor: HTMLElement
+   } | null>(null);
+@@ -134,6 +140,7 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   useEffect(() => {
+     if (overBudget || !hasWorker) return;
+     let live = true;
++    const owner = ++generation.current;
+     let worker: Worker;
+     setParsed(null);
+     try {
+@@ -142,19 +149,21 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+       setParsed({ content: parseContent, error: true });
+       return;
+     }
+-    const finish = (tree?: Root, metadata?: MetadataResult | null) => {
++    const finish = (tree?: Root, metadata?: MetadataResult | null, blocks?: BoundedBlock[]) => {
+       if (!live) return;
+       clearTimeout(timer);
+       worker.terminate();
+-      setParsed(tree ? { content: parseContent, tree, metadata }
++      setParsed(tree ? { content: parseContent, tree, metadata, blocks }
+         : { content: parseContent, error: true });
+     };
+     const timer = setTimeout(() => finish(), 5_000);
+     worker.onmessage = (event: MessageEvent<{ kind: string; tree?: Root;
+-      metadata?: MetadataResult | null }>) =>
+-      finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata);
++      metadata?: MetadataResult | null; version: number; generation: number; blocks?: BoundedBlock[] }>) => {
++      if (event.data.version !== BLOCK_PROTOCOL || event.data.generation !== owner) return;
++      finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata, event.data.blocks);
++    };
+     worker.onerror = () => finish();
+-    worker.postMessage(parseContent);
++    worker.postMessage({ version: BLOCK_PROTOCOL, generation: owner, source: parseContent });
+     return () => {
+       live = false;
+       clearTimeout(timer);
+@@ -166,14 +175,24 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   const workerMetadata = parsed?.content === parseContent ? parsed.metadata : undefined;
+   const parseFailed = parsed?.content === parseContent && parsed.error;
+   const canParseInline = !overBudget && parseContent.length <= 256 * 1024;
+-  const renderReady = !overBudget && (Boolean(tree) || ((!hasWorker || parseFailed) && canParseInline));
++  const renderReady = !overBudget && (Boolean(tree) || ((!hasWorker) && canParseInline));
++  const blocks = useMemo(() => parsed?.content === parseContent && parsed.blocks
++    ? parsed.blocks : canParseInline && (!hasWorker)
++      ? parseBounded(parseContent).blocks
++      : [], [parsed, parseContent, canParseInline, hasWorker, parseFailed]);
++  useEffect(() => { setPainted(24); }, [fileId, parseContent]);
++  useEffect(() => {
++    if (painted >= blocks.length) return;
++    const timer = setTimeout(() => setPainted(count => Math.min(count + 24, blocks.length)), 0);
++    return () => clearTimeout(timer);
++  }, [painted, blocks]);
+   const renderedCallback = useRef(onRendered);
+   renderedCallback.current = onRendered;
+   useLayoutEffect(() => {
+-    if (renderReady) renderedCallback.current?.(fileId, content);
+-  }, [fileId, content, renderReady]);
++    if (renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
++  }, [fileId, content, renderReady, painted, blocks.length]);
+   const sectionTree = useMemo(() => tree ?? (canParseInline
+-    ? unified().use(remarkParse).use(remarkFrontmatter).parse(parseContent) as Root : undefined),
++    ? parseBounded(parseContent).tree : undefined),
+     [tree, canParseInline, parseContent]);
+   const metadata = useMemo(() => {
+     if (workerMetadata !== undefined) return workerMetadata;
+@@ -188,12 +207,6 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+   const headingByOffset = useMemo(() => new Map(headingEntries.map((entry) => [entry.offset, entry])),
+     [headingEntries]);
+   useEffect(() => { onHeadings?.(headingEntries); }, [fileId, headingEntries]);
+-  const parsedPlugin = useMemo(() => {
+-    if (!tree) return null;
+-    const plugin: Plugin = function () { this.parser = () => tree; };
+-    return plugin;
+-  }, [tree]);
+-
+   const slugCounts = new Map<string, number>();
+   const heading = (level: 1 | 2 | 3 | 4 | 5 | 6, children: ReactNode,
+     node?: { position?: { start?: { offset?: number } } }) => {
+@@ -280,10 +293,10 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+                 position?.end?.offset, source)} language={language} locale={locale} /></div>;
+           },
+           table: ({ children, node }) => <table {...rendering.current.regionProps(node)}>{children}</table>,
+-          a: ({ href, children }) => (
++          a: ({ href, children, id }) => (
+             <button
+               type="button"
+-              className="document-link"
++              className="document-link" id={id}
+               onClick={() => href && rendering.current.onNavigate(href)}
+               title={href ?? undefined}
+             >
+@@ -295,14 +308,14 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+           code: ({ children, className }) => <code className={className}>{children}</code>
+   }), [parseContent, fileId, locale]);
+ 
+-  if (overBudget || ((parseFailed || !hasWorker) && !canParseInline)) {
++  if (overBudget || parseFailed || (!hasWorker && !canParseInline)) {
+     return <div className="error-state" role="alert">
+-      <h1>{t(locale, "renderBudget")}</h1>
++      <h1>{t(locale, "renderBudget")}</h1><details><summary>{t(locale, "blockSource")}</summary><pre>{content}</pre></details>
+     </div>;
+   }
+   if (hasWorker && !tree && !parseFailed) return <p role="status">{t(locale, "loading")}</p>;
+   return (
+-    <RenderBoundary key={`${fileId}:${content.length}`} locale={locale}>
++    <RenderBoundary key={fileId} locale={locale} source={content}>
+     <article ref={findRootRef} className="markdown-body" tabIndex={onEditSection && !sectionMap?.valid ? 0 : -1}
+       onContextMenu={openSectionMenu} onKeyDown={(event) => {
+       if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) openSectionMenu(event);
+@@ -335,13 +348,14 @@ export default function MarkdownView({ content, fileId, locale, onNavigate, sect
+         }}>{t(locale, "editSection")}</button>
+         {editOverlay.shown.reason && <div className="context-menu-reason">{editOverlay.shown.reason}</div>}
+       </div>}
+-      <Markdown
+-        remarkPlugins={parsedPlugin ? [remarkGfm, remarkFrontmatter, parsedPlugin]
+-          : [remarkGfm, remarkFrontmatter]}
+-        components={components}
+-      >
+-        {parseContent}
+-      </Markdown>
++      {blocks.slice(0, painted).map((block, index) => {
++        const plugin: Plugin = function () { this.parser = () => block.tree; };
++        return <RenderBoundary key={index} locale={locale} source={block.source}>
++          {block.fallback ? <div role="alert"><p>{t(locale, "renderBudget")}</p><details><summary>{t(locale, "blockSource")}</summary><pre>{block.source}</pre></details></div>
++            : <Markdown remarkPlugins={[remarkGfm, remarkFrontmatter, plugin]} components={components}>{block.source}</Markdown>}
++        </RenderBoundary>;
++      })}
++      {painted < blocks.length && <p role="status">{t(locale, "loading")}</p>}
+     </article>
+     </RenderBoundary>
+   );
+diff --git a/src/reader/markdownBudget.worker.ts b/src/reader/markdownBudget.worker.ts
+index ccef8b5..326f485 100644
+--- a/src/reader/markdownBudget.worker.ts
++++ b/src/reader/markdownBudget.worker.ts
+@@ -1,36 +1,14 @@
+-import { unified } from "unified";
+-import remarkParse from "remark-parse";
+-import remarkGfm from "remark-gfm";
+-import remarkFrontmatter from "remark-frontmatter";
+-import { parseFrontmatter } from "./frontmatter";
+-
+-// Bound the tree passed back to the synchronous React render path as well as
+-// parsing work in the worker. The 1 MiB mixed acceptance fixture has 7,431 nodes.
+-const MAX_NODES = 10_000;
+-const MAX_DEPTH = 128;
+-const processor = unified().use(remarkParse).use(remarkGfm).use(remarkFrontmatter);
+-
+-self.onmessage = (event: MessageEvent<string>) => {
++import { parseBounded } from "./bounded-parser";
++import { BLOCK_PROTOCOL } from "./block-budget";
++self.onmessage = (event: MessageEvent<string | { version: number; generation: number; source: string }>) => {
++  const request = event.data;
++  const source = typeof request === "string" ? request : request.source;
++  const generation = typeof request === "string" ? 0 : request.generation;
++  if (typeof request !== "string" && request.version !== BLOCK_PROTOCOL) return;
+   try {
+-    const tree = processor.parse(event.data);
+-    const first = tree.children[0] as { type?: string; value?: string } | undefined;
+-    const metadata = first?.type === "yaml" && typeof first.value === "string"
+-      ? parseFrontmatter(first.value) : null;
+-    const pending: Array<{ node: { children?: unknown[] }; depth: number }> = [{ node: tree, depth: 0 }];
+-    let count = 0;
+-    while (pending.length) {
+-      const { node, depth } = pending.pop()!;
+-      count += 1;
+-      if (count > MAX_NODES || depth > MAX_DEPTH) {
+-        self.postMessage({ kind: "overBudget" });
+-        return;
+-      }
+-      if (node.children) {
+-        for (const child of node.children) pending.push({ node: child as { children?: unknown[] }, depth: depth + 1 });
+-      }
+-    }
+-    self.postMessage({ kind: "parsed", tree, metadata });
++    const result = parseBounded(source);
++    self.postMessage({ kind: "parsed", version: BLOCK_PROTOCOL, generation, ...result });
+   } catch {
+-    self.postMessage({ kind: "overBudget" });
++    self.postMessage({ kind: "overBudget", version: BLOCK_PROTOCOL, generation });
+   }
+ };
+diff --git a/tests/ui/edit-flow.test.tsx b/tests/ui/edit-flow.test.tsx
+index 3013f60..1dd7806 100644
+--- a/tests/ui/edit-flow.test.tsx
++++ b/tests/ui/edit-flow.test.tsx
+@@ -36,7 +36,7 @@ const sections = [
+ ];
+ 
+ beforeEach(() => {
+-  vi.clearAllMocks();
++  vi.resetAllMocks();
+   localStorage.clear();
+   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+   mocks.listEntries.mockResolvedValue({ entries: [{ name: "a.md", kind: "markdown" }], nextOffset: null, snapshotId: "v1" });
+@@ -56,11 +56,9 @@ afterEach(cleanup);
+ 
+ async function editSection(name: string) {
+   await screen.findByLabelText(`Edit section: ${name}`);
+-  await waitFor(() => {
+-    fireEvent.contextMenu(screen.getByLabelText(`Edit section: ${name}`));
+-    expect(screen.getByRole("menuitem", { name: "Edit section" })).toBeTruthy();
+-  });
+-  fireEvent.click(screen.getByRole("menuitem", { name: "Edit section" }));
++  await screen.findByRole("button", { name: `Edit section “${name}”` });
++  fireEvent.contextMenu(screen.getByLabelText(`Edit section: ${name}`));
++  fireEvent.click(await screen.findByRole("menuitem", { name: "Edit section" }));
+ }
+ 
+ describe("one pending section draft", () => {
+diff --git a/tests/ui/folder-search.test.tsx b/tests/ui/folder-search.test.tsx
+index ff0bb7b..b4ebe07 100644
+--- a/tests/ui/folder-search.test.tsx
++++ b/tests/ui/folder-search.test.tsx
+@@ -77,7 +77,7 @@ describe("folder search panel", () => {
+       { target: { value: "Needle" } });
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith(
+-      "root-1", "Needle", "both", false));
++      "root-1", "Needle", "both", false, []));
+     mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [hit],
+       scanned: 12, skipped: 3, matched: 1, status: "searching", errorCode: null } });
+     expect(await screen.findByRole("button", { name: /a\.md/ })).toBeTruthy();
+@@ -116,7 +116,66 @@ describe("folder search panel", () => {
+     expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1);
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenLastCalledWith(
+-      "root-1", "Needle", "both", true));
++      "root-1", "Needle", "both", true, []));
+     expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("job-1");
+   });
+ });
++
++
++describe("selected scope ownership", () => {
++  const batch = (jobId: string, errorCode: string | null = null): FolderSearchBatch => ({
++    jobId, generation: 1, results: [hit], scanned: 1, skipped: 0, matched: 1,
++    status: "complete", errorCode
++  });
++  it("passes literal scope and displays native confirmation independently of mode", async () => {
++    mocks.startFolderSearch.mockResolvedValue({ jobId: "job-1", generation: 1, scopeSegments: ["confirmed"] });
++    render(<FolderSearchPanel root={root} scopeSegments={["requested"]} locale="en" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith("root-1", "Needle", "both", false, ["requested"]));
++    expect(await screen.findByText(/fixture \/ confirmed/)).toBeTruthy();
++    fireEvent.click(screen.getByRole("button", { name: "Clear search" }));
++    expect(screen.getByText(/fixture \/ confirmed/)).toBeTruthy();
++  });
++  it("cancels a pending scope owner and refuses its buffered and late batches", async () => {
++    let resolve!: (value: unknown) => void;
++    mocks.startFolderSearch.mockReturnValueOnce(new Promise(done => { resolve = done; }));
++    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    act(() => mocks.listener?.({ payload: batch("old") }));
++    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={vi.fn()} />);
++    await act(async () => resolve({ jobId: "old", generation: 1, scopeSegments: ["old"] }));
++    expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("old");
++    act(() => mocks.listener?.({ payload: batch("old") }));
++    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
++    expect(screen.getByText(/fixture \/ new/)).toBeTruthy();
++  });
++  it("rejects open replies after scope replacement", async () => {
++    const onOpen = vi.fn(); let resolve!: (value: unknown) => void;
++    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={onOpen} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Search" }));
++    await act(async () => {});
++    act(() => mocks.listener?.({ payload: batch("job-1") }));
++    mocks.openSearchHit.mockReturnValueOnce(new Promise(done => { resolve = done; }));
++    fireEvent.click(screen.getByRole("button", { name: /a\.md/ }));
++    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={onOpen} />);
++    await act(async () => resolve({ line: 1 }));
++    expect(onOpen).not.toHaveBeenCalled();
++  });
++  it("discards changed-scope hits and explains Spanish recovery", async () => {
++    render(<FolderSearchPanel root={root} scopeSegments={["notes"]} locale="es" onOpen={vi.fn()} />);
++    await waitFor(() => expect(mocks.listener).toBeTruthy());
++    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
++    fireEvent.click(screen.getByRole("button", { name: "Buscar" }));
++    await act(async () => {});
++    act(() => mocks.listener?.({ payload: batch("job-1", "scope_changed") }));
++    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
++    expect(screen.getByRole("status").textContent).toContain("La carpeta buscada cambió");
++    expect(screen.getByRole("button", { name: "Buscar" })).toBeTruthy();
++  });
++});
+diff --git a/tests/ui/frontmatter.test.tsx b/tests/ui/frontmatter.test.tsx
+index b614215..9f8e57c 100644
+--- a/tests/ui/frontmatter.test.tsx
++++ b/tests/ui/frontmatter.test.tsx
+@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+ import { unified } from "unified";
+ import remarkParse from "remark-parse";
+ import remarkFrontmatter from "remark-frontmatter";
++import { boundedBlocks } from "../../src/reader/block-budget";
+ import MarkdownView from "../../src/reader/MarkdownView";
+ import { parseFrontmatter } from "../../src/reader/frontmatter";
+ 
+@@ -24,10 +25,10 @@ describe("YAML frontmatter as inert data", () => {
+     const processor = unified().use(remarkParse).use(remarkFrontmatter);
+     class FakeWorker {
+       onmessage: ((event: MessageEvent) => void) | null = null;
+-      postMessage(content: string) {
+-        const tree = processor.parse(content);
++      postMessage(request: { source: string; version: number; generation: number }) {
++        const tree = processor.parse(request.source);
+         const first = tree.children[0] as { type?: string; value?: string };
+-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree,
++        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source),
+           metadata: first?.type === "yaml" ? parseFrontmatter(first.value ?? "") : null } } as MessageEvent));
+       }
+       terminate() {}
+diff --git a/tests/ui/markdown.test.tsx b/tests/ui/markdown.test.tsx
+index 5986d97..0c61b6d 100644
+--- a/tests/ui/markdown.test.tsx
++++ b/tests/ui/markdown.test.tsx
+@@ -1,6 +1,7 @@
++import { boundedBlocks } from "../../src/reader/block-budget";
+ // @vitest-environment jsdom
+ import { afterEach, describe, expect, it, vi } from "vitest";
+-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
++import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+ import MarkdownView, { exceedsRenderBudget } from "../../src/reader/MarkdownView";
+ import { api } from "../../src/app/api";
+ import { unified } from "unified";
+@@ -15,8 +16,9 @@ describe("MarkdownView", () => {
+     class FakeWorker {
+       onmessage: ((event: MessageEvent<{ kind: string; tree: ReturnType<typeof processor.parse> }>) => void) | null = null;
+       onerror: (() => void) | null = null;
+-      postMessage(content: string) {
+-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree: processor.parse(content) } } as MessageEvent));
++      postMessage(request: { version: number; generation: number; source: string }) {
++        const tree = processor.parse(request.source);
++        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source) } } as MessageEvent));
+       }
+       terminate() {}
+     }
+@@ -26,7 +28,53 @@ describe("MarkdownView", () => {
+     expect(screen.getByRole("table")).toBeTruthy();
+   });
+ 
+-  it("renders a small document when the worker fails", async () => {
++  it("terminates replaced workers and ignores stale and wrong-generation results", async () => {
++    const processor = unified().use(remarkParse);
++    const workers: DeferredWorker[] = [];
++    class DeferredWorker {
++      onmessage: ((event: MessageEvent) => void) | null = null;
++      request!: { source: string; version: number; generation: number };
++      terminate = vi.fn();
++      constructor() { workers.push(this); }
++      postMessage(request: DeferredWorker["request"]) { this.request = request; }
++      reply(generation = this.request.generation) {
++        const tree = processor.parse(this.request.source);
++        this.onmessage?.({ data: { kind: "parsed", version: 1, generation, tree,
++          blocks: boundedBlocks(tree, this.request.source) } } as MessageEvent);
++      }
++    }
++    vi.stubGlobal("Worker", DeferredWorker);
++    const view = render(<MarkdownView content="# Old" fileId="fixture" locale="en" onNavigate={() => {}} />);
++    view.rerender(<MarkdownView content="# New" fileId="fixture" locale="en" onNavigate={() => {}} />);
++    expect(workers[0].terminate).toHaveBeenCalled();
++    act(() => workers[0].reply());
++    act(() => workers[1].reply(999));
++    expect(screen.queryByRole("heading")).toBeNull();
++    act(() => workers[1].reply());
++    expect(await screen.findByRole("heading", { name: "New" })).toBeTruthy();
++    expect(screen.queryByRole("heading", { name: "Old" })).toBeNull();
++    view.unmount();
++    expect(workers[1].terminate).toHaveBeenCalled();
++  });
++
++  it("preserves siblings and hostile source when one block exceeds the rich budget", () => {
++    render(<MarkdownView content={"# Before\n\n" + "> ".repeat(140) + "<script>attack()</script>\n\n# After"}
++      fileId="fixture" locale="en" onNavigate={() => {}} />);
++    expect(screen.getByRole("heading", { name: "Before" })).toBeTruthy();
++    expect(screen.getByRole("heading", { name: "After" })).toBeTruthy();
++    expect(screen.getByText(/<script>attack/)).toBeTruthy();
++    expect(document.querySelector("script")).toBeNull();
++  });
++
++  it("preserves document-wide reference links across bounded blocks", () => {
++    const navigate = vi.fn();
++    render(<MarkdownView content={"# References\n\n[Read guide][guide]\n\n[guide]: guide.md"}
++      fileId="fixture" locale="en" onNavigate={navigate} />);
++    fireEvent.click(screen.getByRole("button", { name: "Read guide" }));
++    expect(navigate).toHaveBeenCalledWith("guide.md");
++  });
++
++  it("retains exact source without retrying failed worker work on the UI thread", async () => {
+     class FailingWorker {
+       onerror: (() => void) | null = null;
+       postMessage() { queueMicrotask(() => this.onerror?.()); }
+@@ -34,7 +82,8 @@ describe("MarkdownView", () => {
+     }
+     vi.stubGlobal("Worker", FailingWorker);
+     render(<MarkdownView content="# Broken" fileId="fixture" locale="en" onNavigate={() => {}} />);
+-    expect(await screen.findByRole("heading", { name: "Broken" })).toBeTruthy();
++    expect((await screen.findByRole("alert")).textContent).toContain("# Broken");
++    expect(screen.queryByRole("heading", { name: "Broken" })).toBeNull();
+   });
+   it("shows the bounded fallback for a large document when the worker fails", async () => {
+     class FailingWorker {
+@@ -46,14 +95,28 @@ describe("MarkdownView", () => {
+     render(<MarkdownView content={"# Large\n" + "ordinary text\n".repeat(20_000)} fileId="fixture" locale="en" onNavigate={() => {}} />);
+     expect((await screen.findByRole("alert")).textContent).toContain("too complex");
+   });
+-  it("shows a localized fallback for pathological parse shapes", () => {
++  it("shows a localized fallback for pathological parse shapes", async () => {
+     expect(exceedsRenderBudget("# Ordinary\n\n| a | b |\n")).toBe(false);
+     expect(exceedsRenderBudget(("# Section\n\n- " + "ordinary text ".repeat(7) + "\n").repeat(10_000))).toBe(false);
+     expect(exceedsRenderBudget("x".repeat(65_537))).toBe(true);
+     const { rerender } = render(<MarkdownView content={"|".repeat(513)} fileId="fixture" locale="en" onNavigate={() => {}} />);
+-    expect(screen.getByRole("alert").textContent).toContain("too complex");
++    expect((await screen.findByRole("alert")).textContent).toContain("too complex");
+     rerender(<MarkdownView content={"|".repeat(513)} fileId="fixture" locale="es" onNavigate={() => {}} />);
+-    expect(screen.getByRole("alert").textContent).toContain("demasiado complejo");
++    expect((await screen.findByRole("alert")).textContent).toContain("demasiado complejo");
++  });
++  it("retains shared footnote targets, numbers and unique reference backlinks", () => {
++    vi.stubGlobal("Worker", undefined);
++    const navigate = vi.fn();
++    render(<MarkdownView content={"First[^a].\n\nSecond[^b], again[^a].\n\n[^a]: alpha\n\n[^b]: beta"}
++      fileId="fixture" locale="en" onNavigate={navigate} />);
++    const references = screen.getAllByRole("button", { name: "1" });
++    expect(references).toHaveLength(2);
++    expect(screen.getByRole("button", { name: "2" })).toBeTruthy();
++    expect(document.getElementById("fn-a")).toBeTruthy();
++    expect(document.getElementById("fn-b")).toBeTruthy();
++    expect(document.getElementById("fnref-a-1")).toBeTruthy();
++    expect(document.getElementById("fnref-a-2")).toBeTruthy();
++    fireEvent.click(references[0]); expect(navigate).toHaveBeenCalledWith("#fn-a");
+   });
+   it("renders basic GFM while keeping task controls read-only", () => {
+     render(<MarkdownView
+diff --git a/tests/ui/session.test.tsx b/tests/ui/session.test.tsx
+index 011faa8..7896321 100644
+--- a/tests/ui/session.test.tsx
++++ b/tests/ui/session.test.tsx
+@@ -1,3 +1,4 @@
++import { boundedBlocks, BLOCK_PROTOCOL } from "../../src/reader/block-budget";
+ // @vitest-environment jsdom
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+ import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+@@ -201,8 +202,9 @@ describe("workspace session", () => {
+     class DeferredWorker {
+       onmessage: ((event: MessageEvent) => void) | null = null;
+       content = "";
++      generation = 0;
+       constructor() { worker = this; }
+-      postMessage(content: string) { this.content = content; }
++      postMessage(request: { source: string; generation: number }) { this.content = request.source; this.generation = request.generation; }
+       terminate() {}
+     }
+     vi.stubGlobal("Worker", DeferredWorker);
+@@ -214,7 +216,7 @@ describe("workspace session", () => {
+     await waitFor(() => expect(worker?.content).toBe("# second"));
+     expect(container.querySelector('.markdown-body')).toBeNull();
+     expect(screen.queryByText(/The passage moved/)).toBeNull();
+-    await act(async () => worker.onmessage?.({ data: { kind: "parsed", tree: processor.parse(worker.content) } } as MessageEvent));
++    await act(async () => worker.onmessage?.({ data: { kind: "parsed", version: BLOCK_PROTOCOL, generation: worker.generation, tree: processor.parse(worker.content), blocks: boundedBlocks(processor.parse(worker.content), worker.content) } } as MessageEvent));
+     await screen.findByRole("heading", { name: "second" });
+     await waitFor(() => expect(container.querySelector('.reader-scroll')?.scrollTop).toBe(77));
+     expect(screen.queryByText(/The passage moved/)).toBeNull();
+@@ -361,6 +363,24 @@ describe("workspace session", () => {
+     expect(screen.queryByRole("button", { name: "Recover unsaved edit" })).toBeNull();
+   });
+ 
++  it("checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)", async () => {
++    render(<App />);
++    await screen.findByRole("heading", { name: "second" });
++    await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
++    mocks.selectFile.mockResolvedValue({ id: "new-grant", name: "new.md", displayPath: "/tmp/new.md" });
++    mocks.loadSectionRecovery.mockImplementationOnce(() => {
++      // openDocument reserves activeId before the batched tab update commits.
++      mocks.listeners["editing:close_requested"]({ payload: "quit" });
++      return Promise.resolve(null);
++    });
++    fireEvent.keyDown(window, { key: "o", metaKey: true });
++    await waitFor(() => expect(mocks.finishWorkspaceSession).toHaveBeenCalled());
++    const input = mocks.finishWorkspaceSession.mock.lastCall?.[0];
++    expect(input.tabs.map((tab: { key: string }) => tab.key)).toEqual(["first", "second", "third"]);
++    expect(input.activeKey).toBeNull();
++    expect(screen.queryByText(/could not be saved before closing/)).toBeNull();
++  });
++
+   it("acknowledges the final durable checkpoint before clean native Quit", async () => {
+     const calls: string[] = [];
+     mocks.finishWorkspaceSession.mockImplementation(async () => { calls.push("checkpoint");
+diff --git a/tests/ui/settings-window.test.tsx b/tests/ui/settings-window.test.tsx
+index caf5803..a41ce7e 100644
+--- a/tests/ui/settings-window.test.tsx
++++ b/tests/ui/settings-window.test.tsx
+@@ -1,6 +1,6 @@
+ // @vitest-environment jsdom
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
++import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+ import SettingsWindow from "../../src/app/SettingsWindow";
+ import { newerSettings, type SettingsSnapshot } from "../../src/app/settings-contract";
+ 
+@@ -9,7 +9,7 @@ vi.mock("../../src/app/settings-contract", async importOriginal => ({ ...await i
+ vi.mock("../../src/app/appearance", () => ({ APPEARANCE_KEY: "md-reader-appearance", useAppearance: () => ({ nativeWarning: false }), getAppearance: () => ({ applyPreference: vi.fn() }) }));
+ let snapshot: SettingsSnapshot;
+ beforeEach(() => {
+-  vi.clearAllMocks(); localStorage.clear();
++  vi.resetAllMocks(); localStorage.clear();
+   snapshot = { revision: 4, activation: 1, group: "Reading", ownerAvailable: true, requestId: null, persistence: "saved", nativeThemeFailed: false, retryPatch: null,
+     values: { language: "en", appearance: "system", readingFont: "roboto", readingSize: 16, readingLineHeight: 1.6, readingWidth: 760, documentsAndImagesOnly: true } };
+   bridge.get.mockImplementation(async () => snapshot);
+@@ -55,11 +55,34 @@ describe("IR-04 preference-only Settings entry", () => {
+     expect(screen.getByRole("combobox", { name: "Language" }).closest("fieldset")?.disabled).toBe(false);
+   });
+   it("numeric Escape reverts the draft first; window Escape closes without any file/session operation", async () => {
+-    render(<SettingsWindow />); const size = await screen.findByRole("spinbutton", { name: "Text size (px)" });
++    render(<SettingsWindow />);
++    await waitFor(() => expect(document.activeElement?.id).toBe("settings-reading"));
++    const size = screen.getByRole("spinbutton", { name: "Text size (px)" });
++    size.focus();
+     fireEvent.change(size, { target: { value: "23" } }); fireEvent.keyDown(size, { key: "Escape" });
+     expect((size as HTMLInputElement).value).toBe("16"); expect(bridge.close).not.toHaveBeenCalled(); expect(bridge.apply).not.toHaveBeenCalled();
+     fireEvent.keyDown(size, { key: "Escape" }); expect(bridge.close).toHaveBeenCalledOnce();
+   });
++  it("keeps an edited numeric draft through a pending owner publication", async () => {
++    let publish!: (value: SettingsSnapshot) => void;
++    bridge.get.mockImplementationOnce(() => new Promise(resolve => { publish = resolve; }));
++    render(<SettingsWindow />);
++    expect(screen.queryByRole("spinbutton")).toBeNull();
++    await act(async () => publish(snapshot));
++    await waitFor(() => expect(document.activeElement?.id).toBe("settings-reading"));
++    const size = screen.getByRole("spinbutton", { name: "Text size (px)" });
++    size.focus(); fireEvent.change(size, { target: { value: "23" } });
++    fireEvent.keyDown(size, { key: "Escape" });
++    expect((size as HTMLInputElement).value).toBe("16");
++    expect(bridge.close).not.toHaveBeenCalled(); expect(bridge.apply).not.toHaveBeenCalled();
++    fireEvent.keyDown(size, { key: "Escape" }); expect(bridge.close).toHaveBeenCalledOnce();
++  });
++  it("closes on Escape when native focus lands on the document after a preference commit", async () => {
++    render(<SettingsWindow />);
++    await waitFor(() => expect(document.activeElement?.id).toBe("settings-reading"));
++    fireEvent.keyDown(document.documentElement, { key: "Escape" });
++    expect(bridge.close).toHaveBeenCalledOnce();
++  });
+   it("late invoke completions cannot undo an acknowledgment or newer owner revision", () => {
+     const pending = { ...snapshot, requestId: "a", persistence: "pending" as const };
+     const saved = { ...pending, persistence: "saved" as const };
+diff --git a/tests/worker-bundle.mjs b/tests/worker-bundle.mjs
+index 4f33fce..7ddd085 100644
+--- a/tests/worker-bundle.mjs
++++ b/tests/worker-bundle.mjs
+@@ -34,7 +34,8 @@ worker.onmessage({ data: mixedBlock.repeat(Math.ceil(1_048_576 / mixedBlock.leng
+ assert.equal(messages[0]?.kind, "parsed", "ordinary 1 MiB mixed Markdown must stay within the worker budget");
+ messages.length = 0;
+ worker.onmessage({ data: "> ".repeat(140) + "deep" });
+-assert.equal(messages[0]?.kind, "overBudget");
++assert.equal(messages[0]?.kind, "parsed");
++assert.equal(messages[0].blocks[0].fallback, true);
+ const codeFiles = (await readdir(assets)).filter((name) => /^codeTokens\.worker-.*\.js$/.test(name));
+ assert.equal(codeFiles.length, 1, "expected one production code-token worker bundle");
+ const codeMessages = [];

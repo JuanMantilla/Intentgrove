@@ -1,0 +1,49 @@
+Option B · Focused creation dialog · Recommended
+A clear place to begin
+Resolve filename and destination in one focused step before opening the rendered Markdown editor.
+Recommended
+Projects / empty state → New
+Dialog: filename + destination
+Create empty .md → write
+Save → read → reopen
+Review controls
+State
+Discovery
+Name & destination
+Writing
+Saved / reading
+Return later
+Duplicate filename
+Invalid filename
+Creation failure
+Save failure
+Unsaved exit
+External change
+Theme
+Light
+Dark
+System
+Window
+Wide
+Narrow · 390px
+Enlarge
+Why this approach
+Best fit for deliberate document creation. A dialog holds the two required decisions without compressing the tree.
+The destination is explicit; filename errors have room; cancellation leaves no file. Fits existing modal and explicit-save conventions.
+Tradeoff
+One extra interruption before writing. As with A, an empty file exists after creation, even if the first edit is discarded.
+Implementation implications
+Compose shared Dialog, Field, Input, Select and Button. Native creation must return a verified file identity before adding a tab. Reuse existing editing and dirty-exit contracts.
+Complete flow, recovery and keyboard handoff
+Discover → create.
+New Markdown file appears in Projects and the empty workspace; a matching native File menu item is proposed with no shortcut assigned yet. The shared modal focuses Filename and traps Tab. Destination defaults to the selected project root, not the current document’s parent outside that grant. Escape / Cancel returns to the exact trigger with no file created. Without a project, require an explicit native destination picker; this prototype uses two illustrative granted destinations only.
+Narrow.
+The dialog expands to the available width with 16px outer margins, one column, scrollable content and wrapping actions. Name, destination and error remain in reading order. After creation, dismiss Projects and focus the editor.
+Name and destination.
+Trim no content silently: the final proposal blocks trailing spaces/dots, separators, empty or dot-only names, control characters and a competing extension. Append .md when absent; accept a typed .md / .MD once and normalize only its case. Show the final filename before commit. Dotted basenames such as release.v2.md remain possible when the final extension is .md. Do not overwrite duplicates; identify the collision beside Filename and retain both fields. Case/Unicode equivalence and platform-reserved names must be validated by the native filesystem adapter; browser validation is illustrative only.
+Write → save → return.
+The first editor starts empty. Insert sample content is a review fixture, not a proposed product feature. Direct rich editing preserves the existing supported Markdown blocks and contextual formatting. Cmd/Ctrl+S or Save file commits explicitly. Show Unsaved, Saving… and Saved to file only for the corresponding revision acknowledgment. Recovery status is separate from file-save status. Return to reading invokes the existing dirty guard. Close and reopen from Projects or the established Open/recent-file routes; resume a kept draft separately from saved content. The simulated return-later state lasts only within this page.
+Failures and exit.
+Creation failure retains name/destination (and all draft content in C), displays inline recovery and allows retry or destination change. Save failure preserves the editor and offers Retry Save; never mark the document saved. External changes block original Save and preserve Inspect versions / Keep my edit / Save a copy / confirmed Use disk version from the existing contract; these are annotated, not simulated filesystem operations. For a file-backed edit, dirty exit offers Cancel, Discard, Save to file and Keep draft. In A/B, Discard after initial creation leaves the already-created empty file. In C before first save, Cancel, Discard and Save to file are offered; persistent untitled Keep draft is deliberately not promised. A failure must keep the user in the current flow.
+Focus and accessibility.
+Inputs have persistent labels and inline errors announced once; first invalid input receives focus. Creation success focuses one named editor region. Save feedback uses a polite live region and text, not color alone. Dirty dialogs focus Cancel. Escape closes the topmost dialog, then restores its origin. Production formatting must preserve selection and expose menu keyboard equivalents; no text-leaf tab stops. Validate real IME, Undo/Redo, assistive technology and caret restoration during implementation.

@@ -1,0 +1,32 @@
+{
+  "status": "PROPOSED \u2014 READY FOR DESIGN REVIEW",
+  "png_visual_inspection": "PASS: compact outline restored in header and all states; cross/outline share title centerline; clipping absent; sidebar/doc/tab/status boundaries preserved",
+  "native_reopen": "PASS",
+  "native_reexport_identical": true,
+  "editable_objects": {
+    "paths": 119,
+    "compoundPaths": 5,
+    "groups": 13,
+    "textObjects": 62,
+    "images": 2
+  },
+  "fonts": "Roboto exact, zero missing glyphs",
+  "contrast": {
+    "text_default": 15.67,
+    "focus_canvas": 10.46,
+    "icon_pressed": 10.89
+  },
+  "svg_parse": "PASS",
+  "html_local_assets": "PASS",
+  "html_browser_render": "BLOCKED: CUA browser URL policy rejected file: URL; no workaround attempted. Wide/narrow rendering and review interactions NOT TESTED.",
+  "application_runtime": "NOT TESTED",
+  "attachment": "Not exposed; inspected available local reference showing Projects closed.",
+  "revision": "20px outlined close surface, 8px text-height cross, invisible 36px hit target; outline preserved in all states",
+  "critical_second_pass": {
+    "proportion": "20px outlined chrome instead of original 36px; 8px cross aligns to 12px heading cap-height scale",
+    "state_consistency": "Same 20px outline and 8px cross in all four states; no state layout shift",
+    "minimum_width": "Proposed 12px side insets and reduced chevron gap at 160px; English estimated composition 146px; runtime/localization NOT TESTED",
+    "preservation": "Chevron menu, sidebar geometry, hit target and document owner unchanged",
+    "html_render": "Still BLOCKED by prior browser file-URL security rejection; no bypass attempted"
+  }
+}

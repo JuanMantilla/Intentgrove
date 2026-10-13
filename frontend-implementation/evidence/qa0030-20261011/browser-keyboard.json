@@ -1,0 +1,24 @@
+[
+  {
+    "destination": "/fixture/personal/md-reader",
+    "step": "invalid Enter",
+    "value": "file.txt"
+  },
+  {
+    "focus": "Cancel",
+    "step": "Shift+Tab"
+  },
+  {
+    "focus": "Choose folder…",
+    "step": "reverse wrap"
+  },
+  {
+    "focus": "Cancel",
+    "step": "forward wrap"
+  },
+  {
+    "dialogs": 0,
+    "focus": "Projects",
+    "step": "Escape"
+  }
+]

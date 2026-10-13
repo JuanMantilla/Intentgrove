@@ -1,0 +1,93 @@
+Window: "Settings — Intentgrove", App: Intentgrove Alignment 20261009.
+0 standard window Settings — Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
+			3 container
+				4 heading Ajustes, Value: 1
+					5 text Ajustes
+				6 container General
+					7 heading General, Value: 2
+						8 text General
+					9 container
+						10 text Idioma
+						11 pop up button (collapsed) Idioma, Value: Español, Secondary Actions: Expand
+						12 text Idioma de la interfaz; el texto del documento no cambia. Apariencia
+						13 Apariencia
+							14 container
+								15 radio button Sistema, Value: 0
+								16 text Sistema
+							17 container
+								18 radio button Claro, Value: 1
+								19 text Claro
+							20 container
+								21 radio button Oscuro, Value: 0
+								22 text Oscuro
+						23 text Sistema sigue la apariencia del dispositivo.
+				24 container Distribución del espacio de trabajo
+					25 heading Distribución del espacio de trabajo, Value: 2
+						26 text Distribución del espacio de trabajo
+					27 container Distribución del espacio de trabajo
+						28 container
+							29 radio button Margin Explorador persistente, documento central e índice de secciones., Value: 0
+							30 text Margin Explorador persistente, documento central e índice de secciones.
+						31 container
+							32 radio button Folio Página centrada, navegación contraída y espacio generoso., Value: 1
+							33 text Folio Página centrada, navegación contraída y espacio generoso.
+						34 container
+							35 radio button Atlas Estante horizontal del proyecto, índice y mesa de lectura., Value: 0
+							36 text Atlas Estante horizontal del proyecto, índice y mesa de lectura.
+				37 container Lectura
+					38 heading Lectura, Value: 2
+						39 text Lectura
+					40 container
+						41 text Fuente
+						42 pop up button (collapsed) Fuente, Value: Roboto, Secondary Actions: Expand
+						43 text Tamaño del texto (px)
+						44 slider (settable, float) Tamaño del texto, Value: 16
+							45 value indicator 16
+						46 number field (settable) Tamaño del texto (px), Value: 16
+							47 stepper 0
+								48 unknown
+								49 unknown
+						50 text Interlineado
+						51 slider (settable, float) Interlineado, Value: 1.6
+							52 value indicator 1.6
+						53 number field (settable) Interlineado, Value: 1.6
+							54 stepper 0
+								55 unknown
+								56 unknown
+						57 text Ancho de página (px)
+						58 slider (settable, float) Ancho de página, Value: 760
+							59 value indicator 760
+						60 number field (settable) Ancho de página (px), Value: 760
+							61 stepper 0
+								62 unknown
+								63 unknown
+						64 container Ancho de página
+							65 toggle button Cómodo, Value: on
+							66 toggle button Amplio, Value: off
+						67 container Vista previa de lectura
+							68 text VISTA PREVIA DE LECTURA
+							69 text Ajusta la tipografía para leer con comodidad. Tu documento no cambia.
+						70 text Se aplica a la lectura y edición directa en esta ventana de trabajo.
+						71 button Restablecer ajustes de lectura
+				72 container Árbol de proyecto
+					73 heading Árbol de proyecto, Value: 2
+						74 text Árbol de proyecto
+					75 container
+						76 checkbox Solo documentos e imágenes, Value: 1
+						77 text Solo documentos e imágenes Muestra Markdown, HTML e imágenes compatibles. Las carpetas siguen visibles. Desactiva para listar otros archivos. No cambia el alcance de búsqueda ni el acceso a archivos.
+				78 text Los ajustes se aplican al cambiarlos. Los documentos se guardan por separado.
+				79 button Listo
+	80 close button
+	81 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	82 minimize button
+	83 text Settings — Intentgrove
+84 menu bar
+	85 Intentgrove Alignment 20261009
+	86 File
+	87 Edit
+	88 View
+	89 Ir
+	90 Window
+	91 Help

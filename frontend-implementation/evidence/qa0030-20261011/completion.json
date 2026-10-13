@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "task_id": "QA-0030",
+  "acceptance_version": "qa0030-implementation-20261011-v1",
+  "session_kind": "qa",
+  "qa_result": "QA_BLOCKED",
+  "task_state": "BLOCKED",
+  "unresolved_blockers": [
+    "Packaged real creation blocked by native folder picker Open disabled (QA-0029).",
+    "Independent QA RETEST and user acceptance pending."
+  ],
+  "required_checks": [
+    {
+      "id": "ui",
+      "result": "PASS",
+      "reason": "77 focused UI tests, mocked IPC",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/frontend-tests.log"
+      ]
+    },
+    {
+      "id": "native",
+      "result": "PASS",
+      "reason": "11 native creation tests, real disposable macOS filesystem",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/native-tests.log"
+      ]
+    },
+    {
+      "id": "build",
+      "result": "PASS",
+      "reason": "types and frontend build",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/build.log"
+      ]
+    },
+    {
+      "id": "native-build",
+      "result": "PASS",
+      "reason": "isolated debug app build, local ad-hoc signing",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/native-build.log"
+      ]
+    },
+    {
+      "id": "browser",
+      "result": "PASS",
+      "reason": "actual App mocked filename matrix and keyboard",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/browser-keyboard.json"
+      ]
+    },
+    {
+      "id": "native-preview",
+      "result": "PASS",
+      "reason": "bounded native rejection and normalization observation",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/native-normalization.txt"
+      ]
+    },
+    {
+      "id": "real-create",
+      "result": "BLOCKED",
+      "reason": "Both native folder pickers leave Open disabled (QA-0029); no authority bypass",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/native-token-picker-blocked.txt"
+      ]
+    },
+    {
+      "id": "integrity",
+      "result": "PASS",
+      "reason": "126 tested input hashes unchanged",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/input-integrity-final.json"
+      ]
+    },
+    {
+      "id": "accessibility-platform",
+      "result": "NOT_RUN",
+      "reason": "Screen reader, physical IME, Windows/Linux and narrow/Spanish not exercised",
+      "finished_at": "2026-10-11T17:38:32.759268+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0030-20261011/browser-context.json"
+      ]
+    }
+  ],
+  "final_report": "frontend-implementation/qa0030-20261011-handoff.md",
+  "evidence_paths": [
+    "frontend-implementation/evidence/qa0030-20261011/evidence-index.md",
+    "frontend-implementation/evidence/qa0030-20261011/coverage.json",
+    "frontend-implementation/evidence/qa0030-20261011/candidate.json"
+  ],
+  "tested_snapshot_path": "frontend-implementation/evidence/qa0030-20261011/tested-snapshot.json",
+  "artifact_paths": [
+    "frontend-implementation/evidence/qa0030-20261011/native-invalid.png",
+    "frontend-implementation/evidence/qa0030-20261011/input-integrity-final.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-root-picker-blocked.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-invalid.png",
+    "frontend-implementation/evidence/qa0030-20261011/provenance.json",
+    "frontend-implementation/evidence/qa0030-20261011/candidate.json",
+    "frontend-implementation/evidence/qa0030-20261011/browser-context.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-root-picker-blocked.png",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid-enter-settled.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-invalid-enter.txt",
+    "frontend-implementation/evidence/qa0030-20261011/implementation.patch",
+    "frontend-implementation/evidence/qa0030-20261011/native-normalization.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-cancel.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid.png",
+    "frontend-implementation/evidence/qa0030-20261011/native-fixtures-after.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-build.config.json",
+    "frontend-implementation/evidence/qa0030-20261011/browser-events.json",
+    "frontend-implementation/evidence/qa0030-20261011/signature.txt",
+    "frontend-implementation/evidence/qa0030-20261011/frontend-tests.log",
+    "frontend-implementation/evidence/qa0030-20261011/native-token-picker-blocked.txt",
+    "frontend-implementation/evidence/qa0030-20261011/coverage.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-tests.log",
+    "frontend-implementation/evidence/qa0030-20261011/browser-keyboard.json",
+    "frontend-implementation/evidence/qa0030-20261011/tested-paths.json",
+    "frontend-implementation/evidence/qa0030-20261011/diff-check.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid-enter.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-build.log",
+    "frontend-implementation/evidence/qa0030-20261011/browser-server.log",
+    "frontend-implementation/evidence/qa0030-20261011/native-token-picker-blocked.png",
+    "frontend-implementation/evidence/qa0030-20261011/build.log",
+    "frontend-implementation/evidence/qa0030-20261011/tested-snapshot.json",
+    "frontend-implementation/evidence/qa0030-20261011/before/tests/ui/new-markdown.test.tsx.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/os-engineering/new-markdown-20261011/frontend-handoff.md.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src-tauri/src/creation.rs.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src/app/i18n.ts.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src/app/NewMarkdownDialog.tsx.baseline",
+    "frontend-implementation/qa0030-20261011-handoff.md",
+    "frontend-implementation/evidence/qa0030-20261011/evidence-index.md",
+    "frontend-implementation/evidence/qa0030-20261011/completion.json"
+  ],
+  "retain_paths": [
+    "frontend-implementation/evidence/qa0030-20261011/native-invalid.png",
+    "frontend-implementation/evidence/qa0030-20261011/input-integrity-final.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-root-picker-blocked.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-invalid.png",
+    "frontend-implementation/evidence/qa0030-20261011/provenance.json",
+    "frontend-implementation/evidence/qa0030-20261011/candidate.json",
+    "frontend-implementation/evidence/qa0030-20261011/browser-context.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-root-picker-blocked.png",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid-enter-settled.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-invalid-enter.txt",
+    "frontend-implementation/evidence/qa0030-20261011/implementation.patch",
+    "frontend-implementation/evidence/qa0030-20261011/native-normalization.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-cancel.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid.png",
+    "frontend-implementation/evidence/qa0030-20261011/native-fixtures-after.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-build.config.json",
+    "frontend-implementation/evidence/qa0030-20261011/browser-events.json",
+    "frontend-implementation/evidence/qa0030-20261011/signature.txt",
+    "frontend-implementation/evidence/qa0030-20261011/frontend-tests.log",
+    "frontend-implementation/evidence/qa0030-20261011/native-token-picker-blocked.txt",
+    "frontend-implementation/evidence/qa0030-20261011/coverage.json",
+    "frontend-implementation/evidence/qa0030-20261011/native-tests.log",
+    "frontend-implementation/evidence/qa0030-20261011/browser-keyboard.json",
+    "frontend-implementation/evidence/qa0030-20261011/tested-paths.json",
+    "frontend-implementation/evidence/qa0030-20261011/diff-check.txt",
+    "frontend-implementation/evidence/qa0030-20261011/browser-valid-enter.txt",
+    "frontend-implementation/evidence/qa0030-20261011/native-build.log",
+    "frontend-implementation/evidence/qa0030-20261011/browser-server.log",
+    "frontend-implementation/evidence/qa0030-20261011/native-token-picker-blocked.png",
+    "frontend-implementation/evidence/qa0030-20261011/build.log",
+    "frontend-implementation/evidence/qa0030-20261011/tested-snapshot.json",
+    "frontend-implementation/evidence/qa0030-20261011/before/tests/ui/new-markdown.test.tsx.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/os-engineering/new-markdown-20261011/frontend-handoff.md.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src-tauri/src/creation.rs.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src/app/i18n.ts.baseline",
+    "frontend-implementation/evidence/qa0030-20261011/before/src/app/NewMarkdownDialog.tsx.baseline",
+    "frontend-implementation/qa0030-20261011-handoff.md",
+    "frontend-implementation/evidence/qa0030-20261011/evidence-index.md",
+    "frontend-implementation/evidence/qa0030-20261011/completion.json"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "qa/findings/QA-0030.md",
+    "frontend-implementation/new-markdown-20261011-native-request.md",
+    "qa/runs/new-markdown-20261011-final/evidence/approved-option-b-text.txt"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Real packaged create journey when access permits, independent QA RETEST and final user acceptance remain pending.",
+      "source_path": "AGENTS.md",
+      "evidence_path": "frontend-implementation/qa0030-20261011-handoff.md",
+      "satisfied": false
+    }
+  ]
+}

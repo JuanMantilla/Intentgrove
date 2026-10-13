@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /** Manual reload feedback occupies reserved space; last results remain in target menus. */
-export default function ReloadFeedback({ message, successful, dismissLabel, progress }: {
-  message: string | null; successful: boolean; dismissLabel: string; progress?: ReactNode;
+export default function ReloadFeedback({ message, successful, dismissLabel, progress, fallback }: {
+  message: string | null; successful: boolean; dismissLabel: string; progress?: ReactNode; fallback?: string;
 }) {
   const [dismissed, setDismissed] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -27,6 +27,7 @@ export default function ReloadFeedback({ message, successful, dismissLabel, prog
       </span>
       <button type="button" aria-label={dismissLabel} onClick={() => setDismissed(true)}>×</button>
     </>}
+    {(dismissed || !message) && !progress && fallback && <span className="workspace-file-status">{fallback}</span>}
     {progress}
   </div>;
 }

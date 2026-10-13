@@ -1,3 +1,4 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -61,7 +62,7 @@ async function openEdit(id = "a") {
 }
 async function setup() {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   await openEdit();
   await waitFor(() => expect(mocks.listeners["refresh:file_changed"]).toBeTypeOf("function"));
 }

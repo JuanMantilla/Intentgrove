@@ -1,0 +1,55 @@
+{
+  "application_files": [
+    "src/app/App.tsx",
+    "src/app/FolderSearchPanel.tsx",
+    "src/app/i18n.ts",
+    "src/reader/ImageView.tsx",
+    "src/styles/app.css"
+  ],
+  "tests": [
+    "tests/ui/appearance-operations.test.tsx",
+    "tests/ui/approved-navigation.test.tsx",
+    "tests/ui/automatic-refresh.test.tsx",
+    "tests/ui/close-edit.test.tsx",
+    "tests/ui/edit-flow.test.tsx",
+    "tests/ui/find.test.tsx",
+    "tests/ui/html-integration.test.tsx",
+    "tests/ui/html-unavailable.test.tsx",
+    "tests/ui/image-refresh.test.tsx",
+    "tests/ui/image-view.test.tsx",
+    "tests/ui/manual-reload.test.tsx",
+    "tests/ui/recovery.test.tsx",
+    "tests/ui/refresh-conflict.test.tsx",
+    "tests/ui/refresh-recovery.test.tsx",
+    "tests/ui/session.test.tsx",
+    "tests/ui/windows-platform.test.tsx",
+    "tests/ui/workspace-handoff.test.tsx",
+    "tests/ui/workspace-layout.test.tsx",
+    "tests/ui/workspace.test.tsx",
+    "tests/ui/project-navigation-helpers.ts"
+  ],
+  "design_sha256": "c409b2b759d68bdde158bbd3bc9735db625a238173cf3dddcc77ac3f1e8a9067",
+  "verification": "jsdom/mocked only; rendered/browser/native checks unavailable",
+  "preserved": "Pre-existing worktree changes, sidebar view selection, context-menu/rail z-indices",
+  "handoff_files": [
+    "frontend-implementation/preview-navigation-20261010-plan.md",
+    "frontend-implementation/preview-navigation-20261010-report.md",
+    "frontend-implementation/plan.md",
+    "frontend-implementation/report.md",
+    "frontend-implementation/STATE.md",
+    ".agents/state.md"
+  ],
+  "final_tests": {
+    "command": "npm test",
+    "exit_code": 0,
+    "files": 62,
+    "tests": 523
+  },
+  "final_source_sha256": {
+    "src/app/App.tsx": "42e13cf4b2b095e99a0a1f0fb927a92de672e1cb4920e2bf2b0a91f06e6ed4b5",
+    "src/app/FolderSearchPanel.tsx": "e058e31becb97eaab8331aebd8ce87375d665ddd8ef7fcbcb7a288ba43ddc121",
+    "src/app/i18n.ts": "8aa5deb0505fc9a989b0def194a239102011fedb1557d192e6c3cb6409bf54f0",
+    "src/reader/ImageView.tsx": "07909a307663a5a78d7393ca7c12640219d328069c4346a6ce77626b0b3244a7",
+    "src/styles/app.css": "35916c4cbb8e18d67649d93308913740e22522a0bfdef29f5771710205580d1b"
+  }
+}

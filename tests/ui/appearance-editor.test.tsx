@@ -1,45 +1,39 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { EditorView } from "@codemirror/view";
-import { historyField } from "@codemirror/commands";
 import { getAppearance } from "../../src/app/appearance";
 import SectionEditor from "../../src/reader/SectionEditor";
+import { richLeaf, selectRich, typeRich } from "./rich-edit-helpers";
 
-afterEach(() => { cleanup(); getAppearance().applyPreference("system"); vi.unstubAllGlobals(); });
-
-describe("F002A live editor appearance preservation", () => {
-  it("keeps the editor, draft, history, selection, focus, scroll and checkpoint count through ten changes", () => {
-    vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => setTimeout(() => callback(0), 16));
-    vi.stubGlobal("cancelAnimationFrame", clearTimeout);
+afterEach(() => { cleanup(); getAppearance().applyPreference("system"); });
+describe("live rendered editor appearance preservation", () => {
+  it("keeps draft, source history, selection, DOM, focus and reader scroll through ten changes", () => {
     const onChange = vi.fn(), onCheckpoint = vi.fn();
-    render(<SectionEditor sessionId="appearance-session" fileId="file" label="One" locale="en"
-      initialSource="# One\nbase\n" initialDraft="# One\nbase\n" lineSeparator="\n" busy={false}
+    render(<div className="reader-scroll"><SectionEditor sessionId="appearance-session" fileId="file" label="One" locale="en"
+      initialSource={"# One\nbase\n"} initialDraft={"# One\nbase\n"} lineSeparator={"\n"} busy={false}
       checkpointStatus="saved" onChange={onChange} onCheckpoint={onCheckpoint}
-      onSave={() => {}} onSaveAs={() => {}} onDiscard={() => {}} onReturn={() => {}} />);
-    const node = document.querySelector<HTMLElement>(".cm-editor")!;
-    const editor = EditorView.findFromDOM(node)!;
-    act(() => editor.dispatch({ changes: { from: editor.state.doc.length, insert: "first\n" } }));
-    act(() => editor.dispatch({ changes: { from: editor.state.doc.length, insert: "second\n" },
-      selection: { anchor: 7 } }));
-    editor.focus(); editor.scrollDOM.scrollTop = 42; editor.scrollDOM.scrollLeft = 7;
-    const before = editor.state.toJSON({ history: historyField });
+      onSave={() => {}} onSaveAs={() => {}} onDiscard={() => {}} onReturn={() => {}} /></div>);
+    typeRich(" first", richLeaf("base"), 4);
+    typeRich(" second", richLeaf("base first"), 10);
+    const node = document.querySelector(".rich-section");
+    const leaf = richLeaf("base first second");
+    act(() => { selectRich(leaf, 7); document.dispatchEvent(new Event("selectionchange")); });
+    const before = onCheckpoint.mock.calls.at(-1)![1];
+    const reader = document.querySelector<HTMLElement>(".reader-scroll")!;
+    reader.scrollTop = 42; reader.scrollLeft = 7;
     const focus = document.activeElement, checkpoints = onCheckpoint.mock.calls.length;
-    for (let index = 0; index < 10; index += 1) {
-      const dark = index % 2 === 0;
-      act(() => getAppearance().applyPreference(dark ? "dark" : "light"));
-      expect(EditorView.findFromDOM(node)).toBe(editor);
-      expect(editor.state.facet(EditorView.darkTheme)).toBe(dark);
-      expect(editor.state.toJSON({ history: historyField })).toEqual(before);
+    for (let index = 0; index < 10; index++) {
+      act(() => getAppearance().applyPreference(index % 2 ? "light" : "dark"));
+      expect(document.querySelector(".rich-section")).toBe(node);
+      expect(onCheckpoint.mock.calls.at(-1)![1]).toEqual(before);
       expect(document.activeElement).toBe(focus);
-      expect(editor.scrollDOM.scrollTop).toBe(42);
-      expect(editor.scrollDOM.scrollLeft).toBe(7);
+      expect(window.getSelection()?.anchorOffset).toBe(7);
+      expect(reader.scrollTop).toBe(42); expect(reader.scrollLeft).toBe(7);
     }
     expect(onCheckpoint).toHaveBeenCalledTimes(checkpoints);
-    const draft = editor.state.doc.toString();
     fireEvent.click(screen.getByRole("button", { name: "Undo" }));
-    expect(editor.state.doc.toString()).not.toBe(draft);
+    expect(richLeaf("base first")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Redo" }));
-    expect(editor.state.doc.toString()).toBe(draft);
+    expect(richLeaf("base first second")).toBeTruthy();
   });
 });

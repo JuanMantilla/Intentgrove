@@ -1,0 +1,50 @@
+[
+  {
+    "id": "menus",
+    "result": "PASS",
+    "scope": "32 mocked frontend tests: explorer closed-file mouse menu, root-file tab keyboard menu, explicit tab mouse menu; missing files in both; absent/relative/virtual paths hidden; Windows label/grant; existing menu/navigation regressions",
+    "evidence": "ui-tests-final.log"
+  },
+  {
+    "id": "native-policy",
+    "result": "PASS",
+    "scope": "macOS arm64 cargo test --offline --lib: 140 passed, 5 existing ignored. Two new reveal tests cover actual grants/path resolution, special characters, traversal/empty paths, expired grant, missing/replaced file, valid request field names, rejected folders/arbitrary renderer paths",
+    "evidence": "native-tests-final.log"
+  },
+  {
+    "id": "frontend-build",
+    "result": "PASS",
+    "scope": "TypeScript and production frontend build into task-owned dist",
+    "evidence": "build-final.log"
+  },
+  {
+    "id": "finder",
+    "result": "PASS",
+    "scope": "Production Cocoa bridge compiled in standalone probe; real Finder selection queried through AppleScript, exactly matching fixture absolute path. Missing target rejected with exit 1",
+    "evidence": "finder-selection-final.json"
+  },
+  {
+    "id": "diff",
+    "result": "PASS",
+    "scope": "git diff --check",
+    "evidence": "diff-check.log"
+  },
+  {
+    "id": "packaged-menus",
+    "result": "NOT_RUN",
+    "scope": "No isolated packaged-app menu-to-Finder UI test; mocked actual-App consumers and real native bridge tested separately",
+    "evidence": "report.md"
+  },
+  {
+    "id": "windows-runtime",
+    "result": "NOT_RUN",
+    "scope": "No Windows host/build runner; Windows label/grant frontend mocked only, native Shell code reviewed",
+    "evidence": "report.md"
+  },
+  {
+    "id": "linux",
+    "result": "NOT_APPLICABLE",
+    "scope": "Existing native platform module explicitly rejects Linux targets; action hidden on unsupported UI platform",
+    "evidence": "report.md"
+  }
+]

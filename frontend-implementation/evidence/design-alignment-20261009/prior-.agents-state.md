@@ -1,0 +1,11 @@
+# Current state — 2026-10-08
+
+Primary os-senior-expert IMPLEMENT: Workspace layout native integration COMPLETE_IN_SCOPE. Margin default; strict Margin/Folio/Atlas settings/session fields through existing owner/request/revision/ack/retry and schema1 persistence. Existing frontend reused unchanged; supported Settings choices enabled and unsupported-version message absent. Direct rendered editing preserved; CRLF Save DEFERRED.
+
+120native library PASS/5ignored;488mocked frontend PASS; local native build/worker/signature PASS. Real disposable-profile each-layout restart, failure/Retry, dirty draft/search/history/Keep draft recovery and source/grant preservation exercised; representative rendered native windows inspected. Broader native integration harnesses FAIL compilation; full native narrow/theme/locale/accessibility/nonzero anchor/selection and Windows NOT TESTED. Options ACCEPTED; runtime user acceptance PENDING.
+
+Evidence: os-engineering/evidence/workspace-layout-native-20261008/report.md and frontend-implementation/evidence/workspace-layout-native-20261008/report.md. Prior complete state retained in OS evidence/prior-agent-state.md; historical records, unrelated dirty work and global Spec Kit013 preserved. Task candidate stopped with disposable fixtures/profile/draft retained. No install/dependencies/privileges/destructive migration/commit/push/deploy.
+
+Stop at implementation handoff. Next: review and complete residual exact-candidate verification on working native surfaces; separate refresh harness owner repairs compile failures. Prior exclusions/QA ownership remain unchanged.
+
+Diagnostic follow-up 2026-10-09: five rounds each at parallel1 and parallel2, AC/Odyssey 1440p120Hz (internal display inactive). Main builds 10/10 PASS. Means 138.2s/200.4s; parallel1 zero new swap-outs; parallel2 1/5 suites FAIL. Parallel1 cleanup PermissionError; parallel2 normal cleanup, exit1 for test failure. Evidence: `../diagnostics/mac-parallel-20261009-072426-455651/report.txt`, `../diagnostics/mac-parallel-20261009-073752-523694/report.txt` and concurrency-comparison.json. Prior parallel4 evidence retained. Product approvals unchanged. Next: review concurrency/upgrade tradeoff; test races and profiler cleanup remain separate follow-up.

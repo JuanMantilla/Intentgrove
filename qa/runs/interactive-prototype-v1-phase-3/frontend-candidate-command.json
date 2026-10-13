@@ -1,0 +1,19 @@
+{
+  "name": "frontend-candidate-final",
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/frontend-candidate-result.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/frontend-candidate",
+  "started_at": "2026-10-12T02:55:30.926520+00:00",
+  "finished_at": "2026-10-12T02:57:35.275351+00:00",
+  "exit_code": 1,
+  "tested_snapshot": "frontend-candidate-inputs.json"
+}

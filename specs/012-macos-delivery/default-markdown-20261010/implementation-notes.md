@@ -1,0 +1,13 @@
+# Implementation decisions
+
+The existing clang/static-library build boundary hosts a focused AppKit adapter, with a Rust compile-time eligibility gate. It adds no framework, dependency or privilege. Startup uses the existing main-window menu-state bridge's optional `defaultMarkdownReady` flag. This flag provides presentation readiness only: the renderer cannot supply a target, type, or consent result. Native eligibility and the native Make Default response own every write.
+
+Readiness excludes restoration, queued native-entry decisions, edits/recovery, acquisition/busy operations and workspace dialogs; a native timer also requires the main window to be key, visible and free of sheets/modal UI. Native settings windows therefore defer presentation. The asynchronous request is serialized per distinct specific type; a private no-follow, owner-checked file lock serializes consent processes. No automatic association retry or rollback occurs.
+
+The NSWorkspace query compares resolved handler bundle URLs to the running bundle URL. Nil, dynamic, broad or conflicting types fail closed. Only `net.daringfireball.markdown` is allowed; `.md` and `.markdown` remain separately queried even when the type deduplicates. A fresh type resolution and handler query determine final success. Partial verification including one unknown handler is reported without success.
+
+Prompt response and a mirror of the selected app language use dedicated CFPreferences keys in the production bundle domain; no workspace/session/draft/settings format is loaded or rewritten by consent-only mode. The in-process response latch is set before persistence and a failed synchronize produces a warning. The initial already-default check also records completion, preventing a later external switch from causing onboarding. Consent-only mode reads the language mirror, falling back to system language.
+
+`--request-default-markdown` is intercepted before AppState, Tauri, WebViews or storage initialization. Extra arguments fail closed. Compile-time gating rejects debug/harness/probe/contract-test builds; native gating additionally requires the production identity, an actual .app executable location and the package marker. `INTENTGROVE_DISABLE_DEFAULT_MARKDOWN` disables both onboarding and writes for any production-ID probe candidate.
+
+Native NSAlert supplies standard appearance/accessibility. Not Now owns Return/default focus and Escape; only Make Default requests changes. Result dialogs also recheck renderer readiness and defer around workspace decisions and other sheets, and hidden/closed workspace windows receive a local result log rather than an overlapping alert. Script-mode results remain native standalone alerts and process exit codes.

@@ -1,0 +1,25 @@
+{
+  "name": "crate-clippy-current",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+  },
+  "started_at": "2026-10-12T04:58:59.987406+00:00",
+  "finished_at": "2026-10-12T04:59:02.093739+00:00",
+  "exit_code": 0,
+  "log": "crate-clippy-current.log",
+  "tested_snapshot": "tested-snapshot-current.json"
+}

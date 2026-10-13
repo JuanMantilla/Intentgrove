@@ -1,5 +1,7 @@
 # Implementation Plan: Restore Workspace Session
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Branch**: `004-restore-workspace-session` (Spec Kit feature ID; no Git branch change) | **Date**: 2026-09-29 | **Spec**: [spec.md](spec.md) | **Status**: Proposal; user approval required before production implementation
 
 ## Summary
@@ -138,3 +140,15 @@ must remain BLOCKED until an approved observer can cover that interval.
 same local storage, no-write and scoped-access boundaries. No exception is
 proposed. User approval of the current F003C spec, visual sketch and architecture
 is required before generating implementation tasks or changing production code.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003C-H01**: HTML uses the existing schema1 native selection/identity restore. Optional anchor htmlZoom (0.5–3) and htmlScrollLeft preserve viewer state, restored kind identifies HTML, and HTML edit/recovery state is refused. Reopen through open_local_view, mount, then set_html_location; never restore document forms or replay resource grants.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.
+
+
+## Authorized Workspace layouts extension — 2026-10-08
+
+F003C-L01–L03 uses existing IR-04 preference owner and schema1 PanelState. Strict shared enum; default Margin omitted in storage to retain legacy canonical checksums, always emitted in Settings/restore IPC. No document/grant/store/schema migration. Native/frontend handoff and verification: ../../os-engineering/evidence/workspace-layout-native-20261008/report.md.

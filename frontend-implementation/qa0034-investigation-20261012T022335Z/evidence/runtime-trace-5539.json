@@ -1,0 +1,1128 @@
+[
+  {
+    "order": 0,
+    "at": 1565.038625,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 1,
+    "at": 1856.428541,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 2,
+    "at": 1866.93975,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 3,
+    "at": 1876.091541,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 4,
+    "at": 1887.195791,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 5,
+    "at": 1899.500291,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 6,
+    "at": 1909.112541,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 7,
+    "at": 1923.984,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 8,
+    "at": 1951.766375,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 9,
+    "at": 1964.1225,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 10,
+    "at": 1978.026916,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 11,
+    "at": 2041.284916,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 12,
+    "at": 2041.627333,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "order": 13,
+    "at": 2042.858791,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "order": 14,
+    "at": 2072.071791,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 15,
+    "at": 2100.2285,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 16,
+    "at": 2100.311083,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 17,
+    "at": 2100.426458,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": false
+  },
+  {
+    "order": 18,
+    "at": 2127.011541,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 19,
+    "at": 2127.047916,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v1"
+    }
+  },
+  {
+    "order": 20,
+    "at": 2150.72525,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 21,
+    "at": 2234.563541,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 22,
+    "at": 2441.032041,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 23,
+    "at": 2462.966375,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 24,
+    "at": 2486.344791,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 25,
+    "at": 2504.560375,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 26,
+    "at": 2525.778708,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 27,
+    "at": 2545.452458,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 28,
+    "at": 2564.465541,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 29,
+    "at": 2582.430875,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 30,
+    "at": 2599.299583,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 31,
+    "at": 2620.085083,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "theme-change",
+    "scrollTop": 0
+  },
+  {
+    "order": 32,
+    "at": 2663.0505,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "restore-attempt",
+    "activeId": "error:root:[\"fixture.md\"]",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": true
+  },
+  {
+    "order": 33,
+    "at": 2750.65125,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 34,
+    "at": 2940.968541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 35,
+    "at": 2941.08925,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "order": 36,
+    "at": 2941.668083,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "order": 37,
+    "at": 2990.309166,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 38,
+    "at": 3023.31625,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 39,
+    "at": 3023.336041,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 40,
+    "at": 3023.438791,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": false
+  },
+  {
+    "order": 41,
+    "at": 3050.650208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 42,
+    "at": 3050.677875,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v1"
+    }
+  },
+  {
+    "order": 43,
+    "at": 3051.679333,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 44,
+    "at": 3077.279458,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/tests/ui/appearance-operations.test.tsx:94:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "order": 45,
+    "at": 3078.205333,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-event",
+    "scrollTop": 170
+  },
+  {
+    "order": 46,
+    "at": 3080.144625,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "capture-attempt",
+    "id": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true,
+    "markdownBody": true
+  },
+  {
+    "order": 47,
+    "at": 3080.292291,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "capture-accepted",
+    "id": "file",
+    "scrollTop": 170
+  },
+  {
+    "order": 48,
+    "at": 3120.551125,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "refresh-held-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "order": 49,
+    "at": 3178.214916,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 50,
+    "at": 3243.355208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 51,
+    "at": 3319.847416,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 52,
+    "at": 3353.825541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 53,
+    "at": 3387.42075,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 54,
+    "at": 3422.665291,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 55,
+    "at": 3462.336,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 56,
+    "at": 3491.202333,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 57,
+    "at": 3522.487208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 58,
+    "at": 3552.88425,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 59,
+    "at": 3630.598208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 60,
+    "at": 3630.724208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": true,
+    "renderedId": "file",
+    "renderedMatches": false
+  },
+  {
+    "order": 61,
+    "at": 3631.117833,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "order": 62,
+    "at": 3652.799708,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 63,
+    "at": 3680.536583,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 64,
+    "at": 3680.555708,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 65,
+    "at": 3680.660875,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": false
+  },
+  {
+    "order": 66,
+    "at": 3717.396541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 67,
+    "at": 3717.430166,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 170,
+    "saved": {
+      "headingId": "one",
+      "offset": 0,
+      "scrollTop": 170
+    },
+    "position": 170,
+    "renderedId": "file",
+    "sections": {
+      "file": "v2"
+    }
+  },
+  {
+    "order": 68,
+    "at": 3718.548791,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2950:71\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 69,
+    "at": 3798.543541,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 70,
+    "at": 4004.671333,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 71,
+    "at": 4004.78875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "order": 72,
+    "at": 4005.381875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "order": 73,
+    "at": 4071.795791,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 74,
+    "at": 4111.110041,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 75,
+    "at": 4111.129708,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 76,
+    "at": 4111.23025,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": false
+  },
+  {
+    "order": 77,
+    "at": 4135.749875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 78,
+    "at": 4135.773666,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v1"
+    }
+  },
+  {
+    "order": 79,
+    "at": 4136.315,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 80,
+    "at": 4806.744666,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 47,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/tests/ui/appearance-operations.test.tsx:124:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "order": 81,
+    "at": 4826.094,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 82,
+    "at": 4858.98675,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 83,
+    "at": 4892.335083,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 84,
+    "at": 4921.466625,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 85,
+    "at": 4964.457708,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 86,
+    "at": 5006.470583,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 87,
+    "at": 5038.778791,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 88,
+    "at": 5066.247791,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 89,
+    "at": 5092.678041,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 90,
+    "at": 5122.654708,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 91,
+    "at": 5182.048458,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 92,
+    "at": 5182.068333,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 93,
+    "at": 5182.214916,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 47,
+    "pending": true,
+    "renderedId": "file",
+    "renderedMatches": false
+  },
+  {
+    "order": 94,
+    "at": 5182.926208,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "order": 95,
+    "at": 5218.334833,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 96,
+    "at": 5218.388166,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 47,
+    "pending": true,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 97,
+    "at": 5218.738833,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 98,
+    "at": 5247.620333,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 99,
+    "at": 5247.639875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 100,
+    "at": 5247.752875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 47,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 101,
+    "at": 5247.77175,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 47,
+    "renderedId": "file",
+    "sections": {
+      "file": "v2"
+    }
+  },
+  {
+    "order": 102,
+    "at": 5248.25625,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 47,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 103,
+    "at": 5270.593125,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 104,
+    "at": 5270.620708,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v2"
+    }
+  },
+  {
+    "order": 105,
+    "at": 5271.284375,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 106,
+    "at": 5336.60925,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 107,
+    "at": 5534.470416,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 108,
+    "at": 5534.606125,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "order": 109,
+    "at": 5535.194416,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "order": 110,
+    "at": 5594.945083,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 111,
+    "at": 5635.745125,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 112,
+    "at": 5635.776208,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 113,
+    "at": 5635.875291,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": false
+  },
+  {
+    "order": 114,
+    "at": 5662.6725,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 115,
+    "at": 5662.715875,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v1"
+    }
+  },
+  {
+    "order": 116,
+    "at": 5663.331208,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 117,
+    "at": 6210.097291,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 47,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/tests/ui/appearance-operations.test.tsx:124:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "order": 118,
+    "at": 6221.419291,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 119,
+    "at": 6250.306833,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 120,
+    "at": 6279.493708,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 121,
+    "at": 6307.489708,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 122,
+    "at": 6334.930875,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 123,
+    "at": 6362.791666,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 124,
+    "at": 6389.163125,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 125,
+    "at": 6418.040625,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 126,
+    "at": 6466.707041,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  },
+  {
+    "order": 127,
+    "at": 6504.055583,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "theme-change",
+    "scrollTop": 47
+  }
+]

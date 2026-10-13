@@ -1,0 +1,613 @@
+{
+  "observed_at": "2026-10-11T13:19:32.423159+00:00",
+  "queue": {
+    "record_key": "5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee",
+    "state": "APPLIED",
+    "attempts": 1,
+    "queued_at": "2026-10-11T13:13:14.023354+00:00",
+    "tool_use_id": "exec-cd01497d-5e56-4609-b71e-b56be5a84a0f",
+    "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+    "context_id": null,
+    "run_id": "5061204d5916fdbe637e-1",
+    "discovery_checkpoint": {
+      "run_id": "5061204d5916fdbe637e-1",
+      "manifest_sha256": "e80cc0059081f04cb89395073aaf30e03dc4f7d81c3553c47f42c65c6cdf3715",
+      "binding": "4ecc5ba5a4d1e99f5c8973c136f4d7be266a48e78318e70015231d285f56bdc2"
+    },
+    "reason": "independent_review_saved",
+    "applied_at": "2026-10-11T13:15:14.023157+00:00",
+    "report_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/report.json"
+  },
+  "queue_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee.json",
+  "matching_job_count": 1,
+  "run_directory": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1",
+  "hooks": [
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/4a063c4d018243d6a95661040089bfa0.json",
+      "outcome": {
+        "disposition": "SKIPPED",
+        "reason": "successful_committed_receipt_not_observed",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-1ce38aef-ae52-49eb-b304-8855f87e8a2d",
+        "observed_at": "2026-10-11T13:08:11.068469+00:00",
+        "validation": "NOT_TESTED",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+        "response_sha256": "330db95c355b6cfbc7f9ab68de7fbc42e7fef7900913851c885c42734a9a0b50"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 2
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/d9ff1eaab5ac4c7e98345adab197bbb4.json",
+      "outcome": {
+        "disposition": "ENQUEUED",
+        "reason": "durable_request_committed",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-4b668f27-79db-498b-afb3-7b2fca1f36ad",
+        "observed_at": "2026-10-11T13:08:20.505749+00:00",
+        "validation": "PASS",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+        "response_sha256": "778d7802f24c8ce7c2e50d4840246082a28c7a9c38e2d4899bc762c2e6f85d91",
+        "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+        "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+        "queue_state": "QUEUED"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 0
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/af145078faef4499b3b232c31081bb45.json",
+      "outcome": {
+        "disposition": "DUPLICATE",
+        "reason": "persisted_request_exists",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-1affde05-8c84-49f0-ba2b-ece7f2738aaa",
+        "observed_at": "2026-10-11T13:09:07.628422+00:00",
+        "validation": "PASS",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+        "response_sha256": "778d7802f24c8ce7c2e50d4840246082a28c7a9c38e2d4899bc762c2e6f85d91",
+        "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+        "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+        "queue_state": "RUNNING"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 0
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/79620a3304a14e90a9bfab5cf70290f2.json",
+      "outcome": {
+        "disposition": "DUPLICATE",
+        "reason": "persisted_request_exists",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-3306ef71-bcc3-477e-b815-d8abd7900056",
+        "observed_at": "2026-10-11T13:08:34.307103+00:00",
+        "validation": "PASS",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+        "response_sha256": "778d7802f24c8ce7c2e50d4840246082a28c7a9c38e2d4899bc762c2e6f85d91",
+        "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+        "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+        "queue_state": "RUNNING"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 0
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/51532cf4390d42a58079f53212151db1.json",
+      "outcome": {
+        "disposition": "DUPLICATE",
+        "reason": "persisted_request_exists",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-48d8d61c-c122-474d-b7da-86a99a8ba021",
+        "observed_at": "2026-10-11T13:13:23.485775+00:00",
+        "validation": "PASS",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json",
+        "response_sha256": "9423a65528aa5f7f211b062ea3eb96066ca0a10570f74da1a577d640807f9589",
+        "record_key": "5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee",
+        "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee.json",
+        "queue_state": "RUNNING"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 0
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/8899c077f59f424b879dfd7edcede84a.json",
+      "outcome": {
+        "disposition": "ENQUEUED",
+        "reason": "durable_request_committed",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-cd01497d-5e56-4609-b71e-b56be5a84a0f",
+        "observed_at": "2026-10-11T13:13:13.938211+00:00",
+        "validation": "PASS",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json",
+        "response_sha256": "9423a65528aa5f7f211b062ea3eb96066ca0a10570f74da1a577d640807f9589",
+        "record_key": "5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee",
+        "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee.json",
+        "queue_state": "QUEUED"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 0
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/4b7784e858c94a72ad840c5a20153e08.json",
+      "outcome": {
+        "disposition": "SKIPPED",
+        "reason": "successful_committed_receipt_not_observed",
+        "context_id": null,
+        "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+        "tool_use_id": "exec-03c2f262-9d65-4052-88c2-b857c20e3a9b",
+        "observed_at": "2026-10-11T13:08:02.273037+00:00",
+        "validation": "NOT_TESTED",
+        "response_format": "str",
+        "command_recognized": true,
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-delivery-20261011T1320Z/nonexistent-probe-input.json",
+        "response_sha256": "4226a6171a42a7903f38cf2422b25ef7e68e7645f2450ffd695ffd0600c3d4a0"
+      },
+      "host_output_hash_match": true,
+      "host_exit_code": 2
+    }
+  ],
+  "executions": [
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 254,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-03c2f262-9d65-4052-88c2-b857c20e3a9b",
+        "process_id": "15632",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-delivery-20261011T1320Z/nonexistent-probe-input.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-delivery-20261011T1320Z/nonexistent-probe-input.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "failed",
+        "aggregated_output": "{\"error\": \"already_absent\"}\n",
+        "exit_code": 2,
+        "duration": {
+          "secs": 0,
+          "nanos": 7292
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 264,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-1ce38aef-ae52-49eb-b304-8855f87e8a2d",
+        "process_id": "9442",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "failed",
+        "aggregated_output": "{\"error\": \"[Errno 1] Operation not permitted: '/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue.lock'\"}\n",
+        "exit_code": 2,
+        "duration": {
+          "secs": 0,
+          "nanos": 21335083
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 269,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-4b668f27-79db-498b-afb3-7b2fca1f36ad",
+        "process_id": "4737",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "completed",
+        "aggregated_output": "QA_COMPLETION_RECEIPT={\"kind\":\"QA_COMPLETION_RECORDED\",\"schema_version\":1,\"record_key\":\"f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb\",\"record_sha256\":\"f884d4cd34034ed154c808f8b071da0fd7418d70ff62ef9b07a34d7e6e7fe59c\",\"receipt_nonce\":\"9f8df3520228423b805243c68f332588\",\"task_state\":\"DONE_ACCEPTED\",\"root\":\"/Users/juanmantilla/projects/personal/md-reader\",\"success\":true}\n",
+        "exit_code": 0,
+        "duration": {
+          "secs": 0,
+          "nanos": 6739416
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 279,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-3306ef71-bcc3-477e-b815-d8abd7900056",
+        "process_id": "45056",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "completed",
+        "aggregated_output": "QA_COMPLETION_RECEIPT={\"kind\":\"QA_COMPLETION_RECORDED\",\"schema_version\":1,\"record_key\":\"f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb\",\"record_sha256\":\"f884d4cd34034ed154c808f8b071da0fd7418d70ff62ef9b07a34d7e6e7fe59c\",\"receipt_nonce\":\"9f8df3520228423b805243c68f332588\",\"task_state\":\"DONE_ACCEPTED\",\"root\":\"/Users/juanmantilla/projects/personal/md-reader\",\"success\":true}\n",
+        "exit_code": 0,
+        "duration": {
+          "secs": 0,
+          "nanos": 12333458
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 295,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-1affde05-8c84-49f0-ba2b-ece7f2738aaa",
+        "process_id": "81828",
+        "command": [
+          "/bin/bash",
+          "-c",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "completed",
+        "aggregated_output": "QA_COMPLETION_RECEIPT={\"kind\":\"QA_COMPLETION_RECORDED\",\"schema_version\":1,\"record_key\":\"f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb\",\"record_sha256\":\"f884d4cd34034ed154c808f8b071da0fd7418d70ff62ef9b07a34d7e6e7fe59c\",\"receipt_nonce\":\"9f8df3520228423b805243c68f332588\",\"task_state\":\"DONE_ACCEPTED\",\"root\":\"/Users/juanmantilla/projects/personal/md-reader\",\"success\":true}\n",
+        "exit_code": 0,
+        "duration": {
+          "secs": 0,
+          "nanos": 27392209
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 406,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-cd01497d-5e56-4609-b71e-b56be5a84a0f",
+        "process_id": "7113",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "completed",
+        "aggregated_output": "QA_COMPLETION_RECEIPT={\"kind\":\"QA_COMPLETION_RECORDED\",\"schema_version\":1,\"record_key\":\"5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee\",\"record_sha256\":\"c24715702d16a2af624c80cb25f32bf83b7c039338b9aefc48e130582d177033\",\"receipt_nonce\":\"1b29f94813b04988a16423be6a4a0a8a\",\"task_state\":\"DONE_ACCEPTED\",\"root\":\"/Users/juanmantilla/projects/personal/md-reader\",\"success\":true}\n",
+        "exit_code": 0,
+        "duration": {
+          "secs": 0,
+          "nanos": 16954125
+        }
+      }
+    },
+    {
+      "source": "/Users/juanmantilla/.codex/sessions/2026/10/11/rollout-2026-10-11T08-01-43-01a12b0e-0a8d-75d2-a8cd-63beaffbd460.jsonl",
+      "line": 411,
+      "execution": {
+        "type": "CommandExecution",
+        "id": "exec-48d8d61c-c122-474d-b7da-86a99a8ba021",
+        "process_id": "42891",
+        "command": [
+          "/bin/zsh",
+          "-lc",
+          "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json"
+        ],
+        "cwd": "file:///Users/juanmantilla/projects/personal",
+        "parsed_cmd": [
+          {
+            "type": "unknown",
+            "cmd": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json"
+          }
+        ],
+        "source": "unified_exec_startup",
+        "status": "completed",
+        "aggregated_output": "QA_COMPLETION_RECEIPT={\"kind\":\"QA_COMPLETION_RECORDED\",\"schema_version\":1,\"record_key\":\"5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee\",\"record_sha256\":\"c24715702d16a2af624c80cb25f32bf83b7c039338b9aefc48e130582d177033\",\"receipt_nonce\":\"1b29f94813b04988a16423be6a4a0a8a\",\"task_state\":\"DONE_ACCEPTED\",\"root\":\"/Users/juanmantilla/projects/personal/md-reader\",\"success\":true}\n",
+        "exit_code": 0,
+        "duration": {
+          "secs": 0,
+          "nanos": 13074333
+        }
+      }
+    }
+  ],
+  "synthetic_files": {
+    "/Users/juanmantilla/projects/personal/md-reader/cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt": {
+      "exists": true,
+      "expected_sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608",
+      "actual_sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608"
+    },
+    "/Users/juanmantilla/projects/personal/md-reader/cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log": {
+      "exists": true,
+      "expected_sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e",
+      "actual_sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e"
+    }
+  },
+  "original_evidence_unchanged": {
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-after-replay.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-before.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/enqueue-observed.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-after.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-before.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-check.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/workflow-report.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/command-observations.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/persisted-completion.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/workflow-evidence-hashes.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-paths.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion-verification.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/retained-hashes-before.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/workflow-results.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/check-attempt1.py": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/evidence-index.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/check.py": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/authorization.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/acceptance.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/report.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/task-instructions.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/attempt1-error.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/checks.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/tested-snapshot-2.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/launchd-check.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/tested-paths.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/completion.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/tested-snapshot.json": true
+  },
+  "policy_unchanged": true,
+  "service_config_unchanged": true,
+  "stages": {
+    "discover": {
+      "events_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-events.jsonl",
+      "sessions": [
+        "01a12b18-a0a2-7440-8b71-fd8b613d9237"
+      ],
+      "process": {
+        "pid": 36045,
+        "started_at": "2026-10-11T13:13:16.604352+00:00",
+        "finished_at": "2026-10-11T13:14:16.249840+00:00",
+        "returncode": 0,
+        "signal": null,
+        "timeout": false,
+        "interruption": null,
+        "supervisor_signals": []
+      },
+      "event_types": [
+        "item.completed",
+        "item.started",
+        "thread.started",
+        "turn.completed",
+        "turn.started"
+      ]
+    },
+    "review": {
+      "events_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-events.jsonl",
+      "sessions": [
+        "01a12b19-8c86-7922-972b-30ff86638275"
+      ],
+      "process": {
+        "pid": 36117,
+        "started_at": "2026-10-11T13:14:17.024569+00:00",
+        "finished_at": "2026-10-11T13:15:10.571811+00:00",
+        "returncode": 0,
+        "signal": null,
+        "timeout": false,
+        "interruption": null,
+        "supervisor_signals": []
+      },
+      "event_types": [
+        "item.completed",
+        "item.started",
+        "thread.started",
+        "turn.completed",
+        "turn.started"
+      ]
+    }
+  },
+  "receipts": [
+    {
+      "receipt": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C2.json",
+      "receipt_sha256": "4b63e816e07a56e6ed036173806c902ec1553d7269c0321c8d70cd721fe6bfd2",
+      "body": {
+        "schema_version": 1,
+        "path": "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log",
+        "sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e",
+        "recovery_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/recovery/964053dd739d3f5911d69e0c58c82fee87e92931fe52cfae64c1818d2a235d75.recovery",
+        "status": "deleted",
+        "reason": "deleted_after_verified_recovery",
+        "receipt_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C2.json",
+        "operation": "remove",
+        "root": "/Users/juanmantilla/projects/personal/md-reader",
+        "candidate_id": "C2",
+        "snapshot": {
+          "sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e",
+          "size": 146,
+          "mtime_ns": 1791694872632454823,
+          "ctime_ns": 1791694872632454823,
+          "device": 16777230,
+          "inode": 74981977,
+          "mode": 33188
+        },
+        "phase": "finished",
+        "recovery_verified": true,
+        "original_deleted": true,
+        "updated_at": "2026-10-11T13:15:14.014052+00:00"
+      },
+      "backup_exists": true,
+      "backup_sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e",
+      "inventory_match": true
+    },
+    {
+      "receipt": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C1.json",
+      "receipt_sha256": "f91bdd93b6c00aec933252f5e350e76f9e96feb9ac5052f492a57856873a50ef",
+      "body": {
+        "schema_version": 1,
+        "path": "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt",
+        "sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608",
+        "recovery_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/recovery/6a81f17209dceb24fcd8df109983b83faf859ae56f139d500b3af3bcd1b87b17.recovery",
+        "status": "deleted",
+        "reason": "deleted_after_verified_recovery",
+        "receipt_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C1.json",
+        "operation": "remove",
+        "root": "/Users/juanmantilla/projects/personal/md-reader",
+        "candidate_id": "C1",
+        "snapshot": {
+          "sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608",
+          "size": 149,
+          "mtime_ns": 1791694872632352073,
+          "ctime_ns": 1791694872632352073,
+          "device": 16777230,
+          "inode": 74981976,
+          "mode": 33188
+        },
+        "phase": "finished",
+        "recovery_verified": true,
+        "original_deleted": true,
+        "updated_at": "2026-10-11T13:15:12.597407+00:00"
+      },
+      "backup_exists": true,
+      "backup_sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608",
+      "inventory_match": true
+    }
+  ],
+  "run_files": [
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/automatic-authorization.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/candidates.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/candidates.md",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-events.jsonl",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-input.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-invocation.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-process.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-stderr.txt",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-submitted-prompt.txt",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-usage.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/discover-wire-schema.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/handoff.md",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/proposed-deletions.md",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/recovery",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/report-9d5f2fc52cc84c07bd430ba87bbb6d86.md",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/report.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/request.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/restore-b1a03cdeb17b4f19881daac80dc3dbf3.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/restore-ce276ac71e0d47718728a65a02424d62.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-events.jsonl",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-input.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-invocation.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-original.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-process.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-stderr.txt",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-submitted-prompt.txt",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-usage.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review-wire-schema.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/review.json",
+    "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/seal.json"
+  ],
+  "report": {
+    "run_id": "5061204d5916fdbe637e-1",
+    "dry_run": false,
+    "outcomes": [
+      {
+        "id": "C1",
+        "path": "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt",
+        "outcome": "deleted",
+        "reason": "deleted_after_verified_recovery",
+        "recovery_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/recovery/6a81f17209dceb24fcd8df109983b83faf859ae56f139d500b3af3bcd1b87b17.recovery",
+        "receipt": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C1.json"
+      },
+      {
+        "id": "C2",
+        "path": "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log",
+        "outcome": "deleted",
+        "reason": "deleted_after_verified_recovery",
+        "recovery_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/recovery/964053dd739d3f5911d69e0c58c82fee87e92931fe52cfae64c1818d2a235d75.recovery",
+        "receipt": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/receipts/C2.json"
+      }
+    ]
+  }
+}

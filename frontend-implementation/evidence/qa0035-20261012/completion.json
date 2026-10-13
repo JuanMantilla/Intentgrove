@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "task_id": "QA-0035-IMPLEMENT",
+  "acceptance_version": "qa0035-implementation-20261012T0257Z-v1",
+  "session_kind": "qa",
+  "qa_result": "QA_FAILED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [
+    "Unchanged final default suite: nine failures, causes unresolved",
+    "Clean isolated candidate quit not verified; process/session running after Keep draft attempt",
+    "Independent QA RETEST and user acceptance pending"
+  ],
+  "required_checks": [
+    {
+      "id": "1",
+      "result": "PASS",
+      "reason": "held reads / parser / layout / stale navigation / field-modal-composition / existing selection regressions: 16 tests, 1 file; synthetic composition/modifier events",
+      "finished_at": "2026-10-12T02:44:45.034262+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+      ]
+    },
+    {
+      "id": "2",
+      "result": "FAIL",
+      "reason": "default suite unchanged: 701 PASS, 9 FAIL, 710 tests / 70 files; failures retained, cause unresolved",
+      "finished_at": "2026-10-12T02:51:15.127885+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/default-final.log"
+      ]
+    },
+    {
+      "id": "3",
+      "result": "PASS",
+      "reason": "TypeScript + Vite + offline debug macOS build: build exit 0; warnings retained",
+      "finished_at": "2026-10-12T02:46:02.034573+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-build-final.log"
+      ]
+    },
+    {
+      "id": "4",
+      "result": "PASS",
+      "reason": "native first-open immediate Cmd+A: one key, all25 B passages/end; no intermediate AX observation",
+      "finished_at": "2026-10-12T02:47:12.770519+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-initial-immediate.txt"
+      ]
+    },
+    {
+      "id": "5",
+      "result": "PASS",
+      "reason": "native reopen immediate Cmd+A: clean second.md closed/reopened, one key, all25 B passages/end",
+      "finished_at": "2026-10-12T02:47:36.837702+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-reopen-immediate.txt"
+      ]
+    },
+    {
+      "id": "6",
+      "result": "PASS",
+      "reason": "native A\u2192B\u2192A cancellation: A active, no stale selection; no AX observation between rapid inputs",
+      "finished_at": "2026-10-12T02:48:06.572529+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-rapid-A-B-A.txt"
+      ]
+    },
+    {
+      "id": "7",
+      "result": "PASS",
+      "reason": "reading60 + live mixed + whole30 selection: all endpoints verified; mixed/whole native copy excludes editing/chrome labels",
+      "finished_at": "2026-10-12T02:54:01.262213+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-evidence-validation.json"
+      ]
+    },
+    {
+      "id": "8",
+      "result": "PASS",
+      "reason": "Filename / Find / Local target owners: real Cmd+A complete replacement with field focus retained; dialogs cancelled",
+      "finished_at": "2026-10-12T02:49:47.104828+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-local-target-owner.txt"
+      ]
+    },
+    {
+      "id": "9",
+      "result": "PASS",
+      "reason": "source undo/redo: undo removed last typed character; redo restored it after mixed selection",
+      "finished_at": "2026-10-12T02:49:04.001702+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-mixed-redo.txt"
+      ]
+    },
+    {
+      "id": "10",
+      "result": "PASS",
+      "reason": "modal ownership: synthetic current/transient modal tests pass; native quit modal visible after Cmd+A, AX disappearance limits native focus proof",
+      "finished_at": "2026-10-12T02:44:45.034262+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+      ]
+    },
+    {
+      "id": "11",
+      "result": "NOT_RUN",
+      "reason": "native physical IME / Windows / screen reader: no physical composition, Windows host or assistive-technology coverage",
+      "finished_at": "2026-10-12T02:44:45.034262+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+      ]
+    },
+    {
+      "id": "12",
+      "result": "BLOCKED",
+      "reason": "clean candidate quit: Keep draft clicked from inspected screenshot; noWindowsAvailable; process remained/session running; checkpoints and file bytes retained",
+      "finished_at": "2026-10-12T02:56:29.762223+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/native-profile-retention.json"
+      ]
+    },
+    {
+      "id": "13",
+      "result": "PASS",
+      "reason": "source/prior-evidence/fixture integrity: 433 source inputs / 576 prior evidence inputs / 3 fixture bytes unchanged",
+      "finished_at": "2026-10-12T02:52:28.073178+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/qa0035-20261012/integrity-final.json"
+      ]
+    }
+  ],
+  "final_report": "frontend-implementation/qa0035-implementation-report.md",
+  "evidence_paths": [
+    "frontend-implementation/evidence/qa0035-20261012/index.md",
+    "frontend-implementation/evidence/qa0035-20261012/coverage.json",
+    "frontend-implementation/qa0035-implementation-handoff.md"
+  ],
+  "tested_snapshot_path": "frontend-implementation/evidence/qa0035-20261012/tested-snapshot-final-v3.json",
+  "artifact_paths": [
+    "frontend-implementation/qa0035-implementation-plan.md",
+    "frontend-implementation/qa0035-implementation-report.md",
+    "frontend-implementation/qa0035-implementation-handoff.md",
+    "frontend-implementation/evidence/qa0035-20261012"
+  ],
+  "retain_paths": [
+    "src/app/App.tsx",
+    "src/reader/MarkdownView.tsx",
+    "src/reader/document-selection.ts",
+    "tests/ui/document-select-all.test.tsx",
+    "frontend-implementation/qa0035-implementation-plan.md",
+    "frontend-implementation/qa0035-implementation-report.md",
+    "frontend-implementation/qa0035-implementation-handoff.md",
+    "frontend-implementation/evidence/qa0035-20261012",
+    "qa/findings/QA-0035.md",
+    "qa/runs/select-all-retest-20261012T011743Z"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "qa/findings/QA-0035.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Required verification passes and independent QA RETEST handoff",
+      "source_path": "qa/findings/QA-0035.md",
+      "evidence_path": "frontend-implementation/qa0035-implementation-report.md",
+      "satisfied": false
+    },
+    {
+      "requirement": "Actual user acceptance remains separate from implementation verification",
+      "source_path": "AGENTS.md",
+      "evidence_path": "frontend-implementation/qa0035-implementation-report.md",
+      "satisfied": false
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: one.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) active.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Close tab: active.md, Help: Close tab
+				17 container
+					18 tab (selectable) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Close tab: inactive.md, Help: Close tab
+				20 container
+					21 tab (selectable) café "quote" 'single' $ & # % (draft),.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					22 button Close tab: café "quote" 'single' $ & # % (draft),.md, Help: Close tab
+				23 container
+					24 tab (selectable) unopened.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+					25 button Close tab: unopened.md, Help: Close tab
+				26 container
+					27 tab (selectable) one.md, Value: off, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+					28 button Close tab: one.md, Help: Close tab
+				29 container
+					30 tab (selected) two.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/two.md
+					31 button Close tab: two.md, Help: Close tab
+			32 pop up button Go menu
+			33 button (collapsed) Open documents (6), Secondary Actions: Expand
+			34 container Explorer
+				35 pop up button PROJECTS
+				36 button Close Projects sidebar
+				37 button Open file
+				38 button Open folder
+				39 button Search folder
+				40 text fixtures
+				41 container
+					42 button active.md
+					43 button delete.md
+					44 button inactive.md
+					45 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					46 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					47 button rename.md
+					48 button replace.md
+					49 button unopened.md
+				50 text Storage and recovery
+				51 text Open edits and recovery offers: 0
+				52 button Manage…
+				53 button Settings…
+			54 container
+				55 container two.md
+					56 container two.md
+						57 text two.md
+					58 button Find in document
+					59 toggle button Outline, Value: on
+					60 button (collapsed) Reading settings, Secondary Actions: Expand
+					61 button Edit section
+					62 summary Document…, Value: off
+						63 text Document…
+					64 text Outside the open folder
+				65 container two.md
+					66 container Individual two
+						67 container Edit section: Individual two
+							68 heading Individual two, Value: 1
+								69 text Individual two
+							70 button Edit section “Individual two”
+						71 text Second file.
+				72 container Outline
+					73 text OUTLINE
+					74 button Close outline
+					75 container Outline
+						76 content list
+							77 button Individual two
+			78 container
+				79 text Current on disk Intentgrove by Theonira
+	80 close button
+	81 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	82 minimize button
+	83 text Intentgrove Reveal QA
+84 menu bar
+	85 Intentgrove Reveal QA
+	86 File
+	87 Edit
+	88 View
+	89 Go
+	90 Window
+	91 Help

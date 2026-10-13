@@ -1,0 +1,104 @@
+{
+  "observed_at": "2026-10-11T05:03:09.661938+00:00",
+  "overall": "BLOCKED",
+  "task_id": "cleanup-auto-disposable-20261011T050112Z",
+  "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+  "completion_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/completions/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+  "queue_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+  "queue_state": "ABSENT",
+  "matching_hook_outcomes": [],
+  "matching_runs": [],
+  "stages": [
+    {
+      "stage": "baseline before checks",
+      "status": "PASS",
+      "reason": "Snapshot created at 05:01:17.133334 UTC, all check finish times later; explicit test procedure/config/input scope."
+    },
+    {
+      "stage": "synthetic QA and conditional acceptance",
+      "status": "PASS",
+      "reason": "Four documented checks passed; user conditional acceptance applies only to synthetic task."
+    },
+    {
+      "stage": "DONE_ACCEPTED publication",
+      "status": "PASS",
+      "reason": "Successful helper receipt independently verified against persisted completion body, nonce and current retained hashes."
+    },
+    {
+      "stage": "ENQUEUED persisted queue verification",
+      "status": "BLOCKED",
+      "reason": "Matching queue record absent; matching hook outcome absent. Trusted hook delivery is unobserved in this session; receipt alone does not prove enqueue."
+    },
+    {
+      "stage": "identical replay and DUPLICATE",
+      "status": "BLOCKED",
+      "reason": "Identical command returned identical key/hash/nonce; helper idempotency verified. No matching queued job or DUPLICATE hook outcome exists; no second job created."
+    },
+    {
+      "stage": "service discovery",
+      "status": "BLOCKED",
+      "reason": "Existing service running PID 24145 but no matching job exists."
+    },
+    {
+      "stage": "independent review",
+      "status": "NOT TESTED",
+      "reason": "No matching service run/session."
+    },
+    {
+      "stage": "guarded deletion",
+      "status": "NOT TESTED",
+      "reason": "Both synthetic intermediates remain; no matching run or deletion receipt."
+    },
+    {
+      "stage": "retained evidence and policy unchanged",
+      "status": "PASS",
+      "reason": "All retained evidence/input hashes match; both synthetic files match; approved policy/config remain byte-identical."
+    },
+    {
+      "stage": "recovery copies and receipts",
+      "status": "NOT TESTED",
+      "reason": "No deletion occurred; no recovery location or receipt exists for this task."
+    },
+    {
+      "stage": "restore and second restore refuses overwrite",
+      "status": "NOT TESTED",
+      "reason": "Documented restore is supported but no matching deletion receipt exists. Restore was not invoked."
+    }
+  ],
+  "synthetic_files": {
+    "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt": {
+      "exists": true,
+      "sha256": "e97b797b005df633a7891332059f813c6bb012da917309889782b496894e0608",
+      "matches": true
+    },
+    "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log": {
+      "exists": true,
+      "sha256": "9d9acaf5608c6b92caa6490baacefb1c40de2f72d602b303ad419edade07507e",
+      "matches": true
+    }
+  },
+  "deleted_files": [],
+  "retained_evidence_hash_checks": {
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-before.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-check.txt": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-before.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-paths.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json": true,
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json": true
+  },
+  "policy_config_unchanged": true,
+  "recovery_locations": [],
+  "limits": "Scope is synthetic task and exact eligible intermediates; not whole-project/application QA or enforcement/lifecycle test. No hook invoked manually, no manual enqueue, worker startup, policy changes, existing artifact moves or deletes."
+}

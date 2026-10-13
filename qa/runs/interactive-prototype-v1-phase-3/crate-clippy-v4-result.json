@@ -1,0 +1,21 @@
+{
+  "name": "crate-clippy-v4",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "started_at": "2026-10-12T02:42:44.666440+00:00",
+  "finished_at": "2026-10-12T02:42:46.096311+00:00",
+  "exit_code": 0,
+  "log": "crate-clippy-v4.log",
+  "tested_snapshot": "tested-snapshot-v4.json"
+}

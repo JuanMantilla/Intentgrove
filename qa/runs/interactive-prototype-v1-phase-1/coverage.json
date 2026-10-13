@@ -1,0 +1,63 @@
+{
+  "requirements": {
+    "IG-P01": {
+      "result": "PASS",
+      "scope": "Phase1 wire/model only; package deferred"
+    },
+    "IG-P02": {
+      "result": "PASS",
+      "scope": "canonical shared model/validator; reducer deferred by user"
+    },
+    "IG-P04": {
+      "result": "PASS",
+      "scope": "source parse/serialize contracts; stores/compiler deferred"
+    },
+    "IG-P08": {
+      "result": "PASS",
+      "scope": "strict JSON/model limits only; visual/native security deferred"
+    },
+    "IG-P11": {
+      "result": "PASS",
+      "scope": "84 focused contract tests, evidence retained"
+    },
+    "IG-P12": {
+      "result": "PASS",
+      "scope": "integer V1, malformed/missing/future/POC rejection"
+    }
+  },
+  "deferred": [
+    "IG-P03",
+    "IG-P05",
+    "IG-P06",
+    "IG-P07",
+    "IG-P09",
+    "IG-P10",
+    "IG-P13 runtime budgets",
+    "IG-P14 native runtime proof"
+  ],
+  "completion_criteria": {
+    "1": "PASS in user-scoped Phase1",
+    "2": "PASS in user-scoped Phase1",
+    "3": "PASS in user-scoped Phase1",
+    "4": "PASS in user-scoped Phase1",
+    "5": "PASS in user-scoped Phase1",
+    "6": "PASS in user-scoped Phase1",
+    "7": "PASS in user-scoped Phase1",
+    "8": "PASS in user-scoped Phase1",
+    "9": "PASS in user-scoped Phase1",
+    "10": "PASS in user-scoped Phase1",
+    "11": "PASS in user-scoped Phase1",
+    "12": "PASS in user-scoped Phase1",
+    "13": "PASS in user-scoped Phase1",
+    "14": "PASS in user-scoped Phase1"
+  },
+  "test_count": 84,
+  "failures": 0,
+  "ignored": 0,
+  "scope_limitations": [
+    "No runtime execution or rendering tests",
+    "No package security/admission tests",
+    "No app build or native QA"
+  ],
+  "unresolved_blockers": []
+}

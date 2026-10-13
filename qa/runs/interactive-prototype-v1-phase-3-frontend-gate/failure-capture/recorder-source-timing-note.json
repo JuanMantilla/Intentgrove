@@ -1,0 +1,9 @@
+{
+  "run": "recorder-seeded-1",
+  "started_at": "2026-10-12T05:22:44.058614+00:00",
+  "failure_getter_edit_at": "2026-10-12T05:22:53.818226+00:00",
+  "change": "Added editingAvailable and two token-equality fields only to failure getter. No application state transition or test control flow changed. This overlapped runner startup; the failed state lacks these added fields, consistent with earlier App already transformed.",
+  "reconstructed_earlier_app_sha256": "c717bba0e38f2c9ba05b75d795a5c20ee6c269ce7f83127e4eb3edfa4cd72ab4",
+  "later_app_sha256": "4a9c72c4603598819d153cb3b53cff363aa2323d0654b9f0288f3e2196da40ba",
+  "followup": "Use frozen separate profile candidate and stable recorder rerun. Do not claim whole-run source snapshot was immutable for this first attempt."
+}

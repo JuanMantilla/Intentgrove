@@ -1,0 +1,275 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - button "Apariencia":
+  - generic: Idioma
+  - combobox "Idioma":
+    - option "EN"
+    - option "ES" [selected]
+  - button "Ajustes":
+- button "Proyectos" [expanded]:
+  - text: Proyectos
+- group "Archivos visitados":
+  - button "Atrás":
+  - button "Adelante" [disabled]:
+- tablist "Documentos":
+  - tab "short.md":
+    - generic: short.md
+  - 'button "Cerrar pestaña: short.md"': ×
+  - tab "close-review-similar-filename-with-shared-prefix-alpha.md" [selected]:
+    - generic: close-re…red-prefix-alpha.md
+  - 'button "Cerrar pestaña: close-review-similar-filename-with-shared-prefix-alpha.md"': ×
+- button "Menú Ir": Ir
+- button "Documentos abiertos (2)"
+- complementary "Explorador":
+  - button "Proyectos":
+    - generic: Proyectos
+  - button "Cerrar barra lateral de Proyectos":
+  - button "Abrir archivo"
+  - button "Abrir carpeta"
+  - button "Buscar en la carpeta":
+    - text: Buscar en la carpeta
+  - text: ⌄
+  - generic "/fixture/personal/md-reader": fixtures
+  - button "close-review-similar-filename-with-shared-prefix-alpha.md" [active]:
+    - generic "close-review-similar-filename-with-shared-prefix-alpha.md": close-review…-shared-prefix-alpha.md
+  - button "close-review-similar-filename-with-shared-prefix-beta.md":
+    - generic "close-review-similar-filename-with-shared-prefix-beta.md": close-review-…ith-shared-prefix-beta.md
+  - button "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md":
+    - generic "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md": disposable-l…guishing-ending-alpha.md
+  - button "document01.md":
+    - generic "document01.md"
+  - button "document02.md":
+    - generic "document02.md"
+  - button "document03.md":
+    - generic "document03.md"
+  - button "document04.md":
+    - generic "document04.md"
+  - button "document05.md":
+    - generic "document05.md"
+  - button "document06.md":
+    - generic "document06.md"
+  - button "document07.md":
+    - generic "document07.md"
+  - button "document08.md":
+    - generic "document08.md"
+  - button "document09.md":
+    - generic "document09.md"
+  - button "document10.md":
+    - generic "document10.md"
+  - button "document11.md":
+    - generic "document11.md"
+  - button "document12.md":
+    - generic "document12.md"
+  - button "document13.md":
+    - generic "document13.md"
+  - button "document14.md":
+    - generic "document14.md"
+  - button "document15.md":
+    - generic "document15.md"
+  - button "document16.md":
+    - generic "document16.md"
+  - button "document17.md":
+    - generic "document17.md"
+  - button "document18.md":
+    - generic "document18.md"
+  - button "document19.md":
+    - generic "document19.md"
+  - button "document20.md":
+    - generic "document20.md"
+  - button "short.md":
+    - generic "short.md"
+  - button "disposable-long-project-file-0.md":
+    - generic "disposable-long-project-file-0.md"
+  - button "disposable-long-project-file-1.md":
+    - generic "disposable-long-project-file-1.md"
+  - button "disposable-long-project-file-2.md":
+    - generic "disposable-long-project-file-2.md"
+  - button "disposable-long-project-file-3.md":
+    - generic "disposable-long-project-file-3.md"
+  - button "disposable-long-project-file-4.md":
+    - generic "disposable-long-project-file-4.md"
+  - button "disposable-long-project-file-5.md":
+    - generic "disposable-long-project-file-5.md"
+  - button "disposable-long-project-file-6.md":
+    - generic "disposable-long-project-file-6.md"
+  - button "disposable-long-project-file-7.md":
+    - generic "disposable-long-project-file-7.md"
+  - button "disposable-long-project-file-8.md":
+    - generic "disposable-long-project-file-8.md"
+  - button "disposable-long-project-file-9.md":
+    - generic "disposable-long-project-file-9.md"
+  - button "disposable-long-project-file-10.md":
+    - generic "disposable-long-project-file-10.md"
+  - button "disposable-long-project-file-11.md":
+    - generic "disposable-long-project-file-11.md"
+  - button "disposable-long-project-file-12.md":
+    - generic "disposable-long-project-file-12.md"
+  - button "disposable-long-project-file-13.md":
+    - generic "disposable-long-project-file-13.md"
+  - button "disposable-long-project-file-14.md":
+    - generic "disposable-long-project-file-14.md"
+  - button "disposable-long-project-file-15.md":
+    - generic "disposable-long-project-file-15.md"
+  - button "disposable-long-project-file-16.md":
+    - generic "disposable-long-project-file-16.md"
+  - button "disposable-long-project-file-17.md":
+    - generic "disposable-long-project-file-17.md"
+  - button "disposable-long-project-file-18.md":
+    - generic "disposable-long-project-file-18.md"
+  - button "disposable-long-project-file-19.md":
+    - generic "disposable-long-project-file-19.md"
+  - button "disposable-long-project-file-20.md":
+    - generic "disposable-long-project-file-20.md"
+  - button "disposable-long-project-file-21.md":
+    - generic "disposable-long-project-file-21.md"
+  - button "disposable-long-project-file-22.md":
+    - generic "disposable-long-project-file-22.md"
+  - button "disposable-long-project-file-23.md":
+    - generic "disposable-long-project-file-23.md"
+  - button "disposable-long-project-file-24.md":
+    - generic "disposable-long-project-file-24.md"
+  - button "disposable-long-project-file-25.md":
+    - generic "disposable-long-project-file-25.md"
+  - button "disposable-long-project-file-26.md":
+    - generic "disposable-long-project-file-26.md"
+  - button "disposable-long-project-file-27.md":
+    - generic "disposable-long-project-file-27.md"
+  - button "disposable-long-project-file-28.md":
+    - generic "disposable-long-project-file-28.md"
+  - button "disposable-long-project-file-29.md":
+    - generic "disposable-long-project-file-29.md"
+  - button "disposable-long-project-file-30.md":
+    - generic "disposable-long-project-file-30.md"
+  - button "disposable-long-project-file-31.md":
+    - generic "disposable-long-project-file-31.md"
+  - button "disposable-long-project-file-32.md":
+    - generic "disposable-long-project-file-32.md"
+  - button "disposable-long-project-file-33.md":
+    - generic "disposable-long-project-file-33.md"
+  - button "disposable-long-project-file-34.md":
+    - generic "disposable-long-project-file-34.md"
+  - button "disposable-long-project-file-35.md":
+    - generic "disposable-long-project-file-35.md"
+  - button "disposable-long-project-file-36.md":
+    - generic "disposable-long-project-file-36.md"
+  - button "disposable-long-project-file-37.md":
+    - generic "disposable-long-project-file-37.md"
+  - button "disposable-long-project-file-38.md":
+    - generic "disposable-long-project-file-38.md"
+  - button "disposable-long-project-file-39.md":
+    - generic "disposable-long-project-file-39.md"
+  - button "disposable-long-project-file-40.md":
+    - generic "disposable-long-project-file-40.md"
+  - button "disposable-long-project-file-41.md":
+    - generic "disposable-long-project-file-41.md"
+  - button "disposable-long-project-file-42.md":
+    - generic "disposable-long-project-file-42.md"
+  - button "disposable-long-project-file-43.md":
+    - generic "disposable-long-project-file-43.md"
+  - button "disposable-long-project-file-44.md":
+    - generic "disposable-long-project-file-44.md"
+  - button "disposable-long-project-file-45.md":
+    - generic "disposable-long-project-file-45.md"
+  - button "disposable-long-project-file-46.md":
+    - generic "disposable-long-project-file-46.md"
+  - button "disposable-long-project-file-47.md":
+    - generic "disposable-long-project-file-47.md"
+  - button "disposable-long-project-file-48.md":
+    - generic "disposable-long-project-file-48.md"
+  - button "disposable-long-project-file-49.md":
+    - generic "disposable-long-project-file-49.md"
+  - button "disposable-long-project-file-50.md":
+    - generic "disposable-long-project-file-50.md"
+  - button "disposable-long-project-file-51.md":
+    - generic "disposable-long-project-file-51.md"
+  - button "disposable-long-project-file-52.md":
+    - generic "disposable-long-project-file-52.md"
+  - button "disposable-long-project-file-53.md":
+    - generic "disposable-long-project-file-53.md"
+  - button "disposable-long-project-file-54.md":
+    - generic "disposable-long-project-file-54.md"
+  - button "disposable-long-project-file-55.md":
+    - generic "disposable-long-project-file-55.md"
+  - button "disposable-long-project-file-56.md":
+    - generic "disposable-long-project-file-56.md"
+  - button "disposable-long-project-file-57.md":
+    - generic "disposable-long-project-file-57.md"
+  - button "disposable-long-project-file-58.md":
+    - generic "disposable-long-project-file-58.md"
+  - button "disposable-long-project-file-59.md":
+    - generic "disposable-long-project-file-59.md"
+  - button "disposable-long-project-file-60.md":
+    - generic "disposable-long-project-file-60.md"
+  - button "disposable-long-project-file-61.md":
+    - generic "disposable-long-project-file-61.md"
+  - button "disposable-long-project-file-62.md":
+    - generic "disposable-long-project-file-62.md"
+  - button "disposable-long-project-file-63.md":
+    - generic "disposable-long-project-file-63.md"
+  - button "disposable-long-project-file-64.md":
+    - generic "disposable-long-project-file-64.md"
+  - button "disposable-long-project-file-65.md":
+    - generic "disposable-long-project-file-65.md"
+  - button "disposable-long-project-file-66.md":
+    - generic "disposable-long-project-file-66.md"
+  - button "disposable-long-project-file-67.md":
+    - generic "disposable-long-project-file-67.md"
+  - button "disposable-long-project-file-68.md":
+    - generic "disposable-long-project-file-68.md"
+  - button "disposable-long-project-file-69.md":
+    - generic "disposable-long-project-file-69.md"
+  - button "disposable-long-project-file-70.md":
+    - generic "disposable-long-project-file-70.md"
+  - button "disposable-long-project-file-71.md":
+    - generic "disposable-long-project-file-71.md"
+  - button "disposable-long-project-file-72.md":
+    - generic "disposable-long-project-file-72.md"
+  - button "disposable-long-project-file-73.md":
+    - generic "disposable-long-project-file-73.md"
+  - button "disposable-long-project-file-74.md":
+    - generic "disposable-long-project-file-74.md"
+  - button "disposable-long-project-file-75.md":
+    - generic "disposable-long-project-file-75.md"
+  - button "disposable-long-project-file-76.md":
+    - generic "disposable-long-project-file-76.md"
+  - button "disposable-long-project-file-77.md":
+    - generic "disposable-long-project-file-77.md"
+  - button "disposable-long-project-file-78.md":
+    - generic "disposable-long-project-file-78.md"
+  - button "disposable-long-project-file-79.md":
+    - generic "disposable-long-project-file-79.md"
+  - strong: Almacenamiento y recuperación
+  - generic: "Ediciones abiertas y avisos de recuperación: 0"
+  - status: "Sin resolver o verificar: 1"
+  - button "Gestionar…"
+  - button "Ajustes…"
+- main:
+  - group "close-review-similar-filename-with-shared-prefix-alpha.md":
+    - strong:
+      - generic "close-review-similar-filename-with-shared-prefix-alpha.md"
+    - button "Buscar en el documento":
+      - text: Buscar en el documento
+    - button "Índice" [pressed]:
+      - text: Índice
+    - button "Ajustes de lectura":
+      - text: Ajustes de lectura
+    - button "Editar sección":
+      - text: Editar sección
+    - generic "Documento…"
+    - generic: Raíz de la carpeta
+  - tabpanel "close-review-similar-filename-with-shared-prefix-alpha.md":
+    - article:
+      - 'generic "Editar sección: Alpha"':
+        - heading "Alpha" [level=1]
+        - button "Editar sección «Alpha»": Editar sección
+      - paragraph: validationneedle identity fixture.
+  - complementary "Índice":
+    - strong: Índice
+    - button "Cerrar índice": ×
+    - navigation "Índice":
+      - list:
+        - button "Alpha"
+- contentinfo:
+  - generic: Actualizado en disco
+  - generic: Intentgrove by Theonira

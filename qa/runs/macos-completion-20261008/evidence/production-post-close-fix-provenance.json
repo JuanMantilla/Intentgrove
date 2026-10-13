@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-08T03:26:48.395629+00:00",
+  "sourceManifest": "post-close-fix-source-manifest.json",
+  "buildLog": "package-post-close-fix-01.log",
+  "runtimeAccepted": false,
+  "files": [
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+      "sha256": "7bffc19ffd95722dcaf9f867d81db4ad872296cba7cac4c6f7b816fcc24ae893",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader: Mach-O 64-bit executable arm64"
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc",
+      "sha256": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc: Mach-O 64-bit executable arm64"
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer",
+      "sha256": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer: Mach-O 64-bit executable arm64"
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg",
+      "sha256": "8f7878412cb7c0413fd58086615d386ab4570bb33e532a99a42e9355532973c3",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg: zlib compressed data"
+    }
+  ],
+  "metadata": [
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+      "plist": {
+        "CFBundleDevelopmentRegion": "English",
+        "CFBundleDisplayName": "Intentgrove",
+        "CFBundleExecutable": "md_reader",
+        "CFBundleIdentifier": "com.juanmantilla.markdownworkspace",
+        "CFBundleInfoDictionaryVersion": "6.0",
+        "CFBundleName": "Intentgrove",
+        "CFBundlePackageType": "APPL",
+        "CFBundleShortVersionString": "0.1.0",
+        "CFBundleVersion": "0.1.0",
+        "CSResourcesFileMapped": true,
+        "LSMinimumSystemVersion": "14.0",
+        "CFBundleDocumentTypes": [
+          {
+            "CFBundleTypeExtensions": [
+              "md",
+              "markdown"
+            ],
+            "CFBundleTypeName": "Markdown document",
+            "CFBundleTypeRole": "Viewer",
+            "LSHandlerRank": "Alternate"
+          }
+        ],
+        "CFBundleIconFile": "icon.icns",
+        "LSRequiresCarbon": true,
+        "NSHighResolutionCapable": true
+      }
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc",
+      "plist": {
+        "CFBundleIdentifier": "com.juanmantilla.markdownworkspace.ImageDecoder",
+        "CFBundleExecutable": "md_reader_image_xpc",
+        "CFBundleInfoDictionaryVersion": "6.0",
+        "CFBundlePackageType": "XPC!",
+        "CFBundleShortVersionString": "0.1.0",
+        "CFBundleVersion": "1",
+        "XPCService": {
+          "ServiceType": "Application",
+          "RunLoopType": "dispatch_main"
+        }
+      }
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app",
+      "plist": {
+        "CFBundleDisplayName": "DiagramRenderer",
+        "CFBundleExecutable": "DiagramRenderer",
+        "CFBundleIdentifier": "com.juanmantilla.markdownworkspace.diagramrenderer",
+        "CFBundleInfoDictionaryVersion": "6.0",
+        "CFBundleName": "DiagramRenderer",
+        "CFBundlePackageType": "APPL",
+        "CFBundleShortVersionString": "0.1.0",
+        "CFBundleVersion": "1",
+        "LSMinimumSystemVersion": "14.0",
+        "LSUIElement": true,
+        "NSPrincipalClass": "NSApplication"
+      }
+    }
+  ],
+  "signatures": [
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app",
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "dmgVerify": {
+    "exit": 0,
+    "output": "Checksumming Protective Master Boot Record (MBR : 0)\u2026\nProtective Master Boot Record (MBR :: verified   CRC32 $28B13520\nChecksumming GPT Header (Primary GPT Header : 1)\u2026\n GPT Header (Primary GPT Header : 1): verified   CRC32 $B0F69C20\nChecksumming GPT Partition Data (Primary GPT Table : 2)\u2026\nGPT Partition Data (Primary GPT Tabl: verified   CRC32 $11FB03BF\nChecksumming  (Apple_Free : 3)\u2026\n                    (Apple_Free : 3): verified   CRC32 $00000000\nChecksumming disk image (Apple_APFS : 4)\u2026\n         disk image (Apple_APFS : 4): verified   CRC32 $5BC26FBA\nChecksumming  (Apple_Free : 5)\u2026\n                    (Apple_Free : 5): verified   CRC32 $00000000\nChecksumming GPT Partition Data (Backup GPT Table : 6)\u2026\nGPT Partition Data (Backup GPT Table: verified   CRC32 $11FB03BF\nChecksumming GPT Header (Backup GPT Header : 7)\u2026\n  GPT Header (Backup GPT Header : 7): verified   CRC32 $1B2F87F5\nverified   CRC32 $39D62C8F\nhdiutil: verify: checksum of \"/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg\" is VALID\n"
+  }
+}

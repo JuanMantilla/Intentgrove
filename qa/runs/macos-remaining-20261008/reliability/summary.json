@@ -1,0 +1,232 @@
+{
+  "originalCause": "UNKNOWN",
+  "causalResolution": false,
+  "deadlineMs": 5000,
+  "assertions": "unchanged; diagnostic copies preserve original expectations; added phase/mocks/cleanup observations only",
+  "concurrentRun": {
+    "testsPassed": 344,
+    "filesPassed": 50,
+    "workers": 8,
+    "durationSeconds": 50.32,
+    "nativeCompileSeconds": 66,
+    "compilerStillRunningAtFrontendCompletion": true,
+    "exitCode": 0
+  },
+  "journeys": {
+    "cancels Save As without clearing the original dirty state": [
+      {
+        "phase": "beforeEach:ready",
+        "elapsedMs": 0.0,
+        "pid": 7450
+      },
+      {
+        "phase": "setup:start",
+        "elapsedMs": 1.238,
+        "pid": 7450
+      },
+      {
+        "phase": "setup:rendered",
+        "elapsedMs": 162.059,
+        "pid": 7450
+      },
+      {
+        "phase": "setup:document-clicked",
+        "elapsedMs": 408.829,
+        "pid": 7450
+      },
+      {
+        "phase": "setup:section-ready",
+        "elapsedMs": 1302.43,
+        "pid": 7450
+      },
+      {
+        "phase": "setup:editor-ready",
+        "elapsedMs": 1775.245,
+        "pid": 7450
+      },
+      {
+        "phase": "save-as:before-click",
+        "elapsedMs": 1854.861,
+        "pid": 7450
+      },
+      {
+        "phase": "save-as:clicked",
+        "elapsedMs": 2166.52,
+        "pid": 7450
+      },
+      {
+        "phase": "save-as:mock-ack",
+        "elapsedMs": 2323.454,
+        "pid": 7450
+      },
+      {
+        "phase": "afterEach:cleanup-complete",
+        "elapsedMs": 2355.463,
+        "pid": 7450
+      }
+    ],
+    "quit: Cancel": [
+      {
+        "phase": "beforeEach:ready",
+        "elapsedMs": 0.0,
+        "pid": 7452
+      },
+      {
+        "phase": "setup:start",
+        "elapsedMs": 12.814,
+        "pid": 7452
+      },
+      {
+        "phase": "setup:rendered",
+        "elapsedMs": 162.839,
+        "pid": 7452
+      },
+      {
+        "phase": "setup:document-clicked",
+        "elapsedMs": 575.519,
+        "pid": 7452
+      },
+      {
+        "phase": "setup:checkpoint-dispatched",
+        "elapsedMs": 1633.626,
+        "pid": 7452
+      },
+      {
+        "phase": "setup:close-listener-ready",
+        "elapsedMs": 1757.769,
+        "pid": 7452
+      },
+      {
+        "phase": "close:requested:quit",
+        "elapsedMs": 1758.461,
+        "pid": 7452
+      },
+      {
+        "phase": "close:dialog-ready",
+        "elapsedMs": 1802.268,
+        "pid": 7452
+      },
+      {
+        "phase": "close:choice-clicked:Cancel",
+        "elapsedMs": 1831.689,
+        "pid": 7452
+      },
+      {
+        "phase": "close:dialog-dismissed",
+        "elapsedMs": 1834.6,
+        "pid": 7452
+      },
+      {
+        "phase": "afterEach:cleanup-complete",
+        "elapsedMs": 1840.771,
+        "pid": 7452
+      }
+    ]
+  },
+  "initialCleanupLabelsValid": false,
+  "correctedCleanupRun": {
+    "testsPassed": 344,
+    "filesPassed": 50,
+    "workers": 8,
+    "durationSeconds": 17.78,
+    "concurrentCompiler": false,
+    "journeys": {
+      "cancels Save As without clearing the original dirty state": {
+        "phases": [
+          {
+            "phase": "beforeEach:ready",
+            "elapsedMs": 0.0
+          },
+          {
+            "phase": "setup:start",
+            "elapsedMs": 1.335
+          },
+          {
+            "phase": "setup:rendered",
+            "elapsedMs": 77.929
+          },
+          {
+            "phase": "setup:document-clicked",
+            "elapsedMs": 124.014
+          },
+          {
+            "phase": "setup:section-ready",
+            "elapsedMs": 496.257
+          },
+          {
+            "phase": "setup:editor-ready",
+            "elapsedMs": 547.945
+          },
+          {
+            "phase": "save-as:before-click",
+            "elapsedMs": 583.256
+          },
+          {
+            "phase": "save-as:clicked",
+            "elapsedMs": 647.382
+          },
+          {
+            "phase": "save-as:mock-ack",
+            "elapsedMs": 668.07
+          },
+          {
+            "phase": "afterEach:cleanup-complete",
+            "elapsedMs": 680.75
+          }
+        ],
+        "editorsAfterCleanup": 0,
+        "listenersAfterCleanup": []
+      },
+      "quit: Cancel": {
+        "phases": [
+          {
+            "phase": "beforeEach:ready",
+            "elapsedMs": 0.0
+          },
+          {
+            "phase": "setup:start",
+            "elapsedMs": 4.723
+          },
+          {
+            "phase": "setup:rendered",
+            "elapsedMs": 76.624
+          },
+          {
+            "phase": "setup:document-clicked",
+            "elapsedMs": 283.29
+          },
+          {
+            "phase": "setup:checkpoint-dispatched",
+            "elapsedMs": 799.229
+          },
+          {
+            "phase": "setup:close-listener-ready",
+            "elapsedMs": 803.112
+          },
+          {
+            "phase": "close:requested:quit",
+            "elapsedMs": 803.515
+          },
+          {
+            "phase": "close:dialog-ready",
+            "elapsedMs": 815.167
+          },
+          {
+            "phase": "close:choice-clicked:Cancel",
+            "elapsedMs": 836.088
+          },
+          {
+            "phase": "close:dialog-dismissed",
+            "elapsedMs": 844.483
+          },
+          {
+            "phase": "afterEach:cleanup-complete",
+            "elapsedMs": 856.03
+          }
+        ],
+        "editorsAfterCleanup": 0,
+        "listenersAfterCleanup": []
+      }
+    }
+  }
+}

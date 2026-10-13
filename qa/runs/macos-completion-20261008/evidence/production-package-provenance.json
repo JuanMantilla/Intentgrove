@@ -1,0 +1,146 @@
+{
+  "dmgSha256": "2500ca60328728547672ff4ae980756d1a65962ee173e5da665edaf5514dc77f",
+  "binaries": {
+    "Contents/MacOS/md_reader": {
+      "sha256": "ab2ed29169110f1d4bf9be3038599ac9ea043af50719046a4de662c5ca49715d",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader: Mach-O 64-bit executable arm64\n",
+      "buildVersion": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader:\nLoad command 11\n      cmd LC_BUILD_VERSION\n  cmdsize 32\n platform MACOS\n    minos 14.0\n      sdk 27.0\n   ntools 1\n     tool LD\n  version 27037.1\n"
+    },
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": {
+      "sha256": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc: Mach-O 64-bit executable arm64\n",
+      "buildVersion": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc:\nLoad command 10\n      cmd LC_BUILD_VERSION\n  cmdsize 32\n platform MACOS\n    minos 11.0\n      sdk 27.0\n   ntools 1\n     tool LD\n  version 27037.1\n"
+    },
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": {
+      "sha256": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+      "file": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer: Mach-O 64-bit executable arm64\n",
+      "buildVersion": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer:\nLoad command 11\n      cmd LC_BUILD_VERSION\n  cmdsize 32\n platform MACOS\n    minos 14.0\n      sdk 27.0\n   ntools 1\n     tool LD\n  version 27037.1\n"
+    }
+  },
+  "plists": {
+    "Contents/Info.plist": {
+      "CFBundleDevelopmentRegion": "English",
+      "CFBundleDisplayName": "Intentgrove",
+      "CFBundleExecutable": "md_reader",
+      "CFBundleIdentifier": "com.juanmantilla.markdownworkspace",
+      "CFBundleInfoDictionaryVersion": "6.0",
+      "CFBundleName": "Intentgrove",
+      "CFBundlePackageType": "APPL",
+      "CFBundleShortVersionString": "0.1.0",
+      "CFBundleVersion": "0.1.0",
+      "CSResourcesFileMapped": true,
+      "LSMinimumSystemVersion": "14.0",
+      "CFBundleDocumentTypes": [
+        {
+          "CFBundleTypeExtensions": [
+            "md",
+            "markdown"
+          ],
+          "CFBundleTypeName": "Markdown document",
+          "CFBundleTypeRole": "Viewer",
+          "LSHandlerRank": "Alternate"
+        }
+      ],
+      "CFBundleIconFile": "icon.icns",
+      "LSRequiresCarbon": true,
+      "NSHighResolutionCapable": true
+    },
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/Info.plist": {
+      "CFBundleIdentifier": "com.juanmantilla.markdownworkspace.ImageDecoder",
+      "CFBundleExecutable": "md_reader_image_xpc",
+      "CFBundleInfoDictionaryVersion": "6.0",
+      "CFBundlePackageType": "XPC!",
+      "CFBundleShortVersionString": "0.1.0",
+      "CFBundleVersion": "1",
+      "XPCService": {
+        "ServiceType": "Application",
+        "RunLoopType": "dispatch_main"
+      }
+    },
+    "Contents/Helpers/DiagramRenderer.app/Contents/Info.plist": {
+      "CFBundleDisplayName": "DiagramRenderer",
+      "CFBundleExecutable": "DiagramRenderer",
+      "CFBundleIdentifier": "com.juanmantilla.markdownworkspace.diagramrenderer",
+      "CFBundleInfoDictionaryVersion": "6.0",
+      "CFBundleName": "DiagramRenderer",
+      "CFBundlePackageType": "APPL",
+      "CFBundleShortVersionString": "0.1.0",
+      "CFBundleVersion": "1",
+      "LSMinimumSystemVersion": "14.0",
+      "LSUIElement": true,
+      "NSPrincipalClass": "NSApplication"
+    }
+  },
+  "strict-signatures": {
+    "exitCode": 0,
+    "command": [
+      "codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "--verbose=2",
+      "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app"
+    ]
+  },
+  "app-signature": {
+    "exitCode": 0,
+    "command": [
+      "codesign",
+      "-dv",
+      "--verbose=4",
+      "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app"
+    ]
+  },
+  "diagram-entitlements": {
+    "exitCode": 0,
+    "command": [
+      "codesign",
+      "-d",
+      "--entitlements",
+      ":-",
+      "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app"
+    ]
+  },
+  "gatekeeper": {
+    "exitCode": 3,
+    "command": [
+      "spctl",
+      "--assess",
+      "--type",
+      "execute",
+      "--verbose=4",
+      "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app"
+    ]
+  },
+  "resources": {
+    "Contents/Info.plist": "c19e3396db418f19d8d35c8f360ed925f24aeb6fc2eac701ee4e59f6d0abf424",
+    "Contents/_CodeSignature/CodeResources": "8b681289f4511ff926fcfb0a18f9d5f3e3e878a29a979c2559eef79df5e8bd83",
+    "Contents/MacOS/md_reader": "ab2ed29169110f1d4bf9be3038599ac9ea043af50719046a4de662c5ca49715d",
+    "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/Info.plist": "9bb836f58aa891de62d109b6782510d1943ba2c3ff95ce55b98d9064f4d249cf",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/_CodeSignature/CodeResources": "6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Info.plist": "0f82acb28a16138d2b62914b46624b3c8477cea1169960aab2f9de7c26643213",
+    "Contents/Helpers/DiagramRenderer.app/Contents/_CodeSignature/CodeResources": "1b403b4d03050f024676a7fe7aa8eabf03a9282d26b2323f10bd0bfadc19784e",
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/index.html": "f899fce442a48f05b13a36ea88cd8086aafaaf1633211b46389480d4d913d9d2",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/reader.bundle.js": "171438cd9642fef7c6a135f9a39249bac073a315964fa5451281aba1f0910e6a",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/THIRD-PARTY-NOTICES.txt": "431392458aded615ff3ebf7ec4b6bf7ae00b930fea82cdcd17b235424f802179"
+  },
+  "frontendAssets": {
+    "index.html": "fe0b7eb7ef1a623148a7865f99fd9c60018fd99572421398a9427d8cafdae6d3",
+    "licenses/Roboto-OFL.txt": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41",
+    "licenses/highlightjs-BSD.txt": "6c081431591d9df696c82dc598fe1423765b8a299b200ed00b281afd0f64c490",
+    "licenses/MERMAID-DEPENDENCIES.txt": "431392458aded615ff3ebf7ec4b6bf7ae00b930fea82cdcd17b235424f802179",
+    "licenses/RobotoMono-OFL.txt": "50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215",
+    "licenses/lowlight-MIT.txt": "dd1081884a92952802f4803110a6bb543acea9a814c786d58605b4c1219b5ebb",
+    "assets/markdownBudget.worker-CnrDUpRn.js": "8840249d23aec39b3425aac94f6f674503a100d15e564998f44511b5bdf84047",
+    "assets/codeTokens.worker-DhUKaKtq.js": "eda8f334c96e065921355d97bf1a5ffd7f53194dcbf9632c722153eb39dab799",
+    "assets/index-D4bx-iK9.css": "b977e4792320baf8c67bc26df49dff0adf166c809f946c562d0788a5c5d25fa5",
+    "assets/RobotoMono_wght_-DIJlMvBn.ttf": "66a80e79d17e4c7cabd162e2916578a4cc08fd19eef6e2a643305eae9c567b2b",
+    "assets/Roboto-Italic_wdth_wght_-ATwWx9AS.ttf": "9725a847af6b460ffca162ae66d20dad48b01876137947180b42d7dcd7887182",
+    "assets/RobotoMono-Italic_wght_-4VBhkBpu.ttf": "49ac343bb7b070071e53f0a8a501d68d140ed98ebd0a43b6b8fb96cf22f09ff7",
+    "assets/Roboto_wdth_wght_-B3covOPw.ttf": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+    "assets/index-FOEXatqi.js": "8aa51b942b7152bbab4cfc3ea34e9dcace545e3d8a2322495ac6d0a2109923b8"
+  }
+}

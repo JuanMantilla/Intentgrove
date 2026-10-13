@@ -1,0 +1,137 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text workspace Solo archivos locales
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 text workspace
+				10 button Ajustes del árbol
+				11 container
+					12 button busy.md
+					13 button corrupt.png
+					14 button (collapsed) docs, Secondary Actions: Expand
+					15 button edit.md
+					16 button hostile.svg
+					17 button image-security.md
+					18 button large-10m.md
+					19 button large-11m.md
+					20 button large-1m.md
+					21 button linked.md
+					22 button (expanded) permissions, Secondary Actions: Collapse
+					23 button denied.md, Help: permissions/denied.md
+					24 button plain.md
+					25 button qa-image.png
+					26 button rich.md
+				27 text Almacenamiento y recuperación
+				28 text Ediciones abiertas y avisos de recuperación: 0
+				29 button Gestionar…
+			30 container
+				31 container Archivos visitados
+					32 button Atrás, Help: Atrás: denied.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/permissions/denied.md
+					33 button (disabled) Adelante, Help: No hay archivo siguiente
+				34 tab group (selectable) Documentos
+					35 container
+						36 tab (selected) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						37 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					38 container
+						39 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						40 button Cerrar pestaña: linked.md, Help: Cerrar pestaña
+					41 container
+						42 tab (selectable) qa-image.png, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/qa-image.png
+						43 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+					44 container
+						45 tab (selectable) image-security.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/image-security.md
+						46 button Cerrar pestaña: image-security.md, Help: Cerrar pestaña
+					47 container
+						48 tab (selectable) edit.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/edit.md
+						49 button Cerrar pestaña: edit.md, Help: Cerrar pestaña
+					50 container
+						51 tab (selectable) denied.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/permissions/denied.md
+						52 button Cerrar pestaña: denied.md, Help: Cerrar pestaña
+				53 pop up button Menú Ir
+				54 button (collapsed) Documentos abiertos(6), Secondary Actions: Expand
+				55 container rich.md
+					56 text rich.md
+					57 text Raíz de la carpeta
+					58 toggle button Índice, Value: off
+					59 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					60 button Editar sección
+					61 summary Documento…, Value: off
+						62 text Documento…
+				63 container rich.md
+					64 container Reading acceptance
+						65 summary Metadatos, Value: off
+							66 text Metadatos
+						67 container Editar sección: Reading acceptance
+							68 heading Reading acceptance, Value: 1
+								69 text Reading acceptance
+							70 button Editar sección «Reading acceptance»
+						71 container
+							72 text Before diagrams. 
+							73 button Reference, Help: linked.md
+							74 text  and encoded footnote
+							75 button 1, Help: #fn-a%2520b
+							76 text .
+						77 text json
+						78 button Copiar código
+						79 text {"highlight": true}
+
+						80 image Diagrama Mermaid
+						81 summary Ver código fuente, Value: off
+							82 text Ver código fuente
+						83 text Between diagrams.
+						84 image Diagrama Mermaid
+						85 summary Ver código fuente, Value: off
+							86 text Ver código fuente
+						87 text Diagrama no disponible. El código fuente se conserva abajo.
+						88 container (expanded) Secondary Actions: Collapse
+							89 summary Ver código fuente, Value: on
+								90 text Ver código fuente
+							91 text mermaid
+							92 button Copiar código
+							93 text flowchart broken
+
+						94 text Diagrama no disponible. El código fuente se conserva abajo.
+						95 container (expanded) Secondary Actions: Collapse
+							96 summary Ver código fuente, Value: on
+								97 text Ver código fuente
+							98 text mermaid
+							99 button Copiar código
+							100 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						101 text After diagrams.
+						102 container Editar sección: Duplicate
+							103 heading Duplicate, Value: 2
+								104 text Duplicate
+							105 button Editar sección «Duplicate»
+						106 text First duplicate target.
+						107 container Editar sección: Duplicate
+							108 heading Duplicate, Value: 2
+								109 text Duplicate
+							110 button Editar sección «Duplicate»
+						111 text Second duplicate target.
+						112 container
+							113 text [1] 
+							114 button ↩, Help: #fnref-a%2520b-1
+						115 text Encoded footnote body.
+	116 close button
+	117 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	118 minimize button
+	119 text Intentgrove
+120 menu bar
+	121 Intentgrove Completion 20261008
+	122 File
+	123 Edit
+	124 View
+	125 Ir
+	126 Window
+	127 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

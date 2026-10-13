@@ -1,9 +1,9 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 // F002A T018/T019: deterministic component evidence, NOT native acceptance.
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
-import { EditorView } from "@codemirror/view";
-import { historyField } from "@codemirror/commands";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { typeRich, richLeaf } from "./rich-edit-helpers";
 import App from "../../src/app/App";
 import { getAppearance } from "../../src/app/appearance";
 import type { DocumentResponse, SaveEditResponse, SectionDescriptor } from "../../src/app/api";
@@ -58,7 +58,7 @@ afterEach(() => { cleanup(); getAppearance().applyPreference("system"); vi.unstu
 
 async function openFixture() {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   fireEvent.click(await screen.findByTitle("fixture.md"));
 }
 function changeTheme() {
@@ -111,22 +111,22 @@ it.each(["resolve", "reject"] as const)("does not restart Save or recreate the e
   await openFixture();
   fireEvent.contextMenu(await screen.findByLabelText("Edit section: One"));
   fireEvent.click(screen.getByRole("menuitem", { name: "Edit section" }));
-  await screen.findByRole("textbox", { name: "Markdown source: One" });
-  const node = document.querySelector<HTMLElement>(".cm-editor")!;
-  const editor = EditorView.findFromDOM(node)!;
-  act(() => editor.dispatch({ changes: { from: editor.state.doc.length, insert: "draft\n" }, selection: { anchor: 8 } }));
-  const draft = editor.state.doc.toString();
+  await waitFor(() => expect(document.querySelector(".rich-section")).toBeTruthy());
+  const node = document.querySelector<HTMLElement>(".rich-section")!;
+  typeRich("draft", richLeaf("original passage"), 16);
+  const draft = "# One\noriginal passagedraft\n";
   await waitFor(() => expect(mocks.checkpointSectionEdit).toHaveBeenCalled());
   const gate = deferred<SaveEditResponse>(); mocks.saveSectionEdit.mockReturnValue(gate.promise);
   fireEvent.click(screen.getByRole("button", { name: /^Save file$/ }));
   await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledWith("edit", draft));
-  const state = editor.state.toJSON({ history: historyField });
-  editor.scrollDOM.scrollTop = 47;
+  const state = mocks.checkpointSectionEdit.mock.calls.at(-1)![0].editorJson;
+  const reader = document.querySelector<HTMLElement>(".reader-scroll")!;
+  reader.scrollTop = 47;
   const checkpoints = mocks.checkpointSectionEdit.mock.calls.length;
   changeTheme();
-  expect(EditorView.findFromDOM(node)).toBe(editor);
-  expect(editor.state.toJSON({ history: historyField })).toEqual(state);
-  expect(editor.scrollDOM.scrollTop).toBe(47);
+  expect(document.querySelector(".rich-section")).toBe(node);
+  expect(mocks.checkpointSectionEdit.mock.calls.at(-1)![0].editorJson).toEqual(state);
+  expect(reader.scrollTop).toBe(47);
   expect(mocks.checkpointSectionEdit).toHaveBeenCalledTimes(checkpoints);
   expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(1);
   await act(async () => outcome === "resolve"
@@ -135,13 +135,26 @@ it.each(["resolve", "reject"] as const)("does not restart Save or recreate the e
   if (outcome === "resolve") {
     // Successful Save normally returns to reading; only the pending operation
     // must preserve the editor instance. Do not change that product behavior.
-    await waitFor(() => expect(document.querySelector(".cm-editor")).toBeNull());
-    expect(await screen.findByText(/original passage\s+draft/)).toBeTruthy();
+    await waitFor(() => expect(document.querySelector(".rich-section")).toBeNull());
+    expect(await screen.findByText(/original passagedraft/)).toBeTruthy();
   } else {
     await waitFor(() => expect(screen.getByRole("button", { name: /^Save file$/ }).hasAttribute("disabled")).toBe(false));
-    expect(editor.state.doc.toString()).toBe(draft);
+    expect(richLeaf("original passagedraft")).toBeTruthy();
     expect(await screen.findByText("Save failed. Your section edit is still available.")).toBeTruthy();
   }
   expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(1);
   expect(mocks.beginSectionEdit).toHaveBeenCalledTimes(1);
+});
+
+it("causal QA-0034 visible initial scroll before section readiness",async()=>{
+ const sectionGate=deferred<{diskVersion:string;sections:SectionDescriptor[]}>();
+ mocks.listEditSections.mockReturnValueOnce(sectionGate.promise);
+ await openFixture();await screen.findByText('original passage');
+ const gate=deferred<DocumentResponse>();mocks.getConfirmedDocument.mockReturnValue(gate.promise);
+ const reader=document.querySelector<HTMLElement>('.reader-scroll')!;reader.scrollTop=170;fireEvent.scroll(reader);
+ await act(async()=>sectionGate.resolve({diskVersion:'v1',sections:[section]}));
+ await waitFor(()=>expect(mocks.listeners['refresh:file_changed']).toBeTypeOf('function'));
+ act(()=>mocks.listeners['refresh:file_changed']({payload:{generation:1,fileId:'file',diskVersion:'v2',identityKey:'fixture:1',checkedAt:1}}));
+ changeTheme();expect(reader.scrollTop).toBe(170);
+ await act(async()=>gate.resolve({...documentFixture,diskVersion:'v2',content:'# One\nrefreshed passage\n'}));
 });

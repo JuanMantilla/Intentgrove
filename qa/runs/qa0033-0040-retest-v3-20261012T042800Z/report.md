@@ -1,0 +1,7 @@
+# Retained QA context — v3
+
+Default715/715/715 PASS. Native initial field ownership and explicit-file route partially verified; folder picker/binding/occlusion prevented broad native matrix. Later original v3 empty reopen failures retained in native-final context, leading to minimal frame-cause probe.
+
+This context is superseded for final source verification by [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md>). Every attempt and original log is retained; successes do not erase failures or prove a historical cause. No task acceptance or cleanup.
+
+Coverage: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/coverage.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/coverage.json>). Plan/baseline: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/plan.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/plan.md>), [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/tested-snapshot.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/tested-snapshot.json>). Native/source identity and exact timing are recorded in this context evidence and final implementation handoff.

@@ -1,0 +1,68 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button Back, Help: Back: pixel.png
+/private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selected) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						25 button Close tab: reading.md, Help: Close tab
+					26 container
+						27 tab (selectable) pixel.png, Help: /private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+						28 button Close tab: pixel.png, Help: Close tab
+					29 container
+						30 tab (selectable) hostile.svg · This image contains unsupported or unsafe content, Help: /private/tmp/intentgrove-finish-20261008/fixtures/hostile.svg
+						31 button Close tab: hostile.svg, Help: Close tab
+				32 pop up button Go menu
+				33 button (collapsed) Open documents (4), Secondary Actions: Expand
+				34 container Visited files
+					35 text Forward: reading.md
+				36 container second.md
+					37 text second.md
+					38 text Outside the open folder
+					39 button Edit section
+					40 summary Document…, Value: off
+						41 text Document…
+				42 text File saved: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+				43 button Dismiss
+				44 container second.md
+					45 container Second
+						46 container Edit section: Second
+							47 heading Second, Value: 1
+								48 text Second
+							49 button Edit section “Second”
+						50 text needle from neighbor
+						51 text final acceptance edit
+	52 close button
+	53 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	54 minimize button
+	55 text Intentgrove
+56 menu bar
+	57 Intentgrove Final Acceptance 20261008
+	58 File
+	59 Edit
+	60 View
+	61 Go
+	62 Window
+	63 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

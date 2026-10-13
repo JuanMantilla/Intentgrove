@@ -1,0 +1,9 @@
+# Individual-file link repair
+
+IMPLEMENT; user-authorized focused repair, F001-L01–L04 in the scoped amendment. Data at risk: existing tabs/drafts/session ownership. Preserve unrelated dirty worktree changes.
+
+Observed: RunEvent::Opened URLs and drops enqueue native file requests; automatic frontend acceptance registers explicit files and opens through existing openers. assets::target_from previously rejected non-root sources, then navigate replaced errors with a folder-reopening instruction. Main macOS bundle has no configured sandbox entitlement and packaging signs main without entitlements; helpers retain separate sandboxing. This is application policy, not evidence of an OS refusal. Existing OS access checks/no-follow/local-only restrictions remain authoritative.
+
+Design: parse relative paths at native boundary using the source file grant; verify current source identity; temporarily open the common parent and walk target components with existing no-follow open_relative. Keep only target file grant/handle; register refresh watcher through existing service. No directory grant or arbitrary frontend path opener. Reuse navigation and existing identity/draft deduplication. Same-document targets return anchors. Embedded assets remain scoped.
+
+Validation: native fixture reads and chmod denial on macOS arm64; rendered App tests for cold native opening plus local links, fragments/repeats/history/errors and returning to an existing dirty tab. Full frontend/native library suites, TypeScript/Vite build, touched-file formatting and scoped diff. Native Finder/terminal/TCC/packaged GUI are a distinct unverified layer. No new OS permission flow is required by current packaging. The HTML broker shares the deliberate-target helper; its existing exact-file picker is retained only after an actual native denial. Embedded HTML resource authorization is unchanged.

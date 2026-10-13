@@ -1,0 +1,3269 @@
+[
+  {
+    "n": 0,
+    "at": 4879.520541,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 5011.610833,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "click",
+    "text": "figure.png",
+    "title": "figure.png",
+    "disabled": false
+  },
+  {
+    "n": 2,
+    "at": 5118.939625,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 3,
+    "at": 5401.328208,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 4,
+    "at": 5524.744791,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 5,
+    "at": 5526.156625,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 6,
+    "at": 5619.074,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 7,
+    "at": 5708.47,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 8,
+    "at": 5710.419,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 9,
+    "at": 5779.061125,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 10,
+    "at": 5871.000875,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 11,
+    "at": 5906.459291,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "click",
+    "text": "figure.png",
+    "title": "/tmp/fixture/figure.png",
+    "disabled": false
+  },
+  {
+    "n": 12,
+    "at": 5935.75825,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 13,
+    "at": 6166.4505,
+    "test": "never displays a false unavailable alert while reopening released image pixels",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 14,
+    "at": 6316.115125,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 15,
+    "at": 6436.688583,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "click",
+    "text": "figure.png",
+    "title": "figure.png",
+    "disabled": false
+  },
+  {
+    "n": 16,
+    "at": 6510.419083,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 17,
+    "at": 6644.840916,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 18,
+    "at": 6733.771625,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 19,
+    "at": 6734.1465,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 20,
+    "at": 6792.067083,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 21,
+    "at": 6934.427333,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 22,
+    "at": 6938.086458,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 23,
+    "at": 7036.216291,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 24,
+    "at": 7123.911833,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 25,
+    "at": 7205.586125,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "click",
+    "text": "figure.png",
+    "title": "/tmp/fixture/figure.png",
+    "disabled": false
+  },
+  {
+    "n": 26,
+    "at": 7244.549625,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 27,
+    "at": 7379.522,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "click",
+    "text": "a.md",
+    "title": "/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 28,
+    "at": 7427.170041,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 29,
+    "at": 7427.938291,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 30,
+    "at": 7433.146083,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 31,
+    "at": 7508.652625,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 32,
+    "at": 7516.573166,
+    "test": "shows a real image reactivation failure and keeps a later selected file stable",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 33,
+    "at": 7630.089166,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 34,
+    "at": 7752.166083,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 35,
+    "at": 7752.465625,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 36,
+    "at": 7784.514416,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 37,
+    "at": 7785.1455,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 38,
+    "at": 7857.705583,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 39,
+    "at": 7920.367916,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 40,
+    "at": 7921.877583,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 41,
+    "at": 8002.339583,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 42,
+    "at": 8057.366,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 43,
+    "at": 8126.361791,
+    "test": "rejects an older failure from repeated opens of the same document",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 44,
+    "at": 8216.191958,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 45,
+    "at": 8341.1335,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 46,
+    "at": 8341.9905,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 47,
+    "at": 8371.103666,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 48,
+    "at": 8371.394083,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 49,
+    "at": 8418.249083,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 50,
+    "at": 8476.341375,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 51,
+    "at": 8477.63625,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 52,
+    "at": 8560.812416,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 53,
+    "at": 8627.728041,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 54,
+    "at": 8649.909833,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 2
+  },
+  {
+    "n": 55,
+    "at": 8741.027625,
+    "test": "a slower earlier open never steals selection from the last requested file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 56,
+    "at": 8892.836958,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 57,
+    "at": 8992.641125,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 58,
+    "at": 8992.9145,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 59,
+    "at": 9076.142083,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 60,
+    "at": 9076.415125,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 61,
+    "at": 9113.985125,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 62,
+    "at": 9180.178416,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 63,
+    "at": 9183.541791,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 64,
+    "at": 9359.677041,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 65,
+    "at": 9464.063916,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 66,
+    "at": 9512.245833,
+    "test": "a stale large-file inspection failure cannot replace a later successful reopen",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 67,
+    "at": 9669.834958,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 68,
+    "at": 9816.643083,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 69,
+    "at": 9816.929875,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 70,
+    "at": 9857.400166,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 71,
+    "at": 9911.929791,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 72,
+    "at": 9913.532083,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 73,
+    "at": 10011.8105,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 74,
+    "at": 10093.89625,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 75,
+    "at": 10224.012416,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "click",
+    "text": "Linked guide",
+    "title": "guide.md",
+    "disabled": false
+  },
+  {
+    "n": 76,
+    "at": 10226.675125,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 77,
+    "at": 10226.857833,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "open-start",
+    "sequence": 3,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 78,
+    "at": 10308.185,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 3,
+    "currentSequence": 3
+  },
+  {
+    "n": 79,
+    "at": 10416.34225,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 80,
+    "at": 10418.303958,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 81,
+    "at": 10545.310708,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 82,
+    "at": 10773.947166,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 83,
+    "at": 10897.030458,
+    "test": "a stale link resolution cannot navigate away from a newer selected file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 84,
+    "at": 10997.226375,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 85,
+    "at": 11242.45975,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 86,
+    "at": 11242.809916,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 87,
+    "at": 11294.088791,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 88,
+    "at": 11398.65575,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 89,
+    "at": 11400.031458,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 90,
+    "at": 11485.649875,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 91,
+    "at": 11643.334166,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 92,
+    "at": 11813.210875,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "click",
+    "text": "Linked passage",
+    "title": "guide.md#current",
+    "disabled": false
+  },
+  {
+    "n": 93,
+    "at": 11814.609708,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-start",
+    "sequence": 3,
+    "request": {
+      "fileId": "c.md"
+    }
+  },
+  {
+    "n": 94,
+    "at": 11909.694916,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 95,
+    "at": 11910.524916,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-start",
+    "sequence": 4,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 96,
+    "at": 12023.240958,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 4,
+    "currentSequence": 4
+  },
+  {
+    "n": 97,
+    "at": 12087.027041,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 1
+  },
+  {
+    "n": 98,
+    "at": 12088.357333,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 99,
+    "at": 12165.456333,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 100,
+    "at": 12238.484541,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 101,
+    "at": 12280.25825,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "open-activate",
+    "id": "c.md",
+    "sequence": 3,
+    "currentSequence": 4
+  },
+  {
+    "n": 102,
+    "at": 12479.061291,
+    "test": "a stale linked document response cannot apply its fragment to a newer file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 103,
+    "at": 12686.0585,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 104,
+    "at": 12922.220416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 105,
+    "at": 12923.57875,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 106,
+    "at": 12999.316333,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 107,
+    "at": 13075.740333,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 108,
+    "at": 13093.8215,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 109,
+    "at": 13221.730416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 110,
+    "at": 13303.093416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 111,
+    "at": 13350.549666,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 112,
+    "at": 13351.021208,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 113,
+    "at": 13485.940083,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 114,
+    "at": 13545.139791,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 115,
+    "at": 13550.099541,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 116,
+    "at": 13720.509958,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 117,
+    "at": 13857.655875,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 118,
+    "at": 13944.715833,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "c.md",
+    "title": "c.md",
+    "disabled": false
+  },
+  {
+    "n": 119,
+    "at": 13944.979041,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-start",
+    "sequence": 3,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "c.md"
+      ]
+    }
+  },
+  {
+    "n": 120,
+    "at": 14041.282125,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-activate",
+    "id": "c.md",
+    "sequence": 3,
+    "currentSequence": 3
+  },
+  {
+    "n": 121,
+    "at": 14109.556708,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "c.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 122,
+    "at": 14135.801333,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "c.md",
+    "version": "v1"
+  },
+  {
+    "n": 123,
+    "at": 14269.330041,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "c.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 124,
+    "at": 14378.202041,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 125,
+    "at": 14543.951416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "",
+    "title": "Back: b.md\n/tmp/fixture/b.md",
+    "disabled": false
+  },
+  {
+    "n": 126,
+    "at": 14908.478625,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 127,
+    "at": 14911.723916,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 128,
+    "at": 14987.546666,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 129,
+    "at": 15038.636416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 130,
+    "at": 15041.713875,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 131,
+    "at": 15150.064708,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 132,
+    "at": 15201.68875,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "",
+    "title": "Forward: c.md\n/tmp/fixture/c.md",
+    "disabled": false
+  },
+  {
+    "n": 133,
+    "at": 15357.06075,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "c.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 134,
+    "at": 15358.668791,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "c.md",
+    "version": "v1"
+  },
+  {
+    "n": 135,
+    "at": 15437.511416,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 136,
+    "at": 15519.305666,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "c.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 137,
+    "at": 15519.9555,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 138,
+    "at": 15993.059541,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 139,
+    "at": 16203.6165,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "",
+    "title": "Back: b.md\n/tmp/fixture/b.md",
+    "disabled": false
+  },
+  {
+    "n": 140,
+    "at": 16662.2275,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 141,
+    "at": 16663.625791,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 142,
+    "at": 16718.099125,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 143,
+    "at": 16837.753666,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 144,
+    "at": 16839.2065,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 145,
+    "at": 16878.225541,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 146,
+    "at": 16905.029833,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 147,
+    "at": 16905.320458,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-start",
+    "sequence": 7,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 148,
+    "at": 16964.965166,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 7,
+    "currentSequence": 7
+  },
+  {
+    "n": 149,
+    "at": 17030.665166,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 150,
+    "at": 17033.429291,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 151,
+    "at": 17076.3795,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 152,
+    "at": 17106.000541,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 153,
+    "at": 17160.728083,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 154,
+    "at": 17242.010708,
+    "test": "uses fixed D controls for Back/Forward, branches and retains tabs",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 155,
+    "at": 17343.23625,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 156,
+    "at": 17455.712958,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 157,
+    "at": 17457.337416,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 158,
+    "at": 17500.791333,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 159,
+    "at": 17563.749291,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 160,
+    "at": 17565.782791,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 161,
+    "at": 17644.229041,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 162,
+    "at": 17719.194791,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 163,
+    "at": 17758.39125,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 164,
+    "at": 17758.695416,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 165,
+    "at": 17826.845541,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 166,
+    "at": 17936.021791,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 167,
+    "at": 17938.610666,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 168,
+    "at": 18016.8335,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 169,
+    "at": 18138.564791,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "click",
+    "text": "",
+    "title": "Back: a.md\n/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 170,
+    "at": 18274.353375,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 171,
+    "at": 18628.452375,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "click",
+    "text": "",
+    "title": "Back: a.md\n/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 172,
+    "at": 18928.610333,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 173,
+    "at": 18929.981291,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 174,
+    "at": 19005.616916,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 175,
+    "at": 19059.200125,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 176,
+    "at": 19059.950458,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 177,
+    "at": 19250.343541,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 178,
+    "at": 19361.067041,
+    "test": "failed history access retains source and cursor, then Retry succeeds",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 179,
+    "at": 19479.52925,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 180,
+    "at": 19688.389958,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 181,
+    "at": 19690.948416,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 182,
+    "at": 19745.48825,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 183,
+    "at": 19827.17025,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 184,
+    "at": 19829.074041,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 185,
+    "at": 19960.214458,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 186,
+    "at": 20041.620333,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 187,
+    "at": 20250.427791,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "click",
+    "text": "×",
+    "title": "Close tab",
+    "disabled": false
+  },
+  {
+    "n": 188,
+    "at": 20698.926833,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "click",
+    "text": "a.md/tmp/fixture/a.mdMarkdown · ClosedCurrent document",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 189,
+    "at": 20863.193041,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 190,
+    "at": 20863.984125,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 191,
+    "at": 20879.352333,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 192,
+    "at": 20963.013291,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 193,
+    "at": 20963.597416,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 194,
+    "at": 20995.617416,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 195,
+    "at": 21037.505583,
+    "test": "closing the last tab leaves history able to reopen the retained file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 196,
+    "at": 21180.13625,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 197,
+    "at": 21287.443375,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 198,
+    "at": 21287.823375,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 199,
+    "at": 21324.523416,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 200,
+    "at": 21381.989666,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 201,
+    "at": 21383.536458,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 202,
+    "at": 21486.176875,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 203,
+    "at": 21613.003708,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 204,
+    "at": 21683.919166,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 420,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/approved-navigation.test.tsx:129:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 205,
+    "at": 21684.784875,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll",
+    "value": 420
+  },
+  {
+    "n": 206,
+    "at": 21730.181833,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 207,
+    "at": 21730.465541,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 208,
+    "at": 21847.5235,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 209,
+    "at": 21919.240333,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 210,
+    "at": 21920.516916,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 211,
+    "at": 22019.611875,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 212,
+    "at": 22106.662583,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 420,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 213,
+    "at": 22145.712041,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 90,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/approved-navigation.test.tsx:131:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 214,
+    "at": 22146.095666,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll",
+    "value": 90
+  },
+  {
+    "n": 215,
+    "at": 22287.372458,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "click",
+    "text": "",
+    "title": "Back: a.md\n/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 216,
+    "at": 22428.329833,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 217,
+    "at": 22429.638125,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 218,
+    "at": 22471.137083,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 90,
+    "value": 420,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 219,
+    "at": 22504.545666,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 220,
+    "at": 22505.875666,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 420,
+    "value": 420,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 221,
+    "at": 22560.651458,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "scroll-write",
+    "before": 420,
+    "value": 420,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 222,
+    "at": 22605.760041,
+    "test": "history restores the retained passage and returns focus when the invoking Back becomes disabled",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 223,
+    "at": 22676.628333,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 224,
+    "at": 22825.696166,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 225,
+    "at": 22826.123375,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 226,
+    "at": 22876.319458,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 227,
+    "at": 22948.59125,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 228,
+    "at": 22949.917375,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 229,
+    "at": 23068.080166,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 230,
+    "at": 23157.731625,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 231,
+    "at": 23191.173708,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 232,
+    "at": 23191.463208,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 233,
+    "at": 23252.649708,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 234,
+    "at": 23345.076166,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 235,
+    "at": 23346.477791,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 236,
+    "at": 23420.388083,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 237,
+    "at": 23591.812541,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 238,
+    "at": 23691.798375,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "",
+    "title": "Back: a.md\n/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 239,
+    "at": 23878.49075,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 240,
+    "at": 24061.073333,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "click",
+    "text": "",
+    "title": "Back: a.md\n/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 241,
+    "at": 24235.284041,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 242,
+    "at": 24237.587125,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 243,
+    "at": 24283.762708,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 244,
+    "at": 24315.849291,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 245,
+    "at": 24316.563291,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 246,
+    "at": 24361.863625,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 247,
+    "at": 24405.205458,
+    "test": "cancels a pending traversal and rejects its late successful response",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 248,
+    "at": 24519.771,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 249,
+    "at": 24677.039708,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "figure.png",
+    "title": "figure.png",
+    "disabled": false
+  },
+  {
+    "n": 250,
+    "at": 24723.917208,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 251,
+    "at": 24799.076916,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 252,
+    "at": 24910.066791,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 253,
+    "at": 24910.355166,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 254,
+    "at": 24980.7535,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 255,
+    "at": 25027.168541,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 256,
+    "at": 25029.633625,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 257,
+    "at": 25132.565333,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 258,
+    "at": 25304.450833,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 259,
+    "at": 25339.020875,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "figure.png",
+    "title": "/tmp/fixture/figure.png",
+    "disabled": false
+  },
+  {
+    "n": 260,
+    "at": 25385.714416,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 261,
+    "at": 25473.325791,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "a.md",
+    "title": "/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 262,
+    "at": 25536.414125,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 263,
+    "at": 25536.874,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 264,
+    "at": 25537.027625,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 265,
+    "at": 25710.70125,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "click",
+    "text": "",
+    "title": "Back: figure.png\n/tmp/fixture/figure.png",
+    "disabled": false
+  },
+  {
+    "n": 266,
+    "at": 25775.058666,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 267,
+    "at": 25821.110583,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 268,
+    "at": 25949.168833,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 269,
+    "at": 25992.03825,
+    "test": "late image restoration cannot replace a successful forced reopening",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 270,
+    "at": 26076.484541,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 271,
+    "at": 26205.009666,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 272,
+    "at": 26205.311125,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 273,
+    "at": 26240.671708,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 274,
+    "at": 26304.306791,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 275,
+    "at": 26305.619541,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 276,
+    "at": 26373.461875,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 277,
+    "at": 26432.504791,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 278,
+    "at": 26453.631875,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 279,
+    "at": 26454.303708,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 280,
+    "at": 26511.511958,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 281,
+    "at": 26557.292958,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 282,
+    "at": 26558.572125,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 283,
+    "at": 26651.93125,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 284,
+    "at": 26713.878083,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 285,
+    "at": 26837.092083,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "Go",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 286,
+    "at": 27013.977625,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "Back: a.md · /tmp/fixture/a.md",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 287,
+    "at": 27155.795375,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 288,
+    "at": 27158.360916,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 289,
+    "at": 27246.555125,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 290,
+    "at": 27284.8915,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 291,
+    "at": 27285.553625,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 292,
+    "at": 27330.95175,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 293,
+    "at": 27463.420958,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "Go",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 294,
+    "at": 27549.144375,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "click",
+    "text": "Clear visit history",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 295,
+    "at": 27718.319291,
+    "test": "Go exposes labeled traversal and clearing history keeps the current document",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 296,
+    "at": 27810.639875,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 297,
+    "at": 27935.5005,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 298,
+    "at": 27935.828958,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 299,
+    "at": 27984.961083,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 300,
+    "at": 28093.113625,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 301,
+    "at": 28094.126583,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 302,
+    "at": 28154.496958,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 303,
+    "at": 28228.029041,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 304,
+    "at": 28254.511458,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 305,
+    "at": 28254.786208,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 306,
+    "at": 28323.967958,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 307,
+    "at": 28370.838291,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 308,
+    "at": 28372.489375,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 309,
+    "at": 28458.463333,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 310,
+    "at": 28538.918833,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 311,
+    "at": 28750.819541,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 312,
+    "at": 28752.2675,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 313,
+    "at": 28785.581375,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 314,
+    "at": 28816.903458,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 315,
+    "at": 28817.680708,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 316,
+    "at": 28863.492958,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 317,
+    "at": 29009.532333,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 318,
+    "at": 29011.063708,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 319,
+    "at": 29054.376625,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 320,
+    "at": 29106.608375,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 321,
+    "at": 29107.156583,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:2965:29\n    at invokeTheCallbackFunction (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/Function.js:19:26)\n    at runAnimationFrameCallbacks (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13)\n    at Timeout.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11)\n    at listOnTimeout (node:internal/timers:581:17)\n    at processTimers (node:internal/timers:519:7)"
+  },
+  {
+    "n": 322,
+    "at": 29138.377708,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 323,
+    "at": 29285.505291,
+    "test": "native Go reuses committed client history and publishes the same enabled state",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 324,
+    "at": 29511.503208,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 325,
+    "at": 29630.208708,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 326,
+    "at": 29630.466458,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 327,
+    "at": 29694.861375,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 328,
+    "at": 29853.696083,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 329,
+    "at": 29854.742375,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 330,
+    "at": 29938.381,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 331,
+    "at": 30015.385333,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 332,
+    "at": 30115.449791,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 39.561242508608956,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:1242:20\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 333,
+    "at": 30159.090916,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 334,
+    "at": 30159.626458,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 335,
+    "at": 30218.907541,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 336,
+    "at": 30268.975833,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 337,
+    "at": 30275.052083,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-start",
+    "id": "b.md",
+    "version": "v1"
+  },
+  {
+    "n": 338,
+    "at": 30405.329416,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-resolved",
+    "id": "b.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 339,
+    "at": 30504.025583,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "scroll-write",
+    "before": 39.561242508608956,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 340,
+    "at": 30558.475333,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "click",
+    "text": "a.md",
+    "title": "/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 341,
+    "at": 30607.355125,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 342,
+    "at": 30608.733708,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 343,
+    "at": 30656.975,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 39.561242508608956,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3016:71\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 344,
+    "at": 30692.551291,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 345,
+    "at": 30707.568458,
+    "test": "pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 346,
+    "at": 30811.53325,
+    "test": "uses a dismissible narrow sidebar without overwriting the wider-window visibility choice",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 347,
+    "at": 30972.105875,
+    "test": "uses a dismissible narrow sidebar without overwriting the wider-window visibility choice",
+    "event": "click",
+    "text": "Projects",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 348,
+    "at": 31064.52825,
+    "test": "uses a dismissible narrow sidebar without overwriting the wider-window visibility choice",
+    "event": "click",
+    "text": "Projects",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 349,
+    "at": 31230.370875,
+    "test": "uses a dismissible narrow sidebar without overwriting the wider-window visibility choice",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

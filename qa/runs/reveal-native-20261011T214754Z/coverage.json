@@ -1,0 +1,671 @@
+[
+  {
+    "id": "BUILD",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Build",
+    "scope": "Current isolated app build",
+    "reason": "Locked offline debug Tauri bundle; production frontend, unique identifier; no installed-app replacement. Executable SHA256 154f1893045c6dd1dfb08a6986cbe349d7bceb398e0b0d4ba6dbed7eaf4ff0b9; ad hoc signature verifies.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/native-build.log",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/build-provenance.json",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/signature.txt"
+    ]
+  },
+  {
+    "id": "N01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Unopened explorer file; no new document tab",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unopened-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unopened-after.txt"
+    ]
+  },
+  {
+    "id": "N02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Active root-backed tab",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/active-root-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/active-root-after.txt"
+    ]
+  },
+  {
+    "id": "N03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Inactive root-backed tab; clicked active.md while inactive.md active",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/inactive-root-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/inactive-root-after.txt"
+    ]
+  },
+  {
+    "id": "N04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Active individually opened file tab",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/individual-active-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/individual-active-after.txt"
+    ]
+  },
+  {
+    "id": "N05",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Inactive individually opened file tab; clicked one.md while two.md active",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/individual-inactive-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/individual-inactive-after.txt"
+    ]
+  },
+  {
+    "id": "N06",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nested special-character path from explorer",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/special-explorer-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/special-explorer-after.txt"
+    ]
+  },
+  {
+    "id": "N07",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nested special-character path from root tab",
+    "reason": "Finder selected clicked file; exact absolute URL readback. Special filename covers spaces, Unicode, both quote types, $, &, #, %, parentheses and comma. Unopened case remained Open documents (0).",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/special-tab-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/special-tab-after.txt"
+    ]
+  },
+  {
+    "id": "K01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Tab Shift+F10 opens context menu",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/tab-keyboard-menu.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Tab Return activates Reveal",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/tab-keyboard-activate-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Tab Escape dismisses and Shift+F10 reopens same target",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/tab-keyboard-escape.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Explorer Shift+F10 opens after restored row focus",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explorer-escape-reopen.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K05",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Explorer Down/Return activates Reveal",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explorer-keyboard-corrected-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K06",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Explorer Escape dismisses and restores same row",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explorer-escape-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K07",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Tab focus on return from Finder",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/activation-focus-tab-reopen.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "K08",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Explorer focus on return from Finder",
+    "reason": "Observed dismissal/reopening or exact Finder selection; reopening used keyboard without re-clicking anchor. Initial semantic-click keyboard targeting mistake retained and corrected; physical coordinate input unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/activation-focus-explorer-reopen.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt"
+    ]
+  },
+  {
+    "id": "A01",
+    "result": "FAIL",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Known unavailable tab hides/disables Reveal",
+    "reason": "QA-0031: delete.md visibly missing; Reveal remains enabled. Native error handling succeeds but action availability requirement fails.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unavailable-tab-menu.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unavailable-reveal-error.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/missing-dirty-menu.txt"
+    ]
+  },
+  {
+    "id": "A02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Saved explicit file with unsaved edits remains revealable",
+    "reason": "Exact Finder target; Unsaved marker and typed draft retained; disk bytes remain original, no Save performed.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/dirty-reveal-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/dirty-reveal-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/final-fixture-bytes.json"
+    ]
+  },
+  {
+    "id": "A03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Saved root file with unsaved edits via tab",
+    "reason": "Exact Finder target; Unsaved marker and typed draft retained; disk bytes remain original, no Save performed.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/root-dirty-tab-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/root-dirty-tab-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/final-fixture-bytes.json"
+    ]
+  },
+  {
+    "id": "A04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Saved root file with unsaved edits via explorer",
+    "reason": "Exact Finder target; Unsaved marker and typed draft retained; disk bytes remain original, no Save performed.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/root-dirty-explorer-finder.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/root-dirty-explorer-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/final-fixture-bytes.json"
+    ]
+  },
+  {
+    "id": "A05",
+    "result": "NOT_APPLICABLE",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Reachability",
+    "scope": "Unsaved file without local path",
+    "reason": "No such item reachable through supported native workflows in this run; new Markdown is disk-created; no virtual/remote-tab entry point. No injected renderer state or remote mount created. Mocked guard checks are separate.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/source-review.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/ui-tests.log"
+    ]
+  },
+  {
+    "id": "A06",
+    "result": "NOT_APPLICABLE",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Reachability",
+    "scope": "Virtual document item",
+    "reason": "No such item reachable through supported native workflows in this run; new Markdown is disk-created; no virtual/remote-tab entry point. No injected renderer state or remote mount created. Mocked guard checks are separate.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/source-review.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/ui-tests.log"
+    ]
+  },
+  {
+    "id": "A07",
+    "result": "NOT_APPLICABLE",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Reachability",
+    "scope": "Nonlocal file item",
+    "reason": "No such item reachable through supported native workflows in this run; new Markdown is disk-created; no virtual/remote-tab entry point. No injected renderer state or remote mount created. Mocked guard checks are separate.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/source-review.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/ui-tests.log"
+    ]
+  },
+  {
+    "id": "R01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Rename root-backed opened file after menu opens",
+    "reason": "Old path becomes missing; menu dismissed on update; tab/content retained and other draft retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/delete-open-menu-before.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/delete-open-menu-after-mutation.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/deletion-mutation.json"
+    ]
+  },
+  {
+    "id": "R02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Invoke Reveal on missing opened target",
+    "reason": "Graceful Could not reveal the file / This file is missing; tabs retained; Finder selection unchanged.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unavailable-reveal-error.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unavailable-no-selection-change-finder.txt"
+    ]
+  },
+  {
+    "id": "R03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Rename unopened target after menu opens",
+    "reason": "Down-highlighted Reveal then rename + Return; no crash/new document tab; missing notice and previous Finder selection retained. No new notice emission inferred from identical text.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/delete-unopened-menu-before.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/delete-unopened-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/delete-unopened-finder.txt"
+    ]
+  },
+  {
+    "id": "R04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Replace individually opened file after menu opens",
+    "reason": "Explicit file grant rejects changed identity with Select file again; existing tabs/draft remain; Finder selection unchanged.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explicit-replacement-menu-before.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explicit-replacement-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/explicit-replacement-finder.txt"
+    ]
+  },
+  {
+    "id": "R05",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Rename saved file while dirty tab menu is open",
+    "reason": "Missing error; QA UNSAVED EDIT remains in editor; no save, crash or draft loss during action.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/dirty-deletion-menu-before.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/dirty-deletion-after.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/dirty-deletion-after.png"
+    ]
+  },
+  {
+    "id": "R06",
+    "result": "FAIL",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Replace unopened listed file after context menu opens",
+    "reason": "QA-0032: same-path replacement selected. Original inode differs; Finder selected replacement row with 31-byte size; Copy as Pathname readback gives exact race-verify.md. AX URL stale and superseded by independent copy readback.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/race-verify-menu-before.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/race-verify-mutation.json",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/race-verify-finder.png",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/race-verify-selection-copy.txt"
+    ]
+  },
+  {
+    "id": "R07",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Session finish with run-owned drafts",
+    "reason": "Cmd+Q and Keep draft exit isolated process; same candidate relaunch restores ROOT UNSAVED draft. Missing explicit draft not claimed restored; session recovery outside feature scope.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/quit-prompt.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/quit-final-prompt.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/process-final.txt"
+    ]
+  },
+  {
+    "id": "L01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "English labels in explorer and tabs",
+    "reason": "Reveal in Finder shown in both menus; Windows wording not presented on Mac.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unopened-menu.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/individual-active-menu.txt"
+    ]
+  },
+  {
+    "id": "L02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Spanish labels in explorer and tabs",
+    "reason": "Mostrar en Finder, Copiar ruta, Cerrar pesta\u00f1a and Recargar observed in native app AX trees; labels independently inspected.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-light-explorer-menu.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-light-tab-menu.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-dark-tab-menu.txt"
+    ]
+  },
+  {
+    "id": "V01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Light and dark app appearance",
+    "reason": "Actual screenshots show both themes; this does not establish menu pixels when capture omitted overlay.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/appearance-after.png",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-dark-tab-menu.png"
+    ]
+  },
+  {
+    "id": "V02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "English dark explorer menu placement",
+    "reason": "Actual initial screenshot shows visible menu inside window, readable Reveal above Copy path and Reload; no document tab.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unopened-menu.png"
+    ]
+  },
+  {
+    "id": "V03",
+    "result": "BLOCKED",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Native capture",
+    "scope": "English dark tab menu visual placement",
+    "reason": "Provider omitted menu from saved screenshot despite adjacent AX menu evidence; cannot claim visual verification. ScreenCaptureKit -3811 errors and noWindowsAvailable coordinate failure retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/unavailable-tab-menu.png"
+    ]
+  },
+  {
+    "id": "V04",
+    "result": "BLOCKED",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Native capture",
+    "scope": "Spanish light explorer menu visual appearance",
+    "reason": "Provider omitted menu from saved screenshot despite adjacent AX menu evidence; cannot claim visual verification. ScreenCaptureKit -3811 errors and noWindowsAvailable coordinate failure retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-light-explorer-menu.png"
+    ]
+  },
+  {
+    "id": "V05",
+    "result": "BLOCKED",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Native capture",
+    "scope": "Spanish light tab menu visual appearance",
+    "reason": "Provider omitted menu from saved screenshot despite adjacent AX menu evidence; cannot claim visual verification. ScreenCaptureKit -3811 errors and noWindowsAvailable coordinate failure retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-light-tab-menu.png"
+    ]
+  },
+  {
+    "id": "V06",
+    "result": "BLOCKED",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Native capture",
+    "scope": "Spanish dark tab menu visual appearance",
+    "reason": "Provider omitted menu from saved screenshot despite adjacent AX menu evidence; cannot claim visual verification. ScreenCaptureKit -3811 errors and noWindowsAvailable coordinate failure retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/provider-errors.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/es-dark-tab-paired.png"
+    ]
+  },
+  {
+    "id": "P01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Folder context menu excludes file Reveal",
+    "reason": "Folder menu contains collapse/search/copy/reload, no Reveal in Finder.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/folder-menu.txt"
+    ]
+  },
+  {
+    "id": "P02",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nearby folder expand/collapse behavior",
+    "reason": "Activated Collapse folder then Expand folder through menu; child row visibility changes.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/folder-collapse-result.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/folder-expand-result.txt"
+    ]
+  },
+  {
+    "id": "P03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nearby Reload",
+    "reason": "Reload unopened.md yields Already current feedback; preserved other tabs and drafts.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/reload-result.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/actions.json"
+    ]
+  },
+  {
+    "id": "P04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nearby Copy path",
+    "reason": "App reports Path copied; actual clipboard pasted into canceled Finder Go dialog equals full unopened.md fixture path.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/copy-path-result.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/copy-path-clipboard-readback.txt"
+    ]
+  },
+  {
+    "id": "P05",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Packaged macOS",
+    "scope": "Nearby Close tab",
+    "reason": "Context-menu Close unopened.md removes that tab only; document count 7 to 6; missing and dirty tabs retained.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/close-tab-result.txt"
+    ]
+  },
+  {
+    "id": "C01",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Code inspection",
+    "scope": "Grant-based narrow IPC authority and safe native API use",
+    "reason": "Payload carries native grant IDs/validated segments, no renderer absolute-path authority; explicit/tab identity verification; no-follow regular-file open; CString and NSURL file URL; Shell PIDL/COM cleanup with HRESULTs. No shell interpolation. Root listed identity exception recorded in C02.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/source-review.txt"
+    ]
+  },
+  {
+    "id": "C02",
+    "result": "FAIL",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Copied production resolver / real filesystem",
+    "scope": "Unopened listed replacement identity rejection",
+    "reason": "QA-0032: real listing, atomic rename and new inode; unchanged production resolve_path returns Ok. App source read-only. Appended QA test in copied crate fails expected rejection.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/replacement-probe-final.log",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/replacement-probe-added-test.rs",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/replacement-probe-provenance.json"
+    ]
+  },
+  {
+    "id": "C03",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Native unit tests",
+    "scope": "Existing reveal policy tests",
+    "reason": "2 passed; existing tests cover invalid grants/path/folder/missing/explicit replacement and special paths; not packaged native proof.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/native-policy-tests.log"
+    ]
+  },
+  {
+    "id": "C04",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Mocked frontend tests",
+    "scope": "Reveal and nearby menu/navigation/Windows-label tests",
+    "reason": "4 files / 32 tests passed with mocked IPC; no Windows or native menu-to-Finder certification from these results.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/ui-tests.log"
+    ]
+  },
+  {
+    "id": "W01",
+    "result": "NOT_RUN",
+    "environment": "No Windows host exposed",
+    "layer": "Windows native",
+    "scope": "Explorer Show in File Explorer selects corresponding file",
+    "reason": "No Windows host or native Windows GUI session exposed. No cross-platform PASS inferred.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/build-provenance.json"
+    ]
+  },
+  {
+    "id": "W02",
+    "result": "NOT_RUN",
+    "environment": "No Windows host exposed",
+    "layer": "Windows native",
+    "scope": "Tab Show in File Explorer selects clicked active/inactive file",
+    "reason": "No Windows host; native build/runtime and selection readback unavailable.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/build-provenance.json"
+    ]
+  },
+  {
+    "id": "LINUX",
+    "result": "NOT_APPLICABLE",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Code inspection",
+    "scope": "Preserve existing unsupported Linux convention",
+    "reason": "Existing compile_error restricts reviewed native targets to macOS/Windows; UI guard false for neither platform. No Linux execution or support claimed.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/source-review.txt"
+    ]
+  },
+  {
+    "id": "INTEGRITY",
+    "result": "PASS",
+    "environment": "macOS 27.0.1 arm64",
+    "layer": "Provenance",
+    "scope": "157 scoped product/input paths unchanged",
+    "reason": "Post-run SHA256 matches pre-check snapshot for all 157 paths; dirty HEAD identified, not represented as clean commit.",
+    "finished_at": "2026-10-11T21:58:52.877995+00:00",
+    "evidence_paths": [
+      "qa/runs/reveal-native-20261011T214754Z/evidence/final-integrity.json",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/head.txt",
+      "qa/runs/reveal-native-20261011T214754Z/evidence/git-status-before.txt"
+    ]
+  }
+]

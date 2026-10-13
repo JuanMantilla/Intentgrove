@@ -1,0 +1,86 @@
+{
+  "scope": "QA-0013/Settings continuation only, separate from existing acceptance ledgers",
+  "historicalCause": "UNKNOWN",
+  "cases": [
+    {
+      "id": "HISTORICAL_CAUSE",
+      "status": "OPEN",
+      "evidence": "QA-0013 original cause UNKNOWN; no causal closure"
+    },
+    {
+      "id": "SAVE_AS_CANCEL",
+      "status": "PASS",
+      "evidence": "canonical original and pending acknowledgment ownership assertions"
+    },
+    {
+      "id": "QUIT_CANCEL",
+      "status": "PASS",
+      "evidence": "canonical original and pending checkpoint ownership assertions"
+    },
+    {
+      "id": "APP_LISTENER_FAILURE",
+      "status": "PASS",
+      "evidence": "QA-0015 baseline failure then regression pass"
+    },
+    {
+      "id": "DISPOSED_SETTINGS_OWNER",
+      "status": "PASS",
+      "evidence": "QA-0016 baseline failures then regression pass"
+    },
+    {
+      "id": "SETTINGS_GATE",
+      "status": "PASS",
+      "evidence": "actual empty restoration changes native owner false\u2192true"
+    },
+    {
+      "id": "SETTINGS_ACK",
+      "status": "PASS",
+      "evidence": "actual UI\u2192native saved22\u2192saved16, correlated requests"
+    },
+    {
+      "id": "SETTINGS_POLL_CLEANUP",
+      "status": "PASS",
+      "evidence": "calls7\u21927 after1100ms, zero Settings ownerlisteners"
+    },
+    {
+      "id": "READER_NATIVE_UNLISTEN",
+      "status": "PASS",
+      "evidence": "four native acknowledgments, pending0, process exit"
+    },
+    {
+      "id": "CANONICAL_SUITE",
+      "status": "PASS",
+      "evidence": "357PASS53files29.58s"
+    },
+    {
+      "id": "CONTROLLED_CONTENTION",
+      "status": "PASS",
+      "evidence": "357PASS while fresh compiler active; not historical causal proof"
+    },
+    {
+      "id": "PRODUCTION_BUILD_BOUNDARY",
+      "status": "PASS",
+      "evidence": "build/worker/default marker/signature verification; runtime not implied"
+    },
+    {
+      "id": "PRODUCTION_ID_RUNTIME",
+      "status": "NOT_RUN",
+      "evidence": "new package not installed or exercised on production profile"
+    }
+  ],
+  "counts": {
+    "OPEN": 1,
+    "PASS": 11,
+    "NOT_RUN": 1
+  },
+  "failedAttemptsPreserved": [
+    "listener-baseline-attempt-01.log",
+    "settings-owner-baseline-attempt-01.log",
+    "held-adapter-attempt-01.log",
+    "frontend-fix-attempt-01.log",
+    "settings-runtime-attempt-01",
+    "settings-runtime-attempt-02",
+    "manual-qa-before-build (finish-after-quit BrokenPipeError)"
+  ],
+  "notFullNativeSuite": true
+}

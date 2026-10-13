@@ -1,5 +1,7 @@
 # F003L verification — 2026-09-29
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Host:** macOS 26.2, arm64. **Authority:** the approved F003L spec/design/plan hashes in `docs/remaining-roadmap-review-2026-09-29.md` match the current files; `docs/approvals.md` records the user's approval. The installed `setup-tasks.sh` selected `specs/011-large-file-mode`; no extension hooks exist. Sources used in tests are disposable files under `/private/tmp`.
 
 | Check | Status | Evidence and limit |

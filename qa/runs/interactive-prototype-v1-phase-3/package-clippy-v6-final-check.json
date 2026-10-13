@@ -1,0 +1,21 @@
+{
+  "name": "package-clippy-v6",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "started_at": "2026-10-12T03:30:34.951957+00:00",
+  "finished_at": "2026-10-12T03:30:35.430456+00:00",
+  "exit_code": 0,
+  "log": "package-clippy-v6.log",
+  "tested_snapshot": "tested-snapshot-v6.json"
+}

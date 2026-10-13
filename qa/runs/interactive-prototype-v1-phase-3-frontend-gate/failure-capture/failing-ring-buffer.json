@@ -1,0 +1,82 @@
+{
+  "test": "approved workspace handoff > reveals collapsed branches only after explicit request",
+  "failureTime": 29574.2,
+  "dropped": 0,
+  "events": [
+    {
+      "t": 26694.85175,
+      "event": "TEST_START"
+    },
+    {
+      "t": 26695.324959,
+      "event": "APP_RENDER_BEGIN"
+    },
+    {
+      "t": 26747.292,
+      "event": "ACTIVE_DOCUMENT_CHANGED",
+      "id": null
+    },
+    {
+      "t": 26782.407334,
+      "event": "APP_RENDER_READY"
+    },
+    {
+      "t": 26850.130542,
+      "event": "WORKSPACE_HANDOFF_BEGIN",
+      "id": "root",
+      "generation": 1
+    },
+    {
+      "t": 26924.440542,
+      "event": "DOCUMENT_OPEN_REQUESTED",
+      "id": "root:[\"a.md\"]",
+      "value": 1,
+      "generation": 1
+    },
+    {
+      "t": 27981.132917,
+      "event": "HEADING_LOOKUP_BEGIN"
+    },
+    {
+      "t": 28233.109334,
+      "event": "DOCUMENT_OPEN_RESOLVED",
+      "id": "a.md",
+      "value": "v1",
+      "generation": 1
+    },
+    {
+      "t": 28646.810417,
+      "event": "MARKDOWN_PAINTED",
+      "id": "a.md",
+      "value": 24,
+      "generation": 0
+    },
+    {
+      "t": 28647.149917,
+      "event": "SELECTION_ADAPTER_PUBLISHED",
+      "id": "a.md"
+    },
+    {
+      "t": 28647.174209,
+      "event": "ACTIVE_DOCUMENT_CHANGED",
+      "id": "a.md"
+    },
+    {
+      "t": 28648.206334,
+      "event": "SECTIONS_REQUESTED",
+      "id": "a.md",
+      "value": "v1"
+    },
+    {
+      "t": 29498.784167,
+      "event": "SECTIONS_RESOLVED",
+      "id": "a.md",
+      "value": "v1",
+      "generation": false
+    },
+    {
+      "t": 29574.193334,
+      "event": "HEADING_LOOKUP_FAILED"
+    }
+  ]
+}

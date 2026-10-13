@@ -1,0 +1,72 @@
+--- cleanup.py before
++++ cleanup.py proposed
+@@ -293,7 +293,9 @@
+         return len(matches) == 1 and all(
+             item.get('type') == 'CommandExecution' and item.get('status') == 'completed'
+             and type(item.get('exit_code')) is int and item['exit_code'] == 0
+-            and item.get('command') == ['/bin/zsh', '-lc', command]
++            and item.get('command') in [[shell, mode, command]
++                                      for shell in ('/bin/zsh', '/bin/bash')
++                                      for mode in ('-lc', '-c')]
+             and item.get('aggregated_output') == output for item in matches)
+     return False
+ 
+@@ -342,6 +344,9 @@
+         return skipped('unsupported_helper_command')
+     if any(c in command for c in ('\n', '\r', '`', '$', ';', '|', '&', '>', '<')):
+         return skipped('command_shell_expansion_or_chaining')
++    outcome.update(command_recognized=True, hook_event_name=event.get('hook_event_name'),
++                   tool_name=event.get('tool_name'), command=command,
++                   response_sha256=digest(event.get('tool_response')))
+     if TEST_CONTEXT:
+         # Actual hook delivery evidence; a synthetic fixture event is never live proof.
+         with lock('queue'):
+--- post_tool_use.py before
++++ post_tool_use.py proposed
+@@ -23,7 +23,7 @@
+         if outcome.get('validation') == 'PENDING':
+             outcome['validation'] = 'FAIL'
+     try:
+-        if runner and (runner.TEST_CONTEXT or outcome.get('record_key')):
++        if runner and (runner.TEST_CONTEXT or outcome.get('command_recognized') or outcome.get('record_key')):
+             runner.check_context(args.test_context)
+             runner.write(runner.STATE / 'hook-outcomes' / (runner.uuid.uuid4().hex + '.json'), outcome, exclusive=True)
+     except Exception as exc:
+--- test_cleanup.py before
++++ test_cleanup.py proposed
+@@ -92,6 +92,35 @@
+         self.assertIsNone(c.hook(event))
+         self.assertFalse(self.request_path.exists())
+ 
++    def test_raw_correlation_allows_only_exact_supported_shell_invocations(self):
++        output = self.event['tool_response']['output']
++        event = self.raw_hook_event(output)
++        path = next((self.root / 'host-home/sessions').glob('*/*/*/*.jsonl'))
++        rows = [json.loads(line) for line in path.read_text().splitlines()]
++        for shell in ('/bin/zsh', '/bin/bash'):
++            for mode in ('-c', '-lc'):
++                rows[1]['payload']['item']['command'] = [shell, mode, event['tool_input']['command']]
++                path.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
++                self.assertTrue(c.correlated_exit(event, output))
++        for command in (['/bin/sh', '-c', event['tool_input']['command']],
++                        ['/bin/bash', '-c', event['tool_input']['command'] + ' ; true'],
++                        ['/bin/bash', '-c', event['tool_input']['command'], 'extra']):
++            rows[1]['payload']['item']['command'] = command
++            path.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
++            self.assertFalse(c.correlated_exit(event, output))
++        self.assertFalse(self.request_path.exists())
++
++    def test_recognized_unsuccessful_command_has_safe_diagnostics(self):
++        outcome = {}
++        event = dict(self.event, tool_response={'exit_code': 1, 'output': 'failed'})
++        self.assertIsNone(c.hook(event, outcome))
++        self.assertTrue(outcome['command_recognized'])
++        self.assertEqual(outcome['tool_name'], 'Bash')
++        self.assertEqual(outcome['disposition'], 'SKIPPED')
++        self.assertEqual(outcome['response_sha256'], c.digest(event['tool_response']))
++        self.assertNotIn('tool_response', outcome)
++        self.assertFalse(self.request_path.exists())
++
+     def test_enqueue_write_failure_has_no_committed_disposition_and_retry(self):
+         real_write = c.write
+         def fail_queue(path, *args, **kwargs):

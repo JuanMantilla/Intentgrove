@@ -1,0 +1,1344 @@
+{
+  "activeItem": null,
+  "applied": [],
+  "catalog": [
+    {
+      "defaults": {
+        "extraH": 18.0,
+        "extraW": 18.0,
+        "height": 100.0,
+        "relative": true,
+        "width": 100.0
+      },
+      "id": "convertToShape.rectangle",
+      "label": "Rectangle\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "extraW",
+          "extraH",
+          "width",
+          "height"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Convert to Shape"
+      ],
+      "params": "{relative: bool (true), extraW: pt (18), extraH: pt (18), width: pt (absolute, 100), height: pt (absolute, 100)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "extraH": 18.0,
+        "extraW": 18.0,
+        "height": 100.0,
+        "radius": 9.0,
+        "relative": true,
+        "width": 100.0
+      },
+      "id": "convertToShape.roundedRectangle",
+      "label": "Rounded Rectangle\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "extraW",
+          "extraH",
+          "width",
+          "height",
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Convert to Shape"
+      ],
+      "params": "{relative: bool (true), extraW: pt (18), extraH: pt (18), width, height (absolute), radius: pt (9)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "extraH": 18.0,
+        "extraW": 18.0,
+        "height": 100.0,
+        "relative": true,
+        "width": 100.0
+      },
+      "id": "convertToShape.ellipse",
+      "label": "Ellipse\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "extraW",
+          "extraH",
+          "width",
+          "height"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Convert to Shape"
+      ],
+      "params": "{relative: bool (true), extraW: pt (18), extraH: pt (18), width, height (absolute)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "corners": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "id": "distort.freeDistort",
+      "label": "Free Distort\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{corners: [[x,y]\u00d74] new positions of the bounding-box corners TL, TR, BR, BL in unit box coordinates (identity [[0,0],[1,0],[1,1],[0,1]])}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "amount": 0.0
+      },
+      "id": "distort.puckerBloat",
+      "label": "Pucker & Bloat\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{amount: % (-200 pucker \u2026 200 bloat, default 0)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "detail": 10.0,
+        "points": "smooth",
+        "relative": true,
+        "seed": 0,
+        "size": 5.0
+      },
+      "id": "distort.roughen",
+      "label": "Roughen\u2026",
+      "lengths": {
+        "absolute": [
+          "size"
+        ],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{size: 0..100 (5), relative: bool (true: % of size; false: pt), detail: per inch 0..100 (10), points: \"smooth\"|\"corner\", seed: int (0)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "copies": 0,
+        "moveH": 0.0,
+        "moveV": 0.0,
+        "random": false,
+        "reference": 4,
+        "reflectX": false,
+        "reflectY": false,
+        "rotate": 0.0,
+        "scaleH": 100.0,
+        "scaleV": 100.0
+      },
+      "id": "distort.transform",
+      "label": "Transform\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "moveH",
+          "moveV"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{scaleH: % (100), scaleV: % (100), moveH: pt (0; right = +), moveV: pt (0; down = +), rotate: deg (0; counter-clockwise), copies: 0..1000 (0; each copy transforms the last again), reflectX: bool (false; flips left to right), reflectY: bool (false; flips top to bottom), reference: 0..8 (4; the point of the bounds' 9-point grid it scales, rotates and reflects about: 0 top left, 4 centre, 8 bottom right), random: bool (false; each scale goes a random share of the way from 100 % to its value, each move and the angle a random share of theirs, differently for each object and the same on every redraw)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "anchors": true,
+        "h": 10.0,
+        "in": true,
+        "out": true,
+        "relative": true,
+        "seed": 0,
+        "v": 10.0
+      },
+      "id": "distort.tweak",
+      "label": "Tweak\u2026",
+      "lengths": {
+        "absolute": [
+          "h",
+          "v"
+        ],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{h: amount (10), v: amount (10), relative: bool (true: % of size), anchors: bool (true), in: bool (true), out: bool (true), seed: int (0)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "angle": 10.0
+      },
+      "id": "distort.twist",
+      "label": "Twist\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{angle: deg (-3600..3600, 10)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "points": "smooth",
+        "relative": false,
+        "ridges": 4,
+        "size": 10.0
+      },
+      "id": "distort.zigZag",
+      "label": "Zig Zag\u2026",
+      "lengths": {
+        "absolute": [
+          "size"
+        ],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Distort & Transform"
+      ],
+      "params": "{size: (10), relative: bool (false: pt; true: % of size), ridges: per segment 0..100 (4), points: \"smooth\"|\"corner\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "joins": "miter",
+        "miterLimit": 4.0,
+        "offset": 10.0
+      },
+      "id": "path.offsetPath",
+      "label": "Offset Path\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "offset"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Path"
+      ],
+      "params": "{offset: pt (10; negative insets), joins: \"miter\"|\"round\"|\"bevel\", miterLimit: (4)}",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "path.outlineStroke",
+      "label": "Outline Stroke",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "width"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Path"
+      ],
+      "params": "{width?: pt (defaults to the stroke's weight)} the outline of the stroke the effect is on (on a fill or the object: the top stroke), with its caps, joins, dashes, alignment, width profile and arrowheads",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "radius": 10.0
+      },
+      "id": "stylize.roundCorners",
+      "label": "Round Corners\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{radius: pt (10)}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "angle": 30.0,
+        "curviness": 5.0,
+        "overlap": 0.0,
+        "seed": 0,
+        "spacing": 5.0,
+        "strokeWidth": 3.0,
+        "variation": 0.5
+      },
+      "id": "stylize.scribble",
+      "label": "Scribble\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "overlap",
+          "strokeWidth",
+          "spacing",
+          "variation"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{angle: deg (30), overlap: pt (0), strokeWidth: pt (3), curviness: % (5), spacing: pt (5), variation: pt (0.5), seed: int (0)} (simplified: a single hatching scribble outlined to a filled shape)",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "blur": 5.0,
+        "color": "#000000",
+        "mode": "multiply",
+        "opacity": 75.0,
+        "x": 7.0,
+        "y": 7.0
+      },
+      "id": "stylize.dropShadow",
+      "label": "Drop Shadow\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "x",
+          "y",
+          "blur"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{mode: blend mode (\"multiply\"), opacity: % (75), x: pt (7), y: pt (7), blur: pt (5), color: \"#rrggbb\" (\"#000000\")}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "blur": 5.0,
+        "color": "#ffffff",
+        "mode": "screen",
+        "opacity": 75.0,
+        "source": "edge"
+      },
+      "id": "stylize.innerGlow",
+      "label": "Inner Glow\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "blur"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{mode: blend mode (\"screen\"), opacity: % (75), blur: pt (5), color: \"#rrggbb\" (\"#ffffff\"), source: \"center\"|\"edge\" (\"edge\")}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "blur": 5.0,
+        "color": "#ffff00",
+        "mode": "screen",
+        "opacity": 75.0
+      },
+      "id": "stylize.outerGlow",
+      "label": "Outer Glow\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "blur"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{mode: blend mode (\"screen\"), opacity: % (75), blur: pt (5), color: \"#rrggbb\" (\"#ffff00\")}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "radius": 5.0
+      },
+      "id": "stylize.feather",
+      "label": "Feather\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{radius: pt (5)}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "radius": 5.0
+      },
+      "id": "blur.gaussian",
+      "label": "Gaussian Blur\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Blur"
+      ],
+      "params": "{radius: pt (5)}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "amount": 10.0,
+        "method": "spin",
+        "quality": "good"
+      },
+      "id": "blur.radial",
+      "label": "Radial Blur\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Blur"
+      ],
+      "params": "{amount: 1..100 (10; spin: an arc of `amount`\u00b0, zoom: the content scaled by up to about \u00b1amount/2 %), method: \"spin\"|\"zoom\" (\"spin\"), quality: \"draft\"|\"good\"|\"best\" (\"good\"; 16, 64 or 256 samples)} blurs around the object's centre",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "quality": "medium",
+        "radius": 3.0,
+        "threshold": 25.0
+      },
+      "id": "blur.smart",
+      "label": "Smart Blur\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Blur"
+      ],
+      "params": "{radius: pt 0.1..100 (3), threshold: levels 0.1..100 (25; only colours closer than this blur together, so edges stay sharp), quality: \"low\"|\"medium\"|\"high\" (\"medium\"; 5, 7 or 9 samples across)} (Normal mode)",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "amount": 50.0,
+        "radius": 1.0,
+        "threshold": 0.0
+      },
+      "id": "sharpen.unsharpMask",
+      "label": "Unsharp Mask\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "radius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Sharpen"
+      ],
+      "params": "{amount: % 1..500 (50), radius: pt 0.1..250 (1; \u03c3 of the blur edges are found against), threshold: levels 0..255 (0; smaller differences are left alone)}",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "edgeBrightness": 6.0,
+        "edgeWidth": 2.0,
+        "smoothness": 5.0
+      },
+      "id": "stylize.glowingEdges",
+      "label": "Glowing Edges\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "edgeWidth",
+          "smoothness"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Stylize"
+      ],
+      "params": "{edgeWidth: pt 1..14 (2), edgeBrightness: 0..20 (6), smoothness: pt 1..15 (5)} finds alpha-weighted Sobel edges and draws bright coloured outlines on black",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "channel1": 108.0,
+        "channel2": 162.0,
+        "channel3": 90.0,
+        "channel4": 45.0,
+        "maxRadius": 8.0
+      },
+      "id": "pixelate.colorHalftone",
+      "label": "Color Halftone\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "maxRadius"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Pixelate"
+      ],
+      "params": "{maxRadius: pt 4..127 (8; the radius of a dot at full strength, which fills its square cell), channel1: screen angle deg -360..360 (108), channel2: deg (162), channel3: deg (90), channel4: deg (45)} screens each colour channel (red, green, blue: channels 1 to 3; in CMYK documents cyan, magenta, yellow, black: 1 to 4) at its angle into dots whose area follows the channel's mean over their cell",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "cellSize": 10.0
+      },
+      "id": "pixelate.crystallize",
+      "label": "Crystallize\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "cellSize"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Pixelate"
+      ],
+      "params": "{cellSize: pt 3..300 (10)} redraws the object as polygon crystals of solid colour around random points about cellSize apart",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "type": "fineDots"
+      },
+      "id": "pixelate.mezzotint",
+      "label": "Mezzotint\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pixelate"
+      ],
+      "params": "{type: \"fineDots\"|\"mediumDots\"|\"grainyDots\"|\"coarseDots\"|\"shortLines\"|\"mediumLines\"|\"longLines\"|\"shortStrokes\"|\"mediumStrokes\"|\"longStrokes\" (\"fineDots\")} turns each colour channel fully on or off against a random pattern of dots, lines or strokes: fully saturated colours",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "cellSize": 5.0
+      },
+      "id": "pixelate.pointillize",
+      "label": "Pointillize\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "cellSize"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Pixelate"
+      ],
+      "params": "{cellSize: pt 3..300 (5)} redraws the object as randomly placed dots of its colours on a white canvas",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "crackBrightness": 9.0,
+        "crackDepth": 6.0,
+        "crackSpacing": 15.0
+      },
+      "id": "texture.craquelure",
+      "label": "Craquelure\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "crackSpacing"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{crackSpacing: pt 2..100 (15; how far apart the cracks are), crackDepth: 0..10 (6; how deep and wide the cracks are, and how high the plates and the tones stand), crackBrightness: 0..10 (9; how brightly the plaster is lit)} paints the object on relief plaster cracked into plates and along the contours of its tones",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "contrast": 50.0,
+        "grainType": "regular",
+        "intensity": 40.0
+      },
+      "id": "texture.grain",
+      "label": "Grain\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{intensity: 0..100 (40), contrast: 0..100 (50; the image's contrast, 50 leaves it as it is), grainType: \"regular\"|\"soft\"|\"sprinkles\"|\"clumped\"|\"contrasty\"|\"enlarged\"|\"stippled\"|\"horizontal\"|\"vertical\"|\"speckle\" (\"regular\")} adds grain in 1 pt grains (2 pt Enlarged, clumps Clumped, streaks Horizontal and Vertical); Sprinkles and Stippled use the background colour, white",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "groutWidth": 3.0,
+        "lightenGrout": 9.0,
+        "tileSize": 12.0
+      },
+      "id": "texture.mosaicTiles",
+      "label": "Mosaic Tiles\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "tileSize"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{tileSize: pt 2..100 (12), groutWidth: 1..15 (3; the grout is half a point wide per step), lightenGrout: 0..10 (9; how light the grout is)} lays the object in irregular tiles bevelled at their edges, with sunken grout between them",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "relief": 8.0,
+        "squareSize": 4.0
+      },
+      "id": "texture.patchwork",
+      "label": "Patchwork\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "squareSize"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{squareSize: pt 0..10 (4; 0 draws 1 pt squares), relief: 0..25 (8)} redraws the object in squares of the colour around their centres, raised to heights that follow its highlights and shadows, a little more or less at random, lit from the top left",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "borderThickness": 4.0,
+        "cellSize": 10.0,
+        "lightIntensity": 3.0
+      },
+      "id": "texture.stainedGlass",
+      "label": "Stained Glass\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": [
+          "cellSize"
+        ]
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{cellSize: pt 2..50 (10), borderThickness: 1..20 (4; the lead between the panes, half a point wide per step, in the foreground colour: black), lightIntensity: 0..10 (3; a light behind the object's centre, fading out towards its corners)} redraws the object as single-coloured panes around random points about cellSize apart",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "invert": false,
+        "lightDirection": "top",
+        "relief": 4.0,
+        "scaling": 100.0,
+        "texture": "canvas"
+      },
+      "id": "texture.texturizer",
+      "label": "Texturizer\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Texture"
+      ],
+      "params": "{texture: \"brick\"|\"burlap\"|\"canvas\"|\"sandstone\" (\"canvas\"; surfaces made in code), scaling: % 50..200 (100), relief: 0..50 (4), lightDirection: \"bottom\"|\"bottomLeft\"|\"left\"|\"topLeft\"|\"top\"|\"topRight\"|\"right\"|\"bottomRight\" (\"top\"), invert: bool (false; turns the surface's heights over)} paints the object on a surface in relief",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "create": "duplication",
+        "eliminate": "odd"
+      },
+      "id": "video.deinterlace",
+      "label": "De-Interlace\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Video"
+      ],
+      "params": "{eliminate: \"odd\"|\"even\" (\"odd\"; which field lines are taken out), create: \"duplication\"|\"interpolation\" (\"duplication\"; a line taken out becomes a copy of the line above, or the average of the lines above and below)} the field lines are the rows of the document's raster grid (Document Raster Effects Settings \u203a Resolution), numbered from 1 at the top of the page",
+      "raster": true
+    },
+    {
+      "defaults": {},
+      "id": "video.ntscColors",
+      "label": "NTSC Colors",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Video"
+      ],
+      "params": "{} makes colours a television signal can't carry (luma plus chroma past 110 % of white, or luma minus chroma below \u221220 %) less saturated, keeping their brightness",
+      "raster": true
+    },
+    {
+      "defaults": {
+        "brightness": 0.0,
+        "contrast": 0.0
+      },
+      "id": "adjust.brightnessContrast",
+      "label": "Brightness/Contrast\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{brightness: -100..100 (0; bends the tones, black and white stay), contrast: -100..100 (0)} recolours the object's fills, strokes, type, meshes and embedded images (each colour keeps its model)",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "channel": "rgb",
+        "points": "0,0 128,128 255,255"
+      },
+      "id": "adjust.curves",
+      "label": "Curves\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{points: \"x,y x,y \u2026\" or [[x, y], \u2026] (input, output 0..255; a smooth monotone curve through them, flat past the ends; \"0,0 128,128 255,255\"), channel: \"rgb\"|\"red\"|\"green\"|\"blue\" (\"rgb\")} recolours as Brightness/Contrast does",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "colorize": false,
+        "hue": 0.0,
+        "lightness": 0.0,
+        "saturation": 0.0
+      },
+      "id": "adjust.hueSaturation",
+      "label": "Hue/Saturation\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{hue: deg -180..180 (0), saturation: -100..100 (0), lightness: -100..100 (0), colorize: bool (false; true: every colour takes hue `hue` (0..360) at saturation (100 + saturation) / 2 %)} recolours as Brightness/Contrast does",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "channel": "rgb",
+        "gamma": 1.0,
+        "inputBlack": 0.0,
+        "inputWhite": 255.0,
+        "outputBlack": 0.0,
+        "outputWhite": 255.0
+      },
+      "id": "adjust.levels",
+      "label": "Levels\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{inputBlack: 0..255 (0), inputWhite: 0..255 (255), gamma: 0.1..10 (1; above 1 lightens the midtones), outputBlack: 0..255 (0), outputWhite: 0..255 (255), channel: \"rgb\"|\"red\"|\"green\"|\"blue\" (\"rgb\")} recolours as Brightness/Contrast does",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "amount": 50.0,
+        "color": "#ff8000",
+        "preserveLightness": true
+      },
+      "id": "adjust.shiftToColor",
+      "label": "Shift to Color\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{color: \"#rrggbb\" (\"#ff8000\"), amount: 0..100 % (50), preserveLightness: bool (true: colours take the target's hue and saturation and keep their lightness; false: they mix with it)} recolours as Brightness/Contrast does",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "temperature": 0.0,
+        "tint": 0.0
+      },
+      "id": "adjust.temperatureTint",
+      "label": "Temperature/Tint\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Color Adjustments"
+      ],
+      "params": "{temperature: -100 (cooler) .. 100 (warmer) (0), tint: -100 (greener) .. 100 (more magenta) (0)} recolours as Brightness/Contrast does",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.arc",
+      "label": "Arc\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.arcLower",
+      "label": "Arc Lower\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.arcUpper",
+      "label": "Arc Upper\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.arch",
+      "label": "Arch\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.bulge",
+      "label": "Bulge\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.shellLower",
+      "label": "Shell Lower\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.shellUpper",
+      "label": "Shell Upper\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.flag",
+      "label": "Flag\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.wave",
+      "label": "Wave\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.fish",
+      "label": "Fish\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.rise",
+      "label": "Rise\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.fisheye",
+      "label": "Fisheye\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.inflate",
+      "label": "Inflate\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.squeeze",
+      "label": "Squeeze\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {
+        "bend": 50.0,
+        "horizontal": 0.0,
+        "orientation": "horizontal",
+        "vertical": 0.0
+      },
+      "id": "warp.twist",
+      "label": "Twist\u2026",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Warp"
+      ],
+      "params": "{bend: % (-100..100, 50), horizontal: % distortion (0), vertical: % distortion (0), orientation: \"horizontal\"|\"vertical\"}",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.add",
+      "label": "Add",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.intersect",
+      "label": "Intersect",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.exclude",
+      "label": "Exclude",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.subtract",
+      "label": "Subtract",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.minusBack",
+      "label": "Minus Back",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.divide",
+      "label": "Divide",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.trim",
+      "label": "Trim",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.merge",
+      "label": "Merge",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.crop",
+      "label": "Crop",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "pathfinder.outline",
+      "label": "Outline",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect",
+        "Pathfinder"
+      ],
+      "params": "{} (groups and layers: live Pathfinder over the members)",
+      "raster": false
+    },
+    {
+      "defaults": {},
+      "id": "cropMarks",
+      "label": "Crop Marks",
+      "lengths": {
+        "absolute": [],
+        "always": []
+      },
+      "menu": [
+        "Effect"
+      ],
+      "params": "{style?: \"roman\"|\"japanese\" (default: the japaneseCropMarks preference when applied)} trim marks in [Registration] around the object's bounds, following it",
+      "raster": false
+    }
+  ]
+}

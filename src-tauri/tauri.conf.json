@@ -31,11 +31,35 @@
     "active": true,
     "targets": ["app"],
     "fileAssociations": [
-      { "ext": ["md", "markdown"], "name": "Markdown document", "role": "Viewer", "rank": "Alternate" }
+      {
+        "ext": [
+          "md",
+          "markdown"
+        ],
+        "name": "Markdown document",
+        "role": "Viewer",
+        "rank": "Alternate",
+        "contentTypes": [
+          "net.daringfireball.markdown"
+        ]
+      },
+      {
+        "ext": [
+          "html",
+          "htm"
+        ],
+        "name": "HTML document",
+        "role": "Viewer",
+        "rank": "Alternate",
+        "contentTypes": [
+          "public.html"
+        ]
+      }
     ],
     "macOS": {
       "minimumSystemVersion": "14.0",
-      "signingIdentity": "-"
+      "signingIdentity": "-",
+      "infoPlist": "Info.plist"
     },
     "icon": [
       "icons/32x32.png",

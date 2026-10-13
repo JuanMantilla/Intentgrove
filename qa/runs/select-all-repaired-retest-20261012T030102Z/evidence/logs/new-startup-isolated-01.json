@@ -1,0 +1,31 @@
+{
+  "id": "new-startup-isolated-01",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "-t",
+    "retains the created tab on editor startup failure"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+  "started_at": "2026-10-12T03:16:37.967944+00:00",
+  "load_before": [
+    4.73046875,
+    12.73388671875,
+    20.16455078125
+  ],
+  "original_config": true,
+  "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-01.log",
+  "exit_code": 1,
+  "result": "FAIL",
+  "finished_at": "2026-10-12T03:16:40.626133+00:00",
+  "load_after": [
+    4.73046875,
+    12.73388671875,
+    20.16455078125
+  ]
+}

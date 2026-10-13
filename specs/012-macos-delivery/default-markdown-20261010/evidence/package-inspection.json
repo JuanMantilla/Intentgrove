@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "app": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+  "executable": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+  "sha256": "0db5a28870c4ce601ff34c0039767efdd59968ff5b57f00b44b30f2737727d32",
+  "plist_sha256": "6206f183787f6d1321c5c8244cc8e33c4f29ca16d95e6f9a9463f288936c560a",
+  "minimum": "14.0",
+  "associations": [
+    {
+      "CFBundleTypeExtensions": [
+        "md",
+        "markdown"
+      ],
+      "LSItemContentTypes": [
+        "net.daringfireball.markdown"
+      ],
+      "CFBundleTypeName": "Markdown document",
+      "CFBundleTypeRole": "Viewer",
+      "LSHandlerRank": "Alternate"
+    },
+    {
+      "CFBundleTypeExtensions": [
+        "html",
+        "htm"
+      ],
+      "LSItemContentTypes": [
+        "public.html"
+      ],
+      "CFBundleTypeName": "HTML document",
+      "CFBundleTypeRole": "Viewer",
+      "LSHandlerRank": "Alternate"
+    }
+  ],
+  "imports": [
+    {
+      "UTTypeIdentifier": "net.daringfireball.markdown",
+      "UTTypeDescription": "Markdown document",
+      "UTTypeConformsTo": [
+        "public.plain-text"
+      ],
+      "UTTypeTagSpecification": {
+        "public.filename-extension": [
+          "md",
+          "markdown"
+        ],
+        "public.mime-type": "text/markdown"
+      }
+    }
+  ],
+  "checks": {
+    "signature": {
+      "exit": 0,
+      "output": ""
+    },
+    "architecture": {
+      "exit": 0,
+      "output": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader: Mach-O 64-bit executable arm64\n"
+    },
+    "disabled_cli": {
+      "exit": 4,
+      "output": "Markdown consent requires an eligible production Intentgrove.app.\n"
+    },
+    "extra_arg_cli": {
+      "exit": 4,
+      "output": ""
+    },
+    "disabled_script": {
+      "exit": 4,
+      "output": "Markdown consent requires an eligible production Intentgrove.app.\n"
+    }
+  },
+  "runtime_scope": "Only disabled consent-only mode was executed. No workspace/production consent or real setter exercised."
+}

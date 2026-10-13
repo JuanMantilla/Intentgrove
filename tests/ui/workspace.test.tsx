@@ -1,3 +1,4 @@
+import { projectAction, projectsToggle, projectsMenu } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -45,6 +46,34 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("workspace shell", () => {
+  it("middle-click closes a background tab without selecting it, then closes the last tab", async () => {
+    render(<App />);
+    fireEvent.click(projectAction("Open folder"));
+    fireEvent.click(await screen.findByTitle("README.md"));
+    await screen.findByRole("heading", { name: "Top" });
+    fireEvent.click(screen.getByRole("button", { name: /docs/ }));
+    fireEvent.click(await screen.findByTitle("docs/README.md"));
+    await screen.findByRole("heading", { name: "Nested" });
+    const [background, active] = screen.getAllByRole("tab");
+    const middleDown = new MouseEvent("mousedown", { button: 1, bubbles: true, cancelable: true });
+    fireEvent(background.querySelector("span")!, middleDown);
+    expect(middleDown.defaultPrevented).toBe(true);
+    for (const button of [0, 2]) {
+      fireEvent(background, new MouseEvent("auxclick", { button, bubbles: true }));
+      expect(screen.getAllByRole("tab")).toHaveLength(2);
+    }
+    const middleClick = new MouseEvent("auxclick", { button: 1, bubbles: true, cancelable: true });
+    fireEvent(background.querySelector("span")!, middleClick);
+    expect(middleClick.defaultPrevented).toBe(true);
+    await waitFor(() => expect(screen.getAllByRole("tab")).toHaveLength(1));
+    expect(screen.getByRole("tab")).toBe(active);
+    expect(active.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("heading", { name: "Nested" })).toBeTruthy();
+    fireEvent(screen.getByRole("button", { name: "Close tab: README.md" }),
+      new MouseEvent("auxclick", { button: 1, bubbles: true }));
+    await waitFor(() => expect(screen.queryByRole("tab")).toBeNull());
+  });
+
   it("renders a delayed picker failure in the language selected while waiting (QA-0004)", async () => {
     let rejectPicker!: (error: unknown) => void;
     mocks.selectFile.mockImplementationOnce(() => new Promise((_resolve, reject) => { rejectPicker = reject; }));
@@ -62,7 +91,7 @@ describe("workspace shell", () => {
       displayPath: "/tmp/fixture/README.md", content: "# Top\n\n[Refused target](second.md)" });
     mocks.resolveLink.mockResolvedValue({ kind, fileId: null, anchor: null });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     await screen.findByRole("heading", { name: "Top" });
     fireEvent.click(screen.getByRole("button", { name: "Refused target" }));
@@ -77,25 +106,23 @@ describe("workspace shell", () => {
     expect(screen.getByText(english)).toBeTruthy();
   });
 
-  it("keeps picker-file links scoped, then replaces the clean tab grant when reopened from the folder tree", async () => {
+  it("follows picker-file links, then reuses the clean tab when reopened from the folder tree", async () => {
     mocks.listEntries.mockResolvedValue({ entries: [{ name: "first.md", kind: "markdown" }], nextOffset: null });
     mocks.selectFile.mockResolvedValue({ id: "explicit-first", name: "first.md", displayPath: "/tmp/fixture/first.md" });
     mocks.readDocument.mockImplementation(async (request: { fileId?: string }) => request.fileId === "root-second"
       ? { fileId: "root-second", identityKey: "1:2", name: "second.md", displayPath: "/tmp/fixture/second.md", content: "# Second" }
       : { fileId: request.fileId === "explicit-first" ? "explicit-first" : "root-first", identityKey: "1:1",
         name: "first.md", displayPath: "/tmp/fixture/first.md", content: "# First\n\n[Read second](second.md)" });
-    mocks.resolveLink.mockImplementation(async (sourceId: string) => sourceId === "root-first"
-      ? { kind: "document", fileId: "root-second", anchor: null, reason: null }
-      : { kind: "blocked", fileId: null, anchor: null, reason: "External files grant no access to nearby files" });
+    mocks.resolveLink.mockResolvedValue({ kind: "document", fileId: "root-second", anchor: null, reason: null });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     const treeFile = await screen.findByTitle("first.md");
     fireEvent.keyDown(window, { key: "o", metaKey: true });
     await screen.findByRole("heading", { name: "First" });
     fireEvent.click(screen.getByRole("button", { name: "Read second" }));
-    expect(await screen.findByText("This file was opened individually. Open its folder, then open the file from the folder tree to follow links to other files.")).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Second" })).toBeTruthy();
     expect(mocks.resolveLink).toHaveBeenLastCalledWith("explicit-first", "second.md");
-    expect(screen.getAllByRole("tab")).toHaveLength(1);
+    expect(screen.getAllByRole("tab")).toHaveLength(2);
     fireEvent.click(treeFile);
     await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledWith({ rootId: "root", segments: ["first.md"] }));
     fireEvent.click(screen.getByRole("button", { name: "Read second" }));
@@ -114,7 +141,7 @@ describe("workspace shell", () => {
     vi.stubGlobal("URL", { ...URL, createObjectURL: create, revokeObjectURL: vi.fn() });
     try {
       render(<App />);
-      fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+      fireEvent.click(projectAction("Open folder"));
       const treeImage = await screen.findByTitle("diagram.svg");
       fireEvent.click(treeImage);
       expect(await screen.findByRole("img", { name: "diagram.svg" })).toBeTruthy();
@@ -151,7 +178,7 @@ describe("workspace shell", () => {
     let finish!: (image: import("../../src/app/api").ImageResponse) => void;
     mocks.openImage.mockReturnValue(new Promise((resolve) => { finish = resolve; }));
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("delayed.png"));
     fireEvent.click(await screen.findByRole("button", { name: "Close tab: delayed.png" }));
     await act(async () => finish({ fileId: "late", name: "delayed.png", displayPath: "/tmp/delayed.png",
@@ -171,7 +198,7 @@ describe("workspace shell", () => {
     vi.stubGlobal("URL", { ...URL, createObjectURL: vi.fn(() => "blob:figure"), revokeObjectURL: vi.fn() });
     try {
       render(<App />);
-      fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+      fireEvent.click(projectAction("Open folder"));
       fireEvent.click(await screen.findByTitle("README.md"));
       fireEvent.click(await screen.findByRole("button", { name: "View figure" }));
       expect(await screen.findByRole("img", { name: "figure.png" })).toBeTruthy();
@@ -182,8 +209,8 @@ describe("workspace shell", () => {
 
   it("keeps rapidly toggled panels out of the accessibility tree while closed", async () => {
     render(<App />);
-    const toolbar = within(screen.getByRole("banner"));
-    const sidebarButton = toolbar.getByRole("button", { name: "Toggle sidebar" });
+
+    const sidebarButton = projectsToggle();
     const sidebar = screen.getByRole("complementary", { name: "Explorer" });
     fireEvent.click(sidebarButton);
     expect(screen.queryByRole("complementary", { name: "Explorer" })).toBeNull();
@@ -193,11 +220,11 @@ describe("workspace shell", () => {
     expect(screen.getByRole("complementary", { name: "Explorer" })).toBe(sidebar);
     expect(sidebar.hasAttribute("inert")).toBe(false);
 
-    fireEvent.click(toolbar.getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     await screen.findByRole("heading", { name: "Top" });
     const outlineButton = screen.getByRole("button", { name: "Outline" });
-    fireEvent.click(outlineButton);
+    expect(outlineButton.getAttribute("aria-pressed")).toBe("true"); // Margin opens with its section outline.
     const outline = screen.getByRole("complementary", { name: "Outline" });
     fireEvent.click(outlineButton);
     expect(screen.queryByRole("complementary", { name: "Outline" })).toBeNull();
@@ -208,7 +235,7 @@ describe("workspace shell", () => {
 
   it("returns reading settings focus on close and cancels a pending exit on reopen", async () => {
     render(<App />);
-    const trigger = within(screen.getByRole("banner")).getByRole("button", { name: "Reading settings" });
+    const trigger = screen.getByRole("button", { name: "Reading settings" });
     fireEvent.click(trigger);
     const panel = document.getElementById("reading-settings-panel");
     expect(panel).toBeTruthy();
@@ -230,7 +257,7 @@ describe("workspace shell", () => {
     }));
     try {
       render(<App />);
-      const trigger = within(screen.getByRole("banner")).getByRole("button", { name: "Reading settings" });
+      const trigger = screen.getByRole("button", { name: "Reading settings" });
       fireEvent.click(trigger);
       fireEvent.click(screen.getByRole("button", { name: "Close reading settings" }));
       expect(document.getElementById("reading-settings-panel")).toBeNull();
@@ -248,10 +275,10 @@ describe("workspace shell", () => {
     const scrollIntoView = vi.fn();
     Element.prototype.scrollIntoView = scrollIntoView;
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     await screen.findByRole("heading", { name: "Tail" });
-    fireEvent.click(screen.getByRole("button", { name: "Outline" }));
+    expect(screen.getByRole("button", { name: "Outline" }).getAttribute("aria-pressed")).toBe("true");
     const outline = screen.getByRole("complementary", { name: "Outline" });
     const repeated = within(outline).getAllByRole("button", { name: "Repeat" });
     expect(repeated).toHaveLength(2);
@@ -273,7 +300,7 @@ describe("workspace shell", () => {
     const scrollIntoView = vi.fn();
     Element.prototype.scrollIntoView = scrollIntoView;
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     fireEvent.click(await screen.findByRole("button", { name: "Jump" }));
     await waitFor(() => expect(scrollIntoView.mock.calls.filter(([options]) => options?.block === "start")).toHaveLength(1));
@@ -288,7 +315,7 @@ describe("workspace shell", () => {
     const scrollIntoView = vi.fn();
     Element.prototype.scrollIntoView = scrollIntoView;
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     fireEvent.click(await screen.findByRole("button", { name: "Go" }));
     expect(await screen.findByRole("heading", { name: "Destination" })).toBeTruthy();
@@ -296,7 +323,7 @@ describe("workspace shell", () => {
   });
   it("moves keyboard focus through tree rows and tabs", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     const first = await screen.findByTitle("README.md");
     const folder = screen.getByTitle("docs");
     first.focus();
@@ -323,7 +350,7 @@ describe("workspace shell", () => {
   });
   it("keeps same-name files in distinct tabs and localizes the shell", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     expect(await screen.findByRole("heading", { name: "Top" })).toBeTruthy();
 
@@ -338,7 +365,7 @@ describe("workspace shell", () => {
     fireEvent.click(screen.getByTitle("README.md"));
     await waitFor(() => expect(screen.getAllByRole("tab")).toHaveLength(2));
     fireEvent.change(screen.getByLabelText("Language"), { target: { value: "es" } });
-    fireEvent.click(screen.getByRole("button", { name: "Proyectos" }));
+    fireEvent.click(document.querySelector<HTMLButtonElement>(".projects-trigger")!);
     expect(screen.getByRole("menuitem", { name: "Abrir carpeta" })).toBeTruthy();
     expect(document.documentElement.lang).toBe("es");
   });
@@ -346,7 +373,7 @@ describe("workspace shell", () => {
   it("replaces a failed tab when retry succeeds", async () => {
     mocks.readDocument.mockRejectedValueOnce({ code: "missing", message: "No such file" });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     expect(await screen.findByRole("heading", { name: "This file is missing" })).toBeTruthy();
     expect(screen.getByRole("alert").textContent).toContain("This file is missing");
@@ -368,8 +395,8 @@ describe("workspace shell", () => {
   it("offers cancellation while a directory page is pending", async () => {
     mocks.listEntries.mockImplementation(() => new Promise(() => {}));
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
-    expect((await screen.findByRole("status")).textContent).toContain("Loading");
+    fireEvent.click(projectAction("Open folder"));
+    expect(await screen.findByRole("status", { name: "Loading…" })).toBeTruthy();
     fireEvent.click(await screen.findByRole("button", { name: "Cancel" }));
     await waitFor(() => expect(mocks.cancelListing).toHaveBeenCalledOnce());
   });
@@ -382,10 +409,10 @@ describe("workspace shell", () => {
       ? new Promise((resolve) => { finishFirst = resolve; })
       : Promise.resolve({ entries: [{ name: "guide.md", kind: "markdown" }], nextOffset: null }));
     render(<App />);
-    const openFolder = within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" });
+    const openFolder = projectAction("Open folder");
     fireEvent.click(openFolder);
     await screen.findByRole("button", { name: "Cancel" });
-    const projects = screen.getByRole("button", { name: "Projects" });
+    const projects = projectsMenu();
     await waitFor(() => expect(projects.hasAttribute("disabled")).toBe(false));
     fireEvent.click(projects);
     fireEvent.click(screen.getByRole("menuitem", { name: "Open folder" }));
@@ -397,7 +424,7 @@ describe("workspace shell", () => {
 
   it("restores each tab's scroll position during the running session", async () => {
     const { container } = render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("README.md"));
     await screen.findByRole("heading", { name: "Top" });
     const scroll = container.querySelector(".reader-scroll") as HTMLDivElement;
@@ -421,8 +448,22 @@ describe("workspace shell", () => {
       entries: [{ name: "notes.txt", kind: "other" }], nextOffset: null
     });
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     expect(await screen.findByText("No Markdown files here")).toBeTruthy();
     expect(screen.getByRole("button", { name: "Choose another folder" })).toBeTruthy();
   });
+});
+
+it("shows one local first-document preview wait until validated content arrives", async () => {
+  let finish!: (value: unknown) => void;
+  mocks.readDocument.mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
+  render(<App />);
+  fireEvent.click(projectAction("Open folder"));
+  fireEvent.click(await screen.findByTitle("README.md"));
+  expect(screen.getAllByRole("status",{name:"Loading…"})).toHaveLength(1);
+  expect(document.querySelector(".document-acquisition")?.textContent).toContain("README.md");
+  expect(document.querySelector(".welcome")).toBeNull();
+  await act(async()=>finish({fileId:"pending-doc",identityKey:"fixture:pending",name:"README.md",displayPath:"/tmp/fixture/README.md",content:"# Confirmed read",diskVersion:"v1"}));
+  expect(await screen.findByRole("heading",{name:"Confirmed read"})).toBeTruthy();
+  expect(screen.queryByRole("status",{name:"Loading…"})).toBeNull();
 });

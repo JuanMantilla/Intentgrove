@@ -1,0 +1,73 @@
+Window: "Intentgrove — isolated QA retest", App: Intentgrove Revision Retest.
+0 standard window Intentgrove — isolated QA retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: localhost:5173/
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: cancel.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/fixtures/cancel.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+			14 pop up button Go menu
+			15 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+			16 container Explorer
+				17 pop up button PROJECTS
+				18 button Close Projects sidebar
+				19 button Open file
+				20 button Open folder
+				21 container Search folder
+					22 button Back to explorer
+					23 container
+						24 text Search folder
+						25 search text field (settable) Search folder, Value: qaignoredneedle, Placeholder: File name or text
+							26 text (settable) qaignoredneedle
+							27 button cancel
+					28 button Search
+					29 container fixtures
+						30 container Search scope: fixtures
+							31 text fixtures
+					32 button Clear search
+					33 button (collapsed) Names and content, Secondary Actions: Expand
+					34 text Include ignored files: ✓
+					35 container
+						36 text 1 Results
+						37 summary This file is missing ⌄, Value: off
+							38 text This file is missing
+							39 text  ⌄
+					40 container Results
+						41 container ignored.md
+							42 heading ignored.md 1, Help: ignored.md, Value: 3
+								43 container ignored.md
+									44 text ignored.md
+								45 text 1
+							46 button ignored.md · Line 3 · qaignoredneedle, Help: ignored.md
+				47 text Storage and recovery
+				48 text Open edits and recovery offers: 0
+				49 button Manage…
+				50 button Settings…
+			51 container
+				52 heading Read your local Markdown, Value: 1
+					53 text Read your local Markdown
+				54 text Open a Markdown file to start reading.
+				55 button Open folder
+				56 button Open file
+			57 container
+				58 text Local files only Intentgrove by Theonira
+	59 close button
+	60 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	61 minimize button
+	62 text Intentgrove — isolated QA retest
+63 menu bar
+	64 Intentgrove Revision Retest
+	65 File
+	66 Edit
+	67 View
+	68 Go
+	69 Window
+	70 Help

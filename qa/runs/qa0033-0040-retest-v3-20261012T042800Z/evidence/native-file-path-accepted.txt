@@ -1,0 +1,104 @@
+Window: "Open", App: Intentgrove QA0033-0040 v3.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+				23 row (selectable, expanded) Value: Media, Secondary Actions: Collapse
+				24 row (selectable) Description: photo, Value: Photos
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 148
+		32 scroll area
+			33 outline Description: list view, ID: ListView
+				34 row (selectable)
+					35 cell Secondary Actions: Open Finder item
+						36 image
+						37 text field (settable) Value: empty.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/empty.md
+					38 cell
+						39 text Zero bytes
+					40 cell
+						41 text Markdown
+					42 cell
+						43 text Today at 11:29 PM
+				44 row (selectable)
+					45 cell Secondary Actions: Open Finder item
+						46 image
+						47 text field (settable) Value: second.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/second.md
+					48 cell
+						49 text 1 KB
+					50 cell
+						51 text Markdown
+					52 cell
+						53 text Today at 11:29 PM
+				54 row (selectable)
+					55 cell Secondary Actions: Open Finder item
+						56 image
+						57 text field (settable) Value: whole.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/whole.md
+					58 cell
+						59 text 2 KB
+					60 cell
+						61 text Markdown
+					62 cell
+						63 text Today at 11:29 PM
+				64 row (selected)
+					65 cell (selected) Secondary Actions: Open Finder item
+						66 image
+						67 text field (selected, settable) Value: long.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/long.md
+					68 cell (selected)
+						69 text 5 KB
+					70 cell (selected)
+						71 text Markdown
+					72 cell (selected)
+						73 text Today at 11:29 PM
+				74 container ListViewHeader
+					75 button Description: Name, ID: name
+					76 button Description: Size, ID: size
+					77 button Description: Kind, ID: kind
+					78 button Description: Date Added, Value: AXDescendingSortDirection, ID: dateAdded
+		79 container
+			80 button back
+			81 button (disabled) forward
+		82 menu button Description: List, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		83 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		84 pop up button Where:, Value: fixtures, ID: where popup
+		85 search text field Search
+			86 button search
+		87 button (disabled) New Folder, ID: NewFolderButton
+		88 button Cancel, ID: CancelButton
+		89 button (disabled) Open, ID: OKButton
+90 menu bar
+	91 Intentgrove QA0033-0040 v3
+	92 File
+	93 Edit
+	94 View
+	95 Go
+	96 Window
+	97 Help
+
+Selected:
+	64 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

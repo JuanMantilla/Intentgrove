@@ -1,0 +1,147 @@
+Window: "fixtures", App: Finder.
+0 standard window fixtures, ID: FinderWindow, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable) Description: AirDrop concentric radio waves, Value: AirDrop
+				15 row (selectable) Description: trash, Value: Trash
+				16 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				17 row (selectable) Description: Small circle badge, filled, Value: Red
+				18 row (selectable) Description: Small circle badge, filled, Value: Orange
+				19 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				20 row (selectable) Description: Small circle badge, filled, Value: Green
+				21 row (selectable) Description: Small circle badge, filled, Value: Blue
+				22 row (selectable) Description: Small circle badge, filled, Value: Purple
+				23 row (selectable) Description: Small circle badge, filled, Value: Gray
+				24 row (selectable) Description: Two small circle badges, Value: All Tags…
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 223
+		32 scroll area Secondary Actions: Scroll Left, Scroll Right
+			33 outline Description: list view, ID: ListView
+				34 row (selectable)
+					35 cell Secondary Actions: Open Finder item
+						36 image
+						37 text field (settable) Value: active.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					38 cell
+						39 text Today at 4:48 PM
+					40 cell
+						41 text 43 bytes
+					42 cell
+						43 text Markdown
+				44 row (selectable)
+					45 cell Secondary Actions: Open Finder item
+						46 image
+						47 text field (settable) Value: delete-renamed.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/delete-renamed.md
+					48 cell
+						49 text Today at 4:48 PM
+					50 cell
+						51 text 43 bytes
+					52 cell
+						53 text Markdown
+				54 row (selectable)
+					55 cell Secondary Actions: Open Finder item
+						56 image
+						57 text field (settable) Value: inactive.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					58 cell
+						59 text Today at 4:48 PM
+					60 cell
+						61 text 45 bytes
+					62 cell
+						63 text Markdown
+				64 row (selectable, collapsed) Secondary Actions: Expand
+					65 cell Secondary Actions: Open Finder item
+						66 image
+						67 text field (settable) Value: nested space café # $ & % (dir),, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested%20space%20caf%C3%A9%20%23%20$%20&%20%25%20(dir),/
+						68 disclosure triangle 0
+					69 cell
+						70 text Today at 4:48 PM
+					71 cell
+						72 text --
+					73 cell
+						74 text Folder
+				75 row (selectable)
+					76 cell Secondary Actions: Open Finder item
+						77 image
+						78 text field (settable) Value: rename.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/rename.md
+					79 cell
+						80 text Today at 4:48 PM
+					81 cell
+						82 text 43 bytes
+					83 cell
+						84 text Markdown
+				85 row (selectable)
+				86 row (selected)
+					87 cell (selected) Secondary Actions: Open Finder item
+						88 image
+						89 text field (settable) Value: replace.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/replace-original.md
+					90 cell (selected)
+						91 text Today at 4:52 PM
+					92 cell (selected)
+						93 text 20 bytes
+					94 cell (selected)
+						95 text Markdown
+				96 row (selectable)
+					97 cell Secondary Actions: Open Finder item
+						98 image
+						99 text field (settable) Value: unopened.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+					100 cell
+						101 text Today at 4:48 PM
+					102 cell
+						103 text 45 bytes
+					104 cell
+						105 text Markdown
+				106 container ListViewHeader
+					107 button Description: Name, Value: AXAscendingSortDirection, ID: name
+					108 button Description: Date Modified, ID: dateModified
+					109 button Description: Size, ID: size
+					110 button Description: Kind, ID: kind
+			111 scroll bar (settable, float) 0
+				112 value indicator (settable, float) 0
+				113 increment arrow button
+				114 decrement arrow button
+				115 increment page button
+				116 decrement page button
+		117 unknown Details: status bar, ID: statusBar
+			118 text Value: 1 of 8 selected, 19,16 GB available, ID: statusBarText
+	119 toolbar
+		120 container Back/Forward
+			121 button (disabled) back
+			122 button (disabled) forward
+		123 pop up button Description: list view, Value: as List
+		124 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
+		125 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		126 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
+		127 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		128 button Search
+	129 close button
+	130 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	131 minimize button
+	132 text fixtures
+133 menu bar
+	134 Finder
+	135 File
+	136 Edit
+	137 View
+	138 Go
+	139 Window
+	140 Help
+
+Selected:
+	86 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

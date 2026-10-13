@@ -1,0 +1,92 @@
+Window: "Open", App: Intentgrove Final Markdown QA.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+			23 scroll bar (settable, float) 0
+				24 value indicator (settable, float) 0
+				25 increment arrow button
+				26 decrement arrow button
+				27 increment page button
+				28 decrement page button
+		29 splitter (disabled, settable, float) 148
+		30 scroll area
+			31 outline Description: list view, ID: ListView
+				32 row (selected)
+					33 cell (selected) Secondary Actions: Open Finder item
+						34 image
+						35 text field (selected, settable) Value: first-native.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/new-markdown-20261011-final/fixtures/first-native.md
+					36 cell (selected)
+						37 text 22 bytes
+					38 cell (selected)
+						39 text Markdown
+					40 cell (selected)
+						41 text Today at 11:09 AM
+				42 row (selectable)
+					43 cell Secondary Actions: Open Finder item
+						44 image
+						45 text field (settable) Value: individual.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/new-markdown-20261011-final/fixtures/individual.md
+					46 cell
+						47 text 29 bytes
+					48 cell
+						49 text Markdown
+					50 cell
+						51 text Today at 11:01 AM
+				52 row (selectable)
+					53 cell Secondary Actions: Open Finder item
+						54 image
+						55 text field (settable) Value: existing.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/new-markdown-20261011-final/fixtures/existing.md
+					56 cell
+						57 text 27 bytes
+					58 cell
+						59 text Markdown
+					60 cell
+						61 text Today at 11:01 AM
+				62 container ListViewHeader
+					63 button Description: Name, ID: name
+					64 button Description: Size, ID: size
+					65 button Description: Kind, ID: kind
+					66 button Description: Date Added, Value: AXDescendingSortDirection, ID: dateAdded
+		67 container
+			68 button (disabled) back
+			69 button (disabled) forward
+		70 menu button Description: List, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		71 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		72 pop up button Where:, Value: fixtures, ID: where popup
+		73 search text field Search
+			74 button search
+		75 button (disabled) New Folder, ID: NewFolderButton
+		76 button Cancel, ID: CancelButton
+		77 button (disabled) Open, ID: OKButton
+78 menu bar
+	79 Intentgrove Final Markdown QA
+	80 File
+	81 Edit
+	82 View
+	83 Go
+	84 Window
+	85 Help
+
+Selected:
+	32 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

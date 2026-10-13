@@ -1,0 +1,25 @@
+{
+  "id": "unchanged-isolated",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "-t",
+    "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-12T02:03:10.929018+00:00",
+  "finished_at": "2026-10-12T02:03:13.846565+00:00",
+  "seconds": 2.917438459,
+  "load_after": [
+    3.1298828125,
+    4.00146484375,
+    7.2412109375
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/unchanged-isolated.log"
+}

@@ -1,0 +1,272 @@
+Window: "fixtures", App: Finder.
+0 standard window fixtures, ID: FinderWindow, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable) Description: AirDrop concentric radio waves, Value: AirDrop
+				15 row (selectable) Description: trash, Value: Trash
+				16 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				17 row (selectable) Description: Small circle badge, filled, Value: Red
+				18 row (selectable) Description: Small circle badge, filled, Value: Orange
+				19 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				20 row (selectable) Description: Small circle badge, filled, Value: Green
+				21 row (selectable) Description: Small circle badge, filled, Value: Blue
+				22 row (selectable) Description: Small circle badge, filled, Value: Purple
+				23 row (selectable) Description: Small circle badge, filled, Value: Gray
+				24 row (selectable) Description: Two small circle badges, Value: All Tags…
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 223
+		32 scroll area Secondary Actions: Scroll Left, Scroll Right, Scroll Up, Scroll Down
+			33 outline Description: list view, ID: ListView
+				34 row (selected)
+					35 cell (selected) Secondary Actions: Open Finder item
+						36 image
+						37 text field (selected, settable) Value: active.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/active.md
+					38 cell (selected)
+						39 text Today at 5:38 PM
+					40 cell (selected)
+						41 text 38 bytes
+					42 cell (selected)
+						43 text Markdown
+				44 row (selectable)
+					45 cell Secondary Actions: Open Finder item
+						46 image
+						47 text field (settable) Value: fresh.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/fresh.md
+					48 cell
+						49 text Today at 5:38 PM
+					50 cell
+						51 text 37 bytes
+					52 cell
+						53 text Markdown
+				54 row (selectable)
+					55 cell Secondary Actions: Open Finder item
+						56 image
+						57 text field (settable) Value: inactive.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/inactive.md
+					58 cell
+						59 text Today at 5:38 PM
+					60 cell
+						61 text 40 bytes
+					62 cell
+						63 text Markdown
+				64 row (selectable, collapsed) Secondary Actions: Expand
+					65 cell Secondary Actions: Open Finder item
+						66 image
+						67 text field (settable) Value: nested space café # $ & % (dir),, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/nested%20space%20caf%C3%A9%20%23%20$%20&%20%25%20(dir),/
+						68 disclosure triangle 0
+					69 cell
+						70 text Today at 5:38 PM
+					71 cell
+						72 text --
+					73 cell
+						74 text Folder
+				75 row (selectable)
+					76 cell Secondary Actions: Open Finder item
+						77 image
+						78 text field (settable) Value: opened-after-rename-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename-moved.md
+					79 cell
+						80 text Today at 5:38 PM
+					81 cell
+						82 text 51 bytes
+					83 cell
+						84 text Markdown
+				85 row (selectable)
+					86 cell Secondary Actions: Open Finder item
+						87 image
+						88 text field (settable) Value: opened-after-replace-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace-original.md
+					89 cell
+						90 text Today at 5:38 PM
+					91 cell
+						92 text 52 bytes
+					93 cell
+						94 text Markdown
+				95 row (selectable)
+					96 cell Secondary Actions: Open Finder item
+						97 image
+						98 text field (settable) Value: opened-after-replace.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace-original.md
+					99 cell
+						100 text Today at 5:48 PM
+					101 cell
+						102 text 33 bytes
+					103 cell
+						104 text Markdown
+				105 row (selectable)
+					106 cell Secondary Actions: Open Finder item
+						107 image
+						108 text field (settable) Value: opened-before-rename-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-rename-moved.md
+					109 cell
+						110 text Today at 5:38 PM
+					111 cell
+						112 text 52 bytes
+					113 cell
+						114 text Markdown
+				115 row (selectable)
+					116 cell Secondary Actions: Open Finder item
+						117 image
+						118 text field (settable) Value: opened-before-replace-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace-original.md
+					119 cell
+						120 text Today at 5:38 PM
+					121 cell
+						122 text 53 bytes
+					123 cell
+						124 text Markdown
+				125 row (selectable)
+					126 cell Secondary Actions: Open Finder item
+						127 image
+						128 text field (settable) Value: opened-before-replace.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace-original.md
+					129 cell
+						130 text Today at 5:49 PM
+					131 cell
+						132 text 34 bytes
+					133 cell
+						134 text Markdown
+				135 row (selectable)
+					136 cell Secondary Actions: Open Finder item
+						137 image
+						138 text field (settable) Value: root-dirty-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty-moved.md
+					139 cell
+						140 text Today at 5:38 PM
+					141 cell
+						142 text 42 bytes
+					143 cell
+						144 text Markdown
+				145 row (selectable)
+					146 cell Secondary Actions: Open Finder item
+						147 image
+						148 text field (settable) Value: root-missing-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing-moved.md
+					149 cell
+						150 text Today at 5:38 PM
+					151 cell
+						152 text 44 bytes
+					153 cell
+						154 text Markdown
+				155 row (selectable)
+					156 cell Secondary Actions: Open Finder item
+						157 image
+						158 text field (settable) Value: sentinel.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/sentinel.md
+					159 cell
+						160 text Today at 5:38 PM
+					161 cell
+						162 text 40 bytes
+					163 cell
+						164 text Markdown
+				165 row (selectable)
+					166 cell Secondary Actions: Open Finder item
+						167 image
+						168 text field (settable) Value: unopened-after-rename-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-after-rename-moved.md
+					169 cell
+						170 text Today at 5:38 PM
+					171 cell
+						172 text 53 bytes
+					173 cell
+						174 text Markdown
+				175 row (selectable)
+					176 cell Secondary Actions: Open Finder item
+						177 image
+						178 text field (settable) Value: unopened-after-replace-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-after-replace-original.md
+					179 cell
+						180 text Today at 5:38 PM
+					181 cell
+						182 text 54 bytes
+					183 cell
+						184 text Markdown
+				185 row (selectable)
+					186 cell Secondary Actions: Open Finder item
+						187 image
+						188 text field (settable) Value: unopened-after-replace.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-after-replace-original.md
+					189 cell
+						190 text Today at 5:41 PM
+					191 cell
+						192 text 33 bytes
+					193 cell
+						194 text Markdown
+				195 row (selectable)
+					196 cell Secondary Actions: Open Finder item
+						197 image
+						198 text field (settable) Value: unopened-before-rename-moved.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-before-rename-moved.md
+					199 cell
+						200 text Today at 5:38 PM
+					201 cell
+						202 text 54 bytes
+					203 cell
+						204 text Markdown
+				205 row (selectable)
+					206 cell Secondary Actions: Open Finder item
+						207 image
+						208 text field (settable) Value: unopened-before-replace-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-before-replace-original.md
+					209 cell
+						210 text Today at 5:38 PM
+					211 cell
+						212 text 55 bytes
+					213 cell
+						214 text Markdown
+				215 row (selectable)
+					216 cell Secondary Actions: Open Finder item
+						217 image
+						218 text field (settable) Value: unopened-before-replace.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/unopened-before-replace.md
+					219 cell
+						220 text Today at 5:48 PM
+					221 cell
+						222 text 34 bytes
+					223 cell
+						224 text Markdown
+				225 container ListViewHeader
+					226 button Description: Name, Value: AXAscendingSortDirection, ID: name
+					227 button Description: Date Modified, ID: dateModified
+					228 button Description: Size, ID: size
+					229 button Description: Kind, ID: kind
+			230 scroll bar (settable, float) 0
+				231 value indicator (settable, float) 0
+				232 increment arrow button
+				233 decrement arrow button
+				234 increment page button
+				235 decrement page button
+			236 scroll bar (settable, float) 0
+				237 value indicator (settable, float) 0
+				238 increment arrow button
+				239 decrement arrow button
+				240 increment page button
+				241 decrement page button
+		242 unknown Details: status bar, ID: statusBar
+			243 text Value: 1 of 19 selected, 15,83 GB available, ID: statusBarText
+	244 toolbar
+		245 container Back/Forward
+			246 button (disabled) back
+			247 button (disabled) forward
+		248 pop up button Description: list view, Value: as List
+		249 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
+		250 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		251 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
+		252 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		253 button Search
+	254 close button
+	255 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	256 minimize button
+	257 text fixtures
+258 menu bar
+	259 Finder
+	260 File
+	261 Edit
+	262 View
+	263 Go
+	264 Window
+	265 Help
+
+Selected:
+	34 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

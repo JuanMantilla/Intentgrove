@@ -1,0 +1,2136 @@
+[
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 218,
+    "code": [
+      {
+        "highlight_end": 55,
+        "highlight_start": 29,
+        "text": "                            disk_version: disk_version,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 219,
+    "code": [
+      {
+        "highlight_end": 55,
+        "highlight_start": 29,
+        "text": "                            identity_key: identity_key,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 339,
+    "code": [
+      {
+        "highlight_end": 43,
+        "highlight_start": 17,
+        "text": "                disk_version: disk_version,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 340,
+    "code": [
+      {
+        "highlight_end": 43,
+        "highlight_start": 17,
+        "text": "                identity_key: identity_key,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "unused_imports",
+    "file": "src-tauri/src/scope.rs",
+    "line": 41,
+    "code": [
+      {
+        "highlight_end": 54,
+        "highlight_start": 45,
+        "text": "    identity, open_relative, open_selected, read_page, read_snapshot_entries, size,"
+      }
+    ],
+    "message": "unused import: `read_page`",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native scope re-exports",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 218,
+    "code": [
+      {
+        "highlight_end": 55,
+        "highlight_start": 29,
+        "text": "                            disk_version: disk_version,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 219,
+    "code": [
+      {
+        "highlight_end": 55,
+        "highlight_start": 29,
+        "text": "                            identity_key: identity_key,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 339,
+    "code": [
+      {
+        "highlight_end": 43,
+        "highlight_start": 17,
+        "text": "                disk_version: disk_version,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::redundant_field_names",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 340,
+    "code": [
+      {
+        "highlight_end": 43,
+        "highlight_start": 17,
+        "text": "                identity_key: identity_key,"
+      }
+    ],
+    "message": "redundant field names in struct initialization",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "unused_imports",
+    "file": "src-tauri/src/scope.rs",
+    "line": 41,
+    "code": [
+      {
+        "highlight_end": 54,
+        "highlight_start": 45,
+        "text": "    identity, open_relative, open_selected, read_page, read_snapshot_entries, size,"
+      }
+    ],
+    "message": "unused import: `read_page`",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native scope re-exports",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "dead_code",
+    "file": "src-tauri/src/platform/macos.rs",
+    "line": 144,
+    "code": [
+      {
+        "highlight_end": 17,
+        "highlight_start": 8,
+        "text": "pub fn read_page("
+      }
+    ],
+    "message": "function `read_page` is never used",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "macOS filesystem enumeration",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "dead_code",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 140,
+    "code": [
+      {
+        "highlight_end": 25,
+        "highlight_start": 12,
+        "text": "    pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {"
+      }
+    ],
+    "message": "methods `wait_for_hint` and `reconcile_visible` are never used",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "dead_code",
+    "file": "src-tauri/src/state.rs",
+    "line": 314,
+    "code": [
+      {
+        "highlight_end": 25,
+        "highlight_start": 12,
+        "text": "    pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {"
+      }
+    ],
+    "message": "methods `reselect_root` and `reselect_explicit_file` are never used",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem grant registry",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::needless_borrow",
+    "file": "src-tauri/src/assets.rs",
+    "line": 180,
+    "code": [
+      {
+        "highlight_end": 49,
+        "highlight_start": 44,
+        "text": "    let grant = state.register_linked_file(&path, file)?;"
+      }
+    ],
+    "message": "this expression creates a reference which is immediately dereferenced by the compiler",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Local resource/link grants",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::collapsible_if",
+    "file": "src-tauri/src/html_broker.rs",
+    "line": 492,
+    "code": [
+      {
+        "highlight_end": 28,
+        "highlight_start": 9,
+        "text": "        if kind == \"font\" {"
+      },
+      {
+        "highlight_end": 36,
+        "highlight_start": 1,
+        "text": "            if !font_magic(&data) {"
+      },
+      {
+        "highlight_end": 79,
+        "highlight_start": 1,
+        "text": "                return Err(err(\"unsupported\", \"Unrecognized font signature\"));"
+      },
+      {
+        "highlight_end": 14,
+        "highlight_start": 1,
+        "text": "            }"
+      },
+      {
+        "highlight_end": 10,
+        "highlight_start": 1,
+        "text": "        }"
+      }
+    ],
+    "message": "this `if` statement can be collapsed",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native HTML resource admission",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/editing.rs",
+    "line": 138,
+    "code": [
+      {
+        "highlight_end": 12,
+        "highlight_start": 1,
+        "text": "fn section("
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    kind: &'static str,"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    ordinal: usize,"
+      },
+      {
+        "highlight_end": 23,
+        "highlight_start": 1,
+        "text": "    level: Option<u8>,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    label: String,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    start: usize,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    end: usize,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    bytes: &[u8],"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    version: &str,"
+      },
+      {
+        "highlight_end": 23,
+        "highlight_start": 1,
+        "text": ") -> SectionDescriptor {"
+      }
+    ],
+    "message": "this function has too many arguments (8/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Markdown section editing/save",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::ptr_arg",
+    "file": "src-tauri/src/editing.rs",
+    "line": 520,
+    "code": [
+      {
+        "highlight_end": 37,
+        "highlight_start": 29,
+        "text": "fn destination_parent(path: &PathBuf) -> AppResult<(File, String)> {"
+      }
+    ],
+    "message": "writing `&PathBuf` instead of `&Path` involves a new object where a slice will do",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Markdown section editing/save",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "file": "src-tauri/src/image.rs",
+    "line": 138,
+    "code": [
+      {
+        "highlight_end": 30,
+        "highlight_start": 12,
+        "text": "        || output_length < 24"
+      },
+      {
+        "highlight_end": 46,
+        "highlight_start": 1,
+        "text": "        || output_length > MAX_RESPONSE_BYTES"
+      }
+    ],
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native image decoder responses",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "file": "src-tauri/src/image.rs",
+    "line": 445,
+    "code": [
+      {
+        "highlight_end": 30,
+        "highlight_start": 12,
+        "text": "        || output_length < 24"
+      },
+      {
+        "highlight_end": 46,
+        "highlight_start": 1,
+        "text": "        || output_length > MAX_RESPONSE_BYTES"
+      }
+    ],
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native image decoder responses",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/recovery.rs",
+    "line": 260,
+    "code": [
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "pub async fn checkpoint_section_edit("
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    app: tauri::AppHandle,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    state: State<'_, AppState>,"
+      },
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "    editing: State<'_, EditingState>,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    session_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    sequence: u64,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    draft: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    editor_json: Value,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editor_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "    editor_scroll_left: f64,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    reader_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<CheckpointAck> {"
+      }
+    ],
+    "message": "this function has too many arguments (10/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Durable editing recovery IPC",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/recovery.rs",
+    "line": 292,
+    "code": [
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "fn checkpoint_section_edit_impl("
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    app: &tauri::AppHandle,"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "    state: &AppState,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editing: &EditingState,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    session_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    sequence: u64,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    draft: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    editor_json: Value,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editor_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "    editor_scroll_left: f64,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    reader_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<CheckpointAck> {"
+      }
+    ],
+    "message": "this function has too many arguments (10/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Durable editing recovery IPC",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/search.rs",
+    "line": 240,
+    "code": [
+      {
+        "highlight_end": 12,
+        "highlight_start": 8,
+        "text": "    if file"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "        .metadata()"
+      },
+      {
+        "highlight_end": 14,
+        "highlight_start": 1,
+        "text": "        .ok()"
+      },
+      {
+        "highlight_end": 67,
+        "highlight_start": 1,
+        "text": "        .map_or(true, |meta| meta.len() > MAX_IGNORE_BYTES as u64)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/search.rs",
+    "line": 599,
+    "code": [
+      {
+        "highlight_end": 34,
+        "highlight_start": 1,
+        "text": "pub async fn start_folder_search("
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    app: AppHandle,"
+      },
+      {
+        "highlight_end": 39,
+        "highlight_start": 1,
+        "text": "    state: tauri::State<'_, AppState>,"
+      },
+      {
+        "highlight_end": 45,
+        "highlight_start": 1,
+        "text": "    searches: tauri::State<'_, SearchState>,"
+      },
+      {
+        "highlight_end": 21,
+        "highlight_start": 1,
+        "text": "    root_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    query: String,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    mode: String,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    include_ignored: bool,"
+      },
+      {
+        "highlight_end": 41,
+        "highlight_start": 1,
+        "text": "    scope_segments: Option<Vec<String>>,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<SearchStarted> {"
+      }
+    ],
+    "message": "this function has too many arguments (8/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/search.rs",
+    "line": 695,
+    "code": [
+      {
+        "highlight_end": 71,
+        "highlight_start": 16,
+        "text": "            if best.map_or(true, |(_, _, current)| distance < current) {"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/session.rs",
+    "line": 218,
+    "code": [
+      {
+        "highlight_end": 18,
+        "highlight_start": 12,
+        "text": "        && anchor"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "            .heading_id"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "            .as_ref()"
+      },
+      {
+        "highlight_end": 55,
+        "highlight_start": 1,
+        "text": "            .map_or(true, |value| value.len() <= 1024)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Workspace persistence",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/session.rs",
+    "line": 222,
+    "code": [
+      {
+        "highlight_end": 18,
+        "highlight_start": 12,
+        "text": "        && anchor"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "            .content_version"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "            .as_ref()"
+      },
+      {
+        "highlight_end": 54,
+        "highlight_start": 1,
+        "text": "            .map_or(true, |value| value.len() <= 256)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Workspace persistence",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "file": "src-tauri/src/settings.rs",
+    "line": 542,
+    "code": [
+      {
+        "highlight_end": 83,
+        "highlight_start": 25,
+        "text": "                let w = (area.size.width as f64 / scale - 32.).min(800.).max(320.);"
+      }
+    ],
+    "message": "clamp-like pattern without using clamp function",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Settings window sizing/preferences",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "file": "src-tauri/src/settings.rs",
+    "line": 543,
+    "code": [
+      {
+        "highlight_end": 84,
+        "highlight_start": 25,
+        "text": "                let h = (area.size.height as f64 / scale - 80.).min(720.).max(240.);"
+      }
+    ],
+    "message": "clamp-like pattern without using clamp function",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Settings window sizing/preferences",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/lib.rs",
+    "line": 67,
+    "code": [
+      {
+        "highlight_end": 26,
+        "highlight_start": 1,
+        "text": "fn set_native_menu_state("
+      },
+      {
+        "highlight_end": 52,
+        "highlight_start": 1,
+        "text": "    controls: tauri::State<'_, NativeMenuControls>,"
+      },
+      {
+        "highlight_end": 34,
+        "highlight_start": 1,
+        "text": "    window: tauri::WebviewWindow,"
+      },
+      {
+        "highlight_end": 21,
+        "highlight_start": 1,
+        "text": "    close_tab: bool,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    save: bool,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    find: bool,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    reload: bool,"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    locale: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    back: Option<bool>,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    forward: Option<bool>,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    visited: Option<bool>,"
+      },
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "    clear_history: Option<bool>,"
+      },
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "    editing_owner: Option<bool>,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    editing_undo: Option<bool>,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    editing_redo: Option<bool>,"
+      },
+      {
+        "highlight_end": 37,
+        "highlight_start": 1,
+        "text": "    editing_selection: Option<bool>,"
+      },
+      {
+        "highlight_end": 42,
+        "highlight_start": 1,
+        "text": "    default_markdown_ready: Option<bool>,"
+      },
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "    new_markdown_ready: Option<bool>,"
+      },
+      {
+        "highlight_end": 26,
+        "highlight_start": 1,
+        "text": ") -> scope::AppResult<()> {"
+      }
+    ],
+    "message": "this function has too many arguments (17/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native menu IPC",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "dead_code",
+    "file": "src-tauri/src/refresh.rs",
+    "line": 140,
+    "code": [
+      {
+        "highlight_end": 25,
+        "highlight_start": 12,
+        "text": "    pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {"
+      }
+    ],
+    "message": "methods `wait_for_hint` and `reconcile_visible` are never used",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem refresh/reload",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "dead_code",
+    "file": "src-tauri/src/state.rs",
+    "line": 314,
+    "code": [
+      {
+        "highlight_end": 25,
+        "highlight_start": 12,
+        "text": "    pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {"
+      }
+    ],
+    "message": "methods `reselect_root` and `reselect_explicit_file` are never used",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Filesystem grant registry",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::needless_borrow",
+    "file": "src-tauri/src/assets.rs",
+    "line": 180,
+    "code": [
+      {
+        "highlight_end": 49,
+        "highlight_start": 44,
+        "text": "    let grant = state.register_linked_file(&path, file)?;"
+      }
+    ],
+    "message": "this expression creates a reference which is immediately dereferenced by the compiler",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Local resource/link grants",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::non_octal_unix_permissions",
+    "file": "src-tauri/src/assets.rs",
+    "line": 446,
+    "code": [
+      {
+        "highlight_end": 76,
+        "highlight_start": 75,
+        "text": "        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();"
+      }
+    ],
+    "message": "using a non-octal value to set unix file permissions",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Local resource/link grants",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::assertions_on_constants",
+    "file": "src-tauri/src/default_markdown.rs",
+    "line": 71,
+    "code": [
+      {
+        "highlight_end": 26,
+        "highlight_start": 9,
+        "text": "        assert!(!ENABLED);"
+      }
+    ],
+    "message": "`assert!(true)` will be optimized out by the compiler",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Default-Markdown consent policy",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::collapsible_if",
+    "file": "src-tauri/src/html_broker.rs",
+    "line": 492,
+    "code": [
+      {
+        "highlight_end": 28,
+        "highlight_start": 9,
+        "text": "        if kind == \"font\" {"
+      },
+      {
+        "highlight_end": 36,
+        "highlight_start": 1,
+        "text": "            if !font_magic(&data) {"
+      },
+      {
+        "highlight_end": 79,
+        "highlight_start": 1,
+        "text": "                return Err(err(\"unsupported\", \"Unrecognized font signature\"));"
+      },
+      {
+        "highlight_end": 14,
+        "highlight_start": 1,
+        "text": "            }"
+      },
+      {
+        "highlight_end": 10,
+        "highlight_start": 1,
+        "text": "        }"
+      }
+    ],
+    "message": "this `if` statement can be collapsed",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native HTML resource admission",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::non_octal_unix_permissions",
+    "file": "src-tauri/src/html_tests.rs",
+    "line": 433,
+    "code": [
+      {
+        "highlight_end": 76,
+        "highlight_start": 75,
+        "text": "        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();"
+      }
+    ],
+    "message": "using a non-octal value to set unix file permissions",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native HTML regression fixtures",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::items_after_test_module",
+    "file": "src-tauri/src/platform/macos.rs",
+    "line": 359,
+    "code": [
+      {
+        "highlight_end": 10,
+        "highlight_start": 1,
+        "text": "mod tests {"
+      }
+    ],
+    "message": "items after a test module",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "macOS filesystem enumeration",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/editing.rs",
+    "line": 138,
+    "code": [
+      {
+        "highlight_end": 12,
+        "highlight_start": 1,
+        "text": "fn section("
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    kind: &'static str,"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    ordinal: usize,"
+      },
+      {
+        "highlight_end": 23,
+        "highlight_start": 1,
+        "text": "    level: Option<u8>,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    label: String,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    start: usize,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    end: usize,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    bytes: &[u8],"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    version: &str,"
+      },
+      {
+        "highlight_end": 23,
+        "highlight_start": 1,
+        "text": ") -> SectionDescriptor {"
+      }
+    ],
+    "message": "this function has too many arguments (8/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Markdown section editing/save",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::ptr_arg",
+    "file": "src-tauri/src/editing.rs",
+    "line": 520,
+    "code": [
+      {
+        "highlight_end": 37,
+        "highlight_start": 29,
+        "text": "fn destination_parent(path: &PathBuf) -> AppResult<(File, String)> {"
+      }
+    ],
+    "message": "writing `&PathBuf` instead of `&Path` involves a new object where a slice will do",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Markdown section editing/save",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "file": "src-tauri/src/image.rs",
+    "line": 138,
+    "code": [
+      {
+        "highlight_end": 30,
+        "highlight_start": 12,
+        "text": "        || output_length < 24"
+      },
+      {
+        "highlight_end": 46,
+        "highlight_start": 1,
+        "text": "        || output_length > MAX_RESPONSE_BYTES"
+      }
+    ],
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native image decoder responses",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_range_contains",
+    "file": "src-tauri/src/image.rs",
+    "line": 445,
+    "code": [
+      {
+        "highlight_end": 30,
+        "highlight_start": 12,
+        "text": "        || output_length < 24"
+      },
+      {
+        "highlight_end": 46,
+        "highlight_start": 1,
+        "text": "        || output_length > MAX_RESPONSE_BYTES"
+      }
+    ],
+    "message": "manual `!RangeInclusive::contains` implementation",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native image decoder responses",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/recovery.rs",
+    "line": 260,
+    "code": [
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "pub async fn checkpoint_section_edit("
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    app: tauri::AppHandle,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    state: State<'_, AppState>,"
+      },
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "    editing: State<'_, EditingState>,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    session_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    sequence: u64,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    draft: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    editor_json: Value,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editor_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "    editor_scroll_left: f64,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    reader_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<CheckpointAck> {"
+      }
+    ],
+    "message": "this function has too many arguments (10/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Durable editing recovery IPC",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/recovery.rs",
+    "line": 292,
+    "code": [
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "fn checkpoint_section_edit_impl("
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    app: &tauri::AppHandle,"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "    state: &AppState,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editing: &EditingState,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    session_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    sequence: u64,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    draft: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    editor_json: Value,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    editor_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "    editor_scroll_left: f64,"
+      },
+      {
+        "highlight_end": 28,
+        "highlight_start": 1,
+        "text": "    reader_scroll_top: f64,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<CheckpointAck> {"
+      }
+    ],
+    "message": "this function has too many arguments (10/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Durable editing recovery IPC",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/search.rs",
+    "line": 240,
+    "code": [
+      {
+        "highlight_end": 12,
+        "highlight_start": 8,
+        "text": "    if file"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "        .metadata()"
+      },
+      {
+        "highlight_end": 14,
+        "highlight_start": 1,
+        "text": "        .ok()"
+      },
+      {
+        "highlight_end": 67,
+        "highlight_start": 1,
+        "text": "        .map_or(true, |meta| meta.len() > MAX_IGNORE_BYTES as u64)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/search.rs",
+    "line": 599,
+    "code": [
+      {
+        "highlight_end": 34,
+        "highlight_start": 1,
+        "text": "pub async fn start_folder_search("
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    app: AppHandle,"
+      },
+      {
+        "highlight_end": 39,
+        "highlight_start": 1,
+        "text": "    state: tauri::State<'_, AppState>,"
+      },
+      {
+        "highlight_end": 45,
+        "highlight_start": 1,
+        "text": "    searches: tauri::State<'_, SearchState>,"
+      },
+      {
+        "highlight_end": 21,
+        "highlight_start": 1,
+        "text": "    root_id: String,"
+      },
+      {
+        "highlight_end": 19,
+        "highlight_start": 1,
+        "text": "    query: String,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    mode: String,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    include_ignored: bool,"
+      },
+      {
+        "highlight_end": 41,
+        "highlight_start": 1,
+        "text": "    scope_segments: Option<Vec<String>>,"
+      },
+      {
+        "highlight_end": 30,
+        "highlight_start": 1,
+        "text": ") -> AppResult<SearchStarted> {"
+      }
+    ],
+    "message": "this function has too many arguments (8/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/search.rs",
+    "line": 695,
+    "code": [
+      {
+        "highlight_end": 71,
+        "highlight_start": 16,
+        "text": "            if best.map_or(true, |(_, _, current)| distance < current) {"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::uninlined_format_args",
+    "file": "src-tauri/src/search.rs",
+    "line": 1180,
+    "code": [
+      {
+        "highlight_end": 59,
+        "highlight_start": 9,
+        "text": "        println!(\"F003F 25k complete scan: {:?}\", elapsed);"
+      }
+    ],
+    "message": "variables can be used directly in the `format!` string",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::uninlined_format_args",
+    "file": "src-tauri/src/search.rs",
+    "line": 1211,
+    "code": [
+      {
+        "highlight_end": 67,
+        "highlight_start": 9,
+        "text": "        println!(\"F003F 25k worker stop trials: {:?}\", stop_times);"
+      }
+    ],
+    "message": "variables can be used directly in the `format!` string",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Folder search IPC and matching",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/session.rs",
+    "line": 218,
+    "code": [
+      {
+        "highlight_end": 18,
+        "highlight_start": 12,
+        "text": "        && anchor"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "            .heading_id"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "            .as_ref()"
+      },
+      {
+        "highlight_end": 55,
+        "highlight_start": 1,
+        "text": "            .map_or(true, |value| value.len() <= 1024)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Workspace persistence",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::unnecessary_map_or",
+    "file": "src-tauri/src/session.rs",
+    "line": 222,
+    "code": [
+      {
+        "highlight_end": 18,
+        "highlight_start": 12,
+        "text": "        && anchor"
+      },
+      {
+        "highlight_end": 29,
+        "highlight_start": 1,
+        "text": "            .content_version"
+      },
+      {
+        "highlight_end": 22,
+        "highlight_start": 1,
+        "text": "            .as_ref()"
+      },
+      {
+        "highlight_end": 54,
+        "highlight_start": 1,
+        "text": "            .map_or(true, |value| value.len() <= 256)"
+      }
+    ],
+    "message": "this `map_or` can be simplified",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Workspace persistence",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "file": "src-tauri/src/settings.rs",
+    "line": 542,
+    "code": [
+      {
+        "highlight_end": 83,
+        "highlight_start": 25,
+        "text": "                let w = (area.size.width as f64 / scale - 32.).min(800.).max(320.);"
+      }
+    ],
+    "message": "clamp-like pattern without using clamp function",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Settings window sizing/preferences",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::manual_clamp",
+    "file": "src-tauri/src/settings.rs",
+    "line": 543,
+    "code": [
+      {
+        "highlight_end": 84,
+        "highlight_start": 25,
+        "text": "                let h = (area.size.height as f64 / scale - 80.).min(720.).max(240.);"
+      }
+    ],
+    "message": "clamp-like pattern without using clamp function",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Settings window sizing/preferences",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::field_reassign_with_default",
+    "file": "src-tauri/src/settings.rs",
+    "line": 975,
+    "code": [
+      {
+        "highlight_end": 40,
+        "highlight_start": 9,
+        "text": "        restored.reading_width = 1400.;"
+      }
+    ],
+    "message": "field assignment outside of initializer for an instance created with Default::default()",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Settings window sizing/preferences",
+    "phase3_touched": false,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "low",
+    "behavioral_risk": "low; local idiom/test-only change",
+    "category": "A",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  },
+  {
+    "lint": "clippy::too_many_arguments",
+    "file": "src-tauri/src/lib.rs",
+    "line": 67,
+    "code": [
+      {
+        "highlight_end": 26,
+        "highlight_start": 1,
+        "text": "fn set_native_menu_state("
+      },
+      {
+        "highlight_end": 52,
+        "highlight_start": 1,
+        "text": "    controls: tauri::State<'_, NativeMenuControls>,"
+      },
+      {
+        "highlight_end": 34,
+        "highlight_start": 1,
+        "text": "    window: tauri::WebviewWindow,"
+      },
+      {
+        "highlight_end": 21,
+        "highlight_start": 1,
+        "text": "    close_tab: bool,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    save: bool,"
+      },
+      {
+        "highlight_end": 16,
+        "highlight_start": 1,
+        "text": "    find: bool,"
+      },
+      {
+        "highlight_end": 18,
+        "highlight_start": 1,
+        "text": "    reload: bool,"
+      },
+      {
+        "highlight_end": 20,
+        "highlight_start": 1,
+        "text": "    locale: String,"
+      },
+      {
+        "highlight_end": 24,
+        "highlight_start": 1,
+        "text": "    back: Option<bool>,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    forward: Option<bool>,"
+      },
+      {
+        "highlight_end": 27,
+        "highlight_start": 1,
+        "text": "    visited: Option<bool>,"
+      },
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "    clear_history: Option<bool>,"
+      },
+      {
+        "highlight_end": 33,
+        "highlight_start": 1,
+        "text": "    editing_owner: Option<bool>,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    editing_undo: Option<bool>,"
+      },
+      {
+        "highlight_end": 32,
+        "highlight_start": 1,
+        "text": "    editing_redo: Option<bool>,"
+      },
+      {
+        "highlight_end": 37,
+        "highlight_start": 1,
+        "text": "    editing_selection: Option<bool>,"
+      },
+      {
+        "highlight_end": 42,
+        "highlight_start": 1,
+        "text": "    default_markdown_ready: Option<bool>,"
+      },
+      {
+        "highlight_end": 38,
+        "highlight_start": 1,
+        "text": "    new_markdown_ready: Option<bool>,"
+      },
+      {
+        "highlight_end": 26,
+        "highlight_start": 1,
+        "text": ") -> scope::AppResult<()> {"
+      }
+    ],
+    "message": "this function has too many arguments (17/7)",
+    "target": [
+      "staticlib",
+      "cdylib",
+      "rlib"
+    ],
+    "subsystem": "Native menu IPC",
+    "phase3_touched": true,
+    "baseline_status": "exact diagnostic and unchanged source match",
+    "current_status": "error",
+    "complexity": "medium",
+    "behavioral_risk": "requires contract/edge-case preservation",
+    "category": "B",
+    "final_status": "resolved by separate maintenance; exact whole-app gate emits zero diagnostics"
+  }
+]

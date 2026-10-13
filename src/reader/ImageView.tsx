@@ -1,15 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { api } from "../app/api";
 import type { ImageResponse } from "../app/api";
 import { t, type Locale } from "../app/i18n";
 import { boundZoom, usePinchZoom } from "./usePinchZoom";
+import PreviewLoading from "./PreviewLoading";
 
 const ZOOM_STEPS = [0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4];
 type Tile = { x: number; y: number; width: number; height: number; url: string };
-export type ImageViewState = { mode: "fit" | "manual"; scale: number; left: number; top: number };
+export type ImageViewState = { mode: "fit" | "actual" | "manual"; scale: number; left: number; top: number };
 
-export default function ImageView({ image, locale, hideIdentity = false, initialView, onViewChange }: {
+export default function ImageView({ image, locale, hideIdentity = false, controlsHost, initialView, onViewChange }: {
   image: ImageResponse; locale: Locale; hideIdentity?: boolean;
+  controlsHost?: HTMLElement | null;
   initialView?: ImageViewState; onViewChange?: (view: ImageViewState) => void;
 }) {
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -17,7 +20,7 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
   const [failed, setFailed] = useState(false);
   const [fitScale, setFitScale] = useState(1);
   const [fitMeasured, setFitMeasured] = useState(false);
-  const [mode, setMode] = useState<"fit" | "manual">(initialView?.mode ?? "fit");
+  const [mode, setMode] = useState<ImageViewState["mode"]>(initialView?.mode ?? "fit");
   const [manualScale, setManualScale] = useState(initialView?.scale ?? 1);
   const viewChange = useRef(onViewChange);
   viewChange.current = onViewChange;
@@ -26,6 +29,7 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
   const [viewportTick, setViewportTick] = useState(0);
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [tileError, setTileError] = useState(false);
+  const [tileLoading, setTileLoading] = useState(false);
   const tileCache = useRef(new Map<string, Tile>());
   const tilePending = useRef(new Set<string>());
   const tileFailed = useRef(new Set<string>());
@@ -152,8 +156,9 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
         }
       });
     }
+    setTileLoading([...wanted].some(key => !tileCache.current.has(key) && !tileFailed.current.has(key)));
   }, [image, previewWidth, previewHeight, scale, viewportTick, fitMeasured]);
-  function changeScale(next: number, point?: { x: number; y: number }) {
+  function changeScale(next: number, point?: { x: number; y: number }, nextMode: ImageViewState["mode"] = "manual") {
     const viewport = viewportRef.current;
     const surface = viewport?.querySelector<HTMLElement>(".image-surface");
     const bounds = surface?.getBoundingClientRect();
@@ -164,7 +169,7 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
     const y = bounds ? (focus.y - bounds.top) / scale : 0;
     const bounded = boundZoom(next);
     setManualScale(bounded);
-    setMode("manual");
+    setMode(nextMode);
     zoomAnchor.current = viewport && surface ? { viewport, surface, x, y, focus } : null;
   }
   useLayoutEffect(() => {
@@ -184,27 +189,27 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
     changeScale(next);
   }
 
-  return <section className="image-page" role="tabpanel" aria-label={image.name}>
-    <div className="image-header">
-      {!hideIdentity && <div className="document-eyebrow" title={image.displayPath}>{image.displayPath}</div>}
-      <div className="image-meta">
-        {!hideIdentity && <strong>{image.name}</strong>}
-        <span>{t(locale, "imageFormat")}: {image.format.toUpperCase()}</span>
-        <span>{t(locale, "imageDimensions")}: {image.width} × {image.height}</span>
-        {image.still && <span>{t(locale, "imageStill")}</span>}
-      </div>
-      <div className="image-controls" aria-label={image.name}>
-        <button type="button" aria-pressed={mode === "fit"} onClick={() => setMode("fit")}>{t(locale, "imageFit")}</button>
-        <button type="button" aria-pressed={mode === "manual" && manualScale === 1}
-          onClick={() => changeScale(1)}>{t(locale, "imageActual")}</button>
+  const controls = <div className="image-controls" role="group" aria-label={image.name}>
+        <button type="button" aria-pressed={mode === "fit"} onClick={() => {
+          setMode("fit");
+          if (viewportRef.current) { viewportRef.current.scrollLeft = 0; viewportRef.current.scrollTop = 0; }
+        }}>{t(locale, "imageFit")}</button>
+        <button type="button" aria-pressed={mode === "actual"}
+          onClick={() => changeScale(1, undefined, "actual")}>{t(locale, "imageActual")}</button>
+        <div className="image-zoom">
         <button type="button" aria-label={t(locale, "imageZoomOut")} disabled={scale <= 0.25}
           onClick={() => stepZoom(-1)}>−</button>
-        <output aria-live="polite">{Math.round(scale * 100)}%</output>
+        <output aria-live="polite" aria-label={t(locale, "imageZoom")}>{Math.round(scale * 100)}%</output>
         <button type="button" aria-label={t(locale, "imageZoomIn")} disabled={scale >= 4}
           onClick={() => stepZoom(1)}>+</button>
-      </div>
-      {tileError && <p className="image-detail-error" role="status">{t(locale, "imageDetailUnavailable")}</p>}
-    </div>
+        </div>
+      </div>;
+  return <section className="image-page" role="tabpanel" aria-label={image.name}>
+    {!hideIdentity && <div className="image-header">
+      <div className="document-eyebrow" title={image.displayPath}>{image.displayPath}</div>
+      <strong>{image.name}</strong>
+    </div>}
+    {controlsHost ? createPortal(controls, controlsHost) : !hideIdentity && controls}
     <div className="image-viewport" ref={viewportRef} tabIndex={0} aria-label={image.name}
       onScroll={(event) => {
         setViewportTick((tick) => tick + 1);
@@ -228,7 +233,14 @@ export default function ImageView({ image, locale, hideIdentity = false, initial
             }} style={{ left: tile.x * scale, top: tile.y * scale,
               width: tile.width * scale, height: tile.height * scale }} />)}
         </div></div>
-          : <p role="status">{t(locale, "imageLoading")}</p>}
+          : <PreviewLoading label={t(locale, "imageLoading")} />}
     </div>
+    <footer className="image-meta">
+      <span>{t(locale, "imageFormat")}: {image.format.toUpperCase()}</span>
+      <span>{t(locale, "imageDimensions")}: {image.width} × {image.height}</span>
+      {image.still && <span>{t(locale, "imageStill")}</span>}
+      {tileLoading && url && !failed && <PreviewLoading inline label={t(locale, "imageLoading")} />}
+      {tileError && <span className="image-detail-error" role="status">{t(locale, "imageDetailUnavailable")}</span>}
+    </footer>
   </section>;
 }

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "frontend-regression",
+    "result": "PASS",
+    "reason": "578 tests / 65 files; mocked/native integration distinctions retained",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/tests-final-v2.log"
+    ]
+  },
+  {
+    "id": "creation-focused",
+    "result": "PASS",
+    "reason": "22 tests; includes blocked destructive picker and inline invalid blur",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/focused-final-v2.log"
+    ]
+  },
+  {
+    "id": "source-types",
+    "result": "PASS",
+    "reason": "Production sources only; does not waive standard build",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/source-types-v2.log"
+    ]
+  },
+  {
+    "id": "local-bundle",
+    "result": "PASS",
+    "reason": "Vite build; existing chunk-size warning",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/vite-build-v2.log"
+    ]
+  },
+  {
+    "id": "standard-build",
+    "result": "FAIL",
+    "reason": "Untouched tests/ui/folder-search.test.tsx:270 uses unsupported ByRoleOptions exact",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/build-final-v2.log"
+    ]
+  },
+  {
+    "id": "diff-check",
+    "result": "PASS",
+    "reason": "git diff --check",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/diff-check-v2.log"
+    ]
+  },
+  {
+    "id": "wide-render",
+    "result": "PASS",
+    "reason": "Four actual 2560x1262 Chrome App renders, EN/ES light/dark; UI only",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+    ]
+  },
+  {
+    "id": "narrow-render",
+    "result": "NOT_RUN",
+    "reason": "Viewport capability override ineffective; measured size remained wide",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+    ]
+  },
+  {
+    "id": "native-filesystem-and-lifecycle",
+    "result": "NOT_RUN",
+    "reason": "New command and grant-preserving destination picker not implemented; native approval boundary",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/authorization.json"
+    ]
+  },
+  {
+    "id": "native-shortcuts-and-File-menu",
+    "result": "NOT_RUN",
+    "reason": "Physical/native accelerators/menu not implemented; Windows editing unsupported",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/authorization.json"
+    ]
+  },
+  {
+    "id": "screen-reader-IME-zoom",
+    "result": "NOT_RUN",
+    "reason": "No screen reader/physical IME/200% test executed",
+    "finished_at": "2026-10-11T14:13:47.363705+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+    ]
+  }
+]

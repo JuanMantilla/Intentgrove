@@ -1,0 +1,21 @@
+{
+  "finished_at": "2026-10-11T04:32:55.346587+00:00",
+  "policy_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-policy.json",
+  "policy_sha256": "f732f8ecd029e197acf5139a2858c52506305bf2b15f87c11e837940a8c9a8e1",
+  "service_config_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-service.json",
+  "service_config_sha256": "e43a3422aa50931a013230700400219489eb69e366cc1e2a2421bd21149033b6",
+  "automatic_execution": {
+    "enabled": true,
+    "policy_id": "qa-automatic-v1",
+    "task_roots": [
+      "/Users/juanmantilla/projects/personal",
+      "/Users/juanmantilla/projects/personal/md-reader"
+    ],
+    "not_before": "2026-10-11T03:36:57.322148+00:00"
+  },
+  "approved_project_folder": "/Users/juanmantilla/projects/personal/md-reader/cleanup-disposable/qa-intermediates",
+  "exists": true,
+  "files": [],
+  "service_enabled_config": true,
+  "service_process_observation": "launchctl list returned exit 1 without output; process inspection denied by sandbox; no service started or changed"
+}

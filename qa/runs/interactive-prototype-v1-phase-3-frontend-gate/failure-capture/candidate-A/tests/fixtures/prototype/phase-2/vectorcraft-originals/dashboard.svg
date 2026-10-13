@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="844" viewBox="0 0 390 844">
+  <defs>
+    <linearGradient id="linear-gradient-1" x1="22.529" y1="175.424" x2="367.471" y2="14.576" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#193590"/>
+      <stop offset="1" stop-color="#628bff"/>
+    </linearGradient>
+    <clipPath id="clip-path-1">
+      <path d="M60 540 L98 540 C107.941 540 116 548.059 116 558 L116 598 C116 607.941 107.941 616 98 616 L60 616 C50.059 616 42 607.941 42 598 L42 558 C42 548.059 50.059 540 60 540 Z"/>
+    </clipPath>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="265" y="525" width="98" height="94" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2"/><feOffset dx="7" dy="7" result="shadow"/><feFlood flood-color="#18243c" flood-opacity="0.3"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <title>Intentgrove four-scene POC</title>
+  <g>
+    <path d="M0 0 L390 0 L390 844 L0 844 Z" fill="#f3f5fb"/>
+    <path d="M42 20 L348 20 C360.15 20 370 29.85 370 42 L370 148 C370 160.15 360.15 170 348 170 L42 170 C29.85 170 20 160.15 20 148 L20 42 C20 29.85 29.85 20 42 20 Z" fill="url(#linear-gradient-1)"/>
+    <text transform="matrix(1 0 0 1 40 75)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="26" fill="#ffffff"><tspan x="0" y="0">Intentgrove</tspan></text>
+    <text transform="matrix(1 0 0 1 40 108)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="20" fill="#ffffff"><tspan x="0" y="0">Dashboard</tspan></text>
+    <text transform="matrix(1 0 0 1 28 220)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="28" fill="#18243c"><tspan x="0" y="0">Your workspace</tspan></text>
+    <g data-prototype-id="settings-button">
+      <path d="M40 260 L176 260 C182.627 260 188 265.373 188 272 L188 296 C188 302.627 182.627 308 176 308 L40 308 C33.373 308 28 302.627 28 296 L28 272 C28 265.373 33.373 260 40 260 Z" fill="#315de8"/>
+      <text transform="matrix(1 0 0 1 44 291)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="18" fill="#ffffff"><tspan x="0" y="0">Settings</tspan></text>
+    </g>
+    <g data-prototype-id="menu-button">
+      <path d="M218 260 L350 260 C356.627 260 362 265.373 362 272 L362 296 C362 302.627 356.627 308 350 308 L218 308 C211.373 308 206 302.627 206 296 L206 272 C206 265.373 211.373 260 218 260 Z" fill="#315de8"/>
+      <text transform="matrix(1 0 0 1 222 291)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="18" fill="#ffffff"><tspan x="0" y="0">Menu</tspan></text>
+    </g>
+    <g data-prototype-id="profile-avatar">
+      <path d="M302 64 C302 51.85 311.85 42 324 42 C336.15 42 346 51.85 346 64 C346 76.15 336.15 86 324 86 C311.85 86 302 76.15 302 64 Z" fill="#ffffff"/>
+      <text transform="matrix(1 0 0 1 313 71)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="16" fill="#18243c"><tspan x="0" y="0">JM</tspan></text>
+    </g>
+    <g data-prototype-id="menu-panel" display="none">
+      <path d="M218 318 L350 318 C356.627 318 362 323.373 362 330 L362 401 C362 407.627 356.627 413 350 413 L218 413 C211.373 413 206 407.627 206 401 L206 330 C206 323.373 211.373 318 218 318 Z" fill="#ffffff"/>
+      <text transform="matrix(1 0 0 1 220 354)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="16" fill="#18243c"><tspan x="0" y="0">Recent files</tspan></text>
+      <text transform="matrix(1 0 0 1 220 387)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="14" fill="#18243c"><tspan x="0" y="0">Saved locally</tspan></text>
+    </g>
+    <text transform="matrix(1 0 0 1 28 460)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="20" fill="#18243c"><tspan x="0" y="0">Visual contract probes</tspan></text>
+    <g data-prototype-id="image-probe" clip-path="url(#clip-path-1)">
+      <image width="64" height="64" transform="matrix(1.625 0 0 1.625 28 530)" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAwElEQVR4nO3QQQ0CURDA0C9o5eAOVxgCB3CavNnQQ49Nmp7H8/X+xvWDu/tHB2i/ATpA+w3QAdpvgA7Q/tkeOO03QAdovwE6QPsN0AHab8D2wGm/ATpA+w3QAdpvgA7QfgO2B077DdAB2m+ADtB+A3SA9huwPXDab4AO0H4DdID2G6ADtN+A7YHTfgN0gPYboAO03wAdoP0GbA+c9hugA7TfAB2g/QboAO03YHvgtN8AHaD9BugA7TdAB2j/7wd8ABv7wnejWx5eAAAAAElFTkSuQmCC"/>
+    </g>
+    <path data-prototype-id="transform-probe" d="M172.115 545.63 L238.285 553.57 C244.866 554.36 249.56 560.334 248.77 566.915 L244.43 603.085 C243.64 609.666 237.666 614.36 231.085 613.57 L164.915 605.63 C158.334 604.84 153.64 598.866 154.43 592.285 L158.77 556.115 C159.56 549.534 165.534 544.84 172.115 545.63 Z" fill="#f4a852"/>
+    <g filter="url(#filter-1)">
+      <path data-prototype-id="effect-probe" d="M292 540 L336 540 C342.627 540 348 545.373 348 552 L348 592 C348 598.627 342.627 604 336 604 L292 604 C285.373 604 280 598.627 280 592 L280 552 C280 545.373 285.373 540 292 540 Z" fill="#68bea0"/>
+    </g>
+    <text transform="matrix(1 0 0 1 28 665)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="16" fill="#18243c"><tspan x="0" y="0">Arial 16: Aa 0123</tspan></text>
+    <text transform="matrix(1 0 0 1 28 700)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="14" fill="#18243c"><tspan x="0" y="0">Clip / image / transform / shadow</tspan></text>
+    <g data-prototype-id="hidden-probe" display="none">
+      <path d="M40 740 L116 740 C122.627 740 128 745.373 128 752 L128 768 C128 774.627 122.627 780 116 780 L40 780 C33.373 780 28 774.627 28 768 L28 752 C28 745.373 33.373 740 40 740 Z" fill="#ff0000"/>
+      <text transform="matrix(1 0 0 1 35 766)" x="0" y="0" xml:space="preserve" font-family="Arial" font-size="16" fill="#18243c"><tspan x="0" y="0">HIDDEN</tspan></text>
+    </g>
+  </g>
+</svg>

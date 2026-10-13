@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "task_id": "interactive-prototype-v1-phase-1",
+  "acceptance_version": "phase1-20261011-final-v1",
+  "session_kind": "qa",
+  "qa_result": "QA_PASSED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [],
+  "required_checks": [
+    {
+      "id": "unit",
+      "result": "PASS",
+      "reason": "Focused final check, exit 0",
+      "finished_at": "2026-10-11T22:46:57.309+00:00",
+      "evidence_paths": [
+        "qa/runs/interactive-prototype-v1-phase-1/unit.log",
+        "qa/runs/interactive-prototype-v1-phase-1/check-results.json"
+      ]
+    },
+    {
+      "id": "format",
+      "result": "PASS",
+      "reason": "Focused final check, exit 0",
+      "finished_at": "2026-10-11T22:46:57.069+00:00",
+      "evidence_paths": [
+        "qa/runs/interactive-prototype-v1-phase-1/format.log",
+        "qa/runs/interactive-prototype-v1-phase-1/check-results.json"
+      ]
+    },
+    {
+      "id": "clippy",
+      "result": "PASS",
+      "reason": "Focused final check, exit 0",
+      "finished_at": "2026-10-11T22:46:57.122+00:00",
+      "evidence_paths": [
+        "qa/runs/interactive-prototype-v1-phase-1/clippy.log",
+        "qa/runs/interactive-prototype-v1-phase-1/check-results.json"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "result": "PASS",
+      "reason": "Tested/protected/approved hashes, dependency closure and fixture member consistency",
+      "finished_at": "2026-10-11T22:47:21.785263+00:00",
+      "evidence_paths": [
+        "qa/runs/interactive-prototype-v1-phase-1/boundary-results.json"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/interactive-prototype-v1-phase-1/report.md",
+  "evidence_paths": [
+    "qa/runs/interactive-prototype-v1-phase-1/evidence-index.md",
+    "qa/runs/interactive-prototype-v1-phase-1/coverage.json"
+  ],
+  "tested_snapshot_path": "qa/runs/interactive-prototype-v1-phase-1/tested-snapshot.json",
+  "artifact_paths": [
+    ".agents/state.md",
+    "crates/.gitignore",
+    "crates/Cargo.lock",
+    "crates/Cargo.toml",
+    "crates/igproto-model/Cargo.toml",
+    "crates/igproto-model/README.md",
+    "crates/igproto-model/examples/generate_schemas.rs",
+    "crates/igproto-model/schema/manifest-v1.schema.json",
+    "crates/igproto-model/schema/prototype-source-v1.schema.json",
+    "crates/igproto-model/schema/prototype-v1.schema.json",
+    "crates/igproto-model/src/diagnostic.rs",
+    "crates/igproto-model/src/ids.rs",
+    "crates/igproto-model/src/json.rs",
+    "crates/igproto-model/src/lib.rs",
+    "crates/igproto-model/src/limits.rs",
+    "crates/igproto-model/src/schema.rs",
+    "crates/igproto-model/src/transition.rs",
+    "crates/igproto-model/src/validation.rs",
+    "crates/igproto-model/tests/conformance.rs",
+    "qa/runs/interactive-prototype-v1-phase-1/boundary-results.json",
+    "qa/runs/interactive-prototype-v1-phase-1/cargo-metadata.json",
+    "qa/runs/interactive-prototype-v1-phase-1/check-results.json",
+    "qa/runs/interactive-prototype-v1-phase-1/clippy.log",
+    "qa/runs/interactive-prototype-v1-phase-1/coverage.json",
+    "qa/runs/interactive-prototype-v1-phase-1/evidence-index.md",
+    "qa/runs/interactive-prototype-v1-phase-1/format.log",
+    "qa/runs/interactive-prototype-v1-phase-1/protected-baseline.json",
+    "qa/runs/interactive-prototype-v1-phase-1/report.md",
+    "qa/runs/interactive-prototype-v1-phase-1/scope-status.txt",
+    "qa/runs/interactive-prototype-v1-phase-1/tested-paths.json",
+    "qa/runs/interactive-prototype-v1-phase-1/tested-snapshot.json",
+    "qa/runs/interactive-prototype-v1-phase-1/unit.log",
+    "specs/014-interactive-prototype-v1/design.md",
+    "specs/014-interactive-prototype-v1/plan.md",
+    "specs/014-interactive-prototype-v1/spec.md",
+    "specs/014-interactive-prototype-v1/tasks.md",
+    "specs/014-interactive-prototype-v1/verification.md",
+    "tests/fixtures/prototype/contracts/manifest.json",
+    "tests/fixtures/prototype/contracts/minimal.source.json",
+    "tests/fixtures/prototype/contracts/prototype.json",
+    "tests/fixtures/prototype/contracts/prototype.source.json",
+    "tests/fixtures/prototype/contracts/scenes/dashboard.svg",
+    "tests/fixtures/prototype/contracts/scenes/profile.svg",
+    "tests/fixtures/prototype/contracts/scenes/settings.svg"
+  ],
+  "retain_paths": [
+    ".agents/state.md",
+    "crates/.gitignore",
+    "crates/Cargo.lock",
+    "crates/Cargo.toml",
+    "crates/igproto-model/Cargo.toml",
+    "crates/igproto-model/README.md",
+    "crates/igproto-model/examples/generate_schemas.rs",
+    "crates/igproto-model/schema/manifest-v1.schema.json",
+    "crates/igproto-model/schema/prototype-source-v1.schema.json",
+    "crates/igproto-model/schema/prototype-v1.schema.json",
+    "crates/igproto-model/src/diagnostic.rs",
+    "crates/igproto-model/src/ids.rs",
+    "crates/igproto-model/src/json.rs",
+    "crates/igproto-model/src/lib.rs",
+    "crates/igproto-model/src/limits.rs",
+    "crates/igproto-model/src/schema.rs",
+    "crates/igproto-model/src/transition.rs",
+    "crates/igproto-model/src/validation.rs",
+    "crates/igproto-model/tests/conformance.rs",
+    "qa/runs/interactive-prototype-v1-phase-1/boundary-results.json",
+    "qa/runs/interactive-prototype-v1-phase-1/cargo-metadata.json",
+    "qa/runs/interactive-prototype-v1-phase-1/check-results.json",
+    "qa/runs/interactive-prototype-v1-phase-1/clippy.log",
+    "qa/runs/interactive-prototype-v1-phase-1/coverage.json",
+    "qa/runs/interactive-prototype-v1-phase-1/evidence-index.md",
+    "qa/runs/interactive-prototype-v1-phase-1/format.log",
+    "qa/runs/interactive-prototype-v1-phase-1/protected-baseline.json",
+    "qa/runs/interactive-prototype-v1-phase-1/report.md",
+    "qa/runs/interactive-prototype-v1-phase-1/scope-status.txt",
+    "qa/runs/interactive-prototype-v1-phase-1/tested-paths.json",
+    "qa/runs/interactive-prototype-v1-phase-1/tested-snapshot.json",
+    "qa/runs/interactive-prototype-v1-phase-1/unit.log",
+    "specs/014-interactive-prototype-v1/design.md",
+    "specs/014-interactive-prototype-v1/plan.md",
+    "specs/014-interactive-prototype-v1/spec.md",
+    "specs/014-interactive-prototype-v1/tasks.md",
+    "specs/014-interactive-prototype-v1/verification.md",
+    "tests/fixtures/prototype/contracts/manifest.json",
+    "tests/fixtures/prototype/contracts/minimal.source.json",
+    "tests/fixtures/prototype/contracts/prototype.json",
+    "tests/fixtures/prototype/contracts/prototype.source.json",
+    "tests/fixtures/prototype/contracts/scenes/dashboard.svg",
+    "tests/fixtures/prototype/contracts/scenes/profile.svg",
+    "tests/fixtures/prototype/contracts/scenes/settings.svg"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "specs/014-interactive-prototype-v1/spec.md",
+    "specs/014-interactive-prototype-v1/plan.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Actual user acceptance of implementation after review; passing QA alone is not acceptance.",
+      "source_path": "specs/014-interactive-prototype-v1/plan.md",
+      "evidence_path": "qa/runs/interactive-prototype-v1-phase-1/report.md",
+      "satisfied": false
+    }
+  ]
+}

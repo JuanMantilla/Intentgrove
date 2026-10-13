@@ -3,6 +3,7 @@ import { listen } from "@tauri-apps/api/event";
 import { api, readerError, type LargeOpened, type SourceWindow } from "../app/api";
 import { errorText, t, type Locale } from "../app/i18n";
 import { usePinchZoom } from "./usePinchZoom";
+import PreviewLoading from "./PreviewLoading";
 
 interface Props {
   opened: LargeOpened;
@@ -44,9 +45,9 @@ export default function LargeSourceView({ opened, locale, onReload, zoom = 1, on
     lastScrollTop.current = source.scrollTop;
   }, [zoom]);
 
-  async function load(offset: number, preserveFind = false) {
+  async function load(offset: number, preserveFind = false, owner?: number) {
     if (!preserveFind) lastMatch.current = null;
-    const generation = ++request.current;
+    const generation = owner ?? ++request.current;
     setLoading(true);
     setNotice(null);
     try {
@@ -59,7 +60,6 @@ export default function LargeSourceView({ opened, locale, onReload, zoom = 1, on
       if (sourceRef.current) sourceRef.current.scrollTop = 0;
     } catch (error) {
       if (request.current === generation) {
-        setWindowData(null);
         setNotice(errorText(locale, readerError(error).code));
       }
     } finally {
@@ -68,7 +68,7 @@ export default function LargeSourceView({ opened, locale, onReload, zoom = 1, on
   }
 
   useEffect(() => {
-    lastMatch.current = null;
+    lastMatch.current = null; setWindowData(null); setFindProgress(null);
     void load(0);
     return () => { request.current += 1; findRequest.current += 1;
       void api.cancelLargeFind().catch(() => {}); };
@@ -89,8 +89,13 @@ export default function LargeSourceView({ opened, locale, onReload, zoom = 1, on
   async function goToLine() {
     const target = Number(line);
     if (!Number.isSafeInteger(target) || target < 1 || target > opened.lineCount) return;
-    try { await load(await api.sourceLineOffset(opened.snapshotId, target)); }
-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
+    const owner = ++request.current;
+    setLoading(true); setNotice(null);
+    try {
+      const offset = await api.sourceLineOffset(opened.snapshotId, target);
+      if (owner === request.current) await load(offset, false, owner);
+    } catch (error) { if (owner === request.current) setNotice(errorText(locale, readerError(error).code)); }
+    finally { if (owner === request.current) setLoading(false); }
   }
 
   async function findNext() {
@@ -183,11 +188,13 @@ export default function LargeSourceView({ opened, locale, onReload, zoom = 1, on
     <input className="large-source-range" type="range" min={0} max={Math.max(1, opened.sizeBytes - 1)}
       value={position} aria-label={t(locale, "largeSourceWindow")}
       onChange={(event) => void load(Number(event.target.value))} />
-    <div className="large-source-status" role="status">
-      {findProgress ? `${t(locale, "largeSourceSearching")} ${findProgress.scannedBytes.toLocaleString(locale)} / ${findProgress.totalBytes.toLocaleString(locale)} bytes`
-        : loading ? t(locale, "largeSourceLoading") : notice ?? (windowData
+    <div className="large-source-status" role={loading || (!windowData && !notice) ? undefined : "status"}>
+      {findProgress ? <PreviewLoading label={t(locale, "largeSourceSearching")} announce={false}
+        progress={{ completed: findProgress.scannedBytes, total: findProgress.totalBytes }}
+        detail={`${findProgress.scannedBytes.toLocaleString(locale)} / ${findProgress.totalBytes.toLocaleString(locale)} bytes`} />
+        : loading ? <PreviewLoading inline label={t(locale, "largeSourceLoading")} /> : notice ?? (windowData
         ? `${windowData.startByte.toLocaleString(locale)}–${windowData.endByte.toLocaleString(locale)} / ${opened.sizeBytes.toLocaleString(locale)} bytes · ${t(locale, "largeSourceLine")} ${windowData.lineNumber}`
-        : t(locale, "largeSourceLoading"))}
+        : <PreviewLoading inline label={t(locale, "largeSourceLoading")} />)}
     </div>
     <pre ref={sourceRef} className="large-source-text" style={{ fontSize: `${12 * zoom}px` }} data-source-zoom={zoom} tabIndex={0} aria-label={t(locale, "largeSourceWindow")}
       onScroll={scrollSource}>{windowData?.text ?? ""}</pre>

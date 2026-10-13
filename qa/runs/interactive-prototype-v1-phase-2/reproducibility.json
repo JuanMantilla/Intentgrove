@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "builds": [
+    {
+      "different_input_and_output_roots": true,
+      "source_arrays_reordered": false,
+      "timezone": "America/Bogota",
+      "bytes": 6022,
+      "sha256": "babda9a68bbb28a7473a72830c7db832773de3f6aa2ad0073639ddac25ab0032",
+      "byte_identical_to_contract_fixture": true,
+      "independent_validation": "PASS"
+    },
+    {
+      "different_input_and_output_roots": true,
+      "source_arrays_reordered": true,
+      "timezone": "Asia/Tokyo",
+      "bytes": 6022,
+      "sha256": "babda9a68bbb28a7473a72830c7db832773de3f6aa2ad0073639ddac25ab0032",
+      "byte_identical_to_contract_fixture": true,
+      "independent_validation": "PASS"
+    }
+  ],
+  "finished_at": "2026-10-12T00:42:06.806650+00:00"
+}

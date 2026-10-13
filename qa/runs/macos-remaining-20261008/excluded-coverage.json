@@ -1,0 +1,153 @@
+[
+  {
+    "id": "CF52",
+    "case": "macOS14 native runtime",
+    "owner": "OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "NOT TESTED",
+    "reason": "Removed from active scope by explicit user instruction; not a pass.",
+    "evidence": [
+      "../../../docs/macos-supported-scope-20261008.md"
+    ]
+  },
+  {
+    "id": "CF53",
+    "case": "Intel/universal compile and runtime",
+    "owner": "OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "NOT TESTED",
+    "reason": "Removed from active scope by explicit user instruction; not a pass.",
+    "evidence": [
+      "../../../docs/macos-supported-scope-20261008.md"
+    ]
+  },
+  {
+    "id": "CF55",
+    "case": "Different-version upgrade and rollback",
+    "owner": "OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "NOT TESTED",
+    "reason": "Removed from active scope by explicit user instruction; not a pass.",
+    "evidence": [
+      "../../../docs/macos-supported-scope-20261008.md"
+    ]
+  },
+  {
+    "id": "DOCK-MATRIX",
+    "case": "Remaining actual Dock Quit/reopen compound repetitions",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "Two direct Dock CUA probes timeoutReached; user declined remaining nine operator cycles. One actual Quit Cancel passed. One clean reopen gesture pending.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": []
+  },
+  {
+    "id": "TITLE-CLEAN-MATRIX",
+    "case": "Ten visible clean title Close \u2192 actual Dock reopen journeys",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "One no-window geometry observed with process retained; CUA can expose hidden AX and stale screenshot. No repeated visible actual Dock reopening proof. Earlier title outcome rows are disk/AX constituents only.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": []
+  },
+  {
+    "id": "SEARCH-TIMING-DEFAULT",
+    "case": "Exact default production Stop latency measurement",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "Default package lacks authenticated measurement channel; trusted same-source QA timing is separate supporting evidence. Tool-call duration excluded.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": []
+  },
+  {
+    "id": "CF48-KEYBOARD-SEARCH-JOURNEYS",
+    "case": "All start/result-open/toggle/Stop/empty/error/close keyboard journeys EN/ES each exact width",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "Exact visible-window geometry regressed to zero System Events windows; full sequential keyboard search journeys at all6locale/width combinations are not demonstrated. Actual Dock visibility needed; static/focus constituents separate.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": []
+  },
+  {
+    "id": "CURRENT-INSTALL-ROLLBACK",
+    "case": "Install latest frozen package, ten ordinary launches and reversible uninstall/rollback",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "Installed Applications app and DMG remain b7 historical candidate. Finder initial access works intermittently, then cgWindowNotFound on native fixture action. No latest install/rollback acceptance inferred.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": [],
+    "installedPackageRecoveryEvidence": "cf54-recovery-20261008/report.md",
+    "installedPackageRecoveryStatus": "PASS for requested existing b7 journey; SC-001 withdrawn; newer artifact is an evidence boundary, not a new CF54 requirement",
+    "newerBuildTesting": {
+      "owner": "USER",
+      "agentAcceptanceRequired": false,
+      "disposition": "Removed from remaining agent work by explicit user instruction; not a test PASS",
+      "decision": "docs/macos-newer-build-user-testing-20261008.md"
+    }
+  },
+  {
+    "id": "CURRENT-NATIVE-OPEN-DROPS",
+    "case": "Current-candidate Finder Open With and real file/folder/Settings drops, required repetitions",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "Finder native action cgWindowNotFound. Current actual fixture drop requested; historical b7 passes separate.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": []
+  },
+  {
+    "id": "FIND-VISIBLE-GEOMETRY",
+    "case": "Find control painting/visible geometry discrepancy",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "BLOCKED",
+    "historicalReason": "CUA shows blank allocated control strip while AX responds; System Events again zero windows. No product defect attributed without actual visible-window verification.",
+    "historicalLedger": "native-final-20261008/coverage.json",
+    "reason": "Exclude the seven blocked checks; retain all three defects",
+    "evidence": [
+      "../../../docs/macos-acceptance-exclusions-20261008.md"
+    ],
+    "retainedEvidence": [
+      "evidence/document-find-reopen-empty-640.jpg",
+      "evidence/document-find-no-matches-640.jpg"
+    ]
+  },
+  {
+    "id": "CRLF-SAVE",
+    "case": "Consistent CRLF section direct/lifecycle Save",
+    "status": "NOT_APPLICABLE",
+    "historicalStatus": "FAIL",
+    "finding": "QA-0017",
+    "disposition": "DEFERRED by user; known defect not fixed",
+    "decision": "docs/macos-crlf-save-deferral-20261008.md",
+    "historicalLedger": "native-final-20261008/coverage.json"
+  }
+]

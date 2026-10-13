@@ -1,0 +1,92 @@
+[
+  {
+    "id": "frontend-full-suite",
+    "result": "PASS",
+    "reason": "npm test exit0;588 tests/65 files, includes32 creation-focused cases; final isolated unchanged v6 candidate",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/tests-v6-isolated.log"
+    ]
+  },
+  {
+    "id": "standard-build",
+    "result": "PASS",
+    "reason": "npm run build exit0; project-wide TypeScript and Vite, existing chunk warning",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/build-v6.log"
+    ]
+  },
+  {
+    "id": "diff-input-integrity",
+    "result": "PASS",
+    "reason": "git diff --check; tested frontend/config/input hashes unchanged from v6",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/diff-check-v6.log",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/input-integrity-final.json"
+    ]
+  },
+  {
+    "id": "render-matrix",
+    "result": "PASS",
+    "reason": "24 actual App dialog/editor images,1280x820/390x844 EN/ES Light/Dark/System, explicitly MOCKED native bridge; native min640 unchanged",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/render-matrix-final.json",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/visual-review.json"
+    ]
+  },
+  {
+    "id": "keyboard-modal-picker-ownership",
+    "result": "PASS",
+    "reason": "Bounded32 component/mock cases including actual rendered dirty editor, menu+DOM deduplication, Tab/Escape/focus, Enter/IME, picker/create ownership; not physical native proof",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/tests-v6-isolated.log",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/browser-keyboard-limitations.json"
+    ]
+  },
+  {
+    "id": "real-native-destination-confirmation",
+    "result": "FAIL",
+    "reason": "Isolated earlier native candidate picker Open disabled with disposable destination selected; no token; main window automation later lost usable frames",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-observations.json",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-picker-disabled.png",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-form-retained.txt",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-before.json",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-after.json",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-candidate.json"
+    ]
+  },
+  {
+    "id": "final-native-created-document-lifecycle",
+    "result": "NOT_RUN",
+    "reason": "Blocked by native picker confirmation; no native UI create/edit/save/reopen/discard-empty/conflict/recovery or focused-editor shortcut certification",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-observations.json"
+    ]
+  },
+  {
+    "id": "windows-native-routing-lifecycle",
+    "result": "NOT_RUN",
+    "reason": "No Windows runtime; existing editing gate preserved per native handoff; disabled Create is intentional",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-observations.json"
+    ]
+  },
+  {
+    "id": "assistive-technology-ime-zoom",
+    "result": "NOT_RUN",
+    "reason": "VoiceOver/physical IME/200% zoom/live System changes not run; component semantics and composition check only",
+    "finished_at": "2026-10-11T15:26:54.541626+00:00",
+    "evidence_paths": [
+      "frontend-implementation/evidence/new-markdown-integration-20261011/visual-review.json",
+      "frontend-implementation/evidence/new-markdown-integration-20261011/native-observations.json"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "case": "observed-13",
+  "elapsedMs": 313.94904099999997,
+  "events": [
+    "{\"value\":\"observe\",\"ppid\":30962,\"event\":\"started\",\"pid\":31008,\"time\":121093.32582362501}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":30962,\"event\":\"navigation\",\"pid\":31008,\"time\":121093.40391979167}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":31008,\"time\":121093.40488641667}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":31008,\"time\":121093.42157587501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"bridge-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.__TAURI_INTERNALS__.invoke')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":31008,\"time\":121093.51057775001}",
+    "{\"value\":\"{\\\"kind\\\":\\\"wk-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.webkit.messageHandlers')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":31008,\"time\":121093.51060608334}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":30962,\"event\":\"js\",\"pid\":31008,\"time\":121093.51061679167}"
+  ],
+  "pid": 31008,
+  "result": "diagram_rejected"
+}

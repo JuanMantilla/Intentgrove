@@ -1,0 +1,231 @@
+{
+  "host": "macOS 27.0.1 (26A434) arm64 native",
+  "build_sha256": "c91686dbd1b8d3b964e69bcd87359dd0bbc94bfeedbd0dc3dda8c6e4a4ccc94a",
+  "counts": {
+    "PASS": 15,
+    "NOT TESTED": 5,
+    "BLOCKED": 6,
+    "FAIL": 1
+  },
+  "cases": [
+    {
+      "id": "MA01",
+      "scope": "Settings preference-only window",
+      "status": "PASS",
+      "evidence": "02-settings.txt;02-settings.png",
+      "detail": "Separate window; General focus and Done return observed."
+    },
+    {
+      "id": "MA02",
+      "scope": "Settings focus suppresses Go dispatch",
+      "status": "PASS",
+      "evidence": "10-settings-history-go.txt",
+      "detail": "With committed history, Back remained enabled but dispatch was ignored; closing Settings retained entry.md. Empty-history actions were disabled. No all-focus-state guarantee."
+    },
+    {
+      "id": "MA03",
+      "scope": "Native Back/Forward",
+      "status": "PASS",
+      "evidence": "09-go-menu.txt;tool transcript",
+      "detail": "Back selected scoped.md; Forward selected entry.md with correct next/previous guards."
+    },
+    {
+      "id": "MA04",
+      "scope": "Native Visited/Clear actions",
+      "status": "NOT TESTED",
+      "evidence": "09-go-menu.txt",
+      "detail": "Enabled entries inspected; activation/clear retention not executed."
+    },
+    {
+      "id": "MA05",
+      "scope": "Command O/F/W/Q",
+      "status": "PASS",
+      "evidence": "05-dirty-close.txt;06-failed-save.txt;16-reopen-find.txt",
+      "detail": "O opened native chooser; F focused Find and returned 1 of 1; W/Q invoked dirty guards."
+    },
+    {
+      "id": "MA06",
+      "scope": "Remaining Command shortcuts",
+      "status": "NOT TESTED",
+      "evidence": "",
+      "detail": "No complete shortcut inventory, Cmd-comma/Save/close-tab matrix."
+    },
+    {
+      "id": "MA07",
+      "scope": "Finder warm file open",
+      "status": "BLOCKED",
+      "evidence": "tool transcript",
+      "detail": "Finder getApp returned cgWindowNotFound; no accessible Finder window. launch_app is unavailable on this surface."
+    },
+    {
+      "id": "MA08",
+      "scope": "Finder cold file open",
+      "status": "BLOCKED",
+      "evidence": "tool transcript",
+      "detail": "Same Finder access blocker; no cold-open result inferred from chooser or reopen."
+    },
+    {
+      "id": "MA09",
+      "scope": "File drop",
+      "status": "BLOCKED",
+      "evidence": "tool transcript",
+      "detail": "No accessible Finder drag source/cross-window surface."
+    },
+    {
+      "id": "MA10",
+      "scope": "Folder drop",
+      "status": "BLOCKED",
+      "evidence": "tool transcript",
+      "detail": "Same drag-source blocker."
+    },
+    {
+      "id": "MA11",
+      "scope": "Settings ignores drops",
+      "status": "BLOCKED",
+      "evidence": "",
+      "detail": "Settings event policy preserved in code; actual file drop cannot be exercised without drag source."
+    },
+    {
+      "id": "MA12",
+      "scope": "Dirty Close Cancel",
+      "status": "PASS",
+      "evidence": "05-dirty-close.txt;05-dirty-close.png",
+      "detail": "Cmd-W choices; Cancel retained exact Disposable unsaved draft 20261007."
+    },
+    {
+      "id": "MA13",
+      "scope": "Dirty Quit Cancel",
+      "status": "PASS",
+      "evidence": "06-failed-save.txt;tool transcript",
+      "detail": "Cmd-Q choices; after failed Save, Cancel retained open editor/draft."
+    },
+    {
+      "id": "MA14",
+      "scope": "Failed Save on moved source",
+      "status": "PASS",
+      "evidence": "06-failed-save.txt;06-failed-save.png",
+      "detail": "Temporarily moved only scoped.md to backup; Save refused missing source, retained draft and close choice. Restored exact source."
+    },
+    {
+      "id": "MA15",
+      "scope": "Keep draft and session recovery",
+      "status": "PASS",
+      "evidence": "07-restored-draft.txt;07-restored-draft.png",
+      "detail": "Keep draft followed by tool-managed reopen restored exact draft/root/tab and conflict review. Process-exit timing was not independently recorded for this dirty trial."
+    },
+    {
+      "id": "MA16",
+      "scope": "Preference persistence",
+      "status": "PASS",
+      "evidence": "08-restored-settings.txt",
+      "detail": "Changed 16 to 18 px; restored Settings showed 18 after reopen. One trial only."
+    },
+    {
+      "id": "MA17",
+      "scope": "Close Window/LaunchServices reopen",
+      "status": "PASS",
+      "evidence": "16-reopen-find.txt;tool transcript",
+      "detail": "File Close Window retained running app; getApp reopened same candidate; five tabs and entry.md restored, Find usable."
+    },
+    {
+      "id": "MA18",
+      "scope": "Actual Dock reopen",
+      "status": "BLOCKED",
+      "evidence": "tool transcript",
+      "detail": "getApp(com.apple.dock) timed out. LaunchServices reopen is separately recorded, not substituted."
+    },
+    {
+      "id": "MA19",
+      "scope": "Selected-folder search/open",
+      "status": "PASS",
+      "evidence": "04-scoped-search.txt;04-scoped-search.png",
+      "detail": "Enabled notes action, Both mode, confirmed scope notes; Needle returned only notes/scoped.md (root match excluded), opaque native hit opened document/Find."
+    },
+    {
+      "id": "MA20",
+      "scope": "Native pending scope/error race journeys",
+      "status": "NOT TESTED",
+      "evidence": "../../../os-engineering/evidence/macos-20261007/scope-tests.log",
+      "detail": "Nine mocked panel tests cover scope/cancel/buffered batch/stale open/Spanish changed-scope recovery; actual native replacement and EN/ES focus matrix not executed."
+    },
+    {
+      "id": "MA21",
+      "scope": "Image grant/security boundaries",
+      "status": "PASS",
+      "evidence": "11-images-blocked.png;14-root-images.png",
+      "detail": "File-only Markdown blocked sibling assets; root-granted Markdown displayed PNG; remote/scripted SVG stayed blocked. No independent request/network observation."
+    },
+    {
+      "id": "MA22",
+      "scope": "Image raster refresh",
+      "status": "PASS",
+      "evidence": "12-standalone-png.png;13-image-refresh.png",
+      "detail": "Valid 128x128 PNG decoded by packaged helper; in-place red-to-green bytes refreshed displayed raster."
+    },
+    {
+      "id": "MA23",
+      "scope": "Image refreshed status accuracy",
+      "status": "FAIL",
+      "evidence": "13-image-refresh.txt;13-image-refresh.png",
+      "detail": "Supported refreshed PNG displays correctly but tab AX/help reports unsupported content. QA-0006; persisted again after reopen."
+    },
+    {
+      "id": "MA24",
+      "scope": "Large source bounds/end/tab responsiveness",
+      "status": "PASS",
+      "evidence": "15-large-end.txt;15-large-end.png",
+      "detail": "12,900,027 bytes; explicit read-only mode; 65,536-byte final window reached end and another Markdown tab remained usable."
+    },
+    {
+      "id": "MA25",
+      "scope": "Large/rich performance acceptance",
+      "status": "NOT TESTED",
+      "evidence": "15-large-observation-ms.txt;15-large-source-ms.txt",
+      "detail": "508/621 ms bounded action-to-observation intervals include automation overhead. Not ten trials, app-ready clock, memory profile, or rich 1/10 MiB SC proof."
+    },
+    {
+      "id": "MA26",
+      "scope": "Source preservation/cleanup",
+      "status": "PASS",
+      "evidence": "source-preservation.txt;17-cleanup-inventory.json",
+      "detail": "entry.md/scoped.md hashes identical; disposable moved source restored; no remaining editor recovery offers; QA app isRunning=false. PNG mutation was intentional fixture work."
+    },
+    {
+      "id": "MA27",
+      "scope": "Complete EN/ES/zoom/theme acceptance",
+      "status": "NOT TESTED",
+      "evidence": "",
+      "detail": "Native English/System only; Spanish recovery automated with mocked bridge. No full locale/zoom/Reduce Motion matrix."
+    }
+  ],
+  "final_followup": {
+    "build_sha256": "1243af6597b704fbe3ad6abd5a3cabb26718c4552a6daf9f96c0fd049bbf3252",
+    "counts": {
+      "PASS": 3
+    },
+    "report": "final-followup.md",
+    "cases": [
+      {
+        "id": "MF01",
+        "status": "PASS",
+        "scope": "Final reference link native open"
+      },
+      {
+        "id": "MF02",
+        "status": "PASS",
+        "scope": "Disabled diagram source/sibling fallback"
+      },
+      {
+        "id": "MF03",
+        "status": "PASS",
+        "scope": "Metadata and duplicate outline navigation"
+      }
+    ]
+  },
+  "aggregate_counts": {
+    "PASS": 18,
+    "FAIL": 1,
+    "BLOCKED": 6,
+    "NOT TESTED": 5
+  }
+}

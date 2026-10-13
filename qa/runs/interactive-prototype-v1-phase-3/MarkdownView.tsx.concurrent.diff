@@ -1,0 +1,55 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/reader/MarkdownView.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/reader/MarkdownView.tsx
+@@ -1,7 +1,7 @@
+ import { Component, createElement, cloneElement, isValidElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ReactElement, type Ref } from "react";
+ import Markdown, { type Components } from "react-markdown";
+ import { createPortal, flushSync } from "react-dom";
+-import { selectDocumentContents, ownsTextInput, type DocumentSelectionAdapter } from "./document-selection";
++import { selectDocumentContents, ownsTextInput, watchSelectionOwner, type DocumentSelectionAdapter, type DocumentSelectionRequest } from "./document-selection";
+ import remarkGfm from "remark-gfm";
+ import type { Root } from "mdast";
+ import type { Plugin } from "unified";
+@@ -152,7 +152,11 @@
+     if (typeof findRootRef === "function") findRootRef(node);
+     else if (findRootRef) findRootRef.current = node;
+   }, [findRootRef]);
+-  const [selectionRequest, setSelectionRequest] = useState<{ fileId: string; content: string } | null>(null);
++  const [selectionRequest, setSelectionRequest] = useState<({ fileId: string; content: string } & DocumentSelectionRequest) | null>(null);
++  useEffect(() => {
++    if (!selectionRequest) return;
++    return watchSelectionOwner(() => selectionRoot.current, () => setSelectionRequest(null));
++  }, [selectionRequest]);
+   const [editMenu, setEditMenu] = useState<{
+     section?: SectionDescriptor; reason?: string; x: number; y: number; anchor: HTMLElement
+   } | null>(null);
+@@ -256,11 +260,11 @@
+     if (!layoutPending && renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
+   }, [fileId, content, renderReady, painted, blocks.length, layoutPending, sections]);
+   useEffect(() => {
+-    onSelectionReady?.({ fileId, selectAll: () => {
++    onSelectionReady?.({ fileId, selectAll: (request = {}) => {
+       // Include blocks that incremental painting has not mounted yet. A request
+       // during parsing waits for the current document, never the retained tree.
+       flushSync(() => {
+-        setSelectionRequest({ fileId, content });
++        setSelectionRequest({ fileId, content, ...request });
+         if (selectionReady) setPainted(blocks.length);
+       });
+     } });
+@@ -268,7 +272,7 @@
+   }, [onSelectionReady, fileId, content, selectionReady, blocks.length]);
+   useLayoutEffect(() => {
+     if (!selectionRequest) return;
+-    if (selectionRequest.fileId !== fileId || selectionRequest.content !== content
++    if (selectionRequest.fileId !== fileId || selectionRequest.content !== content || selectionRequest.isCurrent?.() === false
+       || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, selectionRoot.current)) {
+       setSelectionRequest(null); return;
+     }
+@@ -280,6 +284,7 @@
+         if (details) details.open = true;
+       }
+       selectDocumentContents(selectionRoot.current);
++      selectionRequest.onComplete?.();
+     }
+     setSelectionRequest(null);
+   }, [selectionRequest, fileId, content, selectionReady, sourceFallback, painted, blocks.length, layoutPending]);

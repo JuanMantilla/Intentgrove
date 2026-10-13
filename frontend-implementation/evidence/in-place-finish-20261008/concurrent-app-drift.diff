@@ -1,0 +1,96 @@
+--- /var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-editor-verified-ds_fo_ts/src/app/App.tsx	2026-10-08 20:36:49
++++ src/app/App.tsx	2026-10-08 20:48:36
+@@ -1621,10 +1621,10 @@
+   function localTarget(request: OpenRequest): LocalTarget {
+     return request.fileId ? {fileId:request.fileId} : {rootId:request.rootId!,segments:request.segments!};
+   }
+-  async function acceptLocalView(view: LocalView, request: OpenRequest, pendingId?: string, activate = true): Promise<string | undefined> {
++  async function acceptLocalView(view: LocalView, request: OpenRequest, pendingId?: string, activate = true, onFailure?: (code:string)=>void): Promise<string | undefined> {
+     if(!validLocalView(view)) throw {code:"html_view_unavailable",message:"Invalid local view response"};
+-    if(view.kind === "markdown") return openDocument({...request,fileId:view.fileId},{name:view.name,path:view.displayPath});
+-    if(view.kind === "image") { await openImage({...request,fileId:view.fileId},{name:view.name,path:view.displayPath}); return activeIdRef.current ?? undefined; }
++    if(view.kind === "markdown") return openDocument({...request,fileId:view.fileId},{name:view.name,path:view.displayPath},onFailure);
++    if(view.kind === "image") return openImage({...request,fileId:view.fileId},{name:view.name,path:view.displayPath},false,true,onFailure);
+     if(view.kind !== "details" && !validHtmlView(view)) throw {code:"html_view_unavailable",message:"Invalid isolated HTML response"};
+     const existing=tabsRef.current.find(tab=>tab.identityKey===view.identityKey && tab.localView);
+     if(existing) {
+@@ -1650,18 +1650,19 @@
+     try {
+       const view=selected ?? await htmlNative.open({fileId:link.fileId},crypto.randomUUID());
+       if(sequence!==openSequence.current || source!==activeIdRef.current){if(view.viewToken)await htmlNative.dispose({viewToken:view.viewToken,generation:view.generation});return;}
+-      const id=await acceptLocalView(view,{fileId:view.fileId},undefined,view.kind!=='html');
++      let failureCode:string|undefined;
++      const id=await acceptLocalView(view,{fileId:view.fileId},undefined,view.kind!=='html',code=>{failureCode=code;});
+       if(id && view.kind==='html') {
+         await waitForHtmlReady(id);
+         if(sequence!==openSequence.current || source!==activeIdRef.current) return;
+         if(link.anchor!==null) {const handle=htmlHandles.current.get(id);if(handle)await handle.locate({offset:0,scrollTop:0,scrollLeft:0,zoom:1,...htmlLocations.current.get(id),headingId:link.anchor || null});}
+         if(sequence!==openSequence.current || source!==activeIdRef.current)return;
+         if(source)await htmlHandles.current.get(source)?.hide();
+-        activeIdRef.current=id;setActiveId(id);
++        setNotice(null);activeIdRef.current=id;setActiveId(id);
+         requestAnimationFrame(()=>void htmlHandles.current.get(id)?.focus().catch(()=>{}));
+       }
+       if(!id && source) {
+-        if(activeIdRef.current===source || activeIdRef.current===view.fileId) {activeIdRef.current=source;setActiveId(source);requestAnimationFrame(()=>void htmlHandles.current.get(source)?.focus().catch(()=>{}));}
++        if(activeIdRef.current===source || activeIdRef.current===view.fileId) {if(failureCode)setNotice(l=>errorText(l,failureCode!));activeIdRef.current=source;setActiveId(source);requestAnimationFrame(()=>void htmlHandles.current.get(source)?.focus().catch(()=>{}));}
+         return;
+       }
+       if(id && link.anchor!==null && view.kind!=='html') {
+@@ -1670,7 +1671,7 @@
+       }
+     } catch(e) {setNotice(l=>errorText(l,readerError(e).code));}
+   }
+-  async function openDocument(request: OpenRequest, fallback?: { name: string; path: string }): Promise<string | undefined> {
++  async function openDocument(request: OpenRequest, fallback?: { name: string; path: string }, onFailure?: (code:string)=>void): Promise<string | undefined> {
+     const sequence = ++openSequence.current;
+     if(activeIdRef.current && htmlHandles.current.has(activeIdRef.current)) {
+       const handle=htmlHandles.current.get(activeIdRef.current)!;
+@@ -1791,6 +1792,7 @@
+     } catch (error) {
+       if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       const detail = readerError(error);
++      onFailure?.(detail.code);
+       if (detail.code === "oversize") {
+         try {
+           const inspected = await api.inspectLargeFile(request);
+@@ -1846,7 +1848,7 @@
+   }
+ 
+   async function openImage(request: OpenRequest, fallback?: { name: string; path: string },
+-    force = false, activate = true) {
++    force = false, activate = true, onFailure?: (code:string)=>void): Promise<string | undefined> {
+     if(activate && activeIdRef.current && htmlHandles.current.has(activeIdRef.current)) {
+       const handle=htmlHandles.current.get(activeIdRef.current)!;await handle.capture().catch(()=>{});await handle.hide().catch(()=>{});
+     }
+@@ -1857,7 +1859,7 @@
+     const alreadyOpen = tabsRef.current.find((tab) => tab.id === pendingId && tab.kind === "image" && tab.image);
+     if (alreadyOpen && !force) {
+       if (activate) { activeIdRef.current = pendingId; setActiveId(pendingId); setCompactSidebarOpen(false); }
+-      return;
++      return pendingId;
+     }
+     const token = Symbol("image load");
+     imageLoads.current.set(pendingId, token);
+@@ -1884,7 +1886,7 @@
+       if (duplicate) {
+         setTabs((old) => old.filter((tab) => tab.id !== pendingId));
+         if (activate && activeIdRef.current === pendingId) { activeIdRef.current = duplicate.id; setActiveId(duplicate.id); }
+-        return;
++        return duplicate.id;
+       }
+       const tab: Tab = { id: image.fileId, kind: "image",
+         image: activeIdRef.current === pendingId ? image : undefined,
+@@ -1895,10 +1897,12 @@
+         request: { fileId: image.fileId, rootId: request.rootId, segments: request.segments } };
+       setTabs((old) => [...old.filter((item) => item.id !== pendingId && item.id !== image.fileId), tab]);
+       if (activate && activeIdRef.current === pendingId) { activeIdRef.current = image.fileId; setActiveId(image.fileId); }
++      return image.fileId;
+     } catch (error) {
+       if (generation !== generationRef.current || imageLoads.current.get(pendingId) !== token) return;
+       imageLoads.current.delete(pendingId);
+       const code = readerError(error).code;
++      onFailure?.(code);
+       setTabs((old) => old.map((tab) => tab.id === pendingId
+         ? { ...tab, kind: "image", imageLoading: false, image: undefined, errorCode: code } : tab));
+     }

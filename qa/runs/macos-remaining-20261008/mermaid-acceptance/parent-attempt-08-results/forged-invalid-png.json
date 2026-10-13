@@ -1,0 +1,19 @@
+{
+  "case": "forged-invalid-png",
+  "elapsedMs": 266.733208,
+  "events": [
+    "{\"value\":\"invalid-png\",\"ppid\":30783,\"event\":\"started\",\"pid\":30847,\"time\":120950.94942075001}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":30783,\"event\":\"navigation\",\"pid\":30847,\"time\":120951.04262675}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":30783,\"event\":\"resource\",\"pid\":30847,\"time\":120951.04347529168}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":30783,\"event\":\"resource\",\"pid\":30847,\"time\":120951.05929062501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"bridge-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.__TAURI_INTERNALS__.invoke')\\\"}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.14365670834}",
+    "{\"value\":\"{\\\"kind\\\":\\\"wk-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.webkit.messageHandlers')\\\"}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.14368329168}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.14369404168}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.147870375}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-complete\\\",\\\"value\\\":true}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.14877925001}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.15259829168}",
+    "{\"value\":\"{\\\"kind\\\":\\\"render-entered\\\",\\\"value\\\":true}\",\"ppid\":30783,\"event\":\"js\",\"pid\":30847,\"time\":120951.15931016668}"
+  ],
+  "pid": 30847,
+  "result": "diagram_protocol"
+}

@@ -1,0 +1,400 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PrototypeSource",
+  "type": "object",
+  "properties": {
+    "entry": {
+      "$ref": "#/$defs/SceneId"
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Interaction"
+      },
+      "maxItems": 1024
+    },
+    "prototypeId": {
+      "$ref": "#/$defs/PrototypeId"
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SourceScene"
+      },
+      "maxItems": 32,
+      "minItems": 1
+    },
+    "sourceVersion": {
+      "$ref": "#/$defs/Version1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "viewport": {
+      "$ref": "#/$defs/Viewport"
+    },
+    "visualSources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/VisualSource"
+      }
+    }
+  },
+  "$comment": "GENERATED from igproto-model Rust types. Do not edit. Semantic/reference and UTF-8 byte limits require the Rust validator.",
+  "additionalProperties": false,
+  "required": [
+    "sourceVersion",
+    "prototypeId",
+    "viewport",
+    "entry",
+    "visualSources",
+    "scenes",
+    "interactions"
+  ],
+  "$defs": {
+    "Action": {
+      "oneOf": [
+        {
+          "description": "Base → different base; push old base, truncate oldest at history capacity 32.",
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "#/$defs/SceneId"
+            },
+            "type": {
+              "type": "string",
+              "const": "NAVIGATE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "scene"
+          ]
+        },
+        {
+          "description": "Base only; pop history or explicit no-op when empty. No destination payload.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "BACK"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "description": "Base → overlay; empty overlay stack required. V1 capacity is one.",
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "#/$defs/SceneId"
+            },
+            "type": {
+              "type": "string",
+              "const": "OPEN_OVERLAY"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "scene"
+          ]
+        },
+        {
+          "description": "Overlay only; pop top, preserving base/history. No destination payload.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "CLOSE_OVERLAY"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "description": "Negate this scene's declared visibility boolean; override group display inline/none.",
+          "type": "object",
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/TargetId"
+            },
+            "type": {
+              "type": "string",
+              "const": "TOGGLE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "target"
+          ]
+        }
+      ]
+    },
+    "Bounds": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number",
+          "format": "double"
+        },
+        "width": {
+          "type": "number",
+          "format": "double"
+        },
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ]
+    },
+    "DissolveDuration": {
+      "type": "integer",
+      "const": 100
+    },
+    "ExportProfile": {
+      "type": "string",
+      "enum": [
+        "vectorcraft-svg-v1"
+      ]
+    },
+    "Interaction": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "id": {
+          "$ref": "#/$defs/InteractionId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "scene": {
+          "$ref": "#/$defs/SceneId"
+        },
+        "target": {
+          "$ref": "#/$defs/TargetId"
+        },
+        "transition": {
+          "$ref": "#/$defs/Transition"
+        },
+        "trigger": {
+          "$ref": "#/$defs/Trigger"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scene",
+        "target",
+        "trigger",
+        "action",
+        "transition"
+      ]
+    },
+    "InteractionId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "PrototypeId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "SceneId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "SceneKind": {
+      "type": "string",
+      "enum": [
+        "base",
+        "overlay"
+      ]
+    },
+    "SourceId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "SourceScene": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SceneId"
+        },
+        "kind": {
+          "$ref": "#/$defs/SceneKind"
+        },
+        "label": {
+          "type": "string"
+        },
+        "localState": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VisibilityState"
+          },
+          "maxItems": 64
+        },
+        "visualBinding": {
+          "$ref": "#/$defs/VisualBinding"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "visualBinding",
+        "localState"
+      ]
+    },
+    "TargetId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "Transition": {
+      "description": "DISSOLVE: prepared destination base opacity 0→1, linear; reduced motion is instant.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "INSTANT"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "durationMs": {
+              "$ref": "#/$defs/DissolveDuration"
+            },
+            "type": {
+              "type": "string",
+              "const": "DISSOLVE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "durationMs"
+          ]
+        }
+      ]
+    },
+    "Trigger": {
+      "type": "string",
+      "enum": [
+        "CLICK"
+      ]
+    },
+    "Version1": {
+      "type": "integer",
+      "const": 1
+    },
+    "Viewport": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "format": "uint32",
+          "maximum": 4096,
+          "minimum": 1
+        },
+        "width": {
+          "type": "integer",
+          "format": "uint32",
+          "maximum": 4096,
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height"
+      ]
+    },
+    "VisibilityState": {
+      "type": "object",
+      "properties": {
+        "initialVisible": {
+          "type": "boolean"
+        },
+        "target": {
+          "$ref": "#/$defs/TargetId"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "initialVisible"
+      ]
+    },
+    "VisualBinding": {
+      "type": "object",
+      "properties": {
+        "bounds": {
+          "$ref": "#/$defs/Bounds"
+        },
+        "rootTarget": {
+          "$ref": "#/$defs/TargetId"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceId"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "rootTarget",
+        "bounds"
+      ]
+    },
+    "VisualSource": {
+      "type": "object",
+      "properties": {
+        "exportProfile": {
+          "$ref": "#/$defs/ExportProfile"
+        },
+        "id": {
+          "$ref": "#/$defs/SourceId"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "path",
+        "sha256",
+        "exportProfile"
+      ]
+    }
+  }
+}

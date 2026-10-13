@@ -1,0 +1,18 @@
+{
+  "name": "native-check",
+  "command": [
+    "cargo",
+    "check",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:04:46.911987+00:00",
+  "finished_at": "2026-10-12T04:04:57.800017+00:00",
+  "exit_code": 0,
+  "log": "native-check.log",
+  "tested_snapshot": "tested-snapshot-final.json"
+}

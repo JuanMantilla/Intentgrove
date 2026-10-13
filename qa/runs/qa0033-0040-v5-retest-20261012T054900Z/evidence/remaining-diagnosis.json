@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-12T06:56:49.373851+00:00",
+  "new_markdown_cancellation_alert": {
+    "observed": "v3-source/v4 native-context default03 failed original alert line70; Filename first.MD intact",
+    "cause": "UNKNOWN; untraced failing activation",
+    "demonstrated_gap": "call-start does not release legitimate picker owner; controlled null/denied probe confirms concurrent click suppression",
+    "next": "capture failed second-click disabled/owner/pending-release order in unchanged full context",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/evidence/remaining-suite-triage.json"
+  },
+  "session_initial_heading": {
+    "observed": "final default01 cannot find initial second at original line304 before any clearing action",
+    "cause": "UNKNOWN; startup/restoration/read/paint boundary",
+    "ruled_out": "session.test afterEach explicitly unstubs globals/envs; no demonstrated persistent DeferredWorker leak",
+    "diagnostics": "unchanged isolated29 and observed full716 pass; successful load/reply/render order traced, no failed order obtained",
+    "next": "capture failed session load/read replies, inline-vs-worker state and heading mount relative to original1s wait; preserve original deadline"
+  },
+  "bounded_source_pinch": {
+    "observed": "final default03 original line82 sourceZoom remains1 after ctrl-wheel",
+    "cause": "UNKNOWN; candidate first-visible-text\u2192passive wheel-listener registration gap",
+    "source": "usePinchZoom attaches native wheel listener in passive useEffect after LargeSource windowData enables it",
+    "diagnostics": "successful register\u2192wheel handler observed on isolated/full instrumentation; not proof of failed order",
+    "next": "capture missing/late registration vs wheel delivery at original failing assertion; no source change justified yet"
+  },
+  "native_worker_fallback": {
+    "observed": "one small4937-byte real long fixture falls back; no source/fixture mutation",
+    "cause": "UNKNOWN constructor/error/deadline/completion boundary; occlusion transitions observed, not enough to attribute parser error",
+    "next": "separate native observation-only worker generation/request/reply/onerror/deadline trace before proposing a repair; preserve5s budget"
+  },
+  "QA0038_QA0039_QA0040": {
+    "cause": "UNKNOWN historical failed order",
+    "status": "UNRESOLVED; repeated original passes and successful traces do not close",
+    "next": "capture actual failed read/parser/paint/section/control order in unchanged default maxWorkers2 context"
+  },
+  "other_observed_full_failures": {
+    "observed": "v3 observational full708/7, retained close-edit2/large-source/refresh-conflict/session/workspace-layout2",
+    "cause": "UNKNOWN; source/provider/test/environment boundary not established",
+    "next": "owning-scope traces; full successful reruns are not repair evidence"
+  },
+  "native_ownership_and_provider": {
+    "observed": "unowned Undo/Redo no-ops; native menu predefined responder; editor-focused actual keyboard succeeds. Escape did not cancel native menu on stale target; exposed accessibility Cancel did. ScreenCaptureKit errors/cropped frame retained. Native Window menu makes window accessible but does not prove unoccluded WebKit; Finder Open provides separate activation route.",
+    "status": "invalid-precondition/provider incidents retained, not scored as source-history corruption"
+  }
+}

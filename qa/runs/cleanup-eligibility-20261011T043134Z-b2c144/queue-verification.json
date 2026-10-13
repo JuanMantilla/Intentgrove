@@ -1,0 +1,42 @@
+{
+  "finished_at": "2026-10-11T04:33:48.653356+00:00",
+  "published_this_run": false,
+  "reason": "No eligible task; standalone DONE_ACCEPTED command not called. No hook invoked or queue written.",
+  "queue_records": [
+    {
+      "record_key": "1c03ddb4bd408ef8b737d0caedeaab937bc181affd629546f3edcf0a77328682",
+      "state": "APPLIED",
+      "attempts": 1,
+      "queued_at": "2026-10-11T04:25:49.631937+00:00",
+      "tool_use_id": "exec-fb1cbef7-6c72-49ce-8913-4fcc9ef3d8ef",
+      "session_id": "01a12921-d216-71f0-a1cf-dff34e327da3",
+      "context_id": null,
+      "run_id": "1c03ddb4bd408ef8b737-1",
+      "discovery_checkpoint": {
+        "run_id": "1c03ddb4bd408ef8b737-1",
+        "manifest_sha256": "9180c783fb3321574b6308ff50168d5cfcfbc7c0e37570aad7e25f427e93a4a5",
+        "binding": "91a1e663157352bd8542b87f6a7d1a664579245fc2a5ddfbafe35e84b1aa5e86"
+      },
+      "reason": "independent_review_saved",
+      "applied_at": "2026-10-11T04:26:40.766875+00:00",
+      "report_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/1c03ddb4bd408ef8b737-1/report.json"
+    }
+  ],
+  "hook_outcomes": [
+    {
+      "disposition": "ENQUEUED",
+      "reason": "durable_request_committed",
+      "context_id": null,
+      "session_id": "01a12921-d216-71f0-a1cf-dff34e327da3",
+      "tool_use_id": "exec-fb1cbef7-6c72-49ce-8913-4fcc9ef3d8ef",
+      "observed_at": "2026-10-11T04:25:49.535322+00:00",
+      "validation": "PASS",
+      "response_format": "str",
+      "record_key": "1c03ddb4bd408ef8b737d0caedeaab937bc181affd629546f3edcf0a77328682",
+      "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/1c03ddb4bd408ef8b737d0caedeaab937bc181affd629546f3edcf0a77328682.json",
+      "queue_state": "QUEUED"
+    }
+  ],
+  "new_intentgrove_jobs": [],
+  "preexisting_job": "Queue 1c03ddb4bd408ef8b737d0caedeaab937bc181affd629546f3edcf0a77328682 is APPLIED for workspace hook-validation task, not Intentgrove; outcomes empty."
+}

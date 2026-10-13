@@ -1,0 +1,4964 @@
+[
+  {
+    "at": 624.571833,
+    "test": "workspace session > starts empty without a content warning when no session exists (QA-0004)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 625.05225,
+    "test": "workspace session > starts empty without a content warning when no session exists (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 635.778083,
+    "test": "workspace session > starts empty without a content warning when no session exists (QA-0004)",
+    "event": "session-load-reply"
+  },
+  {
+    "at": 650.286458,
+    "test": "workspace session > starts empty without a content warning when no session exists (QA-0004)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 656.675125,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 656.837333,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 662.344,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /The remembered workspace could not be loaded/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 725.392292,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Loading…",
+      "The remembered workspace could not be loaded. Your documents can still be opened. The workspace operation failed. (unsupported_type)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 738.965417,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 745.835875,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 745.844625,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 748.085958,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 780.110708,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 784.153333,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "First"
+    ],
+    "tabs": [
+      "first.md"
+    ],
+    "statuses": [
+      "Loading…",
+      "The remembered workspace could not be loaded. Your documents can still be opened. The workspace operation failed. (unsupported_type)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 794.726125,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 804.420667,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [],
+    "tabs": [],
+    "statuses": [
+      "Enter text to search the selected folder.",
+      "The remembered workspace could not be loaded. Your documents can still be opened. The workspace operation failed. (unsupported_type)×",
+      "Loading…"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 812.5195,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 816.021625,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 816.02475,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 818.972333,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 853.353833,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"Second\"",
+    "headings": [
+      "First"
+    ],
+    "tabs": [
+      "first.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder.",
+      "The remembered workspace could not be loaded. Your documents can still be opened. The workspace operation failed. (unsupported_type)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 864.567792,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 867.036458,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 867.039,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 878.329208,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1216.797208,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1244.839875,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1257.640792,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1270.98025,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1282.937125,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1301.6575,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1328.72975,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1354.545083,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1358.591417,
+    "test": "workspace session > names startup session failure unsupported_type and retains it during supported reading (QA-0004)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 1368.401417,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 1368.430375,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 1377.008417,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /The remembered workspace could not be loaded/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 1397.70725,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Loading…",
+      "The remembered workspace could not be loaded. Your documents can still be opened. Private storage access or protection could not be confirmed. (recovery_permissions)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 1409.301917,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 1411.610917,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 1411.615042,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 1420.506542,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 1446.885708,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 1449.958958,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "First"
+    ],
+    "tabs": [
+      "first.md"
+    ],
+    "statuses": [
+      "Loading…",
+      "The remembered workspace could not be loaded. Your documents can still be opened. Private storage access or protection could not be confirmed. (recovery_permissions)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 1461.975667,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 1486.502125,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [],
+    "tabs": [],
+    "statuses": [
+      "Enter text to search the selected folder.",
+      "The remembered workspace could not be loaded. Your documents can still be opened. Private storage access or protection could not be confirmed. (recovery_permissions)×",
+      "Loading…"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 1499.721042,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 1501.741,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 1501.742833,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 1511.590958,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 1541.913083,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"Second\"",
+    "headings": [
+      "First"
+    ],
+    "tabs": [
+      "first.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder.",
+      "The remembered workspace could not be loaded. Your documents can still be opened. Private storage access or protection could not be confirmed. (recovery_permissions)×"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 1557.186,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1558.918042,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 1558.920083,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 1575.402833,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1917.288625,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1942.926208,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1955.565458,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1967.331958,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1978.50675,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 1995.735958,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2020.639292,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2043.349208,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2046.380542,
+    "test": "workspace session > names startup session failure recovery_permissions and retains it during supported reading (QA-0004)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 2055.762208,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 2055.784292,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2074.019542,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2076.283333,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 2094.268292,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 2096.693292,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 2096.833208,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2108.999042,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 2120.059333,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2123.131125,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 2123.830125,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2139.689792,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2142.451875,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2142.455708,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 2156.142125,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2179.758583,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2231.169708,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2280.90225,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2334.783958,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2385.017542,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2435.991125,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: /Workspace progress could not be saved/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "second"
+    ],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2454.612542,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2473.783292,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2507.018292,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2550.821458,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2568.921125,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 2576.735167,
+    "test": "workspace session > keeps a failed checkpoint truthful through locale changes and clears it only after a successful retry (QA-0004)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 2591.507417,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 2591.563292,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2604.53475,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2605.907833,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "session-load-reply",
+    "activeKey": "first",
+    "tabs": 1
+  },
+  {
+    "at": 2615.952792,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 2618.604833,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "restore-read-call",
+    "id": "explicit-first",
+    "request": {
+      "fileId": "explicit-first",
+      "explicitFile": true
+    }
+  },
+  {
+    "at": 2618.719417,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-effect",
+    "identity": "explicit-first",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2627.344708,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 2638.545958,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [],
+    "tabs": [
+      "first.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 2642.4275,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "restore-read-reply",
+    "id": "explicit-first",
+    "reply": "explicit-first",
+    "length": 33
+  },
+  {
+    "at": 2657.947208,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 2660.61225,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-effect",
+    "identity": "explicit-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2660.615125,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-wheel-register",
+    "identity": "explicit-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 2672.886958,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 2703.180458,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 2715.800083,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "root-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 2719.413625,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-effect",
+    "identity": "root-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2719.418708,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "pinch-wheel-register",
+    "identity": "root-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 2733.393125,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "root-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3095.017708,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "markdown-render",
+    "fileId": "root-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3111.482333,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: none)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 3121.049292,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 3121.074333,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 3128.851083,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3130.227875,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "session-load-reply",
+    "activeKey": null,
+    "tabs": 0
+  },
+  {
+    "at": 3153.532667,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3180.316667,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Loading…",
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3208.06375,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3209.96875,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "pinch-effect",
+    "identity": "explicit-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 3209.970292,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "pinch-wheel-register",
+    "identity": "explicit-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 3221.649542,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3276.488542,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3288.68425,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3634.542458,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3665.442958,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3669.241292,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: pending)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 3677.908125,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 3677.926125,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 3687.460458,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3688.752083,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "session-load-reply",
+    "activeKey": null,
+    "tabs": 0
+  },
+  {
+    "at": 3706.410917,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "query-error",
+    "message": "Unable to find an element with the title: first.md.",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3731.803542,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Loading…",
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 3746.322917,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3748.046917,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "pinch-effect",
+    "identity": "explicit-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 3748.048458,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "pinch-wheel-register",
+    "identity": "explicit-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 3759.746542,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3806.05,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3819.78075,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3835.584,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 3847.439792,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 4175.86025,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "markdown-render",
+    "fileId": "explicit-first",
+    "length": 33,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 2,
+    "layoutPending": false
+  },
+  {
+    "at": 4178.305625,
+    "test": "workspace session > preserves checkpoint keys when reopening a picker tab from the tree (recovery: editing)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 4186.810208,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "session-load-call"
+  },
+  {
+    "at": 4186.828458,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4194.095958,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 4204.792167,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": true,
+    "renderReady": false,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4205.908625,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "worker-request",
+    "fileId": "grant-second",
+    "owner": 1,
+    "length": 0
+  },
+  {
+    "at": 4205.955833,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 4205.968542,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4216.782542,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": true,
+    "renderReady": false,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4217.964667,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 4228.1,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": true,
+    "renderReady": false,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4229.15725,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "worker-request",
+    "fileId": "grant-second",
+    "owner": 2,
+    "length": 8
+  },
+  {
+    "at": 4229.183042,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4229.184292,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 4239.377708,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": true,
+    "renderReady": false,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4243.981708,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": true,
+    "renderReady": true,
+    "sourceFallback": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4254.61975,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": true,
+    "renderReady": true,
+    "sourceFallback": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4272.5195,
+    "test": "workspace session > waits for actual Markdown rendering before restoring a retained passage",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 4281.400625,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "session-load-call"
+  },
+  {
+    "at": 4281.421333,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4292.234,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 4293.475333,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 4304.536542,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4305.503,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 4305.515708,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4314.762792,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4324.731625,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 4327.011917,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 4337.5145,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4338.697333,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4338.698625,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 4348.883042,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4389.296375,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4402.104417,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4497.773333,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4830.86925,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4845.302583,
+    "test": "workspace session > restores bounded reading values and checkpoints changes",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 4854.5365,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "session-load-call"
+  },
+  {
+    "at": 4854.557583,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4864.975042,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Language changed, but could not be saved.Retry",
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 4866.308583,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 4877.45975,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4878.586458,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 4878.602708,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4888.248417,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 4898.286083,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Language changed, but could not be saved.Retry",
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 4900.510167,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 4910.877958,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4912.069542,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 4912.07075,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 4922.323542,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4949.278958,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4988.616,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 4993.794667,
+    "test": "workspace session > reports language storage failure, keeps reading and retries the selected language",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 5002.439292,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "session-load-call"
+  },
+  {
+    "at": 5002.459167,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5011.808708,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5013.064708,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 5025.075833,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5026.098083,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5026.113167,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5035.356083,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5045.365667,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5047.500875,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 5057.623083,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5058.855292,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5058.856833,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5069.2035,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5095.99075,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5097.0535,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "restore-read-call",
+    "id": "grant-first",
+    "request": {
+      "fileId": "grant-first",
+      "rootId": "root-new",
+      "segments": [
+        "first.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5097.148167,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5106.927667,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5118.5725,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"first\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5120.745042,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "restore-read-reply",
+    "id": "grant-first",
+    "reply": "grant-first",
+    "length": 7
+  },
+  {
+    "at": 5131.211375,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 7,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5132.559917,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5132.56125,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5142.750708,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 7,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5465.94125,
+    "test": "workspace session > keeps tab order and loads the active tab before inactive tabs",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 5474.921167,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "session-load-call"
+  },
+  {
+    "at": 5474.945833,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5484.4915,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5486.427833,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 5499.523042,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5500.590625,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5500.608667,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5510.478958,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5521.226375,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5523.608042,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 5534.043125,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5535.434208,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5535.435667,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5545.757542,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5572.1775,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5573.101583,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "restore-read-call",
+    "id": "grant-first",
+    "request": {
+      "fileId": "grant-first",
+      "rootId": "root-new",
+      "segments": [
+        "first.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5573.1345,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5582.751,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5606.009167,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5607.66125,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"First success\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder.",
+      "Loading…"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5620.560917,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 15,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5621.909042,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-effect",
+    "identity": "grant-first",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5621.910417,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "pinch-wheel-register",
+    "identity": "grant-first",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5632.487542,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 15,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5657.7225,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "markdown-render",
+    "fileId": "grant-first",
+    "length": 15,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5664.800208,
+    "test": "workspace session > opening an unloaded restored file from the tree reuses its tab and rejects an older restore failure",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 5674.261458,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "session-load-call"
+  },
+  {
+    "at": 5674.281542,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5682.043375,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "query-error",
+    "message": "Unable to find role=\"alertdialog\" and name \"Restore the last workspace checkpoint?\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5683.215583,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 5703.931708,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5704.807417,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5704.821333,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5714.516875,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5725.044,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5727.390875,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 5737.816583,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5739.02925,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5739.030667,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5749.559542,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5765.5155,
+    "test": "workspace session > offers a completed crash checkpoint before restoring",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 5774.079417,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "session-load-call"
+  },
+  {
+    "at": 5774.097958,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5783.178292,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5784.345625,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 5794.844333,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5795.72025,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 5795.733583,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5805.216292,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 5815.18525,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5817.389333,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 5828.9875,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5830.1175,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5830.11875,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 5840.134708,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5879.162375,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5909.845708,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5925.168083,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 5934.670125,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5950.477625,
+    "test": "workspace session > clears remembered state and saved drafts only after confirmation",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 5959.268417,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "session-load-call"
+  },
+  {
+    "at": 5959.287875,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 5968.036625,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "query-error",
+    "message": "Unable to find role=\"tab\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 5969.268583,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 5980.938917,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "pinch-effect",
+    "identity": "restore:second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6026.101792,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6027.319667,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6027.333958,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6037.099708,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6046.273167,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6047.611667,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6060.231375,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6061.478375,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6061.479958,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6071.879333,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6087.071208,
+    "test": "workspace session > keeps a missing folder's tabs available for explicit reselection",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6095.779958,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6095.798,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6110.752375,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "query-error",
+    "message": "Unable to find role=\"button\" and name \"Select file again\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6111.932417,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6123.308875,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "pinch-effect",
+    "identity": "restore:second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6177.810208,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "markdown-render",
+    "fileId": "new-file",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6178.736917,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "restore-read-call",
+    "id": "new-file",
+    "request": {
+      "fileId": "new-file",
+      "explicitFile": true
+    }
+  },
+  {
+    "at": 6178.77675,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "pinch-effect",
+    "identity": "new-file",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6188.349625,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "markdown-render",
+    "fileId": "new-file",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6197.562292,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "restore-read-reply",
+    "id": "new-file",
+    "reply": "new-file",
+    "length": 8
+  },
+  {
+    "at": 6198.878708,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6212.543583,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "markdown-render",
+    "fileId": "new-file",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6213.760167,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "pinch-effect",
+    "identity": "new-file",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6213.761708,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "pinch-wheel-register",
+    "identity": "new-file",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6223.934208,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "markdown-render",
+    "fileId": "new-file",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6240.139792,
+    "test": "workspace session > reselects an unavailable external file without removing other tabs",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6248.548583,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6248.566125,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6255.933833,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "query-error",
+    "message": "Unable to find an element by: [data-testid=\"restored-editor\"]",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6257.151333,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6267.745125,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6268.586333,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6268.5995,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6277.954,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6287.83325,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "query-error",
+    "message": "Unable to find an element by: [data-testid=\"restored-editor\"]",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6291.206083,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6302.38775,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6303.600875,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6303.602375,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6314.552917,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6342.995042,
+    "test": "workspace session > restores the active editor and saved history after normal Quit",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6351.195833,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6351.214292,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6360.366625,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6361.588375,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6372.296458,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6373.17025,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6373.184083,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6382.364875,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6393.300167,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6395.428958,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6405.844083,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6407.023583,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6407.024875,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6417.301542,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6443.171625,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6455.783375,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "new-grant",
+    "length": 5,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6457.032333,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-effect",
+    "identity": "new-grant",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6457.03375,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "pinch-wheel-register",
+    "identity": "new-grant",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6468.122917,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "markdown-render",
+    "fileId": "new-grant",
+    "length": 5,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6482.165583,
+    "test": "workspace session > checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6491.516333,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6491.535625,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6500.682917,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6501.858167,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6512.299042,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6513.09375,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6513.102708,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6522.211875,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6532.167125,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6534.338167,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6544.606083,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6545.741458,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6545.742875,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6555.866708,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6626.435375,
+    "test": "workspace session > acknowledges the final durable checkpoint before clean native Quit",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6631.70825,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6631.727708,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6635.033,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6636.242833,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6638.408208,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6639.240625,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6639.2525,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6640.1315,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6641.937917,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6644.077208,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6646.515417,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6647.53875,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6647.5405,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6648.1565,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6655.254042,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6661.799625,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6664.383208,
+    "test": "workspace session > keeps window open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6666.415583,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6666.433167,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6669.327625,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6672.273333,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6674.390958,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6675.162292,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6675.172542,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6676.019583,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6677.878167,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6679.969667,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6680.869833,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6681.718208,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6681.719542,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6682.289917,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6689.993458,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6697.524625,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6700.366792,
+    "test": "workspace session > keeps quit open on checkpoint failure and permits a protected retry (QA-0003)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6702.443292,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6702.459792,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6705.4445,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6706.617583,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6708.578875,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6709.304417,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6709.312458,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6710.112667,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6711.886083,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6714.034958,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6716.586,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6717.60925,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6717.61075,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6718.201667,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6724.954125,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6728.751833,
+    "test": "workspace session > shows the actual returned close error only in an explicit diagnostic build (QA-0003)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 6730.779083,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "session-load-call"
+  },
+  {
+    "at": 6730.794833,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6733.73525,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6734.852375,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 6737.867542,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6738.655375,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 6738.66325,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6739.508958,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 6741.400792,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 6743.469458,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 6744.399292,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 6745.233,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 6745.234375,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 6745.816125,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 7062.404875,
+    "test": "workspace session > serializes the final checkpoint behind pending writes and ignores duplicate close requests (QA-0003)",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 7070.739208,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "session-load-call"
+  },
+  {
+    "at": 7070.75775,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 7081.033375,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "tabs": [],
+    "statuses": [
+      "Restore workspace"
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 7082.1815,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "session-load-reply",
+    "activeKey": "second",
+    "tabs": 3
+  },
+  {
+    "at": 7092.655042,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 7093.535625,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "restore-read-call",
+    "id": "grant-second",
+    "request": {
+      "fileId": "grant-second",
+      "rootId": "root-new",
+      "segments": [
+        "second.md"
+      ],
+      "explicitFile": false
+    }
+  },
+  {
+    "at": 7093.547083,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 7102.9325,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 0,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 0,
+    "layoutPending": false
+  },
+  {
+    "at": 7112.777333,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "query-error",
+    "message": "Unable to find role=\"heading\" and name \"second\"",
+    "headings": [],
+    "tabs": [
+      "first.md",
+      "second.md",
+      "third.md"
+    ],
+    "statuses": [
+      "Enter text to search the selected folder."
+    ],
+    "worker": "undefined"
+  },
+  {
+    "at": 7114.882792,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "restore-read-reply",
+    "id": "grant-second",
+    "reply": "grant-second",
+    "length": 8
+  },
+  {
+    "at": 7125.048,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 7126.026167,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "pinch-effect",
+    "identity": "grant-second",
+    "enabled": true,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 7126.027708,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "pinch-wheel-register",
+    "identity": "grant-second",
+    "className": "reader-scroll"
+  },
+  {
+    "at": 7136.098375,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 7162.152375,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "markdown-render",
+    "fileId": "grant-second",
+    "length": 8,
+    "hasWorker": false,
+    "renderReady": true,
+    "sourceFallback": false,
+    "parseFailed": false,
+    "painted": 24,
+    "blocks": 1,
+    "layoutPending": false
+  },
+  {
+    "at": 7475.508917,
+    "test": "workspace session > checkpoints keyboard tab reordering",
+    "event": "case-end",
+    "headings": [],
+    "tabs": [],
+    "statuses": [],
+    "worker": "undefined"
+  }
+]

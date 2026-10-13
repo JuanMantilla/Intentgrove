@@ -184,5 +184,60 @@
     "historical_recommended_visual_variant": "A \u2014 Joined control"
   },
   "latest_approval": "approval-all-2026-10-05.json",
-  "approval_reaffirmed_date": "2026-10-05"
+  "approval_reaffirmed_date": "2026-10-05",
+  "scoped_documentation_revisions": [
+    {
+      "date": "2026-10-08",
+      "status": "SCOPED DOCUMENTATION REVISION — NO NEW APPROVAL RECORDED",
+      "authority": "User requested design-only updates to existing Markdown editing proposals and handoff; stop at design handoff.",
+      "scope": "Intentional Edit section entry; direct rendered block editing in the existing document scroll surface; contextual formatting/block actions; section-only scope and readable surroundings; existing explicit Save/Save As, dirty/conflict/Undo/Redo/recovery contracts; opaque construct preservation and specific unsafe-operation explanations.",
+      "superseded_presentation": "Older F004 source/live-preview presentation is superseded by the later approved in-place design.",
+      "provenance": "approval-record.{md,json}, approval-option-D.{md,json}, approval-all-2026-10-05.{md,json} and all approval archives unchanged. Their reviewed hashes remain approval-time identities, not revised-file approval. Existing artifact-manifest and prior revision entries remain historical; this entry identifies the current scoped revision.",
+      "reported_evidence": "../../../frontend-implementation/evidence/in-place-finish-20261008/report.md",
+      "crlf_save": "DEFERRED unchanged; ../../../docs/macos-crlf-save-deferral-20261008.md. Non-LF authoring guarded; no fix, PASS or reopened gate inferred.",
+      "artifacts": [
+        {
+          "path": "interaction-spec.md",
+          "before_revision_sha256": "cabaf6551c35adccb10e809171d75712732f58b21977c059e59a26f1b2a907d3",
+          "revision_sha256": "09388e2db9a7397f4c35604eab21a0ea85eb79fa21fccf804d127bb4beeb92a7"
+        },
+        {
+          "path": "frontend-handoff.md",
+          "before_revision_sha256": "3d845605a18a79889e606c501aef68bbc7d91b1c87992efe2193b7b78735a570",
+          "revision_sha256": "8cd534cb3adf915734ae588b6aa50dc5991a6feb995ee007c5b7724bc2d18c3c"
+        },
+        {
+          "path": "mockups/02-in-place-editing.svg",
+          "before_revision_sha256": "49b1abb70dc6beab838152a99b4a6a2b6b973f7c1dfcb91665acf6d13a3bb4c7",
+          "revision_sha256": "fa76e9cda17afba3483075af17104334f195436ac61f9be12fea0fd29f542b34"
+        }
+      ],
+      "checks": {
+        "svg_xml": "PASS",
+        "static_mockup_review": "PASS — Quick Look render inspected; no native/runtime acceptance inferred",
+        "linked_evidence_paths": "PASS",
+        "approval_archives_and_unrelated_proposals": "PASS — compared against pre-revision SHA-256 inventory"
+      },
+      "acceptance_limits": "Reported editor-focused/native checks are separate from unresolved broader regressions. Final packaged journeys, physical IME, VoiceOver and full theme/locale/size matrix remain NOT TESTED; platform/visual acceptance incomplete and user acceptance pending. No application tests rerun.",
+      "boundary": "Documentation/SVG only; no code inspection or implementation, dependencies/configuration changes, build, install, commit, push, deploy or new approval."
+    },
+    {
+      "date": "2026-10-08",
+      "status": "SCOPED HTML GALLERY DOCUMENTATION REVISION — NO NEW APPROVAL RECORDED",
+      "authority": "User follow-up: please update the html as well.",
+      "scope": "Existing index.html header/provenance clarification and editing section02 copy, evidence links and image description; other proposal sections unchanged.",
+      "artifacts": [
+        {
+          "path": "index.html",
+          "before_revision_sha256": "e6c733425802d8158412c4d55b27f3c203a65c74c6a3eb110b70883e3af8702d",
+          "revision_sha256": "f6cbcdfe6d283e5ca5000b0b79862d5458e4ce6bfc07420c4d7e623826d867b5"
+        }
+      ],
+      "checks": {
+        "html_structure_and_local_links": "PASS — parsed HTML; unique IDs and local file/fragment targets checked",
+        "unrelated_proposals_and_approval_provenance": "PASS — pre/post SHA-256 comparison"
+      },
+      "boundary": "Design-only documentation. Existing approval records/archives and CRLF Save deferral unchanged; no new approval or native/visual acceptance. No application implementation/build/install/commit/push/deploy."
+    }
+  ]
 }

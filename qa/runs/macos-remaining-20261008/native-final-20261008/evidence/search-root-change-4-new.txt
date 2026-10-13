@@ -1,0 +1,62 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button (disabled) Outline
+				7 button (collapsed) Reading settings, Secondary Actions: Expand
+				8 button Settings
+			9 container Explorer
+				10 pop up button Projects
+				11 container Search folder
+					12 button Back to explorer
+					13 container
+						14 text Search folder
+						15 search text field (settable) Search folder, Placeholder: File name or text
+							16 text File name or text
+					17 text Search scope: fixtures · Names and content
+					18 container Search in
+						19 toggle button Names and content, Value: on
+						20 toggle button File names, Value: off
+						21 toggle button Document text, Value: off
+					22 text Contents search covers Markdown files.
+					23 container
+						24 checkbox Include ignored files, Value: 0
+						25 text Include ignored files
+					26 button (disabled) Search
+					27 button (disabled) Clear search
+					28 text Enter a query to enable Search.
+					29 text Enter text to search the selected folder.
+				30 text Storage and recovery
+				31 text Open edits and recovery offers: 0
+				32 button Manage…
+			33 button Close sidebar
+			34 container
+				35 container Visited files
+					36 button Back, Help: Back: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					37 button (disabled) Forward, Help: No next file
+				38 tab group (selectable) Documents
+				39 pop up button Go menu
+				40 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+				41 heading Read your local Markdown, Value: 1
+					42 text Read your local Markdown
+				43 text Open a Markdown file to start reading.
+				44 button Open folder
+				45 button Open file
+	46 close button
+	47 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	48 minimize button
+	49 text Intentgrove
+50 menu bar
+	51 Intentgrove
+	52 File
+	53 Edit
+	54 View
+	55 Go
+	56 Window
+	57 Help
+
+The focused UI element is 15 search text field (settable) Search folder, Placeholder: File name or text

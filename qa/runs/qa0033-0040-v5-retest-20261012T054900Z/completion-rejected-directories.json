@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "task_id": "qa0033-0040-repairs-20261012T035255Z",
+  "acceptance_version": "v5-final-failed-20261012T0658Z",
+  "session_kind": "qa",
+  "qa_result": "QA_FAILED",
+  "task_state": "ACTIVE",
+  "unresolved_blockers": [
+    "QA-0038/0039/0040 historical failed order unknown; no causal repair/closure",
+    "Default original session heading missing and bounded-source pinch failure remain unexplained (QA-0041/0042)",
+    "Earlier picker alert timeout untraced (QA-0043); native small-fixture worker fallback untraced (QA-0044)",
+    "Held-native load/refresh and controlled-overlay capability unavailable; physical IME/VoiceOver/Windows not run",
+    "Later concurrent native source revision excluded and unverified",
+    "Authentic task acceptance absent"
+  ],
+  "required_checks": [
+    {
+      "id": "original-new",
+      "result": "PASS",
+      "reason": "original New Markdown4 unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-new-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-new-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-new-03.log"
+      ]
+    },
+    {
+      "id": "original-reader",
+      "result": "PASS",
+      "reason": "original reader170 unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-reader-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-reader-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-reader-03.log"
+      ]
+    },
+    {
+      "id": "original-startup",
+      "result": "PASS",
+      "reason": "original isolated native=true startup failure unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-startup-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-startup-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-startup-03.log"
+      ]
+    },
+    {
+      "id": "original-repeated-open",
+      "result": "PASS",
+      "reason": "original older-open rejection unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-repeated-open-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-repeated-open-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-repeated-open-03.log"
+      ]
+    },
+    {
+      "id": "original-section-entry",
+      "result": "PASS",
+      "reason": "original initial section control unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-section-entry-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-section-entry-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-section-entry-03.log"
+      ]
+    },
+    {
+      "id": "original-staged-paint",
+      "result": "PASS",
+      "reason": "original staged End heading / both margins unchanged,3 process repetitions; no native promotion",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-staged-paint-01.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-staged-paint-02.log",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/original-staged-paint-03.log"
+      ]
+    },
+    {
+      "id": "affected-selection-find",
+      "result": "PASS",
+      "reason": "32 affected tests pass",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/adjacent-selection-find.log"
+      ]
+    },
+    {
+      "id": "default-full-01",
+      "result": "FAIL",
+      "reason": " Test Files  1 failed | 70 passed (71);       Tests  1 failed | 715 passed (716);    Duration  197.74s (transform 5.96s, setup 0ms, import 36.74s, tests 269.35s, environment 70.87s); tests/ui/session.test.tsx > workspace session > clears remembered state and saved drafts only after confirmation",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/default-full-01.log"
+      ]
+    },
+    {
+      "id": "default-full-02",
+      "result": "PASS",
+      "reason": " Test Files  71 passed (71);       Tests  716 passed (716);    Duration  205.37s (transform 4.97s, setup 0ms, import 39.44s, tests 284.58s, environment 67.46s); ",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/default-full-02.log"
+      ]
+    },
+    {
+      "id": "default-full-03",
+      "result": "FAIL",
+      "reason": " Test Files  1 failed | 70 passed (71);       Tests  1 failed | 715 passed (716);    Duration  156.03s (transform 4.54s, setup 0ms, import 27.73s, tests 218.59s, environment 49.86s); tests/ui/large-source.test.tsx > large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/logs/default-full-03.log"
+      ]
+    },
+    {
+      "id": "native-cold-first-open",
+      "result": "PASS",
+      "reason": "B absent after normal restart from empty; click\u2192one Cmd+A\u2192all25/end/no controls; no second key",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-cold-initial-timing.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-cold-initial-b-actual-clipboard.txt"
+      ]
+    },
+    {
+      "id": "native-reopen-long",
+      "result": "PASS",
+      "reason": "Completed original precondition cases2/3/4 select B with one key;4 actual clipboard has25/end",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-attempts.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-reopen-long-4-clipboard.txt"
+      ]
+    },
+    {
+      "id": "native-reopen-empty",
+      "result": "PASS",
+      "reason": "All3 complete one-key cases visibly select whole B; original actions without AX between click/key",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-attempts.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/screenshots/native-v5-reopen-b-empty-1.jpg",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/screenshots/native-v5-reopen-b-empty-2.jpg",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/screenshots/native-v5-reopen-b-empty-3.jpg"
+      ]
+    },
+    {
+      "id": "native-selection-clipboard-reading60",
+      "result": "PASS",
+      "reason": "all60/read begin/end, recovery/edit/chrome excluded; unique clipboard primer used to prevent stale-copy false pass",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-reading60-actual-clipboard.txt"
+      ]
+    },
+    {
+      "id": "native-selection-clipboard-mixedlive",
+      "result": "PASS",
+      "reason": "live MIXED_LIVE draftmarker. +all60 siblings/end, formatting/status/history/action controls excluded; unique clipboard primer used to prevent stale-copy false pass",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-mixed-live-actual-clipboard.txt"
+      ]
+    },
+    {
+      "id": "native-selection-clipboard-whole30",
+      "result": "PASS",
+      "reason": "whole editable document all30/begin/end, controls excluded; unique clipboard primer used to prevent stale-copy false pass",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-whole30-actual-clipboard.txt"
+      ]
+    },
+    {
+      "id": "native-find-source",
+      "result": "PASS",
+      "reason": "x\u2192xy and fresh x\u2192xq stay in query. Draft/doc/source change history unchanged; selection-only history metadata may change.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-find-xy.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-find-xq.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-find-source-history-comparison.json"
+      ]
+    },
+    {
+      "id": "native-fields-modals",
+      "result": "PASS",
+      "reason": "Filename qa_owned_alpha replaced by qa_owned_beta; Local target first_local.md replaced by second_local.md; cancelled both, existing draft retained.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-filename-cmd-a-owned.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-local-target-cmd-a-owned.ax.txt"
+      ]
+    },
+    {
+      "id": "native-modifier-stale",
+      "result": "PASS",
+      "reason": "Alt/Shift Cmd+A does not select read-only siblings; local section behavior retained. A\u2192B/key\u2192A leaves A active/live draft retained, no B content.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/screenshots/native-v5-modifier-ownership.jpg",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-a-b-key-a-stale-cancel.ax.txt"
+      ]
+    },
+    {
+      "id": "native-source-history",
+      "result": "PASS",
+      "reason": "Initial unowned keyboard commands had no effect; native menu showed predefined responder. After actual editor focus, Cmd+Z restores MIXED_ORIGINAL and Cmd+Shift+Z reapplies MIXED_LIVE. Redo capture-provider failure retained; post-action observation confirms redo without another key. Native controls also verified on v3. Source change entries retained; intentional Undo/Redo changes startSelection metadata.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-source-focused-keyboard-undo.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-source-redo-post-provider-incident.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-final-semantic-history-preservation.json"
+      ]
+    },
+    {
+      "id": "native-small-fixture-worker-fallback",
+      "result": "FAIL",
+      "reason": "One long4937-byte fixture entered generic worker fallback. Constructor/error/completion/deadline order unobserved. Activity records show occlusion transitions; later separately attributed active navigation renders60. Later success does not close failure.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/screenshots/native-v5-long-worker-fallback.jpg",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-finder-activated.ax.txt",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/native-v5-activity.log"
+      ]
+    },
+    {
+      "id": "held-native-load",
+      "result": "BLOCKED",
+      "reason": "No controlled legitimate native IPC hold capability; natural loading is separate.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "held-native-refresh170",
+      "result": "BLOCKED",
+      "reason": "No controlled native pending confirmation/refresh hold; mocked170 not native verification.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "controlled-overlay",
+      "result": "BLOCKED",
+      "reason": "No legitimate controllable native overlay ownership boundary; incidental Loading capture is separate.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "physical-ime",
+      "result": "NOT_RUN",
+      "reason": "Physical composition/input-method ownership unavailable; synthetic isComposing tests are mocked only.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "voiceover",
+      "result": "NOT_RUN",
+      "reason": "No VoiceOver run; accessibility tree does not verify a screen reader.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "windows",
+      "result": "NOT_RUN",
+      "reason": "macOS environment; Windows unit checks are mocked only.",
+      "finished_at": "2026-10-12T06:56:49.373851+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/plan.md"
+      ]
+    },
+    {
+      "id": "exact-candidate-integrity",
+      "result": "PASS",
+      "reason": "All444 frozen tested identities/hashes unchanged; all1840 earlier protected bytes or original live finding prefixes preserved. Original7 case suffixes byte-identical. Ad-hoc signature verified post-baseline.",
+      "finished_at": "2026-10-12T07:01:09.313502+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/final-integrity-before-finding-history.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/final-protected-prefix-integrity.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/final-original-body-parity.json",
+        "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence/final-signature.json"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md",
+  "evidence_paths": [
+    "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/coverage.json",
+    "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence-index.md",
+    "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence-manifest.json"
+  ],
+  "tested_snapshot_path": "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/tested-snapshot.json",
+  "artifact_paths": [
+    "frontend-implementation/qa0033-0040-20261012T035255Z",
+    "qa/runs/qa0033-0040-retest-20261012T041100Z",
+    "qa/runs/qa0033-0040-retest-v3-20261012T042800Z",
+    "qa/runs/qa0033-0040-final-retest-20261012T044500Z",
+    "qa/runs/qa0033-0040-native-final-20261012T053700Z",
+    "qa/runs/qa0033-0040-v5-retest-20261012T054900Z",
+    "qa/findings/QA-0033.md",
+    "qa/findings/QA-0034.md",
+    "qa/findings/QA-0035.md",
+    "qa/findings/QA-0036.md",
+    "qa/findings/QA-0037.md",
+    "qa/findings/QA-0038.md",
+    "qa/findings/QA-0039.md",
+    "qa/findings/QA-0040.md",
+    "qa/findings/QA-0041.md",
+    "qa/findings/QA-0042.md",
+    "qa/findings/QA-0043.md",
+    "qa/findings/QA-0044.md"
+  ],
+  "retain_paths": [
+    "frontend-implementation/qa0033-0040-20261012T035255Z",
+    "qa/runs/qa0033-0040-retest-20261012T041100Z",
+    "qa/runs/qa0033-0040-retest-v3-20261012T042800Z",
+    "qa/runs/qa0033-0040-final-retest-20261012T044500Z",
+    "qa/runs/qa0033-0040-native-final-20261012T053700Z",
+    "qa/runs/qa0033-0040-v5-retest-20261012T054900Z",
+    "qa/findings/QA-0033.md",
+    "qa/findings/QA-0034.md",
+    "qa/findings/QA-0035.md",
+    "qa/findings/QA-0036.md",
+    "qa/findings/QA-0037.md",
+    "qa/findings/QA-0038.md",
+    "qa/findings/QA-0039.md",
+    "qa/findings/QA-0040.md",
+    "qa/findings/QA-0041.md",
+    "qa/findings/QA-0042.md",
+    "qa/findings/QA-0043.md",
+    "qa/findings/QA-0044.md",
+    ".agents/state.md",
+    "frontend-implementation/STATE.md",
+    "qa/STATE.md",
+    "AGENTS.md",
+    "docs/approvals.md"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "docs/approvals.md",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/request-and-authority.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Complete authorized QA-0033 through QA-0040 repairs using evidence-supported ownership; unknown historical failure is not a completed repair",
+      "source_path": "frontend-implementation/qa0033-0040-20261012T035255Z/request-and-authority.md",
+      "evidence_path": "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md",
+      "satisfied": false
+    },
+    {
+      "requirement": "Retest exact frozen candidate, original isolated/default>=3 retaining all results and native/platform provenance",
+      "source_path": "frontend-implementation/qa0033-0040-20261012T035255Z/request-and-authority.md",
+      "evidence_path": "qa/runs/qa0033-0040-v5-retest-20261012T054900Z/coverage.json",
+      "satisfied": true
+    },
+    {
+      "requirement": "Actual user task acceptance, independent of QA pass",
+      "source_path": "AGENTS.md",
+      "evidence_path": "frontend-implementation/qa0033-0040-20261012T035255Z/request-and-authority.md",
+      "satisfied": false
+    }
+  ]
+}

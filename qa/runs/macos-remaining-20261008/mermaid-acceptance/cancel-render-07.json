@@ -1,0 +1,19 @@
+{
+  "case": "cancel-render-07",
+  "elapsedMs": 4.155875,
+  "events": [
+    "{\"value\":\"observe\",\"ppid\":30962,\"event\":\"started\",\"pid\":30972,\"time\":121078.80166120834}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":30962,\"event\":\"navigation\",\"pid\":30972,\"time\":121078.8801565}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":30972,\"time\":121078.88098712501}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":30972,\"time\":121078.89716291668}",
+    "{\"value\":\"{\\\"kind\\\":\\\"bridge-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.__TAURI_INTERNALS__.invoke')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121078.98511666668}",
+    "{\"value\":\"{\\\"kind\\\":\\\"wk-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.webkit.messageHandlers')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121078.98514437501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121078.98515704168}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121078.98971529167}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-complete\\\",\\\"value\\\":true}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121079.07137320834}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121079.07596850001}",
+    "{\"value\":\"{\\\"kind\\\":\\\"render-entered\\\",\\\"value\\\":true}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30972,\"time\":121079.16455070834}"
+  ],
+  "pid": 30972,
+  "result": "diagram_cancelled"
+}

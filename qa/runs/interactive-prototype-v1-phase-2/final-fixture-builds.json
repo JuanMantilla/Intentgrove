@@ -1,0 +1,117 @@
+{
+  "minimal": {
+    "command": [
+      "/Users/juanmantilla/projects/personal/md-reader/crates/target/debug/igproto",
+      "compile",
+      "--source",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal/prototype.source.json",
+      "--read-root",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal",
+      "--exports",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal",
+      "--write-root",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2",
+      "--output",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/minimal-v1.igproto",
+      "--json",
+      "--deny-warnings"
+    ],
+    "exit_code": 0,
+    "result": {
+      "bytes": 1396,
+      "compilerVersion": "0.1.0",
+      "diagnostics": [],
+      "profile": "macos-svg-v1",
+      "provenance": [
+        {
+          "exportProfile": "vectorcraft-svg-v1",
+          "exportSha256": "7c103daa41fc7c5883839a78077ca1e24996d0112b0d77f94e2d654455d63fd8",
+          "scene": "home",
+          "visualSha256": "dfd120a8d4b98c22e5419e9ea17507506df1468ad85158c7fad140fcc6aa9ff7",
+          "visualSource": "visual.vectorcraft"
+        }
+      ],
+      "sha256": "552d07a2ee35670912f21a7d33138fc319043c40728b600f90d064cc13b24ad9",
+      "sourceVersion": 1,
+      "status": "PASS",
+      "targets": {
+        "home": [
+          "root"
+        ]
+      },
+      "truncated": 0
+    },
+    "finished_at": "2026-10-12T00:05:43.612678+00:00"
+  },
+  "representative": {
+    "command": [
+      "/Users/juanmantilla/projects/personal/md-reader/crates/target/debug/igproto",
+      "compile",
+      "--source",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/representative/prototype.source.json",
+      "--read-root",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/representative",
+      "--exports",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/representative",
+      "--write-root",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2",
+      "--output",
+      "/Users/juanmantilla/projects/personal/md-reader/tests/fixtures/prototype/phase-2/representative-v1.igproto",
+      "--json",
+      "--deny-warnings"
+    ],
+    "exit_code": 0,
+    "result": {
+      "bytes": 6022,
+      "compilerVersion": "0.1.0",
+      "diagnostics": [],
+      "profile": "macos-svg-v1",
+      "provenance": [
+        {
+          "exportProfile": "vectorcraft-svg-v1",
+          "exportSha256": "ef1a3ea3cbfd5c0ef4ffa2f89b73aac6ace7c3519f0f60c6dcb520651271f161",
+          "scene": "dashboard",
+          "visualSha256": "ef1a3ea3cbfd5c0ef4ffa2f89b73aac6ace7c3519f0f60c6dcb520651271f161",
+          "visualSource": "scenes/dashboard.svg"
+        },
+        {
+          "exportProfile": "vectorcraft-svg-v1",
+          "exportSha256": "1015549dd45b857763db8e619e3df75a8e81f18291e596b1d8df177f2bbf2eb0",
+          "scene": "profile",
+          "visualSha256": "1015549dd45b857763db8e619e3df75a8e81f18291e596b1d8df177f2bbf2eb0",
+          "visualSource": "scenes/profile.svg"
+        },
+        {
+          "exportProfile": "vectorcraft-svg-v1",
+          "exportSha256": "9c16827f63dd760aace3c3d0eff1031c052160756e9d47940101431964d13d4f",
+          "scene": "settings",
+          "visualSha256": "9c16827f63dd760aace3c3d0eff1031c052160756e9d47940101431964d13d4f",
+          "visualSource": "scenes/settings.svg"
+        }
+      ],
+      "sha256": "babda9a68bbb28a7473a72830c7db832773de3f6aa2ad0073639ddac25ab0032",
+      "sourceVersion": 1,
+      "status": "PASS",
+      "targets": {
+        "dashboard": [
+          "root",
+          "settings-button",
+          "menu-button",
+          "profile-avatar",
+          "menu-panel",
+          "back-button"
+        ],
+        "profile": [
+          "root",
+          "close-button"
+        ],
+        "settings": [
+          "root",
+          "back-button"
+        ]
+      },
+      "truncated": 0
+    },
+    "finished_at": "2026-10-12T00:05:43.638857+00:00"
+  }
+}

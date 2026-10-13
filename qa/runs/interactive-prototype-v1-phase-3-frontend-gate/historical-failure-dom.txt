@@ -1,0 +1,181 @@
+Error: Unable to find a label with the text of: Edit section: One
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="app-shell"
+      data-editing="false"
+      data-narrow="false"
+      data-sidebar-visible="true"
+      data-workspace-layout="margin"
+      style="--toolbar-height: 0px;"
+    >
+      <header
+        class="app-header"
+      >
+        <div
+          class="global-header"
+        >
+          <div
+            class="theonira-wordmark"
+          >
+            <img
+              alt=""
+              src="/src/assets/theonira/theonira-mark-light.png"
+            />
+            <strong>
+              Theonira
+            </strong>
+            <span
+              class="product-name"
+            >
+              / Intentgrove
+            </span>
+          </div>
+          <div
+            class="global-utilities"
+          >
+            <span
+              class="local-badge"
+            >
+              <svg
+                aria-hidden="true"
+                class="workspace-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                />
+                <path
+                  d="m9 12 2 2 4-4"
+                />
+              </svg>
+              Local files only
+            </span>
+            <div
+              class="toolbar-group"
+            >
+              <label
+                class="appearance-control"
+              >
+                <span>
+                  Appearance
+                </span>
+                <select
+                  aria-label="Appearance"
+                >
+                  <option
+                    value="system"
+                  >
+                    System
+                  </option>
+                  <option
+                    value="light"
+                  >
+                    Light
+                  </option>
+                  <option
+                    value="dark"
+                  >
+                    Dark
+                  </option>
+                </select>
+              </label>
+              <label
+                class="language-control"
+              >
+                <span>
+                  Language
+                </span>
+                <select
+                  aria-label="Language"
+                >
+                  <option
+                    value="en"
+                  >
+                    English
+                  </option>
+                  <option
+                    value="es"
+                  >
+                    Español
+                  </option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        class="workspace-layout"
+      >
+        <div
+          class="document-tabs"
+        >
+          <button
+            aria-expanded="true"
+            aria-label="Projects"
+            class="projects-toggle"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="workspace-icon"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <rect
+                height="18"
+                rx="2"
+                width="18"
+                x="3"
+                y="3"
+              />
+              <path
+                d="M9 3v18"
+              />
+            </svg>
+            Projects
+          </button>
+          <div
+            aria-label="Visited files"
+            class="history-controls"
+            role="group"
+          >
+            <button
+              aria-description="No previous file"
+              aria-label="Back"
+              class="history-arrow"
+              disabled=""
+              title="No previous file"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                height="12"
+                viewBox="0 0 12 12"
+                width="12"
+              >
+                <path
+                  d="M9 0 L3 6 L9 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.75"
+                />...
+    at waitForWrapper (/Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+    at setup (/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final/tests/ui/close-edit.test.tsx:71:38)
+    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final/tests/ui/close-edit.test.tsx:99:7
+    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20

@@ -1,0 +1,2043 @@
+[
+  {
+    "n": 0,
+    "at": 3206.268042,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 3265.680292,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 2,
+    "at": 3266.609417,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 3,
+    "at": 3291.773459,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 4,
+    "at": 3337.830959,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 5,
+    "at": 3338.373084,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 6,
+    "at": 3383.103584,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 7,
+    "at": 3411.380125,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 8,
+    "at": 3423.347334,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 9,
+    "at": 3444.203625,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 10,
+    "at": 3605.441084,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 11,
+    "at": 3880.528375,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 12,
+    "at": 3977.31475,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "×",
+    "title": "Close tab",
+    "disabled": false
+  },
+  {
+    "n": 13,
+    "at": 4056.783834,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "click",
+    "text": "Save to file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 14,
+    "at": 4156.056375,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 15,
+    "at": 4156.49025,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 16,
+    "at": 4156.5355,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 17,
+    "at": 4193.114334,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 18,
+    "at": 4226.034667,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 19,
+    "at": 4226.123334,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 20,
+    "at": 4226.598625,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 21,
+    "at": 4268.775875,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 22,
+    "at": 4269.544,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 23,
+    "at": 4413.975417,
+    "test": "acknowledges successful Save in Recents before dirty-close can finish",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 24,
+    "at": 4497.462,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 25,
+    "at": 4570.751292,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 26,
+    "at": 4571.013792,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 27,
+    "at": 4614.153625,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 28,
+    "at": 4656.494209,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 29,
+    "at": 4656.6125,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 30,
+    "at": 4723.611625,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 31,
+    "at": 4757.393959,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 32,
+    "at": 4779.793375,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 33,
+    "at": 4780.176584,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 34,
+    "at": 4898.802292,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 35,
+    "at": 5083.107167,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 36,
+    "at": 5191.596292,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 37,
+    "at": 5305.961292,
+    "test": "never acknowledges denied Save and preserves the draft",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 38,
+    "at": 5360.948542,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 39,
+    "at": 5435.226625,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 40,
+    "at": 5435.412875,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 41,
+    "at": 5462.072792,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 42,
+    "at": 5498.106709,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 43,
+    "at": 5498.314292,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 44,
+    "at": 5556.736834,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 45,
+    "at": 5595.308834,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 46,
+    "at": 5618.168292,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 47,
+    "at": 5618.503584,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 48,
+    "at": 5706.428917,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 49,
+    "at": 5918.572584,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 50,
+    "at": 6032.270375,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 51,
+    "at": 6149.112375,
+    "test": "never acknowledges version_changed Save and preserves the draft",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 52,
+    "at": 6198.962,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 53,
+    "at": 6266.275459,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 54,
+    "at": 6266.519167,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 55,
+    "at": 6302.618042,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 56,
+    "at": 6346.514792,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 57,
+    "at": 6346.649959,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 58,
+    "at": 6493.325125,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 59,
+    "at": 6547.71075,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 60,
+    "at": 6577.995,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 61,
+    "at": 6578.383917,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 62,
+    "at": 6674.959167,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 63,
+    "at": 6931.606584,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 64,
+    "at": 7045.346959,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 65,
+    "at": 7160.068459,
+    "test": "never acknowledges save_race Save and preserves the draft",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 66,
+    "at": 7205.580167,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 67,
+    "at": 7268.088209,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 68,
+    "at": 7268.435375,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 69,
+    "at": 7293.873584,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 70,
+    "at": 7322.630792,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 71,
+    "at": 7322.746875,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 72,
+    "at": 7374.35125,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 73,
+    "at": 7408.705084,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 74,
+    "at": 7433.972917,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 75,
+    "at": 7434.335834,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 76,
+    "at": 7521.120584,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 77,
+    "at": 7754.445042,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 78,
+    "at": 7908.277167,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 79,
+    "at": 8098.48075,
+    "test": "never acknowledges save_race_uncaptured Save and preserves the draft",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 80,
+    "at": 8184.683625,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 81,
+    "at": 8305.994959,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 82,
+    "at": 8306.194292,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 83,
+    "at": 8357.413042,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 84,
+    "at": 8399.078834,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 85,
+    "at": 8399.211292,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 86,
+    "at": 8481.907834,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 87,
+    "at": 8592.370709,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 88,
+    "at": 8625.290834,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 89,
+    "at": 8625.901084,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 90,
+    "at": 8729.00625,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 91,
+    "at": 8994.654709,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 92,
+    "at": 9189.035084,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 93,
+    "at": 9339.706542,
+    "test": "never acknowledges reselection_required Save and preserves the draft",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 94,
+    "at": 9419.219417,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 95,
+    "at": 9543.377959,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 96,
+    "at": 9545.034709,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 97,
+    "at": 9652.617875,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 98,
+    "at": 9710.370834,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 99,
+    "at": 9711.018792,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 100,
+    "at": 10248.898375,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 101,
+    "at": 10343.479,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 102,
+    "at": 10460.366417,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 103,
+    "at": 10461.53775,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 104,
+    "at": 10616.661375,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 105,
+    "at": 10929.772375,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 106,
+    "at": 11036.121792,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 107,
+    "at": 11098.850834,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 108,
+    "at": 11099.173959,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 109,
+    "at": 11099.232084,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 110,
+    "at": 11124.823292,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 111,
+    "at": 11151.299375,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 112,
+    "at": 11151.371084,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 113,
+    "at": 11151.718667,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 114,
+    "at": 11176.834875,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 115,
+    "at": 11177.1185,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 116,
+    "at": 11254.059709,
+    "test": "keeps a confirmed Save successful if Recent persistence fails",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 117,
+    "at": 11446.49625,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 118,
+    "at": 11521.921625,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 119,
+    "at": 11522.109417,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 120,
+    "at": 11559.744792,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 121,
+    "at": 11603.023667,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 122,
+    "at": 11603.176625,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 123,
+    "at": 11735.459,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 124,
+    "at": 11780.086709,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 125,
+    "at": 11823.721625,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 126,
+    "at": 11824.133584,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 127,
+    "at": 12077.016709,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 128,
+    "at": 12747.62325,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 129,
+    "at": 12966.134667,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 130,
+    "at": 13008.725084,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 131,
+    "at": 13156.858167,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 132,
+    "at": 13239.529459,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "click",
+    "text": "Discard",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 133,
+    "at": 13303.612084,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 134,
+    "at": 13304.028292,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 135,
+    "at": 13364.381959,
+    "test": "one pending section draft > requires a choice before opening another section",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 136,
+    "at": 13447.363334,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 137,
+    "at": 13514.392417,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 138,
+    "at": 13514.595625,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 139,
+    "at": 13537.685084,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 140,
+    "at": 13572.895209,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 141,
+    "at": 13573.019709,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 142,
+    "at": 13650.70825,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 143,
+    "at": 13686.185375,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 144,
+    "at": 13734.147792,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 145,
+    "at": 13734.508417,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 146,
+    "at": 13906.935875,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 147,
+    "at": 14223.22075,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 148,
+    "at": 14471.244834,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Inspect versions",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 149,
+    "at": 14558.979375,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Use disk version",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 150,
+    "at": 14601.205167,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "click",
+    "text": "Use disk version",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 151,
+    "at": 14661.766375,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 152,
+    "at": 14662.130042,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 153,
+    "at": 14662.181667,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 154,
+    "at": 14688.143709,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 155,
+    "at": 14714.345875,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 156,
+    "at": 14714.408,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 157,
+    "at": 14714.711417,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 158,
+    "at": 14740.789417,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 159,
+    "at": 14741.133834,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 160,
+    "at": 14762.231875,
+    "test": "one pending section draft > keeps an external version protected until explicit discard",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 161,
+    "at": 14809.728,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 162,
+    "at": 14865.930917,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 163,
+    "at": 14866.123167,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 164,
+    "at": 14894.718792,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 165,
+    "at": 14927.212875,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 166,
+    "at": 14927.306459,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 167,
+    "at": 15010.11975,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 168,
+    "at": 15048.091959,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 169,
+    "at": 15078.445125,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 170,
+    "at": 15078.970334,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 171,
+    "at": 15184.19075,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 172,
+    "at": 15417.358834,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "Change draft",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 173,
+    "at": 15537.105417,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 174,
+    "at": 15572.045834,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "click",
+    "text": "Save",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 175,
+    "at": 15629.441084,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 176,
+    "at": 15629.712459,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 177,
+    "at": 15651.682167,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 178,
+    "at": 15652.042042,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 179,
+    "at": 15679.804209,
+    "test": "one pending section draft > saves the pending section before opening the requested section",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 180,
+    "at": 15728.066459,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 181,
+    "at": 15803.634042,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 182,
+    "at": 15803.92275,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 183,
+    "at": 15831.787375,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 184,
+    "at": 15870.082125,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 185,
+    "at": 15870.249334,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 186,
+    "at": 15948.692417,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 187,
+    "at": 15992.397625,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 188,
+    "at": 16021.929209,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 189,
+    "at": 16022.272709,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 190,
+    "at": 16105.612959,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 191,
+    "at": 16246.608209,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "click",
+    "text": "Save to file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 192,
+    "at": 16275.371084,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 193,
+    "at": 16304.681875,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 194,
+    "at": 16331.309917,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 195,
+    "at": 16331.662917,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 196,
+    "at": 16357.374917,
+    "test": "one pending section draft > routes quit completion through the matching native action",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 197,
+    "at": 16408.615959,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 198,
+    "at": 16476.109417,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 199,
+    "at": 16476.421834,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 200,
+    "at": 16502.801625,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 201,
+    "at": 16533.969292,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 202,
+    "at": 16534.062625,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 203,
+    "at": 16590.331542,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 204,
+    "at": 16630.647042,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 205,
+    "at": 16652.825375,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 206,
+    "at": 16653.189209,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 207,
+    "at": 16742.97025,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 208,
+    "at": 16906.454334,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "click",
+    "text": "Save to file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 209,
+    "at": 16943.049084,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 210,
+    "at": 17111.300417,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 211,
+    "at": 17207.692584,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 212,
+    "at": 17209.401375,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 213,
+    "at": 17256.48325,
+    "test": "one pending section draft > routes window completion through the matching native action",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 214,
+    "at": 17327.5045,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 215,
+    "at": 17642.06,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 216,
+    "at": 17643.167334,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 217,
+    "at": 17728.295625,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 218,
+    "at": 17779.473959,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 4
+  },
+  {
+    "n": 219,
+    "at": 17779.577417,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 220,
+    "at": 17910.207667,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 221,
+    "at": 17949.799,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 222,
+    "at": 17975.959375,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0
+  },
+  {
+    "n": 223,
+    "at": 17976.307334,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 224,
+    "at": 18045.240209,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 225,
+    "at": 18073.830167,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "click",
+    "text": "Loading…Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 226,
+    "at": 18133.411167,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "click",
+    "text": "×",
+    "title": "Close tab",
+    "disabled": false
+  },
+  {
+    "n": 227,
+    "at": 18278.876084,
+    "test": "keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

@@ -1,11 +1,4 @@
-#[path = "../src/platform/mod.rs"]
-mod platform;
-#[path = "../src/document.rs"]
-mod document;
-#[path = "../src/scope.rs"]
-mod scope;
-#[path = "../src/state.rs"]
-mod state;
+use md_reader_lib::document_contract_tests::{document, state};
 
 use document::read_document_impl;
 use state::AppState;

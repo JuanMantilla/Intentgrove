@@ -1,0 +1,105 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: opened-after-rename.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selectable) root-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+				20 container
+					21 tab (selectable) opened-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+					22 button Close tab: opened-after-rename.md, Help: Close tab
+				23 container
+					24 tab (selected) opened-after-delete.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-delete.md
+					25 button Close tab: opened-after-delete.md, Help: Close tab
+			26 pop up button Go menu
+			27 button (collapsed) Open documents (4), Secondary Actions: Expand
+			28 container Explorer
+				29 pop up button PROJECTS
+				30 button Close Projects sidebar
+				31 button Open file
+				32 button Open folder
+				33 button Search folder
+				34 text fixtures
+				35 container
+					36 button active.md
+					37 button fresh.md
+					38 button inactive.md
+					39 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					40 button opened-after-delete.md
+					41 button opened-after-rename-moved.md
+					42 button opened-after-replace.md
+					43 button opened-before-delete.md
+					44 button opened-before-rename.md
+					45 button opened-before-replace.md
+					46 button root-dirty.md
+					47 button root-missing-moved.md
+					48 button sentinel.md
+					49 button unopened-after-rename-moved.md
+					50 button unopened-after-replace-original.md
+					51 button unopened-after-replace.md
+					52 button unopened-before-rename-moved.md
+					53 button unopened-before-replace-original.md
+					54 button unopened-before-replace.md
+				55 text Storage and recovery
+				56 text Open edits and recovery offers: 1
+				57 button Manage…
+				58 button Settings…
+			59 container
+				60 container opened-after-delete.md
+					61 container opened-after-delete.md
+						62 text opened-after-delete.md
+					63 button Find in document
+					64 toggle button Outline, Value: on
+					65 button (collapsed) Reading settings, Secondary Actions: Expand
+					66 button Edit section
+					67 summary Document…, Value: off
+						68 text Document…
+					69 text Folder root
+				70 container opened-after-delete.md
+					71 container opened-after-delete.md
+						72 container Edit section: opened-after-delete.md
+							73 heading opened-after-delete.md, Value: 1
+								74 text opened-after-delete.md
+							75 button Edit section “opened-after-delete.md”
+						76 text Original QA saved bytes.
+				77 container Outline
+					78 text OUTLINE
+					79 button Close outline
+					80 container Outline
+						81 content list
+							82 button opened-after-delete.md
+			83 container
+				84 text Current on disk Intentgrove by Theonira
+	85 close button
+	86 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	87 minimize button
+	88 text Intentgrove Reveal Retest
+89 menu bar
+	90 Intentgrove Reveal Retest
+	91 File
+	92 Edit
+	93 View
+	94 Go
+	95 Window
+	96 Help
+
+Selected text: ```
+after
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

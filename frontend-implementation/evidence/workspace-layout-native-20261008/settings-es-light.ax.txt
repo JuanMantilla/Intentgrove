@@ -1,0 +1,81 @@
+Window: "Settings — Intentgrove", App: Intentgrove Workspace Layout 20261008.
+0 standard window Settings — Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
+			3 container
+				4 heading Ajustes, Value: 1
+					5 text Ajustes
+				6 container General
+					7 heading General, Value: 2
+						8 text General
+					9 container
+						10 text Idioma
+						11 pop up button (collapsed) Idioma, Value: Español, Secondary Actions: Expand
+						12 text Apariencia
+						13 pop up button (collapsed) Apariencia, Value: Claro, Secondary Actions: Expand
+				14 container Distribución del espacio de trabajo
+					15 heading Distribución del espacio de trabajo, Value: 2
+						16 text Distribución del espacio de trabajo
+					17 container Distribución del espacio de trabajo
+						18 container
+							19 radio button Margin Explorador persistente, documento central e índice de secciones., Value: 1
+							20 text Margin Explorador persistente, documento central e índice de secciones.
+						21 container
+							22 radio button Folio Página centrada, navegación contraída y espacio generoso., Value: 0
+							23 text Folio Página centrada, navegación contraída y espacio generoso.
+						24 container
+							25 radio button Atlas Estante horizontal del proyecto, índice y mesa de lectura., Value: 0
+							26 text Atlas Estante horizontal del proyecto, índice y mesa de lectura.
+				27 container Lectura
+					28 heading Lectura, Value: 2
+						29 text Lectura
+					30 container
+						31 text Fuente
+						32 pop up button (collapsed) Fuente, Value: Roboto, Secondary Actions: Expand
+						33 text Tamaño del texto (px)
+						34 slider (settable, float) Tamaño del texto, Value: 16
+							35 value indicator 16
+						36 number field (settable) Tamaño del texto (px), Value: 16
+							37 stepper 0
+								38 unknown
+								39 unknown
+						40 text Interlineado
+						41 slider (settable, float) Interlineado, Value: 1.6
+							42 value indicator 1.6
+						43 number field (settable) Interlineado, Value: 1.6
+							44 stepper 0
+								45 unknown
+								46 unknown
+						47 text Ancho de página (px)
+						48 slider (settable, float) Ancho de página, Value: 760
+							49 value indicator 760
+						50 number field (settable) Ancho de página (px), Value: 760
+							51 stepper 0
+								52 unknown
+								53 unknown
+						54 container Ancho de página
+							55 toggle button Cómodo, Value: on
+							56 toggle button Amplio, Value: off
+						57 container Vista previa de lectura
+							58 text Vista previa de lectura
+							59 text Ajusta la tipografía para leer con comodidad. Tu documento no cambia.
+						60 button Restablecer ajustes de lectura
+				61 container Árbol de proyecto
+					62 heading Árbol de proyecto, Value: 2
+						63 text Árbol de proyecto
+					64 container
+						65 checkbox Solo documentos e imágenes, Value: 1
+						66 text Solo documentos e imágenes
+				67 button Listo
+	68 close button
+	69 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	70 minimize button
+	71 text Settings — Intentgrove
+72 menu bar
+	73 Intentgrove Workspace Layout 20261008
+	74 File
+	75 Edit
+	76 View
+	77 Ir
+	78 Window
+	79 Help

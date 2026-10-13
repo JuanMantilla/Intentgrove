@@ -1,7 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
+// @vitest-environment jsdom
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { qaAppearance, startBridge } from '../acceptance/qa/bridge';
 import { createAppearanceController } from '../../src/app/appearance';
 vi.mock('@tauri-apps/api/event', () => ({ listen: vi.fn(async () => () => {}), emit: vi.fn() }));
+afterEach(() => vi.unstubAllGlobals());
 // These exercise QA adapters only; they do not claim native/UI acceptance.
 describe('QA one-shot appearance adapters', () => {
   for (const fault of ['preference-read','preference-write','native-theme']) {

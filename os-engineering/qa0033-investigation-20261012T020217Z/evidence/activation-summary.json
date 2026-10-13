@@ -1,0 +1,133 @@
+[
+  {
+    "order": 4,
+    "owner": 1,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "origin": "button",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 11,
+    "owner": 1,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "origin": "Projects",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 19,
+    "owner": 2,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "origin": "keyboard",
+    "ready": false,
+    "blockers": [
+      "sessionReady"
+    ],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": false
+  },
+  {
+    "order": 20,
+    "owner": 2,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "origin": "native menu",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 39,
+    "owner": 4,
+    "test": "does not open over another modal",
+    "origin": "keyboard",
+    "ready": false,
+    "blockers": [
+      "sessionReady",
+      "modal"
+    ],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": false
+  },
+  {
+    "order": 40,
+    "owner": 4,
+    "test": "does not open over another modal",
+    "origin": "native menu",
+    "ready": false,
+    "blockers": [
+      "modal"
+    ],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": false
+  },
+  {
+    "order": 48,
+    "owner": 5,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "origin": "button",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 67,
+    "owner": 6,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "origin": "button",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 84,
+    "owner": 6,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "origin": "keyboard",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  },
+  {
+    "order": 88,
+    "owner": 6,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "origin": "native menu",
+    "ready": false,
+    "blockers": [
+      "newMarkdownOwner",
+      "modal"
+    ],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": false
+  },
+  {
+    "order": 108,
+    "owner": 7,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "origin": "button",
+    "ready": true,
+    "blockers": [],
+    "sessionReadyRef": true,
+    "load_resolved_before": true,
+    "dialog_open_after_before_next_activation": true
+  }
+]

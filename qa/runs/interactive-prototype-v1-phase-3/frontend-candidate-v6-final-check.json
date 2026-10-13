@@ -1,0 +1,20 @@
+{
+  "name": "frontend-candidate-v6",
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/frontend-candidate-v6.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/frontend-candidate",
+  "started_at": "2026-10-12T03:24:26.588007+00:00",
+  "finished_at": "2026-10-12T03:26:05.828111+00:00",
+  "exit_code": 1,
+  "log": "frontend-candidate-v6.log",
+  "tested_snapshot": "tested-snapshot-v6.json"
+}

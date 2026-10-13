@@ -1,0 +1,61 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button Back, Help: Back: reading.md
+/private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						25 button Close tab: reading.md, Help: Close tab
+					26 container
+						27 tab (selectable) pixel.png, Help: /private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+						28 button Close tab: pixel.png, Help: Close tab
+					29 container
+						30 tab (selected) hostile.svg · This image contains unsupported or unsafe content, Help: /private/tmp/intentgrove-finish-20261008/fixtures/hostile.svg
+						31 button Close tab: hostile.svg, Help: Close tab
+				32 pop up button Go menu
+				33 button (collapsed) Open documents (4), Secondary Actions: Expand
+				34 container Visited files
+					35 text Forward: reading.md
+				36 container hostile.svg
+					37 text hostile.svg
+					38 text Outside the open folder
+					39 summary Document…, Value: off
+						40 text Document…
+				41 heading This image contains unsupported or unsafe content, Value: 1
+					42 text This image contains unsupported or unsafe content
+				43 text Check the file, then try again or choose another document.
+				44 button Retry
+	45 close button
+	46 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	47 minimize button
+	48 text Intentgrove
+49 menu bar
+	50 Intentgrove Final Acceptance 20261008
+	51 File
+	52 Edit
+	53 View
+	54 Go
+	55 Window
+	56 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

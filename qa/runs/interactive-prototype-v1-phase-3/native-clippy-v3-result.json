@@ -1,0 +1,22 @@
+{
+  "name": "native-clippy-v3",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--lib",
+    "--tests",
+    "--message-format=json",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "started_at": "2026-10-12T02:33:52.380803+00:00",
+  "finished_at": "2026-10-12T02:34:16.813645+00:00",
+  "exit_code": 101,
+  "log": "native-clippy-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

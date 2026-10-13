@@ -1,0 +1,10 @@
+{"command": ["cargo", "test", "--manifest-path", "src-tauri/Cargo.toml", "--offline", "--locked", "--features", "settings-contract-tests", "--lib", "command_args::tests"], "cwd": "/Users/juanmantilla/projects/personal/md-reader", "environment_overrides": {}, "started_at": "2026-10-12T05:10:40.713977+00:00"}
+   Compiling md_reader v0.1.0 (/Users/juanmantilla/projects/personal/md-reader/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.07s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/md_reader_lib-df4d40a9c6190900)
+
+running 1 test
+test command_args::tests::grouped_inputs_preserve_flat_ipc_fields_types_and_optional_defaults ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 171 filtered out; finished in 0.01s
+

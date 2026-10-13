@@ -1,0 +1,51 @@
+{
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "commands": [
+    {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --offline --lib workspace_layout -- --nocapture",
+      "result": "FAIL",
+      "evidence": "native-layout-initial.log",
+      "reason": "fixture previous-record path already exists"
+    },
+    {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --offline --lib",
+      "result": "PASS120 /5ignored",
+      "evidence": "native-regression.log"
+    },
+    {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --offline --tests",
+      "result": "FAIL compilation",
+      "evidence": "native-integration-regression.log"
+    },
+    {
+      "command": "npm run tauri build -- --config os-engineering/evidence/workspace-layout-native-20261008/local-candidate.json --bundles app -- --locked --offline",
+      "result": "PASS",
+      "evidence": "local-build.log"
+    },
+    {
+      "command": "npm test -- --maxWorkers=1",
+      "result": "PASS488 /61files",
+      "evidence": "frontend-implementation/evidence/workspace-layout-native-20261008/frontend-regression.log"
+    },
+    {
+      "command": "npm test -- --maxWorkers=1 tests/ui/settings-owner-lifecycle.test.tsx tests/ui/settings-window.test.tsx",
+      "result": "PASS16",
+      "evidence": "frontend-implementation/evidence/workspace-layout-native-20261008/owner-supported.log"
+    },
+    {
+      "command": "npm test -- --maxWorkers=1 tests/ui/workspace-layout.test.tsx tests/ui/session.test.tsx tests/ui/settings-owner-lifecycle.test.tsx tests/ui/settings-window.test.tsx",
+      "result": "PASS47",
+      "evidence": "frontend-implementation/evidence/workspace-layout-native-20261008/focused-initial.log"
+    },
+    {
+      "command": "npm run test:bundle-worker",
+      "result": "PASS",
+      "evidence": "frontend-implementation/evidence/workspace-layout-native-20261008/worker.log"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS",
+      "evidence": "diff-check.log"
+    }
+  ]
+}

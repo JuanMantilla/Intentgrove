@@ -1,0 +1,27 @@
+{
+  "id": "diagnostic-v2-isolated",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "-t",
+    "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic-v2.config.ts"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-12T02:06:21.055521+00:00",
+  "finished_at": "2026-10-12T02:06:58.641582+00:00",
+  "seconds": 37.585814750000004,
+  "load_after": [
+    62.5390625,
+    18.6650390625,
+    11.84326171875
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-v2-isolated.log"
+}

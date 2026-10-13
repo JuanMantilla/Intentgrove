@@ -1,0 +1,6 @@
+# User-authorized POC scope, 2026-10-11
+
+The user explicitly requested execution of the accepted investigation's disposable second experiment: four VectorCraft-authored scenes (login, dashboard, settings, profile-overlay), versioned declarative ZIP package, custom scene-scoped identity, isolated Intentgrove native runtime, exact six-click flow and reset, security probes, actual screenshot QA, programmatic control, runtime independence and basic performance observations. No production feature, full MCP/editor, Smart Animate, arbitrary package JavaScript, responsive layout, unrelated functionality, VectorCraft changes, commit, push or deployment authorized.
+
+Accepted baseline/standalone-host allowance: /Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc-plan.md.
+Workspace QA integration: /Users/juanmantilla/projects/personal/.agents/qa-cleanup-integration.md. Implementation authority: current user request; no further permission required for the disposable POC. Completion ownership remains the user; there is no user acceptance of these new results yet. QA verification is performed by the implementing investigator, not an independently spawned reviewer. AWAITING_ACCEPTANCE is bookkeeping, not a request for production implementation permission. No worker or cleanup started.

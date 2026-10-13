@@ -1,0 +1,6 @@
+
+const viewer=document.getElementById('viewer'),large=document.getElementById('large-image'),title=document.getElementById('dialogtitle'),full=document.getElementById('full-image'),names={a:'Fine cross',b:'Circular close',c:'Hide Projects'};let selected='a',invoker=null;
+function enlarge(src,label,trigger){invoker=trigger;large.src=src;large.alt=label;title.textContent=label;viewer.showModal();}
+document.querySelectorAll('[data-enlarge]').forEach(button=>button.addEventListener('click',()=>enlarge(button.dataset.enlarge,button.dataset.title,button)));
+document.querySelectorAll('[data-option]').forEach(button=>button.addEventListener('click',()=>{selected=button.dataset.option;document.querySelectorAll('[data-option]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));full.src='option-'+selected+'.png';full.alt='Option '+selected.toUpperCase()+' · '+names[selected]+' in the full outer Intentgrove shell';document.getElementById('selection-label').textContent='Option '+selected.toUpperCase()+' · '+names[selected];}));
+document.getElementById('enlarge-full').addEventListener('click',event=>enlarge('option-'+selected+'.png','Option '+selected.toUpperCase()+' · '+names[selected],event.currentTarget));document.getElementById('close').addEventListener('click',()=>viewer.close());viewer.addEventListener('close',()=>invoker?.focus());

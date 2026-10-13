@@ -1,0 +1,32 @@
+"""Synchronous PostToolUse: validate and queue only; no subprocess or removal."""
+import json
+import sys
+import argparse
+if __name__ == '__main__':
+    outcome = {'disposition': 'ERROR', 'reason': 'handler_not_initialized'}
+    runner = None
+    try:
+        parser = argparse.ArgumentParser(description=__doc__)
+        parser.add_argument('--test-context')
+        args = parser.parse_args()
+        import cleanup as runner
+        runner.check_context(args.test_context)
+        event = json.load(sys.stdin)
+        outcome.update(context_id=runner.TEST_CONTEXT['id'] if runner.TEST_CONTEXT else None,
+                       session_id=event.get('session_id'), tool_use_id=event.get('tool_use_id'),
+                       observed_at=runner.guard.utc_now(), validation='NOT_TESTED',
+                       response_format=type(event.get('tool_response')).__name__)
+        runner.hook(event, outcome)
+    except Exception as exc:
+        outcome.update(disposition='REJECTED' if runner and isinstance(exc, runner.guard.GuardError) else 'ERROR',
+                       reason=str(exc) if runner and isinstance(exc, runner.guard.GuardError) else type(exc).__name__)
+        if outcome.get('validation') == 'PENDING':
+            outcome['validation'] = 'FAIL'
+    try:
+        if runner and (runner.TEST_CONTEXT or outcome.get('record_key')):
+            runner.check_context(args.test_context)
+            runner.write(runner.STATE / 'hook-outcomes' / (runner.uuid.uuid4().hex + '.json'), outcome, exclusive=True)
+    except Exception as exc:
+        outcome['diagnostic_persistence_error'] = type(exc).__name__
+    print(json.dumps({'systemMessage': 'QA cleanup hook: ' + json.dumps(outcome, sort_keys=True)}))
+    sys.exit(0)

@@ -1,0 +1,10 @@
+Observed cua_repl native provider failures during this run:
+1. Stale menu element -10005 after screenshot; refreshed current AX tree and reopened menu.
+2. Coordinate click [99,603]: -10005 noWindowsAvailable. No alternate input injection used.
+3. Several right-click/screenshot attempts: ScreenCaptureKit SCStreamErrorDomain -3811 Failed to start stream due to audio/video capture failure. Semantic retry succeeded.
+4. Multiple actual screenshots omit menus visible in immediately preceding AX text; paired API also omitted. Those images prove underlying theme only; visual menu checks BLOCKED.
+5. Initial explorer keyboard attempt used semantic click but retained prior tab focus: menu was for special tab; Down/Return copied its path. Preserved attempt files; corrected via right-click / Escape / Shift+F10; exact unopened.md selected. This is a harness targeting mistake, not a product defect.
+6. First copied-crate probe compilation lacked referenced acceptance files; second lacked assets/fixtures; copied existing inputs only and reran. Final test actually executed and failed identity expectation.
+7. Keep draft during Cmd+Q returned App quit; ps confirms isolated PID ended.
+
+8. Finder AX URL became stale after same-path replacement: selected row Value race-verify.md and 31-byte size, but URL race-verify-original.md. Raw actions.json selectedPath fields for replace/race cases are URL-only preliminary readings, not authoritative. Native Cmd+Option+C Copy as Pathname, pasted into canceled Go dialog, returns race-verify.md. Actual Finder screenshot agrees. Correction recorded without overwriting original attempts.

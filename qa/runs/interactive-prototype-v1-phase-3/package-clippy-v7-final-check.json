@@ -1,0 +1,22 @@
+{
+  "name": "package-clippy-v7",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:46:59.060083+00:00",
+  "finished_at": "2026-10-12T03:46:59.248660+00:00",
+  "exit_code": 0,
+  "log": "package-clippy-v7.log",
+  "tested_snapshot": "tested-snapshot-v7.json"
+}

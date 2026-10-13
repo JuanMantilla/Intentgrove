@@ -1,0 +1,87 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - text: Local files only
+  - button "Appearance":
+  - generic: Language
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Settings":
+- button "Projects" [expanded]:
+  - text: Projects
+- group "Visited files":
+  - button "Back":
+  - button "Forward" [disabled]:
+- tablist "Documents":
+  - tab "AGENTS.md":
+    - generic: AGENTS.md
+  - 'button "Close tab: AGENTS.md"': ×
+  - tab "README.md":
+    - generic: README.md
+  - 'button "Close tab: README.md"': ×
+  - tab "close-review-similar-filename-alpha.md":
+    - generic: close-re…r-filename-alpha.md
+  - 'button "Close tab: close-review-similar-filename-alpha.md"': ×
+  - tab "close-review-similar-filename-beta.md":
+    - generic: close-re…ar-filename-beta.md
+  - 'button "Close tab: close-review-similar-filename-beta.md"': ×
+  - tab "theme-states.svg":
+    - generic: theme-states.svg
+  - 'button "Close tab: theme-states.svg"': ×
+  - tab "release.v2.md" [selected]:
+    - generic: release.v2.md
+  - 'button "Close tab: release.v2.md"': ×
+- button "Go menu": Go
+- button "Open documents (6)"
+- complementary "Explorer":
+  - button "Projects" [active]:
+    - generic: Projects
+  - button "Close Projects sidebar":
+  - button "Open file"
+  - button "Open folder"
+  - button "Search folder":
+    - text: Search folder
+  - text: ⌄
+  - generic "/fixture/personal/md-reader": md-reader
+  - button "AGENTS.md":
+    - generic "AGENTS.md"
+  - button "README.md":
+    - generic "README.md"
+  - button "close-review-similar-filename-alpha.md":
+    - generic "close-review-similar-filename-alpha.md": close-rev…-filename-alpha.md
+  - button "close-review-similar-filename-beta.md":
+    - generic "close-review-similar-filename-beta.md": close-rev…r-filename-beta.md
+  - button "theme-states.svg":
+    - generic "theme-states.svg"
+  - button "release.v2.md":
+    - generic "release.v2.md"
+  - strong: Storage and recovery
+  - generic: "Open edits and recovery offers: 1"
+  - status: "Unresolved or unverified: 1"
+  - button "Manage…"
+  - button "Settings…"
+- main:
+  - group "release.v2.md":
+    - strong:
+      - generic "release.v2.md"
+    - button "Find in document":
+      - text: Find in document
+    - button "Save file" [disabled]:
+      - text: Save file
+    - button "Return to reading"
+    - button "Save As"
+    - generic: Save returns to reading.
+    - generic "Document…"
+    - generic: Folder root
+  - tabpanel "release.v2.md":
+    - status "Loading…":
+      - generic: Loading…
+- contentinfo:
+  - generic: Current on disk
+  - generic: Intentgrove by Theonira
+- complementary:
+  - generic: Mocked native wait
+  - button "Resolve"
+  - button "Fail"
+  - button "Reduce motion (CSS simulation)"

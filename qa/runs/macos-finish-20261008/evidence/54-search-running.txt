@@ -1,0 +1,97 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: No-match-unique-20261008, Placeholder: File name or text
+							14 text (settable) No-match-unique-20261008
+							15 button cancel
+					16 text Search scope: fixtures / cancel-bulk · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Stop
+					26 button Clear search
+					27 text Searching… · 4,736 entries scanned, 0 skipped · Results: 0
+				28 text Storage and recovery
+				29 text Open edits and recovery offers: 0
+				30 button Manage…
+			31 button Close sidebar
+			32 container
+				33 container Visited files
+					34 button (disabled) Back, Help: No previous file
+					35 button (disabled) Forward, Help: No next file
+				36 tab group (selectable) Documents
+					37 container
+						38 tab (selectable) scoped.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/docs/scoped.md
+						39 button Close tab: scoped.md, Help: Close tab
+					40 container
+						41 tab (selectable) mixed-11534336.md · This file is over the 10 MiB rich-reading limit, Help: /private/tmp/intentgrove-finish-20261008/fixtures/mixed-11534336.md
+						42 button Close tab: mixed-11534336.md, Help: Close tab
+					43 container
+						44 tab (selected) hostile.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/hostile.md
+						45 button Close tab: hostile.md, Help: Close tab
+					46 container
+						47 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						48 button Close tab: reading.md, Help: Close tab
+					49 container
+						50 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						51 button Close tab: second.md, Help: Close tab
+				52 pop up button Go menu
+				53 button (collapsed) Open documents (5), Secondary Actions: Expand
+				54 container hostile.md
+					55 text hostile.md
+					56 text Folder root
+					57 button Edit section
+					58 summary Document…, Value: off
+						59 text Document…
+				60 container hostile.md
+					61 container Before
+						62 container Edit section: Before
+							63 heading Before, Value: 1
+								64 text Before
+							65 button Edit section “Before”
+						66 container
+							67 text This document is too complex to render safely
+							68 summary View source, Value: off
+								69 text View source
+						70 container Edit section: After
+							71 heading After, Value: 1
+								72 text After
+							73 button Edit section “After”
+						74 container
+							75 text This document is too complex to render safely
+							76 summary View source, Value: off
+								77 text View source
+						78 container Edit section: End
+							79 heading End, Value: 1
+								80 text End
+							81 button Edit section “End”
+	82 close button
+	83 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	84 minimize button
+	85 text Intentgrove
+86 menu bar
+	87 Intentgrove Final Acceptance 20261008
+	88 File
+	89 Edit
+	90 View
+	91 Go
+	92 Window
+	93 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

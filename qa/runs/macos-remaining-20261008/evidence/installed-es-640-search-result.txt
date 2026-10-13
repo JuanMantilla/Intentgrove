@@ -1,0 +1,145 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text drop-folder-proof
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 container Buscar en la carpeta
+					10 button Volver al explorador
+					11 container
+						12 text Buscar en la carpeta
+						13 search text field (settable) Buscar en la carpeta, Value: DROP-FOLDER-20261008, Placeholder: Nombre o texto
+							14 text (settable) DROP-FOLDER-20261008
+							15 button cancel
+					16 text Ámbito de búsqueda: drop-folder-proof · Nombres y contenido
+					17 container Buscar en
+						18 toggle button Nombres y contenido, Value: on
+						19 toggle button Nombres de archivo, Value: off
+						20 toggle button Texto del documento, Value: off
+					21 text La búsqueda de contenido incluye archivos Markdown.
+					22 container
+						23 checkbox Incluir archivos ignorados, Value: 0
+						24 text Incluir archivos ignorados
+					25 button Buscar
+					26 button Borrar búsqueda
+					27 text Búsqueda completa · 1 entradas revisadas, 0 omitidas · Resultados: 1
+					28 container inside-drop.md
+						29 heading inside-drop.md 1, Help: inside-drop.md, Value: 3
+							30 text inside-drop.md 1
+						31 button inside-drop.md · Línea 2 · Unique marker: DROP-FOLDER-20261008., Help: inside-drop.md
+				32 text Almacenamiento y recuperación
+				33 text Ediciones abiertas y avisos de recuperación: 0
+				34 button Gestionar…
+			35 button Cerrar explorador
+			36 container
+				37 container Archivos visitados
+					38 button Atrás, Help: Atrás: inside-drop.md
+/Users/Shared/Intentgrove-Acceptance-20261008/Native Drops/drop-folder-proof/inside-drop.md
+					39 button (disabled) Adelante, Help: No hay archivo siguiente
+				40 tab group (selectable) Documentos
+					41 container
+						42 tab (selectable) inside-drop.md, Help: /Users/Shared/Intentgrove-Acceptance-20261008/Native Drops/drop-folder-proof/inside-drop.md
+						43 button Cerrar pestaña: inside-drop.md, Help: Cerrar pestaña
+					44 container
+						45 tab (selected) rich.md, Help: /Users/Shared/Intentgrove-Acceptance-20261008/Test Documents/rich.md
+						46 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+				47 pop up button Menú Ir
+				48 button (collapsed) Documentos abiertos (2), Secondary Actions: Expand
+				49 container rich.md
+					50 text rich.md
+					51 text Fuera de la carpeta abierta
+					52 button Editar sección
+					53 summary Documento…, Value: off
+						54 text Documento…
+				55 container rich.md
+					56 container Reading acceptance
+						57 container (expanded) Secondary Actions: Collapse
+							58 summary Metadatos, Value: on
+								59 text Metadatos
+							60 description list
+								61 text title
+								62 text Disposable rich acceptance
+								63 text owner
+								64 text QA
+							65 summary Ver código fuente de los metadatos, Value: off
+								66 text Ver código fuente de los metadatos
+						67 container Editar sección: Reading acceptance
+							68 heading Reading acceptance, Value: 1
+								69 text Reading acceptance
+							70 button Editar sección «Reading acceptance»
+						71 container
+							72 text Before diagrams. 
+							73 button Reference, Help: linked.md
+							74 text  and encoded footnote
+							75 button 1, Help: #fn-a%2520b
+							76 text .
+						77 text json
+						78 button Copiar código
+						79 text {"highlight": true}
+
+						80 image Diagrama Mermaid
+						81 summary Ver código fuente, Value: off
+							82 text Ver código fuente
+						83 text Between diagrams.
+						84 image Diagrama Mermaid
+						85 summary Ver código fuente, Value: off
+							86 text Ver código fuente
+						87 text Diagrama no disponible. El código fuente se conserva abajo.
+						88 container (expanded) Secondary Actions: Collapse
+							89 summary Ver código fuente, Value: on
+								90 text Ver código fuente
+							91 text mermaid
+							92 button Copiar código
+							93 text flowchart broken
+
+						94 text Diagrama no disponible. El código fuente se conserva abajo.
+						95 container (expanded) Secondary Actions: Collapse
+							96 summary Ver código fuente, Value: on
+								97 text Ver código fuente
+							98 text mermaid
+							99 button Copiar código
+							100 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						101 text After diagrams.
+						102 container Editar sección: Duplicate
+							103 heading Duplicate, Value: 2
+								104 text Duplicate
+							105 button Editar sección «Duplicate»
+						106 text First duplicate target.
+						107 container Editar sección: Duplicate
+							108 heading Duplicate, Value: 2
+								109 text Duplicate
+							110 button Editar sección «Duplicate»
+						111 text Second duplicate target.
+						112 container
+							113 text [1] 
+							114 button ↩, Help: #fnref-a%2520b-1
+						115 text Encoded footnote body.
+				116 container Índice
+					117 text Índice
+					118 button Cerrar índice
+					119 container Índice
+						120 content list
+							121 button Reading acceptance
+							122 button Duplicate
+							123 button Duplicate
+	124 close button
+	125 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	126 minimize button
+	127 text Intentgrove
+128 menu bar
+	129 Intentgrove
+	130 File
+	131 Edit
+	132 View
+	133 Ir
+	134 Window
+	135 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

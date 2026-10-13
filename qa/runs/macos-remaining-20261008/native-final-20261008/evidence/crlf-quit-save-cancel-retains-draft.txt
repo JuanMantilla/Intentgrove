@@ -1,0 +1,79 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: plain.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+					15 container
+						16 tab (selected) lifecycle.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/lifecycle.md
+						17 button Close tab: lifecycle.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container lifecycle.md
+					21 text lifecycle.md
+					22 text Folder root
+					23 button Save file
+					24 button Return to reading
+					25 text Save returns to reading.
+					26 summary Document…, Value: off
+						27 text Document…
+				28 text This file has mixed line endings, so section editing is unavailable.
+				29 button Dismiss
+				30 container lifecycle.md
+					31 container Editing: Lifecycle proof
+						32 text Editing: Lifecycle proof
+						33 text Changes not saved to the file
+						34 text Markdown source
+						35 text entry area (settable) Markdown source: Lifecycle proof, Value: # Lifecycle proof
+
+BASELINE_FIRST
+
+CRLF_SINGLE_EDIT
+							36 text (settable) # Lifecycle proof
+							37 text (settable) BASELINE_FIRST
+							38 text (settable) CRLF_SINGLE_EDIT
+						39 container Live preview
+							40 text Live preview
+							41 container Lifecycle proof
+								42 heading Lifecycle proof, Value: 1
+									43 text Lifecycle proof
+								44 text BASELINE_FIRST
+								45 text CRLF_SINGLE_EDIT
+						46 button Undo
+						47 button (disabled) Redo
+						48 button Discard changes…
+						49 button Save as…
+					50 container Lifecycle proof
+						51 container Edit section: Lifecycle proof
+							52 heading Lifecycle proof, Value: 1
+								53 text Lifecycle proof
+							54 button Edit section “Lifecycle proof”
+						55 text BASELINE_FIRST
+						56 container Edit section: Following section
+							57 heading Following section, Value: 2
+								58 text Following section
+							59 button Edit section “Following section”
+						60 text DO_NOT_CHANGE_FOLLOWING
+	61 close button
+	62 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	63 minimize button
+	64 text Intentgrove
+65 menu bar
+	66 Intentgrove
+	67 File
+	68 Edit
+	69 View
+	70 Go
+	71 Window
+	72 Help

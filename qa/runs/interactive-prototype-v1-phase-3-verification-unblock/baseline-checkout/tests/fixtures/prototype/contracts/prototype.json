@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "entry": "dashboard",
+  "scenes": [
+    {
+      "id": "dashboard",
+      "kind": "base",
+      "visual": "scenes/dashboard.svg",
+      "localState": [
+        {
+          "target": "menu-panel",
+          "initialVisible": false
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "kind": "base",
+      "visual": "scenes/settings.svg",
+      "localState": []
+    },
+    {
+      "id": "profile",
+      "kind": "overlay",
+      "visual": "scenes/profile.svg",
+      "localState": []
+    }
+  ],
+  "interactions": [
+    {
+      "id": "settings",
+      "scene": "dashboard",
+      "target": "settings-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "NAVIGATE",
+        "scene": "settings"
+      },
+      "transition": {
+        "type": "DISSOLVE",
+        "durationMs": 100
+      },
+      "label": "settings"
+    },
+    {
+      "id": "back",
+      "scene": "settings",
+      "target": "back-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "BACK"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "back"
+    },
+    {
+      "id": "profile",
+      "scene": "dashboard",
+      "target": "profile-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "OPEN_OVERLAY",
+        "scene": "profile"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "profile"
+    },
+    {
+      "id": "close",
+      "scene": "profile",
+      "target": "close-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "CLOSE_OVERLAY"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "close"
+    },
+    {
+      "id": "toggle",
+      "scene": "dashboard",
+      "target": "menu-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "TOGGLE",
+        "target": "menu-panel"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "toggle"
+    }
+  ]
+}

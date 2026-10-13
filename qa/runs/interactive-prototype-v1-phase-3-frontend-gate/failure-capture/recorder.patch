@@ -1,0 +1,201 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/src/app/App.tsx
+@@ -365,6 +365,7 @@
+     sequence: number; generation: number; loadToken?: symbol; fileId?: string; content?: string; dispatched?: boolean
+   } | null>(null);
+   const selectionReady = useCallback((adapter: DocumentSelectionAdapter | null) => {
++    (globalThis as any).__fc?.event(adapter ? 12 : 13,adapter?.fileId);
+     documentSelectionRef.current = adapter;
+     // Ref publication may be the last event after acquisition/activation. Wake
+     // a queued intent even when no section or paint state will render again.
+@@ -409,7 +410,7 @@
+   useLayoutEffect(() => { editsRef.current = edits; }, [edits]);
+   useLayoutEffect(() => { pendingRecoveriesRef.current = pendingRecoveries; }, [pendingRecoveries]);
+   useEffect(() => { rootRef.current = root; }, [root]);
+-  useEffect(() => { activeIdRef.current = activeId; }, [activeId]);
++  useEffect(() => { (globalThis as any).__fc?.event(7,activeId); activeIdRef.current = activeId; }, [activeId]);
+   useEffect(() => {
+     setTabs((old) => old.some((tab) => tab.kind === "image" && tab.id !== activeId && tab.image)
+       ? old.map((tab) => tab.kind === "image" && tab.id !== activeId ? { ...tab, image: undefined } : tab)
+@@ -1279,6 +1280,15 @@
+     clearSessionConfirm, clearRecentsConfirm, storageOpen, pendingRecoveries, selectionPending, documentPending,
+     enteringSection, savingTabId, copySaving, cleanupBusy, openingRecent, restoreLoadRevision, historyOpen, documentsOpen]);
+   const activeEdit = activeId ? edits[activeId] : undefined;
++  if ((globalThis as any).__fc) (globalThis as any).__fc.providers.app = () => ({activeId, active, tabs, activeIdRef:activeIdRef.current,
++    tabsRef:tabsRef.current, root, rootRef:rootRef.current, generation:generationRef.current, openSequence:openSequence.current,
++    layout, documentPending, documentOpening, selectionPending, sessionReady, busy, notice, editingAvailable, sectionsByTab, sectionLayoutVersions,
++    edits, activeEdit, enteringSection, enteringToken:enteringSectionRef.current, pendingRecoveries,
++    documentSelection:documentSelectionRef.current, selectionAcquisition:selectionAcquisition.current,
++    pendingDocumentSelection:pendingDocumentSelection.current, documentLoads:documentLoads.current,
++    acquisitionTokenMatchesPending:selectionAcquisition.current?.token === documentPending?.token,
++    selectionTokenMatchesAcquisition:pendingDocumentSelection.current?.loadToken === selectionAcquisition.current?.token,
++    renderedMarkdown,paintedMarkdown:paintedMarkdown.current,initialReadingIntent:initialReadingIntent.current});
+   const findInDraft = Boolean(activeEdit && !activeEdit.paused);
+   const findOverBudget = useMemo(() => active?.content
+     ? exceedsRenderBudget(active.content) : false, [active?.content]);
+@@ -1444,22 +1454,27 @@
+     if (!active?.diskVersion || active.kind === "image" || active.kind === "html" || active.kind === "details" || active.kind === "prototype" || isNativeDocument(active.name) || active.errorCode || activeEdit) return;
+     if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
++    (globalThis as any).__fc?.event(8,active.id,active.diskVersion);
++    if ((globalThis as any).__fc) (globalThis as any).__fc.providers.sections = () => ({cancelled,documentId:active.id,diskVersion:active.diskVersion});
+     void api.listEditSections(active.id).then((result) => {
++      (globalThis as any).__fc?.event(9,active.id,result.diskVersion,cancelled);
+       if (!cancelled) {
+         setSectionsByTab((old) => ({ ...old, [active.id]: result.diskVersion === active.diskVersion ? result.sections : [] }));
+         setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
+       }
+     }).catch(() => {
++      (globalThis as any).__fc?.event(10,active.id);
+       if (!cancelled) {
+         setSectionsByTab((old) => ({ ...old, [active.id]: [] }));
+         setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
+       }
+     });
+-    return () => { cancelled = true; };
++    return () => { cancelled = true; (globalThis as any).__fc?.event(11,active.id); };
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+ 
+   async function startEdit(tabId: string, section: SectionDescriptor, diskVersion: string) {
+     if (!editingAvailable || enteringSectionRef.current || (tabsRef.current.find(t=>t.id===tabId)?.kind === "html" || tabsRef.current.find(t=>t.id===tabId)?.kind === "prototype")) return;
++    (globalThis as any).__fc?.event(16,tabId,section.id,generationRef.current);
+     const token = Symbol("section entry"), generation = generationRef.current, navigation = openSequence.current;
+     const previousVersion = tabsRef.current.find(tab => tab.id === tabId)?.diskVersion;
+     enteringSectionRef.current = token;
+@@ -1785,6 +1800,7 @@
+   }
+ 
+   function activateFolder(selected: GrantInfo) {
++    (globalThis as any).__fc?.event(3,selected.id,undefined,selected.generation);
+     imageLoads.current.clear();
+     setSidebarPanel("explorer");
+     setFolderQuery("");
+@@ -1973,9 +1989,11 @@
+         if(!current() || documentLoads.current.get(pendingId)!==token) {if(view.viewToken)await disposeLocalView(view);return;}
+         return await acceptLocalView(view,request,pendingId,sequence===openSequence.current);
+       }
++      (globalThis as any).__fc?.event(4,requestKey,sequence,generation);
+       const document = requireMarkdownResponse(await api.readDocument(request));
++      (globalThis as any).__fc?.event(5,document.fileId,document.diskVersion,generation);
+       setDocumentPending(old => old?.token === token ? null : old);
+-      if (!current() || (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
++      if (!current() || (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) { (globalThis as any).__fc?.event(24,requestKey,sequence,generation); return; }
+       if (typeof api.rememberRecentDocument === "function") {
+         void api.rememberRecentDocument(document.fileId).then(refreshRecents).catch(() => {});
+       }
+@@ -2051,6 +2069,7 @@
+       }
+       return tab.id;
+     } catch (error) {
++      (globalThis as any).__fc?.event(6,requestKey,sequence,generation);
+       if (!current() || (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       const detail = readerError(error);
+       onFailure?.(detail.code);
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/src/reader/MarkdownView.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/src/reader/MarkdownView.tsx
+@@ -258,12 +258,12 @@
+   const paintedCallback = useRef(onPainted);
+   paintedCallback.current = onPainted;
+   useLayoutEffect(() => {
+-    if (renderReady && painted >= blocks.length) paintedCallback.current?.(fileId, content);
++    if (renderReady && painted >= blocks.length) { (globalThis as any).__fc?.event(14,fileId,painted,generation.current); paintedCallback.current?.(fileId, content); }
+   }, [fileId, content, renderReady, painted, blocks.length]);
+   const renderedCallback = useRef(onRendered);
+   renderedCallback.current = onRendered;
+   useLayoutEffect(() => {
+-    if (!layoutPending && renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
++    if (!layoutPending && renderReady && painted >= blocks.length) { (globalThis as any).__fc?.event(15,fileId,painted,generation.current); renderedCallback.current?.(fileId, content); }
+   }, [fileId, content, renderReady, painted, blocks.length, layoutPending, sections]);
+   useEffect(() => {
+     onSelectionReady?.({ fileId, selectAll: (request = {}) => {
+@@ -280,15 +280,16 @@
+     if (!selectionRequest) return;
+     if (selectionRequest.fileId !== fileId || selectionRequest.content !== content || selectionRequest.isCurrent?.() === false
+       || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, selectionRoot.current)) {
+-      setSelectionRequest(null); return;
+-    }
+-    if (layoutPending || !selectionReady) return;
++      (globalThis as any).__fc?.event(25,fileId,undefined,generation.current); setSelectionRequest(null); return;
++    }
++    if (layoutPending || !selectionReady) { (globalThis as any).__fc?.event(26,fileId,layoutPending,generation.current); return; }
+     if (painted < blocks.length) { setPainted(blocks.length); return; }
+     if (selectionRoot.current) {
+       if (sourceFallback) {
+         const details = selectionRoot.current.closest("details");
+         if (details) details.open = true;
+       }
++      (globalThis as any).__fc?.event(27,fileId,undefined,generation.current);
+       selectDocumentContents(selectionRoot.current);
+       selectionRequest.onComplete?.();
+     }
+@@ -306,6 +307,10 @@
+   const sectionMap = useMemo(() => sections && onEditSection
+     ? mapRenderedSections(displaySource, sectionTree, retaining ? [] : sections)
+     : null, [parseContent, sectionTree, sections, onEditSection, retaining]);
++  if ((globalThis as any).__fc) (globalThis as any).__fc.providers.markdown = () => ({fileId,content,sections,sectionMapValid:sectionMap?.valid,
++    firstOffsets:sectionMap?.firstOffsets,hasWorker,parsed,retaining,overBudget,renderReady,sourceFallback,selectionReady,
++    layoutPending,painted,blocks:blocks.length,generation:generation.current,selectionRequest,
++    selectionRootConnected:selectionRoot.current?.isConnected,editingSection,hasSectionEditor:Boolean(sectionEditor)});
+   const editRange = useMemo(() => {
+     if (!sectionEditor || !editingSection || editingOriginalSource === undefined) return null;
+     const bytes = new TextEncoder().encode(displaySource);
+@@ -366,6 +371,7 @@
+     const tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+     const section = sectionMap?.valid ? sectionMap.at(offset) : undefined;
+     const editable = section?.kind === "heading" && sectionMap?.firstOffsets.get(section.id) === offset;
++    if(editable && !retaining && onEditSection) (globalThis as any).__fc?.heading(fileId,section.id);
+     return <div className="section-heading">
+       {createElement(tag, { id }, children)}
+       {editable && !retaining && onEditSection && <button type="button" className="section-edit-button"
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/src/reader/RichSection.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/src/reader/RichSection.tsx
+@@ -135,6 +135,7 @@
+     window.getSelection()?.setBaseAndExtent(...domPoint(element, a.offset), ...domPoint(end, h.offset));
+   }, [state, editable, model, compositionRevision]);
+   useEffect(() => {
++    (globalThis as any).__fc?.event(17,props.fileId,props.sessionId);
+     alive.current = true;
+     if (!loaded.error && !unsupportedEol) checkpoint();
+     const surface = scroll();
+@@ -156,7 +157,7 @@
+         root.current?.querySelector(`[data-rich-leaf="${leaf}"]`)?.scrollIntoView?.({ block: "center" });
+       }
+     });
+-    return () => { alive.current = false; surface?.removeEventListener("scroll", capture); window.removeEventListener("blur", dismiss); current.current.onFindReady?.(null);
++    return () => { (globalThis as any).__fc?.event(18,props.fileId,props.sessionId); alive.current = false; surface?.removeEventListener("scroll", capture); window.removeEventListener("blur", dismiss); current.current.onFindReady?.(null);
+       document.removeEventListener("focusin", publish); document.removeEventListener("focusout", publish); window.removeEventListener("focus", publish);
+       current.current.onCommandState?.({ owner: false, undo: false, redo: false, selection: false }); };
+   }, []);
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/tests/ui/workspace-handoff.test.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/tests/ui/workspace-handoff.test.tsx
+@@ -1,3 +1,4 @@
++import {begin, mark, failure, end} from "../../qa-recorder";
+ import { projectAction, projectsMenu } from "./project-navigation-helpers";
+ // @vitest-environment jsdom
+ // Actual App/rendered-edit behavior, mocked Tauri integration; no real document writes.
+@@ -23,6 +24,7 @@
+   { id: "two", kind: "heading", ordinal: 1, level: 1, label: "Two", startByte: 12, endByte: 23, sourceHash: "two" }
+ ];
+ beforeEach(() => {
++  begin(mocks);
+   vi.resetAllMocks(); localStorage.clear(); getAppearance().applyPreference("dark");
+   mocks.listNativeEntries.mockResolvedValue([]);
+   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+@@ -39,12 +41,14 @@
+   mocks.discardSectionEdit.mockResolvedValue(undefined); mocks.clearAllRecovery.mockResolvedValue(1);
+   mocks.listSafetyCopies.mockResolvedValue({ resolvedCount: 2, resolvedBytes: 1024, unresolvedCount: 1, unresolvedBytes: 2048, usedBytes: 3072, quotaBytes: 9999 });
+ });
+-afterEach(() => { cleanup(); getAppearance().applyPreference("system"); });
++afterEach((context) => { if(context.task.result?.state === "fail") failure(context.task.result.errors,23); cleanup(); getAppearance().applyPreference("system"); end(); });
+ async function open() {
+-  render(<App />);
++  mark(1); render(<App />); mark(2);
+   fireEvent.click(projectAction("Open folder"));
+   fireEvent.click(await screen.findByTitle("a.md"));
+-  await screen.findByRole("button", { name: "Edit section “One”" });
++  mark(20);
++  try { await screen.findByRole("button", { name: "Edit section “One”" }); mark(21); }
++  catch (error) { failure(error); throw error; }
+ }
+ async function edit() {
+   await open(); fireEvent.click(screen.getByRole("button", { name: "Edit section “One”" }));

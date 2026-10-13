@@ -1,6 +1,7 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../../src/app/App";
 
 const mocks = vi.hoisted(() => ({
@@ -48,7 +49,7 @@ afterEach(cleanup);
 describe("recovery offer", () => {
   it("shows the latest saved time and restores a conflicting draft without writing the source", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("a.md"));
     await waitFor(() => expect(mocks.loadSectionRecovery).toHaveBeenCalledWith("file"));
     expect(screen.getByText(/Last recovery saved:/)).toBeTruthy();

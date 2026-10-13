@@ -1,5 +1,7 @@
 # Implementation Plan: Windows desktop port (F007W)
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature**: `013-windows-desktop` | **Git branch**: `main` (unchanged) | **Date**: 2026-10-05 | **Spec**: [spec.md](spec.md)
 **Status**: Proposed architecture — approval required before application edits.
 
@@ -61,3 +63,10 @@ No real user documents are used for verification. Existing app-data formats rema
 ## Risks and decision limits
 
 Secure relative opens and recall avoidance need actual Windows proof. CreateFileW on a full path with OPEN_REPARSE_POINT protects the final component only; parent traversal requires an anchored mechanism or held ancestors with tested sharing restrictions. The selected prototype uses NtCreateFile RootDirectory-relative opens with OBJ_DONT_REPARSE; binding availability and actual race/recall behavior remain implementation experiment gates, not proven claims. Existing 64-bit identity fields can be reused for NTFS only after volume/file-ID uniqueness and serialization tests; other filesystems are rejected. ReplaceFileW is a candidate for verified destination replacement, not a compare-and-swap guarantee. Required changes to schema, privileges, capability contracts or dependency scope beyond this plan reopen the affected review gate.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F007W-H01**: Shared classification/grants/commands are extended for HTML. A standalone Wry/WebView2 adapter disables document scripts, web messages, host objects, external URI launches, frames, downloads and popups, and intercepts all request sources via ICoreWebView2_22. Rust Windows std target, Windows runner/WebView2 and Windows package verification are unavailable on this Mac; source is implemented but Windows build/runtime are NOT TESTED.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

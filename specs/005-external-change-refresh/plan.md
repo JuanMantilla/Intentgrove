@@ -1,5 +1,7 @@
 # Implementation Plan: Refresh External Changes
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Branch:** `005-external-change-refresh` | **Date:** 2026-09-25 | **Status:** Draft architecture proposal  
 **Spec:** [spec.md](spec.md) | **Design:** [design.md](design.md) | **Research:** [research.md](research.md)
 
@@ -119,3 +121,10 @@ Phase 1 artifacts preserve the same boundaries: [data-model.md](data-model.md) k
 Use disposable folders with a second writer process to exercise in-place writes, staged writes, atomic replacement, same-size rewrites, rename/delete/recreate, selected-root replacement, symlink escapes, permission loss, multiple dirty tabs, watch overflow/failure, missed events on focus, and cancellation. Compare hashes immediately before/after refresh, and validate that only explicit F004 Save or Save As writes source output. Run Rust boundary tests, UI keyboard/EN/ES tests, and a packaged macOS journey; record OS/CPU, commands, timing distributions, fixture shape, and PASS/FAIL/NOT TESTED per acceptance case.
 
 Open risks to validate before architecture approval: the stable-read quiet interval may not meet SC-001 on all editors; a paused in-place writer has no reliable finished signal; directory snapshot memory/work must remain bounded at 25,000 entries; the native watcher may omit events and must recover on focus/manual Reload; a file-only grant cannot follow atomic replacement without explicit reselection. No source implementation, toolchain installation, or app acceptance test is authorized by this plan document alone.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003D-H01**: HTML source fingerprints use bounded stable double reads and existing refresh notices; get_confirmed_document stays Markdown-only. HTML reload replaces its native descriptor/surface; explicit identity replacement needs reselection and root-relative replacement remains under the current root. Active get_html_state polling detects source/resource stamp changes; no independent resource watcher or guaranteed resource-only background refresh is claimed.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

@@ -1,0 +1,273 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: entry-00000.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/bulk/entry-00000.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) hostile-matrix.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/hostile-matrix.md
+						14 button Close tab: hostile-matrix.md, Help: Close tab
+				15 pop up button Go menu
+				16 button (collapsed) Open documents (1), Secondary Actions: Expand
+				17 container Visited files
+					18 text Atrás: entry-00000.md
+				19 container hostile-matrix.md
+					20 text hostile-matrix.md
+					21 text Folder root
+					22 button Edit section
+					23 summary Document…, Value: off
+						24 text Document…
+				25 container hostile-matrix.md
+					26 container Final hostile matrix
+						27 container Edit section: Final hostile matrix
+							28 heading Final hostile matrix, Value: 1
+								29 text Final hostile matrix
+							30 button Edit section “Final hostile matrix”
+						31 text Before hostile blocks.
+						32 container Edit section: directive
+							33 heading directive, Value: 2
+								34 text directive
+							35 button Edit section “directive”
+						36 text Diagram unavailable. The source is preserved below.
+						37 container (expanded) Secondary Actions: Collapse
+							38 summary View source, Value: on
+								39 text View source
+							40 text mermaid
+							41 button Copy code
+							42 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+A-->B
+
+						43 text After directive.
+						44 container Edit section: html
+							45 heading html, Value: 2
+								46 text html
+							47 button Edit section “html”
+						48 text Diagram unavailable. The source is preserved below.
+						49 container (expanded) Secondary Actions: Collapse
+							50 summary View source, Value: on
+								51 text View source
+							52 text mermaid
+							53 button Copy code
+							54 text flowchart LR
+A["<img src=x onerror=alert(1)>"]
+
+						55 text After html.
+						56 container Edit section: svg
+							57 heading svg, Value: 2
+								58 text svg
+							59 button Edit section “svg”
+						60 text Diagram unavailable. The source is preserved below.
+						61 container (expanded) Secondary Actions: Collapse
+							62 summary View source, Value: on
+								63 text View source
+							64 text mermaid
+							65 button Copy code
+							66 text flowchart LR
+A["<svg onload=alert(1)>"]
+
+						67 text After svg.
+						68 container Edit section: file-link
+							69 heading file-link, Value: 2
+								70 text file-link
+							71 button Edit section “file-link”
+						72 text Diagram unavailable. The source is preserved below.
+						73 container (expanded) Secondary Actions: Collapse
+							74 summary View source, Value: on
+								75 text View source
+							76 text mermaid
+							77 button Copy code
+							78 text flowchart LR
+A-->B
+click A "file:///etc/passwd"
+
+						79 text After file-link.
+						80 container Edit section: network-link
+							81 heading network-link, Value: 2
+								82 text network-link
+							83 button Edit section “network-link”
+						84 text Diagram unavailable. The source is preserved below.
+						85 container (expanded) Secondary Actions: Collapse
+							86 summary View source, Value: on
+								87 text View source
+							88 text mermaid
+							89 button Copy code
+							90 text flowchart LR
+A-->B
+click A "https://example.invalid/qa"
+
+						91 text After network-link.
+						92 container Edit section: script-link
+							93 heading script-link, Value: 2
+								94 text script-link
+							95 button Edit section “script-link”
+						96 text Diagram unavailable. The source is preserved below.
+						97 container (expanded) Secondary Actions: Collapse
+							98 summary View source, Value: on
+								99 text View source
+							100 text mermaid
+							101 button Copy code
+							102 text flowchart LR
+A-->B
+click A "javascript:alert(1)"
+
+						103 text After script-link.
+						104 container Edit section: config
+							105 heading config, Value: 2
+								106 text config
+							107 button Edit section “config”
+						108 text Diagram unavailable. The source is preserved below.
+						109 container (expanded) Secondary Actions: Collapse
+							110 summary View source, Value: on
+								111 text View source
+							112 text mermaid
+							113 button Copy code
+							114 text ---
+config: {}
+---
+flowchart LR
+A-->B
+
+						115 text After config.
+						116 container Edit section: callback
+							117 heading callback, Value: 2
+								118 text callback
+							119 button Edit section “callback”
+						120 text Diagram unavailable. The source is preserved below.
+						121 container (expanded) Secondary Actions: Collapse
+							122 summary View source, Value: on
+								123 text View source
+							124 text mermaid
+							125 button Copy code
+							126 text flowchart LR
+A-->B
+click A callback
+
+						127 text After callback.
+						128 container Edit section: class
+							129 heading class, Value: 2
+								130 text class
+							131 button Edit section “class”
+						132 text Loading…
+						133 summary View source, Value: off
+							134 text View source
+						135 text After class.
+						136 container Edit section: foreign
+							137 heading foreign, Value: 2
+								138 text foreign
+							139 button Edit section “foreign”
+						140 text Loading…
+						141 summary View source, Value: off
+							142 text View source
+						143 text After foreign.
+						144 container Edit section: source-limit
+							145 heading source-limit, Value: 2
+								146 text source-limit
+							147 button Edit section “source-limit”
+						148 container
+							149 text This document is too complex to render safely
+							150 summary View source, Value: off
+								151 text View source
+						152 text After source-limit.
+						153 container Edit section: node-limit
+							154 heading node-limit, Value: 2
+								155 text node-limit
+							156 button Edit section “node-limit”
+						157 text Loading…
+						158 summary View source, Value: off
+							159 text View source
+						160 text After node-limit.
+						161 container Edit section: edge-limit
+							162 heading edge-limit, Value: 2
+								163 text edge-limit
+							164 button Edit section “edge-limit”
+						165 text Loading…
+						166 summary View source, Value: off
+							167 text View source
+						168 text After edge-limit.
+						169 container Edit section: unsupported
+							170 heading unsupported, Value: 2
+								171 text unsupported
+							172 button Edit section “unsupported”
+						173 text Loading…
+						174 summary View source, Value: off
+							175 text View source
+						176 text After unsupported.
+						177 container Edit section: malformed
+							178 heading malformed, Value: 2
+								179 text malformed
+							180 button Edit section “malformed”
+						181 text Loading…
+						182 summary View source, Value: off
+							183 text View source
+						184 text After malformed.
+						185 container Edit section: math
+							186 heading math, Value: 2
+								187 text math
+							188 button Edit section “math”
+						189 text Loading…
+						190 summary View source, Value: off
+							191 text View source
+						192 text After math.
+						193 container Edit section: iframe
+							194 heading iframe, Value: 2
+								195 text iframe
+							196 button Edit section “iframe”
+						197 text Loading…
+						198 summary View source, Value: off
+							199 text View source
+						200 text After iframe.
+						201 container Edit section: entity
+							202 heading entity, Value: 2
+								203 text entity
+							204 button Edit section “entity”
+						205 text Loading…
+						206 summary View source, Value: off
+							207 text View source
+						208 text After entity.
+						209 container Edit section: style
+							210 heading style, Value: 2
+								211 text style
+							212 button Edit section “style”
+						213 text Loading…
+						214 summary View source, Value: off
+							215 text View source
+						216 text After style.
+						217 container Edit section: href
+							218 heading href, Value: 2
+								219 text href
+							220 button Edit section “href”
+						221 text Loading…
+						222 summary View source, Value: off
+							223 text View source
+						224 text After href.
+						225 container Edit section: Valid neighbor
+							226 heading Valid neighbor, Value: 2
+								227 text Valid neighbor
+							228 button Edit section “Valid neighbor”
+						229 text Loading…
+						230 summary View source, Value: off
+							231 text View source
+						232 text Final unaffected text.
+	233 close button
+	234 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	235 minimize button
+	236 text Intentgrove
+237 menu bar
+	238 Intentgrove Completion 20261008
+	239 File
+	240 Edit
+	241 View
+	242 Go
+	243 Window
+	244 Help
+
+The focused UI element is 32 container Edit section: directive

@@ -143,3 +143,10 @@ The developer receives a clear, recoverable state if an external action removes 
 - A file context menu is available from the folder tree. An individually selected file outside the root can use its tab's context menu for Reload without expanding the granted scope.
 - The timing goals are proposed acceptance targets, not measured performance claims. Tests use disposable fixtures and record the host Mac, document shape, and external-writer behavior.
 - The detailed visual form of change notices, conflict comparison, and progress belongs in a separately reviewed `design.md`. The draft constitution's UI amendment is not approval of that design.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003D-H01**: HTML source fingerprints use bounded stable double reads and existing refresh notices; get_confirmed_document stays Markdown-only. HTML reload replaces its native descriptor/surface; explicit identity replacement needs reselection and root-relative replacement remains under the current root. Active get_html_state polling detects source/resource stamp changes; no independent resource watcher or guaranteed resource-only background refresh is claimed.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

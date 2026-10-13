@@ -1,0 +1,101 @@
+[
+  {
+    "id": "mac-native-library-and-version",
+    "result": "PASS",
+    "reason": "135 library tests + 19 version integration tests; 5 + 1 intentionally ignored existing driver/stress cases; disposable actual macOS fixtures",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/native-tests-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "mac-native-local-build",
+    "result": "PASS",
+    "reason": "offline locked native dev build; no app launch, installation or release signature; existing warnings",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/native-build-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "frontend-source-types",
+    "result": "PASS",
+    "reason": "production source TypeScript configuration passes",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/source-types-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "frontend-focused-mocks",
+    "result": "PASS",
+    "reason": "32 tests in 4 files; existing New Markdown/Windows/edit/recovery consumer mocks, not actual post-create UI integration",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/frontend-mocks-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "diff-whitespace",
+    "result": "PASS",
+    "reason": "git diff --check exit 0",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/diff-check-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "aggregate-native-tests",
+    "result": "FAIL",
+    "reason": "standalone automatic_refresh/manual_reload/refresh_conflict/refresh_recovery crates omit html/image modules referenced by current refresh.rs; unresolved imports; no assertions waived or unrelated test fixes",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/aggregate-native-tests-v11.log"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "mac-physical-menu-picker-and-postcreate-ui",
+    "result": "NOT_RUN",
+    "reason": "final UI wiring belongs to frontend handoff; no real app/profile launched; native menu/picker/section-editor journeys not certified",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/frontend-handoff.md"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "windows-compile-and-crosscompile",
+    "result": "NOT_RUN",
+    "reason": "only aarch64-apple-darwin Rust target installed; no Windows execution endpoint/toolchain available; no target/tool installation authorized",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/evidence/environment.json"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "windows-supported-metadata-and-native-lifecycle",
+    "result": "NOT_RUN",
+    "reason": "shipped editing gate retained; legacy audit/integrity metadata and replacement proof blockers require current normal-user Windows evidence; historical passes not inherited",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/windows-continuation.md"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "real-permission-write-sync-failure-injection",
+    "result": "NOT_RUN",
+    "reason": "actual duplicate/atomic race/path failures and simulated postcommit registration failure covered; picker permission errors and real write/sync exhaustion faults not exercised",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/report.md"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  },
+  {
+    "id": "final-user-acceptance",
+    "result": "NOT_RUN",
+    "reason": "user explicitly keeps final acceptance separate",
+    "evidence_paths": [
+      "os-engineering/new-markdown-20261011/STATE.md"
+    ],
+    "finished_at": "2026-10-11T14:49:25.713700+00:00"
+  }
+]

@@ -9,12 +9,14 @@ use uuid::Uuid;
 #[derive(Clone)]
 pub struct AppState {
     inner: Arc<Mutex<Registry>>,
+    pub(crate) prototypes: Arc<crate::prototype::PrototypeService>,
 }
 
 impl Default for AppState {
     fn default() -> Self {
         Self {
             inner: Arc::new(Mutex::new(Registry::default())),
+            prototypes: Arc::default(),
         }
     }
 }
@@ -23,6 +25,7 @@ impl Default for AppState {
 struct Registry {
     roots: HashMap<String, RootGrant>,
     files: HashMap<String, FileGrant>,
+    closed_prototypes: HashMap<String, (crate::session::StoredTabSource, Identity)>,
     snapshots: HashMap<String, DirectorySnapshot>,
     cancelled: HashSet<String>,
     generation: u64,
@@ -117,11 +120,17 @@ impl AppState {
         let (path, expected, epoch) = {
             let mut state = self.lock()?;
             let Some((stored_token, path, identity, epoch)) = state.pending_root.take() else {
-                return Err(AppError::new("invalid_grant", "No folder choice is pending"));
+                return Err(AppError::new(
+                    "invalid_grant",
+                    "No folder choice is pending",
+                ));
             };
             if stored_token != token {
                 state.pending_root = Some((stored_token, path, identity, epoch));
-                return Err(AppError::new("invalid_grant", "Folder choice token is invalid"));
+                return Err(AppError::new(
+                    "invalid_grant",
+                    "Folder choice token is invalid",
+                ));
             }
             (path, identity, epoch)
         };
@@ -130,7 +139,11 @@ impl AppState {
 
     pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
         let mut state = self.lock()?;
-        if state.pending_root.as_ref().is_some_and(|(stored, ..)| stored == token) {
+        if state
+            .pending_root
+            .as_ref()
+            .is_some_and(|(stored, ..)| stored == token)
+        {
             state.pending_root = None;
         }
         Ok(())
@@ -151,17 +164,28 @@ impl AppState {
         self.register_root_with_identity(path, Some(expected), Some(0))
     }
 
-    pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
-        expected_epoch: u64) -> AppResult<GrantInfo> {
+    pub(crate) fn reopen_root(
+        &self,
+        path: &Path,
+        expected: Identity,
+        expected_epoch: u64,
+    ) -> AppResult<GrantInfo> {
         self.register_root_with_identity(path, Some(expected), Some(expected_epoch))
     }
 
-    fn register_root_with_identity(&self, path: &Path, expected: Option<Identity>,
-        expected_epoch: Option<u64>) -> AppResult<GrantInfo> {
+    fn register_root_with_identity(
+        &self,
+        path: &Path,
+        expected: Option<Identity>,
+        expected_epoch: Option<u64>,
+    ) -> AppResult<GrantInfo> {
         let file = open_selected(path, true)?;
         let selected_identity = identity(&file)?;
         if expected.is_some_and(|value| value != selected_identity) {
-            return Err(AppError::new("root_reselection_required", "Selected folder changed; select it again"));
+            return Err(AppError::new(
+                "root_reselection_required",
+                "Selected folder changed; select it again",
+            ));
         }
         let id = Uuid::new_v4().to_string();
         let name = path
@@ -170,7 +194,10 @@ impl AppState {
             .unwrap_or_else(|| path.display().to_string());
         let mut state = self.lock()?;
         if expected_epoch.is_some_and(|value| value != state.selection_epoch) {
-            return Err(AppError::new("cancelled", "Session restore was replaced by a new selection"));
+            return Err(AppError::new(
+                "cancelled",
+                "Session restore was replaced by a new selection",
+            ));
         }
         state.generation = state.generation.wrapping_add(1);
         state.selection_epoch = state.selection_epoch.wrapping_add(1);
@@ -183,14 +210,18 @@ impl AppState {
         };
         state.roots.clear();
         state.files.clear();
+        state.closed_prototypes.clear();
         state.snapshots.clear();
         state.cancelled.clear();
         state.roots.insert(id.clone(), grant);
+        let generation = state.generation;
+        drop(state);
+        self.prototypes.clear();
         Ok(GrantInfo {
             id,
             name,
             display_path: path.display().to_string(),
-            generation: state.generation,
+            generation,
         })
     }
 
@@ -198,17 +229,43 @@ impl AppState {
         self.register_explicit_file_with_identity(path, None, None)
     }
 
-    pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
-        expected_epoch: u64) -> AppResult<GrantInfo> {
+    pub(crate) fn restore_explicit_file(
+        &self,
+        path: &Path,
+        expected: Identity,
+        expected_epoch: u64,
+    ) -> AppResult<GrantInfo> {
         self.register_explicit_file_with_identity(path, Some(expected), Some(expected_epoch))
     }
 
-    fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
-        expected_epoch: Option<u64>) -> AppResult<GrantInfo> {
+    fn register_explicit_file_with_identity(
+        &self,
+        path: &Path,
+        expected: Option<Identity>,
+        expected_epoch: Option<u64>,
+    ) -> AppResult<GrantInfo> {
         let file = open_selected(path, false)?;
+        self.register_opened_explicit_file(path, file, expected, expected_epoch)
+    }
+
+    /// A deliberate local link grants only the already validated target handle.
+    pub(crate) fn register_linked_file(&self, path: &Path, file: File) -> AppResult<GrantInfo> {
+        self.register_opened_explicit_file(path, file, None, None)
+    }
+
+    fn register_opened_explicit_file(
+        &self,
+        path: &Path,
+        file: File,
+        expected: Option<Identity>,
+        expected_epoch: Option<u64>,
+    ) -> AppResult<GrantInfo> {
         let identity = identity(&file)?;
         if expected.is_some_and(|value| value != identity) {
-            return Err(AppError::new("reselection_required", "Selected file changed; select it again"));
+            return Err(AppError::new(
+                "reselection_required",
+                "Selected file changed; select it again",
+            ));
         }
         let name = path
             .file_name()
@@ -217,7 +274,10 @@ impl AppState {
         let display_path = path.display().to_string();
         let mut state = self.lock()?;
         if expected_epoch.is_some_and(|value| value != state.selection_epoch) {
-            return Err(AppError::new("cancelled", "Session restore was replaced by a new selection"));
+            return Err(AppError::new(
+                "cancelled",
+                "Session restore was replaced by a new selection",
+            ));
         }
         state.selection_epoch = state.selection_epoch.wrapping_add(1);
         if let Some(existing) = state.files.values().find(|grant| {
@@ -251,85 +311,159 @@ impl AppState {
     }
 
     /// Called only after a new native picker choice, never from a watcher path.
+    #[cfg(feature = "document-contract-tests")]
     pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
         self.reselect_root_with(previous_id, path, |_, _| Ok(()))
     }
 
-    pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
-        before_commit: impl FnOnce(&[(String, String, String)], &Path) -> AppResult<()>) -> AppResult<GrantInfo> {
+    pub fn reselect_root_with(
+        &self,
+        previous_id: &str,
+        path: &Path,
+        before_commit: impl FnOnce(&[(String, String, String)], &Path) -> AppResult<()>,
+    ) -> AppResult<GrantInfo> {
         let file = open_selected(path, true)?;
         let selected_identity = identity(&file)?;
         let mut registry = self.lock()?;
-        let previous = registry.roots.get(previous_id)
+        let previous = registry
+            .roots
+            .get(previous_id)
             .ok_or_else(|| AppError::new("invalid_grant", "Folder selection has expired"))?;
         if path != previous.path && selected_identity != previous.identity {
-            return Err(AppError::new("root_reselection_required", "Select the original folder or its replacement"));
+            return Err(AppError::new(
+                "root_reselection_required",
+                "Select the original folder or its replacement",
+            ));
         }
-        let moved_files: Vec<_> = registry.files.values().filter_map(|grant| {
-            let FileSource::Root { root_id, segments } = &grant.source else { return None };
-            if root_id != previous_id { return None; }
-            let mut destination = path.to_path_buf();
-            for segment in segments { destination.push(segment); }
-            Some((grant.id.clone(), grant.display_path.clone(), destination.display().to_string()))
-        }).collect();
+        let moved_files: Vec<_> = registry
+            .files
+            .values()
+            .filter_map(|grant| {
+                let FileSource::Root { root_id, segments } = &grant.source else {
+                    return None;
+                };
+                if root_id != previous_id {
+                    return None;
+                }
+                let mut destination = path.to_path_buf();
+                for segment in segments {
+                    destination.push(segment);
+                }
+                Some((
+                    grant.id.clone(),
+                    grant.display_path.clone(),
+                    destination.display().to_string(),
+                ))
+            })
+            .collect();
         before_commit(&moved_files, path)?;
         let id = Uuid::new_v4().to_string();
         registry.generation = registry.generation.wrapping_add(1);
         registry.selection_epoch = registry.selection_epoch.wrapping_add(1);
         let generation = registry.generation;
         registry.roots.clear();
-        registry.roots.insert(id.clone(), RootGrant { id: id.clone(), file: Arc::new(file),
-            path: path.to_path_buf(), identity: selected_identity, generation });
+        registry.roots.insert(
+            id.clone(),
+            RootGrant {
+                id: id.clone(),
+                file: Arc::new(file),
+                path: path.to_path_buf(),
+                identity: selected_identity,
+                generation,
+            },
+        );
         for grant in registry.files.values_mut() {
             if let FileSource::Root { root_id, segments } = &mut grant.source {
                 if root_id == previous_id {
                     *root_id = id.clone();
                     let mut location = path.to_path_buf();
-                    for segment in segments { location.push(segment); }
+                    for segment in segments {
+                        location.push(segment);
+                    }
                     grant.display_path = location.display().to_string();
                 }
             }
         }
         registry.snapshots.clear();
         registry.cancelled.clear();
-        Ok(GrantInfo { id, name: path.file_name().map(|name| name.to_string_lossy().into_owned())
-            .unwrap_or_else(|| path.display().to_string()), display_path: path.display().to_string(), generation })
+        Ok(GrantInfo {
+            id,
+            name: path
+                .file_name()
+                .map(|name| name.to_string_lossy().into_owned())
+                .unwrap_or_else(|| path.display().to_string()),
+            display_path: path.display().to_string(),
+            generation,
+        })
     }
 
     /// Reauthorize only this file from a picker, keeping sibling access absent.
+    #[cfg(feature = "document-contract-tests")]
     pub fn reselect_explicit_file(&self, id: &str, path: &Path) -> AppResult<GrantInfo> {
         self.reselect_explicit_file_with(id, path, |_, _| Ok(()))
     }
 
     /// Run durable recovery migration after validating the picker selection but
     /// before publishing the new grant. A failed migration leaves the old grant.
-    pub fn reselect_explicit_file_with(&self, id: &str, path: &Path,
-        before_commit: impl FnOnce(&FileGrant, &Path) -> AppResult<()>) -> AppResult<GrantInfo> {
+    pub fn reselect_explicit_file_with(
+        &self,
+        id: &str,
+        path: &Path,
+        before_commit: impl FnOnce(&FileGrant, &Path) -> AppResult<()>,
+    ) -> AppResult<GrantInfo> {
         let file = open_selected(path, false)?;
         let selected_identity = identity(&file)?;
         let mut registry = self.lock()?;
-        let grant = registry.files.get_mut(id)
+        let grant = registry
+            .files
+            .get_mut(id)
             .ok_or_else(|| AppError::new("invalid_grant", "File selection has expired"))?;
-        let FileSource::Explicit { path: previous_path, .. } = &grant.source else {
-            return Err(AppError::new("invalid_grant", "Expected a file-only selection"));
+        let FileSource::Explicit {
+            path: previous_path,
+            ..
+        } = &grant.source
+        else {
+            return Err(AppError::new(
+                "invalid_grant",
+                "Expected a file-only selection",
+            ));
         };
         if path != previous_path && selected_identity != grant.identity {
-            return Err(AppError::new("reselection_required", "Select the original file or its replacement"));
+            return Err(AppError::new(
+                "reselection_required",
+                "Select the original file or its replacement",
+            ));
         }
         before_commit(grant, path)?;
-        grant.source = FileSource::Explicit { file: Arc::new(file), path: path.to_path_buf() };
+        grant.source = FileSource::Explicit {
+            file: Arc::new(file),
+            path: path.to_path_buf(),
+        };
         grant.identity = selected_identity;
-        grant.name = path.file_name().map(|name| name.to_string_lossy().into_owned()).unwrap_or_default();
+        grant.name = path
+            .file_name()
+            .map(|name| name.to_string_lossy().into_owned())
+            .unwrap_or_default();
         grant.display_path = path.display().to_string();
         let name = grant.name.clone();
         let display_path = grant.display_path.clone();
         registry.selection_epoch = registry.selection_epoch.wrapping_add(1);
-        Ok(GrantInfo { id: id.to_string(), name, display_path, generation: registry.generation })
+        Ok(GrantInfo {
+            id: id.to_string(),
+            name,
+            display_path,
+            generation: registry.generation,
+        })
     }
 
     pub fn explicit_file_ids(&self) -> AppResult<Vec<String>> {
-        Ok(self.lock()?.files.values().filter(|grant| matches!(grant.source, FileSource::Explicit { .. }))
-            .map(|grant| grant.id.clone()).collect())
+        Ok(self
+            .lock()?
+            .files
+            .values()
+            .filter(|grant| matches!(grant.source, FileSource::Explicit { .. }))
+            .map(|grant| grant.id.clone())
+            .collect())
     }
 
     pub fn root(&self, id: &str) -> AppResult<RootGrant> {
@@ -346,7 +480,10 @@ impl AppState {
     /// Return an existing native-issued selection for session metadata without
     /// treating its current path as an automatically renewed grant.
     pub(crate) fn root_recorded(&self, id: &str) -> AppResult<RootGrant> {
-        self.lock()?.roots.get(id).cloned()
+        self.lock()?
+            .roots
+            .get(id)
+            .cloned()
             .ok_or_else(|| AppError::new("invalid_grant", "Folder selection has expired"))
     }
 
@@ -377,7 +514,9 @@ impl AppState {
     pub fn update_saved_file_identity(&self, id: &str, current: File) -> AppResult<FileGrant> {
         let new_identity = identity(&current)?;
         let mut state = self.lock()?;
-        let grant = state.files.get_mut(id)
+        let grant = state
+            .files
+            .get_mut(id)
             .ok_or_else(|| AppError::new("invalid_grant", "File selection has expired"))?;
         grant.identity = new_identity;
         if let FileSource::Explicit { file, .. } = &mut grant.source {
@@ -455,8 +594,112 @@ impl AppState {
     }
 
     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+        self.prototypes.restart();
         *self.lock()? = Registry::default();
         Ok(())
+    }
+
+    pub(crate) fn unload_prototypes(&self) -> AppResult<()> {
+        let ids: Vec<_> = self
+            .lock()?
+            .files
+            .values()
+            .filter(|g| crate::scope::prototype_name(&g.name))
+            .map(|g| g.id.clone())
+            .collect();
+        self.prototypes.shutdown();
+        for id in ids {
+            self.release_prototype_file(&id)?;
+        }
+        Ok(())
+    }
+
+    pub(crate) fn rebind_prototype_file(
+        &self,
+        id: &str,
+        source: &FileGrant,
+    ) -> AppResult<FileGrant> {
+        let mut registry = self.lock()?;
+        let previous = registry
+            .files
+            .get(id)
+            .ok_or_else(|| AppError::new("invalid_grant", "File selection expired"))?;
+        if previous.identity != source.identity || !crate::scope::prototype_name(&source.name) {
+            return Err(AppError::new(
+                "reselection_required",
+                "Document identity changed",
+            ));
+        }
+        let mut rebound = source.clone();
+        rebound.id = id.into();
+        if source.id != id {
+            registry.files.remove(&source.id);
+        }
+        registry.files.insert(id.into(), rebound.clone());
+        Ok(rebound)
+    }
+
+    /// Release native handles while retaining only the same native-recorded reopen reference as sessions.
+    pub(crate) fn release_prototype_file(&self, id: &str) -> AppResult<()> {
+        let mut registry = self.lock()?;
+        if registry
+            .files
+            .get(id)
+            .is_some_and(|g| crate::scope::prototype_name(&g.name))
+        {
+            let grant = registry.files.remove(id).unwrap();
+            use crate::session::{StoredSelection, StoredTabSource};
+            let source = match grant.source {
+                FileSource::Root { segments, .. } => StoredTabSource::Root { segments },
+                FileSource::Explicit { path, .. } => StoredTabSource::Explicit {
+                    selection: StoredSelection {
+                        path: path.display().to_string(),
+                        identity: grant.identity,
+                    },
+                },
+            };
+            // Native references only; bounded by existing session tab capacity. No package bytes or handle retained.
+            if registry.closed_prototypes.len() >= 100 {
+                registry.closed_prototypes.clear();
+            }
+            registry
+                .closed_prototypes
+                .insert(id.into(), (source, grant.identity));
+        }
+        Ok(())
+    }
+    pub(crate) fn reopen_prototype_file(&self, id: &str) -> AppResult<FileGrant> {
+        let (source, expected) = self
+            .lock()?
+            .closed_prototypes
+            .get(id)
+            .cloned()
+            .ok_or_else(|| AppError::new("invalid_grant", "File selection expired"))?;
+        use crate::session::StoredTabSource;
+        let info = match source {
+            StoredTabSource::Explicit { selection } => self.register_explicit_file_with_identity(
+                Path::new(&selection.path),
+                Some(expected),
+                None,
+            )?,
+            StoredTabSource::Root { segments } => {
+                let root =
+                    self.lock()?.roots.values().next().cloned().ok_or_else(|| {
+                        AppError::new("invalid_grant", "Folder selection expired")
+                    })?;
+                root.verify_current()?;
+                let file = crate::scope::open_relative(&root.file, &segments, false)?;
+                if identity(&file)? != expected {
+                    return Err(AppError::new(
+                        "reselection_required",
+                        "Document identity changed",
+                    ));
+                }
+                let grant = self.register_root_file(&root, segments, &file)?;
+                return Ok(grant);
+            }
+        };
+        self.file(&info.id)
     }
 
     pub fn store_snapshot(

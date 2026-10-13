@@ -1,0 +1,81 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - text: Solo archivos locales
+  - button "Apariencia":
+  - generic: Idioma
+  - combobox "Idioma":
+    - option "EN"
+    - option "ES" [selected]
+  - button "Ajustes":
+- button "Proyectos" [expanded]:
+  - text: Proyectos
+- group "Archivos visitados":
+  - button "Atrás" [disabled]:
+  - button "Adelante" [disabled]:
+- tablist "Documentos":
+  - tab "short.md" [selected]:
+    - generic: short.md
+  - 'button "Cerrar pestaña: short.md"': ×
+- button "Menú Ir": Ir
+- button "Documentos abiertos (1)"
+- complementary "Explorador":
+  - button "Proyectos":
+    - generic: Proyectos
+  - button "Cerrar barra lateral de Proyectos":
+  - button "Abrir archivo"
+  - button "Abrir carpeta"
+  - search "Buscar en la carpeta":
+    - button "Volver al explorador"
+    - text: Buscar en la carpeta
+    - searchbox "Buscar en la carpeta" [active]
+    - button "Buscar" [disabled]
+    - paragraph:
+      - 'generic "Ámbito de búsqueda: fixtures"': fixtures
+    - button "Borrar búsqueda" [disabled]: Borrar
+    - button "Nombres y contenido":
+      - generic: Nombres y contenido
+    - paragraph: Introduce una consulta para habilitar la búsqueda.
+    - status:
+      - generic "Escribe texto para buscar en la carpeta seleccionada. ⌄"
+    - region "Resultados"
+- main:
+  - group "short.md":
+    - strong:
+      - generic "short.md"
+    - button "Buscar en el documento":
+      - text: Buscar en el documento
+    - button "Índice" [pressed]:
+      - text: Índice
+    - button "Ajustes de lectura":
+      - text: Ajustes de lectura
+    - button "Editar sección":
+      - text: Editar sección
+    - generic "Documento…"
+    - generic: Raíz de la carpeta
+  - tabpanel "short.md":
+    - article:
+      - 'generic "Editar sección: Native validation"':
+        - heading "Native validation" [level=1]
+        - button "Editar sección «Native validation»": Editar sección
+      - paragraph: A disposable document for layout validation.
+      - 'generic "Editar sección: Search section"':
+        - heading "Search section" [level=2]
+        - button "Editar sección «Search section»": Editar sección
+      - paragraph: validationneedle short document match.
+      - 'generic "Editar sección: Another section"':
+        - heading "Another section" [level=2]
+        - button "Editar sección «Another section»": Editar sección
+      - paragraph: Keep this reading content visible.
+  - complementary "Índice":
+    - strong: Índice
+    - button "Cerrar índice": ×
+    - navigation "Índice":
+      - list:
+        - button "Native validation"
+        - button "Search section"
+        - button "Another section"
+- contentinfo:
+  - generic: Actualizado en disco
+  - button "Almacenamiento y recuperación"
+  - generic: Intentgrove by Theonira

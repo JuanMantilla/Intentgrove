@@ -1,0 +1,133 @@
+{
+  "finished_at": "2026-10-11T04:32:55.334833+00:00",
+  "records": [
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/individual-links-20261010/completion.json",
+      "task_id": "individual-file-local-links-20261010",
+      "task_state": "AWAITING_ACCEPTANCE",
+      "qa_result": "QA_BLOCKED",
+      "nonpassing_checks": [
+        {
+          "id": "native-gui",
+          "result": "NOT_RUN",
+          "reason": "No current packaged app launched on a disposable profile; actual Finder/terminal/WebKit/TCC/exact-file picker approval remain unverified. No real user documents accessed.",
+          "finished_at": "2026-10-10T19:03:57.959675+00:00",
+          "evidence_paths": [
+            "os-engineering/individual-links-20261010/report.md",
+            "os-engineering/individual-links-20261010/evidence/existing-bundle-entitlements.log"
+          ]
+        }
+      ],
+      "unsatisfied_requirements": [
+        {
+          "requirement": "F001-L04: distinguish actual macOS UX from native adapters/mocked frontend; native GUI remains unverified and acceptance has not been asserted.",
+          "source_path": "AGENTS.md",
+          "evidence_path": "os-engineering/individual-links-20261010/report.md",
+          "satisfied": false
+        }
+      ],
+      "missing_check_evidence": [],
+      "eligible": false
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/individual-links-20261010/native-approval/completion.json",
+      "task_id": "individual-file-local-links-20261010",
+      "task_state": "BLOCKED",
+      "qa_result": "QA_BLOCKED",
+      "nonpassing_checks": [
+        {
+          "id": "native-ui",
+          "result": "BLOCKED",
+          "reason": "Computer Use did not approve access to the isolated test app. Actual GUI and live permission approvals not exercised.",
+          "finished_at": "2026-10-10T19:14:49.739078+00:00",
+          "evidence_paths": [
+            "os-engineering/individual-links-20261010/native-approval/evidence/native-ui-attempt.json"
+          ]
+        }
+      ],
+      "unsatisfied_requirements": [
+        {
+          "requirement": "F001-L04: native GUI behavior must not be equated with builds or mocks",
+          "source_path": "specs/001-workspace-reader/individual-links-amendment-20261010.md",
+          "evidence_path": "os-engineering/individual-links-20261010/native-approval/report.md",
+          "satisfied": false
+        }
+      ],
+      "missing_check_evidence": [],
+      "eligible": false
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/completion.json",
+      "task_id": "projects_option_c_20261010",
+      "task_state": "AWAITING_ACCEPTANCE",
+      "qa_result": "QA_BLOCKED",
+      "nonpassing_checks": [
+        {
+          "id": "200-percent",
+          "result": "NOT_RUN",
+          "reason": "Browser zoom shortcuts produced no verifiable 200% viewport or text zoom state.",
+          "evidence_paths": [
+            "frontend-implementation/sidebar-header-20261010-report.md"
+          ],
+          "finished_at": "2026-10-11T00:21:34.686168+00:00"
+        },
+        {
+          "id": "native-screen-reader",
+          "result": "NOT_RUN",
+          "reason": "No isolated exact native candidate/restart or assistive-technology session exercised; synthetic native responses do not prove integration.",
+          "evidence_paths": [
+            "frontend-implementation/sidebar-header-20261010-report.md"
+          ],
+          "finished_at": "2026-10-11T00:21:34.686168+00:00"
+        }
+      ],
+      "unsatisfied_requirements": [
+        {
+          "requirement": "Actual user acceptance of implementation, distinct from design approval",
+          "source_path": "frontend-implementation/evidence/sidebar-header-20261010/authorization.md",
+          "evidence_path": "frontend-implementation/sidebar-header-20261010-report.md",
+          "satisfied": false
+        }
+      ],
+      "missing_check_evidence": [],
+      "eligible": false
+    },
+    {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-20261010/completion.json",
+      "task_id": "frontend-revision-20261010-220535",
+      "task_state": "AWAITING_ACCEPTANCE",
+      "qa_result": "QA_BLOCKED",
+      "nonpassing_checks": [
+        {
+          "id": "native-resize-narrow",
+          "result": "BLOCKED",
+          "reason": "CUA native drag failed noWindowsAvailable; DR-003 remains deferred",
+          "finished_at": "2026-10-11T03:33:34.744187+00:00",
+          "evidence_paths": [
+            "frontend-implementation/revision-20261010-report.md"
+          ]
+        },
+        {
+          "id": "accessibility-extended",
+          "result": "NOT_RUN",
+          "reason": "Keyboard checks only; no screen-reader/200% zoom conformance pass",
+          "finished_at": "2026-10-11T03:33:34.744187+00:00",
+          "evidence_paths": [
+            "frontend-implementation/revision-20261010-report.md"
+          ]
+        }
+      ],
+      "unsatisfied_requirements": [
+        {
+          "requirement": "Final user acceptance is separate and pending",
+          "source_path": "frontend-implementation/evidence/revision-20261010/authorization.json",
+          "evidence_path": "frontend-implementation/revision-20261010-report.md",
+          "satisfied": false
+        }
+      ],
+      "missing_check_evidence": [],
+      "eligible": false
+    }
+  ],
+  "eligible_task_count": 0
+}

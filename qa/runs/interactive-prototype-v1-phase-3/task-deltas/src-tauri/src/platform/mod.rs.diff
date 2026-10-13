@@ -1,0 +1,32 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/platform/mod.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/mod.rs
+@@ -21,7 +21,7 @@
+     pub changed_nanos: i64,
+ }
+ 
+-pub(crate) trait PositionalRead {
++pub trait PositionalRead {
+     fn read_at(&self, buffer: &mut [u8], offset: u64) -> std::io::Result<usize>;
+ }
+ impl PositionalRead for std::fs::File {
+@@ -57,7 +57,7 @@
+ }
+ 
+ pub(crate) mod storage;
+-#[cfg(test)]
++#[cfg(any(test, feature = "document-contract-tests"))]
+ pub(crate) mod test_support;
+ 
+ #[cfg(target_os = "macos")]
+@@ -115,9 +115,9 @@
+ /// and real desktop lifecycle are verified. Native tests exercise the same
+ /// commands/policy through a test-only gate, without enabling the application.
+ pub(crate) fn require_editing() -> crate::scope::AppResult<()> {
+-    #[cfg(all(target_os = "windows", not(test)))]
++    #[cfg(all(target_os = "windows", not(any(test, feature="document-contract-tests"))))]
+     { Err(crate::scope::AppError::new("editing_unavailable", "Windows section editing awaits supported metadata and native lifecycle verification")) }
+-    #[cfg(any(target_os = "macos", test))]
++    #[cfg(any(target_os = "macos", test,feature="document-contract-tests"))]
+     { Ok(()) }
+ }
+ 

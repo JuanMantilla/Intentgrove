@@ -1,0 +1,3 @@
+# Projects sidebar correction
+
+PROPOSED — READY FOR DESIGN REVIEW; awaiting explicit approval. Current revision restores a compact 20px outline, retaining an 8px cross aligned with Projects and a 36px invisible hit target. Header and four state samples consistent. Native VectorCraft, PNG, SVG, HTML and handoff updated. PNG visually inspected; native reopened and re-export identical; fonts resolve exactly; SVG/HTML assets/script checked. HTML browser rendering remains blocked by file-URL security policy. Runtime keyboard/scrolling/resizing and localized minimum-width behavior untested. No application code edits, release or cleanup actions. Next: user reviews the corrected outlined control.

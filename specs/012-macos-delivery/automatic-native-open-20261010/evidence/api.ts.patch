@@ -1,0 +1,11 @@
+--- src/app/api.ts (before this task)
++++ src/app/api.ts
+@@ -332,7 +332,7 @@
+   removeRecentItem: (entryId: string) => invoke<void>("remove_recent_item", { entryId }),
+   clearRecentItems: (confirmed: boolean) => invoke<void>("clear_recent_items", { confirmed }),
+   listNativeEntries: () => invoke<NativePreview[]>("list_native_entries"),
+-  acceptNativeEntry: (entryId: string) => invoke<NativeAccepted>("accept_native_entry", { entryId }),
++  acceptNativeEntry: (entryId: string, fileOnly = false) => invoke<NativeAccepted>("accept_native_entry", { entryId, fileOnly }),
+   dismissNativeEntry: (entryId: string) => invoke<void>("dismiss_native_entry", { entryId }),
+   setNativeMenuState: (state: { closeTab: boolean; save: boolean; find: boolean; reload: boolean; locale: string;
+     back?: boolean; forward?: boolean; visited?: boolean; clearHistory?: boolean;

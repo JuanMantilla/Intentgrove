@@ -1,0 +1,157 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text workspace Solo archivos locales
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 text workspace
+				10 button Ajustes del árbol
+				11 container
+					12 button busy.md
+					13 button corrupt.png
+					14 button (collapsed) docs, Secondary Actions: Expand
+					15 button edit.md
+					16 button hostile.svg
+					17 button image-security.md
+					18 button large-10m.md
+					19 button large-11m.md
+					20 button large-1m.md
+					21 button linked.md
+					22 button mixed-10m.md
+					23 button mixed-1m.md
+					24 button (expanded) permissions, Secondary Actions: Collapse
+					25 button denied.md, Help: permissions/denied.md
+					26 button plain.md
+					27 button qa-image.png
+					28 button rich.md
+				29 text Almacenamiento y recuperación
+				30 text Ediciones abiertas y avisos de recuperación: 0
+				31 button Gestionar…
+			32 container
+				33 container Archivos visitados
+					34 button Atrás, Help: Atrás: rich.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+					35 button (disabled) Adelante, Help: No hay archivo siguiente
+				36 tab group (selectable) Documentos
+					37 container
+						38 tab (selected) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						39 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					40 container
+						41 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						42 button Cerrar pestaña: linked.md, Help: Cerrar pestaña
+					43 container
+						44 tab (selectable) qa-image.png, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/qa-image.png
+						45 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+					46 container
+						47 tab (selectable) image-security.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/image-security.md
+						48 button Cerrar pestaña: image-security.md, Help: Cerrar pestaña
+					49 container
+						50 tab (selectable) edit.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/edit.md
+						51 button Cerrar pestaña: edit.md, Help: Cerrar pestaña
+					52 container
+						53 tab (selectable) large-11m.md · Este archivo supera el límite de lectura enriquecida de 10 MiB, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/large-11m.md
+						54 button Cerrar pestaña: large-11m.md, Help: Cerrar pestaña
+					55 container
+						56 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						57 button Cerrar pestaña: plain.md, Help: Cerrar pestaña
+					58 container
+						59 tab (selectable) mixed-10m.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/mixed-10m.md
+						60 button Cerrar pestaña: mixed-10m.md, Help: Cerrar pestaña
+					61 container
+						62 tab (selectable) mixed-1m.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/mixed-1m.md
+						63 button Cerrar pestaña: mixed-1m.md, Help: Cerrar pestaña
+					64 container
+						65 tab (selectable) denied.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/permissions/denied.md
+						66 button Cerrar pestaña: denied.md, Help: Cerrar pestaña
+				67 pop up button Menú Ir
+				68 button (collapsed) Documentos abiertos(10), Secondary Actions: Expand
+				69 container rich.md
+					70 text rich.md
+					71 text Raíz de la carpeta
+					72 toggle button Índice, Value: off
+					73 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					74 button Editar sección
+					75 summary Documento…, Value: off
+						76 text Documento…
+				77 container rich.md
+					78 container Reading acceptance
+						79 container (expanded) Secondary Actions: Collapse
+							80 summary Metadatos, Value: on
+								81 text Metadatos
+							82 description list
+								83 text title
+								84 text Disposable rich acceptance
+								85 text owner
+								86 text QA
+							87 summary Ver código fuente de los metadatos, Value: off
+								88 text Ver código fuente de los metadatos
+						89 container Editar sección: Reading acceptance
+							90 heading Reading acceptance, Value: 1
+								91 text Reading acceptance
+							92 button Editar sección «Reading acceptance»
+						93 container
+							94 text Before diagrams. 
+							95 button Reference, Help: linked.md
+							96 text  and encoded footnote
+							97 button 1, Help: #fn-a%2520b
+							98 text .
+						99 text json
+						100 button Copiar código
+						101 text {"highlight": true}
+
+						102 image Diagrama Mermaid
+						103 summary Ver código fuente, Value: off
+							104 text Ver código fuente
+						105 text Between diagrams.
+						106 image Diagrama Mermaid
+						107 summary Ver código fuente, Value: off
+							108 text Ver código fuente
+						109 text Diagrama no disponible. El código fuente se conserva abajo.
+						110 container (expanded) Secondary Actions: Collapse
+							111 summary Ver código fuente, Value: on
+								112 text Ver código fuente
+							113 text mermaid
+							114 button Copiar código
+							115 text flowchart broken
+
+						116 text Diagrama no disponible. El código fuente se conserva abajo.
+						117 container (expanded) Secondary Actions: Collapse
+							118 summary Ver código fuente, Value: on
+								119 text Ver código fuente
+							120 text mermaid
+							121 button Copiar código
+							122 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						123 text After diagrams.
+						124 container Editar sección: Duplicate
+							125 heading Duplicate, Value: 2
+								126 text Duplicate
+							127 button Editar sección «Duplicate»
+						128 text First duplicate target.
+						129 container Editar sección: Duplicate
+							130 heading Duplicate, Value: 2
+								131 text Duplicate
+							132 button Editar sección «Duplicate»
+						133 text Second duplicate target.
+						134 container
+							135 text [1] 
+							136 button ↩, Help: #fnref-a%2520b-1
+						137 text Encoded footnote body.
+	138 close button
+	139 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	140 minimize button
+	141 text Intentgrove
+142 menu bar
+	143 Intentgrove Completion 20261008
+	144 File
+	145 Edit
+	146 View
+	147 Ir
+	148 Window
+	149 Help

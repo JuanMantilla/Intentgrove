@@ -1,0 +1,114 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container
+				8 container Archivos visitados
+					9 button Atrás, Help: Atrás: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					10 button (disabled) Adelante, Help: No hay archivo siguiente
+				11 tab group (selectable) Documentos
+					12 container
+						13 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						14 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					15 container
+						16 tab (selected) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						17 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					18 container
+						19 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						20 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				21 pop up button Menú Ir
+				22 button (collapsed) Documentos abiertos(3), Secondary Actions: Expand
+				23 container rich.md
+					24 text rich.md
+					25 text Raíz de la carpeta
+					26 toggle button Índice, Value: off
+					27 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					28 button Editar sección
+					29 summary Documento…, Value: off
+						30 text Documento…
+				31 text El pasaje cambió de lugar; se muestra la posición disponible más cercana
+				32 button Cerrar aviso
+				33 container rich.md
+					34 container Reading acceptance
+						35 summary Metadatos, Value: off
+							36 text Metadatos
+						37 container Editar sección: Reading acceptance
+							38 heading Reading acceptance, Value: 1
+								39 text Reading acceptance
+							40 button Editar sección «Reading acceptance»
+						41 container
+							42 text Before diagrams. 
+							43 button Reference, Help: linked.md
+							44 text  and encoded footnote
+							45 button 1, Help: #fn-a%2520b
+							46 text .
+						47 text json
+						48 button Copiar código
+						49 text {"highlight": true}
+
+						50 image Diagrama Mermaid
+						51 summary Ver código fuente, Value: off
+							52 text Ver código fuente
+						53 text Between diagrams.
+						54 text Diagrama no disponible. El código fuente se conserva abajo.
+						55 container (expanded) Secondary Actions: Collapse
+							56 summary Ver código fuente, Value: on
+								57 text Ver código fuente
+							58 text mermaid
+							59 button Copiar código
+							60 text sequenceDiagram
+ Alice->>Bob: Hello
+ Bob-->>Alice: Ready
+
+						61 text Diagrama no disponible. El código fuente se conserva abajo.
+						62 container (expanded) Secondary Actions: Collapse
+							63 summary Ver código fuente, Value: on
+								64 text Ver código fuente
+							65 text mermaid
+							66 button Copiar código
+							67 text flowchart broken
+
+						68 text Diagrama no disponible. El código fuente se conserva abajo.
+						69 container (expanded) Secondary Actions: Collapse
+							70 summary Ver código fuente, Value: on
+								71 text Ver código fuente
+							72 text mermaid
+							73 button Copiar código
+							74 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						75 text After diagrams.
+						76 container Editar sección: Duplicate
+							77 heading Duplicate, Value: 2
+								78 text Duplicate
+							79 button Editar sección «Duplicate»
+						80 text First duplicate target.
+						81 container Editar sección: Duplicate
+							82 heading Duplicate, Value: 2
+								83 text Duplicate
+							84 button Editar sección «Duplicate»
+						85 text Second duplicate target.
+						86 container
+							87 text [1] 
+							88 button ↩, Help: #fnref-a%2520b-1
+						89 text Encoded footnote body.
+	90 close button
+	91 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	92 minimize button
+	93 text Intentgrove
+94 menu bar
+	95 Intentgrove
+	96 File
+	97 Edit
+	98 View
+	99 Ir
+	100 Window
+	101 Help
+
+The focused UI element is 6 button Ajustes

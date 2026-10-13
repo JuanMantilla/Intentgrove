@@ -1,0 +1,51 @@
+[
+  {
+    "command": [
+      "bash",
+      "/Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/build.sh"
+    ],
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/build.log",
+    "note": "system framework build; existing processPool deprecation warnings only"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/security.py"
+    ],
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/security-results.json",
+    "finishedAt": "2026-10-11T21:59:44.480690+00:00"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/test_runtime.py"
+    ],
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/interaction-results.json",
+    "finishedAt": "2026-10-11T21:59:48.406881+00:00"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/independence.py"
+    ],
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/independence-results.json",
+    "finishedAt": "2026-10-11T21:59:51.323713+00:00"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "/Users/juanmantilla/projects/personal/md-reader/experimental/prototype-poc/fidelity.py"
+    ],
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/fidelity-metrics.json",
+    "finishedAt": "2026-10-11T21:59:58.544435+00:00"
+  }
+]

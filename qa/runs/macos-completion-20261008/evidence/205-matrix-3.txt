@@ -1,0 +1,136 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text workspace
+				10 button Project tree settings
+				11 container
+					12 button anchor.md
+					13 button busy.md
+					14 button corrupt.png
+					15 button (collapsed) docs, Secondary Actions: Expand
+					16 button edit.md
+					17 button hostile-matrix.md
+					18 button hostile.svg
+					19 button image-security.md
+					20 button large-10m.md
+					21 button large-11m.md
+					22 button large-1m.md
+					23 button linked.md
+					24 button mixed-10m.md
+					25 button mixed-1m.md
+					26 button (collapsed) permissions, Secondary Actions: Expand
+					27 button plain.md
+					28 button qa-image.png
+					29 button (expanded) reading-matrix, Secondary Actions: Collapse
+					30 button case-01.md, Help: reading-matrix/case-01.md
+					31 button case-02.md, Help: reading-matrix/case-02.md
+					32 button case-03.md, Help: reading-matrix/case-03.md
+					33 button case-04.md, Help: reading-matrix/case-04.md
+					34 button case-05.md, Help: reading-matrix/case-05.md
+					35 button case-06.md, Help: reading-matrix/case-06.md
+					36 button case-07.md, Help: reading-matrix/case-07.md
+					37 button case-08.md, Help: reading-matrix/case-08.md
+					38 button case-09.md, Help: reading-matrix/case-09.md
+					39 button case-10.md, Help: reading-matrix/case-10.md
+					40 button case-11.md, Help: reading-matrix/case-11.md
+					41 button case-12.md, Help: reading-matrix/case-12.md
+					42 button case-13.md, Help: reading-matrix/case-13.md
+					43 button case-14.md, Help: reading-matrix/case-14.md
+					44 button case-15.md, Help: reading-matrix/case-15.md
+					45 button case-16.md, Help: reading-matrix/case-16.md
+					46 button case-17.md, Help: reading-matrix/case-17.md
+					47 button case-18.md, Help: reading-matrix/case-18.md
+					48 button case-19.md, Help: reading-matrix/case-19.md
+					49 button case-20.md, Help: reading-matrix/case-20.md
+					50 button rich.md
+				51 text Storage and recovery
+				52 text Open edits and recovery offers: 0
+				53 button Manage…
+			54 container
+				55 container Visited files
+					56 button Back, Help: Back: case-02.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-02.md
+					57 button (disabled) Forward, Help: No next file
+				58 tab group (selectable) Documents
+					59 container
+						60 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						61 button Close tab: plain.md, Help: Close tab
+					62 container
+						63 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						64 button Close tab: linked.md, Help: Close tab
+					65 container
+						66 tab (selectable) alpha-00.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/docs/alpha/alpha-00.md
+						67 button Close tab: alpha-00.md, Help: Close tab
+					68 container
+						69 tab (selectable) rich.md · Updated from disk, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						70 button Close tab: rich.md, Help: Close tab
+					71 container
+						72 tab (selectable) mixed-1m.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/mixed-1m.md
+						73 button Close tab: mixed-1m.md, Help: Close tab
+					74 container
+						75 tab (selectable) case-01.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-01.md
+						76 button Close tab: case-01.md, Help: Close tab
+					77 container
+						78 tab (selectable) case-02.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-02.md
+						79 button Close tab: case-02.md, Help: Close tab
+					80 container
+						81 tab (selected) case-03.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-03.md
+						82 button Close tab: case-03.md, Help: Close tab
+				83 pop up button Go menu
+				84 button (collapsed) Open documents (8), Secondary Actions: Expand
+				85 container case-03.md
+					86 text case-03.md
+					87 text reading-matrix
+					88 toggle button Outline, Value: off
+					89 button (collapsed) Reading settings, Secondary Actions: Expand
+					90 button Edit section
+					91 summary Document…, Value: off
+						92 text Document…
+				93 container case-03.md
+					94 container Reading matrix 3
+						95 summary Metadata · Invalid or unsupported YAML metadata, Value: off
+							96 text Metadata · Invalid or unsupported YAML metadata
+						97 container Edit section: Reading matrix 3
+							98 heading Reading matrix 3, Value: 1
+								99 text Reading matrix 3
+							100 button Edit section “Reading matrix 3”
+						101 container
+							102 button Reference, Help: ../linked.md
+							103 text  and footnote
+							104 button 1, Help: #fn-a%2520b
+							105 text .
+						106 text json
+						107 button Copy code
+						108 text {"highlight": true}
+
+						109 text Loading…
+						110 summary View source, Value: off
+							111 text View source
+						112 text After svg.
+						113 text Final unaffected document 3.
+						114 text Loading…
+						115 summary View source, Value: off
+							116 text View source
+						117 container
+							118 text [1] 
+							119 button ↩, Help: #fnref-a%2520b-1
+						120 text Encoded footnote document 3.
+	121 close button
+	122 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	123 minimize button
+	124 text Intentgrove
+125 menu bar
+	126 Intentgrove QA
+	127 File
+	128 Edit
+	129 View
+	130 Go
+	131 Window
+	132 Help

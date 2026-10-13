@@ -1,0 +1,18 @@
+{
+  "case": "observed-01",
+  "elapsedMs": 330.051042,
+  "events": [
+    "{\"value\":\"observe\",\"ppid\":15499,\"event\":\"started\",\"pid\":15535,\"time\":118053.21571704168}",
+    "{\"value\":{\"allowed\":0,\"errno\":1},\"ppid\":15499,\"event\":\"native-file\",\"pid\":15535,\"time\":118053.215847125}",
+    "{\"value\":{\"result\":-1,\"errno\":1},\"ppid\":15499,\"event\":\"native-network\",\"pid\":15535,\"time\":118053.21589258334}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":15499,\"event\":\"navigation\",\"pid\":15535,\"time\":118053.29162866667}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15535,\"time\":118053.29245020833}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":15499,\"event\":\"resource\",\"pid\":15535,\"time\":118053.30840408333}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15535,\"time\":118053.39086283334}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15535,\"time\":118053.390885375}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-complete\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15535,\"time\":118053.39466104168}",
+    "{\"value\":\"{\\\"kind\\\":\\\"render-entered\\\",\\\"value\\\":true}\",\"ppid\":15499,\"event\":\"js\",\"pid\":15535,\"time\":118053.40310216667}"
+  ],
+  "pid": 15535,
+  "result": "pixels"
+}

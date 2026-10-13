@@ -1,0 +1,36 @@
+{
+  "id": "affected",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "tests/ui/appearance-operations.test.tsx",
+    "tests/ui/document-select-all.test.tsx",
+    "tests/ui/document-selection-readiness.test.tsx",
+    "tests/ui/find.test.tsx",
+    "tests/ui/approved-navigation.test.tsx",
+    "tests/ui/edit-flow.test.tsx",
+    "tests/ui/automatic-refresh.test.tsx",
+    "tests/ui/session.test.tsx",
+    "tests/ui/large-source.test.tsx",
+    "tests/ui/pinch-zoom.test.tsx"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-source-v6",
+  "started_at": "2026-10-12T13:51:56.956586+00:00",
+  "load_before": [
+    3.8330078125,
+    4.23681640625,
+    5.14306640625
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T13:52:18.213399+00:00",
+  "load_after": [
+    4.42431640625,
+    4.33203125,
+    5.14990234375
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/affected.log"
+}

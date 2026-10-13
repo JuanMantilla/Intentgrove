@@ -1,0 +1,194 @@
+--- tests/ui/native-entry.test.tsx (before this task)
++++ tests/ui/native-entry.test.tsx
+@@ -2,6 +2,7 @@
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+ import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+ import App from "../../src/app/App";
++import type { NativePreview } from "../../src/app/api";
+ 
+ const mocks = vi.hoisted(() => ({
+   loadWorkspaceSession: vi.fn(), checkpointWorkspaceSession: vi.fn(),
+@@ -21,21 +22,26 @@
+   return () => { delete mocks.listeners[name]; };
+ }) }));
+ 
+-const file = { id: "incoming-1", source: "finder", name: "notes.md",
++const file: NativePreview = { id: "incoming-1", source: "finder", name: "notes.md",
+   displayPath: "/tmp/fixture/notes.md", kind: "document", errorCode: null };
+-const bad = { id: "incoming-2", source: "drop", name: "link.md",
++const bad: NativePreview = { id: "incoming-2", source: "drop", name: "link.md",
+   displayPath: "/tmp/fixture/link.md", kind: "unsupported", errorCode: "unsupported_type" };
+ 
++let pending: typeof file[];
+ beforeEach(() => {
+-  vi.clearAllMocks();
++  vi.resetAllMocks();
+   mocks.listeners = {};
+   localStorage.clear();
+   mocks.loadWorkspaceSession.mockResolvedValue(null);
+   mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
+-  mocks.listNativeEntries.mockResolvedValue([file, bad]);
+-  mocks.acceptNativeEntry.mockResolvedValue({ kind: "document", grant: {
+-    id: "file-1", name: "notes.md", displayPath: "/tmp/fixture/notes.md", generation: 1 } });
+-  mocks.dismissNativeEntry.mockResolvedValue(undefined);
++  pending = [file, bad];
++  mocks.listNativeEntries.mockImplementation(async () => [...pending]);
++  mocks.acceptNativeEntry.mockImplementation(async (id) => {
++    const entry = pending.find(item => item.id === id)!;
++    pending = pending.filter(item => item.id !== id);
++    return { kind: entry.kind, grant: { id: "file-1", name: entry.name, displayPath: entry.displayPath, generation: 1 } };
++  });
++  mocks.dismissNativeEntry.mockImplementation(async (id) => { pending = pending.filter(item => item.id !== id); });
+   mocks.readDocument.mockResolvedValue({ fileId: "file-1", name: "notes.md",
+     displayPath: "/tmp/fixture/notes.md", identityKey: "1:2", content: "# Notes", diskVersion: "v1" });
+   mocks.rememberRecentDocument.mockResolvedValue(undefined);
+@@ -47,14 +53,125 @@
+ afterEach(cleanup);
+ 
+ describe("native incoming items", () => {
+-  it("does not grant an incoming file until its Open action", async () => {
+-    render(<App />);
+-    const region = await screen.findByRole("region", { name: "Items opened from macOS" });
+-    expect(within(region).getByText(/notes.md · Finder/)).toBeTruthy();
+-    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
+-    fireEvent.click(within(region).getByRole("button", { name: "Open item: notes.md" }));
+-    await waitFor(() => expect(mocks.acceptNativeEntry).toHaveBeenCalledWith("incoming-1"));
++  it("opens and focuses a cold Finder file without an extra Open action", async () => {
++    render(<App />);
+     expect(await screen.findByRole("heading", { name: "Notes" })).toBeTruthy();
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledExactlyOnceWith("incoming-1", true);
++    expect(screen.getByRole("tab", { name: "notes.md" }).getAttribute("aria-selected")).toBe("true");
++    expect(screen.queryByRole("button", { name: "Open item: notes.md" })).toBeNull();
++    expect(mocks.readDocument).toHaveBeenCalledWith({ fileId: "file-1", explicitFile: true });
++  });
++
++  it("waits for session loading before consuming queued files", async () => {
++    let resolve!: (value: null) => void;
++    mocks.loadWorkspaceSession.mockReturnValue(new Promise(r => { resolve = r; }));
++    render(<App />);
++    await screen.findByText(/notes.md · Finder/);
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++    await act(async () => { resolve(null); });
++    await screen.findByRole("heading", { name: "Notes" });
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledExactlyOnceWith("incoming-1", true);
++  });
++
++  it("opens warm drop events and focuses the existing file instead of duplicating its tab", async () => {
++    render(<App />);
++    await screen.findByRole("heading", { name: "Notes" });
++    pending.push({ ...file, id: "incoming-3", source: "drop" });
++    await act(async () => { mocks.listeners["native:entry_pending"]({ payload: "" }); });
++    await waitFor(() => expect(mocks.acceptNativeEntry).toHaveBeenCalledWith("incoming-3", true));
++    await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledTimes(2));
++    expect(screen.getAllByRole("tab", { name: "notes.md" })).toHaveLength(1);
++  });
++
++  it("serializes multiple files and focuses the last requested tab", async () => {
++    pending = [file, { ...file, id: "second", name: "second.markdown" }];
++    let resolve!: (value: unknown) => void;
++    mocks.readDocument.mockImplementationOnce(() => new Promise(r => { resolve = r; }));
++    mocks.acceptNativeEntry.mockImplementation(async (id) => {
++      const entry = pending.find(item => item.id === id)!;
++      pending = pending.filter(item => item.id !== id);
++      return { kind: "document", grant: { id, name: entry.name, displayPath: entry.displayPath, generation: 1 } };
++    });
++    mocks.readDocument.mockImplementation(async (request) => ({ fileId: request.fileId, identityKey: request.fileId,
++      name: "second.markdown", content: "# Second", diskVersion: "v1", displayPath: "/tmp/second.markdown" }));
++    render(<App />);
++    await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledTimes(1));
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledTimes(1);
++    await act(async () => { resolve({ fileId: "incoming-1", identityKey: "first", name: "notes.md",
++      content: "# Notes", diskVersion: "v1", displayPath: file.displayPath }); });
++    await screen.findByRole("heading", { name: "Second" });
++    expect(mocks.acceptNativeEntry.mock.calls.map(call => call[0])).toEqual(["incoming-1", "second"]);
++    expect(screen.getByRole("tab", { name: "notes.md" })).toBeTruthy();
++    expect(screen.getByRole("tab", { name: "second.markdown" }).getAttribute("aria-selected")).toBe("true");
++  });
++
++  it("keeps an interrupted-session decision ahead of native opening", async () => {
++    mocks.loadWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1, exitDisposition: "running",
++      root: null, tabs: [], activeKey: null, tree: { expanded: [], selected: null, scrollTop: 0 },
++      panel: { sidebarOpen: true, sidebarWidth: 260, outlineOpen: false, outlineWidth: 220,
++        readingWidth: 760, readingFont: "roboto", readingSize: 16, readingLineHeight: 1.6 }, window: null });
++    render(<App />);
++    await screen.findByRole("alertdialog");
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++    fireEvent.click(screen.getByRole("button", { name: "Restore workspace" }));
++    await screen.findByRole("heading", { name: "Notes" });
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledExactlyOnceWith("incoming-1", true);
++  });
++
++  it("finishes restoring the active document and its recovery before opening an incoming file", async () => {
++    mocks.loadWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1, exitDisposition: "normal",
++      root: null, tabs: [{ key: "saved", fileId: "saved-file", name: "saved.md", displayPath: "/tmp/saved.md",
++        rootSegments: null, explicitFile: true, anchor: { headingId: null, offset: 0, scrollTop: 0,
++          viewportWidth: 800, viewportHeight: 600, contentVersion: "v1" }, savedDiskVersion: "v1",
++        errorCode: null, editingActive: false }], activeKey: "saved",
++      tree: { expanded: [], selected: null, scrollTop: 0 }, panel: { sidebarOpen: true, sidebarWidth: 260,
++        outlineOpen: false, outlineWidth: 220, readingWidth: 760, readingFont: "roboto", readingSize: 16,
++        readingLineHeight: 1.6 }, window: null });
++    let resolveRead!: (value: unknown) => void;
++    let resolveRecovery!: (value: null) => void;
++    mocks.readDocument.mockImplementationOnce(() => new Promise(r => { resolveRead = r; }));
++    mocks.loadSectionRecovery.mockImplementationOnce(() => new Promise(r => { resolveRecovery = r; }));
++    render(<App />);
++    await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledWith({ fileId: "saved-file" }));
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++    await act(async () => { resolveRead({ fileId: "saved-file", name: "saved.md", displayPath: "/tmp/saved.md",
++      identityKey: "saved", content: "# Saved", diskVersion: "v1" }); });
++    await screen.findByRole("heading", { name: "Saved" });
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++    await act(async () => { resolveRecovery(null); });
++    await screen.findByRole("heading", { name: "Notes" });
++    expect(screen.getByRole("tab", { name: "saved.md" })).toBeTruthy();
++    expect(screen.getByRole("tab", { name: "notes.md" }).getAttribute("aria-selected")).toBe("true");
++  });
++  it("ignores a stale queue snapshot after a newer warm event", async () => {
++    pending = [];
++    render(<App />);
++    await waitFor(() => expect(mocks.listNativeEntries).toHaveBeenCalledTimes(2));
++    let resolve!: (value: typeof file[]) => void;
++    mocks.listNativeEntries.mockImplementationOnce(() => new Promise(r => { resolve = r; }));
++    await act(async () => { mocks.listeners["native:entry_pending"]({ payload: "" }); });
++    pending = [file];
++    await act(async () => { mocks.listeners["native:entry_pending"]({ payload: "" }); });
++    await screen.findByRole("heading", { name: "Notes" });
++    await act(async () => { resolve([file]); });
++    expect(screen.queryByText(/notes.md · Finder/)).toBeNull();
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledTimes(1);
++  });
++  it("retains manual confirmation for folders", async () => {
++    pending = [{ ...file, kind: "folder", name: "fixture" }];
++    render(<App />);
++    expect(await screen.findByRole("button", { name: "Open item: fixture" })).toBeTruthy();
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++  });
++
++  it("reports a failed native grant without repeatedly consuming it", async () => {
++    mocks.acceptNativeEntry.mockRejectedValue({ code: "permission_denied" });
++    render(<App />);
++    await waitFor(() => expect(mocks.acceptNativeEntry).toHaveBeenCalledTimes(1));
++    await act(async () => { mocks.listeners["native:entry_pending"]({ payload: "" }); });
++    await waitFor(() => expect(mocks.listNativeEntries).toHaveBeenCalledTimes(4));
++    expect(mocks.acceptNativeEntry).toHaveBeenCalledTimes(1);
++    expect(mocks.readDocument).not.toHaveBeenCalled();
+   });
+ 
+   it("shows a scoped error for an unsupported drop and lets the user dismiss it", async () => {
+@@ -64,7 +181,7 @@
+     expect(within(region).queryByRole("button", { name: "Open item: link.md" })).toBeNull();
+     fireEvent.click(within(region).getByRole("button", { name: "Dismiss: link.md" }));
+     await waitFor(() => expect(mocks.dismissNativeEntry).toHaveBeenCalledWith("incoming-2"));
+-    expect(mocks.acceptNativeEntry).not.toHaveBeenCalled();
++    expect(mocks.acceptNativeEntry).not.toHaveBeenCalledWith("incoming-2");
+   });
+ 
+   it("enables menu actions only when a document can use them", async () => {
+@@ -72,7 +189,6 @@
+     await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenCalledWith(expect.objectContaining({
+       closeTab: false, save: false, find: false, reload: false, locale: "en"
+     })));
+-    fireEvent.click(await screen.findByRole("button", { name: "Open item: notes.md" }));
+     await screen.findByRole("heading", { name: "Notes" });
+     await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenCalledWith(expect.objectContaining({
+       closeTab: true, save: false, find: true, reload: true

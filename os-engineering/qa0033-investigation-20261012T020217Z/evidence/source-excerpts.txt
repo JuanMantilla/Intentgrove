@@ -1,0 +1,353 @@
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx
+108:   });
+109:   const [localePersistenceWarning, setLocalePersistenceWarning] = useState(false);
+110:   const remoteLocale = useRef<Locale | null>(null);
+111:   const [sessionRetrying, setSessionRetrying] = useState(false);
+112:   const [newMarkdownOpen, setNewMarkdownOpen] = useState(false);
+113:   const newMarkdownOwner = useRef(false);
+114:   const [createdEdit, setCreatedEdit] = useState<{ id: string; watchFailed: boolean } | null>(null);
+115:   const createdNavigation = useRef(false);
+116:   const newMarkdownInvoker = useRef<HTMLElement | null>(null);
+117:   const [root, setRoot] = useState<GrantInfo | null>(null);
+118:   const [rootProblem, setRootProblem] = useState<string | null>(null);
+170:   const copySavingRef = useRef(false);
+171:   const [enteringSection, setEnteringSection] = useState<{ tabId: string; sectionId: string } | null>(null);
+172:   const enteringSectionRef = useRef<symbol | null>(null);
+173:   useEffect(() => () => { enteringSectionRef.current = null; recentSequence.current += 1; }, []);
+174:   const [restoreOffer, setRestoreOffer] = useState<SessionRestore | null>(null);
+175:   const [sessionReady, setSessionReady] = useState(false);
+176:   const sessionReadyRef = useRef(false);
+177:   const sessionClearedRef = useRef(false);
+178:   const [priorRoot, setPriorRoot] = useState(false);
+179:   const priorRootRef = useRef(false);
+180:   const sessionSequence = useRef(0);
+181:   const sessionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+182:   const sessionWrite = useRef<Promise<unknown>>(Promise.resolve());
+183:   const restoreLoads = useRef(new Map<string, symbol>());
+184:   const [restoreLoadRevision, setRestoreLoadRevision] = useState(0);
+324:     await Promise.all([...htmlHandles.current.values()].map(handle=>handle.hide().catch(()=>{})));
+325:   }
+326:   function showHtmlOverlay(action:()=>void) {
+327:     if(!htmlHandles.current.size) {action();return;}
+328:     void hideHtml().then(action);
+329:   }
+389:   useEffect(() => () => {
+390:     if (sessionTimer.current) clearTimeout(sessionTimer.current);
+391:     if (readerCheckpointTimer.current) clearTimeout(readerCheckpointTimer.current);
+392:   }, []);
+393: 
+394:   useLayoutEffect(() => { tabsRef.current = tabs; }, [tabs]);
+395:   useLayoutEffect(() => { editsRef.current = edits; }, [edits]);
+396:   useLayoutEffect(() => { pendingRecoveriesRef.current = pendingRecoveries; }, [pendingRecoveries]);
+397:   useEffect(() => { rootRef.current = root; }, [root]);
+398:   useEffect(() => { activeIdRef.current = activeId; }, [activeId]);
+399:   useEffect(() => {
+400:     setTabs((old) => old.some((tab) => tab.kind === "image" && tab.id !== activeId && tab.image)
+401:       ? old.map((tab) => tab.kind === "image" && tab.id !== activeId ? { ...tab, image: undefined } : tab)
+402:       : old);
+723:   useEffect(() => {
+724:     let cancelled = false;
+725:     if (typeof api.loadWorkspaceSession !== "function") {
+726:       sessionReadyRef.current = true;
+727:       setSessionReady(true);
+728:       return;
+729:     }
+730:     void api.loadWorkspaceSession().then((saved) => {
+731:       if (cancelled) return;
+732:       if (saved?.exitDisposition === "running") setRestoreOffer(saved);
+733:       else if (saved) applyRestoredSession(saved);
+734:       else { sessionReadyRef.current = true; setSessionReady(true); }
+735:     }).catch((error) => {
+736:       if (cancelled) return;
+737:       setSessionNotice({ operation: "load", code: readerError(error).code });
+738:       sessionReadyRef.current = true;
+739:       setSessionReady(true);
+740:     });
+741:     return () => { cancelled = true; };
+742:   }, []);
+743: 
+744:   useEffect(() => {
+745:     if (!sessionReady) return;
+746:     if (sessionSequence.current === 0 && !root && !priorRoot && tabs.length === 0
+747:       && readingSettings.readingFont === defaultSessionPanel.readingFont
+748:       && readingSettings.readingSize === defaultSessionPanel.readingSize
+749:       && readingSettings.readingLineHeight === defaultSessionPanel.readingLineHeight
+750:       && readingSettings.readingWidth === defaultSessionPanel.readingWidth && markdownOnly) return;
+751:     scheduleSessionCheckpoint();
+752:   }, [sessionReady, root, priorRoot, tabs, activeId, directories, sidebarOpen, sidebarWidth, outlineOpen, readingSettings, markdownOnly]);
+1219:       scrollTop: scrollPositions.current.get(active.id) ?? 0, scrollLeft: 0 }));
+1220:   }, [activeId, active?.content, active?.image, active?.imageLoading, active?.errorCode, active?.largeInspection, active?.htmlState?.state, active?.kind]);
+1221:   useEffect(() => {
+1222:     if (typeof api.setNativeMenuState !== "function") return;
+1223:     const update = () => { void api.setNativeMenuState({
+1224:       newMarkdownReady: newMarkdownReady(),
+1225:       closeTab: Boolean(active),
+1226:       editingOwner: !newMarkdownOpen && editorMenu.owner, editingUndo: editorMenu.undo, editingRedo: editorMenu.redo, editingSelection: editorMenu.selection,
+1227:       save: Boolean(active && edits[active.id] && !edits[active.id].paused
+1228:         && edits[active.id].draft !== edits[active.id].source),
+1229:       find: Boolean((active?.content || active?.kind === "html") && !active?.errorCode),
+1230:       reload: Boolean(active), locale,
+1231:       defaultMarkdownReady: !newMarkdownOpen && sessionReady && !restoreOffer && !nativeEntries.length && !busy && !documentOpening
+1232:         && !closeIntent && !pendingSaveAs && !pendingSection && !discardConflictConfirm && !discardSectionId
+1233:         && !clearDraftsConfirm && !clearCopiesConfirm && !clearSessionConfirm && !clearRecentsConfirm
+1234:         && !storageOpen && !Object.keys(pendingRecoveries).length && !Object.keys(edits).length,
+1235:       back: !historyBusy && Boolean(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]),
+1236:       forward: !historyBusy && Boolean(active && history.entries[history.cursor + 1]),
+1237:       visited: !historyBusy && Boolean(history.entries.length),
+1238:       clearHistory: !historyBusy && Boolean(history.entries.length)
+1239:     }).catch(() => {}); };
+1240:     update();
+1241:     window.addEventListener("focus", update);
+1242:     return () => window.removeEventListener("focus", update);
+1243:   }, [newMarkdownOpen, active, edits, locale, history, historyBusy, editorMenu, sessionReady, restoreOffer, nativeEntries, busy, documentOpening,
+1244:     closeIntent, pendingSaveAs, pendingSection, discardConflictConfirm, discardSectionId, clearDraftsConfirm, clearCopiesConfirm,
+1245:     clearSessionConfirm, clearRecentsConfirm, storageOpen, pendingRecoveries, selectionPending, documentPending,
+1246:     enteringSection, savingTabId, copySaving, cleanupBusy, openingRecent, restoreLoadRevision, historyOpen, documentsOpen]);
+1247:   const activeEdit = activeId ? edits[activeId] : undefined;
+1248:   const findInDraft = Boolean(activeEdit && !activeEdit.paused);
+3101:   function newMarkdownReady() {
+3102:     return Boolean(sessionReady && !restoreOffer && !restoreLoads.current.size && !newMarkdownOwner.current
+3103:       && !busy && !selectionPending && !documentPending && !enteringSection && !savingTabId && !copySaving
+3104:       && !cleanupBusy && !cleanupRef.current && !savingTabRef.current && !copySavingRef.current
+3105:       && !enteringSectionRef.current && !traversal.current && !openingLarge.current
+3106:       && !historyBusy && !openingRecent && !closeInProgress.current && !nativeOpening.current
+3107:       && !document.querySelector('[aria-modal="true"]'));
+3108:   }
+3109:   function openNewMarkdown() {
+3110:     if (!newMarkdownReady()) return;
+3111:     newMarkdownOwner.current = true;
+3112:     newMarkdownInvoker.current = projectsMenu?.anchor ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+3113:     setProjectsMenu(null); setReloadMenu(null); setGoMenu(null);
+3114:     showHtmlOverlay(() => setNewMarkdownOpen(true));
+3115:   }
+3116:   function closeNewMarkdown() {
+3117:     newMarkdownOwner.current = false; setNewMarkdownOpen(false);
+3118:     if (createdNavigation.current) { createdNavigation.current = false; return; }
+3119:     requestAnimationFrame(() => {
+3120:       const invoker = newMarkdownInvoker.current;
+3121:       (invoker?.isConnected ? invoker : sidebarTriggerRef.current)?.focus();
+3122:     });
+3123:   }
+3124:   async function openCreatedMarkdown(outcome: CreateMarkdownOutcome) {
+3125:     const opened = outcome.status === "opened";
+3161:   // Native main-window only: leave browser/system new-tab shortcuts to their owner.
+3162:   // Capture before editor handlers. The synchronous owner prevents DOM/native double opens.
+3163:   useEffect(() => {
+3164:     if (!isTauri()) return;
+3165:     const shortcut = (event: KeyboardEvent) => {
+3166:       if (!commandPressed(event) || event.shiftKey || event.key.toLowerCase() !== "t") return;
+3167:       event.preventDefault(); event.stopPropagation();
+3168:       if (!event.repeat) openNewMarkdown();
+3169:     };
+3170:     window.addEventListener("keydown", shortcut, true);
+3171:     return () => window.removeEventListener("keydown", shortcut, true);
+3172:   });
+3173: 
+3174:   menuActionRef.current = (payload: string) => {
+3175:       if (payload === "workspace_new_markdown") { openNewMarkdown(); return; }
+3176:       if (newMarkdownOwner.current) return;
+3177:       if (["editing_undo", "editing_redo", "editing_bold", "editing_italic", "editing_code", "editing_link"].includes(payload)) {
+3178:         if (activeEdit && !activeEdit.paused && !savingTabRef.current) editorFindRef.current?.command?.(payload.slice(8) as RichCommand);
+3179:         return;
+3180:       }
+3205:   useEffect(() => {
+3206:     let disposed = false;
+3207:     let unlisten: (() => void) | undefined;
+3208:     try {
+3209:       void listen<string>("native:menu", ({ payload }) => menuActionRef.current(payload))
+3210:         .then((stop) => { if (disposed) stop(); else unlisten = stop; }).catch(() => {});
+3211:     } catch { /* Browser-only preview has no Tauri event host. */ }
+3212:     return () => { disposed = true; unlisten?.(); };
+3213:   }, []);
+3214: 
+3690:           {projectsMenu && <ActionMenu {...projectsMenu} onClose={() => setProjectsMenu(null)} actions={[
+3691:             { label: t(locale, "newMarkdown"), hint: shortcutHint("T"), disabled: busy, run: openNewMarkdown },
+3692:             { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
+3693:             { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
+3694:             { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
+3695:               run: () => { setFolderSearchScope([]); setSidebarOpen(true); if (compactSidebar) setCompactSidebarOpen(true); setSidebarPanel("search"); } },
+4025:             {!active && documentOpening ? <div className="error-state"><PreviewLoading label={t(locale, "loading")} /></div> : !active ? (
+4026:               <div className="welcome">
+4027:                 {!sessionReady && !restoreOffer && <PreviewLoading placeholder label={t(locale, "restoreSession")} />}
+4028:                 <div className="welcome-mark" aria-hidden="true">M</div>
+4029:                 <h1>{t(locale, "welcomeTitle")}</h1>
+4030:                 <p>{root ? t(locale, "noDocument") : t(locale, "welcomeBody")}</p>
+4031:                 {priorRoot && <div className="notice" role="status">
+4032:                   <span>{errorText(locale, rootProblem ?? "root_reselection_required")}</span>
+4033:                   <button type="button" disabled={busy} onClick={() => void recoverMissingRoot()}>
+4034:                     {t(locale, "selectFolderAgain")}
+4035:                   </button>
+4036:                 </div>}
+4037:                 <div className="welcome-actions">
+4038:                   <button type="button" disabled={busy} onClick={openNewMarkdown}>{t(locale, "newMarkdown")}</button>
+4039:                   {!isTauri() && <button ref={settingsTriggerRef} type="button" onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>}
+4040:                   <button className="primary-button" type="button" onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
+4041:                   <button type="button" onClick={() => void chooseFile()}>{t(locale, "openFile")}</button>
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/appearance.ts
+128: let appearance: ReturnType<typeof createAppearanceController> | undefined;
+129: export function getAppearance() {
+130:   if (!appearance) {
+131:     // Accessing window.localStorage itself may throw in a restricted WebView.
+132:     const storage = {
+133:       getItem: (key: string) => window.localStorage.getItem(key),
+134:       setItem: (key: string, value: string) => window.localStorage.setItem(key, value)
+135:     };
+136:     appearance = createAppearanceController({ storage, root: document.documentElement, events: window,
+137:       media: typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: dark)") : undefined,
+138:       native: isTauri() && !new URLSearchParams(location.search).has("settings") ? getCurrentWindow() : undefined });
+139:   }
+140:   return appearance;
+141: }
+142: export function useAppearance() {
+143:   const controller = getAppearance();
+144:   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot);
+145:   return { ...state, applyPreference: controller.applyPreference };
+146: }
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/reader/MarkdownView.tsx
+204:     if (overBudget || !hasWorker) return;
+205:     let live = true;
+206:     const owner = ++generation.current;
+207:     let worker: Worker;
+208:     try {
+209:       worker = new Worker(new URL("./markdownBudget.worker.ts", import.meta.url), { type: "module" });
+210:     } catch {
+211:       setParsed({ fileId, raw: content, content: requestedSource, error: true });
+212:       return;
+213:     }
+214:     const finish = (tree?: Root, metadata?: MetadataResult | null, blocks?: BoundedBlock[]) => {
+215:       if (!live) return;
+216:       clearTimeout(timer);
+217:       worker.terminate();
+218:       setParsed(tree ? { fileId, raw: content, content: requestedSource, tree, metadata, blocks }
+219:         : { fileId, raw: content, content: requestedSource, error: true });
+220:     };
+221:     const timer = setTimeout(() => finish(), 5_000);
+222:     worker.onmessage = (event: MessageEvent<{ kind: string; tree?: Root;
+223:       metadata?: MetadataResult | null; version: number; generation: number; blocks?: BoundedBlock[] }>) => {
+224:       if (event.data.version !== BLOCK_PROTOCOL || event.data.generation !== owner) return;
+225:       finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata, event.data.blocks);
+226:     };
+227:     worker.onerror = () => finish();
+228:     worker.postMessage({ version: BLOCK_PROTOCOL, generation: owner, source: requestedSource });
+229:     return () => {
+230:       live = false;
+231:       clearTimeout(timer);
+232:       worker.terminate();
+233:     };
+234:   }, [fileId, requestedSource, hasWorker, overBudget]);
+235: 
+236:   const tree = parsed?.fileId === fileId && parsed.content === parseContent ? parsed.tree : undefined;
+237:   const workerMetadata = parsed?.fileId === fileId && parsed.content === parseContent ? parsed.metadata : undefined;
+238:   const parseFailed = parsed?.fileId === fileId && parsed.content === parseContent && parsed.error;
+239:   const canParseInline = !overBudget && parseContent.length <= 256 * 1024;
+240:   const renderReady = !retaining && !overBudget && (Boolean(tree) || ((!hasWorker) && canParseInline));
+241:   const sourceFallback = overBudget || parseFailed || (!hasWorker && !canParseInline);
+242:   const selectionReady = renderReady || sourceFallback;
+243:   const blocks = useMemo(() => parsed?.fileId === fileId && parsed.content === parseContent && parsed.blocks
+244:     ? parsed.blocks : canParseInline && (!hasWorker)
+245:       ? parseBounded(parseContent).blocks
+246:       : [], [parsed, parseContent, canParseInline, hasWorker, parseFailed]);
+247:   useEffect(() => { setPainted(24); }, [fileId, parseContent]);
+248:   useEffect(() => {
+249:     if (painted >= blocks.length) return;
+250:     const timer = setTimeout(() => setPainted(count => Math.min(count + 24, blocks.length)), 0);
+251:     return () => clearTimeout(timer);
+252:   }, [painted, blocks]);
+253:   const renderedCallback = useRef(onRendered);
+254:   renderedCallback.current = onRendered;
+255:   useLayoutEffect(() => {
+256:     if (!layoutPending && renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
+257:   }, [fileId, content, renderReady, painted, blocks.length, layoutPending, sections]);
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/tests/ui/new-markdown.test.tsx
+9: const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), chooseMarkdownDestination: vi.fn(), cancelMarkdownDestination: vi.fn(), createMarkdownFile: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(), rememberRecentDocument: vi.fn(), loadWorkspaceSession: vi.fn(), listRecentItems: vi.fn(), listNativeEntries: vi.fn(),
+10:   listSafetyCopies: vi.fn(), setNativeMenuState: vi.fn(), checkpointWorkspaceSession: vi.fn(), selectFile: vi.fn(), readDocument: vi.fn(), loadSectionRecovery: vi.fn(), listEditSections: vi.fn(),
+11:   menu: null as null | ((event: { payload: string }) => void), native: false }));
+12: vi.mock("../../src/app/api", async () => ({ ...await vi.importActual("../../src/app/api"), api: mocks }));
+13: vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => mocks.native, invoke: vi.fn() }));
+14: vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name, callback) => { if (name === "native:menu") mocks.menu = callback; return () => {}; }) }));
+15: const folder = { id: "granted", name: "Disposable", displayPath: "/tmp/disposable", generation: 1 };
+16: beforeEach(() => { vi.resetAllMocks(); localStorage.clear(); mocks.native = false; mocks.menu = null;
+17:   mocks.loadWorkspaceSession.mockResolvedValue(null); mocks.listRecentItems.mockResolvedValue({ items: [], recoveredCorrupt: false });
+18:   mocks.listNativeEntries.mockResolvedValue([]); mocks.listSafetyCopies.mockResolvedValue(null); mocks.setNativeMenuState.mockResolvedValue(undefined);
+19:   mocks.cancelMarkdownDestination.mockResolvedValue(undefined); mocks.rememberRecentDocument.mockResolvedValue(undefined);
+20:   mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
+21:   mocks.chooseMarkdownDestination.mockResolvedValue(null); mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
+22: });
+23: afterEach(() => cleanup());
+24: it.each([["note", "note.md"], ["note.MD", "note.md"], ["note.md.md", "note.md"], ["Niño", "Niño.md"],
+61: it("opens from empty workspace and Projects, and restores the owning trigger", async () => {
+62:   render(<App />); const trigger = await screen.findByRole("button", { name: "New Markdown file" }); trigger.focus(); fireEvent.click(trigger);
+63:   await screen.findByRole("dialog", { name: "New Markdown file" }); fireEvent.click(screen.getByText("Cancel"));
+64:   await waitFor(() => expect(document.activeElement).toBe(trigger));
+65:   fireEvent.click(screen.getByRole("button", { name: "Projects", expanded: false }));
+66:   const item = await screen.findByRole("menuitem", { name: "New Markdown file" }); fireEvent.click(item);
+67:   expect(screen.getByLabelText("Filename")).toBe(document.activeElement);
+68: });
+69: it("deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone", async () => {
+70:   mocks.native = true; render(<App />); await screen.findByRole("button", { name: "New Markdown file" });
+71:   const editor = document.createElement("div"); editor.contentEditable = "true"; document.body.append(editor); editor.focus();
+72:   fireEvent.keyDown(editor, { key: "t", metaKey: true });
+73:   act(() => mocks.menu?.({ payload: "workspace_new_markdown" }));
+74:   fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "retained" } });
+75:   fireEvent.keyDown(screen.getByLabelText("Filename"), { key: "t", metaKey: true, repeat: true });
+76:   expect(screen.getAllByRole("dialog")).toHaveLength(1); expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("retained");
+77:   fireEvent.click(screen.getByText("Cancel")); editor.remove(); cleanup(); mocks.native = false; render(<App />);
+78:   await screen.findByRole("button", { name: "New Markdown file" });
+79:   expect(fireEvent.keyDown(window, { key: "t", metaKey: true })).toBe(true); expect(screen.queryByRole("dialog")).toBeNull();
+80: });
+81: it("does not open over another modal", async () => {
+82:   mocks.native = true; render(<App />); await screen.findByRole("button", { name: "New Markdown file" });
+83:   const modal = document.createElement("div"); modal.setAttribute("aria-modal", "true"); document.body.append(modal);
+84:   fireEvent.keyDown(window, { key: "t", metaKey: true }); act(() => mocks.menu?.({ payload: "workspace_new_markdown" }));
+136: it("real App mock journey opens native identity then enters the existing empty rendered section", async () => {
+137:   mocks.native = true;
+138:   mocks.chooseMarkdownDestination.mockResolvedValue({ token: "explicit-choice", name: "Disposable", displayPath: folder.displayPath });
+139:   mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument);
+140:   mocks.loadSectionRecovery.mockResolvedValue(null); mocks.listEditSections.mockResolvedValue({ diskVersion: "empty-v1", sections: [whole] });
+141:   mocks.beginSectionEdit.mockResolvedValue({ sessionId: "created-session", diskVersion: "empty-v1", section: whole, source: "", lineSeparator: "\n" });
+142:   render(<App />); fireEvent.click(await screen.findByRole("button", { name: "New Markdown file" })); fillName();
+143:   fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);
+144:   fireEvent.click(screen.getByText("Create file"));
+145:   await waitFor(() => expect(mocks.beginSectionEdit).toHaveBeenCalledWith(createdDocument.fileId, whole.id, "empty-v1"));
+146:   expect(mocks.readDocument).toHaveBeenCalledWith({ fileId: createdDocument.fileId, explicitFile: true });
+147:   expect(mocks.rememberRecentDocument).toHaveBeenCalledWith(createdDocument.fileId);
+148:   await waitFor(() => expect(document.querySelector('[contenteditable="true"]')).not.toBeNull());
+149:   expect(screen.queryByRole("dialog", { name: "New Markdown file" })).toBeNull();
+150:   expect(mocks.selectRoot).not.toHaveBeenCalled();
+151: });
+152: it("blocks composition Enter and cancels without creating", () => {
+153:   const close = vi.fn(); render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={vi.fn()} onClose={close} />); fillName();
+154:   expect(fireEvent.keyDown(screen.getByLabelText("Filename"), {key:"Enter",isComposing:true})).toBe(false);
+155:   fireEvent.keyDown(screen.getByLabelText("Filename"), {key:"Escape"}); expect(close).toHaveBeenCalledOnce(); expect(mocks.createMarkdownFile).not.toHaveBeenCalled();
+156: });
+157: 
+158: it("preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu", async () => {
+159:  mocks.native = true;
+160:  mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+161:  mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument);
+162:  mocks.loadSectionRecovery.mockResolvedValue(null); mocks.listEditSections.mockResolvedValue({diskVersion:"empty-v1",sections:[whole]});
+163:  mocks.beginSectionEdit.mockImplementation(async fileId=>({sessionId:"edit:"+fileId,diskVersion:"empty-v1",section:whole,source:"",lineSeparator:"\n"}));
+164:  render(<App />); fireEvent.click(await screen.findByRole("button",{name:"New Markdown file"})); fillName();
+165:  fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath); fireEvent.click(screen.getByText("Create file"));
+166:  await waitFor(()=>expect(document.querySelector('[data-rich-leaf]')).not.toBeNull()); typeRich("Keep this draft");
+167:  await waitFor(()=>expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false));
+168:  fireEvent.keyDown(document.querySelector('[data-rich-leaf]')!,{key:"t",metaKey:true}); act(()=>mocks.menu?.({payload:"workspace_new_markdown"}));
+169:  expect(screen.getAllByRole("dialog",{name:"New Markdown file"})).toHaveLength(1);
+170:  const second={...createdDocument,fileId:"second-native-id",identityKey:"second-identity",name:"second.md"};
+171:  mocks.createMarkdownFile.mockResolvedValue({...opened,document:second,segments:["second.md"]}); mocks.readDocument.mockResolvedValue(second);
+172:  fireEvent.change(screen.getByLabelText("Filename"),{target:{value:"second"}});fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);fireEvent.click(screen.getByText("Create file"));
+173:  await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledWith(second.fileId,whole.id,"empty-v1"));
+174:  expect(mocks.discardSectionEdit).not.toHaveBeenCalled(); fireEvent.click(screen.getByRole("tab",{name:/^first\.md/}));
+175:  await screen.findByText("Keep this draft"); expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false);
+176: });
+177: it("retains the created tab on editor startup failure without trying to create again", async () => {
+178:  mocks.native=true;mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+179:  mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument); mocks.loadSectionRecovery.mockResolvedValue(null);
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/vitest.config.ts
+1: import { defineConfig, mergeConfig } from "vitest/config";
+2: import viteConfig from "./vite.config";
+3: 
+4: // jsdom and CodeMirror suites need independent DOMs, not eight competing
+5: // browser simulations on the reference 8-core/16-GiB Mac. Keep parallelism
+6: // and all assertion/test deadlines; do not retry or suppress failures.
+7: export default mergeConfig(viteConfig, defineConfig({ test: { maxWorkers: 2 } }));

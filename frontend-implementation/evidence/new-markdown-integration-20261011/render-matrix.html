@@ -1,0 +1,5 @@
+<!doctype html><html><head><meta charset="UTF-8"><style>body{margin:0;background:#777}iframe{border:0;display:block}</style></head><body><iframe title="Actual App with mocked native bridge"></iframe><script>
+const p=new URLSearchParams(location.search), f=document.querySelector('iframe');
+f.width=p.get('width')||1280; f.height=p.get('height')||820;
+f.src='./renderer-mock.html?layout=margin&theme='+ (p.get('theme')||'light')+'&locale='+(p.get('locale')||'en');
+</script></body></html>

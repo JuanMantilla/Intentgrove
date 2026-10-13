@@ -1,7 +1,9 @@
 // Local-only visual fixture: renders the real App; every native operation is synthetic.
 // This file is not imported by src/main.tsx or included in the production entry.
 import { createRoot } from "react-dom/client";
-import { EditorView } from "@codemirror/view";
+import SettingsWindow from "../../src/app/SettingsWindow";
+import type { SettingsSnapshot, PreferencePatch, Preferences } from "../../src/app/settings-contract";
+import { workspaceLayout } from "../../src/app/workspaceLayout";
 import App from "../../src/app/App";
 import { defaultSessionPanel } from "../../src/app/session";
 const paragraph = "This is disposable reader content. A local workspace keeps the file identity, reading location and unsaved section separate. Following a visit should preserve context while source changes remain explicit. No personal document is opened or written by this renderer fixture.";
@@ -15,13 +17,32 @@ import "../../src/styles/app.css";
 const params = new URLSearchParams(location.search);
 localStorage.setItem("md-reader-locale", params.get("locale") ?? "es");
 localStorage.setItem("md-reader-appearance", JSON.stringify({ schema: 1, mode: params.get("theme") ?? "dark" }));
-const sources: Record<string, string> = { "AGENTS.md": instructions, "README.md": readme,
+// Opt-in synthetic native Settings coordinator for layout verification only.
+if (params.has("layout")) Object.defineProperty(window, "isTauri", { value: true });
+let settings: SettingsSnapshot = { revision: 0, activation: 0, group: "General", ownerAvailable: true,
+  requestId: null, persistence: "saved", retryPatch: null, nativeThemeFailed: false,
+  values: { language: params.get("locale") === "es" ? "es" : "en", appearance: params.get("theme") === "light" ? "light" : "dark",
+    readingFont: "roboto", readingSize: 16, readingLineHeight: 1.6, readingWidth: 760, documentsAndImagesOnly: true,
+    workspaceLayout: workspaceLayout(params.get("layout")) } };
+const editorDocument = "# Editing target\n\nEdit this paragraph directly. It contains **bold text** and *italic text*, with an authored local [link](./README.md).\n\nA second paragraph keeps the same readable column.\n\n- First item\n- Second item\n  - Nested item\n\n| Name | Value |\n| :--- | ---: |\n| First | One |\n| Second | Two |\n\n~~~javascript\nconst message = `hello`;\n~~~\n\n# Read-only surroundings\n\nThis section remains readable and unchanged.\n";
+const revisionPreview = params.has("revisionPreview");
+const longName = "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md";
+const nativeContent = "# Native validation\n\nA disposable document for layout validation.\n\n## Search section\n\nvalidationneedle short document match.\n\n## Another section\n\nKeep this reading content visible.\n";
+const sources: Record<string, string> = { "AGENTS.md": params.get("editor") === "1" ? editorDocument : instructions, "README.md": readme,
   "close-review-similar-filename-alpha.md": "# Alpha\n\nDisposable Markdown fixture.\n",
   "close-review-similar-filename-beta.md": "# Beta\n\nDisposable Markdown fixture.\n" };
+if (revisionPreview) {
+  for (const name of Object.keys(sources)) delete sources[name];
+  sources["close-review-similar-filename-with-shared-prefix-alpha.md"] = "# Alpha\n\nvalidationneedle identity fixture.\n";
+  sources["close-review-similar-filename-with-shared-prefix-beta.md"] = "# Beta\n\nvalidationneedle identity fixture.\n";
+  sources[longName] = nativeContent;
+  for (let index = 1; index <= 20; index++) sources[`document${String(index).padStart(2, "0")}.md`] = "# Document\n\nvalidationneedle disposable match.\n";
+  sources["short.md"] = nativeContent;
+}
 const imageName = "theme-states.svg";
-const names = [...Object.keys(sources), imageName];
+const names = [...Object.keys(sources), ...(revisionPreview ? [] : [imageName])];
 const path = (name: string) => "/fixture/personal/md-reader/" + name;
-const root = { id: "fixture-root", name: "md-reader", displayPath: "/fixture/personal/md-reader", generation: 1 };
+const root = { id: "fixture-root", name: revisionPreview ? "fixtures" : "md-reader", displayPath: "/fixture/personal/md-reader", generation: 1 };
 const sectionsFor = (name: string) => {
   const source = sources[name];
   const headings = [...source.matchAll(/^(#{1,6})\s+(.+)$/gm)];
@@ -49,6 +70,7 @@ const imageBytes = async () => {
   } finally { URL.revokeObjectURL(url); }
 };
 Object.defineProperty(window, "__TAURI_INTERNALS__", { value: {
+  metadata: { currentWindow: { label: "main" }, currentWebview: { label: "main" } },
   transformCallback: (callback: (event: unknown) => void) => { const id = nextCallback++; callbacks.set(id, callback); return id; },
   unregisterCallback: (id: number) => callbacks.delete(id),
   invoke: async (command: string, args: Record<string, unknown> = {}) => {
@@ -57,12 +79,22 @@ Object.defineProperty(window, "__TAURI_INTERNALS__", { value: {
     if (command === "plugin:event|unlisten") return;
     const name = String(args.fileId ?? (args.segments as string[] | undefined)?.at(-1) ?? "AGENTS.md");
     switch (command) {
+      case "get_workspace_preferences": case "get_settings_state": return settings;
+      case "publish_workspace_preferences": settings = { ...settings, revision: settings.revision + 1, values: args.values as Preferences }; return settings;
+      case "apply_settings_change": {
+        const patch = args.patch as PreferencePatch;
+        settings = { ...settings, revision: settings.revision + 1, values: {...settings.values, ...patch}, requestId: String(args.requestId), persistence: "pending" };
+        callbacks.get(listeners.get("settings:intent")!)?.({payload: {requestId: settings.requestId, revision: settings.revision, patch}});
+        return settings;
+      }
+      case "acknowledge_settings_change": settings = {...settings, persistence: args.persistence as "saved" | "failed"}; return settings;
+
       case "load_workspace_session": return { sequence: 1, completedAtMs: 1, exitDisposition: "normal", root,
-        tabs: names.map((name) => ({ key: name, fileId: name, name, displayPath: path(name), rootSegments: [name], explicitFile: false,
+        tabs: (revisionPreview ? ["short.md"] : names).map((name) => ({ key: name, fileId: name, name, displayPath: path(name), rootSegments: [name], explicitFile: false,
           anchor: { headingId: null, offset: 0, scrollTop: 0, viewportWidth: 1440, viewportHeight: 900, contentVersion: "v1" },
-          savedDiskVersion: "v1", errorCode: null, editingActive: false })), activeKey: "AGENTS.md",
-        tree: { expanded: [], selected: ["AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, readingWidth: 760 } };
-      case "list_entries": return { entries: names.map((name) => ({ name, kind: name.endsWith(".svg") ? "image" : "markdown" })), nextOffset: null, snapshotId: "fixture" };
+          savedDiskVersion: "v1", errorCode: null, editingActive: false })), activeKey: revisionPreview ? "short.md" : "AGENTS.md",
+        tree: { expanded: [], selected: [revisionPreview ? "short.md" : "AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, sidebarWidth: Number(params.get("sidebarWidth")) || defaultSessionPanel.sidebarWidth, readingWidth: 760, outlineOpen: true, workspaceLayout: (["margin", "folio", "atlas"].includes(params.get("layout") ?? "") ? params.get("layout") : "margin") } };
+      case "list_entries": return { entries: [...names, ...(params.has("longTree") ? Array.from({length: 80}, (_, i) => `disposable-long-project-file-${i}.md`) : [])].map((name) => ({ name, kind: name.endsWith(".svg") ? "image" : "markdown" })), nextOffset: null, snapshotId: "fixture" };
       case "read_document": return documentFor(name);
       case "list_edit_sections": return { diskVersion: "v1", sections: sectionsFor(name) };
       case "begin_section_edit": {
@@ -80,7 +112,10 @@ Object.defineProperty(window, "__TAURI_INTERNALS__", { value: {
         activeEdit = null;
         return { content: sources[name], diskVersion: "v2", sections: sectionsFor(name), recoveryCleanupFailed: false, safetyCopyStatusFailed: false };
       }
-      case "open_image": return { fileId: imageName, identityKey: "fixture-image", name: imageName,
+      case "open_image":
+        // Opt-in frozen pending state for visual review; normal fixtures resolve.
+        if (params.has("loadingPreview")) await new Promise(() => {});
+        return { fileId: imageName, identityKey: "fixture-image", name: imageName,
         displayPath: path(imageName), diskVersion: "v1", format: "svg", mime: "image/png", width: 1200, height: 1200, still: false, bytes: await imageBytes() };
       case "list_safety_copies": return inventory;
       case "clear_resolved_safety_copies": inventory = { ...inventory, resolvedCount: 0, resolvedBytes: 0 }; return inventory;
@@ -90,8 +125,14 @@ Object.defineProperty(window, "__TAURI_INTERNALS__", { value: {
       case "checkpoint_workspace_session": return { sequence: args.sequence, completedAtMs: 1 };
       case "reconcile_visible_state": return { generation: 1, jobId: "synthetic", accepted: true };
       case "start_folder_search": {
+        // Opt-in visual stress fixture; results derive from disposable source lines.
+        const results = params.has("search") ? Object.entries(sources).flatMap(([name, source]) => source.split("\n")
+          .flatMap((context, index) => context.toLowerCase().includes(String(args.query).toLowerCase()) ? [{
+            id: `${name}:${index}`, segments: [name], path: name, line: index + 1, startByte: 0, endByte: 1,
+            context, kind: "content", ignored: false, version: "v1"
+          }] : [])).slice(0, revisionPreview ? 100 : 12) : [];
         setTimeout(() => callbacks.get(listeners.get("folder-search:batch")!)?.({ payload: { jobId: "search", generation: 1,
-          results: [], scanned: names.length, skipped: 0, matched: 0, status: "complete", errorCode: null } }), 50);
+          results, scanned: names.length, skipped: revisionPreview ? 0 : params.has("search") ? 1 : 0, matched: results.length, status: "complete", errorCode: null } }), 50);
         return { generation: 1, jobId: "search" };
       }
       case "cancel_folder_search": return true;
@@ -114,9 +155,8 @@ Object.defineProperty(window, "__TAURI_INTERNALS__", { value: {
   }
 } });
 Object.defineProperty(window, "__rendererFixture", { value: {
-  edit: () => { const view = EditorView.findFromDOM(document.querySelector(".cm-editor")!);
-    view?.dispatch({ changes: { from: view.state.doc.length, insert: "\nDisposable renderer edit.\n" } }); },
+  edit: () => { throw new Error("Use actual rendered typing for the direct editor fixture"); },
   failNext: (command: string) => failedCommands.add(command),
   kind: "renderer-only; native API responses mocked"
 } });
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(params.get("settings") === "1" ? <SettingsWindow /> : <App />);

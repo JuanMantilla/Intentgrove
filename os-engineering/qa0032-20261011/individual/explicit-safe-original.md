@@ -1,0 +1,1 @@
+# Explicit safe sentinel check

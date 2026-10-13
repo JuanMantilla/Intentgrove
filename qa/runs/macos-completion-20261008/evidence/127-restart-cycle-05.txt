@@ -1,0 +1,70 @@
+Window: "Settings — Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Settings — Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
+			3 container
+				4 heading Ajustes, Value: 1
+					5 text Ajustes
+				6 container General
+					7 heading General, Value: 2
+						8 text General
+					9 container
+						10 text Idioma
+						11 pop up button (collapsed) Idioma, Value: Español, Secondary Actions: Expand
+						12 text Apariencia
+						13 pop up button (collapsed) Apariencia, Value: Sistema, Secondary Actions: Expand
+				14 container Lectura
+					15 heading Lectura, Value: 2
+						16 text Lectura
+					17 container
+						18 text Fuente
+						19 pop up button (collapsed) Fuente, Value: Roboto, Secondary Actions: Expand
+						20 text Tamaño del texto (px)
+						21 slider (settable, float) Tamaño del texto, Value: 22
+							22 value indicator 22
+						23 number field (settable) Tamaño del texto (px), Value: 22
+							24 stepper 0
+								25 unknown
+								26 unknown
+						27 text Interlineado
+						28 slider (settable, float) Interlineado, Value: 1.6
+							29 value indicator 1.6
+						30 number field (settable) Interlineado, Value: 1.6
+							31 stepper 0
+								32 unknown
+								33 unknown
+						34 text Ancho de página (px)
+						35 slider (settable, float) Ancho de página, Value: 760
+							36 value indicator 760
+						37 number field (settable) Ancho de página (px), Value: 760
+							38 stepper 0
+								39 unknown
+								40 unknown
+						41 container Ancho de página
+							42 toggle button Cómodo, Value: on
+							43 toggle button Amplio, Value: off
+						44 container Vista previa de lectura
+							45 text Vista previa de lectura
+							46 text Ajusta la tipografía para leer con comodidad. Tu documento no cambia.
+						47 button Restablecer ajustes de lectura
+				48 container Árbol de proyecto
+					49 heading Árbol de proyecto, Value: 2
+						50 text Árbol de proyecto
+					51 container
+						52 checkbox Solo documentos e imágenes, Value: 1
+						53 text Solo documentos e imágenes
+				54 button Listo
+	55 close button
+	56 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	57 minimize button
+	58 text Settings — Intentgrove
+59 menu bar
+	60 Intentgrove Completion 20261008
+	61 File
+	62 Edit
+	63 View
+	64 Ir
+	65 Window
+	66 Help
+
+The focused UI element is 7 heading General, Value: 2

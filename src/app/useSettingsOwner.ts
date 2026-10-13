@@ -23,13 +23,18 @@ export function useSettingsOwner(values: Preferences, enabled: boolean, handlers
     const publish = () => {
       queue = queue.catch(() => {}).then(async () => {
         if (disposed || !snapshot || snapshot.persistence === "pending") return;
-        if (initialized && JSON.stringify(snapshot.values) === JSON.stringify(latest.current.values)) return;
-        snapshot = await settingsApi.publish(snapshot.revision, latest.current.values);
+        // Old native hosts deny unknown preference fields. Capability is the
+        // optional field in their snapshot, never inferred from our local default.
+        const { workspaceLayout, ...legacy } = latest.current.values;
+        const values = snapshot.values.workspaceLayout === undefined ? legacy : { ...legacy, workspaceLayout };
+        if (initialized && JSON.stringify(snapshot.values) === JSON.stringify(values)) return;
+        snapshot = await settingsApi.publish(snapshot.revision, values);
         initialized = true;
       }).catch(async () => { if (!disposed) snapshot = await settingsApi.getWorkspace(); });
     };
     notify.current = publish;
     const accept = (next: SettingsSnapshot) => {
+      if (disposed) return;
       const previous = snapshot;
       snapshot = newerSettings(snapshot, next);
       if (initialized) {
@@ -70,8 +75,8 @@ export function useSettingsOwner(values: Preferences, enabled: boolean, handlers
             if (!disposed) { snapshot = await settingsApi.getWorkspace(); publish(); }
           });
         }],
-        ["settings:closed", () => latest.current.handlers.focus()],
-        ["settings:opening", () => latest.current.handlers.opening?.()]
+        ["settings:closed", () => { if (!disposed) latest.current.handlers.focus(); }],
+        ["settings:opening", () => { if (!disposed) latest.current.handlers.opening?.(); }]
       ] as const) {
         const stop = await listen(event, handler as (event: { payload: unknown }) => void);
         if (disposed) { stop(); return; } stops.push(stop);
@@ -81,5 +86,5 @@ export function useSettingsOwner(values: Preferences, enabled: boolean, handlers
     return () => { disposed = true; notify.current = () => {}; stops.forEach(stop => stop()); };
   }, [enabled]);
   useEffect(() => { notify.current(); }, [values.language, values.appearance, values.readingFont,
-    values.readingSize, values.readingLineHeight, values.readingWidth, values.documentsAndImagesOnly, enabled]);
+    values.readingSize, values.readingLineHeight, values.readingWidth, values.documentsAndImagesOnly, values.workspaceLayout, enabled]);
 }

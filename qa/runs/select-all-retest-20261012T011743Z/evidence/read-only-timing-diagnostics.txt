@@ -1,0 +1,137 @@
+App.tsx function newMarkdownReady
+3101:   function newMarkdownReady() {
+3102:     return Boolean(sessionReady && !restoreOffer && !restoreLoads.current.size && !newMarkdownOwner.current
+3103:       && !busy && !selectionPending && !documentPending && !enteringSection && !savingTabId && !copySaving
+3104:       && !cleanupBusy && !cleanupRef.current && !savingTabRef.current && !copySavingRef.current
+3105:       && !enteringSectionRef.current && !traversal.current && !openingLarge.current
+3106:       && !historyBusy && !openingRecent && !closeInProgress.current && !nativeOpening.current
+3107:       && !document.querySelector('[aria-modal="true"]'));
+3108:   }
+3109:   function openNewMarkdown() {
+3110:     if (!newMarkdownReady()) return;
+3111:     newMarkdownOwner.current = true;
+3112:     newMarkdownInvoker.current = projectsMenu?.anchor ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+3113:     setProjectsMenu(null); setReloadMenu(null); setGoMenu(null);
+3114:     showHtmlOverlay(() => setNewMarkdownOpen(true));
+3115:   }
+3116:   function closeNewMarkdown() {
+3117:     newMarkdownOwner.current = false; setNewMarkdownOpen(false);
+3118:     if (createdNavigation.current) { createdNavigation.current = false; return; }
+3119:     requestAnimationFrame(() => {
+
+App.tsx function openNewMarkdown
+3109:   function openNewMarkdown() {
+3110:     if (!newMarkdownReady()) return;
+3111:     newMarkdownOwner.current = true;
+3112:     newMarkdownInvoker.current = projectsMenu?.anchor ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+3113:     setProjectsMenu(null); setReloadMenu(null); setGoMenu(null);
+3114:     showHtmlOverlay(() => setNewMarkdownOpen(true));
+3115:   }
+3116:   function closeNewMarkdown() {
+3117:     newMarkdownOwner.current = false; setNewMarkdownOpen(false);
+3118:     if (createdNavigation.current) { createdNavigation.current = false; return; }
+3119:     requestAnimationFrame(() => {
+3120:       const invoker = newMarkdownInvoker.current;
+
+App.tsx function captureReadingPosition
+2802:   function captureReadingPosition(id: string, reader: HTMLDivElement) {
+2803:     // Loading and partially painted replacements can clamp the native scroll
+2804:     // position. Their geometry must not overwrite the last complete passage.
+2805:     const tab = tabsRef.current.find(item => item.id === id);
+2806:     if (tab && tab.kind !== "image" && !tab.largeInspection
+2807:       && (hasPendingSectionLayout(tab) || tab.content === undefined || renderedMarkdown?.id !== id
+2808:         || renderedMarkdown.content !== tab.content
+2809:         || !reader.querySelector(".document-page .markdown-body"))) return;
+2810:     const scrollTop = reader.scrollTop;
+2811:     scrollPositions.current.set(id, scrollTop);
+2812:     const headings = Array.from(reader.querySelectorAll<HTMLElement>(
+2813:       ".document-page h1[id], .document-page h2[id], .document-page h3[id], .document-page h4[id], .document-page h5[id], .document-page h6[id]"));
+2814:     const readerTop = reader.getBoundingClientRect().top;
+2815:     let closest: { headingId: string | null; offset: number; scrollTop: number } = { headingId: null, offset: 0, scrollTop };
+2816:     for (const heading of headings) {
+2817:       const top = zoomRect(heading, documentZooms.current.get(id) ?? 1).top - readerTop + scrollTop;
+2818:       // Outline navigation leaves a 24px scroll margin. Native scrollTop can
+2819:       // round down while heading geometry retains its fractional CSS pixel.
+2820:       if (top <= scrollTop + 25) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
+2821:     }
+2822:     readingAnchors.current.set(id, closest);
+2823:     historyRef.current = updateVisit(historyRef.current, id, { scrollTop, scrollLeft: reader.scrollLeft });
+2824:     const currentVisit = historyRef.current.entries[historyRef.current.cursor];
+2825:     if (currentVisit?.key === id) currentVisit.target.zoom = documentZooms.current.get(id);
+2826:     setActiveOutlineId((prior) => prior === closest.headingId ? prior : closest.headingId);
+2827:   }
+2828: 
+2829:   async function traverseHistory(cursor: number) {
+2830:     if (traversal.current || busy) return;
+2831:     if(activeIdRef.current && htmlHandles.current.has(activeIdRef.current)) await htmlHandles.current.get(activeIdRef.current)!.capture().catch(()=>{});
+2832:     if (activeIdRef.current && readerRef.current) captureReadingPosition(activeIdRef.current, readerRef.current);
+2833:     const entry = historyRef.current.entries[cursor];
+
+App.tsx const selectAll =
+3088:     const selectAll = (event: KeyboardEvent) => {
+3089:       if (!commandPressed(event) || event.key.toLowerCase() !== "a" || event.shiftKey
+3090:         || event.defaultPrevented || event.isComposing || document.querySelector('[aria-modal="true"]')
+3091:         || !active || (active.kind && active.kind !== "markdown") || active.errorCode
+3092:         || active.documentLoading || active.largeInspection || documentSelectionRef.current?.fileId !== active.id
+3093:         || ownsTextInput(event.target, findRoot) || ownsTextInput(document.activeElement, findRoot)) return;
+3094:       event.preventDefault(); event.stopPropagation();
+3095:       documentSelectionRef.current.selectAll();
+3096:     };
+3097:     window.addEventListener("keydown", selectAll, true);
+3098:     return () => window.removeEventListener("keydown", selectAll, true);
+3099:   });
+3100: 
+3101:   function newMarkdownReady() {
+3102:     return Boolean(sessionReady && !restoreOffer && !restoreLoads.current.size && !newMarkdownOwner.current
+3103:       && !busy && !selectionPending && !documentPending && !enteringSection && !savingTabId && !copySaving
+3104:       && !cleanupBusy && !cleanupRef.current && !savingTabRef.current && !copySavingRef.current
+
+Startup session readiness
+723:   useEffect(() => {
+724:     let cancelled = false;
+725:     if (typeof api.loadWorkspaceSession !== "function") {
+726:       sessionReadyRef.current = true;
+727:       setSessionReady(true);
+728:       return;
+729:     }
+730:     void api.loadWorkspaceSession().then((saved) => {
+731:       if (cancelled) return;
+732:       if (saved?.exitDisposition === "running") setRestoreOffer(saved);
+733:       else if (saved) applyRestoredSession(saved);
+734:       else { sessionReadyRef.current = true; setSessionReady(true); }
+735:     }).catch((error) => {
+736:       if (cancelled) return;
+737:       setSessionNotice({ operation: "load", code: readerError(error).code });
+738:       sessionReadyRef.current = true;
+739:       setSessionReady(true);
+740:     });
+741:     return () => { cancelled = true; };
+742:   }, []);
+743: 
+744:   useEffect(() => {
+745:     if (!sessionReady) return;
+746:     if (sessionSequence.current === 0 && !root && !priorRoot && tabs.length === 0
+
+MarkdownView render callback
+253:   const renderedCallback = useRef(onRendered);
+254:   renderedCallback.current = onRendered;
+255:   useLayoutEffect(() => {
+256:     if (!layoutPending && renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
+257:   }, [fileId, content, renderReady, painted, blocks.length, layoutPending, sections]);
+258:   useEffect(() => {
+259:     onSelectionReady?.({ fileId, selectAll: () => {
+260:       // Include blocks that incremental painting has not mounted yet. A request
+261:       // during parsing waits for the current document, never the retained tree.
+262:       flushSync(() => {
+263:         setSelectionRequest({ fileId, content });
+264:         if (selectionReady) setPainted(blocks.length);
+265:       });
+266:     } });
+267:     return () => onSelectionReady?.(null);
+268:   }, [onSelectionReady, fileId, content, selectionReady, blocks.length]);
+269:   useLayoutEffect(() => {
+270:     if (!selectionRequest) return;
+271:     if (selectionRequest.fileId !== fileId || selectionRequest.content !== content
+272:       || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, selectionRoot.current)) {
+
+Interpretation: readiness guards and delayed layout callbacks are hypotheses to trace, not established causes. No source, assertion, timer, fixture return value or configuration was changed. Host load/process observations cannot prove a causal resource effect.

@@ -1,0 +1,16 @@
+[package]
+name = "igproto-cli"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+igproto-model = { path = "../igproto-model" }
+serde_json.workspace = true
+igproto-package = { path = "../igproto-package" }
+igproto-compiler = { path = "../igproto-compiler" }
+
+[[bin]]
+name = "igproto"
+path = "src/main.rs"

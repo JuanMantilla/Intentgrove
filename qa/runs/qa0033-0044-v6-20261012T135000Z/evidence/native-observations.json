@@ -1,0 +1,31 @@
+{
+  "finished_at": "2026-10-12T13:57:33.533230+00:00",
+  "provenance": "Transcription of actual Computer Use AX observations in this session. No local screenshot or raw AX export claimed.",
+  "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-target/debug/bundle/macos/Intentgrove QA0033-0044 v6.app",
+  "checks": [
+    {
+      "id": "native-reopen-immediate-select-all",
+      "result": "PASS",
+      "actions": "Close clean long.md; click recent Open long.md and send exactly one Cmd+A without intervening observation; Cmd+C; paste into a new owned TextEdit scratch. Clipboard previously contained worker diagnostic JSON.",
+      "observed": "READING_BEGIN_A; all Passage A001 through A060; MIXED_SECTION; unchanged MIXED_ORIGINAL text for editing.; READING_END_A; END_SENTINEL_A content beyond initial viewport. No Edit section, outline, chrome or recovery text in actual pasted contents."
+    },
+    {
+      "id": "native-find-input-ownership",
+      "result": "PASS",
+      "actions": "Open MIXED_SECTION editor; Cmd+F; type x then y with intervening AX observations.",
+      "observed": "x shows 1 of 3 and Find owns focus; xy shows No matches and Find retains focus. Editable section still MIXED_SECTION / MIXED_ORIGINAL text for editing.; Save file and Undo disabled, No pending changes. Return to reading; recovery count0. No source save."
+    },
+    {
+      "id": "native-filename-ownership",
+      "result": "PASS",
+      "actions": "Cmd+T; type qa_v6_alpha; Cmd+A; type qa_v6_beta; cancel.",
+      "observed": "Filename equals qa_v6_beta. No file created."
+    }
+  ],
+  "limits": [
+    "Native replay did not control held IPC or worker deadlines.",
+    "Native saved-draft history was not separately compared on disk; no-mutation observation is UI-scoped.",
+    "Windows, physical IME, VoiceOver, controlled overlay and held-native load/refresh not tested.",
+    "Task-owned TextEdit scratch and isolated app profile retained."
+  ]
+}

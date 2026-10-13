@@ -1,0 +1,55 @@
+# Native Option B → frontend handoff
+
+Native creation/destination contracts implemented. macOS native verification is bounded to disposable filesystem/library fixtures and a local dev build. Final UI wiring is intentionally pending. Windows create-and-write remains BLOCKED: shipped native editing and frontend editing gates remain closed pending supported security-metadata policy and current Windows evidence. No user acceptance is asserted.
+
+## Typed provider
+
+Authoritative types and wrappers: /Users/juanmantilla/projects/personal/md-reader/src/app/api.ts. Commands registered in /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/lib.rs; provider /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/creation.rs.
+
+```ts
+api.chooseMarkdownDestination(): Promise<{
+  token: string; name: string; displayPath: string
+} | null>
+api.cancelMarkdownDestination(token: string): Promise<void>
+api.createMarkdownFile(request:
+  | {rootId: string; segments: string[]; filename: string}
+  | {destinationToken: string; filename: string}
+): Promise<
+  | {status: "opened"; document: DocumentResponse;
+     rootId: string | null; explicitFile: boolean; segments: string[]; watchFailed: boolean}
+  | {status: "committed_not_opened"; name: string; displayPath: string;
+     identityKey: string | null; fileId: string | null;
+     error: {code: string; message: string}}
+>
+```
+
+Use the wrappers exactly: IPC creation arguments are `{request}`, not top-level filename/root fields. `segments` in success includes the created filename; request segments identify the destination directory. For token success rootId is null and explicitFile is true; its returned segments are descriptive only. For root success rootId is populated and explicitFile is false. Root input requires segments, including `[]`; token input omits both rootId and segments. Unknown request properties rejected. Main window owns choosing/creating; displayed paths never confer authority. No absolute path, initial contents or overwrite parameter accepted.
+
+Tokens authorize native-selected held directory handles, expire after 10 minutes, are bounded to eight pending choices, and are checked again at confirmation. Expired choices are pruned on the next selection/creation access; resources also release with process state. Cancel removes only that token. Before-creation failures preserve the token for correction/retry; a commit consumes it. Selection/cancellation never installs a grant, replaces the project, clears file IDs/snapshots, or touches drafts. A successful token creation registers only the real committed document as an explicit-file grant, leaving prior roots/documents intact. This deliberately reuses the one-root session schema and outside-file recovery rather than adding an unpersistable second-root tab. Existing explicit-file watchers preserve current root watchers and deduplicate by fileId; watcher failure does not undo creation, and is returned as watchFailed.
+
+QA-0030 correction (2026-10-11): the earlier trimming/append behavior was implementation drift, not an approved rule. Filename validation preserves whitespace, rejects trailing ASCII spaces/dots and the selected prototype’s competing terminal extensions (1–8 ASCII letters/digits other than `.md`), strips repeated terminal case-insensitive `.md` suffixes, adds one `.md`, checks nonempty single component, forbidden/control characters, trailing dots/spaces, portable reserved device stems (including superscript digits), and <=255 UTF-8 bytes. Native destination APIs enforce actual filesystem equivalence and exclusive create. macOS sensitive volumes may distinguish differently cased names; NTFS does not promise Unicode normalization equivalence. Native Windows exclusive creation requests case-insensitive lookup. No app-level Unicode lowercasing/normalization invents collisions.
+
+A rejected request with `already_exists`, `invalid_filename`, `invalid_grant`, `root_reselection_required`, `denied`, `unsupported_mount` or `cloud_placeholder` means the exclusive open did not commit. Keep filename/destination fields and show localized actionable errors. `committed_not_opened` means the real file has been created: retain the returned identity/path and any usable fileId; show “file created; could not open/verify” with reopening/reselection recovery. Never automatically create again, report total failure, or delete the file. Paths can be stale after an external directory move; identityKey is the committed held-file identity, not a guarantee the displayed path remains current. Null identity/fileId means that step could not be established. Unexpected IPC/internal transport failure must be treated as outcome uncertain, with destination inspection before a user retry.
+
+## Exact frontend integration sequence
+
+In /Users/juanmantilla/projects/personal/md-reader/src/app/NewMarkdownDialog.tsx:
+
+1. Replace selectRoot with chooseMarkdownDestination; remove the empty-workspace-only picker restriction. Track a tagged destination (existing granted root OR native token). Cancel superseded selections and the current token on dialog cancel/unmount. A null picker result leaves fields unchanged. Retain synchronous picker/submission ownership through await; disable cancel and all submission controls while create is in flight.
+2. On confirmed valid submit, call createMarkdownFile once. Do not write contents or fabricate an ID. Keep all form fields on a precommit rejection. Handle committed_not_opened distinctly as above; canceling the dialog never removes a committed file.
+3. For opened, report the full native outcome to the shared App owner. Enable Create only for the verified platform lifecycle (macOS currently); keep Windows limitation text and disabled create-and-write control until the Windows continuation passes. Localize the new failure/success messages in /Users/juanmantilla/projects/personal/md-reader/src/app/i18n.ts; add CONIN$/CONOUT$/superscript/name-space checks to the UI validator for native parity if desired. Native is authoritative.
+
+In /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:
+
+4. Keep `openNewMarkdown`, `newMarkdownOwner`, the native event receiver and DOM capture as the single synchronous owner. Both native and DOM paths deliver `workspace_new_markdown` through that owner. Do not add another shortcut plugin, listener or native creation handler. The menu emits an intent; it never creates a file. Keep key-repeat suppression and all owned-dialog/picker/operation guards.
+5. Pass `newMarkdownReady` to setNativeMenuState using the same complete availability predicate as openNewMarkdown: restored/session-ready, no existing new-dialog owner, no owned modal, selection/document/section/save/copy/cleanup/history/recent/native/close operation. Allow another tab's dirty draft; do not borrow defaultMarkdownReady's “no edits” restriction. Add readiness refresh on main-window focus. Native items start disabled and are disabled immediately on blur; native dispatch accepts only focused main. macOS retains existing EditorMenu Undo/Redo responder routing. Windows has the minimal File entry; remove the current Windows early return only for this new readiness/localization call, without promising unavailable menu actions.
+6. Open the real document through `openDocument(outcome.explicitFile ? {fileId: outcome.document.fileId, explicitFile: true} : {fileId: outcome.document.fileId, rootId: outcome.rootId!, segments: outcome.segments})` with its existing confirmed-read failure handling, tab identity deduplication, activation, recovery check and rememberRecentDocument path. This avoids a second tab-insertion implementation. It does not activate/replace a folder. If that reread fails, keep the created identity and present reopening; never create again. An alternative is a narrowly shared existing confirmed-document insertion helper, consuming DocumentResponse without another read.
+7. Refresh the affected granted-root listing through existing listing/reload mechanisms when it is displayed. Keep the current project and all other tabs/drafts. Do not call activateFolder, selectRoot or commitRootSelection. A different selected destination yields an explicit grant for the created file, not a project change or a durable grant to its entire parent. Preserve watchFailed as an uncertainty notice; primary file creation still succeeded.
+8. Once the real tab is active and reflected in tabsRef, call listEditSections(fileId), verify its returned diskVersion matches the current document, and call `startEdit(realTabId, emptyWholeSection, diskVersion)`. Reuse the existing startEdit checks/reducer/checkpoint machinery. Do not immediately call beginEdit against its stale active closure. The zero-byte source already produces exactly one existing `whole` section; no whole-document editing expansion or untitled mode is needed.
+9. If section entry fails after creation, keep the real tab/file available to retry or reopen. Existing SectionEditor, explicit Save, draft checkpoint, conflict, restore and dirty-exit protections remain owners. Discard removes edits/recovery only and leaves the created empty file.
+
+## Verification required from frontend/native QA
+
+Physical macOS Cmd+T and Windows Ctrl+T/File-menu routing, focused rendered editor, DOM+native delivery once, repeat, Settings/picker ownership and modal/operation blocking. Actual non-destructive picker with dirty tabs; EN/ES and error retention; first content → explicit Save → close/reopen, discard leaves file, failed entry/write/conflict, recovery after relaunch. Wide/narrow, themes, Tab/Shift+Tab, Enter/IME, Escape, screen-reader inline errors and focus restoration. These journeys are NOT RUN here and remain separate from the 32 passing frontend mocks.
+
+Do not claim Windows support from this Mac build or historical Windows results. Exact continuation: /Users/juanmantilla/projects/personal/md-reader/os-engineering/new-markdown-20261011/windows-continuation.md.

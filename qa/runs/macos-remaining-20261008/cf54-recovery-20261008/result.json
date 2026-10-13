@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "CF54 existing tested b7 installed package reversible removal/restoration journey; Apple Silicon/current macOS",
+  "mainSha256": "b7b0f872414fe5cf0e2f6205ef0bd5a234878fa5d5873a2bffe0ccf0162eb053",
+  "all13PackageFilesMatch": true,
+  "allTrackedHashesIdenticalAfterRemovalAndBeforeRelaunch": true,
+  "finalHashChanges": {
+    "app": [],
+    "backup": [],
+    "appSupport": [
+      "session/workspace.json",
+      "session/workspace.previous"
+    ],
+    "preferences": [
+      "com.juanmantilla.markdownworkspace.plist"
+    ],
+    "fixtures": [],
+    "sharedDocuments": []
+  },
+  "finalPreferenceSemanticDelta": {
+    "NSWindow Frame GoToSheet": {
+      "before": "427 800 460 377 0 0 2560 1410 ",
+      "after": "315 462 460 377 0 0 1920 1050 "
+    }
+  },
+  "backup53FilesHashIdentical": true,
+  "draftsSaveBackupsAndDocumentsHashIdentical": true,
+  "productSettingsUnchanged": true,
+  "normalQuit": "CUA Cmd-Q -> App quit; process absence",
+  "normalLaunch": "CUA getApp exact installed path; recovered two tabs and native settings",
+  "finalPID": 67336,
+  "finalState": "Installed and running from /Applications; both acceptance documents open, find selected",
+  "olderPackageUpgrade": "EXCLUDED",
+  "releaseTrust": "No notarization or Gatekeeper certification; local launch only",
+  "limitations": [
+    "ScreenCaptureKit -3811 screenshot failed; AX captured",
+    "Finder cgWindowNotFound; native Trash API and exact verified filesystem restoration used",
+    "Swift SDK compilation stopped before removal; failure retained",
+    "Post-verification Cmd-W closed clean reader tab; reopened through visited history. Final order differs. Session journal and OS GoToSheet geometry changed normally. No old profile restored."
+  ],
+  "historicalUnmetOriginalCriterionBeforeWithdrawal": "F005 SC-001 ten install/launch trials NOT TESTED as a complete set; prior Finder install and this one recovery journey do not establish ten trials. No transfer to latest34405daf build.",
+  "unmetOriginalCriterion": "None for requested CF54 journey. SC-001 withdrawn; different newer build is not a new CF54 gate.",
+  "scopeWithdrawal": "docs/macos-sc001-withdrawal-20261008.md",
+  "newerBuildTesting": {
+    "owner": "USER",
+    "agentAcceptanceRequired": false,
+    "disposition": "User will test; removed from agent work",
+    "decision": "docs/macos-newer-build-user-testing-20261008.md"
+  }
+}

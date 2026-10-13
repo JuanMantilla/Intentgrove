@@ -1,0 +1,19 @@
+{
+  "name": "frontend-v3",
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=qa/runs/interactive-prototype-v1-phase-3/frontend-v3.json"
+  ],
+  "started_at": "2026-10-12T02:33:52.372090+00:00",
+  "finished_at": "2026-10-12T02:35:37.500102+00:00",
+  "exit_code": 0,
+  "log": "frontend-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

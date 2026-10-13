@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-10-12T01:26:54.788289+00:00",
+  "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+  "executable": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app/Contents/MacOS/md_reader",
+  "executable_sha256": "98c23a76af49d73d0abc8c530079c8c550911e7dbbf71d8ba168c9daeb01d730",
+  "bundle_sha256": "8563677182fe40690254a36779eff1cb516e1ddfe423dd36f92e63ce33f4e981",
+  "bundle_files": {
+    "Contents/Info.plist": "47c1525878b7a530f405ce3e82e630a60a6339518dee93da783021fded6f153b",
+    "Contents/_CodeSignature/CodeResources": "2922a8d1d9b671dfa060a747efcb3c73f34e4fbd8e7b49adfc642edde7551bfb",
+    "Contents/MacOS/md_reader": "98c23a76af49d73d0abc8c530079c8c550911e7dbbf71d8ba168c9daeb01d730",
+    "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693"
+  },
+  "source_manifest_sha256": "bd2b8783f25658e26b1fff3b53af05936946dd0b7e181172d5d5b42616ac5171",
+  "identifier": "com.juanmantilla.intentgrove.qaselectall.r20261012t011743z",
+  "profile": "/Users/juanmantilla/Library/Application Support/com.juanmantilla.intentgrove.qaselectall.r20261012t011743z",
+  "engine": "native macOS WKWebView tauri://localhost",
+  "variant": "debug custom protocol production frontend; standard TypeScript build FAIL retained; bundler-only diagnostic candidate; no acceptance feature; no XPC/image or diagram helper bundled (not exercised)",
+  "post_build_standard_validation": {
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/standard-asset-equivalence.json",
+    "assets_byte_identical": 11,
+    "scope": "Exact unchanged frozen source passes standard TypeScript/Vite; initial canonical failure belongs to different mutable source."
+  }
+}

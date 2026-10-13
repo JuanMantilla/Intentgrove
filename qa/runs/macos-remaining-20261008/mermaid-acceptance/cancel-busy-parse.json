@@ -1,0 +1,16 @@
+{
+  "case": "cancel-busy-parse",
+  "elapsedMs": 5.9498750000000005,
+  "events": [
+    "{\"value\":\"busy-parse\",\"ppid\":30962,\"event\":\"started\",\"pid\":30975,\"time\":121079.96737208334}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":30962,\"event\":\"navigation\",\"pid\":30975,\"time\":121080.05246850001}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":30975,\"time\":121080.05339312501}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":30962,\"event\":\"resource\",\"pid\":30975,\"time\":121080.07016795834}",
+    "{\"value\":\"{\\\"kind\\\":\\\"bridge-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.__TAURI_INTERNALS__.invoke')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30975,\"time\":121080.16249520834}",
+    "{\"value\":\"{\\\"kind\\\":\\\"wk-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.webkit.messageHandlers')\\\"}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30975,\"time\":121080.16253112501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30975,\"time\":121080.16254570834}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30962,\"event\":\"js\",\"pid\":30975,\"time\":121080.16751420834}"
+  ],
+  "pid": 30975,
+  "result": "diagram_cancelled"
+}

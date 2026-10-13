@@ -1,3 +1,4 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -39,7 +40,7 @@ beforeEach(() => {
 afterEach(cleanup);
 async function setup(edit = false) {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   fireEvent.click(await screen.findByTitle("a.md"));
   if (edit) {
     fireEvent.contextMenu(await screen.findByLabelText("Edit section: One"));
@@ -63,7 +64,7 @@ describe("F003D unavailable content and picker reselection", () => {
     mocks.readDocument.mockResolvedValue(doc("a", "v2"));
     const count = mocks.readDocument.mock.calls.length;
     expect(mocks.selectRoot).toHaveBeenCalledTimes(1);
-    fireEvent.click(within(screen.getByRole("complementary")).getByRole("button", { name: "Select folder again" }));
+    fireEvent.click(within(screen.getByRole("complementary", { name: "Explorer" })).getByRole("button", { name: "Select folder again" }));
     await waitFor(() => expect(mocks.readDocument.mock.calls.length).toBeGreaterThan(count));
     expect(mocks.selectRoot).toHaveBeenLastCalledWith("root");
     await screen.findByRole("button", { name: "Inspect versions" });
@@ -75,7 +76,7 @@ describe("F003D unavailable content and picker reselection", () => {
   it("leaves tabs and draft unchanged when the folder picker is cancelled", async () => {
     await setup(true); await status("root", "root_reselection_required");
     mocks.selectRoot.mockResolvedValueOnce(null);
-    fireEvent.click(within(screen.getByRole("complementary")).getByRole("button", { name: "Select folder again" }));
+    fireEvent.click(within(screen.getByRole("complementary", { name: "Explorer" })).getByRole("button", { name: "Select folder again" }));
     await waitFor(() => expect(mocks.selectRoot).toHaveBeenCalledTimes(2));
     expect(screen.getByRole("tab", { name: /a.md.*Unsaved/ })).toBeTruthy();
     expect(screen.getByRole("button", { name: /Draft source:.*my edit/s })).toBeTruthy();
@@ -84,7 +85,7 @@ describe("F003D unavailable content and picker reselection", () => {
 
   it("offers file-only reselection without creating a folder or duplicate tab", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open file" }));
+    fireEvent.click(projectAction("Open file"));
     await screen.findByRole("tab", { name: "outside.md" });
     await waitFor(() => expect(mocks.listeners["refresh:item_status"]).toBeTypeOf("function"));
     await status("outside", "reselection_required");

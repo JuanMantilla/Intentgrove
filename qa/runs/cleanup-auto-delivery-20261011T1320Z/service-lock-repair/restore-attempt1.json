@@ -1,0 +1,8 @@
+{
+  "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/cleanup.py restore --run 5061204d5916fdbe637e-1",
+  "exit_code": 2,
+  "error": "[Errno 35] Resource temporarily unavailable",
+  "output_chunk_id": "cb81b2",
+  "result": "FAIL",
+  "cause": "Existing service holds worker lock around entire poll loop, including idle sleep; restore takes same nonblocking lock."
+}

@@ -1,0 +1,98 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/html.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html.rs
+@@ -22,27 +22,7 @@
+ const MAX_TOTAL: usize = 64 * 1024 * 1024;
+ const MAX_RESOURCES: usize = 128;
+ 
+-#[derive(Clone, Deserialize)]
+-#[serde(rename_all = "camelCase", deny_unknown_fields)]
+-pub struct LocalTarget {
+-    pub file_id: Option<String>,
+-    pub root_id: Option<String>,
+-    pub segments: Option<Vec<String>>,
+-}
+-#[derive(Clone, Serialize)]
+-#[serde(rename_all = "camelCase")]
+-pub struct LocalView {
+-    pub file_id: String,
+-    pub identity_key: String,
+-    pub disk_version: String,
+-    pub name: String,
+-    pub display_path: String,
+-    pub kind: &'static str,
+-    pub view_token: Option<String>,
+-    pub generation: u64,
+-    pub bytes: u64,
+-    pub extension: String,
+-}
++pub use crate::document_view::{LocalTarget, LocalView};
+ #[derive(Clone, Serialize)]
+ #[serde(rename_all = "camelCase")]
+ pub struct ResourceIssue {
+@@ -141,8 +121,6 @@
+     resources_gate: Mutex<()>,
+     #[cfg(test)]
+     read_hook: Mutex<Option<Arc<dyn Fn() + Send + Sync>>>,
+-    opens: Mutex<HashMap<String, Arc<std::sync::atomic::AtomicBool>>>,
+-    cancelled_opens: Mutex<std::collections::VecDeque<String>>,
+ }
+ struct Host {
+     state: AppState,
+@@ -158,6 +136,7 @@
+     service: Arc<HtmlService>,
+     app: Option<tauri::AppHandle>,
+ ) -> AppResult<()> {
++    crate::document_view::initialize(state.clone(), service.clone())?;
+     HOST.set(Host {
+         state,
+         service,
+@@ -191,18 +170,6 @@
+         s.changed_nanos
+     ))
+ }
+-pub(crate) fn open_registered(state: &AppState, file_id: String) -> AppResult<LocalView> {
+-    open_impl(
+-        state,
+-        &host()?.service,
+-        LocalTarget {
+-            file_id: Some(file_id),
+-            root_id: None,
+-            segments: None,
+-        },
+-        None,
+-    )
+-}
+ pub(crate) fn discard_unmounted(view: &LocalView) {
+     if let (Some(token), Ok(h)) = (&view.view_token, host()) {
+         let _ = commands::dispose_impl(&h.service, token, view.generation);
+@@ -217,23 +184,7 @@
+         .lock()
+         .map_err(|_| err("internal", "HTML state unavailable"))
+ }
+-fn current(state: &AppState, source: &FileGrant) -> AppResult<File> {
+-    // Re-fetch grants: replacing/clearing a workspace invalidates retained views.
+-    let live = state.file(&source.id)?;
+-    if live.identity != source.identity {
+-        return Err(err("reselection_required", "Document identity changed"));
+-    }
+-    let file = match &source.source {
+-        FileSource::Root { root_id, segments } => {
+-            scope::open_relative(&state.root(root_id)?.file, segments, false)?
+-        }
+-        FileSource::Explicit { path, .. } => scope::open_selected(path, false)?,
+-    };
+-    if scope::identity(&file)? != source.identity {
+-        return Err(err("reselection_required", "Document identity changed"));
+-    }
+-    Ok(file)
+-}
++use crate::document_view::current;
+ #[path = "html_broker.rs"]
+ mod broker;
+ use broker::*;
+@@ -256,3 +207,5 @@
+ pub(crate) use broker::fingerprint;
+ #[cfg(all(feature = "html-native-probe", target_os = "macos"))]
+ pub use probe::probe_run;
++
++pub(crate) use broker::open_granted;

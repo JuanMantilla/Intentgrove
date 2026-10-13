@@ -1,0 +1,147 @@
+{
+  "overall": "PASS",
+  "stages": [
+    {
+      "stage": "Original baseline, synthetic QA and conditional acceptance",
+      "result": "PASS",
+      "observation": "Original immutable evidence preserved; original receipt hash validated. Current continuation required a new retention context, not fabricated application acceptance."
+    },
+    {
+      "stage": "Hook diagnosis and scoped repair",
+      "result": "PASS",
+      "observation": "Found fixed /bin/zsh -lc correlation incompatible with actual earlier /bin/bash -c executions and early SKIPPED diagnostics omitted. Repaired finite shell/flag matching and recognized-command diagnostics."
+    },
+    {
+      "stage": "Historical exact hook payload reconstruction",
+      "result": "NOT TESTED",
+      "observation": "Original handler did not persist early rejection payloads. Historical delivery cannot be retrospectively certified; no event was fabricated."
+    },
+    {
+      "stage": "Repair baseline and regression tests",
+      "result": "PASS",
+      "observation": "Documented snapshot before testing. 83 hook-repair tests; 86 tests after service-lock repair, all passing. Component fixtures are not counted as live delivery."
+    },
+    {
+      "stage": "Loaded hook and user trust review",
+      "result": "PASS",
+      "observation": "Actual-host hooks/list reports enabled/trusted; current user renewed review before live publication. Trust records unchanged."
+    },
+    {
+      "stage": "Actual canonical event / command recognition / successful execution",
+      "result": "PASS",
+      "observation": "Failed non-publishing probe observed PostToolUse/Bash first. Successful completion outcomes correlate by real session/tool IDs, exact command/output digest and exit zero. Earlier /bin/bash -c shape replay also passed live."
+    },
+    {
+      "stage": "Committed receipt and live acceptance validation",
+      "result": "PASS",
+      "observation": "v1 receipt identical to original persisted body/nonce; v2 current accepted record validates and supersedes v1. Helper idempotency distinguished from hook queue deduplication."
+    },
+    {
+      "stage": "v1 ENQUEUED and identical replay DUPLICATE",
+      "result": "PASS",
+      "observation": "Actual hook outcomes and persisted queue agree. Exactly one job for original key; no duplicate job from additional Bash replay."
+    },
+    {
+      "stage": "First service discovery and independent review",
+      "result": "PASS",
+      "observation": "Distinct successful sessions; both retained files because historical workflow/state still imposed a temporary hold. APPLIED with two kept outcomes, zero deletion receipts."
+    },
+    {
+      "stage": "Fresh v2 acceptance and supersession",
+      "result": "PASS",
+      "observation": "Current exact user authorization recorded; four checks passed after fresh baseline. Old evidence, decisions, receipt and queue preserved unchanged."
+    },
+    {
+      "stage": "v2 ENQUEUED and identical replay DUPLICATE",
+      "result": "PASS",
+      "observation": "Correlated actual outcomes; exactly one job for v2. Two acceptance versions intentionally have two different jobs, each deduplicated separately."
+    },
+    {
+      "stage": "Automatic v2 discovery",
+      "result": "PASS",
+      "observation": "Existing service inspected both exact files and current evidence; successful observed session."
+    },
+    {
+      "stage": "Fresh independent v2 review",
+      "result": "PASS",
+      "observation": "Distinct successful session, new exec invocation without resume/fork; review payload contains neither discovery session ID nor discovery event stream."
+    },
+    {
+      "stage": "Standing policy and guarded deletion",
+      "result": "PASS",
+      "observation": "APPLIED; two exact inventory files absent before restoration, two finished deletion receipts; no extra deletions. Standing authority and sealed evidence validated before subsequent service repair."
+    },
+    {
+      "stage": "Recovery copies and receipt verification",
+      "result": "PASS",
+      "observation": "Two recovery copies match original hashes and sizes: 149 + 146 = 295 bytes. Recovery and receipt hashes unchanged after both restores."
+    },
+    {
+      "stage": "Initial restore while old service held idle lock",
+      "result": "FAIL",
+      "observation": "Documented command exited 2 / EAGAIN. Failure preserved; it made no restoration. Resolved by tested service-lock repair."
+    },
+    {
+      "stage": "Service-lock repair and approved activation",
+      "result": "PASS",
+      "observation": "Dedicated service singleton lock; worker lock held for work but released while idle. 86 tests pass; explicit user-authorized single restart. Existing service now PID 37399; no concurrent/new service."
+    },
+    {
+      "stage": "First successful non-overwriting restoration",
+      "result": "PASS",
+      "observation": "Both paths restored from verified receipts. First summary copied and hash-verified before repeat."
+    },
+    {
+      "stage": "Second restoration refuses overwrite",
+      "result": "PASS",
+      "observation": "Both outcomes kept / destination now exists; never overwritten. Full fingerprints including identity and bytes unchanged."
+    },
+    {
+      "stage": "Final retention and policy integrity",
+      "result": "PASS",
+      "observation": "All original and v2 QA/acceptance/reproducibility files remain hash-identical. Policy/config unchanged; receipts and recovery preserved. Restored originals remain present; APPLIED job is not replayed."
+    }
+  ],
+  "v1_queue": {
+    "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+    "state": "APPLIED",
+    "attempts": 1,
+    "queued_at": "2026-10-11T13:08:20.585217+00:00",
+    "tool_use_id": "exec-4b668f27-79db-498b-afb3-7b2fca1f36ad",
+    "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+    "context_id": null,
+    "run_id": "f9547099378e1a8aea7c-1",
+    "discovery_checkpoint": {
+      "run_id": "f9547099378e1a8aea7c-1",
+      "manifest_sha256": "621cff78217384a7d5d0624c72f6e0d5225d0d636e4f07e7955b8cc71843cc62",
+      "binding": "398ff491abd2840f6a6ea2bc4a1f6d624551e845dd9af7d4590ff8191fb8c898"
+    },
+    "reason": "independent_review_saved",
+    "applied_at": "2026-10-11T13:10:44.778240+00:00",
+    "report_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/f9547099378e1a8aea7c-1/report.json"
+  },
+  "v2_queue": {
+    "record_key": "5061204d5916fdbe637e73efa2d9f5b13f38b52debae8001c741571cd42079ee",
+    "state": "APPLIED",
+    "attempts": 1,
+    "queued_at": "2026-10-11T13:13:14.023354+00:00",
+    "tool_use_id": "exec-cd01497d-5e56-4609-b71e-b56be5a84a0f",
+    "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+    "context_id": null,
+    "run_id": "5061204d5916fdbe637e-1",
+    "discovery_checkpoint": {
+      "run_id": "5061204d5916fdbe637e-1",
+      "manifest_sha256": "e80cc0059081f04cb89395073aaf30e03dc4f7d81c3553c47f42c65c6cdf3715",
+      "binding": "4ecc5ba5a4d1e99f5c8973c136f4d7be266a48e78318e70015231d285f56bdc2"
+    },
+    "reason": "independent_review_saved",
+    "applied_at": "2026-10-11T13:15:14.023157+00:00",
+    "report_path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/runs/5061204d5916fdbe637e-1/report.json"
+  },
+  "deleted_count": 2,
+  "restored_count": 2,
+  "overwrite_refusals": 2,
+  "bytes": 295,
+  "recovery_preserved": true,
+  "report": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-delivery-20261011T1320Z/workflow-report.md"
+}

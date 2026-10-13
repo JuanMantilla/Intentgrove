@@ -1,0 +1,89 @@
+Window: "Intentgrove — UI revision validation", App: Intentgrove UI Revision.
+0 standard window Intentgrove — UI revision validation, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: localhost:5173/
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) cancel.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/native-fixtures/cancel.md
+					16 button Close tab: cancel.md, Help: Close tab
+			17 pop up button Go menu
+			18 button (collapsed) Open documents (1), Secondary Actions: Expand
+			19 container Explorer
+				20 pop up button PROJECTS
+				21 button Close Projects sidebar
+				22 button Open file
+				23 button Open folder
+				24 button Search folder
+				25 text native-fixtures
+				26 container
+					27 button cancel.md
+					28 button close-review-similar-filename-with-shared-prefix-alpha.md
+					29 button close-review-similar-filename-with-shared-prefix-beta.md
+					30 button disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md
+					31 button keep.md
+					32 button save.md
+					33 button short.md
+				34 text Storage and recovery
+				35 text Open edits and recovery offers: 1
+				36 button Manage…
+				37 button Settings…
+			38 container
+				39 container cancel.md
+					40 container cancel.md
+						41 text cancel.md
+					42 button Find in document
+					43 toggle button Outline, Value: on
+					44 button (collapsed) Reading settings, Secondary Actions: Expand
+					45 button Edit section
+					46 summary Document…, Value: off
+						47 text Document…
+					48 text Folder root
+				49 container cancel.md
+					50 container Native validation
+						51 container Edit section: Native validation
+							52 heading Native validation, Value: 1
+								53 text Native validation
+							54 button Edit section “Native validation”
+						55 text A disposable document for layout validation.
+						56 container Edit section: Search section
+							57 heading Search section, Value: 2
+								58 text Search section
+							59 button Edit section “Search section”
+						60 text validationneedle short document match.
+						61 container Edit section: Another section
+							62 heading Another section, Value: 2
+								63 text Another section
+							64 button Edit section “Another section”
+						65 text Keep this reading content visible.
+				66 container Outline
+					67 text OUTLINE
+					68 button Close outline
+					69 container Outline
+						70 content list
+							71 button Native validation
+							72 button Search section
+							73 button Another section
+			74 container
+				75 text cancel.md Intentgrove by Theonira
+	76 close button
+	77 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	78 minimize button
+	79 text Intentgrove — UI revision validation
+80 menu bar
+	81 Intentgrove UI Revision
+	82 File
+	83 Edit
+	84 View
+	85 Go
+	86 Window
+	87 Help

@@ -1,0 +1,66 @@
+{
+  "timestampUtc": "2026-10-09T00:29:22.857084+00:00",
+  "sourceManifestSha256": "a285a59390506ed8c449008384aff5a8aeadaf1fa235c4f744529ce970bad2a8",
+  "candidates": {
+    "nativeProbe": {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/debug/html-native-probe",
+      "sha256": "5ba96da8bb08ebaafa459b44091c2890cb0a11456d34809daad38b86e2bd6cae",
+      "bytes": 14329632
+    },
+    "packagedNativeProbe": {
+      "path": "/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-native-package-final-s46l4rw0/HTMLNativeProbe.app/Contents/MacOS/html-native-probe",
+      "sha256": "0b901e91cb792ad694599c8ac6ab52acd875842a8b4e37fa85594ead5879ee1c",
+      "bytes": 14246448
+    },
+    "productionMain": {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+      "sha256": "c58024bb8b51719549279ad1d0daa52c68369d5f3c60e2cfacc69d00f94d7bc8",
+      "bytes": 17295152
+    }
+  },
+  "productionApp": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+  "packagedProbeApp": "/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-native-package-final-s46l4rw0/HTMLNativeProbe.app",
+  "nativeTests": {
+    "passed": 115,
+    "failed": 0,
+    "ignored": 5,
+    "log": "native-frozen.log"
+  },
+  "frontendTests": {
+    "passed": 383,
+    "failed": 0,
+    "files": 55,
+    "node": "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node",
+    "log": "frontend-tests-node24-actual.log"
+  },
+  "nativeObservations": {
+    "passed": 512,
+    "failed": 0,
+    "log": "native-assertions.json",
+    "documentCases": 48,
+    "surfaceMountsIncludingRefreshCancel": 64
+  },
+  "worker": "PASS worker-final.log",
+  "productionPackage": "BUILD/signature PASS package-build-frozen.log; HTML frontend not mounted/runtime accepted",
+  "network": {
+    "os-engineering/evidence/html-native-20261008": [],
+    "os-engineering/evidence/html-native-20261008/packaged-native": []
+  },
+  "windows": "NOT COMPILED/NOT RUNTIME VERIFIED; E0463 target std missing, no SDK/Windows runner/WebView2",
+  "limits": [
+    "no Tauri IPC/picker/physical-input journey in probe",
+    "no complete production frontend HTML integration",
+    "no arbitrary-hostname/DNS packet capture",
+    "Windows source API compatibility remains unverified"
+  ],
+  "commands": [
+    "cargo build --manifest-path src-tauri/Cargo.toml --features html-native-probe --bin html-native-probe",
+    "python3 tests/acceptance/html/native_journey.py",
+    "HTML_NATIVE_PROBE_CANDIDATE=<packagedNativeProbe.path> HTML_NATIVE_EVIDENCE_DIRECTORY=<evidence>/packaged-native python3 tests/acceptance/html/native_journey.py",
+    "python3 os-engineering/evidence/html-native-20261008/verify_native.py",
+    "cargo test --manifest-path src-tauri/Cargo.toml --lib",
+    "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node node_modules/vitest/vitest.mjs run --maxWorkers=1",
+    "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node tests/worker-bundle.mjs",
+    "PATH=/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin:$PATH npm run build:mac"
+  ]
+}

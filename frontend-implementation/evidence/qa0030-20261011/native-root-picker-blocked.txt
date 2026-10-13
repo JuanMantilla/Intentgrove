@@ -1,0 +1,84 @@
+Window: "Open", App: Intentgrove QA0030 Repair.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+			23 scroll bar (settable, float) 0
+				24 value indicator (settable, float) 0
+				25 increment arrow button
+				26 decrement arrow button
+				27 increment page button
+				28 decrement page button
+		29 splitter (disabled, settable, float) 148
+		30 scroll area
+			31 outline Description: list view, ID: ListView
+				32 row (selectable, collapsed) Secondary Actions: Expand
+					33 cell Secondary Actions: Open Finder item
+						34 image
+						35 text field (settable) URL: file:///private/tmp/intentgrove-qa0030-20261011/token/, Value: token, Secondary Actions: Open Finder item
+						36 disclosure triangle 0
+					37 cell
+						38 text --
+					39 cell
+						40 text Folder
+					41 cell
+						42 text Today at 12:35 PM
+				43 row (selected, collapsed) Secondary Actions: Expand
+					44 cell (selected) Secondary Actions: Open Finder item
+						45 image
+						46 text field (selected, settable) URL: file:///private/tmp/intentgrove-qa0030-20261011/granted/, Value: granted, Secondary Actions: Open Finder item
+						47 disclosure triangle 0
+					48 cell (selected)
+						49 text --
+					50 cell (selected)
+						51 text Folder
+					52 cell (selected)
+						53 text Today at 12:35 PM
+				54 container ListViewHeader
+					55 button Description: Name, ID: name
+					56 button Description: Size, ID: size
+					57 button Description: Kind, ID: kind
+					58 button Description: Date Added, Value: AXDescendingSortDirection, ID: dateAdded
+		59 container
+			60 button back
+			61 button (disabled) forward
+		62 menu button Description: List, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		63 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		64 pop up button Where:, Value: intentgrove-qa0030-20261011, ID: where popup
+		65 search text field Search
+			66 button search
+		67 button (disabled) New Folder, ID: NewFolderButton
+		68 button Cancel, ID: CancelButton
+		69 button (disabled) Open, ID: OKButton
+70 menu bar
+	71 Intentgrove QA0030 Repair
+	72 File
+	73 Edit
+	74 View
+	75 Go
+	76 Window
+	77 Help
+
+Selected:
+	43 row (selected, collapsed) Secondary Actions: Expand
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

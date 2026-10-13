@@ -1,0 +1,54 @@
+{
+  "version": "0.1.0",
+  "name": "intentgrove",
+  "dependencies": {
+    "jsdom": {
+      "version": "29.1.1",
+      "resolved": "https://registry.npmjs.org/jsdom/-/jsdom-29.1.1.tgz",
+      "overridden": false,
+      "dependencies": {
+        "css-tree": {
+          "version": "3.2.1",
+          "resolved": "https://registry.npmjs.org/css-tree/-/css-tree-3.2.1.tgz",
+          "overridden": false,
+          "dependencies": {
+            "source-map-js": {
+              "version": "1.2.2",
+              "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz",
+              "overridden": true
+            }
+          }
+        }
+      }
+    },
+    "mermaid": {
+      "version": "11.17.2",
+      "resolved": "https://registry.npmjs.org/mermaid/-/mermaid-11.17.2.tgz",
+      "overridden": true,
+      "dependencies": {
+        "katex": {
+          "version": "0.18.2",
+          "resolved": "https://registry.npmjs.org/katex/-/katex-0.18.2.tgz",
+          "overridden": true
+        }
+      }
+    },
+    "vite": {
+      "version": "8.3.1",
+      "resolved": "https://registry.npmjs.org/vite/-/vite-8.3.1.tgz",
+      "overridden": false,
+      "dependencies": {
+        "postcss": {
+          "version": "8.5.28",
+          "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.28.tgz",
+          "overridden": false,
+          "dependencies": {
+            "source-map-js": {
+              "version": "1.2.2"
+            }
+          }
+        }
+      }
+    }
+  }
+}

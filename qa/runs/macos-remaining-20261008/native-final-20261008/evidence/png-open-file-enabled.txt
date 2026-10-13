@@ -1,0 +1,82 @@
+Window: "Open", App: Intentgrove.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selected) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+				23 row (selectable, expanded) Value: Media, Secondary Actions: Collapse
+				24 row (selectable) Description: photo, Value: Photos
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 148
+		32 browser Description: column view, ID: ColumnView
+			33 scroll area Secondary Actions: Scroll Left, Scroll Right
+				34 scroll area Secondary Actions: Scroll Up, Scroll Down
+				35 scroll area Secondary Actions: Scroll Up, Scroll Down
+				36 scroll area Secondary Actions: Scroll Up, Scroll Down
+				37 scroll area Secondary Actions: Scroll Up, Scroll Down
+				38 scroll area Secondary Actions: Scroll Up, Scroll Down
+				39 scroll area Secondary Actions: Scroll Up, Scroll Down
+				40 scroll area Secondary Actions: Scroll Up, Scroll Down
+				41 scroll area Secondary Actions: Scroll Up, Scroll Down
+				42 scroll area Secondary Actions: Scroll Up, Scroll Down
+				43 scroll area Secondary Actions: Scroll Up, Scroll Down
+					44 scroll area Description: Preview of qa-image.png, ID: Image Preview: qa-image.png
+					45 text qa-image.png PNG image - 252 bytes Information
+					46 toggle button Show More, Value: off, ID: showMoreLessButton
+					47 text Value: Created Today, 4:23 PM Modified Today, 4:24 PM Dimensions 128 × 96 Tags, ID: metaCreatedTitle
+					48 scroll area
+						49 text field Description: tag editor, Placeholder: Add Tags…
+					50 scroll bar (settable, float) 0
+						51 value indicator (settable, float) 0
+						52 increment arrow button
+						53 decrement arrow button
+						54 increment page button
+						55 decrement page button
+				56 scroll bar (settable, float) 1
+					57 value indicator (settable, float) 1
+					58 increment arrow button
+					59 decrement arrow button
+					60 increment page button
+					61 decrement page button
+		62 container
+			63 button (disabled) back
+			64 button (disabled) forward
+		65 menu button Description: column view, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		66 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		67 pop up button Where:, Value: fixtures, ID: where popup
+		68 search text field Search
+			69 button search
+		70 button New Folder, ID: NewFolderButton
+		71 button Cancel, ID: CancelButton
+		72 button Open, ID: OKButton
+73 menu bar
+	74 Intentgrove
+	75 File
+	76 Edit
+	77 View
+	78 Go
+	79 Window
+	80 Help

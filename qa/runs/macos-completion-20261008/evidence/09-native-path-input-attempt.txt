@@ -1,0 +1,45 @@
+Window: "", App: Intentgrove Completion 20261008.
+0 sheet ID: GoToWindow, Secondary Actions: Raise
+	1 button Description: Close, ID: CloseButton
+	2 text field (settable) Value: /, ID: PathTextField
+	3 scroll area Secondary Actions: Scroll Up, Scroll Down
+		4 table
+			5 row (selectable)
+				6 cell
+					7 text Go to:
+			8 row (selected)
+				9 cell (selected)
+					10 list (disabled) Description: path, ID: /
+						11 text Value: Macintosh HD, Secondary Actions: open
+			12 row (selectable)
+				13 cell
+					14 list (disabled) Description: path, ID: /Applications
+						15 text Value: Applications, Secondary Actions: open
+			16 row (selectable)
+				17 cell
+					18 list (disabled) Description: path, ID: /Library
+						19 text Value: Library, Secondary Actions: open
+			20 row (selectable)
+				21 cell
+					22 list (disabled) Description: path, ID: /System
+						23 text Value: System, Secondary Actions: open
+			24 row (selectable)
+				25 cell
+					26 list (disabled) Description: path, ID: /Users
+						27 text Value: Users, Secondary Actions: open
+		28 scroll bar (settable, float) 0
+			29 value indicator (settable, float) 0
+			30 increment arrow button
+			31 decrement arrow button
+			32 increment page button
+			33 decrement page button
+34 menu bar
+	35 Intentgrove Completion 20261008
+	36 File
+	37 Edit
+	38 View
+	39 Go
+	40 Window
+	41 Help
+
+The focused UI element is 2 text field (settable) Value: /, ID: PathTextField

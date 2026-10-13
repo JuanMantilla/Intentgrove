@@ -1,3 +1,4 @@
+import { projectAction, projectsToggle } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 // Real App behavior; Tauri/file writes are mocked. Fixtures never use user files.
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
@@ -32,7 +33,7 @@ beforeEach(() => {
   mocks.listEditSections.mockResolvedValue({ diskVersion: "v1", sections: [] });
 });
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
-async function start() { render(<App />); fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" })); await screen.findByTitle("a.md"); }
+async function start() { render(<App />); fireEvent.click(projectAction("Open folder")); await screen.findByTitle("a.md"); }
 async function open(name: string) { fireEvent.click(screen.getByTitle(name)); await screen.findByRole("tab", { name }); }
 const selected = () => document.querySelector('[role="tab"][aria-selected="true"]')?.textContent;
 it("never displays a false unavailable alert while reopening released image pixels", async () => {
@@ -120,8 +121,14 @@ it("closing the last tab leaves history able to reopen the retained file", async
   await screen.findByRole("tab", { name: "a.md" });
 });
 it("history restores the retained passage and returns focus when the invoking Back becomes disabled", async () => {
-  await start(); await open("a.md"); const reader = document.querySelector<HTMLDivElement>(".reader-scroll")!;
-  reader.scrollTop = 420; fireEvent.scroll(reader); await open("b.md"); reader.scrollTop = 90; fireEvent.scroll(reader);
+  await start(); await open("a.md");
+  // A tab is registered before its passage is painted. Scroll the rendered
+  // document, as a reader would, rather than the temporary loading surface.
+  await screen.findByRole("heading", { name: "a.md" });
+  const reader = document.querySelector<HTMLDivElement>(".reader-scroll")!;
+  reader.scrollTop = 420; fireEvent.scroll(reader); await open("b.md");
+  await screen.findByRole("heading", { name: "b.md" });
+  reader.scrollTop = 90; fireEvent.scroll(reader);
   const back = screen.getByRole("button", { name: "Back" }); back.focus(); fireEvent.click(back);
   await waitFor(() => expect(selected()).toContain("a.md"));
   await waitFor(() => expect(reader.scrollTop).toBe(420));
@@ -151,7 +158,7 @@ it("late image restoration cannot replace a successful forced reopening", async 
 it("Go exposes labeled traversal and clearing history keeps the current document", async () => {
   await start(); await open("a.md"); await open("b.md");
   fireEvent.click(screen.getByRole("button", { name: "Go menu" }));
-  fireEvent.click(screen.getByRole("menuitem", { name: "Back" })); await waitFor(() => expect(selected()).toContain("a.md"));
+  fireEvent.click(screen.getByRole("menuitem", { name: /^Back: a\.md · / })); await waitFor(() => expect(selected()).toContain("a.md"));
   fireEvent.click(screen.getByRole("button", { name: "Go menu" }));
   fireEvent.click(screen.getByRole("menuitem", { name: "Clear visit history" }));
   expect(selected()).toContain("a.md"); expect(screen.getAllByRole("tab")).toHaveLength(2);
@@ -186,14 +193,14 @@ it("pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scr
 });
 it("uses a dismissible narrow sidebar without overwriting the wider-window visibility choice", async () => {
   await start();
-  fireEvent.click(screen.getByRole("button", { name: "Toggle sidebar" })); // user closes the wide sidebar.
+  fireEvent.click(projectsToggle()); // user closes the wide sidebar.
   const original = Object.getOwnPropertyDescriptor(window, "innerWidth")!;
   try {
     Object.defineProperty(window, "innerWidth", { configurable: true, value: 640 }); fireEvent(window, new Event("resize"));
     const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
     expect(sidebar.dataset.compact).toBe("true"); expect(sidebar.dataset.open).toBe("false"); expect(sidebar.hasAttribute("inert")).toBe(true);
-    fireEvent.click(screen.getByRole("button", { name: "Toggle sidebar" }));
-    expect(sidebar.dataset.open).toBe("true"); expect(screen.getByRole("button", { name: "Close sidebar" })).toBeTruthy();
+    fireEvent.click(projectsToggle());
+    expect(sidebar.dataset.open).toBe("true"); expect(screen.getByRole("button", { name: "Close Projects sidebar" })).toBeTruthy();
     Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 }); fireEvent(window, new Event("resize"));
     expect(sidebar.dataset.compact).toBe("false"); expect(sidebar.dataset.open).toBe("false");
   } finally { Object.defineProperty(window, "innerWidth", original); }

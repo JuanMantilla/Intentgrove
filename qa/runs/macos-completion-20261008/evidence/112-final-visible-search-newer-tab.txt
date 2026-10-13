@@ -1,0 +1,478 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: needle, Placeholder: File name or text
+							14 text (settable) needle
+							15 button cancel
+					16 text Search scope: workspace · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Stopped · partial results · 99 entries scanned, 4 skipped · Results: 80
+					28 container docs/alpha/alpha-00.md
+						29 heading docs/alpha/alpha-00.md 1, Help: docs/alpha/alpha-00.md, Value: 3
+							30 text docs/alpha/alpha-00.md 1
+						31 container docs/alpha/alpha-00.md · Line 2 · needle alpha match
+							32 button (disabled) docs/alpha/alpha-00.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-00.md
+					33 container docs/alpha/alpha-01.md
+						34 heading docs/alpha/alpha-01.md 1, Help: docs/alpha/alpha-01.md, Value: 3
+							35 text docs/alpha/alpha-01.md 1
+						36 container docs/alpha/alpha-01.md · Line 2 · needle alpha match
+							37 button (disabled) docs/alpha/alpha-01.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-01.md
+					38 container docs/alpha/alpha-02.md
+						39 heading docs/alpha/alpha-02.md 1, Help: docs/alpha/alpha-02.md, Value: 3
+							40 text docs/alpha/alpha-02.md 1
+						41 container docs/alpha/alpha-02.md · Line 2 · needle alpha match
+							42 button (disabled) docs/alpha/alpha-02.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-02.md
+					43 container docs/alpha/alpha-03.md
+						44 heading docs/alpha/alpha-03.md 1, Help: docs/alpha/alpha-03.md, Value: 3
+							45 text docs/alpha/alpha-03.md 1
+						46 container docs/alpha/alpha-03.md · Line 2 · needle alpha match
+							47 button (disabled) docs/alpha/alpha-03.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-03.md
+					48 container docs/alpha/alpha-04.md
+						49 heading docs/alpha/alpha-04.md 1, Help: docs/alpha/alpha-04.md, Value: 3
+							50 text docs/alpha/alpha-04.md 1
+						51 container docs/alpha/alpha-04.md · Line 2 · needle alpha match
+							52 button (disabled) docs/alpha/alpha-04.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-04.md
+					53 container docs/alpha/alpha-05.md
+						54 heading docs/alpha/alpha-05.md 1, Help: docs/alpha/alpha-05.md, Value: 3
+							55 text docs/alpha/alpha-05.md 1
+						56 container docs/alpha/alpha-05.md · Line 2 · needle alpha match
+							57 button (disabled) docs/alpha/alpha-05.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-05.md
+					58 container docs/alpha/alpha-06.md
+						59 heading docs/alpha/alpha-06.md 1, Help: docs/alpha/alpha-06.md, Value: 3
+							60 text docs/alpha/alpha-06.md 1
+						61 container docs/alpha/alpha-06.md · Line 2 · needle alpha match
+							62 button (disabled) docs/alpha/alpha-06.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-06.md
+					63 container docs/alpha/alpha-07.md
+						64 heading docs/alpha/alpha-07.md 1, Help: docs/alpha/alpha-07.md, Value: 3
+							65 text docs/alpha/alpha-07.md 1
+						66 container docs/alpha/alpha-07.md · Line 2 · needle alpha match
+							67 button (disabled) docs/alpha/alpha-07.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-07.md
+					68 container docs/alpha/alpha-08.md
+						69 heading docs/alpha/alpha-08.md 1, Help: docs/alpha/alpha-08.md, Value: 3
+							70 text docs/alpha/alpha-08.md 1
+						71 container docs/alpha/alpha-08.md · Line 2 · needle alpha match
+							72 button (disabled) docs/alpha/alpha-08.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-08.md
+					73 container docs/alpha/alpha-09.md
+						74 heading docs/alpha/alpha-09.md 1, Help: docs/alpha/alpha-09.md, Value: 3
+							75 text docs/alpha/alpha-09.md 1
+						76 container docs/alpha/alpha-09.md · Line 2 · needle alpha match
+							77 button (disabled) docs/alpha/alpha-09.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-09.md
+					78 container docs/alpha/alpha-10.md
+						79 heading docs/alpha/alpha-10.md 1, Help: docs/alpha/alpha-10.md, Value: 3
+							80 text docs/alpha/alpha-10.md 1
+						81 container docs/alpha/alpha-10.md · Line 2 · needle alpha match
+							82 button (disabled) docs/alpha/alpha-10.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-10.md
+					83 container docs/alpha/alpha-11.md
+						84 heading docs/alpha/alpha-11.md 1, Help: docs/alpha/alpha-11.md, Value: 3
+							85 text docs/alpha/alpha-11.md 1
+						86 container docs/alpha/alpha-11.md · Line 2 · needle alpha match
+							87 button (disabled) docs/alpha/alpha-11.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-11.md
+					88 container docs/alpha/alpha-12.md
+						89 heading docs/alpha/alpha-12.md 1, Help: docs/alpha/alpha-12.md, Value: 3
+							90 text docs/alpha/alpha-12.md 1
+						91 container docs/alpha/alpha-12.md · Line 2 · needle alpha match
+							92 button (disabled) docs/alpha/alpha-12.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-12.md
+					93 container docs/alpha/alpha-13.md
+						94 heading docs/alpha/alpha-13.md 1, Help: docs/alpha/alpha-13.md, Value: 3
+							95 text docs/alpha/alpha-13.md 1
+						96 container docs/alpha/alpha-13.md · Line 2 · needle alpha match
+							97 button (disabled) docs/alpha/alpha-13.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-13.md
+					98 container docs/alpha/alpha-14.md
+						99 heading docs/alpha/alpha-14.md 1, Help: docs/alpha/alpha-14.md, Value: 3
+							100 text docs/alpha/alpha-14.md 1
+						101 container docs/alpha/alpha-14.md · Line 2 · needle alpha match
+							102 button (disabled) docs/alpha/alpha-14.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-14.md
+					103 container docs/alpha/alpha-15.md
+						104 heading docs/alpha/alpha-15.md 1, Help: docs/alpha/alpha-15.md, Value: 3
+							105 text docs/alpha/alpha-15.md 1
+						106 container docs/alpha/alpha-15.md · Line 2 · needle alpha match
+							107 button (disabled) docs/alpha/alpha-15.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-15.md
+					108 container docs/alpha/alpha-16.md
+						109 heading docs/alpha/alpha-16.md 1, Help: docs/alpha/alpha-16.md, Value: 3
+							110 text docs/alpha/alpha-16.md 1
+						111 container docs/alpha/alpha-16.md · Line 2 · needle alpha match
+							112 button (disabled) docs/alpha/alpha-16.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-16.md
+					113 container docs/alpha/alpha-17.md
+						114 heading docs/alpha/alpha-17.md 1, Help: docs/alpha/alpha-17.md, Value: 3
+							115 text docs/alpha/alpha-17.md 1
+						116 container docs/alpha/alpha-17.md · Line 2 · needle alpha match
+							117 button (disabled) docs/alpha/alpha-17.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-17.md
+					118 container docs/alpha/alpha-18.md
+						119 heading docs/alpha/alpha-18.md 1, Help: docs/alpha/alpha-18.md, Value: 3
+							120 text docs/alpha/alpha-18.md 1
+						121 container docs/alpha/alpha-18.md · Line 2 · needle alpha match
+							122 button (disabled) docs/alpha/alpha-18.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-18.md
+					123 container docs/alpha/alpha-19.md
+						124 heading docs/alpha/alpha-19.md 1, Help: docs/alpha/alpha-19.md, Value: 3
+							125 text docs/alpha/alpha-19.md 1
+						126 container docs/alpha/alpha-19.md · Line 2 · needle alpha match
+							127 button (disabled) docs/alpha/alpha-19.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-19.md
+					128 container docs/alpha/alpha-20.md
+						129 heading docs/alpha/alpha-20.md 1, Help: docs/alpha/alpha-20.md, Value: 3
+							130 text docs/alpha/alpha-20.md 1
+						131 container docs/alpha/alpha-20.md · Line 2 · needle alpha match
+							132 button (disabled) docs/alpha/alpha-20.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-20.md
+					133 container docs/alpha/alpha-21.md
+						134 heading docs/alpha/alpha-21.md 1, Help: docs/alpha/alpha-21.md, Value: 3
+							135 text docs/alpha/alpha-21.md 1
+						136 container docs/alpha/alpha-21.md · Line 2 · needle alpha match
+							137 button (disabled) docs/alpha/alpha-21.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-21.md
+					138 container docs/alpha/alpha-22.md
+						139 heading docs/alpha/alpha-22.md 1, Help: docs/alpha/alpha-22.md, Value: 3
+							140 text docs/alpha/alpha-22.md 1
+						141 container docs/alpha/alpha-22.md · Line 2 · needle alpha match
+							142 button (disabled) docs/alpha/alpha-22.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-22.md
+					143 container docs/alpha/alpha-23.md
+						144 heading docs/alpha/alpha-23.md 1, Help: docs/alpha/alpha-23.md, Value: 3
+							145 text docs/alpha/alpha-23.md 1
+						146 container docs/alpha/alpha-23.md · Line 2 · needle alpha match
+							147 button (disabled) docs/alpha/alpha-23.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-23.md
+					148 container docs/alpha/alpha-24.md
+						149 heading docs/alpha/alpha-24.md 1, Help: docs/alpha/alpha-24.md, Value: 3
+							150 text docs/alpha/alpha-24.md 1
+						151 container docs/alpha/alpha-24.md · Line 2 · needle alpha match
+							152 button (disabled) docs/alpha/alpha-24.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-24.md
+					153 container docs/alpha/alpha-25.md
+						154 heading docs/alpha/alpha-25.md 1, Help: docs/alpha/alpha-25.md, Value: 3
+							155 text docs/alpha/alpha-25.md 1
+						156 container docs/alpha/alpha-25.md · Line 2 · needle alpha match
+							157 button (disabled) docs/alpha/alpha-25.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-25.md
+					158 container docs/alpha/alpha-26.md
+						159 heading docs/alpha/alpha-26.md 1, Help: docs/alpha/alpha-26.md, Value: 3
+							160 text docs/alpha/alpha-26.md 1
+						161 container docs/alpha/alpha-26.md · Line 2 · needle alpha match
+							162 button (disabled) docs/alpha/alpha-26.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-26.md
+					163 container docs/alpha/alpha-27.md
+						164 heading docs/alpha/alpha-27.md 1, Help: docs/alpha/alpha-27.md, Value: 3
+							165 text docs/alpha/alpha-27.md 1
+						166 container docs/alpha/alpha-27.md · Line 2 · needle alpha match
+							167 button (disabled) docs/alpha/alpha-27.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-27.md
+					168 container docs/alpha/alpha-28.md
+						169 heading docs/alpha/alpha-28.md 1, Help: docs/alpha/alpha-28.md, Value: 3
+							170 text docs/alpha/alpha-28.md 1
+						171 container docs/alpha/alpha-28.md · Line 2 · needle alpha match
+							172 button (disabled) docs/alpha/alpha-28.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-28.md
+					173 container docs/alpha/alpha-29.md
+						174 heading docs/alpha/alpha-29.md 1, Help: docs/alpha/alpha-29.md, Value: 3
+							175 text docs/alpha/alpha-29.md 1
+						176 container docs/alpha/alpha-29.md · Line 2 · needle alpha match
+							177 button (disabled) docs/alpha/alpha-29.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-29.md
+					178 container docs/alpha/alpha-30.md
+						179 heading docs/alpha/alpha-30.md 1, Help: docs/alpha/alpha-30.md, Value: 3
+							180 text docs/alpha/alpha-30.md 1
+						181 container docs/alpha/alpha-30.md · Line 2 · needle alpha match
+							182 button (disabled) docs/alpha/alpha-30.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-30.md
+					183 container docs/alpha/alpha-31.md
+						184 heading docs/alpha/alpha-31.md 1, Help: docs/alpha/alpha-31.md, Value: 3
+							185 text docs/alpha/alpha-31.md 1
+						186 container docs/alpha/alpha-31.md · Line 2 · needle alpha match
+							187 button (disabled) docs/alpha/alpha-31.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-31.md
+					188 container docs/alpha/alpha-32.md
+						189 heading docs/alpha/alpha-32.md 1, Help: docs/alpha/alpha-32.md, Value: 3
+							190 text docs/alpha/alpha-32.md 1
+						191 container docs/alpha/alpha-32.md · Line 2 · needle alpha match
+							192 button (disabled) docs/alpha/alpha-32.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-32.md
+					193 container docs/alpha/alpha-33.md
+						194 heading docs/alpha/alpha-33.md 1, Help: docs/alpha/alpha-33.md, Value: 3
+							195 text docs/alpha/alpha-33.md 1
+						196 container docs/alpha/alpha-33.md · Line 2 · needle alpha match
+							197 button (disabled) docs/alpha/alpha-33.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-33.md
+					198 container docs/alpha/alpha-34.md
+						199 heading docs/alpha/alpha-34.md 1, Help: docs/alpha/alpha-34.md, Value: 3
+							200 text docs/alpha/alpha-34.md 1
+						201 container docs/alpha/alpha-34.md · Line 2 · needle alpha match
+							202 button (disabled) docs/alpha/alpha-34.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-34.md
+					203 container docs/alpha/alpha-35.md
+						204 heading docs/alpha/alpha-35.md 1, Help: docs/alpha/alpha-35.md, Value: 3
+							205 text docs/alpha/alpha-35.md 1
+						206 container docs/alpha/alpha-35.md · Line 2 · needle alpha match
+							207 button (disabled) docs/alpha/alpha-35.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-35.md
+					208 container docs/alpha/alpha-36.md
+						209 heading docs/alpha/alpha-36.md 1, Help: docs/alpha/alpha-36.md, Value: 3
+							210 text docs/alpha/alpha-36.md 1
+						211 container docs/alpha/alpha-36.md · Line 2 · needle alpha match
+							212 button (disabled) docs/alpha/alpha-36.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-36.md
+					213 container docs/alpha/alpha-37.md
+						214 heading docs/alpha/alpha-37.md 1, Help: docs/alpha/alpha-37.md, Value: 3
+							215 text docs/alpha/alpha-37.md 1
+						216 container docs/alpha/alpha-37.md · Line 2 · needle alpha match
+							217 button (disabled) docs/alpha/alpha-37.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-37.md
+					218 container docs/alpha/alpha-38.md
+						219 heading docs/alpha/alpha-38.md 1, Help: docs/alpha/alpha-38.md, Value: 3
+							220 text docs/alpha/alpha-38.md 1
+						221 container docs/alpha/alpha-38.md · Line 2 · needle alpha match
+							222 button (disabled) docs/alpha/alpha-38.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-38.md
+					223 container docs/alpha/alpha-39.md
+						224 heading docs/alpha/alpha-39.md 1, Help: docs/alpha/alpha-39.md, Value: 3
+							225 text docs/alpha/alpha-39.md 1
+						226 container docs/alpha/alpha-39.md · Line 2 · needle alpha match
+							227 button (disabled) docs/alpha/alpha-39.md · Line 2 · needle alpha match, Help: docs/alpha/alpha-39.md
+					228 container docs/beta/beta-00.md
+						229 heading docs/beta/beta-00.md 1, Help: docs/beta/beta-00.md, Value: 3
+							230 text docs/beta/beta-00.md 1
+						231 container docs/beta/beta-00.md · Line 2 · needle beta match
+							232 button (disabled) docs/beta/beta-00.md · Line 2 · needle beta match, Help: docs/beta/beta-00.md
+					233 container docs/beta/beta-01.md
+						234 heading docs/beta/beta-01.md 1, Help: docs/beta/beta-01.md, Value: 3
+							235 text docs/beta/beta-01.md 1
+						236 container docs/beta/beta-01.md · Line 2 · needle beta match
+							237 button (disabled) docs/beta/beta-01.md · Line 2 · needle beta match, Help: docs/beta/beta-01.md
+					238 container docs/beta/beta-02.md
+						239 heading docs/beta/beta-02.md 1, Help: docs/beta/beta-02.md, Value: 3
+							240 text docs/beta/beta-02.md 1
+						241 container docs/beta/beta-02.md · Line 2 · needle beta match
+							242 button (disabled) docs/beta/beta-02.md · Line 2 · needle beta match, Help: docs/beta/beta-02.md
+					243 container docs/beta/beta-03.md
+						244 heading docs/beta/beta-03.md 1, Help: docs/beta/beta-03.md, Value: 3
+							245 text docs/beta/beta-03.md 1
+						246 container docs/beta/beta-03.md · Line 2 · needle beta match
+							247 button (disabled) docs/beta/beta-03.md · Line 2 · needle beta match, Help: docs/beta/beta-03.md
+					248 container docs/beta/beta-04.md
+						249 heading docs/beta/beta-04.md 1, Help: docs/beta/beta-04.md, Value: 3
+							250 text docs/beta/beta-04.md 1
+						251 container docs/beta/beta-04.md · Line 2 · needle beta match
+							252 button (disabled) docs/beta/beta-04.md · Line 2 · needle beta match, Help: docs/beta/beta-04.md
+					253 container docs/beta/beta-05.md
+						254 heading docs/beta/beta-05.md 1, Help: docs/beta/beta-05.md, Value: 3
+							255 text docs/beta/beta-05.md 1
+						256 container docs/beta/beta-05.md · Line 2 · needle beta match
+							257 button (disabled) docs/beta/beta-05.md · Line 2 · needle beta match, Help: docs/beta/beta-05.md
+					258 container docs/beta/beta-06.md
+						259 heading docs/beta/beta-06.md 1, Help: docs/beta/beta-06.md, Value: 3
+							260 text docs/beta/beta-06.md 1
+						261 container docs/beta/beta-06.md · Line 2 · needle beta match
+							262 button (disabled) docs/beta/beta-06.md · Line 2 · needle beta match, Help: docs/beta/beta-06.md
+					263 container docs/beta/beta-07.md
+						264 heading docs/beta/beta-07.md 1, Help: docs/beta/beta-07.md, Value: 3
+							265 text docs/beta/beta-07.md 1
+						266 container docs/beta/beta-07.md · Line 2 · needle beta match
+							267 button (disabled) docs/beta/beta-07.md · Line 2 · needle beta match, Help: docs/beta/beta-07.md
+					268 container docs/beta/beta-08.md
+						269 heading docs/beta/beta-08.md 1, Help: docs/beta/beta-08.md, Value: 3
+							270 text docs/beta/beta-08.md 1
+						271 container docs/beta/beta-08.md · Line 2 · needle beta match
+							272 button (disabled) docs/beta/beta-08.md · Line 2 · needle beta match, Help: docs/beta/beta-08.md
+					273 container docs/beta/beta-09.md
+						274 heading docs/beta/beta-09.md 1, Help: docs/beta/beta-09.md, Value: 3
+							275 text docs/beta/beta-09.md 1
+						276 container docs/beta/beta-09.md · Line 2 · needle beta match
+							277 button (disabled) docs/beta/beta-09.md · Line 2 · needle beta match, Help: docs/beta/beta-09.md
+					278 container docs/beta/beta-10.md
+						279 heading docs/beta/beta-10.md 1, Help: docs/beta/beta-10.md, Value: 3
+							280 text docs/beta/beta-10.md 1
+						281 container docs/beta/beta-10.md · Line 2 · needle beta match
+							282 button (disabled) docs/beta/beta-10.md · Line 2 · needle beta match, Help: docs/beta/beta-10.md
+					283 container docs/beta/beta-11.md
+						284 heading docs/beta/beta-11.md 1, Help: docs/beta/beta-11.md, Value: 3
+							285 text docs/beta/beta-11.md 1
+						286 container docs/beta/beta-11.md · Line 2 · needle beta match
+							287 button (disabled) docs/beta/beta-11.md · Line 2 · needle beta match, Help: docs/beta/beta-11.md
+					288 container docs/beta/beta-12.md
+						289 heading docs/beta/beta-12.md 1, Help: docs/beta/beta-12.md, Value: 3
+							290 text docs/beta/beta-12.md 1
+						291 container docs/beta/beta-12.md · Line 2 · needle beta match
+							292 button (disabled) docs/beta/beta-12.md · Line 2 · needle beta match, Help: docs/beta/beta-12.md
+					293 container docs/beta/beta-13.md
+						294 heading docs/beta/beta-13.md 1, Help: docs/beta/beta-13.md, Value: 3
+							295 text docs/beta/beta-13.md 1
+						296 container docs/beta/beta-13.md · Line 2 · needle beta match
+							297 button (disabled) docs/beta/beta-13.md · Line 2 · needle beta match, Help: docs/beta/beta-13.md
+					298 container docs/beta/beta-14.md
+						299 heading docs/beta/beta-14.md 1, Help: docs/beta/beta-14.md, Value: 3
+							300 text docs/beta/beta-14.md 1
+						301 container docs/beta/beta-14.md · Line 2 · needle beta match
+							302 button (disabled) docs/beta/beta-14.md · Line 2 · needle beta match, Help: docs/beta/beta-14.md
+					303 container docs/beta/beta-15.md
+						304 heading docs/beta/beta-15.md 1, Help: docs/beta/beta-15.md, Value: 3
+							305 text docs/beta/beta-15.md 1
+						306 container docs/beta/beta-15.md · Line 2 · needle beta match
+							307 button (disabled) docs/beta/beta-15.md · Line 2 · needle beta match, Help: docs/beta/beta-15.md
+					308 container docs/beta/beta-16.md
+						309 heading docs/beta/beta-16.md 1, Help: docs/beta/beta-16.md, Value: 3
+							310 text docs/beta/beta-16.md 1
+						311 container docs/beta/beta-16.md · Line 2 · needle beta match
+							312 button (disabled) docs/beta/beta-16.md · Line 2 · needle beta match, Help: docs/beta/beta-16.md
+					313 container docs/beta/beta-17.md
+						314 heading docs/beta/beta-17.md 1, Help: docs/beta/beta-17.md, Value: 3
+							315 text docs/beta/beta-17.md 1
+						316 container docs/beta/beta-17.md · Line 2 · needle beta match
+							317 button (disabled) docs/beta/beta-17.md · Line 2 · needle beta match, Help: docs/beta/beta-17.md
+					318 container docs/beta/beta-18.md
+						319 heading docs/beta/beta-18.md 1, Help: docs/beta/beta-18.md, Value: 3
+							320 text docs/beta/beta-18.md 1
+						321 container docs/beta/beta-18.md · Line 2 · needle beta match
+							322 button (disabled) docs/beta/beta-18.md · Line 2 · needle beta match, Help: docs/beta/beta-18.md
+					323 container docs/beta/beta-19.md
+						324 heading docs/beta/beta-19.md 1, Help: docs/beta/beta-19.md, Value: 3
+							325 text docs/beta/beta-19.md 1
+						326 container docs/beta/beta-19.md · Line 2 · needle beta match
+							327 button (disabled) docs/beta/beta-19.md · Line 2 · needle beta match, Help: docs/beta/beta-19.md
+					328 container docs/beta/beta-20.md
+						329 heading docs/beta/beta-20.md 1, Help: docs/beta/beta-20.md, Value: 3
+							330 text docs/beta/beta-20.md 1
+						331 container docs/beta/beta-20.md · Line 2 · needle beta match
+							332 button (disabled) docs/beta/beta-20.md · Line 2 · needle beta match, Help: docs/beta/beta-20.md
+					333 container docs/beta/beta-21.md
+						334 heading docs/beta/beta-21.md 1, Help: docs/beta/beta-21.md, Value: 3
+							335 text docs/beta/beta-21.md 1
+						336 container docs/beta/beta-21.md · Line 2 · needle beta match
+							337 button (disabled) docs/beta/beta-21.md · Line 2 · needle beta match, Help: docs/beta/beta-21.md
+					338 container docs/beta/beta-22.md
+						339 heading docs/beta/beta-22.md 1, Help: docs/beta/beta-22.md, Value: 3
+							340 text docs/beta/beta-22.md 1
+						341 container docs/beta/beta-22.md · Line 2 · needle beta match
+							342 button (disabled) docs/beta/beta-22.md · Line 2 · needle beta match, Help: docs/beta/beta-22.md
+					343 container docs/beta/beta-23.md
+						344 heading docs/beta/beta-23.md 1, Help: docs/beta/beta-23.md, Value: 3
+							345 text docs/beta/beta-23.md 1
+						346 container docs/beta/beta-23.md · Line 2 · needle beta match
+							347 button (disabled) docs/beta/beta-23.md · Line 2 · needle beta match, Help: docs/beta/beta-23.md
+					348 container docs/beta/beta-24.md
+						349 heading docs/beta/beta-24.md 1, Help: docs/beta/beta-24.md, Value: 3
+							350 text docs/beta/beta-24.md 1
+						351 container docs/beta/beta-24.md · Line 2 · needle beta match
+							352 button (disabled) docs/beta/beta-24.md · Line 2 · needle beta match, Help: docs/beta/beta-24.md
+					353 container docs/beta/beta-25.md
+						354 heading docs/beta/beta-25.md 1, Help: docs/beta/beta-25.md, Value: 3
+							355 text docs/beta/beta-25.md 1
+						356 container docs/beta/beta-25.md · Line 2 · needle beta match
+							357 button (disabled) docs/beta/beta-25.md · Line 2 · needle beta match, Help: docs/beta/beta-25.md
+					358 container docs/beta/beta-26.md
+						359 heading docs/beta/beta-26.md 1, Help: docs/beta/beta-26.md, Value: 3
+							360 text docs/beta/beta-26.md 1
+						361 container docs/beta/beta-26.md · Line 2 · needle beta match
+							362 button (disabled) docs/beta/beta-26.md · Line 2 · needle beta match, Help: docs/beta/beta-26.md
+					363 container docs/beta/beta-27.md
+						364 heading docs/beta/beta-27.md 1, Help: docs/beta/beta-27.md, Value: 3
+							365 text docs/beta/beta-27.md 1
+						366 container docs/beta/beta-27.md · Line 2 · needle beta match
+							367 button (disabled) docs/beta/beta-27.md · Line 2 · needle beta match, Help: docs/beta/beta-27.md
+					368 container docs/beta/beta-28.md
+						369 heading docs/beta/beta-28.md 1, Help: docs/beta/beta-28.md, Value: 3
+							370 text docs/beta/beta-28.md 1
+						371 container docs/beta/beta-28.md · Line 2 · needle beta match
+							372 button (disabled) docs/beta/beta-28.md · Line 2 · needle beta match, Help: docs/beta/beta-28.md
+					373 container docs/beta/beta-29.md
+						374 heading docs/beta/beta-29.md 1, Help: docs/beta/beta-29.md, Value: 3
+							375 text docs/beta/beta-29.md 1
+						376 container docs/beta/beta-29.md · Line 2 · needle beta match
+							377 button (disabled) docs/beta/beta-29.md · Line 2 · needle beta match, Help: docs/beta/beta-29.md
+					378 container docs/beta/beta-30.md
+						379 heading docs/beta/beta-30.md 1, Help: docs/beta/beta-30.md, Value: 3
+							380 text docs/beta/beta-30.md 1
+						381 container docs/beta/beta-30.md · Line 2 · needle beta match
+							382 button (disabled) docs/beta/beta-30.md · Line 2 · needle beta match, Help: docs/beta/beta-30.md
+					383 container docs/beta/beta-31.md
+						384 heading docs/beta/beta-31.md 1, Help: docs/beta/beta-31.md, Value: 3
+							385 text docs/beta/beta-31.md 1
+						386 container docs/beta/beta-31.md · Line 2 · needle beta match
+							387 button (disabled) docs/beta/beta-31.md · Line 2 · needle beta match, Help: docs/beta/beta-31.md
+					388 container docs/beta/beta-32.md
+						389 heading docs/beta/beta-32.md 1, Help: docs/beta/beta-32.md, Value: 3
+							390 text docs/beta/beta-32.md 1
+						391 container docs/beta/beta-32.md · Line 2 · needle beta match
+							392 button (disabled) docs/beta/beta-32.md · Line 2 · needle beta match, Help: docs/beta/beta-32.md
+					393 container docs/beta/beta-33.md
+						394 heading docs/beta/beta-33.md 1, Help: docs/beta/beta-33.md, Value: 3
+							395 text docs/beta/beta-33.md 1
+						396 container docs/beta/beta-33.md · Line 2 · needle beta match
+							397 button (disabled) docs/beta/beta-33.md · Line 2 · needle beta match, Help: docs/beta/beta-33.md
+					398 container docs/beta/beta-34.md
+						399 heading docs/beta/beta-34.md 1, Help: docs/beta/beta-34.md, Value: 3
+							400 text docs/beta/beta-34.md 1
+						401 container docs/beta/beta-34.md · Line 2 · needle beta match
+							402 button (disabled) docs/beta/beta-34.md · Line 2 · needle beta match, Help: docs/beta/beta-34.md
+					403 container docs/beta/beta-35.md
+						404 heading docs/beta/beta-35.md 1, Help: docs/beta/beta-35.md, Value: 3
+							405 text docs/beta/beta-35.md 1
+						406 container docs/beta/beta-35.md · Line 2 · needle beta match
+							407 button (disabled) docs/beta/beta-35.md · Line 2 · needle beta match, Help: docs/beta/beta-35.md
+					408 container docs/beta/beta-36.md
+						409 heading docs/beta/beta-36.md 1, Help: docs/beta/beta-36.md, Value: 3
+							410 text docs/beta/beta-36.md 1
+						411 container docs/beta/beta-36.md · Line 2 · needle beta match
+							412 button (disabled) docs/beta/beta-36.md · Line 2 · needle beta match, Help: docs/beta/beta-36.md
+					413 container docs/beta/beta-37.md
+						414 heading docs/beta/beta-37.md 1, Help: docs/beta/beta-37.md, Value: 3
+							415 text docs/beta/beta-37.md 1
+						416 container docs/beta/beta-37.md · Line 2 · needle beta match
+							417 button (disabled) docs/beta/beta-37.md · Line 2 · needle beta match, Help: docs/beta/beta-37.md
+					418 container docs/beta/beta-38.md
+						419 heading docs/beta/beta-38.md 1, Help: docs/beta/beta-38.md, Value: 3
+							420 text docs/beta/beta-38.md 1
+						421 container docs/beta/beta-38.md · Line 2 · needle beta match
+							422 button (disabled) docs/beta/beta-38.md · Line 2 · needle beta match, Help: docs/beta/beta-38.md
+					423 container docs/beta/beta-39.md
+						424 heading docs/beta/beta-39.md 1, Help: docs/beta/beta-39.md, Value: 3
+							425 text docs/beta/beta-39.md 1
+						426 container docs/beta/beta-39.md · Line 2 · needle beta match
+							427 button (disabled) docs/beta/beta-39.md · Line 2 · needle beta match, Help: docs/beta/beta-39.md
+				428 text Storage and recovery
+				429 text Open edits and recovery offers: 0
+				430 button Manage…
+			431 container
+				432 container Visited files
+					433 button Back, Help: Back: linked.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+					434 button (disabled) Forward, Help: No next file
+				435 tab group (selectable) Documents
+					436 container
+						437 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md, Value: on
+						438 button Close tab: plain.md, Help: Close tab
+					439 container
+						440 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						441 button Close tab: linked.md, Help: Close tab
+					442 container
+						443 tab (selectable) alpha-00.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/docs/alpha/alpha-00.md
+						444 button Close tab: alpha-00.md, Help: Close tab
+				445 pop up button Go menu
+				446 button (collapsed) Open documents (3), Secondary Actions: Expand
+				447 container plain.md
+					448 text plain.md
+					449 text Folder root
+					450 toggle button Outline, Value: off
+					451 button (collapsed) Reading settings, Secondary Actions: Expand
+					452 button Edit section
+					453 summary Document…, Value: off
+						454 text Document…
+				455 container plain.md
+					456 container Unrelated document
+						457 container Edit section: Unrelated document
+							458 heading Unrelated document, Value: 1
+								459 text Unrelated document
+							460 button Edit section “Unrelated document”
+						461 text Responsive tab.
+	462 close button
+	463 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	464 minimize button
+	465 text Intentgrove
+466 menu bar
+	467 Intentgrove QA
+	468 File
+	469 Edit
+	470 View
+	471 Go
+	472 Window
+	473 Help
+
+The focused UI element is 437 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md, Value: on

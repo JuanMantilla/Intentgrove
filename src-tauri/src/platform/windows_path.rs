@@ -43,7 +43,10 @@ pub(crate) fn selected(path: &str) -> AppResult<(&str, Vec<String>)> {
     // A drive root already includes its separator. Do not turn an additional
     // empty component into a valid root by removing the trailing separator.
     if raw_tail == "\\" {
-        return Err(AppError::new("invalid_path", "Empty Windows path component"));
+        return Err(AppError::new(
+            "invalid_path",
+            "Empty Windows path component",
+        ));
     }
     let tail = raw_tail.strip_suffix('\\').unwrap_or(raw_tail);
     let components: Vec<String> = if tail.is_empty() {
@@ -111,8 +114,10 @@ mod tests {
             selected("C:\\Café space\\Read.MD").unwrap().1,
             ["Café space", "Read.MD"]
         );
-        assert_eq!(selected(r"\\?\c:\Café space\Read.MD").unwrap(),
-            ("c:\\", vec!["Café space".into(), "Read.MD".into()]));
+        assert_eq!(
+            selected(r"\\?\c:\Café space\Read.MD").unwrap(),
+            ("c:\\", vec!["Café space".into(), "Read.MD".into()])
+        );
         assert!(selected("C:\\").unwrap().1.is_empty());
         assert!(selected(&format!("C:\\{}", "a\\".repeat(129))).is_err());
         assert!(selected(&format!("C:\\{}", "é".repeat(256))).is_err());

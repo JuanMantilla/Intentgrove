@@ -1,4 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
+import { requireMarkdownResponse } from "./htmlBoundary";
 
 export interface GrantInfo {
   id: string;
@@ -30,8 +31,13 @@ export interface NativeAccepted { kind: "folder" | "document"; grant: GrantInfo 
 
 export interface DirectoryEntry {
   name: string;
-  kind: "directory" | "markdown" | "image" | "other";
+  kind: "directory" | "markdown" | "html" | "prototype" | "image" | "other";
 }
+
+/** Reveal uses a native listing snapshot or an existing opened-file grant. */
+export type RevealTarget =
+  | { kind: "root-file"; rootId: string; segments: string[]; snapshotId: string }
+  | { kind: "explicit-file"; fileId: string };
 
 export interface DirectoryPage {
   entries: DirectoryEntry[];
@@ -78,6 +84,15 @@ export interface DocumentResponse {
   content: string;
   diskVersion: string;
 }
+
+export interface MarkdownDestination { token: string; name: string; displayPath: string }
+export type CreateMarkdownRequest =
+  | { rootId: string; segments: string[]; filename: string; destinationToken?: never }
+  | { destinationToken: string; filename: string; rootId?: never; segments?: never };
+export type CreateMarkdownOutcome =
+  | { status: "opened"; document: DocumentResponse; rootId: string | null; explicitFile: boolean; segments: string[]; watchFailed: boolean }
+  | { status: "committed_not_opened"; name: string; displayPath: string; identityKey: string | null;
+      fileId: string | null; error: { code: string; message: string } };
 
 export interface LargeInspection {
   fileId: string;
@@ -164,6 +179,8 @@ export interface CheckpointAck {
 }
 
 export interface SessionAnchor {
+  htmlZoom?: number;
+  htmlScrollLeft?: number;
   headingId: string | null;
   offset: number;
   scrollTop: number;
@@ -179,6 +196,8 @@ export interface SessionTree {
 }
 
 export interface SessionPanel {
+  /** Optional until the native session contract supports layouts. */
+  workspaceLayout?: import("./workspaceLayout").WorkspaceLayout;
   sidebarOpen: boolean;
   sidebarWidth: number;
   outlineOpen: boolean;
@@ -210,7 +229,7 @@ export interface SessionRestore {
   exitDisposition: "running" | "normal";
   root: { id: string | null; name: string; displayPath: string;
     generation: number | null; errorCode: string | null } | null;
-  tabs: Array<{ key: string; fileId: string | null; name: string; displayPath: string;
+  tabs: Array<{ kind?: "html" | "prototype" | "markdown" | "image"; key: string; fileId: string | null; name: string; displayPath: string;
     rootSegments: string[] | null; explicitFile: boolean; anchor: SessionAnchor;
     savedDiskVersion: string | null; errorCode: string | null; editingActive: boolean }>;
   activeKey: string | null;
@@ -275,7 +294,7 @@ export interface RefreshJobProgress {
 }
 
 export interface LinkResponse {
-  kind: "anchor" | "document" | "image" | "blocked" | "unsupported" | "missing";
+  kind: "anchor" | "document" | "html" | "prototype" | "image" | "details" | "blocked" | "unsupported" | "missing";
   fileId: string | null;
   anchor: string | null;
   reason: string | null;
@@ -318,6 +337,9 @@ export function readerError(error: unknown): ReaderError {
 }
 
 export const api = {
+  revealFile: (target: RevealTarget) => invoke<void>("reveal_file", { target }),
+  renderDiagram: (source: string, jobId: string, generation: number) => invoke<import("../reader/diagram-host").DiagramPixels>("render_diagram", { source, jobId, generation }),
+  cancelDiagram: (jobId: string) => invoke<void>("cancel_diagram", { jobId }),
   listRecentItems: () => invoke<RecentList>("list_recent_items"),
   openRecentItem: (entryId: string) => invoke<RecentOpen>("open_recent_item", { entryId }),
   reselectRecentItem: (entryId: string) => invoke<RecentOpen | null>("reselect_recent_item", { entryId }),
@@ -325,11 +347,15 @@ export const api = {
   removeRecentItem: (entryId: string) => invoke<void>("remove_recent_item", { entryId }),
   clearRecentItems: (confirmed: boolean) => invoke<void>("clear_recent_items", { confirmed }),
   listNativeEntries: () => invoke<NativePreview[]>("list_native_entries"),
-  acceptNativeEntry: (entryId: string) => invoke<NativeAccepted>("accept_native_entry", { entryId }),
+  acceptNativeEntry: (entryId: string, fileOnly = false) => invoke<NativeAccepted>("accept_native_entry", { entryId, fileOnly }),
   dismissNativeEntry: (entryId: string) => invoke<void>("dismiss_native_entry", { entryId }),
   setNativeMenuState: (state: { closeTab: boolean; save: boolean; find: boolean; reload: boolean; locale: string;
-    back?: boolean; forward?: boolean; visited?: boolean; clearHistory?: boolean }) =>
+    back?: boolean; forward?: boolean; visited?: boolean; clearHistory?: boolean;
+    newMarkdownReady?: boolean; defaultMarkdownReady?: boolean; editingOwner?: boolean; editingUndo?: boolean; editingRedo?: boolean; editingSelection?: boolean }) =>
     invoke<void>("set_native_menu_state", state),
+  chooseMarkdownDestination: () => invoke<MarkdownDestination | null>("choose_markdown_destination"),
+  cancelMarkdownDestination: (token: string) => invoke<void>("cancel_markdown_destination", { token }),
+  createMarkdownFile: (request: CreateMarkdownRequest) => invoke<CreateMarkdownOutcome>("create_markdown_file", { request }),
   selectRoot: (reselectId?: string) => invoke<GrantInfo | null>("select_root", reselectId ? { reselectId } : {}),
   prepareRootSelection: () => invoke<string | null>("prepare_root_selection"),
   commitRootSelection: (token: string) => invoke<GrantInfo>("commit_root_selection", { token }),
@@ -342,9 +368,11 @@ export const api = {
     invoke<FolderSearchStarted>("start_folder_search", { rootId, query, mode, includeIgnored, scopeSegments }),
   cancelFolderSearch: (jobId: string) => invoke<boolean>("cancel_folder_search", { jobId }),
   openSearchHit: (jobId: string, resultId: string) =>
-    invoke<OpenFolderSearchHit>("open_search_hit", { jobId, resultId }),
+    invoke<OpenFolderSearchHit>("open_search_hit", { jobId, resultId }).then(result => ({
+      ...result, document: requireMarkdownResponse(result.document)
+    })),
   readDocument: (args: { fileId?: string; rootId?: string; segments?: string[] }) =>
-    invoke<DocumentResponse>("read_document", args),
+    invoke<DocumentResponse>("read_document", args).then(requireMarkdownResponse),
   inspectLargeFile: (args: { fileId?: string; rootId?: string; segments?: string[] }) =>
     invoke<LargeInspection>("inspect_large_file", args),
   openLargeSource: (fileId: string, explicitConsent: boolean) =>
@@ -409,5 +437,5 @@ export const api = {
     generation: number; rootId?: string; expandedDirectories: string[][]; openFileIds: string[];
   }) => invoke<RefreshJob>("reconcile_visible_state", args),
   getConfirmedDocument: (fileId: string, expectedDiskVersion: string, generation: number) =>
-    invoke<DocumentResponse>("get_confirmed_document", { fileId, expectedDiskVersion, generation })
+    invoke<DocumentResponse>("get_confirmed_document", { fileId, expectedDiskVersion, generation }).then(requireMarkdownResponse)
 };

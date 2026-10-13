@@ -1,0 +1,4 @@
+@import url("nested.css");
+@font-face { font-family: FixtureFont; src: url("font.ttf") }
+h1 { font-family: FixtureFont, serif; }
+body::after { content:"Local CSS fixture"; }

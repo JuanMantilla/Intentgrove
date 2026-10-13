@@ -1,5 +1,9 @@
 # Remaining approved-design integrations — implementation decisions
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
+
+> Current HTML checkpoint — 2026-10-08: October 6 “Remaining scope authorized” supersedes this document’s staged reapproval requirements. The HTML isolation/resource/routing boundary remains required. Missing native contracts are an implementation dependency, not missing user approval; see [exact HTML handoff](html-native-handoff-20261008.md). This dated continuation is not a claim that the amended file has the original reviewed hash.
+
 Status: PROPOSED technical scope; design remains USER-APPROVED. The current request authorizes frontend implementation and verification. This document makes the additional native, security and architecture work reviewable. It does not change approved canonical specifications or their hashes.
 
 ## First delivery: native Settings and Go/subfolder search (IR-04/05)

@@ -1,0 +1,165 @@
+**Flow (call path among the symbols you queried)**
+
+1. original_validation_runs_after_release (src-tauri/src/acceptance_harness.rs:308)
+   ↓ calls
+2. read_document_impl (src-tauri/src/document.rs:157)
+   ↓ calls
+3. file (src-tauri/src/state.rs:353)
+
+> Full source for these symbols is below — the call flow among them, followed by their bodies.
+**Exploration: src-tauri/src/search.rs file limits ignored errors search tests; src-tauri/diagram/renderer.m request validation stdin protocol**
+
+Found 7 symbols across 1 file. No indexed file uniquely matches `src-tauri/diagram/renderer.m`.
+
+**Blast radius — what depends on these (update/verify before editing)**
+
+- `decodeTile:protocolVersion:requestId:generation:claimed:x:y:size:withReply:` (src-tauri/xpc/bridge.m:124) — 1 caller in `src-tauri/src/image_xpc_client.m`; tested via callers: `tests/native/image-xpc-probe.m`
+- `error` (src-tauri/src/recents.rs:62) — 16 callers in `src-tauri/src/recents.rs`; tested via callers: `src-tauri/tests/manual_reload.rs`
+- `Request` (src-tauri/src/acceptance_harness.rs:19) — 2 callers in `src-tauri/src/acceptance_harness.rs`; no tests found within 3 caller hops
+- `OpenSearchHit` (src-tauri/src/search.rs:81) — 2 callers in `src-tauri/src/search.rs`; no tests found within 3 caller hops
+
+**Source Code**
+
+> The code below is the **verbatim, current on-disk source** of these files — re-read from disk on this call and line-numbered, byte-for-byte identical to what the Read tool returns. It is NOT a summary, outline, or stale cache. Treat each block as a Read you have already performed: do not Read a file shown here. (Exception: files flagged "⚠ changed on disk" below drifted from the index after their last sync — their source is omitted rather than risk a mis-sliced block; Read those specific files.)
+
+**`src-tauri/src/search.rs`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+**`src-tauri/xpc/bridge.m`** — MDActualFormat(calls), resume(calls), MDActualFormat(function), MDImageDecoder(class), implements(implements), +9 more
+
+```objc
+23	                                              NSString *error))reply;
+24	@end
+25	
+26	static NSString *MDActualFormat(NSString *uti) {
+27	    if ([uti isEqualToString:@"public.png"]) return @"png";
+28	    if ([uti isEqualToString:@"public.jpeg"]) return @"jpeg";
+29	    if ([uti isEqualToString:@"com.compuserve.gif"]) return @"gif";
+30	    if ([uti isEqualToString:@"org.webmproject.webp"] || [uti isEqualToString:@"public.webp"]) return @"webp";
+31	    if ([uti isEqualToString:@"com.microsoft.bmp"]) return @"bmp";
+32	    if ([uti isEqualToString:@"public.tiff"]) return @"tiff";
+33	    if ([uti isEqualToString:@"public.heic"] || [uti isEqualToString:@"public.heif"]
+34	        || [uti isEqualToString:@"public.heic-sequence"] || [uti isEqualToString:@"public.heif-sequence"])
+35	        return @"heif";
+36	    return nil;
+37	}
+38	
+39	@interface MDImageDecoder : NSObject <MDImageDecoderProtocol>
+40	@end
+41	@implementation MDImageDecoder
+42	- (void)decode:(NSData *)data protocolVersion:(NSNumber *)version requestId:(NSString *)requestId
+43	    generation:(NSNumber *)generation claimed:(NSString *)claimed maxDimension:(NSNumber *)maxDimension
+44	    withReply:(void (^)(NSString *, NSNumber *, NSData *, NSString *, NSNumber *, NSNumber *, NSNumber *, NSString *))reply {
+45	    @autoreleasepool {
+46	        __block BOOL done = NO;
+47	        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4800 * NSEC_PER_MSEC),
+48	                       dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+49	            @synchronized (self) { if (!done) _exit(70); }
+50	        });
+51	        void (^finish)(NSData *, NSString *, NSNumber *, NSNumber *, NSNumber *, NSString *) =
+52	            ^(NSData *pixels, NSString *actual, NSNumber *width, NSNumber *height,
+53	              NSNumber *still, NSString *error) {
+54	                @synchronized (self) { done = YES; }
+55	                reply(requestId, generation, pixels, actual, width, height, still, error);
+56	            };
+57	        if (version.unsignedIntValue != 1 || requestId.length != 36 || !generation) {
+58	            finish(nil, nil, nil, nil, nil, @"invalid_request"); return;
+59	        }
+60	        if (data.length == 0 || data.length > 8 * 1024 * 1024 || claimed.length > 16) {
+61	            finish(nil, nil, nil, nil, nil, @"over_limit"); return;
+62	        }
+63	        uint32_t limit = (uint32_t)MIN(MAX(maxDimension.unsignedIntValue, 1), 4096);
+64	        if ([claimed isEqualToString:@"svg"]) {
+65	            uint8_t *output = NULL;
+66	            size_t output_length = 0;
+67	            uint32_t width = 0, height = 0;
+68	            int svgStatus = md_svg_raster(data.bytes, data.length, limit, &output, &output_length,
+69	                                          &width, &height);
+70	            if (svgStatus != 0 || !output || output_length > 8 * 1024 * 1024) {
+71	                free(output); finish(nil, nil, nil, nil, nil,
+72	                                     svgStatus == -2 ? @"response_limit" : @"unsafe_or_corrupt"); return;
+73	            }
+74	            NSData *pixels = [NSData dataWithBytesNoCopy:output length:output_length freeWhenDone:YES];
+75	            finish(pixels, @"svg", @(width), @(height), @NO, nil); return;
+76	        }
+77	        CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data,
+78	            (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImageSourceShouldCache: @NO});
+79	        if (!source) { finish(nil, nil, nil, nil, nil, @"corrupt"); return; }
+80	        CFStringRef actual_uti = CGImageSourceGetType(source);
+81	        NSString *actual = actual_uti ? MDActualFormat((__bridge NSString *)actual_uti) : nil;
+82	        if (!actual || ![actual isEqualToString:claimed]) {
+83	            CFRelease(source); finish(nil, nil, nil, nil, nil, @"mismatch"); return;
+84	        }
+85	        NSDictionary *properties = CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(source, 0,
+86	            (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImageSourceShouldCache: @NO}));
+87	        uint64_t width = [properties[(__bridge NSString *)kCGImagePropertyPixelWidth] unsignedLongLongValue];
+88	        uint64_t height = [properties[(__bridge NSString *)kCGImagePropertyPixelHeight] unsignedLongLongValue];
+89	        if (!width || !height || width * height > 40000000 || width > UINT32_MAX || height > UINT32_MAX) {
+90	            CFRelease(source); finish(nil, nil, nil, nil, nil, @"over_limit"); return;
+91	        }
+92	        BOOL still = CGImageSourceGetCount(source) > 1;
+93	        NSUInteger orientation = [properties[(__bridge NSString *)kCGImagePropertyOrientation] unsignedIntegerValue];
+94	        if (orientation >= 5 && orientation <= 8) {
+95	            uint64_t temp = width; width = height; height = temp;
+96	        }
+97	        CGImageRef image = CGImageSourceCreateThumbnailAtIndex(source, 0,
+98	            (__bridge CFDictionaryRef)@{
+99	                (__bridge NSString *)kCGImageSourceCreateThumbnailFromImageAlways: @YES,
+100	                (__bridge NSString *)kCGImageSourceCreateThumbnailWithTransform: @YES,
+101	                (__bridge NSString *)kCGImageSourceThumbnailMaxPixelSize: @(limit),
+102	                (__bridge NSString *)kCGImageSourceShouldCache: @NO
+103	            });
+104	        CFRelease(source);
+105	        if (!image) { finish(nil, nil, nil, nil, nil, @"corrupt"); return; }
+106	        NSMutableData *pixels = [NSMutableData data];
+107	        CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)pixels,
+108	            CFSTR("public.png"), 1, NULL);
+109	        if (!destination) { CGImageRelease(image); finish(nil, nil, nil, nil, nil, @"corrupt"); return; }
+110	        CGImageDestinationAddImage(destination, image, NULL);
+111	        BOOL encoded = CGImageDestinationFinalize(destination);
+112	        CFRelease(destination);
+113	        CGImageRelease(image);
+114	        if (!encoded || pixels.length == 0) {
+115	            finish(nil, nil, nil, nil, nil, @"corrupt"); return;
+116	        }
+117	        if (pixels.length > 8 * 1024 * 1024) {
+118	            finish(nil, nil, nil, nil, nil, @"response_limit"); return;
+119	        }
+120	        finish(pixels, actual, @((uint32_t)width), @((uint32_t)height), @(still), nil);
+121	    }
+122	}
+123	
+124	- (void)decodeTile:(NSData *)data protocolVersion:(NSNumber *)version requestId:(NSString *)requestId
+125	    generation:(NSNumber *)generation claimed:(NSString *)claimed x:(NSNumber *)x y:(NSNumber *)y
+
+... (gap) ...
+
+147	            uint8_t *output = NULL;
+148	            size_t length = 0;
+149	            uint32_t width = 0, height = 0;
+150	            if (md_svg_raster_tile(data.bytes, data.length, tileX, tileY, 1024,
+151	                                   &output, &length, &width, &height) != 0 || !output
+152	                || length > 8 * 1024 * 1024) {
+153	                free(output); finish(nil, nil, nil, nil, @"unsafe_or_corrupt"); return;
+```
+
+**`src-tauri/src/acceptance_harness.rs`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+**`src-tauri/src/recents.rs`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+
+> ⚠ Changed on disk after the last index sync: src-tauri/src/search.rs, src-tauri/src/acceptance_harness.rs, src-tauri/src/recents.rs. Line numbers referencing these files elsewhere in this response (flow steps, blast radius, symbol lists) may be shifted until that project's next sync re-indexes them.
+**Not shown above — explore these names for their source**
+
+- src-tauri/src/search.rs: OpenSearchHit:81, ignored_by:136, open_hit_impl:327, open_search_hit:357, search_regex:97, scoped_ignore_and_content_are_bounded_and_do_not_follow_links:389, +29 more
+- src-tauri/src/acceptance_harness.rs: Request:19, err:50, fixture_save_failure:63, deserialize:21, authentication_replay_and_expiry:291, authenticated:37, +14 more
+- src-tauri/src/recents.rs: error:62, validate:67, decode:92, encode:103, read_bounded:112, lock:132, +11 more
+- src/app/FolderSearchPanel.tsx: FolderSearchPanel:17, accept:39, invalidate:68, search:82, stop:118, open:129, +1 more
+- src-tauri/xpc/src/main.rs: md_svg_raster:123, raster_svg:67, md_svg_raster_tile:147, parse_svg:84, painted_pixels:175, SvgError:65, +2 more
+- tests/acceptance/test_f002a_evidence.py: IntakeTests:10, setUp:11, tearDown:41, result:44, test_complete_metadata_is_only_intake_pass:47, test_startup_gaps_and_probe_only_reports_are_blocked:52, +7 more
+- src-tauri/src/scope.rs: new:17, AppError:11, AppResult:25, open_selected:88, open_relative:128
+- src/app/api.ts: cancelFolderSearch:341, FolderSearchBatch:54, startFolderSearch:339, readerError:312, openSearchHit:342, FolderSearchHit:42
+- src-tauri/src/save_copies.rs: inventory_at:39, clear_resolved_at:136, resolve:118, SafetyCopyBatch:70, only_resolved_copies_clear_and_legacy_pending_survive:195
+- src-tauri/src/state.rs: root:335, AppState:10, verify_current:43, update_root_file_identity:361, register_root_file:389, file:353, +1 more
+- ... and 24 more files
+
+> Some file sections were trimmed for size. For a specific symbol you still need, run another `codegraph_explore` (or `codegraph_node`) with its exact name — line-numbered source, cheaper and more complete than Read.

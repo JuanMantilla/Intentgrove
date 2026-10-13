@@ -1,0 +1,25 @@
+--- baseline/FolderSearchPanel.tsx
++++ src/app/FolderSearchPanel.tsx
+@@ -18,9 +18,10 @@
+   query?: string;
+   onQueryChange?: (value: string) => void;
+   onClose?: () => void;
++  onDismiss?: () => void;
+ }
+ 
+-export default function FolderSearchPanel({ root, scopeSegments = [], locale, onOpen, onLocalOpen, captureOpenIntent, active = true, query: suppliedQuery, onQueryChange, onClose }: Props) {
++export default function FolderSearchPanel({ root, scopeSegments = [], locale, onOpen, onLocalOpen, captureOpenIntent, active = true, query: suppliedQuery, onQueryChange, onClose, onDismiss }: Props) {
+   const scopeKey = JSON.stringify(scopeSegments);
+   const [confirmedScope, setConfirmedScope] = useState<string[] | null>(null);
+   const [localQuery, setLocalQuery] = useState("");
+@@ -191,8 +192,8 @@
+ 
+   return <section className="folder-search" role="search" aria-label={t(locale, "folderSearch") }
+     onKeyDown={(event) => {
+-      if (event.key === "Escape" && onClose) {
+-        event.preventDefault(); event.stopPropagation(); void stop(); onClose();
++      if (event.key === "Escape" && (onDismiss || onClose)) {
++        event.preventDefault(); event.stopPropagation(); void stop(); (onDismiss ?? onClose)?.();
+       }
+     }}>
+     {onClose && <button type="button" onClick={() => { void stop(); onClose(); }}>{t(locale, "backToExplorer")}</button>}

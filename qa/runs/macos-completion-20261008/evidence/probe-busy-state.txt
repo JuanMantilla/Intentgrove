@@ -1,0 +1,31 @@
+The following is a diff from the previous accessibility tree for Window: "Intentgrove" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 17-21
+~	13 unknown
+~		14 scroll area
+~			15 HTML content Description: Approved blob isolation experiment, URL: tauri://localhost
+~				16 heading Approved blob isolation experiment, Value: 1
++					17 text Approved blob isolation experiment
++				18 button Execute bounded busy child
++				19 text {"utc":"2026-10-08T02:21:51.134Z","stage":"parent","origin":"tauri://localhost","bridge":true}
+{"utc":"2026-10-08T02:21:51.136Z","stage":"created","inline":false,"generation":1,"nonce":"b5841a7f495c4f66b46a520d28ab7a7c","url":"blob:tauri://localhost/c5177485-4d7f-4143-bb4d-5d13b1392ea7"}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"executed","origin":"tauri://localhost","tauri":false,"ipc":"undefined","webkit":true}}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"parent-read","denied":"SecurityError: Sandbox access violation: Blocked a frame at \"tauri://localhost\" from accessing a cross-origin frame.  The frame requesting access is sandboxed and lacks the \"allow-same-origin\" flag."}}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"direct-native","result":"posted; native refusal not yet established"}}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"image","src":"file:///private/tmp/intentgrove-disposable-sentinel","result":"denied"}}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"image","src":"https://example.invalid/probe.png","result":"denied"}}
+{"utc":"2026-10-08T02:21:51.321Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"image","src":"tauri://localhost/index.html","result":"denied"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"child-csp","directive":"connect-src","blocked":"http://127.0.0.1:9/intentgrove-disposable-probe"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"child-csp","directive":"connect-src","blocked":"http://127.0.0.1:9/intentgrove-disposable-probe"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"network","denied":"TypeError: Load failed"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"child-csp","directive":"img-src","blocked":"https://example.invalid/probe.png"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"child-csp","directive":"img-src","blocked":"https://example.invalid/probe.png"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"child-csp","directive":"img-src","blocked":"tauri://localhost/index.html"}}
+{"utc":"2026-10-08T02:21:51.324Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"context","nonce":"b5841a7f495c4f66b46a520d28ab7a7c","generation":1}}
+{"utc":"2026-10-08T02:21:52.637Z","stage":"execution-check","executed":true,"generation":1}
+{"utc":"2026-10-08T02:22:09.357Z","stage":"busy-request","deadlineMs":1000}
+{"utc":"2026-10-08T02:22:14.357Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"busy-entered","utc":"2026-10-08T02:22:09.357Z"}}
+{"utc":"2026-10-08T02:22:14.357Z","stage":"received","sourceMatches":true,"origin":"null","data":{"stage":"busy-completed","utc":"2026-10-08T02:22:14.356Z"}}
+{"utc":"2026-10-08T02:22:14.357Z","stage":"parent-deadline","elapsedMs":5000,"removed":true}
+
++			20 scroll bar (settable, float) 0
+The focused UI element is 15 HTML content Description: Approved blob isolation experiment, URL: tauri://localhost

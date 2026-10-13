@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "id": "isolated-build",
+      "result": "PASS",
+      "reason": "Isolated app compiled with separate storage identity; GUI launch refused.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/smoke-build.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/smoke-signature.log"
+      ]
+    },
+    {
+      "id": "production-package",
+      "result": "PASS",
+      "reason": "Normal macOS arm64 app built through existing packaging, bundled helper components, ad-hoc deep strict signature valid.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-build.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-signature.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/package-manifest.json",
+        "os-engineering/individual-links-20261010/native-approval/evidence/architecture.log"
+      ]
+    },
+    {
+      "id": "production-boundaries",
+      "result": "PASS",
+      "reason": "Current assets embedded; no QA harness/diagnostic markers; main entitlement inspection recorded.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-boundary.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-entitlements.log"
+      ]
+    },
+    {
+      "id": "native-ui",
+      "result": "BLOCKED",
+      "reason": "Computer Use did not approve access to the isolated test app. Actual GUI and live permission approvals not exercised.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/native-ui-attempt.json"
+      ]
+    }
+  ],
+  "source_changes": [],
+  "earlier_checks": "os-engineering/individual-links-20261010/verification.json; inputs unchanged, checks not rerun",
+  "installed": false,
+  "actual_gui_verified": false
+}

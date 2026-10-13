@@ -1,3 +1,5 @@
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 > Scope update — 2026-09-28: Offline-operation and VoiceOver-specific requirements/checks are retired by user decision. Historical results below remain unchanged and are not current gates for those retired portions. Mixed checks retain their security, integrity, keyboard, layout, and packaged-runtime requirements; no untested work is promoted to PASS. See [scope decision](../../docs/requirement-retirement-2026-09-28.md).
 
 # F001 verification — 2026-09-25
@@ -172,3 +174,21 @@ No production source change was necessary for this regression. Current folder/do
 The refresh worker held its mutex during idle receive/debounce, contending with native picker/watch registration. The approved F003D repair polls briefly under lock and waits outside it; idle_mutex and watch-error tests pass. A disposable 25,000-file native benchmark returns its first page in 159 ms, with ten cancellation totals [5,17,5,3,3,13,46,21,5,6] ms. Backend timing does not establish picker-to-window latency or SC-002's packaged trials.
 
 Current aggregate regression: 143 UI and 126 native tests pass (7 native ignored entries, including separately exercised benchmark/child harness). Production build/worker and signed arm64 app startup pass; latest artifact/hash are in ../007-dark-theme/evidence.md. Folder fixture README retains its recorded hash. The user-confirmed opening journey remains valid historical evidence; the latest folder-picker UI was not re-exercised because assistive access is blocked. Existing VoiceOver/cancellation acceptance remains open.
+
+
+### HTML native scoped verification — 2026-10-08
+
+Implemented native owner contribution; [actual handoff](../../os-engineering/html-frontend-handoff.md), [report](../../os-engineering/html-report-20261008.md), [exact evidence](../../os-engineering/evidence/html-native-20261008/). Real native Rust/filesystem, macOS engine and disposable packaged-harness scopes are distinguished from mocked frontend checks. Windows compilation/runtime, native picker/Tauri transport and complete frontend package journeys remain unverified; existing acceptance tasks are not promoted by this handoff. October6 authorization supersedes staged reapproval, and feature selection013 remains unchanged.
+
+Final scoped native checkpoint:117 Rust/filesystem tests PASS (5 ignored),512 real native observation assertions PASS across48 direct/disposable-packaged WebKit cases;383 mocked frontend regressions and production macOS build/signature/worker PASS. Exact source/candidate identities in the linked native report/results.json. Production frontend, OS picker/physical input and Windows compile/runtime remain open.
+
+
+### Fresh final packaged HTML QA — 2026-10-08 local / 2026-10-09 UTC
+
+Independent fresh QA RUN (source read-only), [report](../../qa/runs/html-20261008/report.md), [88-case acceptance ledger](../../qa/runs/html-20261008/coverage.json). Exact executable0a557d5e466b1f7b149bae24ee25807e82bb372e75e6336b7a30a0eb764ea929; source01d8c2d2ba6fdaa2512b94d229a7d45c9b93e54887222d285c6c099ff23621bc; bundle3ea4c1d86610bf30501d8518569cb14502474e873f04be979eb7bb81caadecf9.300snapshot inputs/13bundle files verified. macOS27.0.1arm64; exact uninstalled production-transport task candidate, separate profile.
+
+45PASS/3FAIL/10BLOCKED/30NOT TESTED; PARTIAL/BLOCKING_FINDINGS_PRESENT. F001-H01–H08 are not globally accepted. QA0020 native viewport warning overlap (NATIVE/OS_ENGINEERING), QA0021 parent-relative existing outside-grant link false missing (NATIVE/OS_ENGINEERING), QA0022 symlink HTML open shows false Save/edit failure (FRONTEND). No QA product repair.444mocked frontend testsPASS, counted separately from packaged cases. Actual hostile corpus loopback observer:2positive TCP accepts only/0document HTTP requests; no whole-corpus execution/IPC/DNS proof. Remaining matrix including generated heading/exact focus/atomic Reload/real races/full a11y/platform coverage stays open. Installation NOT TESTED by user restriction. No native-probe historical count promoted; no release/user acceptance. Global feature013/approval snapshots unchanged; no reapproval needed.
+
+## Individual-file local links — 2026-10-10
+
+F001-L01–L04 scoped implementation and native/UI regression evidence: [report](../../os-engineering/individual-links-20261010/report.md). PASS frontend546/63files (final single worker), native125/5ignored, production frontend build/worker checks. Earlier concurrent timing failures are retained in the report; assertion deadlines and repository runner config were not changed. Real disposable permission denial verified. Native Finder/terminal/packaged WebKit/TCC and live exact-file permission continuation remain NOT TESTED; this handoff does not assert user acceptance or release approval.

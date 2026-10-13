@@ -1,0 +1,58 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button Back, Help: Back: reading.md
+/private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md, Value: off
+						25 button Close tab: reading.md, Help: Close tab
+					26 container
+						27 tab (selected) pixel.png · The image content does not match its file type, Help: /private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+						28 button Close tab: pixel.png, Help: Close tab
+				29 pop up button Go menu
+				30 button (collapsed) Open documents (3), Secondary Actions: Expand
+				31 container Visited files
+					32 text Forward: reading.md
+				33 container pixel.png
+					34 text pixel.png
+					35 text Outside the open folder
+					36 summary Document…, Value: off
+						37 text Document…
+				38 heading The image content does not match its file type, Value: 1
+					39 text The image content does not match its file type
+				40 text Check the file, then try again or choose another document.
+				41 button Retry
+	42 close button
+	43 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	44 minimize button
+	45 text Intentgrove
+46 menu bar
+	47 Intentgrove Final Acceptance 20261008
+	48 File
+	49 Edit
+	50 View
+	51 Go
+	52 Window
+	53 Help
+
+The focused UI element is 24 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md, Value: off

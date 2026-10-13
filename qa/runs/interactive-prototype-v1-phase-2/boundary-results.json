@@ -1,0 +1,39 @@
+{
+  "result": "PASS_IN_TASK_SCOPE",
+  "tested_files": 97,
+  "tested_hash_drift": [],
+  "protected_files": 201,
+  "justified_model_changes": [
+    "crates/igproto-model/src/validation.rs",
+    "crates/igproto-model/tests/conformance.rs"
+  ],
+  "shared_workspace_changes_outside_task_scope": [
+    {
+      "path": "src/reader/MarkdownView.tsx",
+      "initial_sha256": "5634547655b4adbd9f247302b610376257f4886e5ff0ccfe8f1c99d093ebc7d1",
+      "current_sha256": "1fd4ac4563f3424e1add1deced7f4da577a0eea25a617ae4f143f8dc74525e86",
+      "mtime": "2026-10-11T23:54:57.961316+00:00"
+    },
+    {
+      "path": "src/app/App.tsx",
+      "initial_sha256": "78acbefacacb7aafe3d065f6844c28bfc6c1f76364f106e729c204098f4ffa88",
+      "current_sha256": "92d389c735ea7d3b9d535aa69b54a31c0f77f301c605acb157d48a2d6fc0c1eb",
+      "mtime": "2026-10-11T23:49:32.859232+00:00"
+    },
+    {
+      "path": "src/styles/app.css",
+      "initial_sha256": "1482d0af20cf5d987c8052745ed91b5009182de5f642f95627a97f6d1c1061f6",
+      "current_sha256": "4fe694f2d7c6cc0930a881315eaf995576090c1b5bb1d45f99c7da2532bc71d9",
+      "mtime": "2026-10-11T23:50:24.846848+00:00"
+    }
+  ],
+  "scope_limitation": "Those three files were already dirty at task start. No Phase 2 edit command targeted them. Shared-workspace changes were observed; author/process attribution was not independently established. They are preserved and excluded from Phase 2 verification.",
+  "vectorcraft": {
+    "revision": "67943857311d820c2bf08eded9ff80683393d254",
+    "status": ""
+  },
+  "approved_contract_hashes_match": true,
+  "schema_files_unchanged": true,
+  "head_unchanged": true,
+  "finished_at": "2026-10-12T00:42:06.928854+00:00"
+}

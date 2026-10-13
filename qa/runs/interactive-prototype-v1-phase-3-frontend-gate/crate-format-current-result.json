@@ -1,0 +1,19 @@
+{
+  "name": "crate-format-current",
+  "command": [
+    "cargo",
+    "fmt",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--all",
+    "--",
+    "--check"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:59:02.102014+00:00",
+  "finished_at": "2026-10-12T04:59:04.674150+00:00",
+  "exit_code": 0,
+  "log": "crate-format-current.log",
+  "tested_snapshot": "tested-snapshot-current.json"
+}

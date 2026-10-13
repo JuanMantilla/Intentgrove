@@ -81,3 +81,38 @@ it("recalculates Fit after viewport resize and keeps controls keyboard-focusable
   expect(view.container.querySelector("output")?.textContent).toBe("100%");
   view.unmount();
 });
+
+it("distinguishes Actual from manual 100%, clamps zoom, resets Fit scroll and restores explicit modes", () => {
+  vi.stubGlobal("URL", { ...URL, createObjectURL: () => "blob:fixture", revokeObjectURL: vi.fn() });
+  Object.defineProperty(HTMLElement.prototype, "clientWidth", { configurable: true, get: () => 400 });
+  Object.defineProperty(HTMLElement.prototype, "clientHeight", { configurable: true, get: () => 300 });
+  const changes = vi.fn();
+  let view = render(<ImageView image={image} locale="en" onViewChange={changes} />);
+  const pressed = (name: string) => screen.getByRole("button", { name }).getAttribute("aria-pressed");
+  expect(pressed("Fit")).toBe("true");
+  fireEvent.click(screen.getByRole("button", { name: "Actual size" }));
+  expect(pressed("Actual size")).toBe("true");
+  fireEvent.click(screen.getByRole("button", { name: "Zoom out" }));
+  fireEvent.click(screen.getByRole("button", { name: "Zoom in" }));
+  expect(screen.getByLabelText("Zoom percentage").textContent).toBe("100%");
+  expect(pressed("Fit")).toBe("false"); expect(pressed("Actual size")).toBe("false");
+  for (let i = 0; i < 10; i++) fireEvent.click(screen.getByRole("button", { name: "Zoom in" }));
+  expect((screen.getByRole("button", { name: "Zoom in" }) as HTMLButtonElement).disabled).toBe(true);
+  expect(screen.getByLabelText("Zoom percentage").textContent).toBe("400%");
+  for (let i = 0; i < 10; i++) fireEvent.click(screen.getByRole("button", { name: "Zoom out" }));
+  expect((screen.getByRole("button", { name: "Zoom out" }) as HTMLButtonElement).disabled).toBe(true);
+  expect(screen.getByLabelText("Zoom percentage").textContent).toBe("25%");
+  fireEvent.click(screen.getByRole("button", { name: "Actual size" }));
+  const viewport = view.container.querySelector<HTMLDivElement>(".image-viewport")!;
+  viewport.scrollLeft = 103; viewport.scrollTop = 51; fireEvent.scroll(viewport);
+  const saved = changes.mock.lastCall![0];
+  expect(saved).toEqual({ mode: "actual", scale: 1, left: 103, top: 51 });
+  view.unmount();
+  view = render(<ImageView image={image} locale="en" initialView={saved} />);
+  expect(pressed("Actual size")).toBe("true");
+  const restored = view.container.querySelector<HTMLDivElement>(".image-viewport")!;
+  expect(restored.scrollLeft).toBe(103); expect(restored.scrollTop).toBe(51);
+  fireEvent.click(screen.getByRole("button", { name: "Fit" }));
+  expect(restored.scrollLeft).toBe(0); expect(restored.scrollTop).toBe(0);
+  expect(pressed("Fit")).toBe("true");
+});

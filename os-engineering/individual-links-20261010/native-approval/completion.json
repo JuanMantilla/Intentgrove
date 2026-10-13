@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "task_id": "individual-file-local-links-20261010",
+  "acceptance_version": "approved-package-0d538aff4ebb4fae8e9e9d705a23487f",
+  "session_kind": "qa",
+  "qa_result": "QA_BLOCKED",
+  "task_state": "BLOCKED",
+  "unresolved_blockers": [
+    "Computer Use did not approve access to isolated Intentgrove Links Test; packaged native GUI/live permission checks unavailable."
+  ],
+  "required_checks": [
+    {
+      "id": "isolated-build",
+      "result": "PASS",
+      "reason": "Isolated app compiled with separate storage identity; GUI launch refused.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/smoke-build.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/smoke-signature.log"
+      ]
+    },
+    {
+      "id": "production-package",
+      "result": "PASS",
+      "reason": "Normal macOS arm64 app built through existing packaging, bundled helper components, ad-hoc deep strict signature valid.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-build.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-signature.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/package-manifest.json",
+        "os-engineering/individual-links-20261010/native-approval/evidence/architecture.log"
+      ]
+    },
+    {
+      "id": "production-boundaries",
+      "result": "PASS",
+      "reason": "Current assets embedded; no QA harness/diagnostic markers; main entitlement inspection recorded.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-boundary.log",
+        "os-engineering/individual-links-20261010/native-approval/evidence/production-entitlements.log"
+      ]
+    },
+    {
+      "id": "native-ui",
+      "result": "BLOCKED",
+      "reason": "Computer Use did not approve access to the isolated test app. Actual GUI and live permission approvals not exercised.",
+      "finished_at": "2026-10-10T19:14:49.739078+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/native-approval/evidence/native-ui-attempt.json"
+      ]
+    }
+  ],
+  "final_report": "os-engineering/individual-links-20261010/native-approval/report.md",
+  "evidence_paths": [
+    "os-engineering/individual-links-20261010/native-approval/evidence-index.md",
+    "os-engineering/individual-links-20261010/native-approval/verification.json"
+  ],
+  "tested_snapshot_path": "os-engineering/individual-links-20261010/native-approval/tested-snapshot.json",
+  "artifact_paths": [
+    "os-engineering/individual-links-20261010/native-approval/approval.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/architecture.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/native-ui-attempt.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/package-manifest.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-boundary.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-build.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-entitlements.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-signature.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-build.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-entitlements.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-signature.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/snapshot.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence-index.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/Caf\u00e9 \u6587.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/index.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/sibling.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/unsupported.txt",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/view.html",
+    "os-engineering/individual-links-20261010/native-approval/report.md",
+    "os-engineering/individual-links-20261010/native-approval/smoke-config.json",
+    "os-engineering/individual-links-20261010/native-approval/tested-paths.json",
+    "os-engineering/individual-links-20261010/native-approval/tested-snapshot.json",
+    "os-engineering/individual-links-20261010/native-approval/verification.json",
+    "os-engineering/individual-links-20261010/native-approval/completion.json"
+  ],
+  "retain_paths": [
+    "os-engineering/individual-links-20261010/native-approval/approval.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/architecture.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/native-ui-attempt.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/package-manifest.json",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-boundary.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-build.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-entitlements.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/production-signature.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-build.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-entitlements.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/smoke-signature.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence/snapshot.log",
+    "os-engineering/individual-links-20261010/native-approval/evidence-index.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/Caf\u00e9 \u6587.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/index.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/sibling.md",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/unsupported.txt",
+    "os-engineering/individual-links-20261010/native-approval/fixtures/docs/view.html",
+    "os-engineering/individual-links-20261010/native-approval/report.md",
+    "os-engineering/individual-links-20261010/native-approval/smoke-config.json",
+    "os-engineering/individual-links-20261010/native-approval/tested-paths.json",
+    "os-engineering/individual-links-20261010/native-approval/tested-snapshot.json",
+    "os-engineering/individual-links-20261010/native-approval/verification.json",
+    "os-engineering/individual-links-20261010/native-approval/completion.json"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "specs/001-workspace-reader/individual-links-amendment-20261010.md",
+    "os-engineering/individual-links-20261010/native-approval/approval.json"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Actual user approval of scoped specification/plan/implementation handoff",
+      "source_path": "AGENTS.md",
+      "evidence_path": "os-engineering/individual-links-20261010/native-approval/approval.json",
+      "satisfied": true
+    },
+    {
+      "requirement": "F001-L04: native GUI behavior must not be equated with builds or mocks",
+      "source_path": "specs/001-workspace-reader/individual-links-amendment-20261010.md",
+      "evidence_path": "os-engineering/individual-links-20261010/native-approval/report.md",
+      "satisfied": false
+    }
+  ]
+}

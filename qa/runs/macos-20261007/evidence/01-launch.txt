@@ -1,0 +1,47 @@
+Window: "Intentgrove", App: Intentgrove QA 20261007.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace Local files only
+				6 button (disabled) Outline
+				7 button (collapsed) Reading settings, Secondary Actions: Expand
+				8 button Settings
+				9 button Open file
+				10 button Open folder
+			11 container Explorer
+				12 pop up button Projects
+				13 text Open a Markdown file to start reading.
+				14 button Open folder
+				15 text Storage and recovery
+				16 text Open edits and recovery offers: 0
+				17 button Manage…
+			18 container
+				19 container Visited files
+					20 button (disabled) Back, Help: No previous file
+					21 button (disabled) Forward, Help: No next file
+				22 tab group (selectable) Documents
+				23 pop up button Go menu
+				24 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+				25 heading Read your local Markdown, Value: 1
+					26 text Read your local Markdown
+				27 text Choose a repository or a file. Documents stay on this Mac.
+				28 button Open folder
+				29 button Open file
+				30 container Recent items
+					31 heading Recent items, Value: 2
+						32 text Recent items
+					33 text Items you open will appear here.
+	34 close button
+	35 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	36 minimize button
+	37 text Intentgrove
+38 menu bar
+	39 Intentgrove QA 20261007
+	40 File
+	41 Edit
+	42 View
+	43 Go
+	44 Window
+	45 Help

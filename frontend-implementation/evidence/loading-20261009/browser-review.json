@@ -1,0 +1,60 @@
+{
+  "environment": "Chrome via cua_repl; Vite localhost; all native calls mocked using disposable fixtures",
+  "wide": {
+    "size": [
+      1440,
+      1000
+    ],
+    "pairs": [
+      "margin/dark/en",
+      "margin/light/es",
+      "folio/light/en",
+      "folio/dark/en",
+      "atlas/dark/es",
+      "atlas/light/en"
+    ]
+  },
+  "narrow": {
+    "size": [
+      390,
+      844
+    ],
+    "states": [
+      "atlas dark ES Explorer pending",
+      "folio light EN section pending",
+      "Settings light ES initial pending",
+      "margin dark ES Explorer pending"
+    ]
+  },
+  "functional": [
+    "branch pending\u2192resolved",
+    "section pending\u2192failure\u2192retry\u2192editor",
+    "file save pending\u2192acknowledged reading",
+    "Settings initial pending\u2192snapshot",
+    "Settings apply pending\u2192error/Retry visible",
+    "middle-click background tab count 5\u21924"
+  ],
+  "keyboard": {
+    "tabCloseOutline": "none",
+    "tabCloseTextDecoration": "underline",
+    "tabParentBackground": "color(srgb 0.094902 0.163922 0.180392)",
+    "sectionEntryFocus": "Edit section \u201cReading passage 1\u201d",
+    "sectionOutline": "none"
+  },
+  "reducedMotion": {
+    "method": "fixture applies production reduced-motion CSS rules outside media condition; SIMULATED",
+    "dotAnimations": [
+      "none",
+      "none",
+      "none"
+    ],
+    "osSetting": "NOT TESTED"
+  },
+  "horizontalOverflow": "false in evaluated Margin wide/narrow, Atlas narrow, Folio narrow",
+  "limitations": [
+    "native integration NOT TESTED",
+    "screen readers NOT TESTED",
+    "all 34 scenarios at all combinations NOT TESTED",
+    "source worker, bridge and browser timing are not native benchmarks"
+  ]
+}

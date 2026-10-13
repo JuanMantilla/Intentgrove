@@ -1,0 +1,1017 @@
+{
+  "run_id": "select-all-retest-20261012T011743Z",
+  "mode": "RETEST",
+  "qa_result": "QA_FAILED",
+  "task_state": "ACTIVE",
+  "candidate": {
+    "observed_at": "2026-10-12T01:26:54.788289+00:00",
+    "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+    "executable": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app/Contents/MacOS/md_reader",
+    "executable_sha256": "98c23a76af49d73d0abc8c530079c8c550911e7dbbf71d8ba168c9daeb01d730",
+    "bundle_sha256": "8563677182fe40690254a36779eff1cb516e1ddfe423dd36f92e63ce33f4e981",
+    "bundle_files": {
+      "Contents/Info.plist": "47c1525878b7a530f405ce3e82e630a60a6339518dee93da783021fded6f153b",
+      "Contents/_CodeSignature/CodeResources": "2922a8d1d9b671dfa060a747efcb3c73f34e4fbd8e7b49adfc642edde7551bfb",
+      "Contents/MacOS/md_reader": "98c23a76af49d73d0abc8c530079c8c550911e7dbbf71d8ba168c9daeb01d730",
+      "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693"
+    },
+    "source_manifest_sha256": "bd2b8783f25658e26b1fff3b53af05936946dd0b7e181172d5d5b42616ac5171",
+    "identifier": "com.juanmantilla.intentgrove.qaselectall.r20261012t011743z",
+    "profile": "/Users/juanmantilla/Library/Application Support/com.juanmantilla.intentgrove.qaselectall.r20261012t011743z",
+    "engine": "native macOS WKWebView tauri://localhost",
+    "variant": "debug custom protocol production frontend; standard TypeScript build FAIL retained; bundler-only diagnostic candidate; no acceptance feature; no XPC/image or diagram helper bundled (not exercised)",
+    "post_build_standard_validation": {
+      "result": "PASS",
+      "evidence": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/standard-asset-equivalence.json",
+      "assets_byte_identical": 11,
+      "scope": "Exact unchanged frozen source passes standard TypeScript/Vite; initial canonical failure belongs to different mutable source."
+    }
+  },
+  "counts": {
+    "FAIL": 3,
+    "PASS": 20,
+    "BLOCKED": 1,
+    "NOT_RUN": 3
+  },
+  "required_counts": {
+    "PASS": 20,
+    "FAIL": 2
+  },
+  "rows": [
+    {
+      "id": "B01",
+      "title": "Initial mutable canonical standard build",
+      "result": "FAIL",
+      "reason": "Missing prototype translation keys. App/i18n/native inputs changed between v1 and v2; this failed earlier candidate is not the frozen package. Preserved, not attributed to Cmd+A.",
+      "required": false,
+      "environment": "mutable canonical source",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot.json",
+      "finished_at": "2026-10-12T01:18:04.288608+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-build.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/build-attempt.json"
+      ]
+    },
+    {
+      "id": "B02",
+      "title": "Exact isolated native package",
+      "result": "PASS",
+      "reason": "Offline locked debug/custom-protocol build, unique identifier/profile and deep strict signature. Missing workspace-manifest copy preparation failure retained; only unchanged original inputs added.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:56:09.879233+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-frozen-build.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-frozen-build-02.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/candidate-provenance.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/signature.txt"
+      ]
+    },
+    {
+      "id": "B03",
+      "title": "Standard build and identical embedded assets",
+      "result": "PASS",
+      "reason": "Frozen source passes TypeScript+Vite; all11 standard assets byte-identical to frontend embedded in tested native executable. No source fix by QA.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:40:37.642598+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-standard-build.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-standard-build-attempt.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/standard-asset-equivalence.json"
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "Reading selection beyond viewport",
+      "result": "PASS",
+      "reason": "Real Cmd+A selects all60 A passages and begin/end; top/bottom screenshots and native copied field confirm.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:26:37.258762+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N01-reading-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N01-reading-selected-top.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N01-reading-selected-bottom.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N02-reading-native-copy-in-field.txt"
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Reading tree/tabs/chrome/control exclusion",
+      "result": "PASS",
+      "reason": "Tree/tabs/header/outline/footer and control text unhighlighted. Copied value is document only. AX range serialization includes CSS-nonselectable Edit section labels; actual native copy excludes them. No DOM-intersection claim.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:42:33.661530+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N01-reading-selected-bottom.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N02-reading-native-copy-in-field.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-selection-observations.json"
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "Focused Find native select-all",
+      "result": "PASS",
+      "reason": "Cmd+A selects only Passage A060; typing END_SENTINEL_A replaces complete field value with focus retained.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:27:42.251660+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N03-find-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N03-find-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N03-find-replaced.txt"
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "Focused Filename native select-all",
+      "result": "PASS",
+      "reason": "Complete qa-filename-complete-value selected; replacement exactly replacement with field focused. Cancel/no Create.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:25:30.716274+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N04-filename-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N04-filename-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N04-filename-replaced.txt"
+      ]
+    },
+    {
+      "id": "N05",
+      "title": "Ready new active document and existing-tab switch",
+      "result": "PASS",
+      "reason": "Ready Cmd+A/native copy includes all25 B passages/end, excludes A/D. Immediate existing-tab switch back selects A. Loading failures retained separately N11.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:34:30.554559+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-switched-ready-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N05-switched-ready-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-rapid-existing-back.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-ready-retry-native-copy.txt"
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "Mixed live unsaved section and read-only siblings",
+      "result": "PASS",
+      "reason": "Real LIVE_UNSAVED_SENTINEL plus all60 read-only A passages/end selected and copied. No Save; original disk bytes retained.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:29:44.466347+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N06-live-draft-before.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N06-mixed-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N06-mixed-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N07-mixed-native-copy-in-field.txt"
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "Mixed embedded controls excluded",
+      "result": "PASS",
+      "reason": "Native copied value omits formatting/header/status/Undo/Discard/Save as labels. Control text unhighlighted; WebKit paints selected container backdrop across the region.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:42:33.661530+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N06-mixed-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N07-mixed-native-copy-in-field.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-selection-observations.json"
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "Whole-document editable draft",
+      "result": "PASS",
+      "reason": "Existing empty.md enters Editing: Whole document. Real text paste creates30 D paragraphs. Cmd+A/copied value include begin/end/all30, exclude UI. Top/bottom captures inspected; disk remains0bytes.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:31:51.816276+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/whole-draft-typed-input.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N08-whole-draft-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N08-whole-draft-selected-top.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N08-whole-draft-selected-bottom.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N08-whole-draft-native-copy-in-field.txt"
+      ]
+    },
+    {
+      "id": "N09",
+      "title": "Embedded Local target native select-all",
+      "result": "PASS",
+      "reason": "Real Link properties field selects entire second.md#embedded-field; typing replaces with second.md and retains focus. Cancel without Apply.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:30:35.523473+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N09-local-target-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N09-local-target-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N09-local-target-replaced.txt"
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Native ready empty-workspace New Markdown",
+      "result": "PASS",
+      "reason": "Fresh profile actual New Markdown opens/focuses Filename. Ready native pass does not resolve mocked startup/context failures.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:25:20.918198+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-empty-new-dialog.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/native-empty-new-dialog.png"
+      ]
+    },
+    {
+      "id": "N11",
+      "title": "Remember Cmd+A through initial loading",
+      "result": "FAIL",
+      "reason": "QA-0035: two immediate first-open/reopen Cmd+A attempts produce no selection. Loaded retry copies B correctly. User explicitly requires remembered loading intent. No stale-document selection observed.",
+      "required": true,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:44:43.855648+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-switched-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N05-switched-selected.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-rapid-reopen-02.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/screenshots/N05-rapid-reopen-02.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/N05-ready-retry-native-copy.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/user-loading-selection-requirement.json"
+      ]
+    },
+    {
+      "id": "I01",
+      "title": "Frozen input integrity",
+      "result": "PASS",
+      "reason": "382 final explicit frozen inputs unchanged. Native pre-check v2 covers381; test-only PNG added under v3 baseline before affected suite reruns. No retrospective missing-fixture claim.",
+      "required": true,
+      "environment": "integrity snapshots",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:44:44.324140+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/final-integrity.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/fixture-preparation-correction.json"
+      ]
+    },
+    {
+      "id": "I02",
+      "title": "Prior evidence/archives/preexisting app preservation",
+      "result": "PASS",
+      "reason": "35 prior/archived artifacts and13 preexisting app bundle files unchanged. No QA product/config/assertion/baseline edits. Later live source drift disclosed.",
+      "required": true,
+      "environment": "integrity snapshots",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:44:44.324140+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/protected-prior-hashes.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/preexisting-bundle-manifest.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/final-integrity.json"
+      ]
+    },
+    {
+      "id": "I03",
+      "title": "Owned candidate quit and drafts kept",
+      "result": "PASS",
+      "reason": "First quit capture -3811 recovered via AX. Keep draft returned App quit; final inventory shows only preexisting PID92499. Premature exit sentence corrected append-only. Profile/drafts/files retained.",
+      "required": true,
+      "environment": "macOS native lifecycle",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:38:28.377402+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-quit-state.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-quit-observation.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-after-keep-draft-processes.txt"
+      ]
+    },
+    {
+      "id": "R01",
+      "title": "Reader-position isolated current retest",
+      "result": "PASS",
+      "reason": "Two frozen isolated passes plus paired/files and complete suite passes. QA-0034 historical170\u21920 remains unresolved/not reproduced; no fix or pre-existing attribution.",
+      "required": true,
+      "environment": "Vitest4.1.11 jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:36:53.454539+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-reader-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-reader-02.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-affected-files-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/retained-prior/frontend-suite-final.log"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "New Markdown isolated current retest",
+      "result": "PASS",
+      "reason": "Two frozen isolated passes, distinct from failing full contexts. Does not clear QA-0033.",
+      "required": true,
+      "environment": "Vitest4.1.11 jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:29:29.259809+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-new-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-new-02.log"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Complete default two-worker suite",
+      "result": "FAIL",
+      "reason": "After unchanged PNG copied:668PASS/2FAIL then669PASS/1FAIL,670tests/67files each. Empty dialog and dirty-draft second-create failures. Earlier incomplete-copy ENOENT runs retained separately.",
+      "required": true,
+      "environment": "Vitest4.1.11 jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v3.json",
+      "finished_at": "2026-10-12T01:38:02.747277+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-02.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-full-suite-01.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-full-suite-02.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/fixture-preparation-correction.json"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Two affected files",
+      "result": "PASS",
+      "reason": "82/82 pass on frozen copy. Not a fix-verification verdict for intermittent full context.",
+      "required": true,
+      "environment": "Vitest4.1.11 jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:29:37.853441+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-affected-files-01.log"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Complete frozen single-worker diagnostic",
+      "result": "PASS",
+      "reason": "670/670,67files,260.60s. CLI maxWorkers1 only; configuration/assertions unchanged. One pass does not prove concurrency is cause.",
+      "required": true,
+      "environment": "Vitest4.1.11 jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v3.json",
+      "finished_at": "2026-10-12T01:44:58.893726+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-serial-diagnostic.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-serial-diagnostic-environment.json"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Timing/shared-state/environment investigation",
+      "result": "PASS",
+      "reason": "19 attempts. Source drift/missing-copy inputs/host load and durations distinguished. Startup guards and render/anchor callbacks are hypotheses; no root cause proved or failed retry erased.",
+      "required": true,
+      "environment": "read-only diagnostics",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:56:10.027607+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/attempt-summary.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/read-only-timing-diagnostics.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/concurrent-drift-01.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/final-integrity.json"
+      ]
+    },
+    {
+      "id": "L01",
+      "title": "Later mutable source verification",
+      "result": "BLOCKED",
+      "reason": "31 captured canonical inputs changed after freeze. Results identify current-source capture at01:20:19, not later concurrent edits; freeze later candidate and retest affected checks.",
+      "required": false,
+      "environment": "later mutable canonical source",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:44:44.324140+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/final-integrity.json"
+      ]
+    },
+    {
+      "id": "L02",
+      "title": "Windows native equivalent",
+      "result": "NOT_RUN",
+      "reason": "Outside requested macOS scope; no Windows host result claimed.",
+      "required": false,
+      "environment": "Windows",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:17:47.298566+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/environment.txt"
+      ]
+    },
+    {
+      "id": "L03",
+      "title": "Screen reader/IME runtime",
+      "result": "NOT_RUN",
+      "reason": "Not requested/exercised; AX and keyboard are not AT-conformance evidence.",
+      "required": false,
+      "environment": "assistive technology",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:42:33.661530+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/native-selection-observations.json"
+      ]
+    },
+    {
+      "id": "L04",
+      "title": "Real native held refresh/theme race",
+      "result": "NOT_RUN",
+      "reason": "Existing controlled mocked regression executed. No injected native refresh hold, actual pending native race or native cause conclusion.",
+      "required": false,
+      "environment": "macOS native WebKit",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app",
+      "baseline": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/tested-snapshot-frozen-v2.json",
+      "finished_at": "2026-10-12T01:42:33.697084+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/read-only-timing-diagnostics.txt"
+      ]
+    }
+  ],
+  "test_attempts": [
+    {
+      "id": "isolated-reader-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "-t",
+        "preserves the active tab and reader position"
+      ],
+      "started_at": "2026-10-12T01:18:46.091300+00:00",
+      "finished_at": "2026-10-12T01:18:48.438856+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/isolated-reader-01.log",
+      "load_after": [
+        2.86083984375,
+        3.3798828125,
+        3.93603515625
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 4 skipped (5)",
+      "duration": "1.69s (transform 412ms, setup 0ms, import 690ms, tests 319ms, environment 594ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "isolated-new-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/new-markdown.test.tsx",
+        "-t",
+        "opens from empty workspace and Projects"
+      ],
+      "started_at": "2026-10-12T01:18:48.439335+00:00",
+      "finished_at": "2026-10-12T01:18:49.900497+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/isolated-new-01.log",
+      "load_after": [
+        2.86083984375,
+        3.3798828125,
+        3.93603515625
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 76 skipped (77)",
+      "duration": "1.15s (transform 410ms, setup 0ms, import 615ms, tests 156ms, environment 299ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "full-suite-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:18:49.900876+00:00",
+      "finished_at": "2026-10-12T01:19:48.068668+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/full-suite-01.log",
+      "load_after": [
+        22.29150390625,
+        7.76806640625,
+        5.47412109375
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "67 passed (67)",
+      "tests": "670 passed (670)",
+      "duration": "57.83s (transform 1.62s, setup 0ms, import 13.11s, tests 67.00s, environment 26.87s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "isolated-reader-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "-t",
+        "preserves the active tab and reader position"
+      ],
+      "started_at": "2026-10-12T01:19:48.070030+00:00",
+      "finished_at": "2026-10-12T01:19:52.085318+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/isolated-reader-02.log",
+      "load_after": [
+        21.94775390625,
+        7.9375,
+        5.54736328125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 4 skipped (5)",
+      "duration": "3.34s (transform 1.12s, setup 0ms, import 1.56s, tests 975ms, environment 630ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "isolated-new-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/new-markdown.test.tsx",
+        "-t",
+        "opens from empty workspace and Projects"
+      ],
+      "started_at": "2026-10-12T01:19:52.085899+00:00",
+      "finished_at": "2026-10-12T01:19:55.680708+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/isolated-new-02.log",
+      "load_after": [
+        21.94775390625,
+        7.9375,
+        5.54736328125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 76 skipped (77)",
+      "duration": "2.71s (transform 769ms, setup 0ms, import 1.32s, tests 213ms, environment 971ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "affected-files-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "tests/ui/new-markdown.test.tsx"
+      ],
+      "started_at": "2026-10-12T01:19:55.681133+00:00",
+      "finished_at": "2026-10-12T01:19:59.079187+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/affected-files-01.log",
+      "load_after": [
+        20.91064453125,
+        7.955078125,
+        5.5673828125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "2 passed (2)",
+      "tests": "82 passed (82)",
+      "duration": "3.03s (transform 925ms, setup 0ms, import 1.59s, tests 3.12s, environment 883ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "full-suite-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:19:59.079661+00:00",
+      "finished_at": "2026-10-12T01:22:01.187476+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/full-suite-02.log",
+      "load_after": [
+        14.37109375,
+        9.943359375,
+        6.6748046875
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "67 passed (67)",
+      "tests": "670 passed (670)",
+      "duration": "121.57s (transform 2.42s, setup 0ms, import 24.30s, tests 156.87s, environment 49.24s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "full-suite-serial-diagnostic",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "--maxWorkers",
+        "1"
+      ],
+      "started_at": "2026-10-12T01:22:01.188667+00:00",
+      "finished_at": "2026-10-12T01:26:44.950856+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/full-suite-serial-diagnostic.log",
+      "load_after": [
+        15.62353515625,
+        23.07373046875,
+        14.65283203125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+      "files": "67 passed (67)",
+      "tests": "670 passed (670)",
+      "duration": "283.16s (transform 1.95s, setup 0ms, import 20.47s, tests 209.83s, environment 42.60s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "MUTABLE_CANONICAL_LIMITED"
+    },
+    {
+      "id": "frozen-isolated-reader-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "-t",
+        "preserves the active tab and reader position"
+      ],
+      "started_at": "2026-10-12T01:27:14.184678+00:00",
+      "finished_at": "2026-10-12T01:27:16.356148+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-reader-01.log",
+      "load_after": [
+        11.97607421875,
+        21.47314453125,
+        14.36328125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 4 skipped (5)",
+      "duration": "1.71s (transform 399ms, setup 0ms, import 679ms, tests 350ms, environment 596ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-isolated-new-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/new-markdown.test.tsx",
+        "-t",
+        "opens from empty workspace and Projects"
+      ],
+      "started_at": "2026-10-12T01:27:16.356856+00:00",
+      "finished_at": "2026-10-12T01:27:17.836472+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-new-01.log",
+      "load_after": [
+        11.3369140625,
+        21.1826171875,
+        14.30224609375
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 76 skipped (77)",
+      "duration": "1.13s (transform 395ms, setup 0ms, import 600ms, tests 155ms, environment 298ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-full-suite-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:27:17.836884+00:00",
+      "finished_at": "2026-10-12T01:29:12.691366+00:00",
+      "exit_code": 1,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-full-suite-01.log",
+      "load_after": [
+        13.7919921875,
+        18.0849609375,
+        13.8916015625
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "3 failed | 64 passed (67)",
+      "tests": "3 failed | 651 passed (654)",
+      "duration": "114.37s (transform 2.58s, setup 0ms, import 23.35s, tests 133.79s, environment 53.66s)",
+      "failures": [
+        "tests/ui/diagram-block.test.tsx [ tests/ui/diagram-block.test.tsx ]",
+        "tests/ui/diagram-host.test.ts [ tests/ui/diagram-host.test.ts ]",
+        "tests/ui/new-markdown.test.tsx > opens from empty workspace and Projects, and restores the owning trigger",
+        "tests/ui/new-markdown.test.tsx > deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+        "tests/ui/new-markdown.test.tsx > real App mock journey opens native identity then enters the existing empty rendered section"
+      ],
+      "result": "FAIL",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-isolated-reader-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "-t",
+        "preserves the active tab and reader position"
+      ],
+      "started_at": "2026-10-12T01:29:12.696475+00:00",
+      "finished_at": "2026-10-12T01:29:23.193662+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-reader-02.log",
+      "load_after": [
+        14.30712890625,
+        18.06298828125,
+        13.93310546875
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 4 skipped (5)",
+      "duration": "8.85s (transform 4.40s, setup 0ms, import 6.12s, tests 1.45s, environment 1.04s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-isolated-new-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/new-markdown.test.tsx",
+        "-t",
+        "opens from empty workspace and Projects"
+      ],
+      "started_at": "2026-10-12T01:29:23.198703+00:00",
+      "finished_at": "2026-10-12T01:29:29.320565+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-isolated-new-02.log",
+      "load_after": [
+        13.5615234375,
+        17.845703125,
+        13.88037109375
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 passed (1)",
+      "tests": "1 passed | 76 skipped (77)",
+      "duration": "4.71s (transform 1.39s, setup 0ms, import 2.36s, tests 668ms, environment 1.43s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-affected-files-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/appearance-operations.test.tsx",
+        "tests/ui/new-markdown.test.tsx"
+      ],
+      "started_at": "2026-10-12T01:29:29.325139+00:00",
+      "finished_at": "2026-10-12T01:29:37.880469+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-affected-files-01.log",
+      "load_after": [
+        12.298828125,
+        17.43798828125,
+        13.78173828125
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "2 passed (2)",
+      "tests": "82 passed (82)",
+      "duration": "7.21s (transform 2.64s, setup 0ms, import 4.20s, tests 5.96s, environment 2.53s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "frozen-full-suite-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:29:37.881137+00:00",
+      "finished_at": "2026-10-12T01:32:11.396831+00:00",
+      "exit_code": 1,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/frozen-full-suite-02.log",
+      "load_after": [
+        12.7509765625,
+        16.20654296875,
+        13.89208984375
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "2 failed | 65 passed (67)",
+      "tests": "654 passed (654)",
+      "duration": "152.90s (transform 2.90s, setup 0ms, import 24.27s, tests 214.76s, environment 52.29s)",
+      "failures": [
+        "tests/ui/diagram-block.test.tsx [ tests/ui/diagram-block.test.tsx ]",
+        "tests/ui/diagram-host.test.ts [ tests/ui/diagram-host.test.ts ]"
+      ],
+      "result": "FAIL",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "complete-frozen-diagram-fixture",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "tests/ui/diagram-block.test.tsx",
+        "tests/ui/diagram-host.test.ts"
+      ],
+      "started_at": "2026-10-12T01:35:59.367900+00:00",
+      "finished_at": "2026-10-12T01:36:01.181601+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-diagram-fixture.log",
+      "load_after": [
+        3.123046875,
+        9.2841796875,
+        11.39404296875
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "2 passed (2)",
+      "tests": "16 passed (16)",
+      "duration": "1.32s (transform 186ms, setup 0ms, import 427ms, tests 179ms, environment 689ms)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "complete-frozen-suite-01",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:36:01.182220+00:00",
+      "finished_at": "2026-10-12T01:36:53.505092+00:00",
+      "exit_code": 1,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-01.log",
+      "load_after": [
+        7.67919921875,
+        9.53564453125,
+        11.35546875
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 failed | 66 passed (67)",
+      "tests": "2 failed | 668 passed (670)",
+      "duration": "51.96s (transform 1.59s, setup 0ms, import 9.62s, tests 71.15s, environment 17.41s)",
+      "failures": [
+        "tests/ui/new-markdown.test.tsx > opens from empty workspace and Projects, and restores the owning trigger",
+        "tests/ui/new-markdown.test.tsx > preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu"
+      ],
+      "result": "FAIL",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "complete-frozen-suite-02",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests"
+      ],
+      "started_at": "2026-10-12T01:36:53.505996+00:00",
+      "finished_at": "2026-10-12T01:38:02.800435+00:00",
+      "exit_code": 1,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-02.log",
+      "load_after": [
+        11.78271484375,
+        10.39794921875,
+        11.53466796875
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "files": "1 failed | 66 passed (67)",
+      "tests": "1 failed | 669 passed (670)",
+      "duration": "68.91s (transform 1.74s, setup 0ms, import 13.99s, tests 91.42s, environment 24.35s)",
+      "failures": [
+        "tests/ui/new-markdown.test.tsx > preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu"
+      ],
+      "result": "FAIL",
+      "attribution": "FROZEN_IDENTIFIED"
+    },
+    {
+      "id": "complete-frozen-suite-serial-diagnostic",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--dir",
+        "tests",
+        "--maxWorkers",
+        "1"
+      ],
+      "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+      "started_at": "2026-10-12T01:40:37.642635+00:00",
+      "finished_at": "2026-10-12T01:44:58.946933+00:00",
+      "exit_code": 0,
+      "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/complete-frozen-suite-serial-diagnostic.log",
+      "load_after": [
+        10.318359375,
+        17.24951171875,
+        15.1083984375
+      ],
+      "files": "67 passed (67)",
+      "tests": "670 passed (670)",
+      "duration": "260.60s (transform 2.41s, setup 0ms, import 18.49s, tests 200.84s, environment 31.62s)",
+      "failures": [],
+      "result": "PASS",
+      "attribution": "FROZEN_IDENTIFIED"
+    }
+  ]
+}

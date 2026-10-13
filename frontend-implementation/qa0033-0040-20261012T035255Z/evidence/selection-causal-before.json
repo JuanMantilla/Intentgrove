@@ -1,0 +1,28 @@
+{
+  "id": "selection-causal-before",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "frontend-implementation/qa0033-0040-20261012T035255Z",
+    "frontend-implementation/qa0033-0040-20261012T035255Z/selection-causal.test.tsx",
+    "-t",
+    "causal QA-0035"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:00:58.576365+00:00",
+  "load_before": [
+    9.845703125,
+    15.01416015625,
+    11.640625
+  ],
+  "exit_code": 1,
+  "finished_at": "2026-10-12T04:01:01.943885+00:00",
+  "load_after": [
+    9.45751953125,
+    14.84765625,
+    11.6015625
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/selection-causal-before.log"
+}

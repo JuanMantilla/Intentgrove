@@ -1,0 +1,80 @@
+[
+  {
+    "id": "REQ-1",
+    "result": "PASS",
+    "method": "Chrome actual App, native DOM selection; jsdom progressive-paint regression",
+    "observation": "All 10 passages, 6,181 selected characters, 3,946px document in 1,262px viewport at scrollTop 0; all 100 initially partly unmounted test paragraphs selected.",
+    "evidence": [
+      "browser-observations-final.json",
+      "long-document-selection-final.png",
+      "regression-focused-final.log"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "REQ-2",
+    "result": "PASS",
+    "method": "Chrome DOM Range and screenshot",
+    "observation": "Tree, tab strip, outline and footer have no range intersection; section editor statuses/actions and code toolbar text excluded; both live edited content and read-only siblings selected.",
+    "evidence": [
+      "browser-observations-final.json",
+      "editor-document-selection-final.png"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "REQ-3",
+    "result": "PASS",
+    "method": "Chrome actual search/filename fields; jsdom rename/textarea/external-editable fixtures",
+    "observation": "Find selects [0,25] and filename selects [0,18], keeping input focus. Generic rename/textarea/contenteditable fixtures receive an uncanceled shortcut. Embedded Local target input also selects [0,11], keeping focus.",
+    "evidence": [
+      "browser-observations-final.json",
+      "regression-focused-final.log"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "REQ-4",
+    "result": "PASS",
+    "method": "Chrome tab switch; jsdom back-and-forth tab switch",
+    "observation": "Newly active README selects all 8 Workspace passages and excludes prior Project instructions content.",
+    "evidence": [
+      "browser-observations-final.json",
+      "regression-focused-final.log"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "REGRESSION",
+    "result": "FAIL",
+    "method": "npm test -- --dir tests (two final-source runs)",
+    "observation": "Each run: 669 pass / 1 fail across 67 files. Different failures: reader scroll during theme/refresh; New Markdown dialog opening. Reader regression passes focused retest. No clean whole-suite result claimed. New Markdown isolated regression also passes (one pass / 76 skipped).",
+    "evidence": [
+      "frontend-suite-final.log",
+      "frontend-suite-confirmation.log",
+      "regression-focused-final.log",
+      "new-markdown-isolated.log"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "BUILD",
+    "result": "PASS",
+    "method": "npm run build",
+    "observation": "TypeScript and Vite production build pass; normal chunk-size warning retained.",
+    "evidence": [
+      "build-final.log"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  },
+  {
+    "id": "NATIVE-WEBKIT",
+    "result": "NOT_RUN",
+    "method": "Packaged macOS application",
+    "observation": "No native candidate rebuilt/installed; native WebKit, screen reader, Windows and the separate bounded large-source/HTML surfaces not tested or changed.",
+    "evidence": [
+      "requirements.md"
+    ],
+    "finished_at": "2026-10-11T23:59:37.239828+00:00"
+  }
+]

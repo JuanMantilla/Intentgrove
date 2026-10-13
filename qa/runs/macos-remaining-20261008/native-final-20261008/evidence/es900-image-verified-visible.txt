@@ -1,0 +1,87 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 container Buscar en la carpeta
+					10 button Volver al explorador
+					11 container
+						12 text Buscar en la carpeta
+						13 search text field (settable) Buscar en la carpeta, Value: NAV_FINAL_TARGET_UNIQUE, Placeholder: Nombre o texto
+							14 text (settable) NAV_FINAL_TARGET_UNIQUE
+							15 button cancel
+					16 text Ámbito de búsqueda: fixtures · Nombres y contenido
+					17 container Buscar en
+						18 toggle button Nombres y contenido, Value: on
+						19 toggle button Nombres de archivo, Value: off
+						20 toggle button Texto del documento, Value: off
+					21 text La búsqueda de contenido incluye archivos Markdown.
+					22 container
+						23 checkbox Incluir archivos ignorados, Value: 0
+						24 text Incluir archivos ignorados
+					25 button Buscar
+					26 button Borrar búsqueda
+					27 text Búsqueda completa · 8 entradas revisadas, 1 omitidas · Resultados: 1
+					28 container search-navigation.md
+						29 heading search-navigation.md 1, Help: search-navigation.md, Value: 3
+							30 text search-navigation.md 1
+						31 button search-navigation.md · Línea 3 · NAV_FINAL_TARGET_UNIQUE, Help: search-navigation.md
+				32 text Almacenamiento y recuperación
+				33 text Ediciones abiertas y avisos de recuperación: 0
+				34 button Gestionar…
+			35 container
+				36 container Archivos visitados
+					37 button Atrás, Help: Atrás: rich.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+					38 button (disabled) Adelante, Help: No hay archivo siguiente
+				39 tab group (selectable) Documentos
+					40 container
+						41 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						42 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					43 container
+						44 tab (selectable) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						45 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					46 container
+						47 tab (selected) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						48 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				49 pop up button Menú Ir
+				50 button (collapsed) Documentos abiertos(3), Secondary Actions: Expand
+				51 container qa-image.png
+					52 text qa-image.png
+					53 text Raíz de la carpeta
+					54 toggle button (disabled) Índice, Value: off
+					55 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					56 summary Documento…, Value: off
+						57 text Documento…
+				58 text Este archivo cambió desde la búsqueda. Se muestra el contenido actual.
+				59 button Cerrar aviso
+				60 container qa-image.png
+					61 text Formato: PNG Dimensiones: 128 × 96
+					62 container qa-image.png
+						63 toggle button Ajustar, Value: off
+						64 toggle button Tamaño real, Value: on
+						65 button Alejar
+						66 container 100%
+							67 text 100%
+						68 button Acercar
+					69 container qa-image.png
+						70 image qa-image.png
+	71 close button
+	72 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	73 minimize button
+	74 text Intentgrove
+75 menu bar
+	76 Intentgrove
+	77 File
+	78 Edit
+	79 View
+	80 Ir
+	81 Window
+	82 Help
+
+The focused UI element is 4 button Mostrar u ocultar explorador

@@ -1,0 +1,17 @@
+{
+  "name": "default-native-check-v2",
+  "command": [
+    "cargo",
+    "check",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--lib"
+  ],
+  "started_at": "2026-10-12T02:07:19.956740+00:00",
+  "finished_at": "2026-10-12T02:08:59.701561+00:00",
+  "exit_code": 0,
+  "log": "default-native-check-v2.log",
+  "tested_snapshot": "tested-snapshot-v2.json"
+}

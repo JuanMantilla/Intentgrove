@@ -1,0 +1,90 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: root-missing.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Value: off, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selected) root-dirty.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+			20 pop up button Go menu
+			21 button (collapsed) Open documents (2), Secondary Actions: Expand
+			22 container Explorer
+				23 pop up button PROJECTS
+				24 button Close Projects sidebar
+				25 button Open file
+				26 button Open folder
+				27 button Search folder
+				28 text fixtures
+				29 container
+					30 button active.md
+					31 button fresh.md
+					32 button inactive.md
+					33 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					34 button opened-after-delete.md
+					35 button opened-after-rename.md
+					36 button opened-after-replace.md
+					37 button opened-before-delete.md
+					38 button opened-before-rename.md
+					39 button opened-before-replace.md
+					40 button root-dirty.md
+					41 button root-missing-moved.md
+					42 button sentinel.md
+					43 button unopened-after-delete.md
+					44 button unopened-after-rename-moved.md
+					45 button unopened-after-replace-original.md
+					46 button unopened-after-replace.md
+					47 button unopened-before-delete.md
+					48 button unopened-before-rename.md
+					49 button unopened-before-replace.md
+				50 text Storage and recovery
+				51 text Open edits and recovery offers: 0
+				52 button Manage…
+				53 button Settings…
+			54 container
+				55 container root-dirty.md
+					56 container root-dirty.md
+						57 text root-dirty.md
+					58 button Find in document
+					59 toggle button Outline, Value: on
+					60 button (collapsed) Reading settings, Secondary Actions: Expand
+					61 button (disabled) Edit section
+					62 summary Document…, Value: off
+						63 text Document…
+					64 text Folder root
+				65 container root-dirty.md
+					66 container Loading…
+						67 text Loading…
+				68 container Outline
+					69 text OUTLINE
+					70 button Close outline
+					71 container Outline
+						72 content list
+							73 button root-dirty.md
+			74 container
+				75 text Current on disk Intentgrove by Theonira
+	76 close button
+	77 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	78 minimize button
+	79 text Intentgrove Reveal Retest
+80 menu bar
+	81 Intentgrove Reveal Retest
+	82 File
+	83 Edit
+	84 View
+	85 Go
+	86 Window
+	87 Help

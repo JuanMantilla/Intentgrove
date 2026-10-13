@@ -1,0 +1,80 @@
+[
+  {
+    "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/4a063c4d018243d6a95661040089bfa0.json",
+    "outcome": {
+      "disposition": "SKIPPED",
+      "reason": "successful_committed_receipt_not_observed",
+      "context_id": null,
+      "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+      "tool_use_id": "exec-1ce38aef-ae52-49eb-b304-8855f87e8a2d",
+      "observed_at": "2026-10-11T13:08:11.068469+00:00",
+      "validation": "NOT_TESTED",
+      "response_format": "str",
+      "command_recognized": true,
+      "hook_event_name": "PostToolUse",
+      "tool_name": "Bash",
+      "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+      "response_sha256": "330db95c355b6cfbc7f9ab68de7fbc42e7fef7900913851c885c42734a9a0b50"
+    }
+  },
+  {
+    "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/d9ff1eaab5ac4c7e98345adab197bbb4.json",
+    "outcome": {
+      "disposition": "ENQUEUED",
+      "reason": "durable_request_committed",
+      "context_id": null,
+      "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+      "tool_use_id": "exec-4b668f27-79db-498b-afb3-7b2fca1f36ad",
+      "observed_at": "2026-10-11T13:08:20.505749+00:00",
+      "validation": "PASS",
+      "response_format": "str",
+      "command_recognized": true,
+      "hook_event_name": "PostToolUse",
+      "tool_name": "Bash",
+      "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+      "response_sha256": "778d7802f24c8ce7c2e50d4840246082a28c7a9c38e2d4899bc762c2e6f85d91",
+      "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+      "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+      "queue_state": "QUEUED"
+    }
+  },
+  {
+    "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/79620a3304a14e90a9bfab5cf70290f2.json",
+    "outcome": {
+      "disposition": "DUPLICATE",
+      "reason": "persisted_request_exists",
+      "context_id": null,
+      "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+      "tool_use_id": "exec-3306ef71-bcc3-477e-b815-d8abd7900056",
+      "observed_at": "2026-10-11T13:08:34.307103+00:00",
+      "validation": "PASS",
+      "response_format": "str",
+      "command_recognized": true,
+      "hook_event_name": "PostToolUse",
+      "tool_name": "Bash",
+      "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-disposable-20261011T050112Z/completion.json",
+      "response_sha256": "778d7802f24c8ce7c2e50d4840246082a28c7a9c38e2d4899bc762c2e6f85d91",
+      "record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+      "queue_identity": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/queue/f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb.json",
+      "queue_state": "RUNNING"
+    }
+  },
+  {
+    "path": "/Users/juanmantilla/projects/personal/.agents/cleanup-state/hook-outcomes/4b7784e858c94a72ad840c5a20153e08.json",
+    "outcome": {
+      "disposition": "SKIPPED",
+      "reason": "successful_committed_receipt_not_observed",
+      "context_id": null,
+      "session_id": "01a12b0e-0a8d-75d2-a8cd-63beaffbd460",
+      "tool_use_id": "exec-03c2f262-9d65-4052-88c2-b857c20e3a9b",
+      "observed_at": "2026-10-11T13:08:02.273037+00:00",
+      "validation": "NOT_TESTED",
+      "response_format": "str",
+      "command_recognized": true,
+      "hook_event_name": "PostToolUse",
+      "tool_name": "Bash",
+      "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/qa_completion.py --root /Users/juanmantilla/projects/personal/md-reader --input /Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-auto-delivery-20261011T1320Z/nonexistent-probe-input.json",
+      "response_sha256": "4226a6171a42a7903f38cf2422b25ef7e68e7645f2450ffd695ffd0600c3d4a0"
+    }
+  }
+]

@@ -1,3 +1,5 @@
+import { projectAction } from "./project-navigation-helpers";
+import { boundedBlocks, BLOCK_PROTOCOL } from "../../src/reader/block-budget";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -103,7 +105,7 @@ describe("workspace session", () => {
     expect(screen.queryByText("This content is not supported in this version")).toBeNull();
     fireEvent.keyDown(window, { key: "o", metaKey: true });
     await screen.findByRole("heading", { name: "First" });
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("first.md"));
     await screen.findByRole("heading", { name: "First" });
     fireEvent.click(screen.getByRole("button", { name: "Read second" }));
@@ -186,7 +188,7 @@ describe("workspace session", () => {
       if (pendingRecovery) expect(screen.getByRole("button", { name: "Recover unsaved edit" })).toBeTruthy();
     } else {
       expect(screen.getByTestId("restored-editor").textContent).toContain("# Saved draft");
-      expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].tabs[0].editingActive).toBe(true);
+      await waitFor(() => expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].tabs[0].editingActive).toBe(true));
     }
     await act(async () => mocks.listeners["editing:close_requested"]({ payload: "window" }));
     if (!pendingRecovery) {
@@ -201,8 +203,9 @@ describe("workspace session", () => {
     class DeferredWorker {
       onmessage: ((event: MessageEvent) => void) | null = null;
       content = "";
+      generation = 0;
       constructor() { worker = this; }
-      postMessage(content: string) { this.content = content; }
+      postMessage(request: { source: string; generation: number }) { this.content = request.source; this.generation = request.generation; }
       terminate() {}
     }
     vi.stubGlobal("Worker", DeferredWorker);
@@ -214,7 +217,7 @@ describe("workspace session", () => {
     await waitFor(() => expect(worker?.content).toBe("# second"));
     expect(container.querySelector('.markdown-body')).toBeNull();
     expect(screen.queryByText(/The passage moved/)).toBeNull();
-    await act(async () => worker.onmessage?.({ data: { kind: "parsed", tree: processor.parse(worker.content) } } as MessageEvent));
+    await act(async () => worker.onmessage?.({ data: { kind: "parsed", version: BLOCK_PROTOCOL, generation: worker.generation, tree: processor.parse(worker.content), blocks: boundedBlocks(processor.parse(worker.content), worker.content) } } as MessageEvent));
     await screen.findByRole("heading", { name: "second" });
     await waitFor(() => expect(container.querySelector('.reader-scroll')?.scrollTop).toBe(77));
     expect(screen.queryByText(/The passage moved/)).toBeNull();
@@ -359,6 +362,24 @@ describe("workspace session", () => {
     expect(editor.textContent).toContain("# changed");
     expect(editor.textContent).toContain("true");
     expect(screen.queryByRole("button", { name: "Recover unsaved edit" })).toBeNull();
+  });
+
+  it("checkpoints a pending activation before its tab commit without an uncaught invariant (QA-0007)", async () => {
+    render(<App />);
+    await screen.findByRole("heading", { name: "second" });
+    await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
+    mocks.selectFile.mockResolvedValue({ id: "new-grant", name: "new.md", displayPath: "/tmp/new.md" });
+    mocks.loadSectionRecovery.mockImplementationOnce(() => {
+      // openDocument reserves activeId before the batched tab update commits.
+      mocks.listeners["editing:close_requested"]({ payload: "quit" });
+      return Promise.resolve(null);
+    });
+    fireEvent.keyDown(window, { key: "o", metaKey: true });
+    await waitFor(() => expect(mocks.finishWorkspaceSession).toHaveBeenCalled());
+    const input = mocks.finishWorkspaceSession.mock.lastCall?.[0];
+    expect(input.tabs.map((tab: { key: string }) => tab.key)).toEqual(["first", "second", "third"]);
+    expect(input.activeKey).toBeNull();
+    expect(screen.queryByText(/could not be saved before closing/)).toBeNull();
   });
 
   it("acknowledges the final durable checkpoint before clean native Quit", async () => {

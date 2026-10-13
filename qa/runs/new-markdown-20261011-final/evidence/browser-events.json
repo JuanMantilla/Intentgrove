@@ -1,0 +1,147 @@
+[
+  {
+    "id": "B01-invalid",
+    "time": "2026-10-11T16:03:18.233Z",
+    "data": {
+      "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\n\nEnter a filename without path separators, reserved names or trailing spaces/dots.\n\nCreate file",
+      "invalid": "true",
+      "describedby": "_r_1_-extension _r_1_-error"
+    }
+  },
+  {
+    "id": "B02-filenames",
+    "time": "2026-10-11T16:03:31.320Z",
+    "data": [
+      {
+        "value": "CON",
+        "enabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "CONIN$",
+        "enabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "LPT¹",
+        "enabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "NUL.txt",
+        "enabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "enabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "Niño.MD.md",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. Niño.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "note.md",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. note.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "note.MD",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. note.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "note.md.md",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. note.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "CON .txt",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. CON .txt.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "value": "ab",
+        "enabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. ab.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      }
+    ]
+  },
+  {
+    "id": "B03-shift-tab",
+    "time": "2026-10-11T16:03:31.344Z",
+    "data": {
+      "focus": "Cancel"
+    }
+  },
+  {
+    "id": "B03-tab",
+    "time": "2026-10-11T16:03:31.360Z",
+    "data": {
+      "focus": "_r_1_-filename"
+    }
+  },
+  {
+    "id": "B04-duplicate",
+    "time": "2026-10-11T16:19:22.424Z",
+    "data": {
+      "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. README.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\n\nA file or folder with this name already exists. Choose another name.\n\nCreate file",
+      "input": "README.MD.md"
+    }
+  },
+  {
+    "id": "B05-escape-focus",
+    "time": "2026-10-11T16:19:22.565Z",
+    "data": {
+      "dialogCount": 0,
+      "focus": "<button type=\"button\" class=\"projects-trigger\" aria-haspopup=\"menu\" aria-expanded=\"false\"><span>Projects</span><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M1 3 L6 8 L11 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"></path></svg></button>"
+    }
+  },
+  {
+    "id": "B06-pending-ownership",
+    "time": "2026-10-11T16:19:39.144Z",
+    "data": {
+      "cancelEnabled": false,
+      "createEnabled": false,
+      "chooseEnabled": false
+    }
+  },
+  {
+    "id": "B08-design-boundaries",
+    "time": "2026-10-11T16:25:50.760Z",
+    "data": [
+      {
+        "input": "note ",
+        "createEnabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. note.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "input": "file.txt",
+        "createEnabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. file.txt.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "input": "CON .txt",
+        "createEnabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. CON .txt.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "input": "ab",
+        "createEnabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. ab.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "createEnabled": true,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.md\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      },
+      {
+        "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "createEnabled": false,
+        "dialog": "New Markdown file\nCancel\n\nName your file and choose where it belongs.\n\nFilename\n\nThe .md extension is added once.\n\nDestination\n/fixture/personal/md-reader\nChoose folder…\nCreate file"
+      }
+    ]
+  }
+]

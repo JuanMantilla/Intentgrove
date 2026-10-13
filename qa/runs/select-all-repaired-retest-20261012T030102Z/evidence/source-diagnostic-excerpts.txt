@@ -1,0 +1,323 @@
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/app/App.tsx
+1368:   function openFind() {
+1369:     if (!active || active.kind === "image") return;
+1370:     findFocusBefore.current = document.activeElement as HTMLElement | null;
+1371:     setFindOpen(true);
+1372:     // New Find inputs focus after commit; an already-open input can focus now.
+1373:     if (!findInputRef.current?.closest("[inert]")) findInputRef.current?.focus();
+1374:   }
+1375: 
+1376:   useEffect(() => {
+1377:     if (active?.kind !== "html" || !findOpen) return;
+1378:     let cancelled=false; setHtmlFind(null);
+1379:     const timer=setTimeout(() => {void htmlHandles.current.get(active.id)?.find(findQuery).then(result=>{if(!cancelled){setHtmlFind(result);setFindOrdinal(Math.max(0,result.current-1));}}).catch(e=>{if(!cancelled)setNotice(l=>errorText(l,readerError(e).code));});},150);
+1380:     return ()=>{cancelled=true;clearTimeout(timer);};
+1381:   },[findQuery,findOpen,activeId]);
+1382:   function closeFind() {
+1383:     if(active?.kind === "html") {
+1384:       const handle=htmlHandles.current.get(active.id);
+1385:       void handle?.find("").then(()=>handle.focus()).catch(()=>{});
+1386:     }
+1387:     setFindOpen(false);
+1388:     setFindQuery("");
+1389:     const target = findInDraft
+1390:       ? document.querySelector<HTMLElement>("[data-rich-leaf]")
+1391:       : findRoot ?? findFocusBefore.current;
+1392:     requestAnimationFrame(() => {
+1393:       if (findInDraft && editorFindRef.current) editorFindRef.current.focus();
+1394:       else target?.focus();
+1395:     });
+1396:   }
+1397: 
+1398:   function revealFind(ordinal: number) {
+1399:     if (!findIndex || !markdownFindResults?.count) return;
+1400:     const span = findIndex.span(markdownFindResults.starts[ordinal], markdownFindResults.queryLength);
+1401:     if (findInDraft && span) { editorFindRef.current?.reveal(span); return; }
+1402:     const range = span && findIndex.range(span);
+1403:     range?.startContainer.parentElement?.scrollIntoView?.({ block: "center", behavior: "instant" });
+1404:   }
+1405: 
+1406:   function moveFind(direction: number) {
+1407:     if (active?.kind === "html") { void htmlHandles.current.get(active.id)?.find(findQuery,direction < 0).then(setHtmlFind).catch(e => setNotice(l=>errorText(l,readerError(e).code))); return; }
+1408:     if (!findResults?.count) return;
+1409:     const next = (activeFindOrdinal + direction + findResults.count) % findResults.count;
+1410:     setFindOrdinal(next);
+1411:     revealFind(next);
+1412:   }
+1413: 
+1414:   useEffect(() => {
+1415:     if (findOpen && findResults?.count && (activeFindOrdinal === 0 || pendingSearchReveal.current)) {
+1416:       revealFind(Math.max(0, activeFindOrdinal));
+1417:       pendingSearchReveal.current = false;
+1418:     }
+1419:   }, [findQuery, findIndex, findOrdinal]);
+1420: 
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/reader/RichSection.tsx
+140:     const surface = scroll();
+141:     const dismiss = () => { setSelection(null); setBlockTarget(null); setContextMenu(null); setTableTarget(null); setProperties(null); setLanguageTarget(null); };
+142:     const capture = () => { checkpoint(); dismiss(); };
+143:     surface?.addEventListener("scroll", capture);
+144:     window.addEventListener("blur", dismiss);
+145:     const publish = () => { queueMicrotask(() => commands.current.publish()); };
+146:     document.addEventListener("focusin", publish); document.addEventListener("focusout", publish); window.addEventListener("focus", publish);
+147:     current.current.onFindReady?.({
+148:       command: command => commands.current.run(command),
+149:       focus: () => { pendingFocus.current = true; setState(stateRef.current.update({}).state); },
+150:       reveal: span => {
+151:         pendingFocus.current = true;
+152:         dispatch(stateRef.current.update({ selection: { anchor: span.start, head: span.end } }));
+153:         const leaf = latestModel.current.leaves.findIndex(leaf => span.start >= leaf.from && span.start <= leaf.to);
+154:         root.current?.querySelector(`[data-rich-leaf="${leaf}"]`)?.scrollIntoView?.({ block: "center" });
+155:       }
+156:     });
+157:     return () => { alive.current = false; surface?.removeEventListener("scroll", capture); window.removeEventListener("blur", dismiss); current.current.onFindReady?.(null);
+158:       document.removeEventListener("focusin", publish); document.removeEventListener("focusout", publish); window.removeEventListener("focus", publish);
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/app/App.tsx
+1914:   }
+1915:   async function openDocument(request: OpenRequest, fallback?: { name: string; path: string }, onFailure?: (code:string)=>void): Promise<string | undefined> {
+1916:     const sequence = ++openSequence.current;
+1917:     if(activeIdRef.current && htmlHandles.current.has(activeIdRef.current)) {
+1918:       const handle=htmlHandles.current.get(activeIdRef.current)!;
+1919:       await handle.capture().catch(()=>{});await handle.hide().catch(()=>{});
+1920:       if(sequence!==openSequence.current)return;
+1921:     }
+1922:     setNotice(null);
+1923:     const requestKey = request.fileId ?? `${request.rootId}:${pathKey(request.segments ?? [])}`;
+1924:     const token = Symbol("document load");
+1925:     documentLoads.current.set(requestKey, token);
+1926:     const generation = generationRef.current;
+1927:     const current = () => generation === generationRef.current && documentLoads.current.get(requestKey) === token;
+1928:     const activate = (id: string) => {
+1929:       if (sequence !== openSequence.current) return;
+1930:       const selection = pendingDocumentSelection.current;
+1931:       if (selection?.loadToken === token && selection.sequence === sequence && selection.generation === generation) {
+1932:         selection.fileId = id;
+1933:         selection.loadToken = undefined;
+1934:       }
+1935:       activeIdRef.current = id;
+1936:       setActiveId(id); setCompactSidebarOpen(false);
+1937:     };
+1938:     // Acquisition reserves identity; rendering success is acknowledged separately by the native surface.
+1939:     const pendingId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
+1940:     const pendingName = fallback?.name ?? request.segments?.at(-1) ?? "";
+1941:     if (!isNativeDocument(pendingName)) {
+1942:       selectionAcquisition.current = { token, sequence, generation };
+1943:       setDocumentPending({ token, name: pendingName, sequence, generation });
+1944:     }
+1945:     if (isNativeDocument(pendingName)) {
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/app/App.tsx
+2088:         errorCode: detail.code === "unsupported_type" && isHtmlDocument(name)
+2089:           ? "html_view_unavailable" : detail.code
+2090:       };
+2091:       setTabs((old) => old.some((item) => item.id === id)
+2092:         ? old.map((item) => item.id === id ? tab : item)
+2093:         : [...old, tab]);
+2094:       activate(id);
+2095:     } finally {
+2096:       if (selectionAcquisition.current?.token === token) selectionAcquisition.current = null;
+2097:       setDocumentPending(old => old?.token === token ? null : old);
+2098:       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+2099:       if (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+2100:     }
+2101:   }
+2102: 
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/app/App.tsx
+3122:   // Capture before RichSection's section-only select-all. The workspace owns
+3123:   // the full document; native text fields and dialogs keep their own shortcut.
+3124:   useEffect(() => watchSelectionOwner(() => findRoot, () => { pendingDocumentSelection.current = null; }), [findRoot]);
+3125:   useEffect(() => {
+3126:     const request = pendingDocumentSelection.current;
+3127:     if (!request) return;
+3128:     if (request.sequence !== openSequence.current || request.generation !== generationRef.current
+3129:       || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, findRoot)
+3130:       || (!request.loadToken && (!active || request.fileId !== active.id || active.errorCode || active.largeInspection
+3131:         || (active.kind && active.kind !== "markdown") || (request.content !== undefined && request.content !== active.content)))) {
+3132:       pendingDocumentSelection.current = null; return;
+3133:     }
+3134:     if (request.loadToken || request.dispatched || active?.documentLoading || active?.content === undefined
+3135:       || documentSelectionRef.current?.fileId !== request.fileId) return;
+3136:     request.content = active.content;
+3137:     // Adapter selection flushes incremental paint synchronously; invoke outside
+3138:     // React's commit, and retain the lease through parse/layout completion.
+3139:     const frame = requestAnimationFrame(() => {
+3140:       const isCurrent = () => pendingDocumentSelection.current === request
+3141:         && request.sequence === openSequence.current && request.generation === generationRef.current
+3142:         && request.fileId === activeIdRef.current
+3143:         && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content;
+3144:       const adapter = documentSelectionRef.current;
+3145:       if (!isCurrent() || !adapter || adapter.fileId !== request.fileId) return;
+3146:       request.dispatched = true;
+3147:       adapter.selectAll({ isCurrent, onComplete: () => {
+3148:         if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null;
+3149:       } });
+3150:     });
+3151:     return () => cancelAnimationFrame(frame);
+3152:   });
+3153:   useEffect(() => {
+3154:     const selectAll = (event: KeyboardEvent) => {
+3155:       const acquisition = selectionAcquisition.current;
+3156:       const loading = acquisition?.sequence === openSequence.current && acquisition.generation === generationRef.current ? acquisition : null;
+3157:       if (!commandPressed(event) || event.key.toLowerCase() !== "a" || event.shiftKey
+3158:         || event.defaultPrevented || event.isComposing || document.querySelector('[aria-modal="true"]')
+3159:         || (!loading && (!active || (active.kind && active.kind !== "markdown") || active.documentLoading || active.errorCode || active.largeInspection))
+3160:         || ownsTextInput(event.target, findRoot) || ownsTextInput(document.activeElement, findRoot)) return;
+3161:       event.preventDefault(); event.stopPropagation();
+3162:       const request: NonNullable<typeof pendingDocumentSelection.current> = { sequence: openSequence.current, generation: generationRef.current,
+3163:         loadToken: loading?.token, fileId: loading ? undefined : active!.id,
+3164:         content: loading ? undefined : active!.content };
+3165:       pendingDocumentSelection.current = request;
+3166:       if (!loading && !active!.documentLoading && documentSelectionRef.current?.fileId === active!.id) {
+3167:         request.dispatched = true;
+3168:         documentSelectionRef.current.selectAll({ isCurrent: () => pendingDocumentSelection.current === request
+3169:           && request.sequence === openSequence.current && request.generation === generationRef.current
+3170:           && request.fileId === activeIdRef.current
+3171:           && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content,
+3172:         onComplete: () => { if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null; } });
+3173:       }
+3174:     };
+3175:     window.addEventListener("keydown", selectAll, true);
+3176:     return () => window.removeEventListener("keydown", selectAll, true);
+3177:   });
+3178: 
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/src/app/appearance.ts
+126: }
+127: 
+128: let appearance: ReturnType<typeof createAppearanceController> | undefined;
+129: export function getAppearance() {
+130:   if (!appearance) {
+131:     // Accessing window.localStorage itself may throw in a restricted WebView.
+132:     const storage = {
+133:       getItem: (key: string) => window.localStorage.getItem(key),
+134:       setItem: (key: string, value: string) => window.localStorage.setItem(key, value)
+135:     };
+136:     appearance = createAppearanceController({ storage, root: document.documentElement, events: window,
+137:       media: typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: dark)") : undefined,
+138:       native: isTauri() && !new URLSearchParams(location.search).has("settings") ? getCurrentWindow() : undefined });
+139:   }
+140:   return appearance;
+141: }
+142: export function useAppearance() {
+143:   const controller = getAppearance();
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/tests/ui/new-markdown.test.tsx
+1: // @vitest-environment jsdom
+2: import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-library/react";
+3: import { afterEach, beforeEach, expect, it, vi } from "vitest";
+4: import filenameCases from "../fixtures/new-markdown-filenames.json";
+5: import NewMarkdownDialog, { markdownFilename } from "../../src/app/NewMarkdownDialog";
+6: import userEvent from "@testing-library/user-event";
+7: import { typeRich } from "./rich-edit-helpers";
+8: import App from "../../src/app/App";
+9: const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), chooseMarkdownDestination: vi.fn(), cancelMarkdownDestination: vi.fn(), createMarkdownFile: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(), rememberRecentDocument: vi.fn(), loadWorkspaceSession: vi.fn(), listRecentItems: vi.fn(), listNativeEntries: vi.fn(),
+10:   listSafetyCopies: vi.fn(), setNativeMenuState: vi.fn(), checkpointWorkspaceSession: vi.fn(), selectFile: vi.fn(), readDocument: vi.fn(), loadSectionRecovery: vi.fn(), listEditSections: vi.fn(),
+11:   menu: null as null | ((event: { payload: string }) => void), native: false }));
+12: vi.mock("../../src/app/api", async () => ({ ...await vi.importActual("../../src/app/api"), api: mocks }));
+13: vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => mocks.native, invoke: vi.fn() }));
+14: vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name, callback) => { if (name === "native:menu") mocks.menu = callback; return () => {}; }) }));
+15: const folder = { id: "granted", name: "Disposable", displayPath: "/tmp/disposable", generation: 1 };
+16: beforeEach(() => { vi.resetAllMocks(); localStorage.clear(); mocks.native = false; mocks.menu = null;
+17:   mocks.loadWorkspaceSession.mockResolvedValue(null); mocks.listRecentItems.mockResolvedValue({ items: [], recoveredCorrupt: false });
+18:   mocks.listNativeEntries.mockResolvedValue([]); mocks.listSafetyCopies.mockResolvedValue(null); mocks.setNativeMenuState.mockResolvedValue(undefined);
+19:   mocks.cancelMarkdownDestination.mockResolvedValue(undefined); mocks.rememberRecentDocument.mockResolvedValue(undefined);
+20:   mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
+21:   mocks.chooseMarkdownDestination.mockResolvedValue(null); mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
+22: });
+23: afterEach(() => cleanup());
+24: it.each([["note", "note.md"], ["note.MD", "note.md"], ["note.md.md", "note.md"], ["Niño", "Niño.md"],
+25:  ["", null], [".MD", null], ["../file", null], ["a\\b", null], ["NUL.txt", null], ["file.", null], [" file", " file.md"], ["file ", null], ["CONIN$", null], ["LPT¹", null], ["a\u0000b", null], ["a".repeat(253), null]])("validates %s", (input, expected) => expect(markdownFilename(input)).toBe(expected));
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/tests/ui/new-markdown.test.tsx
+158: it("preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu", async () => {
+159:  mocks.native = true;
+160:  mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+161:  mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument);
+162:  mocks.loadSectionRecovery.mockResolvedValue(null); mocks.listEditSections.mockResolvedValue({diskVersion:"empty-v1",sections:[whole]});
+163:  mocks.beginSectionEdit.mockImplementation(async fileId=>({sessionId:"edit:"+fileId,diskVersion:"empty-v1",section:whole,source:"",lineSeparator:"\n"}));
+164:  render(<App />); fireEvent.click(await screen.findByRole("button",{name:"New Markdown file"})); fillName();
+165:  fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath); fireEvent.click(screen.getByText("Create file"));
+166:  await waitFor(()=>expect(document.querySelector('[data-rich-leaf]')).not.toBeNull()); typeRich("Keep this draft");
+167:  await waitFor(()=>expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false));
+168:  fireEvent.keyDown(document.querySelector('[data-rich-leaf]')!,{key:"t",metaKey:true}); act(()=>mocks.menu?.({payload:"workspace_new_markdown"}));
+169:  expect(screen.getAllByRole("dialog",{name:"New Markdown file"})).toHaveLength(1);
+170:  const second={...createdDocument,fileId:"second-native-id",identityKey:"second-identity",name:"second.md"};
+171:  mocks.createMarkdownFile.mockResolvedValue({...opened,document:second,segments:["second.md"]}); mocks.readDocument.mockResolvedValue(second);
+172:  fireEvent.change(screen.getByLabelText("Filename"),{target:{value:"second"}});fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);fireEvent.click(screen.getByText("Create file"));
+173:  await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledWith(second.fileId,whole.id,"empty-v1"));
+174:  expect(mocks.discardSectionEdit).not.toHaveBeenCalled(); fireEvent.click(screen.getByRole("tab",{name:/^first\.md/}));
+175:  await screen.findByText("Keep this draft"); expect(screen.getByRole("button",{name:"Save file"}).hasAttribute("disabled")).toBe(false);
+176: });
+177: it("retains the created tab on editor startup failure without trying to create again", async () => {
+178:  mocks.native=true;mocks.chooseMarkdownDestination.mockResolvedValue({token:"choice",name:"Disposable",displayPath:folder.displayPath});
+179:  mocks.createMarkdownFile.mockResolvedValue(opened); mocks.readDocument.mockResolvedValue(createdDocument); mocks.loadSectionRecovery.mockResolvedValue(null);
+180:  mocks.listEditSections.mockResolvedValue({diskVersion:"empty-v1",sections:[whole]}); mocks.beginSectionEdit.mockRejectedValue({code:"denied",message:"test"});
+181:  render(<App />); fireEvent.click(await screen.findByRole("button",{name:"New Markdown file"}));fillName();fireEvent.click(screen.getByText("Choose folder…"));await screen.findByText(folder.displayPath);fireEvent.click(screen.getByText("Create file"));
+182:  await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledOnce()); expect(await screen.findByRole("tab",{name:"first.md"})).toBeTruthy();
+183:  expect(mocks.createMarkdownFile).toHaveBeenCalledOnce();expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+184: });
+185: 
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/tests/ui/approved-navigation.test.tsx
+54:   fireEvent.click(screen.getByRole("tab", { name: "a.md" })); expect(selected()).toContain("a.md"); expect(screen.queryByRole("alert")).toBeNull();
+55: });
+56: it("rejects an older failure from repeated opens of the same document", async () => {
+57:   await start(); const older = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(older.promise);
+58:   fireEvent.click(screen.getByTitle("a.md")); await open("a.md");
+59:   await act(async () => older.reject({ code: "missing", message: "Fixture no longer exists" }));
+60:   expect(selected()).toContain("a.md"); expect(screen.queryByRole("alert")).toBeNull(); expect(screen.getByRole("heading", { name: "a.md" })).toBeTruthy();
+61: });
+62: it("a slower earlier open never steals selection from the last requested file", async () => {
+63:   await start(); const older = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(older.promise);
+64:   fireEvent.click(screen.getByTitle("a.md")); await open("b.md");
+65:   await act(async () => older.resolve(documentFor("a.md")));
+66:   expect(selected()).toContain("b.md"); expect(screen.getAllByRole("tab")).toHaveLength(2);
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/tests/ui/edit-flow.test.tsx
+197: });
+198: 
+199: it("keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close", async () => {
+200:   let complete!: (value: unknown) => void;
+201:   mocks.beginSectionEdit.mockReturnValue(new Promise(resolve => { complete = resolve; }));
+202:   render(<App />);
+203:   fireEvent.click(projectAction("Open folder"));
+204:   fireEvent.click(await screen.findByTitle("a.md"));
+205:   const edit = await screen.findByRole("button",{name:"Edit section “One”"});
+206:   edit.focus(); fireEvent.click(edit); fireEvent.click(edit);
+207:   expect(document.activeElement).toBe(edit);
+208:   expect(mocks.beginSectionEdit).toHaveBeenCalledOnce();
+209:   expect(screen.getByText("alpha")).toBeTruthy();
+210:   expect(within(edit).getByRole("status",{name:"Loading…"})).toBeTruthy();
+211:   fireEvent.click(screen.getByRole("button",{name:"Close tab: a.md"}));
+212:   complete({sessionId:"late-session",diskVersion:"v1",section:sections[0],source:"# One\nalpha\n",lineSeparator:"\n"});
+213:   await waitFor(()=>expect(mocks.discardSectionEdit).toHaveBeenCalledWith("late-session"));
+214:   expect(screen.queryByRole("button",{name:"Change draft"})).toBeNull();
+215: });
+
+/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final/tests/ui/automatic-refresh.test.tsx
+165:     vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function(this: HTMLElement) {
+166:       const top = this.id === "middle" ? middleTop - reader.scrollTop
+167:         : this.id === "end" ? middleTop + 600 - reader.scrollTop
+168:         : this.matches("h1,h2") ? -reader.scrollTop : 0;
+169:       return { top, bottom: top + 20, left: 0, right: 600, width: 600, height: 20, x: 0, y: top, toJSON() {} };
+170:     });
+171:     fireEvent.click(projectAction("Open folder"));
+172:     fireEvent.click(await screen.findByTitle("a.md"));
+173:     await waitFor(() => expect(workers).toHaveLength(1));
+174:     act(() => workers.at(-1)!.reply());
+175:     await screen.findByRole("heading", { name: "End" });
+176:     reader.scrollTop = 400 - margin;
+177:     fireEvent.scroll(reader);
+178:     await emit("refresh:file_changed", { generation: 1, fileId: "a.md", diskVersion: "v2",
+179:       identityKey: "1:a.md", checkedAt: Date.now() });
+180:     await waitFor(() => expect(workers).toHaveLength(2));
+181:     middleTop = 800;
+182:     act(() => workers.at(-1)!.reply());
+183:     // The first painted region exists, but the retained heading is not painted yet.
+184:     expect(reader.querySelector(".markdown-body")).toBeTruthy();
+185:     expect(screen.queryByRole("heading", { name: "Middle" })).toBeNull();
+186:     reader.scrollTop = 0;

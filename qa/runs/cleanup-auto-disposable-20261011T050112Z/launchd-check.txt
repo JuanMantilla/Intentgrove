@@ -1,0 +1,81 @@
+gui/501/com.juanmantilla.qa-cleanup = {
+	active count = 1
+	path = /Users/juanmantilla/Library/LaunchAgents/com.juanmantilla.qa-cleanup.plist
+	type = LaunchAgent
+	state = running
+
+	program = /usr/bin/python3
+	arguments = {
+		/usr/bin/python3
+		-B
+		/Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/cleanup_service.py
+		--config
+		/Users/juanmantilla/projects/personal/.agents/cleanup-service.json
+	}
+
+	working directory = /Users/juanmantilla/Library/Application Support/QA Cleanup
+
+	stdout path = /Users/juanmantilla/Library/Application Support/QA Cleanup/logs/worker.stdout.log
+	stderr path = /Users/juanmantilla/Library/Application Support/QA Cleanup/logs/worker.stderr.log
+	inherited environment = {
+		SSH_AUTH_SOCK => /var/run/com.apple.launchd.DnGFPwbkoy/Listeners
+	}
+
+	default environment = {
+		PATH => /usr/bin:/bin:/usr/sbin:/sbin
+	}
+
+	environment = {
+		OSLogRateLimit => 64
+		PYTHONDONTWRITEBYTECODE => 1
+		PATH => /Users/juanmantilla/.local/bin:/usr/bin:/bin
+		HOME => /Users/juanmantilla/Library/Application Support/QA Cleanup/auth
+		XPC_SERVICE_NAME => com.juanmantilla.qa-cleanup
+	}
+
+	domain = gui/501 [100015]
+	umask = 77
+	asid = 100015
+	minimum runtime = 60
+	exit timeout = 5
+	runs = 1
+	pid = 24145
+	immediate reason = speculative
+	forks = 26
+	execs = 3
+	initialized = 1
+	trampolined = 1
+	started suspended = 0
+	proxy started suspended = 0
+	checked allocations = 0 (queried = 1)
+	checked allocations reason = no host
+	checked allocations flags = 0x0
+	last exit code = (never exited)
+
+	resource coalition = {
+		ID = 94461
+		type = resource
+		state = active
+		active count = 1
+		name = com.juanmantilla.qa-cleanup
+	}
+
+	jetsam coalition = {
+		ID = 94462
+		type = jetsam
+		state = active
+		active count = 1
+		name = com.juanmantilla.qa-cleanup
+	}
+
+	spawn type = background (5)
+	jetsam priority = 40
+	jetsam memory limit (active) = (unlimited)
+	jetsam memory limit (inactive) = (unlimited)
+	jetsamproperties category = daemon
+	jetsam thread limit = 32
+	cpumon = default
+	sanitizer flags = 0x0
+
+	properties = keepalive | runatload | inferred program
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "n": 0,
+    "at": 3773.163667,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 3888.316792,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 2,
+    "at": 3889.421,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 3,
+    "at": 3901.960333,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 4,
+    "at": 3986.218208,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 5,
+    "at": 3986.640167,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 6,
+    "at": 4025.273,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/appearance-operations-causal.test.tsx:154:77\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 7,
+    "at": 4026.0525,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll",
+    "value": 170
+  },
+  {
+    "n": 8,
+    "at": 4026.685,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "capture",
+    "id": "file",
+    "scrollTop": 170,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "n": 9,
+    "at": 4027.049458,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 10,
+    "at": 4042.434042,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "rendered",
+    "id": "file"
+  },
+  {
+    "n": 11,
+    "at": 4053.014292,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 170
+  },
+  {
+    "n": 12,
+    "at": 4073.556333,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 13,
+    "at": 4360.859292,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

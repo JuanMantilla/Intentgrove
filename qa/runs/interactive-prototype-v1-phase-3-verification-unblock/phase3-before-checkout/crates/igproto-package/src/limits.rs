@@ -1,0 +1,27 @@
+//! Package admission budgets. Semantic/JSON budgets remain in igproto-model.
+pub const MIB: usize = 1_048_576;
+pub const ARCHIVE: usize = 32 * MIB;
+pub const EXPANDED: usize = 128 * MIB;
+pub const ENTRIES: usize = 162;
+pub const RATIO: u64 = 100;
+pub const SVG: usize = 2 * MIB;
+pub const SVG_TOTAL: usize = 32 * MIB;
+pub const PNG: usize = 8 * MIB;
+pub const PNG_TOTAL: usize = 96 * MIB;
+pub const ASSETS: usize = 128;
+pub const PIXELS: u64 = 8_388_608;
+pub const DECODED: u64 = 128 * MIB as u64;
+pub const ELEMENTS: usize = 10_000;
+pub const ELEMENTS_TOTAL: usize = 100_000;
+pub const DEPTH: usize = 40;
+pub const ATTRIBUTES: usize = 64;
+pub const VALUE: usize = 16 * 1024;
+pub const PATH_BYTES: usize = 256 * 1024;
+pub const PATH_ITEMS: usize = 100_000;
+pub const PATH_ITEMS_TOTAL: usize = 500_000;
+pub const TEXT: usize = 100_000;
+pub const IDS: usize = 512;
+pub const REFERENCES: usize = 2048;
+pub const FILTERS: usize = 16;
+pub const FILTERED: usize = 32;
+pub const DIAGNOSTICS: usize = 128;

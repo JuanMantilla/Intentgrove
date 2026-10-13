@@ -1,0 +1,193 @@
+--- tests/ui/new-markdown.test.tsx.before
++++ tests/ui/new-markdown.test.tsx
+@@ -1,6 +1,7 @@
+ // @vitest-environment jsdom
+ import { cleanup, fireEvent, render, screen, waitFor, act } from "@testing-library/react";
+ import { afterEach, beforeEach, expect, it, vi } from "vitest";
++import filenameCases from "../fixtures/new-markdown-filenames.json";
+ import NewMarkdownDialog, { markdownFilename } from "../../src/app/NewMarkdownDialog";
+ import userEvent from "@testing-library/user-event";
+ import { typeRich } from "./rich-edit-helpers";
+@@ -21,7 +22,7 @@
+ });
+ afterEach(() => cleanup());
+ it.each([["note", "note.md"], ["note.MD", "note.md"], ["note.md.md", "note.md"], ["Niño", "Niño.md"],
+- ["", null], [".MD", null], ["../file", null], ["a\\b", null], ["NUL.txt", null], ["file.", null], [" file", "file.md"], ["file ", "file.md"], ["CONIN$", null], ["LPT¹", null], ["a\u0000b", null], ["a".repeat(253), null]])("validates %s", (input, expected) => expect(markdownFilename(input)).toBe(expected));
++ ["", null], [".MD", null], ["../file", null], ["a\\b", null], ["NUL.txt", null], ["file.", null], [" file", " file.md"], ["file ", null], ["CONIN$", null], ["LPT¹", null], ["a\u0000b", null], ["a".repeat(253), null]])("validates %s", (input, expected) => expect(markdownFilename(input)).toBe(expected));
+ it("focuses Filename, contains Tab, cancels and restores focus without invoking native IO", async () => {
+   const trigger = document.createElement("button"); document.body.append(trigger); trigger.focus(); const close = vi.fn();
+   const view = render(<NewMarkdownDialog locale="en" defaultDestination={folder} onClose={close} />);
+@@ -183,7 +184,7 @@
+ });
+ 
+ // QA-0028: consumer contract; bridge calls below are mocked, not filesystem evidence.
+-it.each(["CON .txt", "con   .notes.MD", "LPT¹ .txt", "a\u0085b", "a\u0080b", "a\u009fb"])("rejects %s inline and guards keyboard/form submission", async name => {
++it.each(["note ", "note.", "note.md ", "note .MD.md", "file.txt", "\u0085note\u0085", "CON .txt", "con   .notes.MD", "LPT¹ .txt", "a\u0085b", "a\u0080b", "a\u009fb"])("rejects %s inline and guards keyboard/form submission", async name => {
+   const created = vi.fn(), close = vi.fn();
+   render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={close} />);
+   const input = screen.getByLabelText("Filename");
+@@ -202,13 +203,13 @@
+   expect(input.getAttribute("aria-invalid")).toBe("false");
+   expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(false);
+ });
+-it.each(["Niño", "🚀", "notes.v1.txt", "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\ufeffnote", "\u0085note\u0085"])("preserves native normalization and Enter for %s", async name => {
++it.each(["Niño", "🚀", "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\ufeffnote"])("preserves native normalization and Enter for %s", async name => {
+   mocks.createMarkdownFile.mockResolvedValue(opened);
+   const created = vi.fn().mockResolvedValue(undefined);
+   render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />);
+   fireEvent.change(screen.getByLabelText("Filename"), { target: { value: name } });
+   await userEvent.setup().keyboard("{Enter}");
+-  const expected = name === "\u0085note\u0085" ? "note.md" : `${name}.md`;
++  const expected = `${name}.md`;
+   await waitFor(() => expect(created).toHaveBeenCalledOnce());
+   expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: expected });
+ });
+@@ -229,3 +230,18 @@
+   expect(created).not.toHaveBeenCalled(); expect(close).not.toHaveBeenCalled();
+   expect(mocks.selectRoot).not.toHaveBeenCalled(); expect(screen.getByText(folder.displayPath)).toBeTruthy();
+ });
++
++// Shared behavioral vectors are regression evidence, not policy authority.
++it.each(filenameCases)("QA-0030 UI policy: $input", ({ input, expected }) => {
++  expect(markdownFilename(input)).toBe(expected);
++});
++it.each(["release.v2.md", "note.MD", "note.md.MD.md"])("QA-0030 Enter creates %s and retains destination", async name => {
++  mocks.createMarkdownFile.mockResolvedValue(opened);
++  const created = vi.fn().mockResolvedValue(undefined);
++  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />);
++  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: name } });
++  expect(screen.getByText(folder.displayPath)).toBeTruthy();
++  await userEvent.setup().keyboard("{Enter}");
++  await waitFor(() => expect(created).toHaveBeenCalledOnce());
++  expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: markdownFilename(name) });
++});
+--- os-engineering/new-markdown-20261011/frontend-handoff.md.before
++++ os-engineering/new-markdown-20261011/frontend-handoff.md
+@@ -27,7 +27,7 @@
+ 
+ Tokens authorize native-selected held directory handles, expire after 10 minutes, are bounded to eight pending choices, and are checked again at confirmation. Expired choices are pruned on the next selection/creation access; resources also release with process state. Cancel removes only that token. Before-creation failures preserve the token for correction/retry; a commit consumes it. Selection/cancellation never installs a grant, replaces the project, clears file IDs/snapshots, or touches drafts. A successful token creation registers only the real committed document as an explicit-file grant, leaving prior roots/documents intact. This deliberately reuses the one-root session schema and outside-file recovery rather than adding an unpersistable second-root tab. Existing explicit-file watchers preserve current root watchers and deduplicate by fileId; watcher failure does not undo creation, and is returned as watchFailed.
+ 
+-Filename validation independently trims surrounding whitespace, strips repeated terminal case-insensitive `.md` suffixes, adds one `.md`, checks nonempty single component, forbidden/control characters, trailing dots/spaces, portable reserved device stems (including superscript digits), and <=255 UTF-8 bytes. Native destination APIs enforce actual filesystem equivalence and exclusive create. macOS sensitive volumes may distinguish differently cased names; NTFS does not promise Unicode normalization equivalence. Native Windows exclusive creation requests case-insensitive lookup. No app-level Unicode lowercasing/normalization invents collisions.
++QA-0030 correction (2026-10-11): the earlier trimming/append behavior was implementation drift, not an approved rule. Filename validation preserves whitespace, rejects trailing ASCII spaces/dots and the selected prototype’s competing terminal extensions (1–8 ASCII letters/digits other than `.md`), strips repeated terminal case-insensitive `.md` suffixes, adds one `.md`, checks nonempty single component, forbidden/control characters, trailing dots/spaces, portable reserved device stems (including superscript digits), and <=255 UTF-8 bytes. Native destination APIs enforce actual filesystem equivalence and exclusive create. macOS sensitive volumes may distinguish differently cased names; NTFS does not promise Unicode normalization equivalence. Native Windows exclusive creation requests case-insensitive lookup. No app-level Unicode lowercasing/normalization invents collisions.
+ 
+ A rejected request with `already_exists`, `invalid_filename`, `invalid_grant`, `root_reselection_required`, `denied`, `unsupported_mount` or `cloud_placeholder` means the exclusive open did not commit. Keep filename/destination fields and show localized actionable errors. `committed_not_opened` means the real file has been created: retain the returned identity/path and any usable fileId; show “file created; could not open/verify” with reopening/reselection recovery. Never automatically create again, report total failure, or delete the file. Paths can be stale after an external directory move; identityKey is the committed held-file identity, not a guarantee the displayed path remains current. Null identity/fileId means that step could not be established. Unexpected IPC/internal transport failure must be treated as outcome uncertain, with destination inspection before a user retry.
+ 
+--- src-tauri/src/creation.rs.before
++++ src-tauri/src/creation.rs
+@@ -104,7 +104,16 @@
+     }
+ }
+ pub(crate) fn filename(input: &str) -> AppResult<String> {
+-    let mut stem = input.trim();
++    // Match the approved Option B prototype's bounded competing-extension rule.
++    // Do not silently trim filename content.
++    if input.rsplit_once('.').is_some_and(|(_, extension)| {
++        (1..=8).contains(&extension.len())
++            && extension.bytes().all(|byte| byte.is_ascii_alphanumeric())
++            && !extension.eq_ignore_ascii_case("md")
++    }) {
++        return Err(AppError::new("invalid_filename", "Use .md instead of another extension"));
++    }
++    let mut stem = input;
+     while stem.len() >= 3
+         && stem
+             .get(stem.len() - 3..)
+@@ -380,8 +389,41 @@
+         }
+     }
+     #[test]
++    fn qa0030_shared_policy_and_real_create() {
++        let cases: Vec<serde_json::Value> = serde_json::from_str(include_str!("../../tests/fixtures/new-markdown-filenames.json")).unwrap();
++        for case in cases {
++            let input = case["input"].as_str().unwrap();
++            let expected = case["expected"].as_str();
++            assert_eq!(filename(input).ok().as_deref(), expected, "{input:?}");
++            for token in [false, true] {
++                let dir = FixtureDir::new("qa0030-policy");
++                let state = AppState::default();
++                let choices = CreationState::default();
++                let root = state.register_root(dir.path()).unwrap();
++                let choice = choices.choose(dir.path().to_owned()).unwrap();
++                let req = if token {
++                    CreateRequest { root_id: None, segments: None, destination_token: Some(choice.token.clone()), filename: input.into() }
++                } else { request(&root.id, input) };
++                let result = create(&state, &choices, req);
++                if let Some(name) = expected {
++                    let CreateOutcome::Opened { document, .. } = result.unwrap() else { panic!("expected opened") };
++                    assert_eq!(document.name, name);
++                    assert_eq!(document.content, "");
++                    assert_eq!(std::fs::read(dir.path().join(name)).unwrap(), b"");
++                    assert!(!document.identity_key.is_empty());
++                    assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
++                } else {
++                    assert_eq!(result.err().unwrap().code, "invalid_filename");
++                    assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 0);
++                    assert!(choices.lock().unwrap().contains_key(&choice.token));
++                }
++                assert!(state.root(&root.id).is_ok());
++            }
++        }
++    }
++    #[test]
+     fn filename_validation_is_native_and_unicode_safe() {
+-        assert_eq!(filename(" café.MD.md ").unwrap(), "café.md");
++        assert_eq!(filename(" café.MD.md").unwrap(), " café.md");
+         assert_eq!(filename("🚀").unwrap(), "🚀.md");
+         for bad in [
+             "",
+@@ -407,7 +449,7 @@
+         let choices = CreationState::default();
+         let root = state.register_root(dir.path()).unwrap();
+         let choice = choices.choose(dir.path().to_owned()).unwrap();
+-        let mut bad = vec!["CON .txt".to_owned(), "con   .notes.MD".to_owned(), "LPT¹ .txt".to_owned(), "é".repeat(126) + "a", "🚀".repeat(63) + "a"];
++        let mut bad = vec!["note ".to_owned(), "note.".to_owned(), "note.md ".to_owned(), "note .MD.md".to_owned(), "file.txt".to_owned(), "notes.v1.txt".to_owned(), "CON .txt".to_owned(), "con   .notes.MD".to_owned(), "LPT¹ .txt".to_owned(), "é".repeat(126) + "a", "🚀".repeat(63) + "a"];
+         bad.extend((0x7f..=0x9f).map(|c| format!("a{}b", char::from_u32(c).unwrap())));
+         for name in bad {
+             for token in [false, true] {
+@@ -419,10 +461,10 @@
+                 assert!(choices.lock().unwrap().contains_key(&choice.token));
+             }
+         }
+-        for name in ["Niño".to_owned(), "🚀".to_owned(), "notes.v1.txt".to_owned(), "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\u{feff}note".to_owned()] {
++        for name in ["Niño".to_owned(), "🚀".to_owned(), "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\u{feff}note".to_owned()] {
+             assert_eq!(filename(&name).unwrap(), format!("{name}.md"));
+         }
+-        assert_eq!(filename("\u{85}note\u{85}").unwrap(), "note.md");
++        assert!(filename("\u{85}note\u{85}").is_err());
+     }
+     #[test]
+     fn real_empty_identity_duplicate_directory_and_drafts_preserved() {
+--- src/app/i18n.ts.before
++++ src/app/i18n.ts
+@@ -18,7 +18,7 @@
+     newNoFolder: "Choose a folder to save your file.",
+     newExtension: "The .md extension is added once.",
+     newCreate: "Create file",
+-    newInvalidName: "Enter a filename without path separators, reserved names or trailing spaces/dots.",
++    newInvalidName: "Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).",
+     newUnavailable: "File creation is not available in this build. No file will be created.",
+     newDescription: "Name your file and choose where it belongs.",
+ 
+@@ -439,7 +439,7 @@
+     newNoFolder: "Elige una carpeta para guardar tu archivo.",
+     newExtension: "La extensión .md se añade una sola vez.",
+     newCreate: "Crear archivo",
+-    newInvalidName: "Escribe un nombre sin separadores de ruta, nombres reservados ni espacios o puntos al final.",
++    newInvalidName: "Escribe un nombre sin separadores de ruta, nombres reservados, espacios o puntos al final ni otra extensión (por ejemplo, .txt).",
+     newUnavailable: "La creación de archivos no está disponible en esta versión. No se creará ningún archivo.",
+     newDescription: "Ponle un nombre al archivo y elige dónde guardarlo.",
+ 
+--- src/app/NewMarkdownDialog.tsx.before
++++ src/app/NewMarkdownDialog.tsx
+@@ -5,8 +5,9 @@
+ 
+ /** Portable UI validation; native validation and exclusive creation remain authoritative. */
+ export function markdownFilename(value: string): string | null {
+-  // Match Rust str::trim (Unicode White_Space), including U+0085, excluding U+FEFF.
+-  value = value.replace(/^\p{White_Space}+|\p{White_Space}+$/gu, "");
++  // Option B prototype: a competing extension is 1–8 terminal ASCII letters/digits.
++  // Preserve all input except the explicitly authorized terminal Markdown suffixes.
++  if (/\.(?!md$)[a-z0-9]{1,8}$/i.test(value)) return null;
+   if (!value || /[<>:"/\\|?*\u0000-\u001f\u007f-\u009f]/.test(value) || /[. ]$/.test(value)) return null;
+   const stem = value.replace(/(?:\.md)+$/i, "");
+   const reserved = stem.split(".", 1)[0].replace(/ +$/, "");

@@ -1,0 +1,163 @@
+{
+  "identifier": "com.juanmantilla.markdownworkspace",
+  "executableSha256": "b7b0f872414fe5cf0e2f6205ef0bd5a234878fa5d5873a2bffe0ccf0162eb053",
+  "packageFilesMatch": true,
+  "profile": "User-authorized current-account reset with verified private rollback backup",
+  "fullAcceptance": "INCOMPLETE",
+  "rows": [
+    {
+      "id": "P01",
+      "case": "Fresh production profile startup",
+      "status": "PASS",
+      "evidence": [
+        "production-fresh-start.txt",
+        "current-account-fresh-reset.json"
+      ]
+    },
+    {
+      "id": "P02",
+      "case": "Native folder picker and rich reading",
+      "status": "PASS",
+      "evidence": [
+        "production-rich-outline.txt",
+        "production-rich-outline.jpg"
+      ],
+      "scope": "Two supported diagrams; two rejected sources; metadata/outline. No resource-attempt claim."
+    },
+    {
+      "id": "P03",
+      "case": "Settings acknowledged 18px",
+      "status": "PASS",
+      "evidence": [
+        "production-settings-18-ack.txt"
+      ]
+    },
+    {
+      "id": "P04",
+      "case": "Ten Cmd-Q Cancel journeys",
+      "status": "PASS",
+      "evidence": [
+        "production-ten-quit-cancel.json",
+        "production-dirty-cmdq.txt"
+      ]
+    },
+    {
+      "id": "P05",
+      "case": "Dirty title Close Save",
+      "status": "PASS",
+      "evidence": [
+        "production-title-close-save-dialog.txt",
+        "production-title-close-save-disk.json"
+      ],
+      "scope": "Saved content and following section verified; actual Dock restoration separately verified in P06."
+    },
+    {
+      "id": "P06",
+      "case": "Actual Dock reopen",
+      "status": "PASS",
+      "reason": "Operator gesture requested",
+      "method": "USER_ASSISTED",
+      "userStatement": "yes, it did",
+      "evidence": [
+        "production-user-dock-reopen.txt",
+        "production-user-dock-reopen.jpg"
+      ],
+      "scope": "One actual named Dock click; restored two exact tabs and saved marker."
+    },
+    {
+      "id": "P07",
+      "case": "Actual file drop and explicit intake open",
+      "status": "PASS",
+      "method": "USER_ASSISTED",
+      "userStatement": "file dropped",
+      "evidence": [
+        "production-user-file-drop.txt",
+        "production-user-file-drop-open.txt"
+      ],
+      "scope": "One actual drop; intake Dropped here, exact file/marker and outside-root scope verified. Opening required intake Open item action."
+    },
+    {
+      "id": "P08",
+      "case": "Actual folder drop and explicit intake open",
+      "status": "PASS",
+      "method": "USER_ASSISTED",
+      "userStatement": "folder dropped",
+      "evidence": [
+        "production-user-folder-drop-intake.txt",
+        "production-user-folder-drop-open.txt"
+      ],
+      "scope": "One actual drop; explicit intake open changed root and cleared previous tabs; expected child marker and folder scope verified."
+    },
+    {
+      "id": "P09",
+      "case": "Production Settings actual file/folder drop refusal",
+      "status": "PASS",
+      "method": "USER_ASSISTED",
+      "userStatement": "changes nothing",
+      "evidence": [
+        "production-settings-drop-refusal.txt",
+        "production-after-settings-drop-reader.txt"
+      ],
+      "scope": "Operator reports neither changes Settings; subsequent AX bound reader, root/tab/marker unchanged. Automatic Settings post-drop tree not available."
+    },
+    {
+      "id": "P10",
+      "case": "Clean production Cmd-Q",
+      "status": "PASS",
+      "scope": "PID12259 exited after actual Cmd-Q; process probe exit1."
+    },
+    {
+      "id": "P11",
+      "case": "Finder Applications install and normal launch",
+      "status": "PASS",
+      "evidence": [
+        "production-applications-install.json",
+        "installed-production-launch.txt"
+      ],
+      "scope": "Read-only mounted DMG; native Finder copy/paste; all package hashes and nested signature match; normal Finder Cmd-O launch exact Applications executable. Not notarization/Gatekeeper certification or rollback."
+    },
+    {
+      "id": "P12",
+      "case": "Installed Cmd-W Keep draft",
+      "status": "PASS",
+      "evidence": [
+        "installed-cmdw-keep-draft-dialog.txt",
+        "installed-cmdw-draft-restored.txt"
+      ],
+      "scope": "Tab closes, reopening tree file restores edit."
+    },
+    {
+      "id": "P13",
+      "case": "Installed menu Quit Keep draft and real restart",
+      "status": "PASS",
+      "evidence": [
+        "installed-menu-quit-keep-draft.txt",
+        "installed-menu-quit-restart-draft-check.txt"
+      ],
+      "scope": "PID12594 exited; restarted exact installed path. Initial tree clean-looking; later action reveals hydrated draft. Startup recovery latency not measured."
+    },
+    {
+      "id": "P14",
+      "case": "Installed Cmd-Q Discard",
+      "status": "PASS",
+      "evidence": [
+        "installed-draft-postcheck.json"
+      ],
+      "scope": "Task draft discarded, main process absent, source fixture hash unchanged."
+    }
+  ],
+  "currentCandidateRun": {
+    "candidate": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+    "identifier": "com.juanmantilla.markdownworkspace",
+    "ledger": "native-final-20261008/coverage.json",
+    "report": "native-final-20261008/report.md",
+    "counts": {
+      "PASS": 315,
+      "FAIL": 3,
+      "NOT_APPLICABLE": 7
+    },
+    "fullAcceptance": "INCOMPLETE / FAILURES_PRESENT",
+    "historicalRowsRetained": true,
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md"
+  }
+}

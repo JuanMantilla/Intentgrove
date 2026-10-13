@@ -1,0 +1,137 @@
+--- src/app/App.tsx (before this task)
++++ src/app/App.tsx
+@@ -122,6 +122,9 @@
+   const [pendingFolder, setPendingFolder] = useState<string | null>(null);
+   const [pendingNativeEntry, setPendingNativeEntry] = useState<string | null>(null);
+   const [nativeEntries, setNativeEntries] = useState<NativePreview[]>([]);
++  const nativeListSequence = useRef(0);
++  const nativeOpening = useRef(false);
++  const nativeAttempts = useRef(new Set<string>());
+   const [clearDraftsConfirm, setClearDraftsConfirm] = useState(false);
+   const [clearCopiesConfirm, setClearCopiesConfirm] = useState(false);
+   const [safetyCopies, setSafetyCopies] = useState<SafetyCopyInventory | null>(null);
+@@ -165,6 +168,7 @@
+   const sessionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+   const sessionWrite = useRef<Promise<unknown>>(Promise.resolve());
+   const restoreLoads = useRef(new Map<string, symbol>());
++  const [restoreLoadRevision, setRestoreLoadRevision] = useState(0);
+   const imageLoads = useRef(new Map<string, symbol>());
+   const documentLoads = useRef(new Map<string, symbol>());
+   const htmlHandles = useRef(new Map<string, HtmlHandle>());
+@@ -388,8 +392,18 @@
+ 
+   async function refreshNativeEntries() {
+     if (typeof api.listNativeEntries !== "function") return;
+-    try { setNativeEntries(await api.listNativeEntries()); }
+-    catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
++    const sequence = ++nativeListSequence.current;
++    try {
++      const entries = await api.listNativeEntries();
++      if (sequence === nativeListSequence.current) {
++        const pendingIds = new Set(entries.map(entry => entry.id));
++        nativeAttempts.current.forEach(id => { if (!pendingIds.has(id)) nativeAttempts.current.delete(id); });
++        setNativeEntries(entries);
++      }
++    } catch (error) {
++      if (sequence === nativeListSequence.current)
++        setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
++    }
+   }
+   useEffect(() => {
+     void refreshNativeEntries();
+@@ -397,10 +411,38 @@
+     let unlisten: (() => void) | undefined;
+     try {
+       void listen("native:entry_pending", () => { void refreshNativeEntries(); })
+-        .then((stop) => { if (disposed) stop(); else unlisten = stop; }).catch(() => {});
++        .then((stop) => {
++          if (disposed) stop();
++          else { unlisten = stop; void refreshNativeEntries(); }
++        }).catch(() => {});
+     } catch { /* Browser-only preview has no Tauri event host. */ }
+-    return () => { disposed = true; unlisten?.(); };
++    return () => { disposed = true; nativeListSequence.current += 1; unlisten?.(); };
+   }, []);
++
++  useEffect(() => {
++    const restoredActive = tabs.find(tab => tab.id === activeId && tab.restoredKey);
++    const restoringActive = restoredActive && restoredActive.content === undefined
++      && !restoredActive.image && !restoredActive.localView && !restoredActive.largeInspection
++      && !restoredActive.errorCode;
++    // Restore first; incoming files must not replace the saved workspace or
++    // interrupt a save, section edit startup, selection, or destructive dialog.
++    if (!sessionReady || restoreOffer || restoringActive || restoreLoads.current.size
++      || busy || nativeOpening.current || closeInProgress.current
++      || selectionPending || documentPending || enteringSection || copySaving || savingTabId
++      || cleanupBusy || historyBusy || openingRecent || closeIntent || pendingSaveAs
++      || pendingSection || discardConflictConfirm || discardSectionId || clearDraftsConfirm
++      || clearCopiesConfirm || clearSessionConfirm || clearRecentsConfirm) return;
++    const entry = nativeEntries.find(item => item.kind === "document" && !item.errorCode
++      && !nativeAttempts.current.has(item.id));
++    if (!entry) return;
++    // Native acceptance consumes the ID. A stale snapshot or a failure must
++    // never repeat the grant/read or loop through the same request.
++    nativeAttempts.current.add(entry.id);
++    void acceptNativeEntry(entry.id);
++  }, [nativeEntries, sessionReady, restoreOffer, tabs, activeId, restoreLoadRevision, busy, selectionPending, documentPending,
++    enteringSection, copySaving, savingTabId, cleanupBusy, historyBusy, openingRecent,
++    closeIntent, pendingSaveAs, pendingSection, discardConflictConfirm, discardSectionId,
++    clearDraftsConfirm, clearCopiesConfirm, clearSessionConfirm, clearRecentsConfirm]);
+ 
+   async function dismissNativeEntry(id: string) {
+     try { await api.dismissNativeEntry(id); await refreshNativeEntries(); }
+@@ -409,7 +451,7 @@
+ 
+   async function acceptNativeEntry(id: string) {
+     const entry = nativeEntries.find((item) => item.id === id);
+-    if (!entry || busy) return;
++    if (!entry || busy || nativeOpening.current) return;
+     if (entry.errorCode || entry.kind === "unsupported") {
+       setNotice(noticeLocale => errorText(noticeLocale, entry.errorCode ?? "unsupported_type"));
+       await dismissNativeEntry(id);
+@@ -421,9 +463,10 @@
+       setCloseIntent({ kind: "folder" });
+       return;
+     }
++    nativeOpening.current = true;
+     setBusy(true);
+     try {
+-      const accepted = await api.acceptNativeEntry(id);
++      const accepted = await api.acceptNativeEntry(id, entry.kind === "document");
+       await refreshNativeEntries();
+       if (accepted.kind === "folder") activateFolder(accepted.grant);
+       else {
+@@ -437,7 +480,7 @@
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+       await refreshNativeEntries();
+-    } finally { setBusy(false); }
++    } finally { nativeOpening.current = false; setBusy(false); }
+   }
+ 
+   async function useRecent(entry: RecentItem) {
+@@ -716,6 +759,7 @@
+             ? { ...item, kind: "image", imageLoading: false, errorCode: readerError(error).code } : item));
+       }).finally(() => {
+         if (imageLoads.current.get(tab.id) === token) imageLoads.current.delete(tab.id);
++        setRestoreLoadRevision(revision => revision + 1);
+         if (restoreLoads.current.get(tab.id) === token) restoreLoads.current.delete(tab.id);
+       });
+       return;
+@@ -756,6 +800,7 @@
+     }).finally(() => {
+       if (restoreLoads.current.get(tab.id) === token) restoreLoads.current.delete(tab.id);
+       if (documentLoads.current.get(tab.request.fileId!) === token) documentLoads.current.delete(tab.request.fileId!);
++      setRestoreLoadRevision(revision => revision + 1);
+     });
+   }, [activeId, tabs]);
+ 
+@@ -3130,7 +3175,7 @@
+         <ul>{nativeEntries.map((entry) => <li key={entry.id}>
+           <span title={entry.displayPath}>{entry.name} · {entry.source === "finder" ? t(locale, "fromFinder") : t(locale, "fromDrop")}
+             {entry.errorCode && ` · ${errorText(locale, entry.errorCode)}`}</span>
+-          {!entry.errorCode && <button type="button" disabled={busy} onClick={() => void acceptNativeEntry(entry.id)}
++          {entry.kind === "folder" && !entry.errorCode && <button type="button" disabled={busy} onClick={() => void acceptNativeEntry(entry.id)}
+             aria-label={`${t(locale, "openIncoming")}: ${entry.name}`}>{t(locale, "openIncoming")}</button>}
+           <button type="button" onClick={() => void dismissNativeEntry(entry.id)}
+             aria-label={`${t(locale, "dismiss")}: ${entry.name}`}>{t(locale, "dismiss")}</button>

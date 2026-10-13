@@ -1,0 +1,11 @@
+{
+  "input": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/completion-v2.json",
+  "exit_code": 2,
+  "observed_error": "not_an_exact_regular_file",
+  "reason": "Three retention entries were directories; recorder requires exact regular-file evidence. Expanded from existing frozen snapshot and canonical finding files; no source, fixture, baseline or test-result change.",
+  "directory_entries": [
+    "frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+    "qa/findings"
+  ]
+}

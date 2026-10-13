@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export interface MenuAction { label: string; run: () => void; disabled?: boolean; hint?: string; reason?: string }
-export default function ActionMenu({ anchor, x, y, actions, onClose }: {
-  anchor: HTMLElement; x: number; y: number; actions: MenuAction[]; onClose: () => void;
+export default function ActionMenu({ anchor, x, y, actions, onClose, onRestoreFocus }: {
+  anchor: HTMLElement; x: number; y: number; actions: MenuAction[]; onClose: () => void; onRestoreFocus?: () => void;
 }) {
   const panel = useRef<HTMLDivElement>(null);
+  const focusedAction = useRef<HTMLButtonElement | null>(null);
   const closing = useRef(onClose); closing.current = onClose;
   const [position, setPosition] = useState({ x, y });
   useLayoutEffect(() => {
@@ -12,9 +13,19 @@ export default function ActionMenu({ anchor, x, y, actions, onClose }: {
     setPosition({ x: Math.max(8, Math.min(x, window.innerWidth - (bounds?.width ?? 0) - 8)),
       y: Math.max(8, Math.min(y, window.innerHeight - (bounds?.height ?? 0) - 8)) });
   }, [x, y]);
+  useLayoutEffect(() => {
+    const focused = focusedAction.current;
+    if (focused?.disabled && (document.activeElement === focused || document.activeElement === document.body)) {
+      const buttons = Array.from(panel.current?.querySelectorAll<HTMLButtonElement>("button") ?? []);
+      const index = buttons.indexOf(focused);
+      const next = buttons.slice(index + 1).find(button => !button.disabled)
+        ?? buttons.find(button => !button.disabled);
+      next?.focus();
+    }
+  }, [actions]);
   useEffect(() => {
     panel.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
-    const dismiss = (restoreFocus = false) => { closing.current(); if (restoreFocus && anchor.isConnected) anchor.focus(); };
+    const dismiss = (restoreFocus = false) => { closing.current(); if (restoreFocus && anchor.isConnected) { anchor.focus(); onRestoreFocus?.(); } };
     const outside = (event: PointerEvent) => {
       if (!panel.current?.contains(event.target as Node) && !anchor.contains(event.target as Node)) dismiss();
     };
@@ -34,6 +45,9 @@ export default function ActionMenu({ anchor, x, y, actions, onClose }: {
       window.removeEventListener("scroll", scroll, true); };
   }, [anchor]);
   return <div ref={panel} className="context-menu action-menu" role="menu" style={{ left: position.x, top: position.y }}
+    onFocusCapture={event => {
+      if (event.target instanceof HTMLButtonElement) focusedAction.current = event.target;
+    }}
     onKeyDown={(event) => {
       const buttons = Array.from(panel.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") ?? []);
       const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
@@ -44,7 +58,7 @@ export default function ActionMenu({ anchor, x, y, actions, onClose }: {
         buttons[next]?.focus();
       } else if (event.key === "Escape" || event.key === "Tab") {
         if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); }
-        onClose(); if (anchor.isConnected) anchor.focus();
+        onClose(); if (anchor.isConnected) { anchor.focus(); if (event.key === "Escape") onRestoreFocus?.(); }
       }
     }}>
     {actions.map((action) => <div key={action.label}>

@@ -1,0 +1,177 @@
+--- before/src/app/App.tsx
++++ after/src/app/App.tsx
+@@ -307,6 +307,8 @@
+   }
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
+   const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
++  const paintedMarkdown = useRef<{ id: string; content: string } | null>(null);
++  const initialReadingIntent = useRef<{ id: string; content: string; sequence: number; generation: number; top: number } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
+   const [folderSearchScope, setFolderSearchScope] = useState<string[]>([]);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+@@ -357,7 +359,7 @@
+   const [editorMenu, setEditorMenu] = useState<EditorCommandState>({ owner: false, undo: false, redo: false, selection: false });
+   const editorFindRef = useRef<DraftFindAdapter | null>(null);
+   const documentSelectionRef = useRef<DocumentSelectionAdapter | null>(null);
+-  const selectionAcquisition = useRef<{ token: symbol; sequence: number; generation: number } | null>(null);
++  const selectionAcquisition = useRef<{ token: symbol; sequence: number; generation: number; fileId?: string } | null>(null);
+   const pendingDocumentSelection = useRef<{
+     sequence: number; generation: number; loadToken?: symbol; fileId?: string; content?: string; dispatched?: boolean
+   } | null>(null);
+@@ -1398,7 +1400,7 @@
+   function revealFind(ordinal: number) {
+     if (!findIndex || !markdownFindResults?.count) return;
+     const span = findIndex.span(markdownFindResults.starts[ordinal], markdownFindResults.queryLength);
+-    if (findInDraft && span) { editorFindRef.current?.reveal(span); return; }
++    if (findInDraft && span) { editorFindRef.current?.reveal(span, { focus: false }); return; }
+     const range = span && findIndex.range(span);
+     range?.startContainer.parentElement?.scrollIntoView?.({ block: "center", behavior: "instant" });
+   }
+@@ -1927,6 +1929,8 @@
+     const current = () => generation === generationRef.current && documentLoads.current.get(requestKey) === token;
+     const activate = (id: string) => {
+       if (sequence !== openSequence.current) return;
++      const acquisition = selectionAcquisition.current;
++      if (acquisition?.token === token) acquisition.fileId = id;
+       const selection = pendingDocumentSelection.current;
+       if (selection?.loadToken === token && selection.sequence === sequence && selection.generation === generation) {
+         selection.fileId = id;
+@@ -2093,7 +2097,11 @@
+         : [...old, tab]);
+       activate(id);
+     } finally {
+-      if (selectionAcquisition.current?.token === token) selectionAcquisition.current = null;
++      // Keep the successful acquisition through the active handler's commit.
++      // A key in this interval must belong to the acquired document, not the
++      // previous render's active tab. Failed/stale acquisitions have no lease.
++      if (selectionAcquisition.current?.token === token && !selectionAcquisition.current.fileId)
++        selectionAcquisition.current = null;
+       setDocumentPending(old => old?.token === token ? null : old);
+       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+       if (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+@@ -2840,6 +2848,15 @@
+     // Loading and partially painted replacements can clamp the native scroll
+     // position. Their geometry must not overwrite the last complete passage.
+     const tab = tabsRef.current.find(item => item.id === id);
++    // A fully painted initial document can be read before section descriptors
++    // arrive. Remember that reading intent without trusting pending geometry.
++    if (tab?.content !== undefined && paintedMarkdown.current?.id === id
++      && paintedMarkdown.current.content === tab.content && hasPendingSectionLayout(tab)
++      && !readingAnchors.current.has(id) && !scrollPositions.current.has(id)) {
++      initialReadingIntent.current = { id, content: tab.content, sequence: openSequence.current,
++        generation: generationRef.current, top: reader.scrollTop };
++      return;
++    }
+     if (tab && tab.kind !== "image" && !tab.largeInspection
+       && (hasPendingSectionLayout(tab) || tab.content === undefined || renderedMarkdown?.id !== id
+         || renderedMarkdown.content !== tab.content
+@@ -2975,6 +2992,12 @@
+     if (!active || (active.kind !== "image" && !active.largeInspection
+       && (hasPendingSectionLayout(active) || active.content === undefined || renderedMarkdown?.id !== active.id
+         || renderedMarkdown.content !== active.content))) return;
++    const intent = initialReadingIntent.current;
++    if (intent?.id === activeId && intent.content === active?.content
++      && intent.sequence === openSequence.current && intent.generation === generationRef.current) {
++      scrollPositions.current.set(intent.id, intent.top);
++      initialReadingIntent.current = null;
++    }
+     const saved = readingAnchors.current.get(activeId ?? "");
+     setActiveOutlineId((prior) => prior === (saved?.headingId ?? null)
+       ? prior : saved?.headingId ?? null);
+@@ -3151,6 +3174,9 @@
+     return () => cancelAnimationFrame(frame);
+   });
+   useEffect(() => {
++    const committedAcquisition = selectionAcquisition.current;
++    if (committedAcquisition && committedAcquisition.fileId === active?.id && committedAcquisition.sequence === openSequence.current
++      && committedAcquisition.generation === generationRef.current) selectionAcquisition.current = null;
+     const selectAll = (event: KeyboardEvent) => {
+       const acquisition = selectionAcquisition.current;
+       const loading = acquisition?.sequence === openSequence.current && acquisition.generation === generationRef.current ? acquisition : null;
+@@ -3160,7 +3186,7 @@
+         || ownsTextInput(event.target, findRoot) || ownsTextInput(document.activeElement, findRoot)) return;
+       event.preventDefault(); event.stopPropagation();
+       const request: NonNullable<typeof pendingDocumentSelection.current> = { sequence: openSequence.current, generation: generationRef.current,
+-        loadToken: loading?.token, fileId: loading ? undefined : active!.id,
++        loadToken: loading && !loading.fileId ? loading.token : undefined, fileId: loading ? loading.fileId : active!.id,
+         content: loading ? undefined : active!.content };
+       pendingDocumentSelection.current = request;
+       if (!loading && !active!.documentLoading && documentSelectionRef.current?.fileId === active!.id) {
+@@ -3177,7 +3203,9 @@
+   });
+ 
+   function newMarkdownReady() {
+-    return Boolean(sessionReady && !restoreOffer && !restoreLoads.current.size && !newMarkdownOwner.current
++    // The ref acknowledges completed restoration synchronously. The state may
++    // still belong to the preceding render when an enabled action is invoked.
++    return Boolean(sessionReadyRef.current && !restoreOffer && !restoreLoads.current.size && !newMarkdownOwner.current
+       && !busy && !selectionPending && !documentPending && !enteringSection && !savingTabId && !copySaving
+       && !cleanupBusy && !cleanupRef.current && !savingTabRef.current && !copySavingRef.current
+       && !enteringSectionRef.current && !traversal.current && !openingLarge.current
+@@ -4240,7 +4268,8 @@
+                   layoutPending={hasPendingSectionLayout(active)}
+                   findRootRef={findRootRef}
+                   onSelectionReady={selectionReady}
+-                  onRendered={(id, content) => setRenderedMarkdown({ id, content })}
++                  onPainted={(id, content) => { paintedMarkdown.current = { id, content }; }}
++                  onRendered={(id, content) => setRenderedMarkdown(old => old?.id === id && old.content === content ? old : { id, content })}
+                   onHeadings={(entries) => updateHeadings(active.id, entries)}
+                   sections={sectionsByTab[active.id]}
+                   editingSection={activeEdit?.section}
+--- before/src/reader/MarkdownView.tsx
++++ after/src/reader/MarkdownView.tsx
+@@ -117,7 +117,7 @@
+ }
+ 
+ export default function MarkdownView({ content, fileId, locale, onNavigate, sections, activeSectionId,
+-  onEditSection, pendingSectionId, findRootRef, onHeadings, onRendered, onSelectionReady, sectionEditor, editingSection, editingOriginalSource, editingDraft, layoutPending = false }: {
++  onEditSection, pendingSectionId, findRootRef, onHeadings, onRendered, onPainted, onSelectionReady, sectionEditor, editingSection, editingOriginalSource, editingDraft, layoutPending = false }: {
+   content: string;
+   fileId: string;
+   locale: Locale;
+@@ -129,6 +129,7 @@
+   findRootRef?: Ref<HTMLElement>;
+   onHeadings?: (entries: HeadingEntry[]) => void;
+   onRendered?: (fileId: string, content: string) => void;
++  onPainted?: (fileId: string, content: string) => void;
+   onSelectionReady?: (adapter: DocumentSelectionAdapter | null) => void;
+   layoutPending?: boolean;
+   sectionEditor?: ReactNode;
+@@ -254,6 +255,11 @@
+     const timer = setTimeout(() => setPainted(count => Math.min(count + 24, blocks.length)), 0);
+     return () => clearTimeout(timer);
+   }, [painted, blocks]);
++  const paintedCallback = useRef(onPainted);
++  paintedCallback.current = onPainted;
++  useLayoutEffect(() => {
++    if (renderReady && painted >= blocks.length) paintedCallback.current?.(fileId, content);
++  }, [fileId, content, renderReady, painted, blocks.length]);
+   const renderedCallback = useRef(onRendered);
+   renderedCallback.current = onRendered;
+   useLayoutEffect(() => {
+--- before/src/reader/RichSection.tsx
++++ after/src/reader/RichSection.tsx
+@@ -147,8 +147,10 @@
+     current.current.onFindReady?.({
+       command: command => commands.current.run(command),
+       focus: () => { pendingFocus.current = true; setState(stateRef.current.update({}).state); },
+-      reveal: span => {
+-        pendingFocus.current = true;
++      reveal: (span, options) => {
++        // Automatic Find revelation scrolls and updates the source selection
++        // without replacing the query input's keyboard/DOM selection owner.
++        pendingFocus.current = options?.focus !== false;
+         dispatch(stateRef.current.update({ selection: { anchor: span.start, head: span.end } }));
+         const leaf = latestModel.current.leaves.findIndex(leaf => span.start >= leaf.from && span.start <= leaf.to);
+         root.current?.querySelector(`[data-rich-leaf="${leaf}"]`)?.scrollIntoView?.({ block: "center" });
+--- before/src/reader/SectionEditor.tsx
++++ after/src/reader/SectionEditor.tsx
+@@ -6,7 +6,7 @@
+ 
+ export type RichCommand = "undo" | "redo" | "bold" | "italic" | "code" | "link";
+ export interface EditorCommandState { owner: boolean; undo: boolean; redo: boolean; selection: boolean }
+-export interface DraftFindAdapter { reveal: (span: FindSpan) => void; focus: () => void; command?: (command: RichCommand) => void }
++export interface DraftFindAdapter { reveal: (span: FindSpan, options?: { focus?: boolean }) => void; focus: () => void; command?: (command: RichCommand) => void }
+ 
+ 
+ export default function SectionEditor({

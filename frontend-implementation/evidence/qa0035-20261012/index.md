@@ -1,0 +1,58 @@
+# QA-0035 evidence index
+
+Final report /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0035-implementation-report.md
+
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-identity.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/coverage.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/default-final.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/default-final.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/default-suite.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/development-default-suite.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/development-frontend-build.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/development-source-manifest.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/development-tested-snapshot.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixture-hashes-before.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/focused-01.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/focused-final.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/frontend-build.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/implementation-final.patch
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/implementation.patch
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/integrity-final.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-build-final.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-build.log
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-evidence-validation.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-filename-owner.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-find-owner.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-initial-copy.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-initial-immediate.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-initial.jpg
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-local-target-owner.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-local-target-selection.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed-copy.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed-redo.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed-selection.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed-undo.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed.jpg
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-modal-owner.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-modal.jpg
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-profile-retention.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-rapid-A-B-A.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-reading-selection.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-reopen-immediate.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-reopen.jpg
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-whole-copy.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-whole-selection.txt
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-whole.jpg
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native.config.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/prior-evidence-hashes.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/run-check.py
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/source-manifest-final.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/source-manifest.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/tested-paths-final.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/tested-paths.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/tested-snapshot-final-v3.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/tested-snapshot-final.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/tested-snapshot.json
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/whole-draft-input.txt
+
+- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/completion-recording-attempt.json

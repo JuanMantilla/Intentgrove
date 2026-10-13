@@ -1,0 +1,33 @@
+{
+  "id": "adjacent-failures-isolated-02",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/approved-navigation.test.tsx",
+    "tests/ui/edit-flow.test.tsx",
+    "tests/ui/automatic-refresh.test.tsx",
+    "-t",
+    "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+  "started_at": "2026-10-12T03:16:45.273958+00:00",
+  "load_before": [
+    4.671875,
+    12.5888671875,
+    20.06982421875
+  ],
+  "original_config": true,
+  "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-02.log",
+  "exit_code": 0,
+  "result": "PASS",
+  "finished_at": "2026-10-12T03:16:48.054397+00:00",
+  "load_after": [
+    4.61767578125,
+    12.44580078125,
+    19.9755859375
+  ]
+}

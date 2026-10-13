@@ -1,0 +1,20 @@
+{
+  "name": "native-final",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--features",
+    "document-contract-tests",
+    "--lib",
+    "--tests"
+  ],
+  "started_at": "2026-10-12T03:01:03.763793+00:00",
+  "finished_at": "2026-10-12T03:01:40.860119+00:00",
+  "exit_code": 0,
+  "log": "native-final.log",
+  "tested_snapshot": "tested-snapshot-v5.json"
+}

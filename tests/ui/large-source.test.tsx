@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, configure, getConfig, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../../src/app/App";
 
 const mocks = vi.hoisted(() => ({
@@ -41,6 +41,28 @@ beforeEach(() => {
   mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
 });
 afterEach(cleanup);
+
+it("accepts pinch on the first committed source text without an incidental timer drain", async () => {
+  const { asyncWrapper } = getConfig();
+  // Observe DOM readiness directly. The default wrapper's zero-delay timer can
+  // accidentally hide an input-listener gap after the text has committed.
+  configure({ asyncWrapper: async callback => await callback() });
+  try {
+    render(<App />);
+    fireEvent.click(screen.getAllByRole("button", { name: "Open file" })[0]);
+    fireEvent.click(await screen.findByRole("button", { name: "Open read-only source" }));
+    const source = await screen.findByText("# first line");
+    const wheel = new WheelEvent("wheel", { deltaY: -100, ctrlKey: true, cancelable: true });
+    fireEvent(source, wheel);
+    expect(wheel.defaultPrevented).toBe(true);
+    await waitFor(() => expect(Number(source.dataset.sourceZoom)).toBeGreaterThan(1));
+    expect(source.textContent).toBe("# first line\n");
+    expect(mocks.readSourceWindow).toHaveBeenCalledTimes(1);
+  } finally {
+    cleanup();
+    configure({ asyncWrapper });
+  }
+});
 
 describe("large source consent and bounded view", () => {
   it("requires explicit consent and never sends the oversized document to MarkdownView", async () => {

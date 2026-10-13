@@ -1,0 +1,118 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text fixtures
+				10 button Project tree settings
+				11 container
+					12 button edit-proof.md
+					13 button lifecycle.md
+					14 button linked.md
+					15 button permission.md
+					16 button plain.md
+					17 button qa-image.png
+					18 button rich.md
+					19 button search-navigation.md
+				20 text Storage and recovery
+				21 text Open edits and recovery offers: 0
+				22 button Manage…
+			23 container
+				24 container Visited files
+					25 button Back, Help: Back: search-navigation.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+					26 button (disabled) Forward, Help: No next file
+				27 tab group (selectable) Documents
+					28 container
+						29 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						30 button Close tab: search-navigation.md, Help: Close tab
+					31 container
+						32 tab (selected) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						33 button Close tab: rich.md, Help: Close tab
+				34 pop up button Go menu
+				35 button (collapsed) Open documents (2), Secondary Actions: Expand
+				36 container rich.md
+					37 text rich.md
+					38 text Folder root
+					39 toggle button Outline, Value: off
+					40 button (collapsed) Reading settings, Secondary Actions: Expand
+					41 button Edit section
+					42 summary Document…, Value: off
+						43 text Document…
+				44 container rich.md
+					45 container Reading acceptance
+						46 summary Metadata, Value: off
+							47 text Metadata
+						48 container Edit section: Reading acceptance
+							49 heading Reading acceptance, Value: 1
+								50 text Reading acceptance
+							51 button Edit section “Reading acceptance”
+						52 container
+							53 text Before diagrams. 
+							54 button Reference, Help: linked.md
+							55 text  and encoded footnote
+							56 button 1, Help: #fn-a%2520b
+							57 text .
+						58 text json
+						59 button Copy code
+						60 text {"highlight": true}
+
+						61 image Mermaid diagram
+						62 summary View source, Value: off
+							63 text View source
+						64 text Between diagrams.
+						65 image Mermaid diagram
+						66 summary View source, Value: off
+							67 text View source
+						68 text Diagram unavailable. The source is preserved below.
+						69 container (expanded) Secondary Actions: Collapse
+							70 summary View source, Value: on
+								71 text View source
+							72 text mermaid
+							73 button Copy code
+							74 text flowchart broken
+
+						75 text Diagram unavailable. The source is preserved below.
+						76 container (expanded) Secondary Actions: Collapse
+							77 summary View source, Value: on
+								78 text View source
+							79 text mermaid
+							80 button Copy code
+							81 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						82 text After diagrams.
+						83 container Edit section: Duplicate
+							84 heading Duplicate, Value: 2
+								85 text Duplicate
+							86 button Edit section “Duplicate”
+						87 text First duplicate target.
+						88 container Edit section: Duplicate
+							89 heading Duplicate, Value: 2
+								90 text Duplicate
+							91 button Edit section “Duplicate”
+						92 text Second duplicate target.
+						93 container
+							94 text [1] 
+							95 button ↩, Help: #fnref-a%2520b-1
+						96 text Encoded footnote body.
+	97 close button
+	98 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	99 minimize button
+	100 text Intentgrove
+101 menu bar
+	102 Intentgrove
+	103 File
+	104 Edit
+	105 View
+	106 Go
+	107 Window
+	108 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

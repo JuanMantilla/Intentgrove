@@ -1,0 +1,29 @@
+Window: "Intentgrove QA0030 Repair", App: Intentgrove QA0030 Repair.
+0 standard window Intentgrove QA0030 Repair, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container New Markdown file
+				4 heading New Markdown file, Value: 2
+					5 text New Markdown file
+				6 button Cancel
+				7 container
+					8 text Name your file and choose where it belongs. Filename
+					9 text field (settable) Filename, Value: note 
+					10 text The .md extension is added once. Destination
+					11 container Destination
+						12 text Choose a folder to save your file.
+					13 button Choose folder…
+					14 text Enter a filename without path separators, reserved names, trailing spaces/dots or another extension (for example, .txt).
+					15 button (disabled) Create file
+	16 close button
+	17 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	18 minimize button
+	19 text Intentgrove QA0030 Repair
+20 menu bar
+	21 Intentgrove QA0030 Repair
+	22 File
+	23 Edit
+	24 View
+	25 Go
+	26 Window
+	27 Help

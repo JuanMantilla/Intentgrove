@@ -1,0 +1,73 @@
+--- cleanup_service.py before
++++ cleanup_service.py proposed
+@@ -1,5 +1,6 @@
+ """launchd foreground worker. Preparation/installation never starts this module."""
+ import argparse
++import contextlib
+ import os
+ from pathlib import Path
+ import signal
+@@ -54,6 +55,17 @@
+                 runner.write(path, request)  # No automatic retry after an authority failure.
+ 
+ 
++def tick_when_available(config, call_ai=runner.ai_pass):
++    """Keep execution exclusive, but let restoration acquire the lock while idle."""
++    with contextlib.ExitStack() as stack:
++        try:
++            stack.enter_context(runner.lock('worker'))
++        except BlockingIOError:
++            return False  # Another guarded operation owns the worker lock.
++        tick(config, call_ai)
++        return True
++
++
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--config', required=True)
+@@ -74,11 +86,11 @@
+         def interrupted(signum, frame):
+             raise KeyboardInterrupt()
+         signal.signal(signal.SIGTERM, interrupted)
+-        with runner.lock('worker'):
++        with runner.lock('service'):
+             while True:
+                 latest = configuration(args.config)
+                 runner.require(latest == config, 'service_configuration_changed_restart_required')
+-                tick(config)
++                tick_when_available(config)
+                 if args.once:
+                     break
+                 time.sleep(10)
+--- test_automatic.py before
++++ test_automatic.py proposed
+@@ -139,6 +139,29 @@
+                 with c.lock('worker'):
+                     self.fail('second worker acquired lock')
+ 
++    def test_service_cycle_holds_worker_lock_and_releases_when_idle(self):
++        def verify_lock(config, call_ai):
++            with self.assertRaises(BlockingIOError):
++                with c.lock('worker'):
++                    self.fail('concurrent guarded operation acquired lock')
++        with mock.patch.object(service, 'tick', side_effect=verify_lock) as tick:
++            self.assertTrue(service.tick_when_available({}))
++            tick.assert_called_once()
++        with c.lock('worker'):
++            pass  # A restore can acquire the lock between polling cycles.
++
++    def test_service_busy_cycle_does_no_work(self):
++        with c.lock('worker'), mock.patch.object(service, 'tick') as tick:
++            self.assertFalse(service.tick_when_available({}))
++            tick.assert_not_called()
++
++    def test_service_cycle_propagates_work_errors_and_releases_lock(self):
++        with mock.patch.object(service, 'tick', side_effect=BlockingIOError('work failure')):
++            with self.assertRaisesRegex(BlockingIOError, 'work failure'):
++                service.tick_when_available({})
++        with c.lock('worker'):
++            pass
++
+     def test_service_disabled_mode_leaves_ready_for_approval(self):
+         self.ready()
+         before = self.request_path.read_bytes()

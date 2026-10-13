@@ -1,5 +1,7 @@
 # Implementation Plan: Private macOS Delivery
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature:** F005 | **Date:** 2026-09-29 | **Spec:** [spec.md](spec.md) | **Status:** Proposal requiring approval
 
 ## Summary and context
@@ -21,3 +23,19 @@ Build local `.app` and `.dmg` through approved Tauri config, include bundled fon
 ## Source and validation map
 
 `src-tauri/tauri.conf.json`, `Info.plist`, `lib.rs`, `state.rs`, bundle scripts and `src/app` event/menu UI carry changes. R01–R03 map to app/DMG/install/signing evidence; R04–R06 to native menus/Finder/drop scope; R07/R08 to all Quit/Close/Dock routes; R09/R10 to hashes/update and v1 matrix. [Research](research.md), [model](data-model.md), [contract](contracts/macos-entry.md) and [design](design.md) retain those gates. Approval of spec, visual direction and architecture is required before production edits; publishing requires separate approval.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F005-H01**: HTML/HTM file associations and native entries reuse the shared Tauri host. A standalone unprivileged WKWebView is linked into the native library; default builds exclude the html-native-probe executable and feature-only diagnostic APIs. Private package checks do not establish installed UX or supported-version coverage.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.
+
+
+## Proposed Markdown default-app opt-in — 2026-10-10
+
+New user-requested work; DRAFT FOR REVIEW, separate from accepted current-version closeout. Architecture: [concrete amendment](default-markdown-20261010/plan.md). No implementation or real association changes performed.
+
+## Automatic native file consumer — 2026-10-10
+
+Reuse the bounded native queue, reinspection, explicit-file grant and existing Markdown/HTML/image openers. Frontend serializes after restore/read/recovery readiness, ignores stale list replies and attempts each queued ID once. accept_native_entry accepts optional fileOnly (defaults false); automatic requests require document kind before grant insertion. Folder confirmation and dirty flow stay explicit. [Plan/authority](automatic-native-open-20261010/amendment.md).

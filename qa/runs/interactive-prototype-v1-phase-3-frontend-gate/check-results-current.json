@@ -1,0 +1,249 @@
+[
+  {
+    "name": "ipc-contract-current",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "settings-contract-tests",
+      "--lib",
+      "command_args::tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:58:45.813818+00:00",
+    "finished_at": "2026-10-12T04:59:16.062067+00:00",
+    "exit_code": 0,
+    "log": "ipc-contract-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "native-clippy-final-current",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--lib",
+      "--tests",
+      "--message-format=json",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:59:16.064096+00:00",
+    "finished_at": "2026-10-12T04:59:57.018741+00:00",
+    "exit_code": 0,
+    "log": "native-clippy-final-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "native-tests-current",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "document-contract-tests",
+      "--lib",
+      "--tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:59:57.023546+00:00",
+    "finished_at": "2026-10-12T05:01:18.494796+00:00",
+    "exit_code": 0,
+    "log": "native-tests-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "native-check-current",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:01:18.501276+00:00",
+    "finished_at": "2026-10-12T05:01:34.101308+00:00",
+    "exit_code": 0,
+    "log": "native-check-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "frontend-current",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/full-suite-after.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:58:45.814436+00:00",
+    "finished_at": "2026-10-12T05:03:27.957923+00:00",
+    "exit_code": 1,
+    "log": "frontend-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "types-current",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:03:27.958298+00:00",
+    "finished_at": "2026-10-12T05:03:28.875794+00:00",
+    "exit_code": 0,
+    "log": "types-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "vite-current",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vite/bin/vite.js",
+      "build",
+      "--outDir",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/frontend-build-current"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:03:28.876394+00:00",
+    "finished_at": "2026-10-12T05:03:29.536608+00:00",
+    "exit_code": 0,
+    "log": "vite-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "phase12-current",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+    },
+    "started_at": "2026-10-12T04:58:45.817439+00:00",
+    "finished_at": "2026-10-12T04:58:59.980737+00:00",
+    "exit_code": 0,
+    "log": "phase12-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "crate-clippy-current",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+    },
+    "started_at": "2026-10-12T04:58:59.987406+00:00",
+    "finished_at": "2026-10-12T04:59:02.093739+00:00",
+    "exit_code": 0,
+    "log": "crate-clippy-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "crate-format-current",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:59:02.102014+00:00",
+    "finished_at": "2026-10-12T04:59:04.674150+00:00",
+    "exit_code": 0,
+    "log": "crate-format-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "app-boundaries-current",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/audit_boundaries.py"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:03:29.537346+00:00",
+    "finished_at": "2026-10-12T05:03:30.226770+00:00",
+    "exit_code": 0,
+    "log": "app-boundaries-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "crate-boundaries-current",
+    "command": [
+      "python3",
+      "crates/check_boundaries.py"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:03:30.227149+00:00",
+    "finished_at": "2026-10-12T05:03:30.374980+00:00",
+    "exit_code": 0,
+    "log": "crate-boundaries-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  },
+  {
+    "name": "maintenance-format-current",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/strict-clippy-baseline-cleanup/format_scope.py",
+      "--check"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T05:03:30.375337+00:00",
+    "finished_at": "2026-10-12T05:03:31.778647+00:00",
+    "exit_code": 0,
+    "log": "maintenance-format-current.log",
+    "tested_snapshot": "tested-snapshot-current.json"
+  }
+]

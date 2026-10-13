@@ -1,3 +1,4 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -7,6 +8,7 @@ const mocks = vi.hoisted(() => ({
   selectRoot: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(), getConfirmedDocument: vi.fn(),
   listEditSections: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(),
   saveSectionEdit: vi.fn(),
+  rememberRecentDocument: vi.fn(), listRecentItems: vi.fn(),
   finishEditingClose: vi.fn(),
   checkpointSectionEdit: vi.fn(), reconcileVisibleState: vi.fn(),
   listeners: {} as Record<string, (event: { payload: unknown }) => void>
@@ -36,7 +38,7 @@ const sections = [
 ];
 
 beforeEach(() => {
-  vi.clearAllMocks();
+  vi.resetAllMocks();
   localStorage.clear();
   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
   mocks.listEntries.mockResolvedValue({ entries: [{ name: "a.md", kind: "markdown" }], nextOffset: null, snapshotId: "v1" });
@@ -51,22 +53,70 @@ beforeEach(() => {
   mocks.finishEditingClose.mockResolvedValue(undefined);
   mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
   mocks.reconcileVisibleState.mockResolvedValue({ generation: 1, jobId: "job", accepted: true });
+  mocks.rememberRecentDocument.mockResolvedValue(undefined);
+  mocks.listRecentItems.mockResolvedValue({ items: [], recoveredCorrupt: false });
 });
 afterEach(cleanup);
 
+async function changedEdit() {
+  render(<App />);
+  fireEvent.click(projectAction("Open folder"));
+  fireEvent.click(await screen.findByTitle("a.md"));
+  await editSection("One");
+  fireEvent.click(await screen.findByRole("button", { name: "Change draft" }));
+  mocks.rememberRecentDocument.mockClear();
+}
+
+const savedEdit = { diskVersion: "v2", content: "# One\nchanged\n# Two\nbeta\n", sections,
+  recoveryCleanupFailed: false, safetyCopyStatusFailed: false };
+
+it("acknowledges successful Save in Recents before dirty-close can finish", async () => {
+  await changedEdit();
+  let acknowledge!: () => void;
+  mocks.saveSectionEdit.mockResolvedValue(savedEdit);
+  mocks.rememberRecentDocument.mockReturnValue(new Promise<void>(resolve => { acknowledge = resolve; }));
+  fireEvent.click(screen.getByRole("button", { name: "Close tab: a.md" }));
+  fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save to file" }));
+  await waitFor(() => expect(mocks.rememberRecentDocument).toHaveBeenCalledExactlyOnceWith("file"));
+  expect(screen.getByRole("tab", { name: /a.md/ })).toBeTruthy();
+  acknowledge();
+  await waitFor(() => expect(screen.queryByRole("tab", { name: /a.md/ })).toBeNull());
+});
+
+it.each(["denied", "version_changed", "save_race", "save_race_uncaptured", "reselection_required"])(
+  "never acknowledges %s Save and preserves the draft", async (code) => {
+    await changedEdit();
+    mocks.saveSectionEdit.mockRejectedValue({ code, message: "fixture" });
+    fireEvent.click(screen.getByRole("button", { name: "Save file" }));
+    await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledOnce());
+    await waitFor(() => expect(screen.getByRole("button", { name: "Save file" }).hasAttribute("disabled")).toBe(code !== "denied"));
+    expect(mocks.rememberRecentDocument).not.toHaveBeenCalled();
+    expect(screen.getByRole("tab", { name: /Unsaved/ })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Change draft" })).toBeTruthy();
+  });
+
+it("keeps a confirmed Save successful if Recent persistence fails", async () => {
+  await changedEdit();
+  mocks.saveSectionEdit.mockResolvedValue(savedEdit);
+  mocks.rememberRecentDocument.mockRejectedValue({ code: "recents_error", message: "fixture" });
+  fireEvent.click(screen.getByRole("button", { name: "Save file" }));
+  await waitFor(() => expect(mocks.rememberRecentDocument).toHaveBeenCalledWith("file"));
+  await waitFor(() => expect(screen.queryByRole("button", { name: "Change draft" })).toBeNull());
+  expect(screen.queryByRole("tab", { name: /Unsaved/ })).toBeNull();
+  expect(mocks.saveSectionEdit).toHaveBeenCalledOnce();
+});
+
 async function editSection(name: string) {
   await screen.findByLabelText(`Edit section: ${name}`);
-  await waitFor(() => {
-    fireEvent.contextMenu(screen.getByLabelText(`Edit section: ${name}`));
-    expect(screen.getByRole("menuitem", { name: "Edit section" })).toBeTruthy();
-  });
-  fireEvent.click(screen.getByRole("menuitem", { name: "Edit section" }));
+  await screen.findByRole("button", { name: `Edit section “${name}”` });
+  fireEvent.contextMenu(screen.getByLabelText(`Edit section: ${name}`));
+  fireEvent.click(await screen.findByRole("menuitem", { name: "Edit section" }));
 }
 
 describe("one pending section draft", () => {
   it("requires a choice before opening another section", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("a.md"));
     await editSection("One");
     await waitFor(() => expect(mocks.beginSectionEdit).toHaveBeenCalledTimes(1));
@@ -84,7 +134,7 @@ describe("one pending section draft", () => {
 
   it("keeps an external version protected until explicit discard", async () => {
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("a.md"));
     await editSection("One");
     fireEvent.click(await screen.findByRole("button", { name: "Change draft" }));
@@ -120,7 +170,7 @@ describe("one pending section draft", () => {
       source: sectionId.startsWith("one") ? "# One\nalpha\n" : "# Two\nbeta\n", lineSeparator: "\n"
     }));
     render(<App />);
-    fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+    fireEvent.click(projectAction("Open folder"));
     fireEvent.click(await screen.findByTitle("a.md"));
     await editSection("One");
     fireEvent.click(await screen.findByRole("button", { name: "Change draft" }));
@@ -134,14 +184,32 @@ describe("one pending section draft", () => {
   it.each([["quit", true], ["window", false]] as const)(
     "routes %s completion through the matching native action", async (intent, quit) => {
       render(<App />);
-      fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+      fireEvent.click(projectAction("Open folder"));
       fireEvent.click(await screen.findByTitle("a.md"));
       await editSection("One");
       await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
       mocks.listeners["editing:close_requested"]({ payload: intent });
-      fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save" }));
+      fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save to file" }));
       await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(quit));
       expect(mocks.discardSectionEdit).toHaveBeenCalledWith("one");
     }
   );
+});
+
+it("keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close", async () => {
+  let complete!: (value: unknown) => void;
+  mocks.beginSectionEdit.mockReturnValue(new Promise(resolve => { complete = resolve; }));
+  render(<App />);
+  fireEvent.click(projectAction("Open folder"));
+  fireEvent.click(await screen.findByTitle("a.md"));
+  const edit = await screen.findByRole("button",{name:"Edit section “One”"});
+  edit.focus(); fireEvent.click(edit); fireEvent.click(edit);
+  expect(document.activeElement).toBe(edit);
+  expect(mocks.beginSectionEdit).toHaveBeenCalledOnce();
+  expect(screen.getByText("alpha")).toBeTruthy();
+  expect(within(edit).getByRole("status",{name:"Loading…"})).toBeTruthy();
+  fireEvent.click(screen.getByRole("button",{name:"Close tab: a.md"}));
+  complete({sessionId:"late-session",diskVersion:"v1",section:sections[0],source:"# One\nalpha\n",lineSeparator:"\n"});
+  await waitFor(()=>expect(mocks.discardSectionEdit).toHaveBeenCalledWith("late-session"));
+  expect(screen.queryByRole("button",{name:"Change draft"})).toBeNull();
 });

@@ -1,0 +1,477 @@
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src-tauri/src/scope.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/scope.rs
+@@ -78,6 +78,9 @@
+ pub struct Entry {
+     pub name: String,
+     pub kind: &'static str,
++    /// Native listing identity; never accepted from or exposed to the renderer.
++    #[serde(skip)]
++    pub identity: Option<Identity>,
+ }
+ 
+ #[derive(Debug, Serialize)]
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src-tauri/src/platform/macos.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/macos.rs
+@@ -232,6 +232,10 @@
+             entries.push(Entry {
+                 name: name.to_string(),
+                 kind,
++                identity: (file_type == libc::S_IFREG).then_some(Identity {
++                    device: info.st_dev as u64,
++                    inode: info.st_ino,
++                }),
+             });
+         }
+         seen += 1;
+@@ -332,6 +336,10 @@
+         entries.push(Entry {
+             name: name.to_string(),
+             kind,
++            identity: (file_type == libc::S_IFREG).then_some(Identity {
++                device: info.st_dev as u64,
++                inode: info.st_ino,
++            }),
+         });
+         if entries.len() > 100_000 {
+             return Err(AppError::new(
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src-tauri/src/platform/windows.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/windows.rs
+@@ -480,7 +480,23 @@
+                     } else {
+                         "other"
+                     };
+-                    result.push(Entry { name, kind });
++                    // Capture identity while producing the native listing, before
++                    // its directory-stamp validation. Unsafe/unreadable entries
++                    // remain listed but cannot authorize Reveal.
++                    let listed_identity = if apply_exclusions
++                        && record.FileAttributes & (unsafe_attrs | FILE_ATTRIBUTE_DIRECTORY) == 0
++                    {
++                        open_relative(dir, &[name.clone()], false)
++                            .and_then(|file| identity(&file))
++                            .ok()
++                    } else {
++                        None
++                    };
++                    result.push(Entry {
++                        name,
++                        kind,
++                        identity: listed_identity,
++                    });
+                 }
+             }
+             if record.NextEntryOffset == 0 {
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src-tauri/src/reveal.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/reveal.rs
+@@ -11,6 +11,7 @@
+     RootFile {
+         root_id: String,
+         segments: Vec<String>,
++        snapshot_id: String,
+     },
+     #[serde(rename_all = "camelCase")]
+     ExplicitFile { file_id: String },
+@@ -40,7 +41,48 @@
+ 
+ fn resolve_path(state: &AppState, target: &RevealTarget) -> AppResult<PathBuf> {
+     let path = match target {
+-        RevealTarget::RootFile { root_id, segments } => root_path(state, root_id, segments)?,
++        RevealTarget::RootFile {
++            root_id,
++            segments,
++            snapshot_id,
++        } => {
++            if segments.is_empty() || segments.len() > 128 {
++                return Err(AppError::new("invalid_path", "No local file selected"));
++            }
++            for segment in segments {
++                validate_segment(segment)?;
++            }
++            let root = state.root(root_id)?;
++            let snapshot = state.snapshot(snapshot_id)?;
++            let Some((name, parent)) = segments.split_last() else {
++                return Err(AppError::new("invalid_path", "No local file selected"));
++            };
++            if snapshot.root_id != root.id
++                || snapshot.generation != root.generation
++                || snapshot.segments != parent
++            {
++                return Err(AppError::new(
++                    "invalid_grant",
++                    "Listing does not own this target",
++                ));
++            }
++            let expected = snapshot
++                .entries
++                .iter()
++                .find(|entry| entry.name == *name)
++                .and_then(|entry| entry.identity)
++                .ok_or_else(|| {
++                    AppError::new("reselection_required", "Select the listed file again")
++                })?;
++            let path = root_path(state, root_id, segments)?;
++            if identity(&open_selected(&path, false)?)? != expected {
++                return Err(AppError::new(
++                    "reselection_required",
++                    "Listed file changed; select it again",
++                ));
++            }
++            path
++        }
+         RevealTarget::ExplicitFile { file_id } => {
+             let grant = state.file(file_id)?;
+             let path = match &grant.source {
+@@ -170,9 +212,12 @@
+         std::fs::write(&path, "fixture").unwrap();
+         let state = AppState::default();
+         let root = state.register_root(&dir).unwrap();
++        let page =
++            crate::listing::list_entries_impl(&state, &root.id, vec![], 0, "list", None).unwrap();
+         let target = RevealTarget::RootFile {
+             root_id: root.id.clone(),
+             segments: vec![name.into()],
++            snapshot_id: page.snapshot_id.clone(),
+         };
+         assert_eq!(resolve_path(&state, &target).unwrap(), path);
+         let grant = state.register_explicit_file(&path).unwrap();
+@@ -188,7 +233,8 @@
+                     &state,
+                     &RevealTarget::RootFile {
+                         root_id: root.id.clone(),
+-                        segments
++                        segments,
++                        snapshot_id: page.snapshot_id.clone(),
+                     }
+                 )
+                 .unwrap_err()
+@@ -219,9 +265,163 @@
+         std::fs::remove_dir(&dir).unwrap();
+     }
+     #[test]
++    fn rejects_stale_listed_and_opened_targets_on_real_filesystem() {
++        for opened in [false, true] {
++            for explicit in [false, true] {
++                if explicit && !opened {
++                    continue;
++                }
++                for mutation in ["rename", "delete", "replace"] {
++                    let dir =
++                        std::env::temp_dir().join(format!("reveal-stale-{}", uuid::Uuid::new_v4()));
++                    std::fs::create_dir(&dir).unwrap();
++                    let path = dir.join("listed.md");
++                    std::fs::write(&path, "original").unwrap();
++                    let state = AppState::default();
++                    let root = state.register_root(&dir).unwrap();
++                    let page = crate::listing::list_entries_impl(
++                        &state,
++                        &root.id,
++                        vec![],
++                        0,
++                        "list",
++                        None,
++                    )
++                    .unwrap();
++                    let listed = RevealTarget::RootFile {
++                        root_id: root.id.clone(),
++                        segments: vec!["listed.md".into()],
++                        snapshot_id: page.snapshot_id.clone(),
++                    };
++                    let target = if opened {
++                        let id = if explicit {
++                            state.register_explicit_file(&path).unwrap().id
++                        } else {
++                            let root = state.root(&root.id).unwrap();
++                            let file =
++                                open_relative(&root.file, &["listed.md".into()], false).unwrap();
++                            state
++                                .register_root_file(&root, vec!["listed.md".into()], &file)
++                                .unwrap()
++                                .id
++                        };
++                        RevealTarget::ExplicitFile { file_id: id }
++                    } else {
++                        listed
++                    };
++                    assert_eq!(resolve_path(&state, &target).unwrap(), path);
++                    let original = identity(&open_selected(&path, false).unwrap()).unwrap();
++                    // Hold only this test's original to ensure distinct inode
++                    // on deletion/recreation; production keeps native identity.
++                    let original_handle = open_selected(&path, false).unwrap();
++                    if mutation == "delete" {
++                        std::fs::remove_file(&path).unwrap();
++                    } else {
++                        std::fs::rename(&path, dir.join("original.md")).unwrap();
++                    }
++                    if mutation == "replace" {
++                        std::fs::write(&path, "replacement").unwrap();
++                        assert_ne!(
++                            original,
++                            identity(&open_selected(&path, false).unwrap()).unwrap()
++                        );
++                    }
++                    // Native refresh can produce a replacement snapshot;
++                    // neither a stored menu nor an old row may adopt it.
++                    let fresh = crate::listing::list_entries_impl(
++                        &state,
++                        &root.id,
++                        vec![],
++                        0,
++                        "refresh",
++                        None,
++                    )
++                    .unwrap();
++                    let error = resolve_path(&state, &target).unwrap_err();
++                    assert_eq!(
++                        error.code,
++                        if mutation == "replace" {
++                            "reselection_required"
++                        } else {
++                            "missing"
++                        },
++                        "opened={opened} explicit={explicit} mutation={mutation}"
++                    );
++                    if mutation == "replace" {
++                        let fresh_target = RevealTarget::RootFile {
++                            root_id: root.id.clone(),
++                            segments: vec!["listed.md".into()],
++                            snapshot_id: fresh.snapshot_id,
++                        };
++                        assert_eq!(resolve_path(&state, &fresh_target).unwrap(), path);
++                    }
++                    drop(original_handle);
++                    std::fs::remove_dir_all(&dir).unwrap();
++                }
++            }
++        }
++    }
++
++    #[test]
++    fn listing_authority_cannot_be_rebound_or_reused_after_root_change() {
++        let dir = std::env::temp_dir().join(format!("reveal-authority-{}", uuid::Uuid::new_v4()));
++        std::fs::create_dir_all(dir.join("nested")).unwrap();
++        std::fs::write(dir.join("listed.md"), "original").unwrap();
++        std::fs::write(dir.join("nested/listed.md"), "other").unwrap();
++        let state = AppState::default();
++        let root = state.register_root(&dir).unwrap();
++        let page =
++            crate::listing::list_entries_impl(&state, &root.id, vec![], 0, "list", None).unwrap();
++        for (segments, snapshot_id, code) in [
++            (
++                vec!["nested".into(), "listed.md".into()],
++                page.snapshot_id.clone(),
++                "invalid_grant",
++            ),
++            (
++                vec!["unlisted.md".into()],
++                page.snapshot_id.clone(),
++                "reselection_required",
++            ),
++            (vec!["listed.md".into()], "forged".into(), "version_changed"),
++        ] {
++            assert_eq!(
++                resolve_path(
++                    &state,
++                    &RevealTarget::RootFile {
++                        root_id: root.id.clone(),
++                        segments,
++                        snapshot_id
++                    }
++                )
++                .unwrap_err()
++                .code,
++                code
++            );
++        }
++        let target = RevealTarget::RootFile {
++            root_id: root.id.clone(),
++            segments: vec!["listed.md".into()],
++            snapshot_id: page.snapshot_id,
++        };
++        // In-place edits keep the listed identity revealable.
++        std::fs::write(dir.join("listed.md"), "edited in place").unwrap();
++        assert_eq!(
++            resolve_path(&state, &target).unwrap(),
++            dir.join("listed.md")
++        );
++        state.register_root(&dir.join("nested")).unwrap();
++        assert_eq!(
++            resolve_path(&state, &target).unwrap_err().code,
++            "invalid_grant"
++        );
++        std::fs::remove_dir_all(dir).unwrap();
++    }
++
++    #[test]
+     fn rejects_virtual_and_folder_requests() {
+         assert!(serde_json::from_str::<RevealTarget>(
+-            r#"{"kind":"root-file","rootId":"root","segments":["file.md"]}"#
++            r#"{"kind":"root-file","rootId":"root","segments":["file.md"],"snapshotId":"snapshot"}"#
+         )
+         .is_ok());
+         assert!(
+@@ -229,6 +429,8 @@
+                 .is_ok()
+         );
+         for input in [
++            r#"{"kind":"root-file","rootId":"root","segments":["file.md"]}"#,
++            r#"{"kind":"root-file","rootId":"root","segments":["file.md"],"snapshotId":"s","identity":{"device":1,"inode":1}}"#,
+             r#"{"kind":"folder","rootId":"root","segments":[]}"#,
+             r#"{"kind":"explicit-file","fileId":"id","path":"/tmp/ungranted"}"#,
+         ] {
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src/app/api.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/api.ts
+@@ -33,6 +33,11 @@
+   name: string;
+   kind: "directory" | "markdown" | "html" | "image" | "other";
+ }
++
++/** Reveal uses a native listing snapshot or an existing opened-file grant. */
++export type RevealTarget =
++  | { kind: "root-file"; rootId: string; segments: string[]; snapshotId: string }
++  | { kind: "explicit-file"; fileId: string };
+ 
+ export interface DirectoryPage {
+   entries: DirectoryEntry[];
+@@ -332,7 +337,7 @@
+ }
+ 
+ export const api = {
+-  revealFile: (target: Exclude<RefreshTarget, { kind: "folder" }>) => invoke<void>("reveal_file", { target }),
++  revealFile: (target: RevealTarget) => invoke<void>("reveal_file", { target }),
+   renderDiagram: (source: string, jobId: string, generation: number) => invoke<import("../reader/diagram-host").DiagramPixels>("render_diagram", { source, jobId, generation }),
+   cancelDiagram: (jobId: string) => invoke<void>("cancel_diagram", { jobId }),
+   listRecentItems: () => invoke<RecentList>("list_recent_items"),
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -12,7 +12,7 @@
+ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+ import { flushSync } from "react-dom";
+ import { listen } from "@tauri-apps/api/event";
+-import { api, readerError, type DirectoryEntry, type DocumentResponse, type CreateMarkdownOutcome, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
++import { api, readerError, type DirectoryEntry, type DocumentResponse, type CreateMarkdownOutcome, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type RevealTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
+ import { errorText, sessionErrorText, t, type Locale } from "./i18n";
+ import { useAppearance, type AppearanceMode } from "./appearance";
+ import { useRetainedOverlay } from "./useRetainedOverlay";
+@@ -84,7 +84,7 @@
+ }
+ type VisitTarget = Pick<Tab, "id" | "request" | "name" | "displayPath" | "kind" | "explicitFile"> & { imageView?: ImageViewState; zoom?: number; htmlLocation?: HtmlLocation };
+ 
+-type ReloadMenu = { target: RefreshTarget; label: string; x: number; y: number; anchor: HTMLElement };
++type ReloadMenu = { revealTarget?: RevealTarget; target: RefreshTarget; label: string; x: number; y: number; anchor: HTMLElement };
+ type ReloadJobView = { target: RefreshTarget; progress: RefreshJobProgress };
+ type InspectedDisk = { tabId: string; generation: number; sessionId: string; document: DocumentResponse };
+ 
+@@ -994,12 +994,22 @@
+   }, [closeIntent, pendingSaveAs, pendingSection, discardConflictConfirm,
+     clearDraftsConfirm, clearCopiesConfirm, clearSessionConfirm, clearRecentsConfirm, restoreOffer]);
+ 
+-  function showReloadMenu(event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>, target: RefreshTarget, label: string) {
++  function showReloadMenu(event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>, target: RefreshTarget, label: string, snapshotId?: string) {
+     event.preventDefault();
+     setProjectsMenu(null); setGoMenu(null);
+     const anchor = event.currentTarget;
+     const bounds = anchor.getBoundingClientRect();
+-    showHtmlOverlay(()=>setReloadMenu({ target, label,
++    // Freeze the clicked item's authority at menu entry. Directory refreshes
++    // must not silently substitute a newer listing while this menu is open.
++    const tab = tabs.find(tab => {
++      const current = refreshTarget(tab);
++      return current && reloadResultKey(current) === reloadResultKey(target);
++    });
++    const revealTarget: RevealTarget | undefined = target.kind === "explicit-file" ? target
++      : target.kind === "root-file" ? tab ? { kind: "explicit-file", fileId: tab.id }
++        : snapshotId ? { ...target, segments: [...target.segments], snapshotId } : undefined
++      : undefined;
++    showHtmlOverlay(()=>setReloadMenu({ target, revealTarget, label,
+       x: "clientX" in event && event.clientX ? event.clientX : bounds.left,
+       y: "clientY" in event && event.clientY ? event.clientY : bounds.bottom,
+       anchor }));
+@@ -2583,7 +2593,7 @@
+     return grantedRoot && segments ? { kind: "root-file", rootId: grantedRoot.id, segments } : null;
+   }
+ 
+-  async function revealLocalFile(target: Exclude<RefreshTarget, { kind: "folder" }>) {
++  async function revealLocalFile(target: RevealTarget) {
+     try { await api.revealFile(target); }
+     catch (error) { setNotice(noticeLocale => `${t(noticeLocale, "fileRevealFailed")} ${errorText(noticeLocale, readerError(error).code)}`); }
+   }
+@@ -3137,10 +3147,10 @@
+                 aria-current={!isFolder && active && pathKey(documentSegments(active) ?? []) === pathKey(path) ? "page" : undefined}
+                 aria-expanded={isFolder ? expanded : undefined}
+                 title={path.join("/")}
+-                onContextMenu={(event) => showReloadMenu(event, reloadTarget, entry.name)}
++                onContextMenu={(event) => showReloadMenu(event, reloadTarget, entry.name, state.snapshotId)}
+                 onKeyDown={(event) => {
+                   if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) {
+-                    showReloadMenu(event, reloadTarget, entry.name);
++                    showReloadMenu(event, reloadTarget, entry.name, state.snapshotId);
+                     return;
+                   }
+                   const rows = Array.from(document.querySelectorAll<HTMLButtonElement>(".tree-row"));
+@@ -3628,9 +3638,9 @@
+                     { name: reloadMenu.label, path: contextPath ?? reloadMenu.label }); } }] : []),
+               ...(fileRevealAvailable && localAbsolutePath(contextPath) && reloadMenu.target.kind !== "folder" ? [{
+                 label: t(locale, isWindows ? "revealInFileExplorer" : "revealInFinder"),
+-                disabled: !!contextRevealReason, reason: contextRevealReason ?? undefined,
+-                run: () => { if (reloadMenu.target.kind !== "folder") void revealLocalFile(contextTab
+-                  ? { kind: "explicit-file", fileId: contextTab.id } : reloadMenu.target); }
++                disabled: !!contextRevealReason || !reloadMenu.revealTarget,
++                reason: contextRevealReason ?? (!reloadMenu.revealTarget ? errorText(locale, "reselection_required") : undefined),
++                run: () => { if (reloadMenu.revealTarget) void revealLocalFile(reloadMenu.revealTarget); }
+               }] : []),
+               ...(contextPath ? [{ label: t(locale, "copyPath"), disabled: !navigator.clipboard?.writeText,
+                 reason: !navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined, run: () => void copyPath(contextPath) }] : []),
+--- /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before/tests/ui/reveal-file.test.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/reveal-file.test.tsx
+@@ -69,7 +69,7 @@
+   const file = await screen.findByTitle(name);
+   fireEvent.contextMenu(file);
+   fireEvent.click(screen.getByRole("menuitem", { name: "Reveal in Finder" }));
+-  await waitFor(() => expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "root-file", rootId: "root", segments: [name] }));
++  await waitFor(() => expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "root-file", rootId: "root", segments: [name], snapshotId: "snapshot" }));
+   expect(screen.queryByRole("tab")).toBeNull();
+   fireEvent.click(file);
+   const tab = await screen.findByRole("tab", { name: new RegExp("café") });
+@@ -185,7 +185,7 @@
+   await status(target, "current");
+   expect(reveal.disabled).toBe(false);
+   fireEvent.click(reveal);
+-  expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "root-file", rootId: "root", segments: ["readme.md"] });
++  expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "root-file", rootId: "root", segments: ["readme.md"], snapshotId: "snapshot" });
+ });
+ 
+ it("disables unavailable root targets without disabling independent explicit grants", async () => {
+@@ -228,3 +228,33 @@
+   expect(mocks.saveSectionEdit).not.toHaveBeenCalled();
+   expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+ });
++
++
++it("freezes the listed target across refresh while a menu is open and permits fresh reselection", async () => {
++  render(<App />);
++  fireEvent.click(projectAction("Open folder"));
++  const anchor = await screen.findByTitle("readme.md");
++  fireEvent.keyDown(anchor, { key: "F10", shiftKey: true });
++  mocks.listEntries.mockResolvedValue({ entries: [{ name: "readme.md", kind: "markdown" }], nextOffset: null, snapshotId: "replacement-snapshot" });
++  await act(async () => { mocks.listeners["refresh:directory_changed"]?.({ payload: { rootId: "root", segments: [], generation: 1 } }); });
++  await waitFor(() => expect(mocks.listEntries).toHaveBeenCalledTimes(2));
++  mocks.revealFile.mockRejectedValueOnce({ code: "reselection_required", message: "Listed file changed" });
++  fireEvent.click(screen.getByRole("menuitem", { name: "Reveal in Finder" }));
++  expect(mocks.revealFile).toHaveBeenLastCalledWith({ kind: "root-file", rootId: "root", segments: ["readme.md"], snapshotId: "snapshot" });
++  expect(await screen.findByText(/Select file again/)).toBeTruthy();
++  fireEvent.contextMenu(screen.getByTitle("readme.md"));
++  fireEvent.click(screen.getByRole("menuitem", { name: "Reveal in Finder" }));
++  expect(mocks.revealFile).toHaveBeenLastCalledWith({ kind: "root-file", rootId: "root", segments: ["readme.md"], snapshotId: "replacement-snapshot" });
++  expect(screen.queryByRole("tab")).toBeNull();
++});
++
++it("safely disables an unopened row without a native listing reference", async () => {
++  mocks.listEntries.mockResolvedValue({ entries: [{ name: "readme.md", kind: "markdown" }], nextOffset: null });
++  render(<App />);
++  fireEvent.click(projectAction("Open folder"));
++  fireEvent.contextMenu(await screen.findByTitle("readme.md"));
++  const reveal = screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" });
++  expect(reveal.disabled).toBe(true);
++  fireEvent.click(reveal);
++  expect(mocks.revealFile).not.toHaveBeenCalled();
++});

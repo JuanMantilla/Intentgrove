@@ -1,0 +1,25 @@
+{
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "tests/ui/workspace-handoff.test.tsx",
+    "tests/ui/refresh-conflict.test.tsx",
+    "tests/ui/close-edit.test.tsx",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/historical-order.config.mjs",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/predecessor-replay.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+  "environment_overrides": {
+    "DEBUG_PRINT_LIMIT": "100000"
+  },
+  "started_at": "2026-10-12T04:57:37.445319+00:00",
+  "finished_at": "2026-10-12T04:58:19.690831+00:00",
+  "exit_code": 0
+}

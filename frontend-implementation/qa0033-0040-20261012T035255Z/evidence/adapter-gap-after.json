@@ -1,0 +1,28 @@
+{
+  "id": "adapter-gap-after",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/document-selection-readiness.test.tsx",
+    "tests/ui/document-select-all.test.tsx",
+    "tests/ui/find.test.tsx"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:26:00.393804+00:00",
+  "load_before": [
+    3.77880859375,
+    6.2158203125,
+    11.0869140625
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T04:26:04.887427+00:00",
+  "load_after": [
+    3.77880859375,
+    6.2158203125,
+    11.0869140625
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/adapter-gap-after.log"
+}

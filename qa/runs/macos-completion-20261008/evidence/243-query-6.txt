@@ -1,0 +1,255 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text workspace Solo archivos locales
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 container Buscar en la carpeta
+					10 button Volver al explorador
+					11 container
+						12 text Buscar en la carpeta
+						13 search text field (settable) Buscar en la carpeta, Value: # alpha 1, Placeholder: Nombre o texto
+							14 text (settable) # alpha 1
+							15 button cancel
+					16 text Ámbito de búsqueda: workspace · Nombres y contenido
+					17 container Buscar en
+						18 toggle button Nombres y contenido, Value: on
+						19 toggle button Nombres de archivo, Value: off
+						20 toggle button Texto del documento, Value: off
+					21 text La búsqueda de contenido incluye archivos Markdown.
+					22 container
+						23 checkbox Incluir archivos ignorados, Value: 0
+						24 text Incluir archivos ignorados
+					25 button Buscar
+					26 button Borrar búsqueda
+					27 text Búsqueda completa · 122 entradas revisadas, 4 omitidas · Resultados: 11
+					28 container docs/alpha/alpha-01.md
+						29 heading docs/alpha/alpha-01.md 1, Help: docs/alpha/alpha-01.md, Value: 3
+							30 text docs/alpha/alpha-01.md 1
+						31 button docs/alpha/alpha-01.md · Línea 1 · # alpha 1, Help: docs/alpha/alpha-01.md
+					32 container docs/alpha/alpha-10.md
+						33 heading docs/alpha/alpha-10.md 1, Help: docs/alpha/alpha-10.md, Value: 3
+							34 text docs/alpha/alpha-10.md 1
+						35 button docs/alpha/alpha-10.md · Línea 1 · # alpha 10, Help: docs/alpha/alpha-10.md
+					36 container docs/alpha/alpha-11.md
+						37 heading docs/alpha/alpha-11.md 1, Help: docs/alpha/alpha-11.md, Value: 3
+							38 text docs/alpha/alpha-11.md 1
+						39 button docs/alpha/alpha-11.md · Línea 1 · # alpha 11, Help: docs/alpha/alpha-11.md
+					40 container docs/alpha/alpha-12.md
+						41 heading docs/alpha/alpha-12.md 1, Help: docs/alpha/alpha-12.md, Value: 3
+							42 text docs/alpha/alpha-12.md 1
+						43 button docs/alpha/alpha-12.md · Línea 1 · # alpha 12, Help: docs/alpha/alpha-12.md
+					44 container docs/alpha/alpha-13.md
+						45 heading docs/alpha/alpha-13.md 1, Help: docs/alpha/alpha-13.md, Value: 3
+							46 text docs/alpha/alpha-13.md 1
+						47 button docs/alpha/alpha-13.md · Línea 1 · # alpha 13, Help: docs/alpha/alpha-13.md
+					48 container docs/alpha/alpha-14.md
+						49 heading docs/alpha/alpha-14.md 1, Help: docs/alpha/alpha-14.md, Value: 3
+							50 text docs/alpha/alpha-14.md 1
+						51 button docs/alpha/alpha-14.md · Línea 1 · # alpha 14, Help: docs/alpha/alpha-14.md
+					52 container docs/alpha/alpha-15.md
+						53 heading docs/alpha/alpha-15.md 1, Help: docs/alpha/alpha-15.md, Value: 3
+							54 text docs/alpha/alpha-15.md 1
+						55 button docs/alpha/alpha-15.md · Línea 1 · # alpha 15, Help: docs/alpha/alpha-15.md
+					56 container docs/alpha/alpha-16.md
+						57 heading docs/alpha/alpha-16.md 1, Help: docs/alpha/alpha-16.md, Value: 3
+							58 text docs/alpha/alpha-16.md 1
+						59 button docs/alpha/alpha-16.md · Línea 1 · # alpha 16, Help: docs/alpha/alpha-16.md
+					60 container docs/alpha/alpha-17.md
+						61 heading docs/alpha/alpha-17.md 1, Help: docs/alpha/alpha-17.md, Value: 3
+							62 text docs/alpha/alpha-17.md 1
+						63 button docs/alpha/alpha-17.md · Línea 1 · # alpha 17, Help: docs/alpha/alpha-17.md
+					64 container docs/alpha/alpha-18.md
+						65 heading docs/alpha/alpha-18.md 1, Help: docs/alpha/alpha-18.md, Value: 3
+							66 text docs/alpha/alpha-18.md 1
+						67 button docs/alpha/alpha-18.md · Línea 1 · # alpha 18, Help: docs/alpha/alpha-18.md
+					68 container docs/alpha/alpha-19.md
+						69 heading docs/alpha/alpha-19.md 1, Help: docs/alpha/alpha-19.md, Value: 3
+							70 text docs/alpha/alpha-19.md 1
+						71 button docs/alpha/alpha-19.md · Línea 1 · # alpha 19, Help: docs/alpha/alpha-19.md
+				72 text Almacenamiento y recuperación
+				73 text Ediciones abiertas y avisos de recuperación: 0
+				74 button Gestionar…
+			75 container
+				76 container Archivos visitados
+					77 button (disabled) Atrás, Help: No hay archivo anterior
+					78 button (disabled) Adelante, Help: No hay archivo siguiente
+				79 tab group (selectable) Documentos
+					80 container
+						81 tab (selectable) hostile-matrix.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/hostile-matrix.md
+						82 button Cerrar pestaña: hostile-matrix.md, Help: Cerrar pestaña
+					83 container
+						84 tab (selected) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						85 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					86 container
+						87 tab (selectable) case-01.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-01.md
+						88 button Cerrar pestaña: case-01.md, Help: Cerrar pestaña
+					89 container
+						90 tab (selectable) case-02.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-02.md
+						91 button Cerrar pestaña: case-02.md, Help: Cerrar pestaña
+					92 container
+						93 tab (selectable) case-03.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-03.md
+						94 button Cerrar pestaña: case-03.md, Help: Cerrar pestaña
+					95 container
+						96 tab (selectable) case-04.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-04.md
+						97 button Cerrar pestaña: case-04.md, Help: Cerrar pestaña
+					98 container
+						99 tab (selectable) case-05.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-05.md
+						100 button Cerrar pestaña: case-05.md, Help: Cerrar pestaña
+					101 container
+						102 tab (selectable) case-06.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-06.md
+						103 button Cerrar pestaña: case-06.md, Help: Cerrar pestaña
+					104 container
+						105 tab (selectable) case-07.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-07.md
+						106 button Cerrar pestaña: case-07.md, Help: Cerrar pestaña
+					107 container
+						108 tab (selectable) case-08.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-08.md
+						109 button Cerrar pestaña: case-08.md, Help: Cerrar pestaña
+					110 container
+						111 tab (selectable) case-09.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-09.md
+						112 button Cerrar pestaña: case-09.md, Help: Cerrar pestaña
+					113 container
+						114 tab (selectable) case-10.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-10.md
+						115 button Cerrar pestaña: case-10.md, Help: Cerrar pestaña
+					116 container
+						117 tab (selectable) case-11.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-11.md
+						118 button Cerrar pestaña: case-11.md, Help: Cerrar pestaña
+					119 container
+						120 tab (selectable) case-12.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-12.md
+						121 button Cerrar pestaña: case-12.md, Help: Cerrar pestaña
+					122 container
+						123 tab (selectable) case-13.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-13.md
+						124 button Cerrar pestaña: case-13.md, Help: Cerrar pestaña
+					125 container
+						126 tab (selectable) case-14.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-14.md
+						127 button Cerrar pestaña: case-14.md, Help: Cerrar pestaña
+					128 container
+						129 tab (selectable) case-15.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-15.md
+						130 button Cerrar pestaña: case-15.md, Help: Cerrar pestaña
+					131 container
+						132 tab (selectable) case-16.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-16.md
+						133 button Cerrar pestaña: case-16.md, Help: Cerrar pestaña
+					134 container
+						135 tab (selectable) case-17.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-17.md
+						136 button Cerrar pestaña: case-17.md, Help: Cerrar pestaña
+					137 container
+						138 tab (selectable) case-18.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-18.md
+						139 button Cerrar pestaña: case-18.md, Help: Cerrar pestaña
+					140 container
+						141 tab (selectable) case-19.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-19.md
+						142 button Cerrar pestaña: case-19.md, Help: Cerrar pestaña
+					143 container
+						144 tab (selectable) case-20.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-20.md
+						145 button Cerrar pestaña: case-20.md, Help: Cerrar pestaña
+					146 container
+						147 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						148 button Cerrar pestaña: linked.md, Help: Cerrar pestaña
+					149 container
+						150 tab (selectable) qa-image.png, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/qa-image.png
+						151 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+					152 container
+						153 tab (selectable) image-security.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/image-security.md
+						154 button Cerrar pestaña: image-security.md, Help: Cerrar pestaña
+					155 container
+						156 tab (selectable) edit.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/edit.md
+						157 button Cerrar pestaña: edit.md, Help: Cerrar pestaña
+					158 container
+						159 tab (selectable) denied.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/permissions/denied.md
+						160 button Cerrar pestaña: denied.md, Help: Cerrar pestaña
+					161 container
+						162 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						163 button Cerrar pestaña: plain.md, Help: Cerrar pestaña
+				164 pop up button Menú Ir
+				165 button (collapsed) Documentos abiertos(28), Secondary Actions: Expand
+				166 container rich.md
+					167 text rich.md
+					168 text Raíz de la carpeta
+					169 toggle button Índice, Value: on
+					170 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					171 button Editar sección
+					172 summary Documento…, Value: off
+						173 text Documento…
+				174 container rich.md
+					175 container Reading acceptance
+						176 summary Metadatos, Value: off
+							177 text Metadatos
+						178 container Editar sección: Reading acceptance
+							179 heading Reading acceptance, Value: 1
+								180 text Reading acceptance
+							181 button Editar sección «Reading acceptance»
+						182 container
+							183 text Before diagrams. 
+							184 button Reference, Help: linked.md
+							185 text  and encoded footnote
+							186 button 1, Help: #fn-a%2520b
+							187 text .
+						188 text json
+						189 button Copiar código
+						190 text {"highlight": true}
+
+						191 image Diagrama Mermaid
+						192 summary Ver código fuente, Value: off
+							193 text Ver código fuente
+						194 text Between diagrams.
+						195 image Diagrama Mermaid
+						196 summary Ver código fuente, Value: off
+							197 text Ver código fuente
+						198 text Diagrama no disponible. El código fuente se conserva abajo.
+						199 container (expanded) Secondary Actions: Collapse
+							200 summary Ver código fuente, Value: on
+								201 text Ver código fuente
+							202 text mermaid
+							203 button Copiar código
+							204 text flowchart broken
+
+						205 text Diagrama no disponible. El código fuente se conserva abajo.
+						206 container (expanded) Secondary Actions: Collapse
+							207 summary Ver código fuente, Value: on
+								208 text Ver código fuente
+							209 text mermaid
+							210 button Copiar código
+							211 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						212 text After diagrams.
+						213 container Editar sección: Duplicate
+							214 heading Duplicate, Value: 2
+								215 text Duplicate
+							216 button Editar sección «Duplicate»
+						217 text First duplicate target.
+						218 container Editar sección: Duplicate
+							219 heading Duplicate, Value: 2
+								220 text Duplicate
+							221 button Editar sección «Duplicate»
+						222 text Second duplicate target.
+						223 container
+							224 text [1] 
+							225 button ↩, Help: #fnref-a%2520b-1
+						226 text Encoded footnote body.
+				227 container Índice
+					228 text Índice
+					229 button Cerrar índice
+					230 container Índice
+						231 content list
+							232 button Reading acceptance
+							233 button Duplicate
+							234 button Duplicate
+	235 close button
+	236 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	237 minimize button
+	238 text Intentgrove
+239 menu bar
+	240 Intentgrove Completion 20261008
+	241 File
+	242 Edit
+	243 View
+	244 Ir
+	245 Window
+	246 Help
+
+The focused UI element is 13 search text field (settable) Buscar en la carpeta, Value: # alpha 1, Placeholder: Nombre o texto

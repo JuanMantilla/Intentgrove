@@ -86,3 +86,20 @@ describe("recent local items", () => {
     expect(await screen.findByRole("region", { name: "Elementos recientes" })).toBeTruthy();
   });
 });
+
+it("shows known recent rows while records load and local feedback only on the activated row", async () => {
+  let listed!: (value: unknown) => void;
+  mocks.listRecentItems.mockImplementationOnce(()=>new Promise(resolve=>{listed=resolve;}));
+  render(<App />);
+  await waitFor(()=>expect(document.querySelector(".loading-rows")).toBeTruthy());
+  expect(screen.queryByText("No recent items yet.")).toBeNull();
+  listed({items:[documentItem,folderItem],recoveredCorrupt:false});
+  const open = await screen.findByRole("button",{name:"Open: notes.md"});
+  let finish!: (value: unknown) => void;
+  mocks.openRecentItem.mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
+  fireEvent.click(open);
+  expect(within(open).getByRole("status",{name:"Loading…"})).toBeTruthy();
+  expect(within(screen.getByRole("button",{name:"Reselect: project"})).queryByRole("status")).toBeNull();
+  finish(null);
+  await waitFor(()=>expect(within(open).queryByRole("status")).toBeNull());
+});

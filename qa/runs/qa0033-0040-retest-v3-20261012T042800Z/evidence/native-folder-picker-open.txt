@@ -1,0 +1,89 @@
+Window: "Open", App: Intentgrove QA0033-0040 v3.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selected) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+			23 scroll bar (settable, float) 0
+				24 value indicator (settable, float) 0
+				25 increment arrow button
+				26 decrement arrow button
+				27 increment page button
+				28 decrement page button
+		29 splitter (disabled, settable, float) 148
+		30 scroll area
+			31 outline Description: list view, ID: ListView
+				32 row (selectable)
+					33 cell Secondary Actions: Open Finder item
+						34 image
+						35 text field (settable) URL: file:///Users/juanmantilla/Documents/Grupo%20EPM%20_%20Confirmacion%20Pago%20Septiembre.pdf, Value: Grupo EPM _ Confirmacion Pago Septiembre.pdf, Secondary Actions: Open Finder item
+					36 cell
+						37 text 170 KB
+					38 cell
+						39 text PDF Document
+					40 cell
+						41 text 8/09/2026 at 3:07 PM
+				42 row (selectable)
+					43 cell Secondary Actions: Open Finder item
+						44 image
+						45 text field (settable) URL: file:///Users/juanmantilla/Documents/DeOS_Mobile.pdf, Value: DeOS_Mobile.pdf, Secondary Actions: Open Finder item
+					46 cell
+						47 text 36,2 MB
+					48 cell
+						49 text PDF Document
+					50 cell
+						51 text 16/01/2026 at 9:53 AM
+				52 row (selectable)
+					53 cell Secondary Actions: Open Finder item
+						54 image
+						55 text field (settable) URL: file:///Users/juanmantilla/Documents/Diploma%20maestria%20Juan%20Mantilla.pdf, Value: Diploma maestria Juan Mantilla.pdf, Secondary Actions: Open Finder item
+					56 cell
+						57 text 992 KB
+					58 cell
+						59 text PDF Document
+					60 cell
+						61 text 11/08/2025 at 9:21 AM
+				62 container ListViewHeader
+					63 button Description: Name, ID: name
+					64 button Description: Size, ID: size
+					65 button Description: Kind, ID: kind
+					66 button Description: Date Added, Value: AXDescendingSortDirection, ID: dateAdded
+		67 container
+			68 button (disabled) back
+			69 button (disabled) forward
+		70 menu button Description: List, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		71 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		72 pop up button Where:, Value: Documents, ID: where popup
+		73 search text field Search
+			74 button search
+		75 button (disabled) New Folder, ID: NewFolderButton
+		76 button Cancel, ID: CancelButton
+		77 button (disabled) Open, ID: OKButton
+78 menu bar
+	79 Intentgrove QA0033-0040 v3
+	80 File
+	81 Edit
+	82 View
+	83 Go
+	84 Window
+	85 Help
+
+The focused UI element is 31 outline Description: list view, ID: ListView

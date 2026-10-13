@@ -1,0 +1,48 @@
+{
+  "recognition": "PASS",
+  "granted_native_open": "PASS",
+  "independent_package_validation": "PASS",
+  "readonly_metadata_model": "PASS",
+  "tabs_duplicate_identity_isolation": "PASS",
+  "recents_revalidation_missing": "PASS",
+  "schema1_persistence_restore_entry": "PASS",
+  "explicit_atomic_reload_failure_policy": "PASS",
+  "external_changes_explicit_only": "PASS",
+  "close_reopen_native_handle_snapshot_release": "PASS",
+  "all_route_shutdown_owner_cancellation": "PASS",
+  "controlled_scene_asset_resources": "PASS",
+  "malicious_packages": {
+    "result": "PASS",
+    "cases": 14
+  },
+  "markdown_shared_native_frontend_regression": "PASS",
+  "phase1_regression": {
+    "result": "PASS",
+    "tests": 86
+  },
+  "phase12_workspace_regression": {
+    "result": "PASS",
+    "tests": 332
+  },
+  "native_regression": {
+    "result": "PASS",
+    "tests": 183,
+    "ignored_existing": 5
+  },
+  "frontend_regression": {
+    "result": "PASS",
+    "tests": 707,
+    "immutable_candidate_matches_live": true
+  },
+  "whole_native_strict_clippy": {
+    "result": "FAIL",
+    "baseline": 54,
+    "current": 54,
+    "new": 0
+  },
+  "phase3_scope_clippy_delta": "PASS",
+  "player_runtime": "NOT TESTED / outside Phase 3",
+  "minimum_macOS_windows_intel_runtime": "NOT TESTED / outside verified scope",
+  "total_unique_passed": 1222,
+  "tested_snapshot": "tested-snapshot-v7.json"
+}

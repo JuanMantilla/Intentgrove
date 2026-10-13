@@ -1,0 +1,87 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/recents.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/recents.rs
+@@ -326,7 +326,13 @@
+     if !crate::scope::document_name(&grant.name) {
+         return Err(error(
+             "unsupported_type",
+-            "Only Markdown or HTML documents can be recent documents",
++            "Only supported documents can be recent documents",
++        ));
++    }
++    if crate::scope::prototype_name(&grant.name) && !state.prototypes.has_file(file_id) {
++        return Err(error(
++            "prototype_invalid",
++            "Only validated prototype documents enter recents",
+         ));
+     }
+     let root_relative = match &grant.source {
+@@ -490,7 +496,7 @@
+         } else {
+             app.dialog()
+                 .file()
+-                .add_filter("Documents", &["md", "markdown", "html", "htm"])
++                .add_filter("Documents", &["md", "markdown", "html", "htm", "igproto"])
+                 .blocking_pick_file()
+         };
+         let Some(selected) = selected else {
+@@ -582,6 +588,60 @@
+ #[cfg(test)]
+ mod tests {
+     use super::*;
++
++    #[test]
++    #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
++    fn prototype_recent_persists_identity_only_and_reopen_revalidates() {
++        let dir = std::env::temp_dir().join(format!("igproto-recent-{}", Uuid::new_v4()));
++        fs::create_dir(&dir).unwrap();
++        let path = dir.join("prototype.igproto");
++        fs::write(
++            &path,
++            include_bytes!("../../tests/fixtures/prototype/phase-2/representative-v1.igproto"),
++        )
++        .unwrap();
++        let state = AppState::default();
++        let grant = state.register_explicit_file(&path).unwrap();
++        let control = igproto_package::Control::new(std::time::Duration::from_secs(5));
++        let (view, _) =
++            crate::prototype::open(&state, state.file(&grant.id).unwrap(), None, &control).unwrap();
++        record_document_at(&dir, &state, &grant.id).unwrap();
++        let record = load_at(&dir).unwrap().0.unwrap();
++        assert_eq!(record.entries.len(), 1);
++        let recent = &record.entries[0];
++        assert_eq!(recent.kind, RecentKind::Document);
++        assert_eq!(item(recent.clone()).status, "available");
++        let serialized = String::from_utf8(encode(&record).unwrap()).unwrap();
++        assert!(!serialized.contains("entryScene"));
++        assert!(!serialized.contains("viewToken"));
++        crate::prototype::dispose(&state, view.view_token.as_ref().unwrap(), 1, true).unwrap();
++        let fresh = AppState::default();
++        let grant = fresh
++            .restore_explicit_file(
++                Path::new(&recent.path),
++                recent.identity,
++                fresh.selection_epoch().unwrap(),
++            )
++            .unwrap();
++        assert!(
++            crate::prototype::open(&fresh, fresh.file(&grant.id).unwrap(), None, &control).is_ok()
++        );
++        fresh.prototypes.clear();
++        fs::write(&path, b"corrupt now").unwrap();
++        assert!(
++            crate::prototype::open(&fresh, fresh.file(&grant.id).unwrap(), None, &control).is_err()
++        );
++        fs::remove_file(&path).unwrap();
++        assert_ne!(item(recent.clone()).status, "available");
++        assert!(fresh
++            .restore_explicit_file(
++                Path::new(&recent.path),
++                recent.identity,
++                fresh.selection_epoch().unwrap()
++            )
++            .is_err());
++        fs::remove_dir_all(dir).unwrap();
++    }
+ 
+     #[test]
+     fn own_first_save_updates_recent_identity_and_external_replacement_stays_protected() {

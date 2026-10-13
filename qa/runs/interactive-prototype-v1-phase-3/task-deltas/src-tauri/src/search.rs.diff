@@ -1,0 +1,62 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/search.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/search.rs
+@@ -390,7 +390,7 @@
+                 return Ok(());
+             }
+         };
+-        if crate::scope::html_name(name) {
++        if crate::scope::html_name(name) || crate::scope::prototype_name(name) {
+             if self.job.mode != SearchMode::Content
+                 && name.to_lowercase().contains(&self.job.query.to_lowercase())
+             {
+@@ -521,7 +521,7 @@
+                     }
+                     Err(_) => self.batch.skipped += 1,
+                 },
+-                "markdown" | "html" => self.file(&path, &entry.name, ignored)?,
++                "markdown" | "html" | "prototype" => self.file(&path, &entry.name, ignored)?,
+                 _ => self.batch.skipped += 1,
+             }
+             if self.batch.scanned % 64 == 0 {
+@@ -785,6 +785,23 @@
+             superseded: AtomicBool::new(false),
+             results: Mutex::new(HashMap::new()),
+         }
++    }
++
++    #[test]
++    #[cfg(target_os = "macos")]
++    fn prototype_filename_search_never_indexes_archive_contents() {
++        let (dir, state, root) = fixture();
++        fs::write(dir.join("needle.igproto"), b"needle invalid ZIP bytes").unwrap();
++        fs::write(dir.join("other.igproto"), b"needle hidden archive content").unwrap();
++        let job = scoped_job(&state, &root, &[], false);
++        scan_root(&root, &job, &mut |_| {});
++        let hits = job.results.lock().unwrap();
++        assert!(hits
++            .values()
++            .any(|h| h.path == "needle.igproto" && h.kind == "name"));
++        assert!(!hits.values().any(|h| h.path == "other.igproto"));
++        drop(hits);
++        fs::remove_dir_all(dir).unwrap();
+     }
+ 
+     #[test]
+@@ -1241,7 +1258,7 @@
+         let file = job.scope.open(&root, &hit.segments, false)?;
+         let grant = state.register_root_file(&root, hit.segments, &file)?;
+         job.check_open()?;
+-        let view = crate::html::open_registered(&state, grant.id)?;
++        let view = crate::document_view::open_registered(&state, grant.id)?;
+         let valid = job.check_open().and_then(|_| {
+             if state.root(&job.root_id)?.generation == job.generation {
+                 Ok(())
+@@ -1250,7 +1267,7 @@
+             }
+         });
+         if let Err(e) = valid {
+-            crate::html::discard_unmounted(&view);
++            crate::document_view::discard_unmounted(&view);
+             return Err(e);
+         }
+         Ok(view)

@@ -1,0 +1,155 @@
+Window: "workspace", App: Finder.
+0 standard window workspace, ID: FinderWindow, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable) Description: AirDrop concentric radio waves, Value: AirDrop
+				15 row (selectable) Description: trash, Value: Trash
+				16 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				17 row (selectable) Description: Small circle badge, filled, Value: Red
+				18 row (selectable) Description: Small circle badge, filled, Value: Orange
+				19 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				20 row (selectable) Description: Small circle badge, filled, Value: Green
+				21 row (selectable) Description: Small circle badge, filled, Value: Blue
+				22 row (selectable) Description: Small circle badge, filled, Value: Purple
+				23 row (selectable) Description: Small circle badge, filled, Value: Gray
+				24 row (selectable) Description: Two small circle badges, Value: All Tags…
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 223
+		32 scroll area
+			33 collection Description: icon view, ID: IconView
+				34 section (disabled)
+					35 image busy.md, Secondary Actions: open
+					36 image corrupt.png, Secondary Actions: open
+					37 image docs, Secondary Actions: open
+					38 image edit.md, Secondary Actions: open
+					39 image hostile.svg, Secondary Actions: open
+					40 image image-security.md, Secondary Actions: open
+					41 image large-1m.md, Secondary Actions: open
+					42 image large-10m.md, Secondary Actions: open
+					43 image large-11m.md, Secondary Actions: open
+					44 image linked.md, Secondary Actions: open
+					45 image mixed-1m.md, Secondary Actions: open
+					46 image mixed-10m.md, Secondary Actions: open
+					47 image permissions, Secondary Actions: open
+					48 image (selected) plain.md, Secondary Actions: open
+					49 image qa-image.png, Secondary Actions: open
+					50 image rich.md, Secondary Actions: open
+				51 menu Secondary Actions: Cancel
+					52 Open, ID: cmdOpen:
+					53 Open With, ID: cmdOpenWith:
+						54 menu Secondary Actions: Cancel
+							55 Intentgrove QA (default), ID: invoke
+							56 Cursor, ID: invoke
+							57 F006 XPC Fault Probe, ID: invoke
+							58 Google Chrome, ID: invoke
+							59 Instruments, ID: invoke
+							60 Intentgrove, ID: invoke
+							61 Intentgrove Blob Guard Probe 20261008, ID: invoke
+							62 Intentgrove Blob Probe 20261008, ID: invoke
+							63 Intentgrove Completion 20261008, ID: invoke
+							64 Intentgrove Final Acceptance 20261008, ID: invoke
+							65 Intentgrove Isolation Probe 20261008, ID: invoke
+							66 Intentgrove QA 20261007, ID: invoke
+							67 Intentgrove QA Final 20261007, ID: invoke
+							68 Markdown workspace, ID: invoke
+							69 Microsoft Edge, ID: invoke
+							70 Notes, ID: invoke
+							71 TextEdit, ID: invoke
+							72 Visual Studio Code, ID: invoke
+							73 App Store…, ID: action:
+							74 Other…, ID: action:
+					75 Always Open With, ID: cmdAlwaysOpenWith:
+						76 menu Secondary Actions: Cancel
+							77 Intentgrove QA (default), ID: invoke
+							78 Cursor, ID: invoke
+							79 F006 XPC Fault Probe, ID: invoke
+							80 Google Chrome, ID: invoke
+							81 Instruments, ID: invoke
+							82 Intentgrove, ID: invoke
+							83 Intentgrove Blob Guard Probe 20261008, ID: invoke
+							84 Intentgrove Blob Probe 20261008, ID: invoke
+							85 Intentgrove Completion 20261008, ID: invoke
+							86 Intentgrove Final Acceptance 20261008, ID: invoke
+							87 Intentgrove Isolation Probe 20261008, ID: invoke
+							88 Intentgrove QA 20261007, ID: invoke
+							89 Intentgrove QA Final 20261007, ID: invoke
+							90 Markdown workspace, ID: invoke
+							91 Microsoft Edge, ID: invoke
+							92 Notes, ID: invoke
+							93 TextEdit, ID: invoke
+							94 Visual Studio Code, ID: invoke
+							95 App Store…, ID: action:
+							96 Other…, ID: action:
+					97 Move to Trash, ID: cmdMoveToTrash:
+					98 Get Info, ID: cmdShowStaticInfo:
+					99 Show Inspector, ID: cmdShowInspector:
+					100 Rename, ID: cmdRename:
+					101 Compress “plain.md”, ID: cmdArchive:
+					102 Compress “plain.md”, ID: cmdArchiveWithOptions:
+					103 Duplicate, ID: cmdDuplicate:
+					104 Duplicate Exactly, ID: cmdDuplicateExactly:
+					105 Make Alias, ID: cmdMakeAlias:
+					106 Quick Look, Description: Quick Look “plain.md”, ID: cmdQuickLook:
+					107 Slideshow “plain.md”, ID: cmdSlideshow:
+					108 Copy, Description: Copy “plain.md”, ID: copy:
+					109 Copy “plain.md” as Pathname, ID: cmdCopyAsPathname:
+					110 Share…, ID: cmdShare:
+					111 Tags… Customize Folder…, ID: cmdSetLabel:
+						112 Tags View
+							113 radio button Description: Add “” label, Value: 0
+							114 radio button Description: Add “Red” label, Value: 0
+							115 radio button Description: Add “Orange” label, Value: 0
+							116 radio button Description: Add “Yellow” label, Value: 0
+							117 radio button Description: Add “Green” label, Value: 0
+							118 radio button Description: Add “Blue” label, Value: 0
+							119 radio button Description: Add “Purple” label, Value: 0
+							120 radio button Description: Add “Gray” label, Value: 0
+						121 button Tags…
+						122 image tag
+					123 Quick Actions
+						124 menu Secondary Actions: Cancel
+							125 Customize…, ID: cmdOpenQuickActionsPrefPane:
+					126 New iTerm2 Tab Here
+					127 New iTerm2 Window Here
+		128 unknown Details: status bar, ID: statusBar
+			129 text Value: 1 of 16 selected, 51,55 GB available, ID: statusBarText
+			130 slider (settable, float) Description: resize icon, Value: 24
+				131 value indicator (settable, float) 24
+	132 toolbar
+		133 container Back/Forward
+			134 button back
+			135 button (disabled) forward
+		136 pop up button Description: icon view, Value: as Icons
+		137 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
+		138 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		139 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
+		140 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		141 button Search
+	142 close button
+	143 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	144 minimize button
+	145 text workspace
+146 menu bar
+	147 Finder
+	148 File
+	149 Edit
+	150 View
+	151 Go
+	152 Window
+	153 Help

@@ -1,0 +1,87 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: plain.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+					15 container
+						16 tab (selected) lifecycle.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/lifecycle.md
+						17 button Close tab: lifecycle.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container lifecycle.md
+					21 text lifecycle.md
+					22 text Folder root
+					23 button Save file
+					24 button Return to reading
+					25 text Save returns to reading.
+					26 summary Document…, Value: off
+						27 text Document…
+				28 text This file has mixed line endings, so section editing is unavailable.
+				29 button Dismiss
+				30 container Keep this section edit?
+					31 text Keep this section edit?
+					32 text The Markdown file has not been changed.
+					33 button Cancel
+					34 button Discard
+					35 button Save
+					36 button Keep draft
+				37 container lifecycle.md
+					38 container Editing: Lifecycle proof
+						39 text Editing: Lifecycle proof
+						40 text Changes not saved to the file
+						41 text Markdown source
+						42 text entry area (settable) Markdown source: Lifecycle proof, Value: # Lifecycle proof
+
+FAILED_SAVE_PERMISSION_MARKER
+
+
+							43 text (settable) # Lifecycle proof
+
+FAILED_SAVE_PERMISSION_MARKER
+
+
+						44 container Live preview
+							45 text Live preview
+							46 container Lifecycle proof
+								47 heading Lifecycle proof, Value: 1
+									48 text Lifecycle proof
+								49 text FAILED_SAVE_PERMISSION_MARKER
+						50 button Undo
+						51 button (disabled) Redo
+						52 button Discard changes…
+						53 button Save as…
+					54 container Lifecycle proof
+						55 container Edit section: Lifecycle proof
+							56 heading Lifecycle proof, Value: 1
+								57 text Lifecycle proof
+							58 button Edit section “Lifecycle proof”
+						59 text BASELINE_FIRST
+						60 container Edit section: Following section
+							61 heading Following section, Value: 2
+								62 text Following section
+							63 button Edit section “Following section”
+						64 text DO_NOT_CHANGE_FOLLOWING
+	65 close button
+	66 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	67 minimize button
+	68 text Intentgrove
+69 menu bar
+	70 Intentgrove
+	71 File
+	72 Edit
+	73 View
+	74 Go
+	75 Window
+	76 Help

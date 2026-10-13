@@ -1,0 +1,9 @@
+# Exact development dependency remedy — pending approval
+
+The complete current lockfile audit FAILS: development-only source-map-js1.2.1 has high GHSA-68fv-2mgg-jv7q. Production dependencies have zero reported vulnerabilities. [Reviewed upstream advisory](https://github.com/advisories/GHSA-68fv-2mgg-jv7q) identifies1.2.2 as patched. This is separate from the already approved Mermaid11.17.2/KaTeX0.18.2 remedy.
+
+Concrete requested scope: add exact top-level npm override `"source-map-js": "1.2.2"`, retain exact Mermaid11.17.2 and its KaTeX0.18.2 override, regenerate only corresponding repository lockfile entries with scripts disabled, verify all changed tarball integrities/licenses/scripts/transitives, run complete npm audit plus the full serial frontend/native/build/worker checks, archive existing packages, rebuild all affected final candidates and rerun final-build acceptance. No tool/target/security/deployment/signing/publication changes.
+
+Read-only preflight: registry metadata and downloaded tarball integrity verified; SHA25605c8cf8e7c3a6b56cada7668fe9342b10f4b625efc92aba9ba05b9e8fe4d71a3, BSD-3-Clause, no runtime dependencies, no install/postinstall script. See audit.json, registry.json and LICENSE. No package installed and no repository dependency input changed. Final resulting dependency graph/audit cannot be certified before the proposed lockfile change.
+
+Authorization boundary: repository AGENTS.md says “Dependencies inside the repo must follow the approved plan.” Recorded exact-remedy approval covers KaTeX0.18.2 while retaining Mermaid11.17.2, not this additional override. Owner SECURITY_REVIEW/OS_ENGINEERING; exact next action is approval of this concrete amendment, then IMPLEMENT and fresh QA. Absence of approval is not permission. Current artifact audit remains FAIL.

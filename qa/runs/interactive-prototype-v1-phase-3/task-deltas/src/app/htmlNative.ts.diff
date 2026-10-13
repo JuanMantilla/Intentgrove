@@ -1,0 +1,23 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/htmlNative.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/htmlNative.ts
+@@ -1,9 +1,6 @@
+ import { invoke } from '@tauri-apps/api/core';
+-export type LocalTarget = { fileId: string; rootId?: never; segments?: never } | { rootId: string; segments: string[]; fileId?: never };
+-export interface LocalView {
+-  fileId: string; identityKey: string; diskVersion: string; name: string; displayPath: string;
+-  kind: 'markdown' | 'image' | 'html' | 'details'; viewToken: string | null; generation: number; bytes: number; extension: string;
+-}
++import type {LocalTarget,LocalView} from './documentView';
++export type {LocalTarget,LocalView} from './documentView';
+ export interface HtmlLocation { headingId: string | null; offset: number; scrollTop: number; scrollLeft: number; zoom: number }
+ export interface HtmlHeading { key: string; authoredId: string | null; level: number; text: string }
+ export interface HtmlIssue { id: string; declaredUrl: string; kind: string; reason: string }
+@@ -16,7 +13,7 @@
+ export interface HtmlBounds { x: number; y: number; width: number; height: number }
+ export interface HtmlOwner { viewToken: string; generation: number }
+ export interface HtmlRequest extends HtmlOwner { requestId: number }
+-export interface HtmlLink { kind: 'anchor' | 'html' | 'document' | 'image' | 'details' | 'blocked' | 'unsupported' | 'missing' | 'access_required'; requestedPath: string | null; accessId: string | null; fileId: string | null; anchor: string | null; reason: string | null }
++export interface HtmlLink { kind: 'anchor' | 'html' | 'prototype' | 'document' | 'image' | 'details' | 'blocked' | 'unsupported' | 'missing' | 'access_required'; requestedPath: string | null; accessId: string | null; fileId: string | null; anchor: string | null; reason: string | null }
+ export interface HtmlSnapshot { headings?: HtmlHeading[]; location: HtmlLocation; empty?: boolean; requestId?: number }
+ /** Native provider contract. UI integration is deliberately left to the frontend owner. */
+ export const htmlNative = {

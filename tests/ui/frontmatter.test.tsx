@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkFrontmatter from "remark-frontmatter";
+import { boundedBlocks } from "../../src/reader/block-budget";
 import MarkdownView from "../../src/reader/MarkdownView";
 import { parseFrontmatter } from "../../src/reader/frontmatter";
 
@@ -24,10 +25,10 @@ describe("YAML frontmatter as inert data", () => {
     const processor = unified().use(remarkParse).use(remarkFrontmatter);
     class FakeWorker {
       onmessage: ((event: MessageEvent) => void) | null = null;
-      postMessage(content: string) {
-        const tree = processor.parse(content);
+      postMessage(request: { source: string; version: number; generation: number }) {
+        const tree = processor.parse(request.source);
         const first = tree.children[0] as { type?: string; value?: string };
-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree,
+        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source),
           metadata: first?.type === "yaml" ? parseFrontmatter(first.value ?? "") : null } } as MessageEvent));
       }
       terminate() {}

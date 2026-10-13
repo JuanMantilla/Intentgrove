@@ -1,0 +1,22 @@
+{
+  "name": "native-tests-v3",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--features",
+    "document-contract-tests",
+    "--lib",
+    "--tests"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:08:00.666022+00:00",
+  "finished_at": "2026-10-12T04:09:07.584484+00:00",
+  "exit_code": 0,
+  "log": "native-tests-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

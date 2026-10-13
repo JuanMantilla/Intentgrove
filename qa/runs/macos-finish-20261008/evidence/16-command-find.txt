@@ -1,0 +1,120 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button (disabled) Back, Help: No previous file
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selected) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						25 button Close tab: reading.md, Help: Close tab
+				26 pop up button Go menu
+				27 button (collapsed) Open documents (2), Secondary Actions: Expand
+				28 container Visited files
+					29 text Forward: reading.md
+				30 container Visited files
+					31 heading Visited files, Value: 2
+						32 text Visited files
+					33 button Close
+					34 text This window keeps up to 100 visits for this session.
+					35 container reading.md /private/tmp/intentgrove-finish-20261008/fixtures/reading.md Markdown Current document
+						36 button (disabled) reading.md /private/tmp/intentgrove-finish-20261008/fixtures/reading.md Markdown Current document
+					37 button Clear visit history
+				38 container reading.md
+					39 text reading.md
+					40 text Outside the open folder
+					41 button Edit section
+					42 summary Document…, Value: off
+						43 text Document…
+				44 container Find in document
+					45 search text field (settable) Find in document, Value: footnote, Placeholder: Find text
+						46 text (settable) footnote
+						47 button cancel
+					48 text 1 of 2
+					49 button Previous match
+					50 button Next match
+					51 button Close Find
+				52 container reading.md
+					53 container Repeated
+						54 summary Metadata, Value: off
+							55 text Metadata
+						56 container Edit section: Repeated
+							57 heading Repeated, Value: 1
+								58 text Repeated
+							59 button Edit section “Repeated”
+						60 container
+							61 text First paragraph with 
+							62 button neighbor, Help: second.md
+							63 text  and reference 
+							64 button second, Help: second.md
+							65 text .
+						66 container
+							67 text First footnote
+							68 button 1, Help: #fn-a
+							69 text .
+						70 container Edit section: Repeated
+							71 heading Repeated, Value: 1
+								72 text Repeated
+							73 button Edit section “Repeated”
+						74 container
+							75 text Second footnote
+							76 button 2, Help: #fn-b
+							77 text , then again
+							78 button 1, Help: #fn-a
+							79 text .
+						80 text js
+						81 button Copy code
+						82 text const answer = 42;
+
+						83 text mermaid
+						84 button Copy code
+						85 text flowchart LR
+  A --> B
+
+						86 text mermaid
+						87 button Copy code
+						88 text invalid }} <script>alert(1)</script>
+
+						89 image local
+						90 container
+							91 image remote
+							92 image escape
+						93 container
+							94 text [1] 
+							95 button ↩, Help: #fnref-a-1
+						96 text alpha note
+						97 container
+							98 text [2] 
+							99 button ↩, Help: #fnref-b-1
+						100 text beta note
+	101 close button
+	102 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	103 minimize button
+	104 text Intentgrove
+105 menu bar
+	106 Intentgrove Final Acceptance 20261008
+	107 File
+	108 Edit
+	109 View
+	110 Go
+	111 Window
+	112 Help
+
+The focused UI element is 45 search text field (settable) Find in document, Value: footnote, Placeholder: Find text

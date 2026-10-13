@@ -1,0 +1,28 @@
+{
+  "id": "qa0037-before",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "-t",
+    "retains the created tab on editor startup failure"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:06:35.314767+00:00",
+  "load_before": [
+    24.91259765625,
+    25.1298828125,
+    17.46142578125
+  ],
+  "exit_code": 1,
+  "finished_at": "2026-10-12T04:06:42.630658+00:00",
+  "load_after": [
+    24.03857421875,
+    24.94482421875,
+    17.44091796875
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/qa0037-before.log"
+}

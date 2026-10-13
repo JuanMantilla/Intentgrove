@@ -1,0 +1,17 @@
+{
+  "name": "format-crates-v2",
+  "command": [
+    "cargo",
+    "fmt",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--all",
+    "--",
+    "--check"
+  ],
+  "started_at": "2026-10-12T02:06:54.511709+00:00",
+  "finished_at": "2026-10-12T02:06:55.563042+00:00",
+  "exit_code": 0,
+  "log": "format-crates-v2.log",
+  "tested_snapshot": "tested-snapshot-v2.json"
+}

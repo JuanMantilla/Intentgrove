@@ -1,0 +1,85 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button (disabled) Back, Help: No previous file
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) lifecycle.md · Unsaved · This file changed in another app. Your edit is safe., Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/lifecycle.md
+						14 button Close tab: lifecycle.md, Help: Close tab
+					15 container
+						16 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						17 button Close tab: plain.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container lifecycle.md
+					21 text lifecycle.md
+					22 text Folder root
+					23 button (disabled) Save file
+					24 button Return to reading
+					25 text Save returns to reading.
+					26 summary Document…, Value: off
+						27 text Document…
+				28 text This file changed in another app. Your edit is still available.
+				29 button Dismiss
+				30 container lifecycle.md
+					31 container
+						32 text This file changed in another app. Your edit is safe. Another app can still write at the exact moment of Save. A recoverable copy is kept.
+						33 button Inspect versions
+						34 button Keep my edit
+						35 button Save a copy
+						36 button Use disk version
+					37 container Editing: Lifecycle proof
+						38 text Editing: Lifecycle proof
+						39 text Changes not saved to the file
+						40 text Markdown source
+						41 text entry area (settable) Markdown source: Lifecycle proof, Secondary Actions: Show Writing Tools, Value: # Lifecycle proof
+
+RUN_FINAL_CANCEL_MARKER
+
+
+							42 text (settable) # Lifecycle proof
+
+RUN_FINAL_CANCEL_MARKER
+
+
+						43 container Live preview
+							44 text Live preview
+							45 container Lifecycle proof
+								46 heading Lifecycle proof, Value: 1
+									47 text Lifecycle proof
+								48 text RUN_FINAL_CANCEL_MARKER
+						49 button Undo
+						50 button (disabled) Redo
+						51 button Discard changes…
+						52 button Save as…
+					53 container Lifecycle proof
+						54 container Edit section: Lifecycle proof
+							55 heading Lifecycle proof, Value: 1
+								56 text Lifecycle proof
+							57 button Edit section “Lifecycle proof”
+						58 text BASELINE_FIRST
+						59 container Edit section: Following section
+							60 heading Following section, Value: 2
+								61 text Following section
+							62 button Edit section “Following section”
+						63 text DO_NOT_CHANGE_FOLLOWING
+	64 close button
+	65 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	66 minimize button
+	67 text Intentgrove
+68 menu bar
+	69 Intentgrove
+	70 File
+	71 Edit
+	72 View
+	73 Go
+	74 Window
+	75 Help

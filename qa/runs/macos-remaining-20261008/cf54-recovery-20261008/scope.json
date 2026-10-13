@@ -1,0 +1,25 @@
+{
+  "mode": "VERIFY",
+  "authorization": "User explicitly authorized reversible removal/restoration of task-owned installed app and scoped acceptance data; current request reopens CF54 only.",
+  "target": "Apple Silicon / current macOS",
+  "excluded": "Older-package upgrades, older macOS, Intel/universal",
+  "preserve": "/Users/juanmantilla/Intentgrove Backups/before-fresh-acceptance-20261008-093538",
+  "profilePolicy": "Keep fresh current profile in place; never restore old profile.",
+  "originalCriterionSources": [
+    "../macos-completion-20261008/coverage.json CF54",
+    "../macos-completion-20261008/external-environment-procedure.md steps1/2/3/5 (older-version step4/5 excluded)",
+    "specs/012-macos-delivery/spec.md AS-001/008,F005-R01/03/09,SC-001"
+  ],
+  "featureStateObserved": "specs/013-windows-desktop; no selection changed; requested macOS artifacts are explicit target",
+  "uiLimitations": [
+    {
+      "action": "before screenshot",
+      "error": "ScreenCaptureKit -3811 audio/video capture failure"
+    },
+    {
+      "action": "Finder getApp",
+      "error": "cgWindowNotFound"
+    }
+  ],
+  "productSourceChanges": false
+}

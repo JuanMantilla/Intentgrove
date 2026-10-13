@@ -1,0 +1,1 @@
+const viewer=document.getElementById('viewer');const enlarge=document.getElementById('enlarge');enlarge.addEventListener('click',()=>viewer.showModal());document.getElementById('close').addEventListener('click',()=>viewer.close());viewer.addEventListener('close',()=>enlarge.focus());

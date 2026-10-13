@@ -1,0 +1,595 @@
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/tests/ui/close-edit.test.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/close-edit.test.tsx
+@@ -85,19 +85,24 @@
+   } else fireEvent.click(screen.getByRole("button", {
+     name: route === "tab" ? "Close tab: a.md" : "Return to reading"
+   }));
+-  return screen.findByRole("alertdialog", { name: "Keep this section edit?" });
++  const title = route === "read" ? "Return to reading?" : route === "quit" ? "Quit Intentgrove?" : route === "window" ? "Close window?" : "Close document?";
++  const dialog = await screen.findByRole("alertdialog", { name: title });
++  expect(dialog.textContent).toContain("Updates the Markdown file with your changes.");
++  expect(dialog.textContent).toContain(route === "read" ? "Returns to reading without changing the file." : "Continues without changing the Markdown file");
++  if (route !== "read") expect(dialog.textContent).not.toContain("Returns to reading");
++  return dialog;
+ }
+ 
+ describe("dirty editor close choices (F004-R08, R15)", () => {
+   for (const route of ["quit", "window", "tab", "middle", "read"] as const) {
+-    it.each(["Cancel", "Keep draft", "Discard", "Save"])(`${route}: %s`, async (choice) => {
++    it.each(["Cancel", "Keep draft", "Discard", "Save to file"])(`${route}: %s`, async (choice) => {
+       await setup();
+       const dialog = await requestClose(route);
+       fireEvent.click(within(dialog).getByRole("button", { name: choice }));
+       await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
+-      expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(choice === "Save" ? 1 : 0);
++      expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(choice === "Save to file" ? 1 : 0);
+       expect(mocks.discardSectionEdit).toHaveBeenCalledTimes(choice === "Discard" ? 1 : 0);
+-      if (choice === "Save") expect(mocks.saveSectionEdit).toHaveBeenCalledWith("session", "# One\nmy draft\n");
++      if (choice === "Save to file") expect(mocks.saveSectionEdit).toHaveBeenCalledWith("session", "# One\nmy draft\n");
+       if (choice === "Discard") expect(mocks.discardSectionEdit).toHaveBeenCalledWith("session");
+       if (choice !== "Cancel" && (route === "quit" || route === "window")) {
+         expect(mocks.finishEditingClose).toHaveBeenCalledWith(route === "quit");
+@@ -126,7 +131,7 @@
+     // timers and microtasks live: only the display scheduler is withheld.
+     vi.spyOn(window, "requestAnimationFrame").mockImplementation(() => 1);
+     const dialog = await requestClose(route);
+-    fireEvent.click(within(dialog).getByRole("button", { name: "Save" }));
++    fireEvent.click(within(dialog).getByRole("button", { name: "Save to file" }));
+     await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(route === "quit"));
+     expect(mocks.finishWorkspaceSession).toHaveBeenCalledOnce();
+     const checkpoint = mocks.finishWorkspaceSession.mock.calls[0][0];
+@@ -151,7 +156,7 @@
+   it("keeps Quit pending after a failed Save", async () => {
+     mocks.saveSectionEdit.mockRejectedValue({ code: "denied", message: "fixture write failure" });
+     await setup();
+-    fireEvent.click(within(await requestClose("quit")).getByRole("button", { name: "Save" }));
++    fireEvent.click(within(await requestClose("quit")).getByRole("button", { name: "Save to file" }));
+     await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(1));
+     expect(screen.getByRole("alertdialog")).toBeTruthy();
+     expect(screen.getByLabelText("Fixture editor").textContent).toContain("my draft");
+@@ -186,8 +191,8 @@
+     mocks.getConfirmedDocument.mockReturnValue(new Promise((resolve) => { confirm = resolve; }));
+     fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Use disk version" }));
+     const closeDialog = await requestClose("quit");
+-    expect(within(closeDialog).getByText("Your section edits have not been saved to the Markdown file.")).toBeTruthy();
+-    expect((within(closeDialog).getByRole("button", { name: "Save" }) as HTMLButtonElement).disabled).toBe(true);
++    expect(within(closeDialog).getByText("Updates the Markdown file with your changes.")).toBeTruthy();
++    expect((within(closeDialog).getByRole("button", { name: "Save to file" }) as HTMLButtonElement).disabled).toBe(true);
+     expect(screen.getAllByRole("alertdialog")).toHaveLength(1);
+     await act(async () => confirm(external));
+     expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/tests/ui/folder-search.test.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/folder-search.test.tsx
+@@ -124,6 +124,7 @@
+       { target: { value: "Needle" } });
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1));
++    fireEvent.click(screen.getByRole("button", { name: /Names and content/ }));
+     fireEvent.click(screen.getByRole("checkbox", { name: "Include ignored files" }));
+     expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1);
+     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+@@ -239,3 +240,43 @@
+   await waitFor(()=>expect(screen.queryByRole("progressbar")).toBeNull());
+   expect(screen.getByRole("button",{name:/Replacement/})).toBeTruthy();
+ });
++
++it("operates options with arrows, returns focus on selection and dismisses options before Projects", async () => {
++  const dismiss = vi.fn();
++  render(<FolderSearchPanel root={root} locale="en" onOpen={vi.fn()} onDismiss={dismiss} />);
++  const trigger = screen.getByRole("button", { name: /Names and content/ });
++  fireEvent.click(trigger);
++  const selected = screen.getAllByRole("button", { name: /Names and content/ }).find(button => button.hasAttribute("aria-pressed"))!;
++  expect(document.activeElement).toBe(selected);
++  fireEvent.keyDown(selected, { key: "ArrowDown" });
++  expect(document.activeElement).toBe(screen.getByRole("button", { name: "File names" }));
++  fireEvent.click(screen.getByRole("button", { name: "File names" }));
++  expect(document.activeElement).toBe(trigger);
++  expect(trigger.getAttribute("aria-expanded")).toBe("false");
++  fireEvent.click(trigger);
++  expect(screen.getByText("Contents search covers Markdown files.")).toBeTruthy();
++  fireEvent.keyDown(document.activeElement!, { key: "Escape" });
++  expect(dismiss).not.toHaveBeenCalled();
++  expect(document.activeElement).toBe(trigger);
++  fireEvent.keyDown(trigger, { key: "Escape" });
++  expect(dismiss).toHaveBeenCalledTimes(1);
++});
++
++it.each(["en", "es"] as const)("keeps failed starts truthful and permits retry in %s", async locale => {
++  mocks.startFolderSearch.mockRejectedValueOnce({ code: "search_unavailable" });
++  render(<FolderSearchPanel root={root} locale={locale} onOpen={vi.fn()} />);
++  await waitFor(() => expect(mocks.listener).toBeTruthy());
++  const query = screen.getByRole("searchbox");
++  const search = screen.getByRole("button", { name: locale === "en" ? "Search" : "Buscar", exact: true });
++  expect((search as HTMLButtonElement).disabled).toBe(true);
++  fireEvent.change(query, { target: { value: "Needle" } });
++  fireEvent.click(search);
++  await waitFor(() => expect(screen.getByRole("status").textContent).not.toContain(locale === "en" ? "Searching…" : "Buscando…"));
++  expect(screen.getByRole("status").textContent).not.toContain(locale === "en" ? "Search complete" : "Búsqueda completa");
++  expect(screen.getByRole("status").textContent).toContain("0");
++  fireEvent.click(search);
++  await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledTimes(2));
++  act(() => mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [], scanned: 4, skipped: 0, matched: 0, status: "complete", errorCode: null } }));
++  expect(screen.getByRole("status").textContent).toContain(locale === "en" ? "No results" : "Sin resultados");
++  expect(screen.getByRole("status").textContent).toContain("4");
++});
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/tests/ui/workspace-handoff.test.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/workspace-handoff.test.tsx
+@@ -127,7 +127,7 @@
+     await screen.findByRole("tab", { name: "b.md" });
+     fireEvent.contextMenu(screen.getByRole("tab", { name: "b.md" }));
+     fireEvent.click(screen.getByRole("menuitem", { name: "Close other tabs" }));
+-    const dialog = await screen.findByRole("alertdialog", { name: "Keep this section edit?" });
++    const dialog = await screen.findByRole("alertdialog", { name: "Close document?" });
+     fireEvent.click(within(dialog).getByRole("button", { name: "Cancel" }));
+     expect(screen.getAllByRole("tab").length).toBe(2);
+     expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+@@ -142,8 +142,8 @@
+     mocks.saveSectionEdit.mockRejectedValueOnce({ code: "io_error" });
+     fireEvent.contextMenu(screen.getByRole("tab", { name: "b.md" }));
+     fireEvent.click(screen.getByRole("menuitem", { name: "Close other tabs" }));
+-    const dialog = await screen.findByRole("alertdialog", { name: "Keep this section edit?" });
+-    fireEvent.click(within(dialog).getByRole("button", { name: "Save" }));
++    const dialog = await screen.findByRole("alertdialog", { name: "Close document?" });
++    fireEvent.click(within(dialog).getByRole("button", { name: "Save to file" }));
+     await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledOnce());
+     expect(screen.getAllByRole("tab").length).toBe(2);
+     expect(screen.getByRole("alertdialog")).toBeTruthy();
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/tests/ui/edit-flow.test.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/edit-flow.test.tsx
+@@ -138,7 +138,7 @@
+       await editSection("One");
+       await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
+       mocks.listeners["editing:close_requested"]({ payload: intent });
+-      fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save" }));
++      fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save to file" }));
+       await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(quit));
+       expect(mocks.discardSectionEdit).toHaveBeenCalledWith("one");
+     }
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/tests/fixtures/redesign-preview.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/fixtures/redesign-preview.tsx
+@@ -25,13 +25,24 @@
+     readingFont: "roboto", readingSize: 16, readingLineHeight: 1.6, readingWidth: 760, documentsAndImagesOnly: true,
+     workspaceLayout: workspaceLayout(params.get("layout")) } };
+ const editorDocument = "# Editing target\n\nEdit this paragraph directly. It contains **bold text** and *italic text*, with an authored local [link](./README.md).\n\nA second paragraph keeps the same readable column.\n\n- First item\n- Second item\n  - Nested item\n\n| Name | Value |\n| :--- | ---: |\n| First | One |\n| Second | Two |\n\n~~~javascript\nconst message = `hello`;\n~~~\n\n# Read-only surroundings\n\nThis section remains readable and unchanged.\n";
++const revisionPreview = params.has("revisionPreview");
++const longName = "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md";
++const nativeContent = "# Native validation\n\nA disposable document for layout validation.\n\n## Search section\n\nvalidationneedle short document match.\n\n## Another section\n\nKeep this reading content visible.\n";
+ const sources: Record<string, string> = { "AGENTS.md": params.get("editor") === "1" ? editorDocument : instructions, "README.md": readme,
+   "close-review-similar-filename-alpha.md": "# Alpha\n\nDisposable Markdown fixture.\n",
+   "close-review-similar-filename-beta.md": "# Beta\n\nDisposable Markdown fixture.\n" };
++if (revisionPreview) {
++  for (const name of Object.keys(sources)) delete sources[name];
++  sources["close-review-similar-filename-with-shared-prefix-alpha.md"] = "# Alpha\n\nvalidationneedle identity fixture.\n";
++  sources["close-review-similar-filename-with-shared-prefix-beta.md"] = "# Beta\n\nvalidationneedle identity fixture.\n";
++  sources[longName] = nativeContent;
++  for (let index = 1; index <= 20; index++) sources[`document${String(index).padStart(2, "0")}.md`] = "# Document\n\nvalidationneedle disposable match.\n";
++  sources["short.md"] = nativeContent;
++}
+ const imageName = "theme-states.svg";
+-const names = [...Object.keys(sources), imageName];
++const names = [...Object.keys(sources), ...(revisionPreview ? [] : [imageName])];
+ const path = (name: string) => "/fixture/personal/md-reader/" + name;
+-const root = { id: "fixture-root", name: "md-reader", displayPath: "/fixture/personal/md-reader", generation: 1 };
++const root = { id: "fixture-root", name: revisionPreview ? "fixtures" : "md-reader", displayPath: "/fixture/personal/md-reader", generation: 1 };
+ const sectionsFor = (name: string) => {
+   const source = sources[name];
+   const headings = [...source.matchAll(/^(#{1,6})\s+(.+)$/gm)];
+@@ -79,10 +90,10 @@
+       case "acknowledge_settings_change": settings = {...settings, persistence: args.persistence as "saved" | "failed"}; return settings;
+ 
+       case "load_workspace_session": return { sequence: 1, completedAtMs: 1, exitDisposition: "normal", root,
+-        tabs: names.map((name) => ({ key: name, fileId: name, name, displayPath: path(name), rootSegments: [name], explicitFile: false,
++        tabs: (revisionPreview ? ["short.md"] : names).map((name) => ({ key: name, fileId: name, name, displayPath: path(name), rootSegments: [name], explicitFile: false,
+           anchor: { headingId: null, offset: 0, scrollTop: 0, viewportWidth: 1440, viewportHeight: 900, contentVersion: "v1" },
+-          savedDiskVersion: "v1", errorCode: null, editingActive: false })), activeKey: "AGENTS.md",
+-        tree: { expanded: [], selected: ["AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, sidebarWidth: Number(params.get("sidebarWidth")) || defaultSessionPanel.sidebarWidth, readingWidth: 760, outlineOpen: true, workspaceLayout: (["margin", "folio", "atlas"].includes(params.get("layout") ?? "") ? params.get("layout") : "margin") } };
++          savedDiskVersion: "v1", errorCode: null, editingActive: false })), activeKey: revisionPreview ? "short.md" : "AGENTS.md",
++        tree: { expanded: [], selected: [revisionPreview ? "short.md" : "AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, sidebarWidth: Number(params.get("sidebarWidth")) || defaultSessionPanel.sidebarWidth, readingWidth: 760, outlineOpen: true, workspaceLayout: (["margin", "folio", "atlas"].includes(params.get("layout") ?? "") ? params.get("layout") : "margin") } };
+       case "list_entries": return { entries: [...names, ...(params.has("longTree") ? Array.from({length: 80}, (_, i) => `disposable-long-project-file-${i}.md`) : [])].map((name) => ({ name, kind: name.endsWith(".svg") ? "image" : "markdown" })), nextOffset: null, snapshotId: "fixture" };
+       case "read_document": return documentFor(name);
+       case "list_edit_sections": return { diskVersion: "v1", sections: sectionsFor(name) };
+@@ -119,9 +130,9 @@
+           .flatMap((context, index) => context.toLowerCase().includes(String(args.query).toLowerCase()) ? [{
+             id: `${name}:${index}`, segments: [name], path: name, line: index + 1, startByte: 0, endByte: 1,
+             context, kind: "content", ignored: false, version: "v1"
+-          }] : [])).slice(0, 12) : [];
++          }] : [])).slice(0, revisionPreview ? 100 : 12) : [];
+         setTimeout(() => callbacks.get(listeners.get("folder-search:batch")!)?.({ payload: { jobId: "search", generation: 1,
+-          results, scanned: names.length, skipped: params.has("search") ? 1 : 0, matched: results.length, status: "complete", errorCode: null } }), 50);
++          results, scanned: names.length, skipped: revisionPreview ? 0 : params.has("search") ? 1 : 0, matched: results.length, status: "complete", errorCode: null } }), 50);
+         return { generation: 1, jobId: "search" };
+       }
+       case "cancel_folder_search": return true;
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/src/app/i18n.ts.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/i18n.ts
+@@ -364,6 +364,18 @@
+     recoveryCleanupFailed: "Saved, but an old recovery copy could not be removed. Clear saved drafts when convenient.",
+     mixedEndings: "This file has mixed line endings, so section editing is unavailable.",
+     recoveryError: "Recovery could not be saved. Keep the app open and try again.",
++    clearSearchShort: "Clear",
++    returnReadingQuestion: "Return to reading?",
++    closeTabEditQuestion: "Close document?",
++    changeFolderEditQuestion: "Change folders?",
++    closeWindowEditQuestion: "Close window?",
++    quitEditQuestion: "Quit Intentgrove?",
++    chooseEditOutcome: "Choose what happens to your changes.",
++    saveToFile: "Save to file",
++    saveToFileDetail: "Updates the Markdown file with your changes.",
++    keepReadingDetail: "Returns to reading without changing the file. Your edit remains available as a draft.",
++    keepClosingDetail: "Continues without changing the Markdown file and keeps your edit as a draft.",
++    discardCancelDetail: "Discard removes this edit. Cancel keeps you editing.",
+     closeEditQuestion: "Keep this section edit?",
+     closeEditDetail: "Your section edits have not been saved to the Markdown file.",
+     returnReading: "Return to reading",
+@@ -754,6 +766,18 @@
+     recoveryCleanupFailed: "Guardado, pero no se pudo borrar una recuperación antigua. Borra los borradores guardados cuando puedas.",
+     mixedEndings: "Este archivo tiene finales de línea mezclados y no se puede editar por secciones.",
+     recoveryError: "No se pudo guardar la recuperación. Mantén la app abierta y vuelve a intentarlo.",
++    clearSearchShort: "Borrar",
++    returnReadingQuestion: "¿Volver a la lectura?",
++    closeTabEditQuestion: "¿Cerrar documento?",
++    changeFolderEditQuestion: "¿Cambiar de carpeta?",
++    closeWindowEditQuestion: "¿Cerrar ventana?",
++    quitEditQuestion: "¿Salir de Intentgrove?",
++    chooseEditOutcome: "Elige qué hacer con tus cambios.",
++    saveToFile: "Guardar archivo",
++    saveToFileDetail: "Actualiza el archivo Markdown con tus cambios.",
++    keepReadingDetail: "Vuelve a la lectura sin cambiar el archivo. La edición queda como borrador.",
++    keepClosingDetail: "Continúa sin cambiar el archivo Markdown y conserva la edición como borrador.",
++    discardCancelDetail: "Descartar elimina esta edición. Cancelar sigue editando.",
+     closeEditQuestion: "¿Conservar esta edición?",
+     closeEditDetail: "Tus cambios de la sección no se han guardado en el archivo Markdown.",
+     returnReading: "Volver a la lectura",
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/src/app/App.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -1,3 +1,4 @@
++import MiddleFilename from "./MiddleFilename";
+ import WorkspaceIcon from "./WorkspaceIcon";
+ import PreviewLoading from "../reader/PreviewLoading";
+ import theoniraLight from "../assets/theonira/theonira-mark-light.png";
+@@ -3026,6 +3027,7 @@
+                 className="tree-row"
+                 disabled={historyBusy}
+                 data-tree-path={pathKey(path)}
++                aria-label={entry.name}
+                 aria-current={!isFolder && active && pathKey(documentSegments(active) ?? []) === pathKey(path) ? "page" : undefined}
+                 aria-expanded={isFolder ? expanded : undefined}
+                 title={path.join("/")}
+@@ -3066,7 +3068,7 @@
+                     : setNotice(noticeLocale => t(noticeLocale, "unsupported"))}
+               >
+                 <span className="tree-icon" aria-hidden="true"><WorkspaceIcon name={isFolder ? expanded ? "folder-open" : "folder" : entry.kind === "image" ? "image" : "file-text"} /></span>
+-                <span className="tree-name">{entry.name}</span>
++                <MiddleFilename className="tree-name" name={entry.name} />
+               </button>
+ 
+               {isFolder && expanded ? tree(path) : null}
+@@ -3572,9 +3574,14 @@
+             </div>
+           </div>}
+           {closeIntent && <div className="section-modal-backdrop">
+-            <div ref={modalRef} className="section-modal" role="alertdialog" aria-modal="true" aria-label={t(locale, "closeEditQuestion")}>
+-              <strong>{t(locale, "closeEditQuestion")}</strong>
+-              <p>{t(locale, "closeEditDetail")}</p>
++            <div ref={modalRef} className="section-modal close-edit-dialog" role="alertdialog" aria-modal="true" aria-label={t(locale, closeIntent.kind === "read" ? "returnReadingQuestion" : closeIntent.kind === "tab" ? "closeTabEditQuestion" : closeIntent.kind === "folder" ? "changeFolderEditQuestion" : closeIntent.kind === "window" ? "closeWindowEditQuestion" : "quitEditQuestion")}>
++              <strong>{t(locale, closeIntent.kind === "read" ? "returnReadingQuestion" : closeIntent.kind === "tab" ? "closeTabEditQuestion" : closeIntent.kind === "folder" ? "changeFolderEditQuestion" : closeIntent.kind === "window" ? "closeWindowEditQuestion" : "quitEditQuestion")}</strong>
++              <p>{t(locale, "chooseEditOutcome")}{closingEditIds.length === 1 && <span> {tabs.find(tab => tab.id === closingEditIds[0])?.name}</span>}</p>
++              <div className="close-edit-consequences">
++                <div><WorkspaceIcon name="file-text" /><div><h3>{t(locale, "saveToFile")}</h3><p>{t(locale, "saveToFileDetail")}</p></div></div>
++                <div><WorkspaceIcon name="pencil" /><div><h3>{t(locale, "keepDraft")}</h3><p>{t(locale, closeIntent.kind === "read" ? "keepReadingDetail" : "keepClosingDetail")}</p></div></div>
++              </div>
++              <p className="close-edit-secondary">{t(locale, "discardCancelDetail")}</p>
+               {closingConflict && <p role="status">{t(locale, "saveConflict")}</p>}
+               {closeIntent.tabIds && closeIntent.tabIds.length > 1 && <ul>{closeIntent.tabIds.map(id => {
+                 const tab = tabs.find(item => item.id === id);
+@@ -3583,7 +3590,7 @@
+               <div className="section-modal-actions">
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("cancel")}>{t(locale, "cancel")}</button>
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("discard")}>{t(locale, "discard")}</button>
+-                <button type="button" disabled={busy || closingConflict} onClick={() => void resolveClose("save")}>{savingTabId && <PreviewLoading inline visibleLabel label={t(locale, "sourceSaving")} />}{t(locale, "save")}</button>
++                <button type="button" disabled={busy || closingConflict} onClick={() => void resolveClose("save")}>{savingTabId && <PreviewLoading inline visibleLabel label={t(locale, "sourceSaving")} />}{t(locale, "saveToFile")}</button>
+                 <button type="button" className="primary-button" disabled={busy} onClick={() => void resolveClose("keep")}>{t(locale, "keepDraft")}</button>
+               </div>
+             </div>
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/src/app/DocumentLocation.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/DocumentLocation.tsx
+@@ -1,4 +1,6 @@
+ import { useEffect, useRef, useState, type ReactNode } from "react";
++import MiddleFilename from "./MiddleFilename";
++import WorkspaceIcon from "./WorkspaceIcon";
+ import { t, type Locale } from "./i18n";
+ 
+ export default function DocumentLocation({ name, path, folders, locale, onReveal, revealing = false, actions, menuActions, onMenuOpen, beforeMenuOpen }:
+@@ -22,8 +24,7 @@
+       window.removeEventListener("blur", close); window.removeEventListener("scroll", scroll, true); };
+   }, []);
+   return <div className="document-location" role="group" aria-label={name}>
+-    <div className="document-identity"><strong>{name}</strong>
+-      <span>{folders === null ? t(locale, "outsideWorkspace") : folders || t(locale, "workspaceRoot")}</span></div>
++    <div className="document-identity"><WorkspaceIcon name="file-text" /><strong><MiddleFilename name={name} /></strong></div>
+     <div className="document-location-actions">
+       {actions}
+       <details ref={menu} className="document-actions-disclosure" onToggle={(event) => {
+@@ -58,6 +59,7 @@
+       {onReveal && <button type="button" disabled={revealing} onClick={onReveal}>
+         {t(locale, revealing ? "revealingFile" : "revealInExplorer")}</button>}
+       </div></details>
++      <span className="document-parent">{folders === null ? t(locale, "outsideWorkspace") : folders || t(locale, "workspaceRoot")}</span>
+     </div>
+   </div>;
+ }
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/src/app/FolderSearchPanel.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/FolderSearchPanel.tsx
+@@ -1,5 +1,7 @@
++import MiddleFilename from "./MiddleFilename";
++import WorkspaceIcon from "./WorkspaceIcon";
+ import PreviewLoading from "../reader/PreviewLoading";
+-import { useEffect, useRef, useState } from "react";
++import { useEffect, useId, useRef, useState } from "react";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type FolderSearchBatch, type FolderSearchHit,
+   type FolderSearchStarted, type GrantInfo, type OpenFolderSearchHit } from "./api";
+@@ -27,6 +29,19 @@
+   const [localQuery, setLocalQuery] = useState("");
+   const query = suppliedQuery ?? localQuery;
+   const setQuery = onQueryChange ?? setLocalQuery;
++  const optionsId = useId();
++  const optionsRef = useRef<HTMLDivElement>(null);
++  const optionsTrigger = useRef<HTMLButtonElement>(null);
++  const [optionsOpen, setOptionsOpen] = useState(false);
++  function closeOptions() { setOptionsOpen(false); optionsTrigger.current?.focus(); }
++  useEffect(() => {
++    if (!optionsOpen) return;
++    optionsRef.current?.querySelector<HTMLElement>('[aria-pressed="true"]')?.focus();
++    const outside = (event: PointerEvent) => { if (!optionsRef.current?.contains(event.target as Node)) setOptionsOpen(false); };
++    window.addEventListener("pointerdown", outside);
++    return () => window.removeEventListener("pointerdown", outside);
++  }, [optionsOpen]);
++  useEffect(() => { if (!active) setOptionsOpen(false); }, [active]);
+   const inputRef = useRef<HTMLInputElement>(null);
+   const [mode, setMode] = useState<"both" | "name" | "content">("both");
+   const [includeIgnored, setIncludeIgnored] = useState(false);
+@@ -192,39 +207,55 @@
+ 
+   return <section className="folder-search" role="search" aria-label={t(locale, "folderSearch") }
+     onKeyDown={(event) => {
++      if (event.key === "Escape" && optionsOpen) {
++        event.preventDefault(); event.stopPropagation(); closeOptions(); return;
++      }
+       if (event.key === "Escape" && (onDismiss || onClose)) {
+         event.preventDefault(); event.stopPropagation(); void stop(); (onDismiss ?? onClose)?.();
+       }
+     }}>
+     {onClose && <button type="button" onClick={() => { void stop(); onClose(); }}>{t(locale, "backToExplorer")}</button>}
+-    <label className="folder-search-label">{t(locale, "folderSearch")}
+-      <input ref={inputRef} type="search" value={query} maxLength={256} autoComplete="off"
+-        placeholder={t(locale, "folderSearchPlaceholder")}
+-        onChange={(event) => { invalidate(Boolean(event.target.value.trim())); setQuery(event.target.value); }}
+-        onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); void search(); } }} />
+-    </label>
+-    <p className="folder-search-scope">{t(locale, "searchScope")}: {[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")} · {t(locale,
+-      mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</p>
+-    <div className="search-modes" role="group" aria-label={t(locale, "folderSearchMode")}>
+-      {(["both", "name", "content"] as const).map((choice) => <button type="button" key={choice}
+-        aria-pressed={mode === choice} onClick={() => { invalidate(true); setMode(choice); }}>
+-        {mode === choice && <span aria-hidden="true">✓ </span>}
+-        {t(locale, choice === "both" ? "folderSearchBoth" : choice === "name" ? "folderSearchName" : "folderSearchContent")}
+-      </button>)}
+-    </div>
+-    <p className="folder-search-scope">{t(locale, "searchMarkdownCoverage")}</p>
+-    <label className="folder-search-check"><input type="checkbox" checked={includeIgnored}
+-      onChange={(event) => { const checked = event.target.checked; setIncludeIgnored(checked);
+-        invalidate(true); }} />
+-      {t(locale, "folderSearchIncludeIgnored")}</label>
+-    <div className="folder-search-actions">
+-      {status !== "searching" && <button type="button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>}
+-      {status === "searching" && <button type="button"
+-        onClick={() => void stop()}>{t(locale, "folderSearchStop")}</button>}
+-      <button type="button" disabled={!query} onClick={() => { invalidate(); setQuery(""); inputRef.current?.focus(); }}>{t(locale, "clearSearch")}</button>
++    <div className="folder-search-query">
++      <label className="folder-search-label">{t(locale, "folderSearch")}
++        <input ref={inputRef} type="search" value={query} maxLength={256} autoComplete="off"
++          placeholder={t(locale, "folderSearchPlaceholder")}
++          onChange={(event) => { invalidate(Boolean(event.target.value.trim())); setQuery(event.target.value); }}
++          onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); void search(); } }} />
++      </label>
++      {status !== "searching" ? <button type="button" className="primary-button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>
++        : <button type="button" onClick={() => void stop()}>{t(locale, "folderSearchStop")}</button>}
++    </div>
++    <div className="folder-search-scope-row">
++      <p className="folder-search-scope" title={[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")}><WorkspaceIcon name="folder" /><span aria-label={`${t(locale, "searchScope")}: ${[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")}`}>{[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")}</span></p>
++      <button type="button" aria-label={t(locale, "clearSearch")} disabled={!query} onClick={() => { invalidate(); setQuery(""); inputRef.current?.focus(); }}>{t(locale, "clearSearchShort")}</button>
++    </div>
++    <div className="search-options" ref={optionsRef}>
++      <button ref={optionsTrigger} type="button" className="search-options-trigger" aria-expanded={optionsOpen} aria-controls={optionsId}
++        onClick={() => setOptionsOpen(open => !open)}><WorkspaceIcon name="settings-2" /><span>{t(locale, mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</span><WorkspaceIcon name="chevron-down" /></button>
++      {includeIgnored && <small className="search-ignored-indicator">{t(locale, "folderSearchIncludeIgnored")}: ✓</small>}
++      {optionsOpen && <div id={optionsId} className="search-options-body" role="group" aria-label={t(locale, "folderSearchMode")}
++        onKeyDown={event => {
++          if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
++            event.preventDefault();
++            const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>("button, input"));
++            const index = controls.indexOf(document.activeElement as HTMLElement);
++            controls[event.key === "Home" ? 0 : event.key === "End" ? controls.length - 1 : (index + (event.key === "ArrowDown" ? 1 : -1) + controls.length) % controls.length]?.focus();
++          }
++        }}>
++        <div className="search-modes">
++          {(["both", "name", "content"] as const).map(choice => <button type="button" key={choice} aria-pressed={mode === choice}
++            onClick={() => { invalidate(true); setMode(choice); closeOptions(); }}>
++            <span aria-hidden="true">{mode === choice ? "✓" : ""}</span>{t(locale, choice === "both" ? "folderSearchBoth" : choice === "name" ? "folderSearchName" : "folderSearchContent")}</button>)}
++        </div>
++        <label className="folder-search-check"><input type="checkbox" checked={includeIgnored}
++          onChange={event => { setIncludeIgnored(event.target.checked); invalidate(true); }} />{t(locale, "folderSearchIncludeIgnored")}</label>
++        <p className="folder-search-scope">{t(locale, "searchMarkdownCoverage")}</p>
++      </div>}
+     </div>
+     {!query.trim() && <p className="folder-search-scope">{t(locale, "searchQueryRequired")}</p>}
+-    <p className="folder-search-status" role="status" aria-live="polite">
++    <div className="folder-search-status" role="status" aria-live="polite">
++      {status !== "idle" && <strong>{progress.matched.toLocaleString(locale)} {t(locale, "searchResultCount")}</strong>}
++      <details className="search-status-details"><summary>
+       {errorCode ? errorText(locale, errorCode) : status === "idle"
+         ? t(locale, "folderSearchGuidance") : status === "searching"
+           ? <PreviewLoading inline announce={false} staticMotion={!active} label={t(locale, "folderSearchSearching")}
+@@ -233,12 +264,14 @@
+               ? t(locale, "folderSearchPartial") : progress.skipped > 0
+                 ? t(locale, "folderSearchFinished") : hits.length === 0
+                 ? t(locale, "folderSearchZero") : t(locale, "folderSearchComplete")}
++      </summary>
+       {status !== "idle" && ` · ${progress.scanned.toLocaleString(locale)} ${t(locale, "folderSearchScanned")}, ${progress.skipped.toLocaleString(locale)} ${t(locale, "folderSearchSkipped")}`}
+       {status !== "idle" && ` · ${t(locale, "searchResultCount")}: ${progress.matched.toLocaleString(locale)}`}
+-    </p>
++      </details>
++    </div>
+     {replacingResults && hits.length > 0 && <p className="folder-search-scope">{locale === "es" ? "Resultados anteriores; esperando la nueva búsqueda." : "Previous results; awaiting the new search."}</p>}
+-    <div className="folder-search-groups">{Array.from(groups, ([path, matches]) => <section key={path} aria-label={path}>
+-      <h3 title={path}>{path}<span>{matches.length.toLocaleString(locale)}</span></h3>
++    <div className="folder-search-groups" tabIndex={0} role="region" aria-label={t(locale, "searchResultCount")}>{Array.from(groups, ([path, matches]) => <section key={path} aria-label={path}>
++      <h3 title={path}><MiddleFilename name={path} /><span>{matches.length.toLocaleString(locale)}</span></h3>
+       <ol className="folder-search-results">{matches.map((hit) => <li key={hit.id}>
+         <button type="button" disabled={opening !== null || replacingResults} title={hit.path}
+           aria-label={`${hit.path} · ${hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}${hit.context}`}
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/baseline/src/styles/app.css
++++ /Users/juanmantilla/projects/personal/md-reader/src/styles/app.css
+@@ -1118,3 +1118,74 @@
+ .app-shell[data-narrow="true"] .sidebar[data-compact="true"] { grid-column: 1 / -1; grid-row: 2; top: 0; }
+ /* Keep a reachable results viewport when search controls exceed the panel height. */
+ .sidebar .folder-search-groups { flex: 1 0 120px; }
++
++/* Approved revision 20261010-220535: fixed search controls, independent results. */
++.folder-search-host { overflow: hidden; }
++.folder-search { gap: 8px; overflow: hidden; }
++.folder-search > :not(.folder-search-groups) { flex-shrink: 0; }
++.folder-search-query { display: flex; align-items: flex-end; gap: 8px; }
++.folder-search-query .folder-search-label { flex: 1; min-width: 0; }
++.folder-search-query > button { min-height: 36px; padding: 8px 12px; }
++.folder-search-query input { min-height: 36px; }
++.folder-search-scope-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
++.folder-search-scope-row .folder-search-scope { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
++.folder-search-scope-row .folder-search-scope span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.folder-search-scope-row > button { background: transparent; border-color: transparent; color: var(--accent); padding: 4px; }
++.search-options { position: relative; min-width: 0; }
++.search-options-trigger { display: flex; align-items: center; gap: 8px; width: 100%; text-align: start; min-height: 34px; }
++.search-options-trigger > span:first-of-type { flex: 1; min-width: 0; }
++.search-options-body { position: absolute; inset: calc(100% + 4px) 0 auto; z-index: 2; padding: 6px; background: var(--surface); border: 1px solid var(--control-border); border-radius: 6px; box-shadow: 0 4px 12px var(--shadow); max-height: 260px; overflow: auto; }
++.search-options-body .search-modes { display: flex; flex-direction: column; gap: 2px; }
++.search-options-body .search-modes button { display: flex; gap: 8px; width: 100%; text-align: start; border-color: transparent; }
++.search-options-body .search-modes button > span { width: 16px; flex: none; }
++.search-options-body .folder-search-check { border-top: 1px solid var(--border); margin: 8px 4px; padding-top: 8px; }
++.search-options-body .folder-search-scope { margin: 4px; font-size: 12px; }
++.search-ignored-indicator { display: block; margin-top: 4px; color: var(--accent); }
++.sidebar .folder-search-groups { flex: 1 1 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
++.folder-search-groups h3 .middle-filename { flex: 1; min-width: 0; font-weight: 600; }
++.folder-search-status { font-size: 12px; }
++.middle-filename { display: block; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: clip; }
++.tree-row .tree-name { flex: 1; min-width: 0; }
++/* One full-width name, then the document-owned toolbar and parent context. */
++.document-location { display: flex; flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 6px; padding: 12px 24px 4px; min-height: 80px; }
++.document-identity { display: flex; align-items: center; gap: 10px; flex: none; min-width: 0; }
++.document-identity > svg { flex: none; width: 16px; height: 16px; color: var(--muted); }
++.document-identity > strong { display: block; flex: 1; min-width: 0; line-height: 20px; }
++.document-location-actions { width: 100%; gap: 8px; align-items: center; }
++.document-location-actions > button, .document-actions-disclosure > summary { min-height: 32px; padding: 6px 12px; font-size: 13px; }
++.document-parent { min-width: 0; color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.close-edit-dialog { width: min(576px, calc(100vw - 32px)); padding: 24px; }
++.close-edit-dialog > strong { font-size: 22px; }
++.close-edit-consequences { display: grid; gap: 24px; margin-block: 24px 20px; }
++.close-edit-consequences > div { display: flex; gap: 12px; }
++.close-edit-consequences svg { flex: none; width: 18px; height: 18px; color: var(--muted); }
++.close-edit-consequences h3 { font-size: 14px; margin: 0 0 8px; }
++.close-edit-consequences p { font-size: 14px; line-height: 1.6; margin: 0; }
++.close-edit-secondary { border-top: 1px solid var(--border); padding-top: 12px; font-size: 12px; margin-bottom: 22px; }
++.close-edit-dialog .section-modal-actions { gap: 8px; }
++.search-options :is(button,input):focus-visible, .folder-search-groups:focus-visible { background-color: var(--hover); text-decoration: underline; }
++@media (max-width: 640px) {
++  .document-location { padding-inline: 16px; }
++  .document-location-actions > button, .document-actions-disclosure > summary { min-height: 44px; }
++}
++
++.folder-search > button:first-child { padding-block: 2px; }
++.folder-search-label { gap: 2px; font-size: 12px; }
++.folder-search-status { display: flex; align-items: baseline; gap: 8px; justify-content: space-between; position: relative; border-bottom: 1px solid var(--border); padding-block: 4px; }
++.folder-search-status > strong { flex-shrink: 0; color: var(--text); font-size: 13px; }
++.search-status-details { min-width: 0; }
++.search-status-details > summary { cursor: pointer; list-style: none; text-align: end; }
++.search-status-details > summary::after { content: " ⌄"; }
++.search-status-details[open] { position: absolute; top: 0; right: 0; max-width: 100%; z-index: 3; padding: 6px; border: 1px solid var(--control-border); border-radius: 6px; background: var(--surface); box-shadow: 0 4px 12px var(--shadow); }
++.folder-search-groups h3 { margin: 8px 0 0; padding: 4px 0; border-bottom: 0; }
++.folder-search-groups .folder-search-results li { border-top: 0; }
++.folder-search-groups .folder-search-results button { padding: 4px 0; }
++.folder-search-groups .folder-search-results span { font-size: 13px; line-height: 1.5; }
++
++.search-options-body .search-modes button { min-height: 28px; padding: 4px 8px; }
++.search-options-body .folder-search-scope { line-height: 1.4; }
++/* Retain the existing overflow fallback when a supported layout cannot fit the
++   fixed controls and a results viewport. Results still own their own scrolling. */
++.folder-search-host { overflow: auto; }
++.folder-search { overflow: visible; }
++.sidebar .folder-search-groups { min-height: 96px; }
+--- /dev/null
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/MiddleFilename.tsx
+@@ -0,0 +1,41 @@
++import { useLayoutEffect, useRef, useState } from "react";
++
++/** Display-only abbreviation. The actual name remains available to assistive technology. */
++export function fitFilename(name: string, width: number, measure: (text: string) => number): string {
++  if (measure(name) <= width) return name;
++  const chars = Array.from(name);
++  // Prefer a substantial suffix so shared-prefix files remain distinguishable.
++  for (let count = chars.length - 1; count > 0; count--) {
++    const tail = Math.max(1, Math.ceil(count * .65));
++    const head = count - tail;
++    const value = chars.slice(0, head).join("") + "…" + chars.slice(-tail).join("");
++    if (measure(value) <= width) return value;
++  }
++  return "…";
++}
++
++export default function MiddleFilename({ name, className = "" }: { name: string; className?: string }) {
++  const element = useRef<HTMLSpanElement>(null);
++  const [label, setLabel] = useState(name);
++  useLayoutEffect(() => {
++    const node = element.current;
++    if (!node) return;
++    let disposed = false;
++    const update = () => {
++      if (disposed || node.clientWidth <= 0) return;
++      const canvas = document.createElement("canvas");
++      const context = canvas.getContext("2d");
++      if (!context) return;
++      const style = getComputedStyle(node);
++      context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
++      setLabel(fitFilename(name, node.clientWidth, text => context.measureText(text).width));
++    };
++    setLabel(name);
++    update();
++    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
++    observer?.observe(node);
++    void document.fonts?.ready.then(update);
++    return () => { disposed = true; observer?.disconnect(); };
++  }, [name]);
++  return <span ref={element} className={`middle-filename ${className}`} aria-label={name}>{label}</span>;
++}
+--- /dev/null
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/middle-filename.test.ts
+@@ -0,0 +1,20 @@
++import { describe, expect, it } from "vitest";
++import { fitFilename } from "../../src/app/MiddleFilename";
++describe("width-based identity", () => {
++  const measure = (text: string) => Array.from(text).length * 7;
++  it("uses available width before abbreviation and preserves ordinary labels", () => {
++    expect(fitFilename("short.md", 70, measure)).toBe("short.md");
++    const name = "long-project-identity-with-a-distinguishing-alpha.md";
++    expect(fitFilename(name, 400, measure)).toBe(name);
++    expect(fitFilename(name, 200, measure)).toMatch(/….*alpha\.md$/);
++  });
++  it.each([150, 210])("distinguishes shared-prefix files at %s pixels", width => {
++    const prefix = "close-review-similar-filename-with-shared-prefix-";
++    const alpha = fitFilename(prefix + "alpha.md", width, measure);
++    const beta = fitFilename(prefix + "beta.md", width, measure);
++    expect(alpha).not.toBe(beta);
++    expect(alpha.endsWith("alpha.md")).toBe(true);
++    expect(beta.endsWith("beta.md")).toBe(true);
++    expect(measure(alpha)).toBeLessThanOrEqual(width);
++  });
++});

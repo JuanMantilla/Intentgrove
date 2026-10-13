@@ -1,0 +1,71 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text workspace
+				10 button Project tree settings
+				11 container
+					12 button busy.md
+					13 button corrupt.png
+					14 button (collapsed) docs, Secondary Actions: Expand
+					15 button edit.md
+					16 button hostile.svg
+					17 button image-security.md
+					18 button large-10m.md
+					19 button large-11m.md
+					20 button large-1m.md
+					21 button linked.md
+					22 button mixed-10m.md
+					23 button mixed-1m.md
+					24 button (collapsed) permissions, Secondary Actions: Expand
+					25 button plain.md
+					26 button qa-image.png
+					27 button rich.md
+				28 text Storage and recovery
+				29 text Open edits and recovery offers: 0
+				30 button Manage…
+			31 container
+				32 container Visited files
+					33 button (disabled) Back, Help: No previous file
+					34 button (disabled) Forward, Help: No next file
+				35 tab group (selectable) Documents
+					36 container
+						37 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						38 button Close tab: plain.md, Help: Close tab
+				39 pop up button Go menu
+				40 button (collapsed) Open documents (1), Secondary Actions: Expand
+				41 container plain.md
+					42 text plain.md
+					43 text Folder root
+					44 toggle button Outline, Value: off
+					45 button (collapsed) Reading settings, Secondary Actions: Expand
+					46 button Edit section
+					47 summary Document…, Value: off
+						48 text Document…
+				49 container plain.md
+					50 container Unrelated document
+						51 container Edit section: Unrelated document
+							52 heading Unrelated document, Value: 1
+								53 text Unrelated document
+							54 button Edit section “Unrelated document”
+						55 text Responsive tab.
+	56 close button
+	57 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	58 minimize button
+	59 text Intentgrove
+60 menu bar
+	61 Intentgrove QA
+	62 File
+	63 Edit
+	64 View
+	65 Go
+	66 Window
+	67 Help
+
+The focused UI element is 25 button plain.md

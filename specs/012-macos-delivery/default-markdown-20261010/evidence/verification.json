@@ -1,0 +1,116 @@
+{
+  "feature": "F005-D01\u2013D07",
+  "environment": {
+    "os": "macOS 27.0.1 (26A434)",
+    "arch": "arm64",
+    "sdk": "27.0",
+    "clang": "21.0.0",
+    "rust": "1.88.0",
+    "tauri": "2.11.6",
+    "node_build": "existing locked dependencies"
+  },
+  "checks": [
+    {
+      "check": "reviewed artifact hashes",
+      "status": "PASS",
+      "evidence": "review-hashes-final.json",
+      "scope": "All four reviewed artifacts unchanged; approval.json records explicit authorization."
+    },
+    {
+      "check": "native adapter/policy",
+      "status": "PASS",
+      "evidence": "adapter-tests.txt",
+      "scope": "Mock workspace; synthetic bundle/readiness/choice/persistence/denial/mismatch/partial outcomes. No real setters/preferences."
+    },
+    {
+      "check": "native library",
+      "status": "PASS",
+      "evidence": "native-tests-final.log",
+      "scope": "121 passed, 5 ignored."
+    },
+    {
+      "check": "full Rust test command",
+      "status": "FAIL",
+      "evidence": "native-full-tests.log",
+      "scope": "Existing refresh integration harnesses lack crate::html/crate::image imports; left unchanged."
+    },
+    {
+      "check": "frontend tests",
+      "status": "PASS",
+      "evidence": "frontend-tests.log",
+      "scope": "523 passed in 62 files; mocked frontend/native bridge."
+    },
+    {
+      "check": "frontend build",
+      "status": "PASS",
+      "evidence": "frontend-build.log",
+      "scope": "Typecheck and production assets."
+    },
+    {
+      "check": "script contract",
+      "status": "PASS",
+      "evidence": "script-tests.txt",
+      "scope": "Fake disposable bundle/executable; literal path, exit statuses, invalid identity/type/executable/plist."
+    },
+    {
+      "check": "native compiler warnings",
+      "status": "PASS",
+      "evidence": null,
+      "scope": "clang -Wall -Wextra -Werror for focused adapter."
+    },
+    {
+      "check": "worker boundary",
+      "status": "PASS",
+      "evidence": "worker-bundle.txt",
+      "scope": "Existing local worker check."
+    },
+    {
+      "check": "final packaged build",
+      "status": "PASS",
+      "evidence": "package-build-final.log",
+      "scope": "Existing build:mac pipeline, ad-hoc signing only."
+    },
+    {
+      "check": "package inspection and disabled consent CLI",
+      "status": "PASS",
+      "evidence": "package-inspection.json",
+      "scope": "Distinct document types/imported Markdown type, arm64, min14 metadata, strict signature; disabled CLI/script exit4."
+    },
+    {
+      "check": "read-only host queries",
+      "status": "NOT TESTED",
+      "evidence": "associations-before.json",
+      "scope": "Both before and after return dynamic/unknown types and unknown handlers; equal snapshots do not verify actual macOS defaults."
+    },
+    {
+      "check": "real macOS consent/setter",
+      "status": "NOT TESTED",
+      "evidence": null,
+      "scope": "No real setter invoked. Host Launch Services unresolved; no isolated account or reversible disposable-type environment established."
+    },
+    {
+      "check": "native UI EN/ES keyboard/VoiceOver/light-dark",
+      "status": "NOT TESTED",
+      "evidence": null,
+      "scope": "Standard NSAlert implementation reviewed; actual interaction matrix not exercised."
+    },
+    {
+      "check": "Finder cold/warm and live-workspace consent isolation",
+      "status": "NOT TESTED",
+      "evidence": null,
+      "scope": "Needs isolated registered packaged app and fixture profile."
+    },
+    {
+      "check": "macOS14 / Intel",
+      "status": "NOT TESTED",
+      "evidence": null,
+      "scope": "Host macOS27.0.1 arm64/SDK27.0; minimum metadata does not prove older/Intel runtime."
+    },
+    {
+      "check": "installation/notarization/publication",
+      "status": "NOT TESTED",
+      "evidence": null,
+      "scope": "Outside authorized scope; no installation or release credentials used."
+    }
+  ]
+}

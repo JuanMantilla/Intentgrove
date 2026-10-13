@@ -1,0 +1,498 @@
+{
+  "original_candidate": "5dc3d4578edb159f215428ab5beec5a787654cbc7682aa9c1bedad19d1ed8e5c",
+  "first_observed_drift": "2026-10-11T13:59:52Z",
+  "counts": {
+    "PASS": 31,
+    "BLOCKED": 7,
+    "FAIL": 3,
+    "NOT_RUN": 2
+  },
+  "cases": [
+    {
+      "id": "N01",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Real App and native picker available; disposable folder opened.",
+      "finished_at": "2026-10-11T13:37:12.035522+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/candidate.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/folder-open.ax.txt"
+      ]
+    },
+    {
+      "id": "N02",
+      "environment": "native",
+      "result": "BLOCKED",
+      "reason": "Real window resize/narrow/short blocked by noWindowsAvailable.",
+      "finished_at": "2026-10-11T13:35:56.111497+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-resize-error.txt"
+      ]
+    },
+    {
+      "id": "N03a",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Normal-width long tree selection and full-path disclosure observed.",
+      "finished_at": "2026-10-11T13:45:30.502176+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-full-path.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-full-path.png"
+      ]
+    },
+    {
+      "id": "N03b",
+      "environment": "native",
+      "result": "BLOCKED",
+      "reason": "Second sidebar width requires blocked drag.",
+      "finished_at": "2026-10-11T13:35:56.111497+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-resize-error.txt"
+      ]
+    },
+    {
+      "id": "N03c",
+      "environment": "native",
+      "result": "BLOCKED",
+      "reason": "Result scrolling throws noWindowsAvailable.",
+      "finished_at": "2026-10-11T13:44:25.921742+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-scroll-error.txt"
+      ]
+    },
+    {
+      "id": "N04",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Save returns reading, clears draft, exact serializer bytes written; original period-escape expectation mismatch retained.",
+      "finished_at": "2026-10-11T13:41:11.146342+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/save-reading.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/save-bytes.json"
+      ]
+    },
+    {
+      "id": "N05",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Keep returns disk reading, leaves unsaved marker and disk unchanged.",
+      "finished_at": "2026-10-11T13:38:53.732838+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/keep-reading.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/keep-bytes.json"
+      ]
+    },
+    {
+      "id": "N06",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Cancel preserves editor/draft and original disk bytes.",
+      "finished_at": "2026-10-11T13:38:29.969898+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/cancel.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/cancel-bytes.json"
+      ]
+    },
+    {
+      "id": "N07",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Discard removes second edit, saved visible content/bytes unchanged.",
+      "finished_at": "2026-10-11T13:41:11.146603+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/discard-reading.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/discard-bytes.json"
+      ]
+    },
+    {
+      "id": "N08",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Quit Keep exits; relaunch/reopen recovery restores exact draft; disk unchanged. Automatic session restore separate.",
+      "finished_at": "2026-10-11T13:39:49.718752+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/quit-kept.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/reopen-retained.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/recovered-draft.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/relaunch-bytes.json"
+      ]
+    },
+    {
+      "id": "N08b",
+      "environment": "native",
+      "result": "FAIL",
+      "reason": "session_busy on relaunch; session_stale after recovery persists on Retry. QA-0023.",
+      "finished_at": "2026-10-11T13:39:58.580401+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/relaunch.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/relaunch-session-busy.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/session-retry.ax.txt"
+      ]
+    },
+    {
+      "id": "N09",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Search then Space stops actual scan at34 partial results.",
+      "finished_at": "2026-10-11T13:44:25.220250+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-cancel-search-attempt.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-search-stopped.png"
+      ]
+    },
+    {
+      "id": "N10",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Replace disposable root identity: localized error; restore original directory and repeat Search yields80 results.",
+      "finished_at": "2026-10-11T13:55:11.601118+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-search-root-error.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-search-root-retry.ax.txt"
+      ]
+    },
+    {
+      "id": "N10b",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Missing result reports error; restoring fixture and reopening result succeeds. Old summary remains until new query/rescan; limited failure/recovery assertion.",
+      "finished_at": "2026-10-11T13:43:55.681847+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/search-result-missing.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/search-result-retry.ax.txt"
+      ]
+    },
+    {
+      "id": "N11",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Ignored off yields0; include ignored yields1 and explicit indicator.",
+      "finished_at": "2026-10-11T13:42:50.333888+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/ignored-off.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/ignored-on.ax.txt"
+      ]
+    },
+    {
+      "id": "N12",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "External conflict blocks Save, retains draft/recovery copy status and external bytes.",
+      "finished_at": "2026-10-11T13:47:29.101863+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/conflict-save.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/conflict-bytes.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-conflict.png"
+      ]
+    },
+    {
+      "id": "N12b",
+      "environment": "native",
+      "result": "NOT_RUN",
+      "reason": "Save-copy/Use-disk not executed end-to-end; Inspect versions/Keep attempted without observable comparison/transition, not passed.",
+      "finished_at": "2026-10-11T13:47:23.214774+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/inspect-versions.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/conflict-keep.ax.txt"
+      ]
+    },
+    {
+      "id": "N12c",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Conflict confirmation disables Save to file, preserves Cancel/Keep/Discard.",
+      "finished_at": "2026-10-11T13:52:41.868943+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/conflict-close.ax.txt"
+      ]
+    },
+    {
+      "id": "A01a",
+      "environment": "native",
+      "result": "PASS",
+      "reason": "Escape dismisses options before Projects; ignored setting remains; keyboard Search/Stop works.",
+      "finished_at": "2026-10-11T13:44:15.768745+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/options-escape.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-cancel-search-attempt.ax.txt"
+      ]
+    },
+    {
+      "id": "A01b",
+      "environment": "native",
+      "result": "BLOCKED",
+      "reason": "End/Return did not establish mode selection; full arrow/Home/End and focus traversal unverified, no defect inferred.",
+      "finished_at": "2026-10-11T13:55:42.226894+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-keyboard-mode.ax.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-keyboard-focus.png"
+      ]
+    },
+    {
+      "id": "A02",
+      "environment": "assistive technology",
+      "result": "BLOCKED",
+      "reason": "No actual VoiceOver output/caption verification channel; no screen-reader session claimed.",
+      "finished_at": "2026-10-11T14:06:28.546953+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "A03",
+      "environment": "Chrome zoom",
+      "result": "BLOCKED",
+      "reason": "No measurable200% zoom; native Zoom In action interrupted by provider state change.",
+      "finished_at": "2026-10-11T14:06:28.546953+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-zoom-attempt.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-native-zoom-attempt.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "A04",
+      "environment": "Chrome computed styles",
+      "result": "FAIL",
+      "reason": "Enabled light Clear search14px measured4.459:1 below4.5 target. QA-0024; limited scope, not conformance.",
+      "finished_at": "2026-10-11T13:59:21.812205+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/contrast-styles.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/contrast-results.json"
+      ]
+    },
+    {
+      "id": "R-native",
+      "environment": "native Margin",
+      "result": "PASS",
+      "reason": "Affected EN/dark and ES/light controls observed on isolated main UI.",
+      "finished_at": "2026-10-11T13:54:12.833563+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-search-stopped.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-es-theme.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/native-es-search.ax.txt"
+      ]
+    },
+    {
+      "id": "R-native-layouts",
+      "environment": "native Folio/Atlas",
+      "result": "BLOCKED",
+      "reason": "Auxiliary Settings profile isolation unproven; preserve installed session.",
+      "finished_at": "2026-10-11T14:06:28.546953+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "B01",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "264/320 sidebar names/title/selection visible, distinguishing alpha suffix;37px rows.",
+      "finished_at": "2026-10-11T13:49:39.378372+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/tree-264.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/tree-320.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-tree-264.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-tree-320.png"
+      ]
+    },
+    {
+      "id": "B02",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Atlas results/options reachable through keyboard outer-scroll fallback; universal pinning not required.",
+      "finished_at": "2026-10-11T13:49:20.780819+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/atlas-fallback-reachable.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/atlas-fallback-reachable.dom.txt"
+      ]
+    },
+    {
+      "id": "B03",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "1280x480 open search keyboard options/PageDown; outer scroll238px, inner40px,80/96px heights.",
+      "finished_at": "2026-10-11T13:51:53.920170+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-short-height-options.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-short-results-scroll.png"
+      ]
+    },
+    {
+      "id": "B04",
+      "environment": "Chrome synthetic bridge",
+      "result": "NOT_RUN",
+      "reason": "640x480 DR-003 deferred; only observations retained, no native narrow conclusion.",
+      "finished_at": "2026-10-11T13:50:36.436341+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-640-before.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-short-desktop.png"
+      ]
+    },
+    {
+      "id": "T01",
+      "environment": "Vitest jsdom mocks",
+      "result": "PASS",
+      "reason": "Fresh109 tests in9 focused files; historical556 not rerun or counted.",
+      "finished_at": "2026-10-11T13:33:00.943737+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/component-regression.log"
+      ]
+    },
+    {
+      "id": "I01",
+      "environment": "baseline audit",
+      "result": "FAIL",
+      "reason": "Concurrent source changes/HMR invalidate single final candidate. QA-0026.",
+      "finished_at": "2026-10-11T14:02:57.301078+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/server-drift.log",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/source-drift-audit.json"
+      ]
+    },
+    {
+      "id": "R-margin-en-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:13.349269+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-margin-en-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:14.146962+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-en-dark.dom.txt"
+      ]
+    },
+    {
+      "id": "R-margin-es-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:14.839658+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-margin-es-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:15.733514+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-margin-es-dark.dom.txt"
+      ]
+    },
+    {
+      "id": "R-folio-en-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:16.653460+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-folio-en-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:17.498369+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-en-dark.dom.txt"
+      ]
+    },
+    {
+      "id": "R-folio-es-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:18.294308+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-folio-es-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:19.104181+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-folio-es-dark.dom.txt"
+      ]
+    },
+    {
+      "id": "R-atlas-en-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:19.982822+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-atlas-en-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:48:20.680379+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-en-dark.dom.txt"
+      ]
+    },
+    {
+      "id": "R-atlas-es-light",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:47:55.653639+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-light.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-light.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-light.dom.txt"
+      ]
+    },
+    {
+      "id": "R-atlas-es-dark",
+      "environment": "Chrome synthetic bridge",
+      "result": "PASS",
+      "reason": "Wide empty-search/short-reader composition and localized themed controls present; no document horizontal overflow; inspected screenshot. Limited states per combination.",
+      "finished_at": "2026-10-11T13:47:56.370767+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-dark.png",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-dark.metrics.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/evidence/renderer-atlas-es-dark.dom.txt"
+      ]
+    }
+  ]
+}

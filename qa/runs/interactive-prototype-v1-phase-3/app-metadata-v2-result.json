@@ -1,0 +1,19 @@
+{
+  "name": "app-metadata-v2",
+  "command": [
+    "cargo",
+    "metadata",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--format-version",
+    "1",
+    "--no-default-features"
+  ],
+  "started_at": "2026-10-12T02:07:18.312094+00:00",
+  "finished_at": "2026-10-12T02:07:19.955688+00:00",
+  "exit_code": 101,
+  "log": "app-metadata-v2.log",
+  "tested_snapshot": "tested-snapshot-v2.json"
+}

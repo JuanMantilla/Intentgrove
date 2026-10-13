@@ -1,0 +1,246 @@
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0027-20261011/before/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -1480,6 +1480,20 @@
+         ?? saved.sections.find((candidate) => candidate.kind === edit.section.kind
+           && candidate.ordinal === edit.section.ordinal);
+       if (nextSection && !pendingSection) focusSectionBoundary(tabId, nextSection);
++      // Save publishes a new native file identity. Persist it before a close or
++      // quit can complete; failed/uncertain Saves never reach this boundary.
++      if (typeof api.rememberRecentDocument === "function") {
++        if (tabsRef.current.some((tab) => tab.id === tabId)) {
++          try {
++            await api.rememberRecentDocument(tabId);
++            await refreshRecents();
++          } catch (error) {
++            // The source Save is already confirmed. A metadata failure must not
++            // turn it into a failed Save or resurrect a consumed edit session.
++            setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
++          }
++        }
++      }
+       return saved;
+     } catch (error) {
+       const code = readerError(error).code;
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0027-20261011/before/src-tauri/src/recents.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/recents.rs
+@@ -244,6 +244,10 @@
+             "Recent item changed before it could be remembered",
+         ));
+     }
++    let path = canonical
++        .to_str()
++        .filter(|value| crate::platform::bounded_record_path(value, MAX_PATH_BYTES))
++        .ok_or_else(|| error("invalid_path", "Recent path is invalid"))?;
+     let _lock = lock(dir)?;
+     let (old, _) = load_at(dir)?;
+     let mut record = old.unwrap_or(Record {
+@@ -263,17 +267,17 @@
+             record
+                 .entries
+                 .iter()
+-                .find(|entry| entry.kind == kind && entry.identity == selected_identity)
++                // Only verified recording can acknowledge a new identity at a
++                // document path. Recent opening still compares exact identity.
++                .find(|entry| entry.kind == kind && (entry.identity == selected_identity
++                    || (kind == RecentKind::Document && entry.path == path)))
+                 .map(|entry| entry.id.clone())
+         })
+         .unwrap_or_else(|| Uuid::new_v4().to_string());
+     record.entries.retain(|entry| {
+-        entry.id != id && !(entry.kind == kind && entry.identity == selected_identity)
++        entry.id != id && !(entry.kind == kind && (entry.identity == selected_identity
++            || (kind == RecentKind::Document && entry.path == path)))
+     });
+-    let path = canonical
+-        .to_str()
+-        .filter(|value| crate::platform::bounded_record_path(value, MAX_PATH_BYTES))
+-        .ok_or_else(|| error("invalid_path", "Recent path is invalid"))?;
+     record.entries.insert(
+         0,
+         Entry {
+@@ -314,6 +318,10 @@
+ }
+ 
+ pub(crate) fn record_document(app: &AppHandle, state: &AppState, file_id: &str) -> AppResult<()> {
++    record_document_at(&store_dir(app)?, state, file_id)
++}
++
++pub(crate) fn record_document_at(dir: &Path, state: &AppState, file_id: &str) -> AppResult<()> {
+     let grant: FileGrant = state.file(file_id)?;
+     if !crate::scope::document_name(&grant.name) {
+         return Err(error(
+@@ -326,7 +334,7 @@
+         FileSource::Explicit { .. } => None,
+     };
+     record_at(
+-        &store_dir(app)?,
++        dir,
+         RecentKind::Document,
+         Path::new(&grant.display_path),
+         grant.identity,
+@@ -574,6 +582,52 @@
+ #[cfg(test)]
+ mod tests {
+     use super::*;
++
++    #[test]
++    fn own_first_save_updates_recent_identity_and_external_replacement_stays_protected() {
++        for token in [false, true] {
++            let fixture = crate::platform::test_support::FixtureDir::new("md-recent-own-save");
++            let store = fixture.path().join("recents");
++            crate::platform::storage::ensure_private_dir(&store).unwrap();
++            let state = AppState::default();
++            let document = crate::creation::create_for_recent_test(&state, fixture.path(), token);
++            record_document_at(&store, &state, &document.file_id).unwrap();
++            let before = load_at(&store).unwrap().0.unwrap().entries[0].clone();
++            let saved = crate::editing::save_for_recent_test(&state, &document.file_id, "# First content\n\nBody\n").unwrap();
++            let grant = state.file(&document.file_id).unwrap();
++            assert_ne!(before.identity, grant.identity, "atomic Save replaced identity");
++            assert_eq!(status(&before), "replaced", "pre-fix durable Recent remains stale");
++            assert_eq!(load_at(&store).unwrap().0.unwrap().entries[0].identity, before.identity);
++            record_document_at(&store, &state, &document.file_id).unwrap();
++            let record = load_at(&store).unwrap().0.unwrap();
++            assert_eq!(record.entries.len(), 1);
++            let after = &record.entries[0];
++            assert_eq!(after.id, before.id);
++            assert_eq!(after.identity, grant.identity);
++            assert_eq!(status(after), "available");
++            // Close/reopen and a fresh native state (restart) both use the
++            // persisted identity, never a new selection to authorize access.
++            for reopened in [state.clone(), AppState::default()] {
++                let entry = entry_by_id(&store, &after.id).unwrap();
++                let selected = reopened.restore_explicit_file(Path::new(&entry.path), entry.identity,
++                    reopened.selection_epoch().unwrap()).unwrap();
++                let read = crate::document::read_document_impl(&reopened, Some(&selected.id), None, None).unwrap();
++                assert_eq!(read.content, saved.content);
++            }
++            assert_eq!(fs::read(&after.path).unwrap(), saved.content.as_bytes());
++            let replacement = fixture.path().join("external.md");
++            fs::write(&replacement, "external writer\n").unwrap();
++            fs::rename(&replacement, &after.path).unwrap();
++            assert_eq!(status(after), "replaced");
++            assert!(record_document_at(&store, &state, &document.file_id).is_err());
++            let restarted = AppState::default();
++            assert!(restarted.restore_explicit_file(Path::new(&after.path), after.identity,
++                restarted.selection_epoch().unwrap()).is_err());
++            assert_eq!(entry_by_id(&store, &after.id).unwrap().identity, after.identity);
++            assert_eq!(fs::read(&after.path).unwrap(), b"external writer\n");
++            println!("QA-0027 native filesystem route={} before={:?} grant={:?} recent={:?}: own-save/reopen/fresh-state/bytes PASS; external-replacement DENIED", if token { "destination-token" } else { "granted-root" }, before.identity, grant.identity, after.identity);
++        }
++    }
+ 
+     #[test]
+     fn recorded_paths_round_trip_and_invalid_locations_are_rejected() {
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0027-20261011/before/src-tauri/src/editing.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/editing.rs
+@@ -1023,6 +1023,16 @@
+         recovery_cleanup_failed,
+         safety_copy_status_failed: false,
+     })
++}
++
++#[cfg(test)]
++pub(crate) fn save_for_recent_test(state: &AppState, file_id: &str, content: &str) -> AppResult<SaveEditResponse> {
++    let editing = EditingState::default();
++    let sections = list_edit_sections_impl(state, file_id)?;
++    let started = begin_section_edit_impl(state, &editing, file_id.into(),
++        sections.sections[0].id.clone(), sections.disk_version)?;
++    save_section_edit_with_operations(state, &editing, started.session_id, content.into(),
++        |_, _| Ok(()), |_, _| Ok(()), rename_stage)
+ }
+ 
+ #[cfg(test)]
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0027-20261011/before/src-tauri/src/creation.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/creation.rs
+@@ -352,6 +352,22 @@
+ }
+ 
+ #[cfg(test)]
++pub(crate) fn create_for_recent_test(state: &AppState, path: &std::path::Path, token: bool) -> DocumentResponse {
++    let choices = CreationState::default();
++    let request = if token {
++        let choice = choices.choose(path.to_owned()).unwrap();
++        CreateRequest { root_id: None, segments: None, destination_token: Some(choice.token), filename: "created.md".into() }
++    } else {
++        let root = state.register_root(path).unwrap();
++        CreateRequest { root_id: Some(root.id), segments: Some(vec![]), destination_token: None, filename: "created.md".into() }
++    };
++    match create(state, &choices, request).unwrap() {
++        CreateOutcome::Opened { document, .. } => document,
++        _ => panic!("expected opened creation"),
++    }
++}
++
++#[cfg(test)]
+ mod tests {
+     use super::*;
+     use crate::platform::test_support::FixtureDir;
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0027-20261011/before/tests/ui/edit-flow.test.tsx.baseline
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/edit-flow.test.tsx
+@@ -8,6 +8,7 @@
+   selectRoot: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(), getConfirmedDocument: vi.fn(),
+   listEditSections: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(),
+   saveSectionEdit: vi.fn(),
++  rememberRecentDocument: vi.fn(), listRecentItems: vi.fn(),
+   finishEditingClose: vi.fn(),
+   checkpointSectionEdit: vi.fn(), reconcileVisibleState: vi.fn(),
+   listeners: {} as Record<string, (event: { payload: unknown }) => void>
+@@ -52,8 +53,58 @@
+   mocks.finishEditingClose.mockResolvedValue(undefined);
+   mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
+   mocks.reconcileVisibleState.mockResolvedValue({ generation: 1, jobId: "job", accepted: true });
++  mocks.rememberRecentDocument.mockResolvedValue(undefined);
++  mocks.listRecentItems.mockResolvedValue({ items: [], recoveredCorrupt: false });
+ });
+ afterEach(cleanup);
++
++async function changedEdit() {
++  render(<App />);
++  fireEvent.click(projectAction("Open folder"));
++  fireEvent.click(await screen.findByTitle("a.md"));
++  await editSection("One");
++  fireEvent.click(await screen.findByRole("button", { name: "Change draft" }));
++  mocks.rememberRecentDocument.mockClear();
++}
++
++const savedEdit = { diskVersion: "v2", content: "# One\nchanged\n# Two\nbeta\n", sections,
++  recoveryCleanupFailed: false, safetyCopyStatusFailed: false };
++
++it("acknowledges successful Save in Recents before dirty-close can finish", async () => {
++  await changedEdit();
++  let acknowledge!: () => void;
++  mocks.saveSectionEdit.mockResolvedValue(savedEdit);
++  mocks.rememberRecentDocument.mockReturnValue(new Promise<void>(resolve => { acknowledge = resolve; }));
++  fireEvent.click(screen.getByRole("button", { name: "Close tab: a.md" }));
++  fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Save to file" }));
++  await waitFor(() => expect(mocks.rememberRecentDocument).toHaveBeenCalledExactlyOnceWith("file"));
++  expect(screen.getByRole("tab", { name: /a.md/ })).toBeTruthy();
++  acknowledge();
++  await waitFor(() => expect(screen.queryByRole("tab", { name: /a.md/ })).toBeNull());
++});
++
++it.each(["denied", "version_changed", "save_race", "save_race_uncaptured", "reselection_required"])(
++  "never acknowledges %s Save and preserves the draft", async (code) => {
++    await changedEdit();
++    mocks.saveSectionEdit.mockRejectedValue({ code, message: "fixture" });
++    fireEvent.click(screen.getByRole("button", { name: "Save file" }));
++    await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledOnce());
++    await waitFor(() => expect(screen.getByRole("button", { name: "Save file" }).hasAttribute("disabled")).toBe(code !== "denied"));
++    expect(mocks.rememberRecentDocument).not.toHaveBeenCalled();
++    expect(screen.getByRole("tab", { name: /Unsaved/ })).toBeTruthy();
++    expect(screen.getByRole("button", { name: "Change draft" })).toBeTruthy();
++  });
++
++it("keeps a confirmed Save successful if Recent persistence fails", async () => {
++  await changedEdit();
++  mocks.saveSectionEdit.mockResolvedValue(savedEdit);
++  mocks.rememberRecentDocument.mockRejectedValue({ code: "recents_error", message: "fixture" });
++  fireEvent.click(screen.getByRole("button", { name: "Save file" }));
++  await waitFor(() => expect(mocks.rememberRecentDocument).toHaveBeenCalledWith("file"));
++  await waitFor(() => expect(screen.queryByRole("button", { name: "Change draft" })).toBeNull());
++  expect(screen.queryByRole("tab", { name: /Unsaved/ })).toBeNull();
++  expect(mocks.saveSectionEdit).toHaveBeenCalledOnce();
++});
+ 
+ async function editSection(name: string) {
+   await screen.findByLabelText(`Edit section: ${name}`);

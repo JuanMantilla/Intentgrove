@@ -1,0 +1,222 @@
+{
+  "cancellationAcks": [],
+  "failure": "Error: wrong block result production 0",
+  "network": [
+    {
+      "at": 163,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 169,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 171,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 180,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 181,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 182,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 183,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 186,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 197,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 203,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 206,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 207,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    },
+    {
+      "at": 212,
+      "kind": "fetch",
+      "url": "ipc://localhost/read_document"
+    },
+    {
+      "at": 544,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 1270,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 1541,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 1799,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 2070,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 2328,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 2584,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 2629,
+      "kind": "fetch",
+      "url": "ipc://localhost/render_diagram"
+    },
+    {
+      "at": 2844,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 3111,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 3373,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 3632,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 3891,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 4152,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 4413,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 4671,
+      "kind": "fetch",
+      "url": "ipc://localhost/plugin%3Aevent%7Cemit"
+    },
+    {
+      "at": 4798,
+      "kind": "fetch",
+      "url": "ipc://localhost/diagram_acceptance"
+    }
+  ],
+  "passed": false,
+  "records": [
+    {
+      "code": "diagram_input_limit",
+      "job": "bad/job",
+      "kind": "native-admission",
+      "state": {
+        "active": false,
+        "child": null,
+        "children": []
+      }
+    },
+    {
+      "code": "diagram_input_limit",
+      "job": "zero-generation",
+      "kind": "native-admission",
+      "state": {
+        "active": false,
+        "child": null,
+        "children": []
+      }
+    },
+    {
+      "code": "diagram_input_limit",
+      "job": "oversource",
+      "kind": "native-admission",
+      "state": {
+        "active": false,
+        "child": null,
+        "children": []
+      }
+    },
+    {
+      "kind": "malformed-invoke",
+      "rejected": true
+    },
+    {
+      "dom": "<article class=\"markdown-body\" tabindex=\"-1\"><details class=\"markdown-metadata\"><summary>Metadata</summary><dl><div><dt>title</dt><dd>Disposable</dd></div></dl><details><summary>View metadata source</summary><pre>title: Disposable</pre></details></details><div><div class=\"section-heading\"><h1 id=\"before-0\">Before 0</h1></div></div><p>Readable before</p><div><div class=\"diagram-block\"><p role=\"alert\">Diagram unavailable. The source is preserved below.</p><details open=\"\"><summary>View source</summary><div class=\"code-block\"><div class=\"code-block-toolbar\"><span>mermaid</span><button type=\"button\">Copy code</button></div><pre><code>flowchart LR\nA--&gt;B\n</code></pre></div></details></div></div><div><div class=\"section-heading\"><h1 id=\"after-0\">After 0</h1></div></div><p>Readable after</p><div><div class=\"diagram-block\"><p role=\"alert\">Diagram unavailable. The source is preserved below.</p><details open=\"\"><summary>View source</summary><div class=\"code-block\"><div class=\"code-block-toolbar\"><span>mermaid</span><button type=\"button\">Copy code</button></div><pre><code>flowchart LR\nSafe--&gt;Sibling\n</code></pre></div></details></div></div><div><div class=\"code-block\"><div class=\"code-block-toolbar\"><span>javascript</span><button type=\"button\">Copy code</button></div><pre><code>window.__hostileExecuted=true; fetch(\"https://127.0.0.1:9/code\")\n</code></pre></div></div>&lt;script&gt;window.__hostileExecuted=true&lt;/script&gt;<p><span class=\"image-placeholder\" role=\"img\" aria-label=\"remote\">Image blocked or unsupported: remote</span></p><p><span class=\"image-placeholder\" role=\"img\" aria-label=\"svg\">Image blocked or unsupported: svg</span></p></article>",
+      "kind": "failure-state",
+      "state": {
+        "active": false,
+        "child": {
+          "alive": false,
+          "cancelled": false,
+          "events": [],
+          "pid": 27815
+        },
+        "children": [
+          {
+            "alive": false,
+            "cancelled": false,
+            "events": [],
+            "pid": 27807
+          },
+          {
+            "alive": false,
+            "cancelled": false,
+            "events": [],
+            "pid": 27815
+          }
+        ]
+      }
+    }
+  ],
+  "timeOrigin": 1791480900604,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
+}

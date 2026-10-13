@@ -1,0 +1,37 @@
+{
+  "exit": 0,
+  "report": {
+    "kind": "settings-integration",
+    "owner": {
+      "accepted22": false,
+      "events": [],
+      "listeners": 0,
+      "restoredAfter22": false
+    },
+    "passed": false,
+    "readerResult": {
+      "done": true,
+      "error": "Error: bounded runtime condition failed: {\"sessionReady\":false,\"restorePending\":true,\"settingsListenerCount\":0,\"accepted22\":false,\"restoredAfter22\":false,\"probeDone\":false,\"probePassed\":false,\"activeId\":null,\"tabs\":[],\"edits\":[],\"recoveries\":[],\"readerScroll\":0}",
+      "passed": false
+    },
+    "snapshot": {
+      "activation": 1,
+      "group": "General",
+      "nativeThemeFailed": false,
+      "ownerAvailable": false,
+      "persistence": "saved",
+      "requestId": null,
+      "retryPatch": null,
+      "revision": 0,
+      "values": {
+        "appearance": "system",
+        "documentsAndImagesOnly": true,
+        "language": "en",
+        "readingFont": "roboto",
+        "readingLineHeight": 1.6,
+        "readingSize": 16,
+        "readingWidth": 760
+      }
+    }
+  }
+}

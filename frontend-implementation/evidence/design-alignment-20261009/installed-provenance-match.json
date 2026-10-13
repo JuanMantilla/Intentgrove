@@ -1,0 +1,22 @@
+{
+  "receipt": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/evidence/production-provenance.json",
+  "receiptSha256": "e43c6c6c7e99e27244004a521479fe6a518397cc6d642ece0118bdc6f3501a3e",
+  "sourceManifest": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/evidence/final-source-manifest.json",
+  "matches": {
+    "Contents/Info.plist": true,
+    "Contents/_CodeSignature/CodeResources": true,
+    "Contents/MacOS/md_reader": true,
+    "Contents/Resources/icon.icns": true,
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/Info.plist": true,
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/_CodeSignature/CodeResources": true,
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/Info.plist": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/_CodeSignature/CodeResources": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/index.html": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/reader.bundle.js": true,
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/THIRD-PARTY-NOTICES.txt": true
+  },
+  "allMatch": true,
+  "interpretation": "Current installed bundle matches October8 13:54 production provenance. Original capture manifest identifies this installed path/version but lacks capture-time hashes; same-build attribution is corroborated, not retroactively proven."
+}

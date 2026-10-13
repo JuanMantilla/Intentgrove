@@ -1,0 +1,51 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button (disabled) Back, Help: No previous file
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) lifecycle.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/lifecycle.md
+						14 button Close tab: lifecycle.md, Help: Close tab
+					15 container
+						16 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						17 button Close tab: plain.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container lifecycle.md
+					21 text lifecycle.md
+					22 text Folder root
+					23 button Edit section
+					24 summary Document…, Value: off
+						25 text Document…
+				26 container lifecycle.md
+					27 container Lifecycle proof
+						28 container Edit section: Lifecycle proof
+							29 heading Lifecycle proof, Value: 1
+								30 text Lifecycle proof
+							31 button Edit section “Lifecycle proof”
+						32 text BASELINE_FIRST
+						33 container Edit section: Following section
+							34 heading Following section, Value: 2
+								35 text Following section
+							36 button Edit section “Following section”
+						37 text DO_NOT_CHANGE_FOLLOWING
+	38 close button
+	39 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	40 minimize button
+	41 text Intentgrove
+42 menu bar
+	43 Intentgrove
+	44 File
+	45 Edit
+	46 View
+	47 Go
+	48 Window
+	49 Help

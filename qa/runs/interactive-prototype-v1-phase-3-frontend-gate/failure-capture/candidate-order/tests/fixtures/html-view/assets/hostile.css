@@ -1,0 +1,5 @@
+@import url("https://invalid.example/import.css");
+@import url("../../../outside/denied.css");
+@font-face { font-family: Remote; src:url("https://invalid.example/font.woff2") }
+body { background:url("https://invalid.example/background.png"); }
+[href] { cursor:url("https://invalid.example/cursor.png"),auto; }

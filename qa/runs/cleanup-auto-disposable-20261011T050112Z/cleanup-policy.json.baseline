@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "allowed_cleanup_roots": [
+    "cleanup-disposable/qa-intermediates"
+  ],
+  "protected_paths": [
+    ".agents",
+    ".codex",
+    "qa",
+    "screenshots",
+    "design-review",
+    "diagnostics"
+  ],
+  "max_attempts": 2,
+  "review_timeout_seconds": 1800,
+  "max_candidates": 100,
+  "gitlab_evidence": false,
+  "notes": "Empty allowed roots permit discovery only. Protect runtime assets, fixtures, current documentation, accepted designs, QA evidence and audit/recovery records regardless of extension.",
+  "gitlab_readonly_installation": {
+    "package_root": "/Users/juanmantilla/.codex/mcp/gitlab-ormuco/node_modules/gitlab-mcp",
+    "node": "/Users/juanmantilla/.nvm/versions/node/v20.19.6/bin/node",
+    "dist_sha256": {
+      "dist/config/dotenv.js": "10715939b8e776ea6121611598fdd0c79dfabb93953ab5a534b05a653c484ff4",
+      "dist/config/env.js": "11844c1a88338781731c5d4c67cfce42fa941ad07b2fff8c826756facb16f3f0",
+      "dist/http-app.js": "1302e9439cd3fd738833d56b9c2b66d6466d5b2609fe0018e54d4fca0e11941b",
+      "dist/http.js": "19fde155125f5103feaeff637a42319c0939c25d38035f6de79bf4c887afba22",
+      "dist/index.js": "7e81f86babc83aa28c8dd8e162aa07970a25b811a13e667ec84f4f629accd87e",
+      "dist/lib/auth-context.js": "88d3228427cf1375c1a5c0fd9531628cae320b6251a96887174143292e0ea934",
+      "dist/lib/diff-filter.js": "6f98584a847d050cf153193e87732ea7b8ef957cabfe0e6c6d6aa4b2d5627452",
+      "dist/lib/download-token.js": "f92a5fe325434d3a60df4f395b90ec33446500c31bab6d2ed2b43843c35e11bd",
+      "dist/lib/fixed-window-rate-limiter.js": "077a6e500c4028a08739a1b1264235522f66be5433762d1c2fd9960e10ad0e22",
+      "dist/lib/gitlab-api-url-policy.js": "ddc35582b136b2b4bcb8264c98ce4a110d03f5d90ae82286e15ba4c51c5ccfc5",
+      "dist/lib/gitlab-auth-validator.js": "e1636869d09b6e02584e92821757deefabe7862ddf44e9e15286b72e05672905",
+      "dist/lib/gitlab-client.js": "ee33f5d38d620fde0590fedf3cb010c2fa9b36482b8f3a15aa0c8e6006ed03ea",
+      "dist/lib/gitlab-path.js": "9497fad54bd19c65fc01e53793de6e168f9b0a2088f569303975898f90bb0608",
+      "dist/lib/http-auth-guard.js": "a53c0c68592bae19ded823e5efd79a7ac192e394c2ebe012678e41630f4b7f22",
+      "dist/lib/http-request-policy.js": "d92b321a1452ec604b5d2b59c4a64a4f3d6474ff3c47972bbe42c5f4a62c0176",
+      "dist/lib/local-file-boundary.js": "3927ddff4b5a26d8ed8501306c0354c5f54bf87e370bb6d46f67593191ee42b4",
+      "dist/lib/logger.js": "57fbace2e75fd2899e70822e684326321aa63b93af293cadf0c17295cd6bde10",
+      "dist/lib/mcp-http-bearer-auth.js": "4d3cb6385e0cab71dc5e55b0bd1b9dccd485b1ba06df9cb230a244dbf95e121e",
+      "dist/lib/mcp-oauth-provider.js": "e88fb421d284cd8a7af33a3a8800855db673b36f1636682a0e7bddade7f41c8f",
+      "dist/lib/mcp-oauth-stateless.js": "6d42f8490e77308a160199eb7530409b9a4c5864d3e4a4f99816222d0f695e14",
+      "dist/lib/metrics.js": "3510a08fe629480f6e3aeae5293bcc284b5d7b64b5b89067a1d893406e720e92",
+      "dist/lib/network.js": "5fdb005af4a896f07870fad5e3bb55c3d0ff2675f75fbbaaeb7e7fad385f6b5c",
+      "dist/lib/oauth-group-authorizer.js": "8380522de911f1dd9a9c641a3826c5fac76ee08287a6ec8ee9f06c6fcc125cd6",
+      "dist/lib/oauth-scopes.js": "013a9d0256ab9b62048873f175529e058d678b2c2cc1191ef6ac1cd6b477c4fa",
+      "dist/lib/oauth-security.js": "fb036ef78605e359da6f4f1923ec7342bf540e84c6cdbfb913fc0dc491ec5489",
+      "dist/lib/oauth.js": "312e460093fb2d772313702e966a28df4527bb41df4a0fbfd27a7e75c237418c",
+      "dist/lib/output.js": "ea9196bf508951145a3cc327b922b7078cc1798ccfad157ccf3603b286264e41",
+      "dist/lib/pagination.js": "96981723d701b2078a003fa30cf7c7c8aca8b1a5a4c1695162724cab45de76ad",
+      "dist/lib/patch-helper.js": "69f4679ffb48d8e9ef62c3532ac1993f4e573351c55398a5bf9da1653b504e2c",
+      "dist/lib/policy.js": "198e9d8ed5ae7f76e4bc2f84144bf96a2876fdb3bc99ef4fa316929c5ee8bee0",
+      "dist/lib/proxy-client-ip.js": "f6076665f0cc9ef59d8c9048670adc8678822b3694bdebe5af6b302f36aa80c5",
+      "dist/lib/query-normalization.js": "5f86e2206807066a619b22401cb3c7efc5e3cc9f1090764ade84fdbd5863610f",
+      "dist/lib/redact-success.js": "628af99214b8a284ffdea869f2d19317bb4cdfa3a74e97ea020d80150fbd2b21",
+      "dist/lib/regex.js": "7ea7e73f80b1eb765a2207eceab3e50e7c06022fb50ee2c2c77292470dbf52d3",
+      "dist/lib/request-runtime.js": "cea798e536c952e179878fb9b07cfe1a723dbc9755429406982175c94c524eb2",
+      "dist/lib/safe-redirect-fetch.js": "97f2ba7094ec0b8397bdb328d70e0835b3fa4c465ae025e19d093bfbadbde632",
+      "dist/lib/sanitize.js": "e865758c1a31922f18f43f09c96b6e90a7623ad2f4d66adc55a137b991c21ee9",
+      "dist/lib/session-capacity.js": "7ca833da43d235a9ce251e5c6485a81c2d402f8f097f01285f6f4777432e0db6",
+      "dist/lib/tool-annotations.js": "a95811bccca662f596ad1b15c5f7ad3ed3994f08a74db95b0614ac1067e198d4",
+      "dist/lib/tool-capabilities.js": "c950c9fb66facc236b9b41a74e475050c2e33be65cac7de0c95903cf65d64b5c",
+      "dist/lib/tool-schema.js": "e310762d0601e2fff2588dfda1363b7f43fdf4931c8b460dc680b137a80bc519",
+      "dist/lib/toolsets.js": "6eaa1c0ad38288f8dfff0f842591ba0351efef17f4c5c8501601204e689686d0",
+      "dist/lib/wiki-title.js": "d5e0fbcf1abed0d44508c268dd3d7b5b64637d56a2a1b35203c20ae19a1bd6d2",
+      "dist/server/build-server.js": "64de01f8bd419fb41cf74af0480636a01fa398b9ec9e2cbbe0a9f905ae618d54",
+      "dist/tools/gitlab.js": "1c3125c1c20147f8fb80ccb1e23ecb52553eb1a8b0c572ec5840b61e602363d5",
+      "dist/tools/health.js": "15d6b2c6b8e43181ee073288196361570f889a479d59bc95014bc3f8a866131c",
+      "dist/tools/mr-code-context.js": "f65ba5696d0ffac3040ee6d7234a96040c515848c3ff1e21e84abca72972cb9a",
+      "dist/types/auth.js": "8bebffc07ea08954f94bf355576e57978797268f18b55374dd1443ecaf36b8c0",
+      "dist/types/context.js": "d7768e31f9f96aac997a3ae84ade0022b46ccccc298301dc9d62877f9a4fd01d"
+    }
+  },
+  "automatic_execution": {
+    "enabled": true,
+    "policy_id": "qa-automatic-v1",
+    "task_roots": [
+      "/Users/juanmantilla/projects/personal",
+      "/Users/juanmantilla/projects/personal/md-reader"
+    ],
+    "not_before": "2026-10-11T03:36:57.322148+00:00"
+  }
+}

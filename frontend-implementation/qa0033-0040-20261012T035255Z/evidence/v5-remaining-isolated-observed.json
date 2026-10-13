@@ -1,0 +1,29 @@
+{
+  "id": "v5-remaining-isolated-observed",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/session.test.tsx",
+    "tests/ui/large-source.test.tsx",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/remaining-diagnostic.config.ts"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v5",
+  "started_at": "2026-10-12T06:16:53.829637+00:00",
+  "load_before": [
+    3.40869140625,
+    5.4873046875,
+    8.7705078125
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T06:17:02.914635+00:00",
+  "load_after": [
+    3.111328125,
+    5.35546875,
+    8.68505859375
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/v5-remaining-isolated-observed.log"
+}

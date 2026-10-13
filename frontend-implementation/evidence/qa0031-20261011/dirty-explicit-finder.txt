@@ -1,0 +1,77 @@
+The following is a diff from the previous accessibility tree for Window: "individual" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 0-90
++99 standard window individual, ID: FinderWindow, Secondary Actions: Raise
++	100 split group
++		101 scroll area Secondary Actions: Scroll Up, Scroll Down
++			102 outline sidebar
++				103 row (selectable) Description: clock, Value: Recents
++				104 row (selectable) Description: Two people, Value: Shared
++				105 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
++				106 row (selectable) Description: App Store letter A icon, Value: Applications
++				107 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
++				108 row (selectable) Description: Document page, Value: Documents
++				109 row (selectable) Description: Arrow Down Circle, Value: Downloads
++				110 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
++				111 row (selectable) Description: iCloud, Value: iCloud Drive
++				112 row (selectable) Description: home, Value: juanmantilla
++				113 row (selectable) Description: AirDrop concentric radio waves, Value: AirDrop
++				114 row (selectable) Description: trash, Value: Trash
++				115 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
++				116 row (selectable) Description: Small circle badge, filled, Value: Red
++				117 row (selectable) Description: Small circle badge, filled, Value: Orange
++				118 row (selectable) Description: Small circle badge, filled, Value: Yellow
++				119 row (selectable) Description: Small circle badge, filled, Value: Green
++				120 row (selectable) Description: Small circle badge, filled, Value: Blue
++				121 row (selectable) Description: Small circle badge, filled, Value: Purple
++				122 row (selectable) Description: Small circle badge, filled, Value: Gray
++				123 row (selectable) Description: Two small circle badges, Value: All Tags…
++			124 scroll bar (settable, float) 0
++				125 value indicator (settable, float) 0
++				126 increment arrow button
++				127 decrement arrow button
++				128 increment page button
++				129 decrement page button
++		130 splitter (disabled, settable, float) 223
++		131 scroll area Secondary Actions: Scroll Left, Scroll Right
++			132 outline Description: list view, ID: ListView
++				133 row (selected)
++					134 cell (selected) Secondary Actions: Open Finder item
++						135 image
++						136 text field (settable) Value: explicit.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0031-20261011/individual/explicit.md
++					137 cell (selected)
++						138 text Today at 5:06 PM
++					139 cell (selected)
++						140 text 42 bytes
++					141 cell (selected)
++						142 text Markdown
++				143 container ListViewHeader
++					144 button Description: Name, Value: AXAscendingSortDirection, ID: name
++					145 button Description: Date Modified, ID: dateModified
++					146 button Description: Size, ID: size
++					147 button Description: Kind, ID: kind
++			148 scroll bar (settable, float) 0
++				149 value indicator (settable, float) 0
++				150 increment arrow button
++				151 decrement arrow button
++				152 increment page button
++				153 decrement page button
++		154 unknown Details: status bar, ID: statusBar
++			155 text Value: 1 of 1 selected, 18,9 GB available, ID: statusBarText
++	156 toolbar
++		157 container Back/Forward
++			158 button (disabled) back
++			159 button (disabled) forward
++		160 pop up button Description: list view, Value: as List
++		161 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
++		162 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
++		163 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
++		164 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
++		165 button Search
++	166 close button
++	167 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
++	168 minimize button
++	169 text individual
+Selected:
+	133 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

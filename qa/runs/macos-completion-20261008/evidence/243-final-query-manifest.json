@@ -1,0 +1,123 @@
+[
+  {
+    "query": "needle",
+    "expected": 80,
+    "actual": 80,
+    "pass": true
+  },
+  {
+    "query": "needle alpha",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "needle beta",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "absent-20261008",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "observation": "Initial completion matcher omitted Sin resultados; retained timeout in activity log."
+  },
+  {
+    "query": "# alpha 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "query": "# alpha 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true
+  },
+  {
+    "query": "# beta 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "query": "# beta 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true
+  },
+  {
+    "query": "alpha 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "query": "beta 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "query": "alpha 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "query": "beta 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "query": "NEEDLE",
+    "expected": 80,
+    "actual": 80,
+    "pass": true
+  },
+  {
+    "query": "alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "match",
+    "expected": 80,
+    "actual": 80,
+    "pass": true
+  },
+  {
+    "query": "needle alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "needle beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true
+  },
+  {
+    "query": "# alpha 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "query": "# beta 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true
+  }
+]

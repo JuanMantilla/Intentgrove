@@ -1,0 +1,233 @@
+[
+  {
+    "at": 2216.570208,
+    "cpu": {
+      "user": 841277,
+      "system": 180365
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "case-start"
+  },
+  {
+    "at": 2248.562833,
+    "cpu": {
+      "user": 875980,
+      "system": 181078
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "session-load-call"
+  },
+  {
+    "at": 2249.033583,
+    "cpu": {
+      "user": 876445,
+      "system": 181081
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "pinch-effect",
+    "identity": "",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2330.825791,
+    "cpu": {
+      "user": 1014826,
+      "system": 184302
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "click",
+    "text": "Open file",
+    "title": null,
+    "class": "",
+    "disabled": false,
+    "ctrl": false
+  },
+  {
+    "at": 2349.042583,
+    "cpu": {
+      "user": 1058645,
+      "system": 185158
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "query-error",
+    "message": "Unable to find role=\"button\" and name \"Open read-only source\"",
+    "headings": [
+      "Read your local Markdown"
+    ],
+    "buttons": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 2353.220458,
+    "cpu": {
+      "user": 1063161,
+      "system": 185194
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "session-load-reply"
+  },
+  {
+    "at": 2353.671833,
+    "cpu": {
+      "user": 1063608,
+      "system": 185198
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "open-sequence",
+    "sequence": 1
+  },
+  {
+    "at": 2353.950875,
+    "cpu": {
+      "user": 1063883,
+      "system": 185202
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "activate",
+    "id": "large-1",
+    "sequence": 1,
+    "current": 1
+  },
+  {
+    "at": 2363.934375,
+    "cpu": {
+      "user": 1074045,
+      "system": 185557
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "pinch-effect",
+    "identity": "large-1",
+    "enabled": false,
+    "element": "reader-scroll"
+  },
+  {
+    "at": 2385.727,
+    "cpu": {
+      "user": 1134520,
+      "system": 186800
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "click",
+    "text": "Open read-only source",
+    "title": null,
+    "class": "primary-button",
+    "disabled": false,
+    "ctrl": false
+  },
+  {
+    "at": 2392.310458,
+    "cpu": {
+      "user": 1148637,
+      "system": 186948
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: # first line. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [
+      "This file is too large for rich reading. Open a read-only source view?"
+    ],
+    "buttons": [],
+    "worker": "undefined"
+  },
+  {
+    "at": 2404.189666,
+    "cpu": {
+      "user": 1174992,
+      "system": 187532
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "query-error",
+    "message": "Unable to find an element with the text: # first line. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.",
+    "headings": [],
+    "buttons": [],
+    "source": "",
+    "zoom": "1",
+    "worker": "undefined"
+  },
+  {
+    "at": 2406.790833,
+    "cpu": {
+      "user": 1181337,
+      "system": 187654
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "pinch-effect",
+    "identity": "large-1",
+    "enabled": false,
+    "element": "large-source-text"
+  },
+  {
+    "at": 2410.784458,
+    "cpu": {
+      "user": 1188399,
+      "system": 187752
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "wheel",
+    "text": "# first line\n",
+    "title": null,
+    "class": "large-source-text",
+    "ctrl": false,
+    "delta": 60,
+    "headings": [],
+    "buttons": [],
+    "source": "# first line\n",
+    "zoom": "1",
+    "worker": "undefined"
+  },
+  {
+    "at": 2411.742875,
+    "cpu": {
+      "user": 1191783,
+      "system": 187858
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "wheel",
+    "text": "# first line\n",
+    "title": null,
+    "class": "large-source-text",
+    "ctrl": true,
+    "delta": -100,
+    "headings": [],
+    "buttons": [],
+    "source": "# first line\n",
+    "zoom": "1",
+    "worker": "undefined"
+  },
+  {
+    "at": 2413.686541,
+    "cpu": {
+      "user": 1198750,
+      "system": 188067
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "pinch-effect",
+    "identity": "large-1",
+    "enabled": true,
+    "element": "large-source-text"
+  },
+  {
+    "at": 2413.694625,
+    "cpu": {
+      "user": 1198925,
+      "system": 188068
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "pinch-wheel-register",
+    "identity": "large-1",
+    "className": "large-source-text"
+  },
+  {
+    "at": 2415.1315,
+    "cpu": {
+      "user": 1203233,
+      "system": 188210
+    },
+    "test": "large source consent and bounded view > pinches only the bounded source text and preserves ordinary scrolling and native consent",
+    "event": "case-end",
+    "headings": [],
+    "buttons": [],
+    "worker": "undefined"
+  }
+]

@@ -1,0 +1,140 @@
+[
+  {
+    "check": "native-policy",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/native-v4.log",
+    "scope": "Four native reveal tests; 9 filesystem grant/mutation combinations, fresh listings, invalid payloads and grant/snapshot boundaries."
+  },
+  {
+    "check": "native-library",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/native-v2.log",
+    "scope": "142 passed/5 ignored before test deduplication and Windows-only formatting; macOS production behavior unchanged."
+  },
+  {
+    "check": "frontend-regression",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/ui-v3.log",
+    "scope": "126 mocked tests in 8 affected suites; frozen snapshot across directory refresh and missing-reference guard."
+  },
+  {
+    "check": "types",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/types-v3.log",
+    "scope": "TypeScript noEmit."
+  },
+  {
+    "check": "unopened-after-replace",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/replacement-repeat-result.txt",
+    "scope": "Immediate native-menu Return produces Select file again; Finder sentinel remains fresh.md."
+  },
+  {
+    "check": "unopened-after-delete",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/after-delete-result.txt",
+    "scope": "Immediate Return produces missing error; capture provider emitted -3811 alongside AX text."
+  },
+  {
+    "check": "unopened-after-rename",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/after-rename-after-mutation.txt",
+    "scope": "Menu safely dismissed as renamed row disappears; Return does not reveal another target."
+  },
+  {
+    "check": "unopened-before-replace",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before-replace-result.txt",
+    "scope": "Old-row menu captured after mutation; refresh dismissed it; Finder remained fresh.md."
+  },
+  {
+    "check": "unopened-before-rename-delete",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/before-rename-delete-refreshed.txt",
+    "scope": "Original rows removed; stale AX click invalidated. Native resolver matrix separately verifies missing rejection."
+  },
+  {
+    "check": "root-tab-fresh",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/opened-root-tab-finder.txt",
+    "scope": "Finder row URL/name matches opened.md; saved file34bytes."
+  },
+  {
+    "check": "root-tab-replacement",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/opened-root-replace-result.txt",
+    "scope": "Native action rejects identity mismatch before reveal; normal clean-document refresh later adopts replacement content."
+  },
+  {
+    "check": "explicit-tab-fresh",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/explicit-finder.txt",
+    "scope": "Finder row URL matches external explicit.md."
+  },
+  {
+    "check": "explicit-tab-replacement",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/explicit-sentinel-result.txt",
+    "scope": "Second explicit grant check rejects replacement and Finder independently remains fresh.md."
+  },
+  {
+    "check": "fresh-unopened-exact",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/fresh-selection-copy-corrected.txt",
+    "scope": "Copied selection pathname matches exact fresh.md absolute path; initial bad clipboard attempt retained separately."
+  },
+  {
+    "check": "special-unopened-exact",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/special-finder.png",
+    "scope": "Finder URL and screenshot match caf\u00e9 # $ & % (draft),.md50bytes."
+  },
+  {
+    "check": "windows-native-menus",
+    "result": "NOT TESTED",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/platform-limitations.txt",
+    "scope": "Only local macOS host exposed. No Windows build/File Explorer/normal-user runtime executed."
+  },
+  {
+    "check": "linux",
+    "result": "NOT APPLICABLE",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/platform-limitations.txt",
+    "scope": "Existing unsupported scope unchanged."
+  },
+  {
+    "check": "menu-visuals-AT",
+    "result": "NOT TESTED",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/platform-limitations.txt",
+    "scope": "Scoped AX semantics tested; comprehensive menu screenshot/AT/locale/appearance regression not performed."
+  },
+  {
+    "check": "independent-retest",
+    "result": "NOT TESTED",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/platform-limitations.txt",
+    "scope": "Implementer evidence only; independent QA RETEST and user acceptance remain pending."
+  },
+  {
+    "check": "final-v4-fresh",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/final-v4-fresh-finder.txt",
+    "scope": "Final-build unopened fresh.md Finder selected URL/name; screenshot retained."
+  },
+  {
+    "check": "final-v4-replacement",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/final-v4-race-result.txt",
+    "scope": "Final-build menu replacement returns Select file again; different inode and Finder fresh.md sentinel retained."
+  },
+  {
+    "check": "final-v4-root-tab",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/final-v4-root-tab-selection-copy.txt",
+    "scope": "Final-build root tab selects current grant opened.md, confirmed copied absolute pathname despite stale Finder AX URL."
+  },
+  {
+    "check": "final-v4-explicit-tab",
+    "result": "PASS",
+    "evidence": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/evidence/final-v4-explicit-finder.txt",
+    "scope": "Final-build newly granted explicit-fresh-final.md selects exact external Finder row."
+  }
+]

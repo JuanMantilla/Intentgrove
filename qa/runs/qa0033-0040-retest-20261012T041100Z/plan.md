@@ -1,0 +1,5 @@
+# Fresh QA RETEST context
+
+Exact scoped candidate supplied by implementation handoff. QA stays read-only for product/config/source/baselines. Separate native snapshot excludes concurrent native edits captured in implementation drift record. Native macOS WKWebView and mocked Vitest/jsdom are separate environments.
+
+Repeat original New Markdown four journeys, pending-reader170, isolated native startup-failure, older-open rejection, initial section entry and both original staged-anchor margins three times; unchanged maxWorkers2/deadlines. Then npm test -- --dir tests three times. Retain every attempt. Verify native first open/reopen and stale switches; reading60/mixedlive/whole30; system clipboard/control exclusions; Find typing/draftbytes; Filename/Local target/modal/modifiers; source Undo/Redo. No retries, sleep, suppression, installs, permissions, profile reset, source fixes, cleanup or acceptance authority. Held-native/overlay availability must be proved; physical IME/VoiceOver/Windows unavailable stay BLOCKED/NOT_RUN.

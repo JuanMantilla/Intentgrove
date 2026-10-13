@@ -1,0 +1,13 @@
+{
+  "productName": "Intentgrove Blob Probe 20261008",
+  "identifier": "com.juanmantilla.intentgrove.blobprobe20261008",
+  "build": {
+    "frontendDist": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-completion-20261008/probe",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src ipc: http://ipc.localhost; font-src 'self'; object-src 'none'; base-uri 'none'; frame-src blob:"
+    }
+  }
+}

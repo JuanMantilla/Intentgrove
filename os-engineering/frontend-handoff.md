@@ -1,5 +1,7 @@
 # IR-04 exact frontend handoff
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
+
 Implemented entry points: `src/main.tsx` mounts `SettingsWindow` for `?settings`; it never mounts `App` in that window. Native workspace General/Reading/Project tree triggers call `settingsApi.show(group)`; the native app-menu Settings/Reading entries use the same window. The browser-only preview retains its existing controls; the native application uses the separate `settings` window. Existing Reading fields/preview are reused. Native titlebar and close remain native.
 
 `src/app/settings-contract.ts` is the consumer contract. All argument keys are camelCase. Errors serialize `{code, message}`. Never pass a window/owner label from the renderer.

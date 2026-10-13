@@ -1,0 +1,43 @@
+[
+  {
+    "n": 0,
+    "at": 3810.26475,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 3869.489667,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "new-activate",
+    "ready": false,
+    "sessionReady": false,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)\n    at HTMLDivElement.callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)"
+  },
+  {
+    "n": 2,
+    "at": 3931.454542,
+    "test": "causal QA-0033 activation after restore resolution before ready commit",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

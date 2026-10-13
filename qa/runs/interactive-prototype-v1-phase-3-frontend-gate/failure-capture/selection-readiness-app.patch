@@ -1,0 +1,29 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -359,11 +359,17 @@
+   const [editorMenu, setEditorMenu] = useState<EditorCommandState>({ owner: false, undo: false, redo: false, selection: false });
+   const editorFindRef = useRef<DraftFindAdapter | null>(null);
+   const documentSelectionRef = useRef<DocumentSelectionAdapter | null>(null);
++  const [, wakeDocumentSelection] = useState(0);
+   const selectionAcquisition = useRef<{ token: symbol; sequence: number; generation: number; fileId?: string } | null>(null);
+   const pendingDocumentSelection = useRef<{
+     sequence: number; generation: number; loadToken?: symbol; fileId?: string; content?: string; dispatched?: boolean
+   } | null>(null);
+-  const selectionReady = useCallback((adapter: DocumentSelectionAdapter | null) => { documentSelectionRef.current = adapter; }, []);
++  const selectionReady = useCallback((adapter: DocumentSelectionAdapter | null) => {
++    documentSelectionRef.current = adapter;
++    // Ref publication may be the last event after acquisition/activation. Wake
++    // a queued intent even when no section or paint state will render again.
++    if (adapter) wakeDocumentSelection(revision => revision + 1);
++  }, []);
+   const findFocusBefore = useRef<HTMLElement | null>(null);
+   const pendingSearchReveal = useRef(false);
+   const menuActionRef = useRef<(id: string) => void>(() => {});
+@@ -3189,6 +3195,7 @@
+         loadToken: loading && !loading.fileId ? loading.token : undefined, fileId: loading ? loading.fileId : active!.id,
+         content: loading ? undefined : active!.content };
+       pendingDocumentSelection.current = request;
++      wakeDocumentSelection(revision => revision + 1);
+       if (!loading && !active!.documentLoading && documentSelectionRef.current?.fileId === active!.id) {
+         request.dispatched = true;
+         documentSelectionRef.current.selectAll({ isCurrent: () => pendingDocumentSelection.current === request

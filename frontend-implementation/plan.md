@@ -1,59 +1,56 @@
-# Approved design implementation — option D
+# Option B integration continuation — 2026-10-11
 
-USER-AUTHORIZED: explicit IMPLEMENT request authorizes scoped frontend changes, fixes, tests and non-publishing builds. Design authority: `../design-reviews/03-10-27-01/proposals/approval-option-D.json`; user selected D and approved the revised package. Active Spec Kit feature confirmed by installed check-prerequisites query: F006 (`specs/006-view-local-images`). React/TypeScript/Vite/Tauri/CodeMirror installed; no dependencies/config/native contracts will change. Prior implementation evidence read from `../../frontend-implementation/STATE.md` and its renderer harness; preserved separately.
+Current approved integration continuation plan: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/new-markdown-integration-20261011-plan.md. Prior records retained below.
 
-Worktree baseline: repository files are untracked; no clean Git baseline inferred. Exact fingerprints and source copies captured before changes. Baseline suite passed: 33 files, 225 tests. Changed/new files and the source diff are recorded under `evidence/option-D/`; 108 captured design files and 57 captured native files remain unchanged.
+---
 
-| Requirement | Source | Implementation and verification |
-|---|---|---|
-| REQ-D1 fixed D arrows | selected-design-handoff, D wide/state/narrow SVGs | Fixed semantic Back/Forward pair and divider outside scrolling tabs; shared client-side committed visit history, menus, branching/limit/clear/empty/closed behavior; tests using actual App with mocked native APIs. |
-| REQ-D2 retain file/edit context | history handoff rules 3–9 | Per-visit reader and image position, per-file zoom, current drafts and existing guards; stale request and failed traversal tests. |
-| REQ-Z1 pinch zoom | current user instruction | Shared non-passive WebKit gesture/control-wheel handling scoped to active viewer; image scale and Markdown view zoom retain location, ordinary scrolling unaffected. Limits reuse image 25–400%; test gesture events, accumulated input, per-file isolation. Physical trackpad verification separate. |
-| REQ-L1 transient load failure | user bug report | Reproduced against saved original App: released image pixels become a false unavailable state, stale same-file failure replaces success, slow older open steals selection. Implement pending-image semantics, per-request ownership and latest selection intent. Also guard restored-file/large-inspection/link-fragment responses and wait for actual Markdown rendering before restoring passage geometry. Successful/pending/failure/rapid-switch/reopen/stale-response tests cover these causes. |
-| REQ-U1 workspace/menu decluttering | frontend and interaction handoffs | Projects menu owns acquisition/search; contextual root/folder/file routes reuse existing commands; scoped document actions and neutral status; keyboard/focus/localization tests. |
-| REQ-S1 scoped search presentation | frontend search states | Preserve existing jobs/guards and real Markdown coverage; idle query guidance, distinct selection, clear/stop states. Subtree API unsupported: truthful disabled folder action with request recorded. |
-| REQ-E1 editing/save/recovery | interaction fidelity gate | Preserve existing native source/draft/conflict/recovery guards and improve explicit feedback. Full in-place rich editing needs source-backed engine/serialization/recovery architecture approval; document concrete request rather than replace source with unsafe DOM serialization. |
-| REQ-P1 separate Settings window | settings handoff | Existing permissions cover main window only; separate-window creation/preferences sync require reviewed capability/native integration. Keep existing working preference controls until approved integration; document exact request. |
-| REQ-H1 HTML and other files | HTML/file-navigation handoffs | Existing bridge only accepts Markdown/images; safe HTML/resource access and other-file handler contracts absent. Document concrete change requests; no fake viewer or arbitrary file/native access. |
+# Approved revised UI implementation — 2026-10-10
 
-Visual references: inspected selected D, its row in the shared state board, its 640×480 frame, and relevant original workspace/editing/Settings mockups. No presentation annotations or native traffic lights shipped as product UI. Current source/split editing and preference controls remain visibly different from the full approved rich editor and separate Settings window; IR-01/04 specify the remaining work.
+USER-AUTHORIZED IMPLEMENT. Exact revision: /Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/designer-review-20261010-215012/html-proposals-20261010-215628/revision-20261010-220535. Authorization and handoff hash: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/authorization.json. Older PROPOSED labels are superseded by the current user instruction; original evidence is read-only. Ten approved PNGs and seven relevant native originals visually inspected. Spec Kit reports global feature 013-windows-desktop; this scoped cross-feature frontend revision does not change global feature state.
 
-Verification performed: pre-change and final Vitest suites; targeted regressions; TypeScript/Vite build and production worker guard. Network-listening/CDP restrictions prevented the usual Chrome route. A disposable offline macOS WKWebView rendered the actual bundled App with synthetic fixtures and a mocked native bridge. Seven captures cover light/dark, EN/ES, 640×480, 200% page/text enlargement, dirty navigation, save/recovery failure and retry, keyboard menus and gesture input. This is renderer evidence, not actual Tauri integration or physical trackpad evidence. See `report.md` for exact outcomes.
+1. DR-001: reorganize FolderSearchPanel into fixed query/action, scope/Clear, options disclosure and independently scrolling results. Preserve existing native job ownership, modes, ignored setting, all counts, cancellation and errors. Keyboard options, Escape/focus return and scroll verification.
+2. DR-002/005: shared width-measured middle filename component; full-width title above document-owned toolbar, parent context and full disclosure retained; full accessible tree names with suffix visibility.
+3. DR-004: structured EN/ES save/keep explanations and continuation-specific titles, preserving resolveClose/save/checkpoint semantics.
+4. Verify focused and full existing frontend tests/build, disposable real-App renderer in permitted HTTP dev route, matching 1280×820 EN/dark and ES/light and supported width boundaries. Native file-byte/persistence and screen-reader checks require a current isolated native runtime; report unavailable capabilities explicitly.
 
-Implementation status remains PARTIAL. Native/architecture requests IR-01–05 are concrete and reviewable in `integration-requests.md`; independently authorized frontend work and verification continued. Existing native access/security contracts, dependencies, canonical specification/design/architecture and approved design artifacts were preserved. No commit, push or deployment.
+No dependency/backend/native privilege changes, installation, commits, deployment or cleanup. Preserve baseline copies and prior documentation; append this task record. Final acceptance PENDING.
 
-## Approved-proposal gap pass — 2026-10-05
+---
 
-USER-AUTHORIZED: current IMPLEMENT request; all current design proposals approved at `approval-all-2026-10-05.json`. Preserve existing implementations and fix only demonstrated gaps. Installed Spec Kit resolves global feature F007W/013 Windows. Use its supported F006 feature-directory override with NO_PERSIST; do not change Windows state or canonical Windows artifacts. Existing native/API contracts and dependencies remain unchanged. Baseline hashes/source copies: `evidence/approved-gap-pass/`.
+# Option C Projects sidebar correction — 2026-10-10
 
-| Requirement / handoff acceptance | Pre-edit classification | Evidence and action |
-|---|---|---|
-| REQ-D1 / frontend 1–3: fixed D controls, tabs, responsive shell | Implemented but needs fresh verification | App/history/CSS plus approved-navigation and workspace tests. Preserve D anatomy/history. |
-| REQ-D2 / frontend 13,16: drafts and reading/image locations | Implemented but needs fresh verification | App source edit guards and visit history; existing navigation/editor/geometry tests. Rich draft aspects await IR-01. |
-| REQ-U1 / frontend 4: neutral reload feedback | Partially implemented | Results still inserted as red tree-feedback rows and never expire. Move manual outcomes to reserved footer, pause success timeout on hover/focus, Dismiss, retain last result in target menu; keep errors persistent and background success quiet. |
-| REQ-U1 / frontend 5–6: contextual actions/lifecycle | Partially implemented | ActionMenu restores invoker on outside/scroll dismissal; root-file tabs lack context route; folder Expand/Collapse and tab batch close absent. Implement target-specific actions with existing loss guards and fix dismissal focus. |
-| REQ-E1 / frontend 7–15: direct rich editor and fidelity | Partially implemented | Explicit edit/source Save/recovery/dirty guards exist. Rich rendered editor/transactions/round-trip architecture and checkpoint compatibility missing: IR-01. Preserve working source engine. |
-| REQ-S1 / frontend 17–19: root search | Partially implemented | Root scope/query/batches and retained sidebar exist. Stop is unavailable before native start resolves; late cancel can overwrite a replacement job. Add pending-start cancellation and sequence ownership. Subtree support blocked by IR-05. |
-| REQ-P1 / frontend 21–24: separate Settings/persistence | Partially implemented | Current preference controls work; approved separate window/capability and filter persistence contract missing: IR-04. No duplicate window facade. |
-| REQ-H1 / HTML 1–8, navigation mixed files | Missing | Native types accept Markdown/images only. HTML isolated WebView/resources and generic metadata/handler contracts absent: IR-02/03. No fake viewer or frontend privilege expansion. |
-| REQ-D1 / navigation Go native routes | Missing | Client Go/history exists; OS menu routes missing: IR-05. Preserve existing client implementation. |
-| Frontend 20: safety and existing image behavior | Implemented but needs fresh verification | Existing image/security/refresh tests; verify preservation through baseline/final fingerprints. |
+USER-AUTHORIZED IMPLEMENT: COMPLETE_IN_SCOPE; user acceptance PENDING. Final frontend suite 547 PASS, build PASS; Chrome real-App fixture verifies all four states, close/reopen/focus, minimum width, resizing, scrolling and Spanish/narrow boundaries. Native/screen-reader/200% verification remains NOT RUN. Report: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/sidebar-header-20261010-report.md. Plan: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/sidebar-header-20261010-plan.md. Evidence: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010. No DONE_ACCEPTED or cleanup. Prior work retained below.
 
-Implementation slices: menu focus/lifecycle and target actions; guarded batch close; pending/stale search cancellation; manual reload footer. Add focused regressions for demonstrated gaps, run existing suite/build/worker guard, reuse offline WebKit harness for current renderer captures without replacing historical evidence. Native/VoiceOver/physical input remain separately NOT TESTED. Canonical reconciliation is a bounded maintenance addendum to F006 tasks/verification; outstanding architecture amendments are documented in integration-requests, not silently ratified.
+---
 
-## Completion of the bounded gap pass
+# Current implementation plan — Theonira theme correction
 
-Frontend criteria 4–6 and pending/stale root-search cancellation were repaired using existing APIs. Existing D/navigation/loading fixes were retained. Current tests: 39 files/269 PASS; local build and worker guard PASS. WebKit renderer: nine states/204 checks PASS with mocked native APIs. Full package remains PARTIAL due to IR-01–05. Canonical mapping and T039–T042 are recorded under F006 using Spec Kit's supported NO_PERSIST feature override. Concurrent Windows/native/platform edits were preserved; current baseline deltas include those changes and are not all attributable to this pass. See report and `evidence/approved-gap-pass/`.
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
 
-## Two-file continuity repair - 2026-10-05
+The user's latest selection explicitly includes the approved study themes. This supersedes the previous delivery's narrow interpretation of branding and styling.
 
-User authorized senior-frontend-developer IMPLEMENT for the sibling-link issue. Clarification: Ctrl+O single-file grant correctly blocks siblings. Reproduced a frontend defect when reopening the same file from the selected-folder tree: identity dedup retained that explicit grant. Successful tree reads now rebind only clean tabs to the returned root grant, preserving reading/history/checkpoint keys; edits/recoveries stay bound to their grant. EN/ES single-file guidance added. Focused54/full280 tests and isolated no-bundle Windows build PASS; native two-tab restart acceptance PENDING (helper pipe error2). Source unchanged after build; build-time279 tests, final extra draft-protection regression included in280. See frontend-implementation/evidence/sibling-link-repair/report.md and logs. Candidate SHA256 d95d2bcb83f5275a91c776f2d6c977f0187331c16a50e09d6120749937b32ae0. Existing QA-0003 failures/close repair, seven approvals, gates and unrelated edits preserved; no backend/security/dependency/install/sign/publish/commit changes.
-## QA-0004 repair — 2026-10-05
+[Full plan and checklist](evidence/theonira-themes-20261009/plan.md) · [authorization](evidence/theonira-themes-20261009/authorization.md)
 
-User-authorized IMPLEMENT: trace startup/session operation errors and stale translated notice state; reuse existing notice UI, preserve storage/close/grant failures, add focused tests, run frontend/build/worker checks and renderer review. Source complete; 40 files/287 tests, build and worker PASS. Native retest pending. See [evidence](evidence/qa-0004/report.md); prior approved-gap and sibling-link plans retained.
+Implemented shared shell, paired palette, typography/icons, Margin/Folio/Atlas composition and existing functional controls. Preserved October 5 behavior, option-D navigation, document/source fidelity and native state owners. Completed renderer/native verification and corrected the native tab-transition defect found during review.
 
-## Settings Reading continuation — 2026-10-06
+[Verification report](evidence/theonira-themes-20261009/report.md) records remaining reference-rendering and native HTML geometry limits. User acceptance remains pending. Installation and native changes remain outside this task.
 
-USER-AUTHORIZED IMPLEMENT: current request to work on QA-0004 and the remaining approved integrations. Existing-contract slice: REQ-P1 criteria22–24 numeric controls/preview and retryable preference failures, preserving reader anchors/session ownership. Completed and checked; see evidence/settings-reading-20261006/report.md. Canonical F002R prerequisite override is temporary; F007W stays globally selected.
 
-Remaining work is scoped in integration-decisions-20261006.md: Settings/Go/subfolder native amendment and two isolated rich-editor/HTML security prototypes, followed by canonical decisions before production integration. These proposed technical changes are not self-approved. QA-0004 native discovery still fails pipe error2; actual native/Mac/DPI acceptance pending.
+## Loading system — 2026-10-09 (USER-AUTHORIZED IMPLEMENT)
+
+Source: `design-reviews/loading-20261009/{index.html,handoff.md,STATE.md}`. User: “I approve the loading-animation design package … Implement its 34 scenarios in Intentgrove.” This supersedes the package's older design-only status. Artifact hashes and original dirty worktree are recorded in `evidence/loading-20261009/`.
+
+Scope: existing frontend components/state/styles/translations and disposable tests; no native contracts, dependencies, installation, publishing or commits. Extend `PreviewLoading.tsx`. Preserve existing dirty files using baseline copies, then compare the task diff against those copies.
+
+Sequence: inspect mockups → map all 34 scenarios → shared motion/progress → local pending state → retain readable content and stale-response guards → focused tests/full suite/build → browser theme/layout/narrow/keyboard review → implementation matrix and integration gaps. Spec Kit `check-prerequisites.sh --paths-only --json` reports branch `013-windows-desktop`; this approved cross-feature frontend package is tracked here without changing the active feature or broad native specification.
+
+Acceptance/evidence: see `loading-20261009-matrix.md` and `evidence/loading-20261009/`. Browser and jsdom checks use mocked native APIs and disposable source; they are not native acceptance.
+
+---
+
+2026-10-10 USER-AUTHORIZED preview/navigation refinement: scoped plan and authority in [preview-navigation-20261010-plan.md](preview-navigation-20261010-plan.md). Prior plan and unrelated work retained.
+
+
+## Option B — 2026-10-11
+
+Current scoped record: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/new-markdown-20261011-plan.md. Prior records retained. Status PARTIAL / native integration pending; user acceptance separate.

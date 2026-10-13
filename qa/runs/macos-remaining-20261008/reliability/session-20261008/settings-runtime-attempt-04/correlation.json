@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "nativeReportAndLocalAXRequestMatch": true,
+  "nativeUnlistenAcknowledgments": 4,
+  "pendingNativeStops": 0,
+  "nativeStopFailures": [],
+  "ownerListenersAfterNativeAck": 0,
+  "ownedPID": 36111,
+  "processGone": true,
+  "note": "Native ownerAvailable remains true while the native main window exists after React root unmount; process exit follows. This probe verifies listener/poll cleanup, not a native ownership withdrawal on React-only unmount."
+}

@@ -1,15 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img">
-  <title>02-in-place-editing: revised static UI proposal</title>
+  <title>IntentGrove — direct rendered section editing, documentation revision 2026-10-08</title>
+  <desc>Static design handoff, not runtime acceptance. Deliberate Edit section entry, one section edited in the existing document scroll surface, contextual formatting and block actions, opaque Mermaid preservation, explicit Save and Save As, Undo and Redo. Earlier F004 source/live-preview is superseded. CRLF Save remains deferred. Historical approval snapshots are unchanged. Option D remains the controlling shell navigation reference; the inherited header arrows in this mixed mockup are superseded by selected-design-handoff.md and are outside this editing revision.</desc>
   <rect x="0" y="0" width="1440" height="1040" rx="0" fill="#F4F5F3" />
-  <text x="24" y="29" fill="#315F70" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">PROPOSED — READY FOR DESIGN REVIEW</text>
+  <text x="24" y="29" fill="#315F70" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">DOCUMENTATION REVISION · 2026-10-08 · NO NEW APPROVAL RECORDED</text>
   <text x="24" y="63" fill="#202826" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">02 / Edit exactly where you were reading</text>
-  <text x="24" y="87" fill="#52615C" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Replace words, insert paragraphs and change lists directly in the rendered document.</text>
+  <text x="24" y="87" fill="#52615C" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Choose Edit section, then edit rendered blocks within the existing document scroll surface.</text>
   <rect x="24" y="108" width="1392" height="854" rx="10" fill="#202928" stroke="#3C4D47" />
   <rect x="24" y="108" width="1392" height="32" rx="10" fill="#1D2524" />
   <rect x="40" y="118" width="12" height="12" rx="6" fill="#FF6057" />
   <rect x="62" y="118" width="12" height="12" rx="6" fill="#FEBC2E" />
   <rect x="84" y="118" width="12" height="12" rx="6" fill="#28C840" />
-  <text x="615" y="129" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Markdown workspace</text>
+  <text x="615" y="129" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">IntentGrove</text>
   <rect x="24" y="140" width="260" height="822" rx="0" fill="#18201F" />
   <rect x="284" y="140" width="1132" height="44" rx="0" fill="#1D2524" />
   <rect x="284" y="184" width="1132" height="74" rx="0" fill="#202928" />
@@ -38,8 +39,10 @@
   <text x="1247" y="167" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Documents (29) ⌄</text>
   <text x="394" y="215" fill="#E6EEEA" font-size="18" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">plan.md</text>
   <text x="394" y="240" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">personal / frontend-implementation</text>
-  <rect x="959" y="199" width="81" height="32" rx="6" fill="#91C5D6" />
-  <text x="971" y="220" fill="#10272E" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Save</text>
+  <rect x="859" y="199" width="81" height="32" rx="6" fill="#91C5D6" />
+  <text x="871" y="220" fill="#10272E" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Save</text>
+  <rect x="950" y="199" width="90" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
+  <text x="962" y="220" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif">Save As…</text>
   <rect x="1050" y="199" width="175" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
   <text x="1062" y="220" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Return to reading</text>
   <rect x="1235" y="199" width="166" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />
@@ -72,30 +75,35 @@
   <text x="40" y="904" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Storage &amp; recovery   ·   1 offer</text>
   <text x="40" y="929" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Manage…</text>
   <text x="40" y="953" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Settings…                  ⌘,</text>
-  <text x="308" y="283" fill="#91C5D6" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Editing content: Authority and design identity</text>
+  <text x="308" y="283" fill="#91C5D6" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Editing section: Authority and design identity</text>
   <text x="988" y="283" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">● Unsaved · ✓ Recovery saved on this Mac</text>
-  <rect x="330" y="300" width="2" height="463" rx="0" fill="#91C5D6" />
-  <text x="348" y="324" fill="#E6EEEA" font-size="29" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Authority and design identity</text>
-  <rect x="348" y="343" width="760" height="1" rx="0" fill="#3C4D47" />
-  <text x="348" y="391" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">USER-AUTHORIZED:</text>
-  <text x="348" y="424" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Review the workspace layout and the editing workflow.</text>
-  <text x="348" y="453" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Preserve authored content and the local Markdown workspace.</text>
-  <text x="348" y="500" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Add keyboard access to project actions.</text>
-  <text x="348" y="542" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">•   Check folder search before saving.</text>
-  <rect x="634" y="525" width="2" height="25" rx="0" fill="#91C5D6" />
-  <text x="348" y="596" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">OBSERVED AT INITIAL REVIEW:</text>
-  <text x="348" y="629" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">The current review addresses navigation, contextual actions,</text>
-  <text x="348" y="658" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">folder search, and editing directly in the reading document.</text>
-  <text x="348" y="687" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Existing approvals do not automatically approve this redesign.</text>
-  <text x="348" y="739" fill="#91C5D6" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Read the review plan</text>
-  <rect x="348" y="744" width="154" height="1" rx="0" fill="#91C5D6" />
-  <text x="348" y="826" fill="#E6EEEA" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Implementation handoff</text>
-  <rect x="348" y="841" width="760" height="1" rx="0" fill="#3C4D47" />
-  <text x="348" y="888" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Application source remains unchanged during this design review.</text>
-  <text x="348" y="917" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Review the proposal artifacts before approving implementation.</text>
+  <text x="348" y="320" fill="#E6EEEA" font-size="21" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Project context</text>
+  <text x="348" y="349" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Read and refine local documents while retaining their authored Markdown.</text>
+  <rect x="330" y="374" width="2" height="410" rx="5" fill="#91C5D6" />
+  <text x="348" y="396" fill="#91C5D6" font-size="12" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">EDITABLE SECTION · surrounding sections remain read-only</text>
+  <text x="348" y="435" fill="#E6EEEA" font-size="29" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Authority and design identity</text>
+  <rect x="348" y="455" width="530" height="36" rx="5" fill="#1D2524" stroke="#6B8078" />
+  <text x="360" y="479" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Bold · Italic · Link… · Inline code · Block type ⌄ · More…</text>
+  <rect x="348" y="503" width="359" height="27" rx="5" fill="#365B66" />
+  <text x="348" y="524" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Preserve authored content and local files.</text>
+  <rect x="708" y="503" width="2" height="26" rx="5" fill="#91C5D6" />
+  <text x="348" y="556" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Edit the selected words directly in this rendered paragraph.</text>
+  <text x="348" y="596" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">•   Check folder search before saving.</text>
+  <rect x="941" y="574" width="167" height="34" rx="5" fill="#1D2524" stroke="#6B8078" />
+  <text x="953" y="597" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Block actions…</text>
+  <text x="348" y="637" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Undo ⌘Z     Redo ⇧⌘Z · draft transactions only</text>
+  <rect x="348" y="656" width="760" height="104" rx="5" fill="#1D2524" stroke="#6B8078" />
+  <text x="364" y="679" fill="#91C5D6" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Mermaid · preserved block · read-only</text>
+  <text x="364" y="704" fill="#E6EEEA" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Cannot split across this Mermaid block; its original Markdown is preserved.</text>
+  <text x="364" y="729" fill="#A8B9B1" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Edit surrounding text separately. YAML, raw HTML and unknown blocks stay opaque.</text>
+  <text x="348" y="779" fill="#91C5D6" font-size="12" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">End of editable section</text>
+  <text x="348" y="827" fill="#E6EEEA" font-size="25" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Implementation handoff</text>
+  <text x="348" y="859" fill="#E6EEEA" font-size="17" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">This following section remains readable in the same document scroll.</text>
+  <text x="348" y="892" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Save returns to reading after acknowledgment; Save As keeps the original dirty.</text>
+  <text x="348" y="920" fill="#A8B9B1" font-size="14" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Dirty exit: Save / Keep draft / Discard / Cancel. Conflicts retain safe choices.</text>
   <rect x="1402" y="291" width="5" height="145" rx="3" fill="#6B8078" />
-  <text x="24" y="994" fill="#202826" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Shown: a rewritten sentence, an added paragraph and a new list item with the insertion caret.</text>
-  <text x="24" y="1019" fill="#52615C" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">Type, delete, paste and restructure content in place. Formatting appears on selection; Save writes Markdown. Static design proposal.</text>
+  <text x="24" y="994" fill="#202826" font-size="15" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="600">Shown: direct rendered editing, contextual tools, preserved blocks and readable surrounding sections.</text>
+  <text x="24" y="1019" fill="#52615C" font-size="13" font-family="-apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-weight="400">F004 source/live-preview superseded · CRLF Save deferred · Static handoff; native/visual and user acceptance remain incomplete.</text>
   <g id="file-history-controls">
     <title>Back and Forward through visited files; available for every file type</title>
     <rect x="308" y="199" width="32" height="32" rx="6" fill="#1D2524" stroke="#6B8078" />

@@ -1,0 +1,29 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/api.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/api.ts
+@@ -31,7 +31,7 @@
+ 
+ export interface DirectoryEntry {
+   name: string;
+-  kind: "directory" | "markdown" | "html" | "image" | "other";
++  kind: "directory" | "markdown" | "html" | "prototype" | "image" | "other";
+ }
+ 
+ /** Reveal uses a native listing snapshot or an existing opened-file grant. */
+@@ -229,7 +229,7 @@
+   exitDisposition: "running" | "normal";
+   root: { id: string | null; name: string; displayPath: string;
+     generation: number | null; errorCode: string | null } | null;
+-  tabs: Array<{ kind?: "html" | "markdown" | "image"; key: string; fileId: string | null; name: string; displayPath: string;
++  tabs: Array<{ kind?: "html" | "prototype" | "markdown" | "image"; key: string; fileId: string | null; name: string; displayPath: string;
+     rootSegments: string[] | null; explicitFile: boolean; anchor: SessionAnchor;
+     savedDiskVersion: string | null; errorCode: string | null; editingActive: boolean }>;
+   activeKey: string | null;
+@@ -294,7 +294,7 @@
+ }
+ 
+ export interface LinkResponse {
+-  kind: "anchor" | "document" | "html" | "image" | "details" | "blocked" | "unsupported" | "missing";
++  kind: "anchor" | "document" | "html" | "prototype" | "image" | "details" | "blocked" | "unsupported" | "missing";
+   fileId: string | null;
+   anchor: string | null;
+   reason: string | null;

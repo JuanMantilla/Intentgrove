@@ -1,0 +1,27 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/reader/document-selection.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/reader/document-selection.ts
+@@ -2,7 +2,23 @@
+ // history only, so there is no whole-document EditorView to dispatch to.
+ const selectionUi = ".section-edit-button, .section-editor-header, .section-editor-status, .section-editor-actions, .rich-formatting, .rich-table-controls, .rich-properties, .rich-reason, .rich-history, .rich-lock, .rich-property-trigger, .code-block-toolbar, [role='status']";
+ 
+-export interface DocumentSelectionAdapter { fileId: string; selectAll: () => void }
++export interface DocumentSelectionRequest { isCurrent?: () => boolean; onComplete?: () => void }
++export interface DocumentSelectionAdapter { fileId: string; selectAll: (request?: DocumentSelectionRequest) => void }
++
++// Cancel even if an incompatible owner subsequently disappears before parsing
++// finishes. Checking focus only at completion would steal its earlier command.
++export function watchSelectionOwner(root: () => HTMLElement | null, cancel: () => void) {
++  const focus = (event: FocusEvent) => { if (ownsTextInput(event.target, root())) cancel(); };
++  const observer = new MutationObserver(() => { if (document.querySelector('[aria-modal="true"]')) cancel(); });
++  document.addEventListener("focusin", focus, true);
++  document.addEventListener("compositionstart", cancel, true);
++  observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-modal"] });
++  return () => {
++    document.removeEventListener("focusin", focus, true);
++    document.removeEventListener("compositionstart", cancel, true);
++    observer.disconnect();
++  };
++}
+ 
+ export function selectDocumentContents(root: HTMLElement) {
+   const selection = window.getSelection();

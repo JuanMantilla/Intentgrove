@@ -1,0 +1,21 @@
+{
+  "name": "frontend-v3",
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-v3-results.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:07:23.322684+00:00",
+  "finished_at": "2026-10-12T04:13:18.530540+00:00",
+  "exit_code": 1,
+  "log": "frontend-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

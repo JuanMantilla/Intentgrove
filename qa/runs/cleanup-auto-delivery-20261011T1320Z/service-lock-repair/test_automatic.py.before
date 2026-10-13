@@ -1,0 +1,160 @@
+"""Component tests only. Mock authority/model data are never live-session evidence."""
+import json
+import os
+import uuid
+from pathlib import Path
+import unittest
+from unittest import mock
+import test_cleanup
+import cleanup as c
+import cleanup_service as service
+import automatic
+import file_guard as guard
+
+
+class AutomaticTests(unittest.TestCase):
+    def setUp(self):
+        test_cleanup.Fixture.setUp(self)
+        self.before = self.inventory()
+
+    def inventory(self):
+        return {str(p.relative_to(self.root)): guard.fingerprint(p, content_guard=False)
+                for p in sorted(self.root.rglob('*')) if p.is_file() and not p.is_symlink()}
+
+    def tearDown(self):
+        evidence = os.environ.get('QA_CLEANUP_COMPONENT_EVIDENCE')
+        if not evidence:
+            return test_cleanup.Fixture.tearDown(self)
+        try:
+            folder = Path(evidence)
+            folder.mkdir(mode=0o700, parents=True, exist_ok=True)
+            guard.exclusive_json(folder / (self._testMethodName + '-' + uuid.uuid4().hex + '.json'),
+                {'kind': 'component_test_with_mock_authority_not_live', 'test': self.id(),
+                 'fixture_root': str(self.root), 'before': self.before, 'after': self.inventory(),
+                 'receipts_and_recovery_retained_in': str(self.root / '.agents/state/runs')})
+        finally:
+            self.patch.stop()
+            self.temp._finalizer.detach()  # Preserve this disposable fixture and its actual receipts/recovery.
+
+    candidate = test_cleanup.Fixture.candidate
+    fake_ai = test_cleanup.Fixture.fake_ai
+    ready = test_cleanup.Fixture.ready
+
+    def test_default_disabled_and_manual_confirmation_preserved(self):
+        run = self.ready()
+        self.assertFalse(automatic.validate(c.policy().get('automatic_execution'))['enabled'])
+        with self.assertRaisesRegex(guard.GuardError, 'disabled'):
+            with c.lock('worker'):
+                c.apply_locked(run, automatic_execution=True)
+        with self.assertRaisesRegex(guard.GuardError, 'confirmation'):
+            c.apply_locked(run)
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+
+    def test_invalid_policy_rejected(self):
+        for value in ({'enabled': 'true'}, {'enabled': True}, {'enabled': 1}):
+            with self.assertRaises((guard.GuardError, KeyError)):
+                automatic.validate(value)
+
+    def test_service_excludes_existing_jobs_without_attempt_or_write(self):
+        self.ready()
+        before = self.request_path.read_bytes()
+        config = {'not_before': '2000-01-01T00:00:00+00:00', 'excluded_record_keys': [self.key]}
+        with mock.patch.object(c, 'process_job', side_effect=AssertionError('must not consume')):
+            service.tick(config)
+        self.assertEqual(before, self.request_path.read_bytes())
+        config = {'not_before': '2999-01-01T00:00:00+00:00', 'excluded_record_keys': []}
+        service.tick(config)
+        self.assertEqual(before, self.request_path.read_bytes())
+
+    def test_automatic_executor_recovery_and_no_approval_fabrication(self):
+        run = self.ready()
+        directory = c.run_path(run)
+        with mock.patch.object(automatic, 'authority', return_value={'kind': 'unit-test-mock'}) as authority:
+            with c.lock('worker'):
+                result = c.apply_locked(run, automatic_execution=True)
+            self.assertGreaterEqual(authority.call_count, 3)
+        self.assertEqual(result['outcomes'][0]['outcome'], 'deleted')
+        self.assertFalse((directory / 'approval.json').exists())
+        self.assertTrue((directory / 'automatic-authorization.json').exists())
+        self.assertEqual(c.restore(run)[0]['outcome'], 'restored')
+        (self.root / 'artifacts/old.log').write_text('new active bytes')
+        self.assertEqual(c.restore(run)[0]['outcome'], 'kept')
+        self.assertEqual((self.root / 'artifacts/old.log').read_text(), 'new active bytes')
+
+    def test_interrupt_after_unlink_restart_preserves_receipt_and_recreated_path(self):
+        run = self.ready()
+        real_remove = guard.remove_one
+        def interrupted(*args, **kwargs):
+            real_remove(*args, **kwargs)
+            raise KeyboardInterrupt()
+        with mock.patch.object(automatic, 'authority', return_value={'kind': 'unit-test-mock'}):
+            with mock.patch.object(guard, 'remove_one', side_effect=interrupted):
+                with self.assertRaises(KeyboardInterrupt), c.lock('worker'):
+                    c.apply_locked(run, automatic_execution=True)
+            self.assertEqual(c.read(self.request_path)['state'], 'APPLYING')
+            receipt = c.run_path(run) / 'receipts/C1.json'
+            original_receipt = receipt.read_bytes()
+            (self.root / 'artifacts/old.log').write_text('recreated active file')
+            with c.lock('worker'):
+                result = c.apply_locked(run, automatic_execution=True)
+            self.assertEqual(result['outcomes'][0]['outcome'], 'kept')
+            self.assertEqual(receipt.read_bytes(), original_receipt)
+            self.assertEqual((self.root / 'artifacts/old.log').read_text(), 'recreated active file')
+
+    def test_revocation_at_final_callback_retains_original(self):
+        run = self.ready()
+        with mock.patch.object(automatic, 'authority', side_effect=[{'kind': 'unit-test-mock'},
+                {'kind': 'unit-test-mock'}, guard.GuardError('standing_policy_revoked')]):
+            with c.lock('worker'):
+                result = c.apply_locked(run, automatic_execution=True)
+        self.assertNotEqual(result['outcomes'][0]['outcome'], 'deleted')
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+
+    def test_missing_real_session_evidence_blocks_automatic_authority(self):
+        # Configure before a fresh component completion, never modify existing accepted output.
+        self.p['automatic_execution'] = {'enabled': True, 'policy_id': 'unit-test-only',
+            'task_roots': [str(self.root)], 'not_before': '2000-01-01T00:00:00+00:00'}
+        c.write(c.POLICY, self.p)
+        self.entry['acceptance_version'] = 'component-auto-v2'
+        c.write(self.input, self.entry)
+        self.receipt = c.record(str(self.root), str(self.input))
+        self.key = self.receipt['record_key']
+        self.request_path = c.STATE / 'queue' / (self.key + '.json')
+        self.event['tool_response']['output'] = 'QA_COMPLETION_RECEIPT=' + json.dumps(self.receipt)
+        run = self.ready()
+        with self.assertRaisesRegex(guard.GuardError, 'sealed_session_evidence'):
+            automatic.authority(c, run)
+
+    def test_policy_rollout_does_not_consume_old_job(self):
+        self.ready()
+        before = self.request_path.read_bytes()
+        self.p['automatic_execution'] = {'enabled': False}
+        c.write(c.POLICY, self.p)
+        service.tick({'not_before': '2000-01-01T00:00:00+00:00', 'excluded_record_keys': []})
+        self.assertEqual(before, self.request_path.read_bytes())
+
+    def test_worker_lock_prevents_concurrent_execution(self):
+        with c.lock('worker'):
+            with self.assertRaises(BlockingIOError):
+                with c.lock('worker'):
+                    self.fail('second worker acquired lock')
+
+    def test_service_disabled_mode_leaves_ready_for_approval(self):
+        self.ready()
+        before = self.request_path.read_bytes()
+        service.tick({'not_before': '2000-01-01T00:00:00+00:00', 'excluded_record_keys': []})
+        self.assertEqual(before, self.request_path.read_bytes())
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+
+    def test_automatic_fixture_preparation_does_not_enqueue_or_copy_auth(self):
+        import automatic_integration
+        import shutil
+        result = automatic_integration.prepare()
+        folder = Path(result['context']).parent
+        self.addCleanup(lambda: shutil.rmtree(folder))  # Only this new component-owned fixture.
+        self.assertEqual(list((folder / 'state').iterdir()), [])
+        self.assertFalse((folder / 'smoke-auth-private/home/auth.json').exists())
+        self.assertFalse((folder / 'home/auth.json').exists())
+        policy = c.read(folder / 'test-policy.json')
+        self.assertTrue(automatic.validate(policy['automatic_execution'])['enabled'])
+        self.assertEqual(policy['automatic_execution']['task_roots'], [str(folder / 'fixture')])

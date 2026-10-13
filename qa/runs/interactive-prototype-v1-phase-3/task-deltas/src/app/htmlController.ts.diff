@@ -1,0 +1,17 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/htmlController.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/htmlController.ts
+@@ -1,12 +1,7 @@
+ import { htmlNative, type HtmlState, type HtmlRequest, type HtmlLocation, type LocalView } from './htmlNative';
+ 
+-export function validLocalView(view: LocalView): boolean {
+-  return Boolean(view && ['markdown', 'image', 'html', 'details'].includes(view.kind)
+-    && ['fileId', 'identityKey', 'diskVersion', 'name', 'displayPath', 'extension'].every(key => typeof view[key as keyof LocalView] === 'string')
+-    && view.fileId && view.identityKey && Number.isSafeInteger(view.generation) && view.generation >= 0
+-    && Number.isFinite(view.bytes) && view.bytes >= 0
+-    && (view.kind === 'html' ? typeof view.viewToken === 'string' && view.viewToken && view.generation > 0 : view.viewToken === null));
+-}
++import {validLocalView} from './documentBoundary';
++export {validLocalView} from './documentBoundary';
+ export function validHtmlView(view: LocalView): boolean {
+   return validLocalView(view) && view.kind === 'html';
+ }

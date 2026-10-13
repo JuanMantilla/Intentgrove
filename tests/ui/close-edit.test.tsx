@@ -1,3 +1,4 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -8,6 +9,8 @@ const mocks = vi.hoisted(() => ({
   listEditSections: vi.fn(), beginSectionEdit: vi.fn(), discardSectionEdit: vi.fn(),
   saveSectionEdit: vi.fn(), finishEditingClose: vi.fn(), checkpointSectionEdit: vi.fn(),
   reconcileVisibleState: vi.fn(), getConfirmedDocument: vi.fn(),
+  checkpointWorkspaceSession: undefined as undefined | ReturnType<typeof vi.fn>,
+  finishWorkspaceSession: undefined as undefined | ReturnType<typeof vi.fn>,
   listeners: {} as Record<string, (event: { payload: unknown }) => void>
 }));
 vi.mock("../../src/app/api", async (importOriginal) => ({
@@ -16,7 +19,7 @@ vi.mock("../../src/app/api", async (importOriginal) => ({
 vi.mock("@tauri-apps/api/event", () => ({
   listen: vi.fn(async (name: string, listener: (event: { payload: unknown }) => void) => {
     mocks.listeners[name] = listener;
-    return () => { delete mocks.listeners[name]; };
+    return () => { if (mocks.listeners[name] === listener) delete mocks.listeners[name]; };
   })
 }));
 vi.mock("../../src/reader/SectionEditor", () => ({
@@ -42,6 +45,8 @@ const documentV1 = { fileId: "file", identityKey: "1:file", name: "a.md",
 
 beforeEach(() => {
   vi.resetAllMocks();
+  mocks.checkpointWorkspaceSession = undefined;
+  mocks.finishWorkspaceSession = undefined;
   localStorage.clear();
   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/close-fixture", generation: 1 });
   mocks.listEntries.mockResolvedValue({ entries: [{ name: "a.md", kind: "markdown" }], nextOffset: null });
@@ -57,11 +62,11 @@ beforeEach(() => {
     sections: [{ ...section, id: "one-v2" }], recoveryCleanupFailed: false });
   mocks.reconcileVisibleState.mockResolvedValue({ generation: 1, jobId: "job", accepted: true });
 });
-afterEach(cleanup);
+afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
 async function setup() {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   fireEvent.click(await screen.findByTitle("a.md"));
   fireEvent.contextMenu(await screen.findByLabelText("Edit section: One"));
   fireEvent.click(await screen.findByRole("menuitem", { name: "Edit section" }));
@@ -70,26 +75,34 @@ async function setup() {
   await act(async () => fireEvent.click(change));
   await waitFor(() => expect(mocks.listeners["editing:close_requested"]).toBeTypeOf("function"));
 }
-type Route = "quit" | "window" | "tab" | "read";
+type Route = "quit" | "window" | "tab" | "middle" | "read";
 async function requestClose(route: Route) {
   if (route === "quit" || route === "window") {
     await act(async () => mocks.listeners["editing:close_requested"]({ payload: route }));
+  } else if (route === "middle") {
+    fireEvent(screen.getByRole("tab", { name: /a.md/ }),
+      new MouseEvent("auxclick", { button: 1, bubbles: true, cancelable: true }));
   } else fireEvent.click(screen.getByRole("button", {
     name: route === "tab" ? "Close tab: a.md" : "Return to reading"
   }));
-  return screen.findByRole("alertdialog", { name: "Keep this section edit?" });
+  const title = route === "read" ? "Return to reading?" : route === "quit" ? "Quit Intentgrove?" : route === "window" ? "Close window?" : "Close document?";
+  const dialog = await screen.findByRole("alertdialog", { name: title });
+  expect(dialog.textContent).toContain("Updates the Markdown file with your changes.");
+  expect(dialog.textContent).toContain(route === "read" ? "Returns to reading without changing the file." : "Continues without changing the Markdown file");
+  if (route !== "read") expect(dialog.textContent).not.toContain("Returns to reading");
+  return dialog;
 }
 
 describe("dirty editor close choices (F004-R08, R15)", () => {
-  for (const route of ["quit", "window", "tab", "read"] as const) {
-    it.each(["Cancel", "Keep draft", "Discard", "Save"])(`${route}: %s`, async (choice) => {
+  for (const route of ["quit", "window", "tab", "middle", "read"] as const) {
+    it.each(["Cancel", "Keep draft", "Discard", "Save to file"])(`${route}: %s`, async (choice) => {
       await setup();
       const dialog = await requestClose(route);
       fireEvent.click(within(dialog).getByRole("button", { name: choice }));
       await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
-      expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(choice === "Save" ? 1 : 0);
+      expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(choice === "Save to file" ? 1 : 0);
       expect(mocks.discardSectionEdit).toHaveBeenCalledTimes(choice === "Discard" ? 1 : 0);
-      if (choice === "Save") expect(mocks.saveSectionEdit).toHaveBeenCalledWith("session", "# One\nmy draft\n");
+      if (choice === "Save to file") expect(mocks.saveSectionEdit).toHaveBeenCalledWith("session", "# One\nmy draft\n");
       if (choice === "Discard") expect(mocks.discardSectionEdit).toHaveBeenCalledWith("session");
       if (choice !== "Cancel" && (route === "quit" || route === "window")) {
         expect(mocks.finishEditingClose).toHaveBeenCalledWith(route === "quit");
@@ -98,8 +111,8 @@ describe("dirty editor close choices (F004-R08, R15)", () => {
         if (choice === "Cancel" || choice === "Keep draft") {
           expect(screen.getByLabelText("Fixture editor").textContent).toContain("my draft");
         }
-      } else if (route === "tab") {
-        expect(screen.queryByRole("tab", { name: /a.md/ })).toBeNull();
+      } else if (route === "tab" || route === "middle") {
+        await waitFor(() => expect(screen.queryByRole("tab", { name: /a.md/ })).toBeNull());
         if (choice === "Keep draft") {
           fireEvent.click(screen.getByTitle("a.md"));
           expect((await screen.findByLabelText("Fixture editor")).textContent).toContain("my draft");
@@ -110,10 +123,40 @@ describe("dirty editor close choices (F004-R08, R15)", () => {
     });
   }
 
+  it.each(["quit", "window"] as const)("%s Save checkpoints committed state and closes without a display frame", async (route) => {
+    mocks.checkpointWorkspaceSession = vi.fn().mockResolvedValue(undefined);
+    mocks.finishWorkspaceSession = vi.fn().mockResolvedValue(undefined);
+    await setup();
+    // A hidden/occluded WebView may not deliver another display frame. Leave
+    // timers and microtasks live: only the display scheduler is withheld.
+    vi.spyOn(window, "requestAnimationFrame").mockImplementation(() => 1);
+    const dialog = await requestClose(route);
+    fireEvent.click(within(dialog).getByRole("button", { name: "Save to file" }));
+    await waitFor(() => expect(mocks.finishEditingClose).toHaveBeenCalledWith(route === "quit"));
+    expect(mocks.finishWorkspaceSession).toHaveBeenCalledOnce();
+    const checkpoint = mocks.finishWorkspaceSession.mock.calls[0][0];
+    expect(checkpoint.tabs).toHaveLength(1);
+    expect(checkpoint.tabs[0]).toMatchObject({ savedDiskVersion: "v2", editingActive: false });
+    expect(mocks.finishWorkspaceSession.mock.invocationCallOrder[0])
+      .toBeLessThan(mocks.finishEditingClose.mock.invocationCallOrder[0]);
+  });
+
+  it("Quit Cancel does not wait for an unresolved checkpoint and preserves its dirty owner", async () => {
+    let finish!: (value: {sequence: number; durationMs: number}) => void;
+    mocks.checkpointSectionEdit.mockReturnValueOnce(new Promise(resolve => { finish = resolve; }));
+    await setup(); const editor=screen.getByLabelText("Fixture editor");
+    fireEvent.click(within(await requestClose("quit")).getByRole("button", {name:"Cancel"}));
+    await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
+    expect(screen.getByLabelText("Fixture editor")).toBe(editor);
+    expect(editor.textContent).toContain("my draft"); expect(screen.getByRole("tab",{name:/Unsaved/})).toBeTruthy();
+    expect(mocks.finishEditingClose).not.toHaveBeenCalled(); expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+    await act(async () => finish({sequence:1,durationMs:1}));
+    expect(editor.textContent).toContain("my draft"); expect(screen.getByRole("tab",{name:/Unsaved/})).toBeTruthy();
+  });
   it("keeps Quit pending after a failed Save", async () => {
     mocks.saveSectionEdit.mockRejectedValue({ code: "denied", message: "fixture write failure" });
     await setup();
-    fireEvent.click(within(await requestClose("quit")).getByRole("button", { name: "Save" }));
+    fireEvent.click(within(await requestClose("quit")).getByRole("button", { name: "Save to file" }));
     await waitFor(() => expect(mocks.saveSectionEdit).toHaveBeenCalledTimes(1));
     expect(screen.getByRole("alertdialog")).toBeTruthy();
     expect(screen.getByLabelText("Fixture editor").textContent).toContain("my draft");
@@ -147,7 +190,9 @@ describe("dirty editor close choices (F004-R08, R15)", () => {
     let confirm!: (value: typeof external) => void;
     mocks.getConfirmedDocument.mockReturnValue(new Promise((resolve) => { confirm = resolve; }));
     fireEvent.click(within(await screen.findByRole("alertdialog")).getByRole("button", { name: "Use disk version" }));
-    await requestClose("quit");
+    const closeDialog = await requestClose("quit");
+    expect(within(closeDialog).getByText("Updates the Markdown file with your changes.")).toBeTruthy();
+    expect((within(closeDialog).getByRole("button", { name: "Save to file" }) as HTMLButtonElement).disabled).toBe(true);
     expect(screen.getAllByRole("alertdialog")).toHaveLength(1);
     await act(async () => confirm(external));
     expect(mocks.discardSectionEdit).not.toHaveBeenCalled();

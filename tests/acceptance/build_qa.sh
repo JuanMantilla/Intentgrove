@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 # Caller supplies the installed Rust toolchain on PATH; no downloads/installation.
-export CARGO_TARGET_DIR="$PWD/target/qa-native"
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/target/qa-native}"
 npx tauri build --features acceptance-harness \
   --config tests/acceptance/qa/tauri.conf.json --bundles app -- --locked --offline --no-default-features
 

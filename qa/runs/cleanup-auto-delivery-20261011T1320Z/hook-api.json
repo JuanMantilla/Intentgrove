@@ -1,0 +1,132 @@
+{
+  "argv": [
+    "/Users/juanmantilla/.codex/packages/standalone/releases/0.162.1-aarch64-apple-darwin/bin/codex",
+    "--no-daemon",
+    "--disable",
+    "plugins",
+    "--disable",
+    "apps",
+    "-c",
+    "mcp_servers={}",
+    "app-server",
+    "--stdio"
+  ],
+  "requests": [
+    {
+      "id": 1,
+      "method": "initialize",
+      "params": {
+        "clientInfo": {
+          "name": "cleanup-hook-inspection",
+          "version": "1"
+        },
+        "capabilities": {
+          "experimentalApi": true
+        }
+      }
+    },
+    {
+      "id": 2,
+      "method": "hooks/list",
+      "params": {
+        "cwds": [
+          "/Users/juanmantilla/projects/personal"
+        ]
+      }
+    }
+  ],
+  "responses": [
+    {
+      "id": 1,
+      "result": {
+        "userAgent": "cleanup-hook-inspection/0.162.1 (Mac OS 27.0.1; arm64) unknown (cleanup-hook-inspection; 1)",
+        "codexHome": "/Users/juanmantilla/.codex",
+        "platformFamily": "unix",
+        "platformOs": "macos"
+      }
+    },
+    {
+      "method": "remoteControl/status/changed",
+      "params": {
+        "status": "disabled",
+        "serverName": "Juans-MacBook-Air.local",
+        "installationId": "fa09dd38-3054-42db-861e-3b54bfc7a54b",
+        "environmentId": null
+      },
+      "emittedAtMs": 1791723858108
+    },
+    {
+      "id": 2,
+      "result": {
+        "data": [
+          {
+            "cwd": "/Users/juanmantilla/projects/personal",
+            "hooks": [
+              {
+                "key": "/Users/juanmantilla/.codex/hooks.json:session_start:0:0",
+                "eventName": "sessionStart",
+                "handlerType": "command",
+                "command": "bash '/Users/juanmantilla/.codex/herdr-agent-state.sh' session",
+                "async": false,
+                "matcher": null,
+                "timeoutSec": 10,
+                "statusMessage": null,
+                "additionalContextLimit": null,
+                "sourcePath": "/Users/juanmantilla/.codex/hooks.json",
+                "source": "user",
+                "pluginId": null,
+                "displayOrder": 0,
+                "enabled": true,
+                "isManaged": false,
+                "currentHash": "sha256:7025623ab690837dde1f389d9fd15ad2dea265b245273914d1835381b03effe7",
+                "trustStatus": "trusted"
+              },
+              {
+                "key": "/Users/juanmantilla/projects/personal/.codex/hooks.json:post_tool_use:0:0",
+                "eventName": "postToolUse",
+                "handlerType": "command",
+                "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/cleanup-completed-files/scripts/post_tool_use.py",
+                "async": false,
+                "matcher": "^Bash$",
+                "timeoutSec": 30,
+                "statusMessage": "Validating QA completion receipt and queuing review",
+                "additionalContextLimit": null,
+                "sourcePath": "/Users/juanmantilla/projects/personal/.codex/hooks.json",
+                "source": "project",
+                "pluginId": null,
+                "displayOrder": 1,
+                "enabled": true,
+                "isManaged": false,
+                "currentHash": "sha256:ee5cfd118211e742f4f401c172db95d493a8d481edc9a14c92e3bd9259b1f967",
+                "trustStatus": "trusted"
+              },
+              {
+                "key": "/Users/juanmantilla/projects/personal/.codex/hooks.json:user_prompt_submit:0:0",
+                "eventName": "userPromptSubmit",
+                "handlerType": "command",
+                "command": "python3 -B /Users/juanmantilla/projects/personal/.agents/skills/uiux-marketing-design/scripts/design_prompt_reminder.py",
+                "async": false,
+                "matcher": null,
+                "timeoutSec": 5,
+                "statusMessage": "Designer workflow reminder",
+                "additionalContextLimit": null,
+                "sourcePath": "/Users/juanmantilla/projects/personal/.codex/hooks.json",
+                "source": "project",
+                "pluginId": null,
+                "displayOrder": 2,
+                "enabled": true,
+                "isManaged": false,
+                "currentHash": "sha256:71f842709c1463e4dbd03a685b4d12874f87531633570e756768f67ea2b3d6bc",
+                "trustStatus": "trusted"
+              }
+            ],
+            "warnings": [],
+            "errors": []
+          }
+        ]
+      }
+    }
+  ],
+  "returncode": 0,
+  "thread_created": false
+}

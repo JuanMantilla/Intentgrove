@@ -1,0 +1,30 @@
+{
+  "id": "frontend-focused",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/document-select-all.test.tsx",
+    "tests/ui/find.test.tsx",
+    "tests/ui/appearance-operations.test.tsx",
+    "tests/ui/automatic-refresh.test.tsx",
+    "tests/ui/new-markdown.test.tsx"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:03:16.076872+00:00",
+  "load_before": [
+    15.96435546875,
+    14.560546875,
+    11.890625
+  ],
+  "exit_code": 1,
+  "finished_at": "2026-10-12T04:03:38.603636+00:00",
+  "load_after": [
+    15.94091796875,
+    14.6640625,
+    11.990234375
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/frontend-focused.log"
+}

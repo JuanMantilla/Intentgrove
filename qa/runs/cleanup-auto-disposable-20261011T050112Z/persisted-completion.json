@@ -1,0 +1,339 @@
+{
+  "body": {
+    "schema_version": 1,
+    "task_id": "cleanup-auto-disposable-20261011T050112Z",
+    "acceptance_version": "cleanup-auto-disposable-20261011T050112Z-v1",
+    "session_kind": "qa",
+    "qa_result": "QA_PASSED",
+    "task_state": "DONE_ACCEPTED",
+    "unresolved_blockers": [],
+    "required_checks": [
+      {
+        "id": "synthetic_bytes_result",
+        "result": "PASS",
+        "reason": "Compared both exact file bytes and SHA-256 against preserved inputs/inventory; arithmetic 2+3=5.",
+        "finished_at": "2026-10-11T05:01:17.333672+00:00",
+        "evidence_paths": [
+          "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+        ]
+      },
+      {
+        "id": "future_exact_scope",
+        "result": "PASS",
+        "reason": "New unique paths only; preexisting intermediate files retain baseline hashes.",
+        "finished_at": "2026-10-11T05:01:17.333783+00:00",
+        "evidence_paths": [
+          "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+        ]
+      },
+      {
+        "id": "protected_reproducibility",
+        "result": "PASS",
+        "reason": "All final evidence and reproducibility inputs live outside deletion folder in protected qa tree.",
+        "finished_at": "2026-10-11T05:01:17.333919+00:00",
+        "evidence_paths": [
+          "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+        ]
+      },
+      {
+        "id": "standing_policy_service",
+        "result": "PASS",
+        "reason": "Approved policy/config bytes unchanged; launchd observed existing service running. No new worker started.",
+        "finished_at": "2026-10-11T05:01:17.338186+00:00",
+        "evidence_paths": [
+          "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+        ]
+      }
+    ],
+    "final_report": "qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md",
+    "evidence_paths": [
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json"
+    ],
+    "tested_snapshot_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json",
+    "artifact_paths": [
+      "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt",
+      "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log"
+    ],
+    "retain_paths": [
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-before.txt",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-check.txt",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-before.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-paths.json",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json"
+    ],
+    "requirements_source_paths": [
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md"
+    ],
+    "completion_requirements": [
+      {
+        "requirement": "All documented synthetic checks pass; user conditional acceptance is satisfied for this task only",
+        "source_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+        "evidence_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json",
+        "satisfied": true
+      }
+    ],
+    "repository": {
+      "root": "/Users/juanmantilla/projects/personal/md-reader",
+      "kind": "git",
+      "common_dir": "/Users/juanmantilla/projects/personal/md-reader/.git",
+      "git_dir": "/Users/juanmantilla/projects/personal/md-reader/.git"
+    },
+    "tested_snapshot": {
+      "repository": {
+        "root": "/Users/juanmantilla/projects/personal/md-reader",
+        "kind": "git",
+        "common_dir": "/Users/juanmantilla/projects/personal/md-reader/.git",
+        "git_dir": "/Users/juanmantilla/projects/personal/md-reader/.git"
+      },
+      "head": "7e00d3316ce46563cafb46ba928498fcb0d82880\n",
+      "files": {
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py": {
+          "sha256": "a3f33a9119220b1199b3343d6844880d3d18f6db294b0c28bfc8b6dd15556871",
+          "size": 2292,
+          "mtime_ns": 1791694872695871340,
+          "ctime_ns": 1791694872695871340,
+          "device": 16777230,
+          "inode": 74981985,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md": {
+          "sha256": "fab591f8d58c9ca273edfbbbdd1c1f79397d1512b1f6088de89a56f1ac30ed56",
+          "size": 1636,
+          "mtime_ns": 1791694872632739241,
+          "ctime_ns": 1791694872632739241,
+          "device": 16777230,
+          "inode": 74981979,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md": {
+          "sha256": "da3e6be1148fcbac852c688b98462582bc2895575450dec3f56927503b539d53",
+          "size": 430,
+          "mtime_ns": 1791694872632821782,
+          "ctime_ns": 1791694872632821782,
+          "device": 16777230,
+          "inode": 74981980,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json": {
+          "sha256": "d509bc84549541a6b00997f1d4761990fc6035c0b464f16e4369d843d733cd50",
+          "size": 424,
+          "mtime_ns": 1791694872632255406,
+          "ctime_ns": 1791694872632255406,
+          "device": 16777230,
+          "inode": 74981975,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json": {
+          "sha256": "e484093d5dd6194a956d17f990f2bfd79f2f4eb43a26f4e1ff2509130a4a947d",
+          "size": 399,
+          "mtime_ns": 1791694872632648074,
+          "ctime_ns": 1791694872632648074,
+          "device": 16777230,
+          "inode": 74981978,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json": {
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "size": 3,
+          "mtime_ns": 1791694872632133530,
+          "ctime_ns": 1791694872632133530,
+          "device": 16777230,
+          "inode": 74981974,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline": {
+          "sha256": "f732f8ecd029e197acf5139a2858c52506305bf2b15f87c11e837940a8c9a8e1",
+          "size": 6045,
+          "mtime_ns": 1791694872632971866,
+          "ctime_ns": 1791694872632971866,
+          "device": 16777230,
+          "inode": 74981981,
+          "mode": 33188
+        },
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline": {
+          "sha256": "e43a3422aa50931a013230700400219489eb69e366cc1e2a2421bd21149033b6",
+          "size": 696,
+          "mtime_ns": 1791694872633084408,
+          "ctime_ns": 1791694872633084408,
+          "device": 16777230,
+          "inode": 74981982,
+          "mode": 33188
+        }
+      },
+      "scope": "explicit tested code/config/input paths; not whole repository"
+    },
+    "retained_evidence": {
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md": {
+        "sha256": "da3e6be1148fcbac852c688b98462582bc2895575450dec3f56927503b539d53",
+        "size": 430,
+        "mtime_ns": 1791694872632821782,
+        "ctime_ns": 1791694872632821782,
+        "device": 16777230,
+        "inode": 74981980,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json": {
+        "sha256": "3c888839cf22ee6fa0d44219c4ebdb527ea15aba9ebc564429508632ea6b44f5",
+        "size": 1805,
+        "mtime_ns": 1791694893696003849,
+        "ctime_ns": 1791694893696003849,
+        "device": 16777230,
+        "inode": 74982013,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py": {
+        "sha256": "a3f33a9119220b1199b3343d6844880d3d18f6db294b0c28bfc8b6dd15556871",
+        "size": 2292,
+        "mtime_ns": 1791694872695871340,
+        "ctime_ns": 1791694872695871340,
+        "device": 16777230,
+        "inode": 74981985,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json": {
+        "sha256": "9610e42504b7b36558b559d6d7a90ca6fe83e7d97e975c1a2ac66e8fdf0aa372",
+        "size": 1333,
+        "mtime_ns": 1791694877338340763,
+        "ctime_ns": 1791694877338340763,
+        "device": 16777230,
+        "inode": 74982006,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline": {
+        "sha256": "f732f8ecd029e197acf5139a2858c52506305bf2b15f87c11e837940a8c9a8e1",
+        "size": 6045,
+        "mtime_ns": 1791694872632971866,
+        "ctime_ns": 1791694872632971866,
+        "device": 16777230,
+        "inode": 74981981,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline": {
+        "sha256": "e43a3422aa50931a013230700400219489eb69e366cc1e2a2421bd21149033b6",
+        "size": 696,
+        "mtime_ns": 1791694872633084408,
+        "ctime_ns": 1791694872633084408,
+        "device": 16777230,
+        "inode": 74981982,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md": {
+        "sha256": "0e93ae0092faf0b7bed6c50d513c230177fddcd532a66947f473cd329717a1c5",
+        "size": 2124,
+        "mtime_ns": 1791694893696288683,
+        "ctime_ns": 1791694893696288683,
+        "device": 16777230,
+        "inode": 74982014,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json": {
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "size": 3,
+        "mtime_ns": 1791694872632133530,
+        "ctime_ns": 1791694872632133530,
+        "device": 16777230,
+        "inode": 74981974,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-before.txt": {
+        "sha256": "0576feeb71508afb7f11e940944ee59793026d2b9028c160b5d6b6dca63e8d71",
+        "size": 2096,
+        "mtime_ns": 1791694872637822047,
+        "ctime_ns": 1791694872637822047,
+        "device": 16777230,
+        "inode": 74981983,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-check.txt": {
+        "sha256": "0576feeb71508afb7f11e940944ee59793026d2b9028c160b5d6b6dca63e8d71",
+        "size": 2096,
+        "mtime_ns": 1791694877337908303,
+        "ctime_ns": 1791694877337908303,
+        "device": 16777230,
+        "inode": 74982005,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-before.json": {
+        "sha256": "c4b8ba6180ea86d090e48e3c108b2b4e6b2a7121392f6bd1133f84c2d81530bd",
+        "size": 853,
+        "mtime_ns": 1791694872695729506,
+        "ctime_ns": 1791694872695729506,
+        "device": 16777230,
+        "inode": 74981984,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md": {
+        "sha256": "f78ed1c0d617dabaf6772454dc2c597d14e18488d11fb74272204be0b44c58d1",
+        "size": 968,
+        "mtime_ns": 1791694893695732599,
+        "ctime_ns": 1791694893695732599,
+        "device": 16777230,
+        "inode": 74982012,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json": {
+        "sha256": "d509bc84549541a6b00997f1d4761990fc6035c0b464f16e4369d843d733cd50",
+        "size": 424,
+        "mtime_ns": 1791694872632255406,
+        "ctime_ns": 1791694872632255406,
+        "device": 16777230,
+        "inode": 74981975,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json": {
+        "sha256": "e484093d5dd6194a956d17f990f2bfd79f2f4eb43a26f4e1ff2509130a4a947d",
+        "size": 399,
+        "mtime_ns": 1791694872632648074,
+        "ctime_ns": 1791694872632648074,
+        "device": 16777230,
+        "inode": 74981978,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md": {
+        "sha256": "fab591f8d58c9ca273edfbbbdd1c1f79397d1512b1f6088de89a56f1ac30ed56",
+        "size": 1636,
+        "mtime_ns": 1791694872632739241,
+        "ctime_ns": 1791694872632739241,
+        "device": 16777230,
+        "inode": 74981979,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-paths.json": {
+        "sha256": "19a293339d18ffef145c18ca83120d6e3be29a309025db2a42e7b11432c8c224",
+        "size": 626,
+        "mtime_ns": 1791694872696071965,
+        "ctime_ns": 1791694872696071965,
+        "device": 16777230,
+        "inode": 74981986,
+        "mode": 33188
+      },
+      "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json": {
+        "sha256": "4be9557a4cd9b13f753a4b056c329c5ca1fe6d0c7fde0f53774636fc406323a0",
+        "size": 3388,
+        "mtime_ns": 1791694877182585187,
+        "ctime_ns": 1791694877182585187,
+        "device": 16777230,
+        "inode": 74982004,
+        "mode": 33152
+      }
+    },
+    "policy_sha256": "64db7330875a16d2b2cb0cf068eab399d63a264a171f4a069632e85b5ed9a1b1"
+  },
+  "recorded_at": "2026-10-11T05:01:45.470820+00:00",
+  "receipt_nonce": "9f8df3520228423b805243c68f332588"
+}

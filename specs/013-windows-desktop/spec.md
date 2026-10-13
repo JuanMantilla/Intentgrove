@@ -89,3 +89,10 @@ Drive-relative paths, UNC/device paths, alternate data streams, reserved names, 
 ## Assumptions
 
 Windows 11 x64 and local NTFS are proposed first targets, not observed supported environments. Windows 10, ARM64, Linux, network workspaces, file association registration and release signing are deferred. The existing interface is reused; recently approved future design integrations are not bundled into this port. Native Windows execution will require an available Windows runner; this session is macOS arm64. This request authorizes starting assessment/specification work, but does not constitute approval of these previously unseen artifacts.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F007W-H01**: Shared classification/grants/commands are extended for HTML. A standalone Wry/WebView2 adapter disables document scripts, web messages, host objects, external URI launches, frames, downloads and popups, and intercepts all request sources via ICoreWebView2_22. Rust Windows std target, Windows runner/WebView2 and Windows package verification are unavailable on this Mac; source is implemented but Windows build/runtime are NOT TESTED.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

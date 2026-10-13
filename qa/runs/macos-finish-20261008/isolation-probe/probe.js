@@ -1,0 +1,10 @@
+const out = document.getElementById('results');
+const record = value => { out.textContent += JSON.stringify(value) + '\n'; };
+record({stage:'parent',origin:location.origin,bridge:!!window.__TAURI_INTERNALS__});
+const started = performance.now(); let messages = 0;
+window.addEventListener('securitypolicyviolation', event => record({stage:'csp',directive:event.effectiveDirective,blocked:event.blockedURI}));
+window.addEventListener('message', event => { messages++; record({stage:'child',origin:event.origin,data:event.data}); });
+const frame = document.createElement('iframe'); frame.sandbox = 'allow-scripts';
+frame.srcdoc = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; style-src 'none'; font-src 'none'; base-uri 'none'; form-action 'none'"><script>const results={bridge:!!window.__TAURI_INTERNALS__,webkit:!!window.webkit?.messageHandlers,origin:location.origin};try{window.webkit.messageHandlers.ipc.postMessage({cmd:'load_workspace_session'});results.nativeAttempt='sent'}catch(e){results.nativeAttempt=String(e)};fetch('http://127.0.0.1:9/probe').catch(e=>parent.postMessage({network:String(e)},'*'));parent.postMessage(results,'*');<\/script><img src="file:///private/tmp/intentgrove-probe-sentinel">`;
+document.body.append(frame);
+setTimeout(() => { frame.remove(); record({stage:'deadline',elapsedMs:performance.now()-started,messages,removed:!frame.isConnected,verdict:messages===0?'FAIL: child forbidden by unchanged production frame-src':'UNPROVEN'}); },1000);

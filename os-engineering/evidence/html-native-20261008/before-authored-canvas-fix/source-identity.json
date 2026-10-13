@@ -1,0 +1,21 @@
+{
+  "sourceManifestSha256": "692ea3c29be8045eb97a72713f0fb4d740a7f5430b73340bdfc6794d995a41e9",
+  "inputs": 131,
+  "dirtyWorktree": true,
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "commands": {
+    "head": "7e00d3316ce46563cafb46ba928498fcb0d82880",
+    "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+    "rust": "rustc 1.88.0 (6b00bc388 2025-06-23)",
+    "targets": "aarch64-apple-darwin",
+    "sdk": "27.0",
+    "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+    "webkit": "22625.1.29.11.28"
+  },
+  "finalizedUtc": "2026-10-08T23:36:46.097050+00:00",
+  "changesSinceEarlierSnapshot": [
+    "src-tauri/src/html_broker.rs",
+    "tests/acceptance/html/native_journey.py"
+  ],
+  "note": "Final source changes were rebuilt in probe-build-frozen-02.log, native-frozen.log and package-build-final.log; only harness script and root baseline CSS changed after earlier snapshot."
+}

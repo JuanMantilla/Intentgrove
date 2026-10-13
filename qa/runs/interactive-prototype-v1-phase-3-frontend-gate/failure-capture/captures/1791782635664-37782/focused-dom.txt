@@ -1,0 +1,15 @@
+{
+  "root": {
+    "tag": "DIV",
+    "attributes": [],
+    "children": [
+      {
+        "tag": "DIV",
+        "class": "app-shell",
+        "role": null
+      }
+    ]
+  },
+  "documentView": "<div class=\"document-page\" role=\"tabpanel\" aria-label=\"a.md\" style=\"zoom: 1;\" data-document-zoom=\"1\"><article class=\"markdown-body document-selection-root\" tabindex=\"0\"><div><div class=\"section-heading\"><h1 id=\"one\">One</h1></div></div><p>alpha</p><div><div class=\"section-heading\"><h1 id=\"two\">Two</h1></div></div><p>beta</p></article></div>",
+  "expectedEditorParent": "<article class=\"markdown-body document-selection-root\" tabindex=\"0\"><div><div class=\"section-heading\"><h1 id=\"one\">One</h1></div></div><p>alpha</p><div><div class=\"section-heading\"><h1 id=\"two\">Two</h1></div></div><p>beta</p></article>"
+}

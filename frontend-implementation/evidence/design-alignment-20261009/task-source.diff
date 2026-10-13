@@ -1,0 +1,483 @@
+--- before/src/app/App.tsx
++++ after/src/app/App.tsx
+@@ -2978,9 +2978,23 @@
+     : reloadMenu && root?.id === reloadMenu.target.rootId
+       ? [root.displayPath, ...reloadMenu.target.segments].join("/") : undefined;
+ 
++  function historyDestinationLabel(direction: -1 | 1) {
++    const destination = history.entries[direction === -1 && !active ? history.cursor : history.cursor + direction];
++    const label = t(locale, direction === -1 ? "historyBack" : "historyForward");
++    return destination && (direction === -1 || active)
++      ? `${label}: ${destination.target.name} · ${destination.target.displayPath}` : label;
++  }
++
++  const closingEditIds = !closeIntent ? []
++    : closeIntent.kind === "app" || closeIntent.kind === "window" || closeIntent.kind === "folder"
++      ? Object.keys(edits)
++      : closeIntent.tabIds ?? (closeIntent.tabId ? [closeIntent.tabId] : []);
++  const closingConflict = closingEditIds.some(id => edits[id]?.conflict
++    || tabs.find(tab => tab.id === id)?.freshness === "conflict");
++
+   return (
+     <div className="app-shell" data-workspace-layout={layout}>
+-      <header ref={toolbarRef} className="toolbar">
++      {!isTauri() && <header ref={toolbarRef} className="toolbar">
+         <button ref={sidebarTriggerRef} className="icon-button" type="button" onClick={toggleSidebar}
+           title={t(locale, "toggleSidebar")} aria-label={t(locale, "toggleSidebar")}>☰</button>
+         <span className="workspace-title">{root?.name ?? t(locale, "workspace")}</span>
+@@ -3015,7 +3029,7 @@
+           {t(locale, "openFolder")}
+         </button>
+         </div>}
+-      </header>
++      </header>}
+ 
+       {settingsOverlay.shown && <section id="reading-settings-panel" className="reading-settings-panel"
+         data-closing={settingsOverlay.closing} inert={settingsOverlay.closing}
+@@ -3094,7 +3108,7 @@
+                   <span>{errorText(locale, rootProblem)}</span>
+                   <button type="button" disabled={busy} onClick={() => void reselectFolder()}>{t(locale, "selectFolderAgain")}</button>
+                 </div>}
+-                {isTauri() ? <button type="button" onClick={() => openSettings("ProjectTree")}>{locale === "es" ? "Ajustes del árbol" : "Project tree settings"}</button> : <label className="filter-control">
++                {!isTauri() && <label className="filter-control">
+                   <input type="checkbox" checked={markdownOnly} onChange={(event) => { markdownOnlyRef.current = event.target.checked; setMarkdownOnly(event.target.checked); }} />
+                   {t(locale, "filterMarkdown")}
+                 </label>}
+@@ -3124,6 +3138,7 @@
+               {safetyCopies && safetyCopies.unresolvedCount > 0 && <p role="status">
+                 {t(locale, "unresolvedCopies")}: {safetyCopies.unresolvedCount}</p>}
+               <button type="button" onClick={() => { showHtmlOverlay(()=>setStorageOpen(true)); void refreshSafetyCopies(); }}>{t(locale, "manageStorage")}</button>
++              {isTauri() && <button type="button" onClick={() => openSettings("General")}>{locale === "es" ? "Ajustes…" : "Settings…"}</button>}
+             </div>
+           </aside>
+ 
+@@ -3131,6 +3146,8 @@
+           onClick={() => { setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); }} />}
+         <main className="main-panel">
+           <div className="document-tabs">
++          {isTauri() && <button ref={sidebarTriggerRef} className="sidebar-tab-trigger" type="button" onClick={toggleSidebar}
++            aria-label={t(locale, "toggleSidebar")} aria-expanded={sidebarVisible}>{t(locale, "sidebarLabel")}</button>}
+           <div className="history-controls" role="group" aria-label={t(locale, "visitHistory")}>
+             {([-1, 1] as const).map((direction) => {
+               const cursor = direction === -1 && !active ? history.cursor : history.cursor + direction;
+@@ -3280,7 +3297,7 @@
+             beforeMenuOpen={htmlHandles.current.size ? hideHtml : undefined}
+             onMenuOpen={() => { setProjectsMenu(null); setReloadMenu(null); setGoMenu(null); }}
+             menuActions={<>
+-              {narrowWorkspace && <>
++              {(narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+                   onClick={toggleOutline}>{t(locale, "outline")}</button>
+@@ -3300,7 +3317,7 @@
+               }}>{t(locale, "reload")}</button>
+             </>}
+             actions={<>
+-              {!narrowWorkspace && <>
++              {!narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+                   onClick={toggleOutline}>{t(locale, "outline")}</button>
+@@ -3353,11 +3370,11 @@
+           {historyBusy && <div className="notice" role="status"><span>{t(locale, "loading")}</span>
+             <button type="button" onClick={cancelHistoryTraversal}>{t(locale, "cancel")}</button></div>}
+           {goMenu && <ActionMenu {...goMenu} onClose={() => setGoMenu(null)} actions={[
+-            { label: t(locale, "historyBack"), disabled: historyBusy || !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]),
+-              reason: !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]) ? t(locale, "historyNoPrevious") : undefined,
++            { label: historyDestinationLabel(-1), disabled: historyBusy || !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]),
++              reason: historyBusy ? t(locale, "loading") : !(active ? history.entries[history.cursor - 1] : history.entries[history.cursor]) ? t(locale, "historyNoPrevious") : undefined,
+               run: () => void traverseHistory(active ? history.cursor - 1 : history.cursor) },
+-            { label: t(locale, "historyForward"), disabled: historyBusy || !active || !history.entries[history.cursor + 1],
+-              reason: !active || !history.entries[history.cursor + 1] ? t(locale, "historyNoNext") : undefined, run: () => void traverseHistory(history.cursor + 1) },
++            { label: historyDestinationLabel(1), disabled: historyBusy || !active || !history.entries[history.cursor + 1],
++              reason: historyBusy ? t(locale, "loading") : !active || !history.entries[history.cursor + 1] ? t(locale, "historyNoNext") : undefined, run: () => void traverseHistory(history.cursor + 1) },
+             { label: t(locale, "visitHistory"), run: () => { setHistoryDirection(null); showHtmlOverlay(()=>setHistoryOpen(true)); } },
+             { label: t(locale, "clearVisitHistory"), disabled: historyBusy || !history.entries.length, run: clearVisitHistory }
+           ]} />}
+@@ -3470,6 +3487,7 @@
+             <div ref={modalRef} className="section-modal" role="alertdialog" aria-modal="true" aria-label={t(locale, "closeEditQuestion")}>
+               <strong>{t(locale, "closeEditQuestion")}</strong>
+               <p>{t(locale, "closeEditDetail")}</p>
++              {closingConflict && <p role="status">{t(locale, "saveConflict")}</p>}
+               {closeIntent.tabIds && closeIntent.tabIds.length > 1 && <ul>{closeIntent.tabIds.map(id => {
+                 const tab = tabs.find(item => item.id === id);
+                 return <li key={id}>{tab?.displayPath ?? id}</li>;
+@@ -3477,7 +3495,7 @@
+               <div className="section-modal-actions">
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("cancel")}>{t(locale, "cancel")}</button>
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("discard")}>{t(locale, "discard")}</button>
+-                <button type="button" disabled={busy} onClick={() => void resolveClose("save")}>{t(locale, "save")}</button>
++                <button type="button" disabled={busy || closingConflict} onClick={() => void resolveClose("save")}>{t(locale, "save")}</button>
+                 <button type="button" className="primary-button" disabled={busy} onClick={() => void resolveClose("keep")}>{t(locale, "keepDraft")}</button>
+               </div>
+             </div>
+--- before/src/app/ReadingSettings.tsx
++++ after/src/app/ReadingSettings.tsx
+@@ -1,6 +1,7 @@
+ import { useLayoutEffect, useId, useState, type CSSProperties } from "react";
+ import type { SessionPanel } from "./api";
+ import { t, type Locale } from "./i18n";
++import SelectChevron from "./SelectChevron";
+ import { defaultSessionPanel } from "./session";
+ 
+ export type ReadingPreferences = Pick<SessionPanel,
+@@ -57,13 +58,13 @@
+     "--reading-line-height": value.readingLineHeight,
+     maxWidth: value.readingWidth } as CSSProperties;
+   return <div className="reading-settings-fields">
+-    <label>{t(locale, "readingFont")}
+-      <select value={value.readingFont} onChange={event => onChange({
++    <label className="reading-font-field"><span>{t(locale, "readingFont")}</span>
++      <span className="select-field"><select value={value.readingFont} onChange={event => onChange({
+         ...value, readingFont: event.target.value as ReadingPreferences["readingFont"] })}>
+         <option value="roboto">Roboto</option><option value="serif">{t(locale, "systemSerif")}</option>
+         <option value="sans">{t(locale, "systemSans")}</option>
+         <option value="mono">{t(locale, "systemMono")}</option>
+-      </select>
++      </select><SelectChevron /></span>
+     </label>
+     <ReadingNumber locale={locale} label={t(locale, "readingSize")} value={value.readingSize}
+       min={12} max={24} step={1} unit="px" onChange={readingSize => onChange({ ...value, readingSize })} />
+@@ -84,8 +85,8 @@
+         {t(locale, "readingPreviewText")}
+       </p>
+     </section>
+-    <button type="button" onClick={() => onChange({ readingFont: defaultSessionPanel.readingFont,
++    <div className="reading-reset"><p className="settings-help">{t(locale, "readingScopeHelp")}</p><button type="button" onClick={() => onChange({ readingFont: defaultSessionPanel.readingFont,
+       readingSize: defaultSessionPanel.readingSize, readingLineHeight: defaultSessionPanel.readingLineHeight,
+-      readingWidth: defaultSessionPanel.readingWidth })}>{t(locale, "resetReading")}</button>
++      readingWidth: defaultSessionPanel.readingWidth })}>{t(locale, "resetReading")}</button></div>
+   </div>;
+ }
+--- before/src/app/i18n.ts
++++ after/src/app/i18n.ts
+@@ -221,6 +221,12 @@
+     copyTarget: "Copy target",
+     readOnly: "Reading mode",
+     language: "Language",
++    languageHelp: "Interface language; document text stays unchanged.",
++    appearanceHelp: "System follows your device’s appearance.",
++    treeVisibilityHelp: "Show Markdown, HTML and supported images. Folders stay visible. Turn off to list other filenames. This does not change search scope or file access.",
++    readingScopeHelp: "Applies to reading and in-place editing in this workspace window.",
++    preferencesHelp: "Preferences apply as you change them. Document files are saved separately.",
++    sidebarLabel: "Sidebar",
+     appearance: "Appearance",
+     appearanceSystem: "System",
+     appearanceLight: "Light",
+@@ -302,7 +308,7 @@
+     folderSearch: "Search folder",
+     folderSearchPlaceholder: "File name or text",
+     folderSearchMode: "Search in",
+-    folderSearchBoth: "Names: supported files · Contents: Markdown",
++    folderSearchBoth: "Names and content",
+     folderSearchName: "File names",
+     folderSearchContent: "Markdown contents",
+     folderSearchIncludeIgnored: "Include ignored files",
+@@ -314,6 +320,7 @@
+     folderSearchPartial: "Search incomplete · partial results",
+     folderSearchZero: "No results",
+     folderSearchComplete: "Search complete",
++    folderSearchFinished: "Scan finished",
+     folderSearchScanned: "entries scanned",
+     folderSearchSkipped: "skipped",
+     folderSearchLine: "Line",
+@@ -355,7 +362,7 @@
+     mixedEndings: "This file has mixed line endings, so section editing is unavailable.",
+     recoveryError: "Recovery could not be saved. Keep the app open and try again.",
+     closeEditQuestion: "Keep this section edit?",
+-    closeEditDetail: "The Markdown file has not been changed.",
++    closeEditDetail: "Your section edits have not been saved to the Markdown file.",
+     returnReading: "Return to reading",
+     checkpointRequired: "Wait for Recovery saved before keeping this draft.",
+     draftStorage: "Drafts are stored on this Mac.",
+@@ -601,6 +608,12 @@
+     copyTarget: "Copiar destino",
+     readOnly: "Modo lectura",
+     language: "Idioma",
++    languageHelp: "Idioma de la interfaz; el texto del documento no cambia.",
++    appearanceHelp: "Sistema sigue la apariencia del dispositivo.",
++    treeVisibilityHelp: "Muestra Markdown, HTML e imágenes compatibles. Las carpetas siguen visibles. Desactiva para listar otros archivos. No cambia el alcance de búsqueda ni el acceso a archivos.",
++    readingScopeHelp: "Se aplica a la lectura y edición directa en esta ventana de trabajo.",
++    preferencesHelp: "Los ajustes se aplican al cambiarlos. Los documentos se guardan por separado.",
++    sidebarLabel: "Panel lateral",
+     appearance: "Apariencia",
+     appearanceSystem: "Sistema",
+     appearanceLight: "Claro",
+@@ -682,7 +695,7 @@
+     folderSearch: "Buscar en la carpeta",
+     folderSearchPlaceholder: "Nombre o texto",
+     folderSearchMode: "Buscar en",
+-    folderSearchBoth: "Nombres: archivos compatibles · Contenido: Markdown",
++    folderSearchBoth: "Nombres y contenido",
+     folderSearchName: "Nombres de archivo",
+     folderSearchContent: "Contenido Markdown",
+     folderSearchIncludeIgnored: "Incluir archivos ignorados",
+@@ -694,6 +707,7 @@
+     folderSearchPartial: "Búsqueda incompleta · resultados parciales",
+     folderSearchZero: "Sin resultados",
+     folderSearchComplete: "Búsqueda completa",
++    folderSearchFinished: "Exploración finalizada",
+     folderSearchScanned: "entradas revisadas",
+     folderSearchSkipped: "omitidas",
+     folderSearchLine: "Línea",
+@@ -735,7 +749,7 @@
+     mixedEndings: "Este archivo tiene finales de línea mezclados y no se puede editar por secciones.",
+     recoveryError: "No se pudo guardar la recuperación. Mantén la app abierta y vuelve a intentarlo.",
+     closeEditQuestion: "¿Conservar esta edición?",
+-    closeEditDetail: "El archivo Markdown no ha cambiado.",
++    closeEditDetail: "Tus cambios de la sección no se han guardado en el archivo Markdown.",
+     returnReading: "Volver a la lectura",
+     checkpointRequired: "Espera a que se guarde la recuperación antes de conservar el borrador.",
+     draftStorage: "Los borradores se guardan en este Mac.",
+--- before/src/app/SettingsWindow.tsx
++++ after/src/app/SettingsWindow.tsx
+@@ -1,6 +1,7 @@
+ import { useEffect, useLayoutEffect, useRef, useState } from "react";
+ import { layoutCopy, workspaceLayout, workspaceLayouts } from "./workspaceLayout";
+ import ReadingSettings from "./ReadingSettings";
++import SelectChevron from "./SelectChevron";
+ import { settingsApi, newerSettings, type PreferencePatch, type SettingsSnapshot } from "./settings-contract";
+ import { getAppearance, useAppearance, APPEARANCE_KEY } from "./appearance";
+ import { t } from "./i18n";
+@@ -61,16 +62,31 @@
+   const locale = state?.values.language ?? "en";
+   const es = locale === "es";
+   return <main className="native-settings">
+-    <h1>{es ? "Ajustes" : "Settings"}</h1>
++    <div className="settings-body"><h1>{es ? "Ajustes" : "Settings"}</h1>
+     {!state ? <p role="status">{error ? (es ? "No se pudieron cargar los ajustes." : "Could not load preferences.") : (es ? "Cargando…" : "Loading…")}</p> : <>
+       <section aria-labelledby="settings-general"><h2 id="settings-general" tabIndex={-1}>General</h2>
+         <fieldset disabled={busy || state.persistence === "pending"}>
+-          <label>{t(locale, "language")}<select value={state.values.language} onChange={event => void change({ language: event.target.value as "en" | "es" })}>
+-            <option value="en">English</option><option value="es">Español</option>
+-          </select></label>
+-          <label>{t(locale, "appearance")}<select value={state.values.appearance} onChange={event => void change({ appearance: event.target.value as "system" | "light" | "dark" })}>
+-            <option value="system">{t(locale, "appearanceSystem")}</option><option value="light">{t(locale, "appearanceLight")}</option><option value="dark">{t(locale, "appearanceDark")}</option>
+-          </select></label>
++          <div className="settings-row">
++            <label htmlFor="settings-language">{t(locale, "language")}</label>
++            <div className="settings-field"><div className="select-field">
++              <select id="settings-language" aria-describedby="language-help" value={state.values.language} onChange={event => void change({ language: event.target.value as "en" | "es" })}>
++                <option value="en">English</option><option value="es">Español</option>
++              </select><SelectChevron /></div>
++              <p id="language-help">{t(locale, "languageHelp")}</p>
++            </div>
++          </div>
++          <div className="settings-row">
++            <span id="appearance-label">{t(locale, "appearance")}</span>
++            <div className="settings-field">
++              <div className="appearance-choices" role="radiogroup" aria-labelledby="appearance-label" aria-describedby="appearance-help">
++                {(["system", "light", "dark"] as const).map(mode => <label key={mode}>
++                  <input type="radio" name="appearance" value={mode} checked={state.values.appearance === mode}
++                    onChange={() => void change({ appearance: mode })} />
++                  {t(locale, mode === "system" ? "appearanceSystem" : mode === "light" ? "appearanceLight" : "appearanceDark")}
++                </label>)}
++              </div><p id="appearance-help">{t(locale, "appearanceHelp")}</p>
++            </div>
++          </div>
+         </fieldset>
+       </section>
+       <section aria-labelledby="settings-layout"><h2 id="settings-layout">{layoutCopy(locale).label}</h2>
+@@ -94,7 +110,8 @@
+       </section>
+       <section aria-labelledby="settings-project-tree"><h2 id="settings-project-tree" tabIndex={-1}>{es ? "Árbol de proyecto" : "Project tree"}</h2>
+         <fieldset disabled={!state.ownerAvailable || busy || state.persistence === "pending"}>
+-          <label><input type="checkbox" checked={state.values.documentsAndImagesOnly} onChange={event => void change({ documentsAndImagesOnly: event.target.checked })} />{t(locale, "filterMarkdown")}</label>
++          <label className="tree-preference"><input type="checkbox" aria-describedby="tree-help" checked={state.values.documentsAndImagesOnly} onChange={event => void change({ documentsAndImagesOnly: event.target.checked })} />{t(locale, "filterMarkdown")}</label>
++          <p id="tree-help" className="settings-help">{t(locale, "treeVisibilityHelp")}</p>
+         </fieldset>
+       </section>
+       {(error || state.persistence === "failed" || state.persistence === "ownerUnavailable" || state.nativeThemeFailed || appearance.nativeWarning) && <p role="status">
+@@ -105,6 +122,6 @@
+       </p>}
+       {state.persistence === "pending" && <p role="status">{es ? "Confirmando…" : "Waiting for acknowledgment…"}</p>}
+     </>}
+-    <footer><button onClick={() => void settingsApi.close()}>{es ? "Listo" : "Done"}</button></footer>
++    </div><footer><p>{t(locale, "preferencesHelp")}</p><button className="primary-button" onClick={() => void settingsApi.close()}>{es ? "Listo" : "Done"}</button></footer>
+   </main>;
+ }
+--- before/src/app/DocumentLocation.tsx
++++ after/src/app/DocumentLocation.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useRef, type ReactNode } from "react";
++import { useEffect, useRef, useState, type ReactNode } from "react";
+ import { t, type Locale } from "./i18n";
+ 
+ export default function DocumentLocation({ name, path, folders, locale, onReveal, revealing = false, actions, menuActions, onMenuOpen, beforeMenuOpen }:
+@@ -6,6 +6,8 @@
+     actions?: ReactNode; menuActions?: ReactNode; onMenuOpen?: () => void; beforeMenuOpen?: () => Promise<void> }) {
+   const disclosure = useRef<HTMLDetailsElement>(null);
+   const menu = useRef<HTMLDetailsElement>(null);
++  const [menuTop, setMenuTop] = useState(0);
++  const [menuRight, setMenuRight] = useState(8);
+   useEffect(() => {
+     if (menu.current) menu.current.open = false;
+     if (disclosure.current) disclosure.current.open = false;
+@@ -14,9 +16,10 @@
+     const close = () => { if (menu.current) menu.current.open = false; };
+     const outside = (event: PointerEvent) => { if (!menu.current?.contains(event.target as Node)) close(); };
+     window.addEventListener("pointerdown", outside); window.addEventListener("resize", close); window.addEventListener("blur", close);
+-    window.addEventListener("scroll", close, true);
++    const scroll = (event: Event) => { if (!menu.current?.contains(event.target as Node)) close(); };
++    window.addEventListener("scroll", scroll, true);
+     return () => { window.removeEventListener("pointerdown", outside); window.removeEventListener("resize", close);
+-      window.removeEventListener("blur", close); window.removeEventListener("scroll", close, true); };
++      window.removeEventListener("blur", close); window.removeEventListener("scroll", scroll, true); };
+   }, []);
+   return <div className="document-location" role="group" aria-label={name}>
+     <div className="document-identity"><strong>{name}</strong>
+@@ -24,7 +27,12 @@
+     <div className="document-location-actions">
+       {actions}
+       <details ref={menu} className="document-actions-disclosure" onToggle={(event) => {
+-        if (event.currentTarget.open) onMenuOpen?.();
++        if (event.currentTarget.open) {
++          const bounds = event.currentTarget.querySelector("summary")!.getBoundingClientRect();
++          setMenuTop(bounds.bottom + 8);
++          setMenuRight(Math.max(8, window.innerWidth - bounds.right));
++          onMenuOpen?.();
++        }
+       }} onKeyDown={(event) => {
+         if (event.key === "Escape" && !disclosure.current?.open && menu.current?.open) {
+           event.preventDefault(); event.stopPropagation(); menu.current.open = false;
+@@ -32,7 +40,7 @@
+         }
+       }}>
+       <summary onClick={event=>{if(!menu.current?.open && beforeMenuOpen){event.preventDefault();void beforeMenuOpen().then(()=>{if(menu.current)menu.current.open=true;});}}}>{t(locale, "documentMenu")}</summary>
+-      <div className="document-actions-body" onClick={(event) => {
++      <div className="document-actions-body" style={{ top: menuTop, right: menuRight, maxHeight: `calc(100dvh - ${menuTop + 8}px)` }} onClick={(event) => {
+         if ((event.target as HTMLElement).closest("button")) {
+           if (menu.current) { menu.current.open = false; menu.current.querySelector("summary")?.focus(); }
+         }
+--- before/src/app/FolderSearchPanel.tsx
++++ after/src/app/FolderSearchPanel.tsx
+@@ -222,7 +222,8 @@
+         ? t(locale, "folderSearchGuidance") : status === "searching"
+           ? t(locale, "folderSearchSearching") : status === "stopped"
+             ? t(locale, "folderSearchStopped") : status === "partial"
+-              ? t(locale, "folderSearchPartial") : hits.length === 0
++              ? t(locale, "folderSearchPartial") : progress.skipped > 0
++                ? t(locale, "folderSearchFinished") : hits.length === 0
+                 ? t(locale, "folderSearchZero") : t(locale, "folderSearchComplete")}
+       {status !== "idle" && ` · ${progress.scanned.toLocaleString(locale)} ${t(locale, "folderSearchScanned")}, ${progress.skipped.toLocaleString(locale)} ${t(locale, "folderSearchSkipped")}`}
+       {status !== "idle" && ` · ${t(locale, "searchResultCount")}: ${hits.length.toLocaleString(locale)}`}
+--- before/src/styles/app.css
++++ after/src/styles/app.css
+@@ -725,3 +725,108 @@
+ .app-shell[data-workspace-layout="atlas"] .main-panel { min-height: 0; }
+ 
+ .app-shell[data-workspace-layout="atlas"] .explorer-host > button { align-self: flex-start; }
++
++/* October 5 workspace hierarchy, reconciled with the accepted layout options. */
++.sidebar-tab-trigger { align-self: center; flex: 0 0 auto; margin-inline-start: 8px; font-size: 13px; min-height: 32px; }
++.document-tabs { min-height: 44px; align-items: stretch; }
++.tab.active > button[role="tab"] { font-weight: 600; }
++.tab { max-width: 220px; }
++.tab-strip { scrollbar-width: thin; }
++.document-list-trigger { align-self: center; min-height: 32px; margin: 6px 12px 6px 4px; border-radius: 6px; }
++.sidebar-footnote > button { border-color: transparent; padding: 3px 0; background: transparent; }
++.document-actions-disclosure { flex: 0 0 auto; }
++.document-actions-body { position: fixed; z-index: 40; display: flex; flex-direction: column; flex-wrap: nowrap;
++  width: min(360px, calc(100vw - 32px)); padding: 6px; overflow: auto; overscroll-behavior: contain;
++  background: var(--surface); border: 1px solid var(--control-border); border-radius: 6px; box-shadow: 0 8px 24px var(--shadow); }
++.document-actions-body > button, .document-actions-body .path-disclosure > summary { width: 100%; text-align: start; border-color: transparent; background: transparent; min-height: 32px; }
++.document-actions-body > button:hover, .document-actions-body .path-disclosure > summary:hover { background: var(--hover); }
++.document-actions-body .path-disclosure { width: 100%; }
++.document-actions-body .path-disclosure div { line-height: 1.5; }
++.folder-search-groups { flex: 1 1 auto; min-width: 0; overflow-x: hidden; }
++.folder-search-groups > section { min-width: 0; }
++.folder-search-groups .folder-search-results { margin-inline: 0; min-width: 0; }
++.folder-search-results button { white-space: normal; overflow-wrap: anywhere; }
++.folder-search-results span, .folder-search-results small { min-width: 0; width: 100%; white-space: normal; overflow-wrap: anywhere; }
++.folder-search-groups h3 { padding: 8px 0; border-bottom: 1px solid var(--border); }
++.folder-search-label input { min-height: 32px; font: inherit; }
++.action-menu { width: max-content; max-width: min(480px, calc(100vw - 16px)); }
++
++/* Preference fields retain native semantics with the approved visible anatomy. */
++.native-settings { display: flex; flex-direction: column; padding: 0; overflow: hidden; background: var(--surface); font-size: 14px; }
++.settings-body { flex: 1; min-height: 0; overflow: auto; padding: 24px 36px; scroll-padding-block: 24px; }
++.native-settings h1 { font-size: 24px; margin: 0 0 24px; }
++.native-settings h2 { font-size: 20px; margin: 0 0 20px; }
++.native-settings section { margin: 0 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
++.native-settings label { margin: 0; }
++.native-settings fieldset { display: grid; gap: 20px; }
++.settings-row, .native-settings .reading-font-field, .native-settings .reading-number { display: grid; grid-template-columns: minmax(140px, .9fr) minmax(0, 1fr); gap: 16px; align-items: start; }
++.settings-row > label, .settings-row > span, .native-settings .reading-font-field > span:first-child,
++.native-settings .reading-number > label { padding-top: 8px; font-weight: 600; }
++.settings-field { min-width: 0; }
++.settings-field p, .settings-help { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 8px 0 0; }
++.select-field { position: relative; display: block; min-width: 0; width: 100%; }
++.select-field select { appearance: none; -webkit-appearance: none; width: 100%; min-height: 32px; padding: 6px 40px 6px 12px; border: 1px solid var(--control-border); border-radius: 6px; background: var(--chrome); color: var(--text); font: inherit; }
++.select-chevron { position: absolute; inset-inline-end: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
++.appearance-choices { display: flex; flex-wrap: wrap; gap: 8px; }
++.native-settings .appearance-choices label { flex: 1 1 90px; display: flex; flex-wrap: nowrap; gap: 6px; min-height: 36px; padding: 6px 10px; border: 1px solid var(--control-border); border-radius: 6px; cursor: pointer; }
++.appearance-choices label:has(:checked) { background: var(--hover); border-color: var(--accent); font-weight: 600; }
++.native-settings input { accent-color: var(--accent); }
++.native-settings input[type="radio"], .native-settings input[type="checkbox"] { margin: 0; flex-shrink: 0; }
++.native-settings input[type="range"] { min-width: 0; width: 100%; }
++.native-settings .reading-settings-fields { gap: 20px; }
++.native-settings .reading-number-controls input[type="number"] { min-height: 32px; background: var(--chrome); }
++.native-settings .reading-value-error { grid-column: 2; }
++.native-settings .reading-width-presets { justify-content: end; }
++.native-settings .reading-preview { margin: 0; padding: 16px 20px; background: var(--sidebar); }
++.reading-preview > strong { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
++.reading-reset { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; }
++.reading-reset p { flex: 1 1 240px; margin: 0; }
++.native-settings .workspace-layout-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
++.native-settings .workspace-layout-choices label { display: flex; flex-wrap: nowrap; gap: 8px; padding: 12px; }
++.native-settings .workspace-layout-choices input { margin-top: 3px; }
++.native-settings .tree-preference { flex-wrap: nowrap; font-weight: 600; }
++.native-settings footer { position: static; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 36px; border-top: 1px solid var(--border); background: var(--surface); }
++.native-settings footer p { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0; max-width: 440px; }
++.native-settings footer button { min-width: 86px; }
++
++/* Layouts share document state; only spatial composition varies. */
++.app-shell[data-workspace-layout="margin"] .document-page { max-width: calc(var(--reading-width, 760px) + 64px); }
++.app-shell[data-workspace-layout="folio"] .reader-scroll { background: var(--sidebar); }
++.app-shell[data-workspace-layout="folio"] .document-page { box-shadow: 0 0 0 1px var(--border); }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"][data-open="true"] { grid-template-columns: minmax(160px, 200px) minmax(0, 1fr) minmax(180px, 240px); }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .explorer-host { padding: 16px 20px; border-inline: 1px solid var(--border); }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .root-label { padding: 0 0 12px; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group { display: flex; flex-wrap: wrap; align-content: start; gap: 4px; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div > .tree-row { width: auto; max-width: 100%; border-radius: 6px; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .folder-search-host { grid-column: 2; grid-row: 1; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"]:has(.folder-search-host:not([hidden])) { flex-basis: min(360px, 48vh); }
++.app-shell[data-workspace-layout="atlas"] .document-page { max-width: calc(var(--reading-width, 760px) + 64px); }
++@media (max-width: 700px) {
++  .sidebar-tab-trigger { font-size: 12px; padding-inline: 6px; }
++  .document-list-trigger { margin-inline: 4px; max-width: 130px; }
++  .document-location { gap: 12px; }
++  .document-location-actions { align-items: center; }
++  .document-identity { flex-basis: 100%; }
++  .native-settings .workspace-layout-choices { grid-template-columns: 1fr; }
++  .settings-body { padding: 20px 24px; }
++  .native-settings footer { padding: 16px 24px; gap: 16px; }
++}
++@media (max-width: 560px) {
++  .settings-row, .native-settings .reading-font-field, .native-settings .reading-number { grid-template-columns: minmax(0, 1fr); gap: 8px; }
++  .native-settings .reading-value-error { grid-column: 1; }
++  .native-settings .reading-width-presets { justify-content: start; }
++}
++
++.native-settings footer { text-align: start; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div { max-width: 100%; }
++
++.tab > button[role="tab"] > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
++.folder-search > button:first-child { border-color: transparent; background: transparent; color: var(--accent); text-align: start; padding-inline: 0; }
++.search-modes button { font-size: 13px; padding: 6px 8px; }
++.folder-search-actions > button:first-child:not(:disabled) { background: var(--accent); color: var(--action-text); border-color: var(--accent); }
++
++/* Keep the document visible behind the navigation drawer, including hover. */
++.sidebar-scrim, .sidebar-scrim:hover, .sidebar-scrim:active { background: var(--scrim); }
++/* Explicit shelf item basis avoids WebKit's shrink-to-fit nested flex labels. */
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div { flex: 0 1 180px; min-width: 0; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div > .tree-row { width: 100%; }
+--- /dev/null
++++ after/src/app/SelectChevron.tsx
+@@ -0,0 +1,6 @@
++/** Decorative field affordance; the native select remains the only focus target. */
++export default function SelectChevron() {
++  return <svg className="select-chevron" width="12" height="7" viewBox="0 0 12 7" aria-hidden="true">
++    <path d="M1 1 L6 6 L11 1" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
++  </svg>;
++}

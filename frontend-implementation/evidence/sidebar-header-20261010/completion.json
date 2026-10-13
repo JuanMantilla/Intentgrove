@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "task_id": "projects_option_c_20261010",
+  "acceptance_version": "projects_option_c_v4_20261011T0021",
+  "session_kind": "qa",
+  "qa_result": "QA_BLOCKED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [
+    "200% zoom state not verified",
+    "Exact native integration/restart and screen reader not exercised"
+  ],
+  "required_checks": [
+    {
+      "id": "frontend-suite",
+      "result": "PASS",
+      "reason": "Final source snapshot v4: 547 tests, 62 files; mocked transport coverage includes HTML viewport visibility.",
+      "evidence_paths": [
+        "frontend-implementation/evidence/sidebar-header-20261010/final-suite-v4.log"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    },
+    {
+      "id": "frontend-build",
+      "result": "PASS",
+      "reason": "TypeScript noEmit and local Vite production build exit0; warnings recorded.",
+      "evidence_paths": [
+        "frontend-implementation/evidence/sidebar-header-20261010/final-build-v4.log"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    },
+    {
+      "id": "scoped-diff",
+      "result": "PASS",
+      "reason": "git diff --check exit0 and baseline-to-current scoped diff reviewed; prior dirty edits preserved.",
+      "evidence_paths": [
+        "frontend-implementation/evidence/sidebar-header-20261010/diff-check.log",
+        "frontend-implementation/evidence/sidebar-header-20261010/scoped.diff"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    },
+    {
+      "id": "rendered-interactions",
+      "result": "PASS",
+      "reason": "Chrome actual App with disposable synthetic-native fixture: four states, keyboard/focus/reopen, Search retention, boundaries, minimum/resizing/scrolling and narrow Spanish.",
+      "evidence_paths": [
+        "frontend-implementation/evidence/sidebar-header-20261010/coverage.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/responsive-final.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/focus.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/pressed.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/hover.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/resize.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/search-scroll.json",
+        "frontend-implementation/evidence/sidebar-header-20261010/folio-default.jpg",
+        "frontend-implementation/evidence/sidebar-header-20261010/folio-focus.jpg"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    },
+    {
+      "id": "200-percent",
+      "result": "NOT_RUN",
+      "reason": "Browser zoom shortcuts produced no verifiable 200% viewport or text zoom state.",
+      "evidence_paths": [
+        "frontend-implementation/sidebar-header-20261010-report.md"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    },
+    {
+      "id": "native-screen-reader",
+      "result": "NOT_RUN",
+      "reason": "No isolated exact native candidate/restart or assistive-technology session exercised; synthetic native responses do not prove integration.",
+      "evidence_paths": [
+        "frontend-implementation/sidebar-header-20261010-report.md"
+      ],
+      "finished_at": "2026-10-11T00:21:34.686168+00:00"
+    }
+  ],
+  "final_report": "frontend-implementation/sidebar-header-20261010-report.md",
+  "evidence_paths": [
+    "frontend-implementation/evidence/sidebar-header-20261010/evidence-index.md",
+    "frontend-implementation/evidence/sidebar-header-20261010/coverage.json"
+  ],
+  "tested_snapshot_path": "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-final-v4.json",
+  "artifact_paths": [
+    "frontend-implementation/evidence/sidebar-header-20261010/responsive-final.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-es.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/minimum-geometry.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/margin-minimum.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/responsive.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/focus.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-production-build.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/evidence-index.md",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-suite-v4.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/focused-tests.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/scoped.diff",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-final-v4.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-390-es.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/verified-tests.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-build-v4.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/authorization.md",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-final-v3.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-v2.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/diff-check.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-suite.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/verified-build.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-focus.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/resize.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/pressed.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-final-v2.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-build.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-minimum.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/margin-resized.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/atlas-minimum.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-default.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/margin-minimum-es-footer.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot-final.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/all-tests.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/atlas-390-es.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/coverage.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-hover.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/margin-390-es.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/folio-pressed.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/final-tests.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/search-scroll.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-paths.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/hover.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/build.log",
+    "frontend-implementation/evidence/sidebar-header-20261010/margin-search-scroll.jpg",
+    "frontend-implementation/evidence/sidebar-header-20261010/tested-snapshot.json",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/app.css.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/workspace-layout.test.tsx.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/App.tsx.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/WorkspaceIcon.tsx.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/approved-navigation.test.tsx.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/redesign-preview.tsx.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/i18n.ts.txt",
+    "frontend-implementation/evidence/sidebar-header-20261010/baseline/html-integration.test.tsx.txt",
+    "frontend-implementation/sidebar-header-20261010-plan.md",
+    "frontend-implementation/sidebar-header-20261010-report.md"
+  ],
+  "retain_paths": [
+    "frontend-implementation/sidebar-header-20261010-report.md",
+    "frontend-implementation/sidebar-header-20261010-plan.md",
+    "frontend-implementation/evidence/sidebar-header-20261010/authorization.md",
+    "design-reviews/sidebar-header-fix/close-options-20261010-190840/option-c.png",
+    "design-reviews/sidebar-header-fix/close-options-20261010-190840/option-c.vectorcraft",
+    "design-reviews/sidebar-header-fix/close-options-20261010-190840/handoff.md",
+    "design-reviews/sidebar-header-fix/proposal-20261010-183216/handoff.md"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "frontend-implementation/evidence/sidebar-header-20261010/authorization.md",
+    "design-reviews/sidebar-header-fix/close-options-20261010-190840/handoff.md",
+    "design-reviews/sidebar-header-fix/proposal-20261010-183216/handoff.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Actual user acceptance of implementation, distinct from design approval",
+      "source_path": "frontend-implementation/evidence/sidebar-header-20261010/authorization.md",
+      "evidence_path": "frontend-implementation/sidebar-header-20261010-report.md",
+      "satisfied": false
+    }
+  ]
+}

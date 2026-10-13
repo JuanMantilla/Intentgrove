@@ -1,0 +1,27 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/refresh.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/refresh.rs
+@@ -12,7 +12,9 @@
+ use tauri::{AppHandle, Emitter};
+ 
+ fn file_fingerprint(state: &AppState, file_id: &str) -> AppResult<(String, String)> {
+-    if crate::scope::html_name(&state.file(file_id)?.name) {
++    if crate::scope::prototype_name(&state.file(file_id)?.name) {
++        crate::prototype::fingerprint(state, file_id)
++    } else if crate::scope::html_name(&state.file(file_id)?.name) {
+         crate::html::fingerprint(state, file_id)
+     } else if crate::scope::image_format(&state.file(file_id)?.name).is_some() {
+         let (_, version, identity) =
+@@ -367,10 +369,9 @@
+                 validate_segment(segment)?;
+             }
+             state.root(root_id)?;
+-            let file_id = if segments
+-                .last()
+-                .is_some_and(|name| crate::scope::html_name(name))
+-            {
++            let file_id = if segments.last().is_some_and(|name| {
++                crate::scope::html_name(name) || crate::scope::prototype_name(name)
++            }) {
+                 let root = state.root(root_id)?;
+                 let file = crate::scope::open_relative(&root.file, segments, false)?;
+                 state.register_root_file(&root, segments.clone(), &file)?.id

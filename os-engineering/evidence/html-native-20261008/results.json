@@ -1,0 +1,86 @@
+{
+  "timestampUtc": "2026-10-09T00:45:54.256063+00:00",
+  "sourceManifestSha256": "77db4d461957e2e2daf4cd9a3931cf94989b4fb74714022609074413a6a2ae4a",
+  "candidates": {
+    "nativeProbe": {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/debug/html-native-probe",
+      "sha256": "f63cf6663903a5c018c74519f4a5613e22a6d53474065f9626cac6cf98556fbe",
+      "bytes": 17142272
+    },
+    "packagedNativeProbe": {
+      "path": "/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-native-package-final-s46l4rw0/HTMLNativeProbe.app/Contents/MacOS/html-native-probe",
+      "sha256": "935c633dd9e88f1ab6d5d727b2ca45157d230a0e70fbebe9649446e84ecff37b",
+      "bytes": 17042768
+    },
+    "productionMain": {
+      "path": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+      "sha256": "660e0a2e3b0c8ce023133658ebd2c8a59c79aae1738864f7b06c7870ed27d0f5",
+      "bytes": 18190240
+    }
+  },
+  "productionApp": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+  "packagedProbeApp": "/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-native-package-final-s46l4rw0/HTMLNativeProbe.app",
+  "nativeTests": {
+    "passed": 117,
+    "failed": 0,
+    "ignored": 5,
+    "log": "native-sealed.log"
+  },
+  "frontendTests": {
+    "passed": 383,
+    "failed": 0,
+    "files": 55,
+    "node": "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node",
+    "log": "frontend-tests-node24-actual.log"
+  },
+  "nativeObservations": {
+    "passed": 512,
+    "failed": 0,
+    "log": "native-assertions.json",
+    "documentCases": 48,
+    "surfaceMountsIncludingRefreshCancel": 64
+  },
+  "worker": "PASS worker-final.log",
+  "productionPackage": "BUILD/signature PASS package-build-sealed.log; default features exclude the subsequently updated feature-only probe; HTML frontend not mounted/runtime accepted",
+  "network": {
+    "os-engineering/evidence/html-native-20261008": {
+      "acceptedConnections": 2,
+      "unexpectedConnections": 0,
+      "documentTriggeredRequests": [],
+      "fixtureUnchanged": true
+    },
+    "os-engineering/evidence/html-native-20261008/packaged-native": {
+      "acceptedConnections": 2,
+      "unexpectedConnections": 0,
+      "documentTriggeredRequests": [],
+      "fixtureUnchanged": true
+    }
+  },
+  "windows": "NOT COMPILED/NOT RUNTIME VERIFIED; E0463 target std missing, no SDK/Windows runner/WebView2",
+  "limits": [
+    "no Tauri IPC/picker/physical-input journey in probe",
+    "no complete production frontend HTML integration",
+    "no arbitrary-hostname/DNS packet capture",
+    "Windows source API compatibility remains unverified"
+  ],
+  "commands": [
+    "cargo build --manifest-path src-tauri/Cargo.toml --features html-native-probe --bin html-native-probe",
+    "python3 tests/acceptance/html/native_journey.py",
+    "HTML_NATIVE_PROBE_CANDIDATE=<packagedNativeProbe.path> HTML_NATIVE_EVIDENCE_DIRECTORY=<evidence>/packaged-native python3 tests/acceptance/html/native_journey.py",
+    "python3 os-engineering/evidence/html-native-20261008/verify_native.py",
+    "cargo test --manifest-path src-tauri/Cargo.toml --lib",
+    "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node node_modules/vitest/vitest.mjs run --maxWorkers=1",
+    "/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin/node tests/worker-bundle.mjs",
+    "PATH=/Users/juanmantilla/.nvm/versions/node/v24.20.0/bin:$PATH npm run build:mac",
+    "cargo check --manifest-path src-tauri/Cargo.toml --target x86_64-pc-windows-msvc --lib (failed E0463 before adapter type checking)"
+  ],
+  "verificationScriptSha256": "1ff2139517787573538f4b19f40c3cdcf7040e8d7fe766d969a02aed0eb7ca11",
+  "logs": {
+    "native": "native-sealed.log",
+    "probeBuild": "probe-build-navigation.log",
+    "directJourney": "journey-navigation.log",
+    "packagedJourney": "packaged-journey-navigation.log",
+    "assertions": "verification-navigation.log",
+    "productionBuild": "package-build-sealed.log"
+  }
+}

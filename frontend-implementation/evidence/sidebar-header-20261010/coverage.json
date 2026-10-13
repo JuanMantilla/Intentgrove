@@ -1,0 +1,61 @@
+[
+  {
+    "id": "REQ-header",
+    "result": "PASS",
+    "scope": "Editable Option C icon, header alignment, persistent outline, 36px transparent target and rendered default/hover/focus/pressed",
+    "evidence": [
+      "folio-default.jpg",
+      "folio-hover.jpg",
+      "folio-focus.jpg",
+      "folio-pressed.jpg",
+      "hover.json",
+      "focus.json",
+      "pressed.json"
+    ]
+  },
+  {
+    "id": "REQ-behavior",
+    "result": "PASS",
+    "scope": "Enter/Space, direct Search close, visible Projects focus return, reopen, unchanged draft/tab/reader/width; native bridge mocked",
+    "evidence": [
+      "final-suite-v4.log",
+      "resize.json"
+    ]
+  },
+  {
+    "id": "REQ-layout",
+    "result": "PASS",
+    "scope": "Wide Folio reserved column, minimum160, narrow390 Spanish all layouts, unchanged Atlas shelf, boundary measurements",
+    "evidence": [
+      "minimum-geometry.json",
+      "responsive-final.json"
+    ]
+  },
+  {
+    "id": "REQ-scroll-resize",
+    "result": "PASS",
+    "scope": "Real Chrome resize260\u2192346 retained across close/reopen, tree/results scroll and footer; no native restart claim",
+    "evidence": [
+      "resize.json",
+      "search-scroll.json",
+      "margin-resized.jpg",
+      "margin-minimum-es-footer.jpg"
+    ]
+  },
+  {
+    "id": "REQ-zoom",
+    "result": "NOT_RUN",
+    "scope": "200% zoom not established: browser key attempts left viewport1360\u00d7680 and devicePixelRatio1",
+    "evidence": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/sidebar-header-20261010-report.md"
+    ]
+  },
+  {
+    "id": "native-accessibility",
+    "result": "NOT_RUN",
+    "scope": "No exact native candidate/restart or screen-reader session exercised; Chrome renderer is synthetic transport",
+    "evidence": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/sidebar-header-20261010-report.md"
+    ]
+  }
+]

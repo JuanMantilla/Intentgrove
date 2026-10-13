@@ -1,0 +1,23 @@
+{
+  "identifier": "com.juanmantilla.intentgrove.qa0035.r20261012",
+  "productName": "Intentgrove QA0035",
+  "build": {
+    "frontendDist": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/dist",
+    "beforeBuildCommand": "npm run build -- --outDir /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Intentgrove QA0035",
+        "create": false,
+        "width": 1280,
+        "height": 820,
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  }
+}

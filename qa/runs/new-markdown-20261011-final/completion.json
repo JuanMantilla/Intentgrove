@@ -1,0 +1,1436 @@
+{
+  "schema_version": 1,
+  "task_id": "new-markdown-option-b-final-20261011",
+  "acceptance_version": "qa-independent-final-20261011T163112Z",
+  "session_kind": "qa",
+  "qa_result": "QA_FAILED",
+  "task_state": "BLOCKED",
+  "unresolved_blockers": [
+    "QA-0027 saved Recent reopen fails",
+    "QA-0028 native/UI filename parity",
+    "QA-0030 approved filename-rule mismatch",
+    "QA-0029 native picker access",
+    "QA-0025 native resize access",
+    "Real Windows/AT and remaining native lifecycle coverage unavailable; user acceptance pending"
+  ],
+  "required_checks": [
+    {
+      "id": "C01-browser_mock",
+      "result": "PASS",
+      "reason": "Projects opened dialog; project root displayed",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C01-real_macos",
+      "result": "PASS",
+      "reason": "Spanish Projects menu invokes shared dialog",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-projects-entry.txt"
+      ]
+    },
+    {
+      "id": "C01-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C02-browser_mock",
+      "result": "PASS",
+      "reason": "Welcome New opened dialog in matrix",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json"
+      ]
+    },
+    {
+      "id": "C02-real_macos",
+      "result": "PASS",
+      "reason": "Welcome button opens filename-focused dialog",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.jpg"
+      ]
+    },
+    {
+      "id": "C02-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C03-browser_mock",
+      "result": "PASS",
+      "reason": "Mocked menu event routes one dialog; no real menu proof",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C03-real_macos",
+      "result": "PASS",
+      "reason": "Real File menu New dispatched dialog",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-file-menu.txt"
+      ]
+    },
+    {
+      "id": "C03-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C04-browser_mock",
+      "result": "PASS",
+      "reason": "Meta+T component event ownership; ordinary browser shortcut retained",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C04-real_macos",
+      "result": "PASS",
+      "reason": "Native synthesized Cmd+T opens one dialog",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+      ]
+    },
+    {
+      "id": "C04-real_windows",
+      "result": "NOT_APPLICABLE",
+      "reason": "Cmd+T is macOS-specific; Windows Ctrl+T untested",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C05-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C05-real_macos",
+      "result": "NOT_APPLICABLE",
+      "reason": "Ctrl+T requested for Windows; macOS uses Cmd+T",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+      ]
+    },
+    {
+      "id": "C05-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C06-browser_mock",
+      "result": "PASS",
+      "reason": "Focused editor plus native event deduplication in component test",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C06-real_macos",
+      "result": "PASS",
+      "reason": "Cmd+T from dirty first-created-file editor opens New",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt"
+      ]
+    },
+    {
+      "id": "C06-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C07-browser_mock",
+      "result": "PASS",
+      "reason": "Combined synthetic event paths yield one dialog",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C07-real_macos",
+      "result": "NOT_RUN",
+      "reason": "No native instrumentation proving both deliveries for one physical chord; mock result separate",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+      ]
+    },
+    {
+      "id": "C07-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C08-browser_mock",
+      "result": "PASS",
+      "reason": "Repeat event retains fields and one owner",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C08-real_macos",
+      "result": "PASS",
+      "reason": "Two repeated Cmd+T retain first-native.MD.md without stacking",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+      ]
+    },
+    {
+      "id": "C08-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C09-browser_mock",
+      "result": "PASS",
+      "reason": "32-case suite creates second mocked file while preserving other dirty draft",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C09-real_macos",
+      "result": "BLOCKED",
+      "reason": "Existing dirty draft survived New/Cancel; second actual creation blocked by picker",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-first-content.txt"
+      ]
+    },
+    {
+      "id": "C09-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C10-browser_mock",
+      "result": "PASS",
+      "reason": "Component modal/picker guards plus browser pending controls disabled; outside mock fixture cannot acknowledge while inert",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C10-real_macos",
+      "result": "PASS",
+      "reason": "Settings Cmd+T leaves Settings; main readiness returns after Done. Picker cancellation retained form; owned-dialog repetition tested",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-settings-new-owner.txt"
+      ]
+    },
+    {
+      "id": "C10-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C11-browser_mock",
+      "result": "PASS",
+      "reason": "Project root displayed; welcome requires explicit picker",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C11-real_macos",
+      "result": "NOT_RUN",
+      "reason": "No real selected project-root default journey; welcome no-folder observed",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-destination.txt"
+      ]
+    },
+    {
+      "id": "C11-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C12-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No browser journey with individually opened file; native library supplement separately",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C12-real_macos",
+      "result": "PASS",
+      "reason": "New from token-created explicit file offers no implied parent grant",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt"
+      ]
+    },
+    {
+      "id": "C12-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C13-browser_mock",
+      "result": "PASS",
+      "reason": "Component null picker retains fields; superseded token cancellation verified",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C13-real_macos",
+      "result": "BLOCKED",
+      "reason": "Initial folder selection PASS. Later picker Open disabled; cancellation retains discard-native. Retry also blocked; QA-0029",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.jpg"
+      ]
+    },
+    {
+      "id": "C13-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C14-browser_mock",
+      "result": "PASS",
+      "reason": "Non-destructive picker with documents tested through mock contracts",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C14-real_macos",
+      "result": "BLOCKED",
+      "reason": "Actual root/documents grant-retention journey requires destination change that is blocked",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+      ]
+    },
+    {
+      "id": "C14-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C15-browser_mock",
+      "result": "FAIL",
+      "reason": "CON .txt and interior U+0085 enable Create although native validator rejects; QA-0028",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C15-real_macos",
+      "result": "PASS",
+      "reason": "bad/name blur shows inline error and disabled creation. Exhaustive native validator checks supplementary",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt"
+      ]
+    },
+    {
+      "id": "C15-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C16-browser_mock",
+      "result": "PASS",
+      "reason": "Ni\u00f1o and 252-byte ASCII stem accepted; 253 rejected; Unicode UTF-8 length component assertions",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C16-real_macos",
+      "result": "NOT_RUN",
+      "reason": "No real native Unicode/long creation journey; real filesystem library supplement separate",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+      ]
+    },
+    {
+      "id": "C16-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C17-browser_mock",
+      "result": "PASS",
+      "reason": "md/MD/repeated suffix preview normalizes to one md",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C17-real_macos",
+      "result": "PASS",
+      "reason": "first-native.MD.md creates actual first-native.md",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json"
+      ]
+    },
+    {
+      "id": "C17-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C18-browser_mock",
+      "result": "FAIL",
+      "reason": "note + trailing space and file.txt accepted against Option B rule; QA-0030",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C18-real_macos",
+      "result": "NOT_RUN",
+      "reason": "Native UI trailing-space/competing-extension submission not executed; source shares policy deviation QA-0030",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+      ]
+    },
+    {
+      "id": "C18-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C19-browser_mock",
+      "result": "PASS",
+      "reason": "README.MD.md duplicate error retains input and root",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.png"
+      ]
+    },
+    {
+      "id": "C19-real_macos",
+      "result": "BLOCKED",
+      "reason": "Second create/duplicate journey cannot obtain destination; library collision tests pass separately",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+      ]
+    },
+    {
+      "id": "C19-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C20-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C20-real_macos",
+      "result": "NOT_RUN",
+      "reason": "Native UI concurrent creator scenario not executed; native library real race test separate",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+      ]
+    },
+    {
+      "id": "C20-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C21-browser_mock",
+      "result": "PASS",
+      "reason": "Component precommit/committed/unknown outcomes retain fields and prevent unsafe recreation; UI-held fault attempt could not acknowledge through inert fixture",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C21-real_macos",
+      "result": "BLOCKED",
+      "reason": "No native pre/postcommit creation fault injection through UI; picker blocker prevents further creation",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+      ]
+    },
+    {
+      "id": "C21-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C22-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C22-real_macos",
+      "result": "BLOCKED",
+      "reason": "No real first-new-file write-failure journey after saved tab closed; tests supplemental",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+      ]
+    },
+    {
+      "id": "C22-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C23-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C23-real_macos",
+      "result": "PASS",
+      "reason": "Actual zero bytes, empty SHA256, inode/device and native file-backed editor observed",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json"
+      ]
+    },
+    {
+      "id": "C23-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C24-browser_mock",
+      "result": "PASS",
+      "reason": "Mock identity enters real rendered empty editor; existing mocked edit/Save suite passes; no disk claim",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C24-real_macos",
+      "result": "PASS",
+      "reason": "Draft leaves source empty; explicit Save writes First native content plus existing Markdown hard-break spaces and returns to reading",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-after-save.json"
+      ]
+    },
+    {
+      "id": "C24-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C25-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C25-real_macos",
+      "result": "FAIL",
+      "reason": "Saved tab closes; immediately opening its Recent item says Changed at this path/reselect with no external writer; QA-0027",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.jpg"
+      ]
+    },
+    {
+      "id": "C25-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C26-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C26-real_macos",
+      "result": "BLOCKED",
+      "reason": "Second created-empty-file discard journey unreachable through blocked destination picker",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+      ]
+    },
+    {
+      "id": "C26-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C27-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C27-real_macos",
+      "result": "BLOCKED",
+      "reason": "New file conflict journey not reached after saved tab closed; real native existing-edit tests supplemental",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+      ]
+    },
+    {
+      "id": "C27-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C28-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "C28-real_macos",
+      "result": "NOT_RUN",
+      "reason": "Dirty new-file exit/relaunch not executed. Clean/empty checkpoint restore after diagnostic interruption is not dirty recovery proof",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-runtime.log"
+      ]
+    },
+    {
+      "id": "C28-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C29-browser_mock",
+      "result": "PASS",
+      "reason": "Component Tab containment; browser Shift+Tab Cancel then Tab Filename",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C29-real_macos",
+      "result": "PASS",
+      "reason": "Shift+Tab -> Cancel; Tab -> Filename -> Choose folder -> Cancel",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-tab-loop.json"
+      ]
+    },
+    {
+      "id": "C29-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C30-browser_mock",
+      "result": "PASS",
+      "reason": "Enter produced normalized mock file/editor in render matrix",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+      ]
+    },
+    {
+      "id": "C30-real_macos",
+      "result": "NOT_RUN",
+      "reason": "Actual native creation confirmed with Create button; Enter submission not exercised",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+      ]
+    },
+    {
+      "id": "C30-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C31-browser_mock",
+      "result": "PASS",
+      "reason": "Escape closes and focus returns to exact Projects trigger",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C31-real_macos",
+      "result": "PASS",
+      "reason": "Escape closes top dialog and returns to welcome or Projects owner",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-escape-focus.txt"
+      ]
+    },
+    {
+      "id": "C31-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C32-browser_mock",
+      "result": "PASS",
+      "reason": "role alert, aria-invalid=true and describedby verified; no screen-reader claim",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+      ]
+    },
+    {
+      "id": "C32-real_macos",
+      "result": "BLOCKED",
+      "reason": "Inline native AX text observed; live VoiceOver announcement/error focus semantics unavailable",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt"
+      ]
+    },
+    {
+      "id": "C32-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C33-browser_mock",
+      "result": "PASS",
+      "reason": "1280x820 EN/ES Light/Dark/System dialog and ready editor measured without horizontal overflow",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json"
+      ]
+    },
+    {
+      "id": "C33-real_macos",
+      "result": "PASS",
+      "reason": "Actual 1280x820 window captures EN dark/Light and ES Light/Dark/System reviewed. Editor theme matrix remains incomplete",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.jpg"
+      ]
+    },
+    {
+      "id": "C33-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C34-browser_mock",
+      "result": "PASS",
+      "reason": "390x844 EN/ES Light/Dark/System measured; desktop stress size, not native minimum",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+      ]
+    },
+    {
+      "id": "C34-real_macos",
+      "result": "BLOCKED",
+      "reason": "Native edge drag returns noWindowsAvailable; existing QA-0025 reproduced",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-invalid.jpg"
+      ]
+    },
+    {
+      "id": "C34-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C35-browser_mock",
+      "result": "PASS",
+      "reason": "System resolves to observed dark media preference",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+      ]
+    },
+    {
+      "id": "C35-real_macos",
+      "result": "PASS",
+      "reason": "Isolated Settings System selected; main dark capture matches current dark device preference; no dynamic transition proof",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg"
+      ]
+    },
+    {
+      "id": "C35-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "C36-browser_mock",
+      "result": "NOT_RUN",
+      "reason": "Live OS appearance change not performed; no isolated media-emulation capability verified",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+      ]
+    },
+    {
+      "id": "C36-real_macos",
+      "result": "NOT_RUN",
+      "reason": "Live system appearance transition not performed",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg"
+      ]
+    },
+    {
+      "id": "C36-real_windows",
+      "result": "BLOCKED",
+      "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+      ]
+    },
+    {
+      "id": "S-frontend-focused",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:01:32.967131+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+      ]
+    },
+    {
+      "id": "S-types",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:01:33.507246+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/types.log"
+      ]
+    },
+    {
+      "id": "S-frontend-build",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:01:33.911121+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-build.log"
+      ]
+    },
+    {
+      "id": "S-native-lib",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:01:55.299656+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+      ]
+    },
+    {
+      "id": "S-native-version",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:02:02.363412+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-version.log"
+      ]
+    },
+    {
+      "id": "S-native-build",
+      "result": "PASS",
+      "reason": "Existing suite/build; not native GUI/platform certification",
+      "finished_at": "2026-10-11T16:02:21.519708+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/native-build.log"
+      ]
+    },
+    {
+      "id": "S-full",
+      "result": "PASS",
+      "reason": "588 tests / 65 files, exit0; mocks distinct from GUI",
+      "finished_at": "2026-10-11T16:17:25.836934+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/frontend-full-attempt2.log"
+      ]
+    },
+    {
+      "id": "S-integrity",
+      "result": "PASS",
+      "reason": "All 213 snapshot inputs byte-identical after checks",
+      "finished_at": "2026-10-11T16:30:49.865650+00:00",
+      "evidence_paths": [
+        "qa/runs/new-markdown-20261011-final/evidence/input-integrity.json"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/new-markdown-20261011-final/report.md",
+  "evidence_paths": [
+    "qa/runs/new-markdown-20261011-final/coverage.json",
+    "qa/runs/new-markdown-20261011-final/evidence/index.md",
+    "qa/runs/new-markdown-20261011-final/evidence/input-integrity.json"
+  ],
+  "tested_snapshot_path": "qa/runs/new-markdown-20261011-final/tested-snapshot.json",
+  "artifact_paths": [
+    "qa/runs/new-markdown-20261011-final/report.md",
+    "qa/runs/new-markdown-20261011-final/task-request.md",
+    "qa/runs/new-markdown-20261011-final/department-handoff.md",
+    "qa/runs/new-markdown-20261011-final/coverage.json",
+    "qa/runs/new-markdown-20261011-final/plan.md",
+    "qa/runs/new-markdown-20261011-final/coverage.md",
+    "qa/runs/new-markdown-20261011-final/tested-paths.json",
+    "qa/runs/new-markdown-20261011-final/tested-snapshot.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-before-save.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/types.log",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-runtime-pid.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/worktree-before.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-invalid.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-invalid.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-file-menu.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-escape-focus.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/input-integrity.json",
+    "qa/runs/new-markdown-20261011-final/evidence/approved-option-b-text.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/capabilities.md",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-settings-new-owner.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-projects-entry.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-runtime.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-file-picker-blocked.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-first-content.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-lib.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/full-test-process.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-build-incognito.log",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/checks.json",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full-attempt2.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full-result.json",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-trailing-space.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-destination.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/index.md",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-events.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-after-save.json",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-competing-extension.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-errors.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-tab-loop.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-version.log",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full.log",
+    "qa/runs/new-markdown-20261011-final/evidence/image-dimensions.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-build.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-candidate.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-build.log",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/scratch/preexisting-md_reader",
+    "qa/runs/new-markdown-20261011-final/scratch/finalize.py",
+    "qa/runs/new-markdown-20261011-final/scratch/run-checks.py",
+    "qa/runs/new-markdown-20261011-final/scratch/native-config.json",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/index.html",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/Roboto-OFL.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/highlightjs-BSD.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/MERMAID-DEPENDENCIES.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/RobotoMono-OFL.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/lowlight-MIT.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/theonira-mark-dark-BMUzMZTX.png",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/theonira-mark-light-C2OeTNkt.png",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/markdownBudget.worker-CnrDUpRn.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/index-Dc_ErDZm.css",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/codeTokens.worker-DhUKaKtq.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/RobotoMono_wght_-DIJlMvBn.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/index-BrbMeefs.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/Roboto-Italic_wdth_wght_-ATwWx9AS.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/RobotoMono-Italic_wght_-4VBhkBpu.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/Roboto_wdth_wght_-B3covOPw.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/Intentgrove Final Markdown QA.app/Contents/Info.plist",
+    "qa/runs/new-markdown-20261011-final/scratch/Intentgrove Final Markdown QA.app/Contents/MacOS/md_reader",
+    "qa/runs/new-markdown-20261011-final/fixtures/individual.md",
+    "qa/runs/new-markdown-20261011-final/fixtures/first-native.md",
+    "qa/runs/new-markdown-20261011-final/fixtures/existing.md"
+  ],
+  "retain_paths": [
+    "docs/approvals.md",
+    "frontend-implementation/new-markdown-integration-20261011-report.md",
+    "os-engineering/new-markdown-20261011/frontend-handoff.md",
+    "qa/findings/QA-0027.md",
+    "qa/findings/QA-0028.md",
+    "qa/findings/QA-0029.md",
+    "qa/findings/QA-0030.md",
+    "qa/runs/new-markdown-20261011-final/coverage.json",
+    "qa/runs/new-markdown-20261011-final/coverage.md",
+    "qa/runs/new-markdown-20261011-final/department-handoff.md",
+    "qa/runs/new-markdown-20261011-final/evidence/approved-option-b-text.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-competing-extension.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-events.json",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-invalid.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-invalid.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.png",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-pending.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/browser-trailing-space.png",
+    "qa/runs/new-markdown-20261011-final/evidence/capabilities.md",
+    "qa/runs/new-markdown-20261011-final/evidence/checks.json",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-build.log",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full-attempt2.log",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full-result.json",
+    "qa/runs/new-markdown-20261011-final/evidence/frontend-full.log",
+    "qa/runs/new-markdown-20261011-final/evidence/full-test-process.json",
+    "qa/runs/new-markdown-20261011-final/evidence/image-dimensions.json",
+    "qa/runs/new-markdown-20261011-final/evidence/index.md",
+    "qa/runs/new-markdown-20261011-final/evidence/input-integrity.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-after-save.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-before-save.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-build-incognito.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-build.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-candidate.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-destination.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-errors.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-escape-focus.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-file-menu.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-file-picker-blocked.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-first-content.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-lib.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-projects-entry.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-runtime-pid.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-runtime.log",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-settings-new-owner.txt",
+    "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/native-tab-loop.json",
+    "qa/runs/new-markdown-20261011-final/evidence/native-version.log",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-dark-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-light-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-1280-system-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-dark-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-light-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-en-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-dialog.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-dialog.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor-stable.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor-stable.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor.jpg",
+    "qa/runs/new-markdown-20261011-final/evidence/render-390-system-es-editor.png",
+    "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json",
+    "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json",
+    "qa/runs/new-markdown-20261011-final/evidence/types.log",
+    "qa/runs/new-markdown-20261011-final/evidence/worktree-before.txt",
+    "qa/runs/new-markdown-20261011-final/fixtures/existing.md",
+    "qa/runs/new-markdown-20261011-final/fixtures/first-native.md",
+    "qa/runs/new-markdown-20261011-final/fixtures/individual.md",
+    "qa/runs/new-markdown-20261011-final/plan.md",
+    "qa/runs/new-markdown-20261011-final/report.md",
+    "qa/runs/new-markdown-20261011-final/scratch/Intentgrove Final Markdown QA.app/Contents/Info.plist",
+    "qa/runs/new-markdown-20261011-final/scratch/Intentgrove Final Markdown QA.app/Contents/MacOS/md_reader",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/Roboto-Italic_wdth_wght_-ATwWx9AS.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/RobotoMono-Italic_wght_-4VBhkBpu.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/RobotoMono_wght_-DIJlMvBn.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/Roboto_wdth_wght_-B3covOPw.ttf",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/codeTokens.worker-DhUKaKtq.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/index-BrbMeefs.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/index-Dc_ErDZm.css",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/markdownBudget.worker-CnrDUpRn.js",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/theonira-mark-dark-BMUzMZTX.png",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/assets/theonira-mark-light-C2OeTNkt.png",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/index.html",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/MERMAID-DEPENDENCIES.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/Roboto-OFL.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/RobotoMono-OFL.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/highlightjs-BSD.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/dist/licenses/lowlight-MIT.txt",
+    "qa/runs/new-markdown-20261011-final/scratch/finalize.py",
+    "qa/runs/new-markdown-20261011-final/scratch/native-config.json",
+    "qa/runs/new-markdown-20261011-final/scratch/preexisting-md_reader",
+    "qa/runs/new-markdown-20261011-final/scratch/run-checks.py",
+    "qa/runs/new-markdown-20261011-final/task-request.md",
+    "qa/runs/new-markdown-20261011-final/tested-paths.json",
+    "qa/runs/new-markdown-20261011-final/tested-snapshot.json"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "docs/approvals.md",
+    "frontend-implementation/new-markdown-20261011-native-request.md",
+    "qa/runs/new-markdown-20261011-final/task-request.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Final user acceptance remains separate; passing QA is not acceptance. User explicitly forbids DONE_ACCEPTED/cleanup in this run.",
+      "source_path": "qa/runs/new-markdown-20261011-final/task-request.md",
+      "evidence_path": "qa/runs/new-markdown-20261011-final/report.md",
+      "satisfied": false
+    }
+  ]
+}

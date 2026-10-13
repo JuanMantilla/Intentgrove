@@ -1,0 +1,13 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/selection.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/selection.rs
+@@ -109,8 +109,8 @@
+             .add_filter(
+                 "Documents and images",
+                 &[
+-                    "md", "markdown", "html", "htm", "jpg", "jpeg", "png", "gif", "webp", "svg",
+-                    "bmp", "tif", "tiff", "heic", "heif",
++                    "md", "markdown", "html", "htm", "igproto", "jpg", "jpeg", "png", "gif",
++                    "webp", "svg", "bmp", "tif", "tiff", "heic", "heif",
+                 ],
+             )
+             .blocking_pick_file();

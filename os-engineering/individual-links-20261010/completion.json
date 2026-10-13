@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "task_id": "individual-file-local-links-20261010",
+  "acceptance_version": "handoff-be9fb1e1f9bf41678e5468a14974a7b1",
+  "session_kind": "qa",
+  "qa_result": "QA_BLOCKED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [
+    "Packaged Finder/terminal/WebKit/TCC/live exact-file picker verification not performed; user/native acceptance not recorded."
+  ],
+  "required_checks": [
+    {
+      "id": "frontend-regression",
+      "result": "PASS",
+      "reason": "Final npm test -- --maxWorkers=1:546 passed across63 files, deadlines/assertions unchanged. Prior default-worker pass and later timing/deadline failures retained, not waived.",
+      "finished_at": "2026-10-10T19:05:08.376415+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/frontend-final.log",
+        "os-engineering/individual-links-20261010/evidence/frontend-loaded-host-failure.log",
+        "os-engineering/individual-links-20261010/evidence/frontend-history-timing-failure.log",
+        "os-engineering/individual-links-20261010/evidence/host-load.log"
+      ]
+    },
+    {
+      "id": "native-library",
+      "result": "PASS",
+      "reason": "macOS arm64 real native adapter/library tests:125 passed,5 existing ignored; not packaged GUI.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/native.log"
+      ]
+    },
+    {
+      "id": "frontend-build",
+      "result": "PASS",
+      "reason": "TypeScript noEmit and Vite production build; no app installation or signing.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/build.log"
+      ]
+    },
+    {
+      "id": "production-workers",
+      "result": "PASS",
+      "reason": "Existing worker bundle validation against freshly built output.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/worker.log"
+      ]
+    },
+    {
+      "id": "touched-rust-format",
+      "result": "PASS",
+      "reason": "rustfmt check for four touched Rust files; repository-wide pre-existing formatting is excluded.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/format.log"
+      ]
+    },
+    {
+      "id": "scoped-diff",
+      "result": "PASS",
+      "reason": "Whitespace check on touched source/tests, unrelated edits preserved.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/diff-check.log"
+      ]
+    },
+    {
+      "id": "native-gui",
+      "result": "NOT_RUN",
+      "reason": "No current packaged app launched on a disposable profile; actual Finder/terminal/WebKit/TCC/exact-file picker approval remain unverified. No real user documents accessed.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/report.md",
+        "os-engineering/individual-links-20261010/evidence/existing-bundle-entitlements.log"
+      ]
+    }
+  ],
+  "final_report": "os-engineering/individual-links-20261010/report.md",
+  "evidence_paths": [
+    "os-engineering/individual-links-20261010/evidence-index.md",
+    "os-engineering/individual-links-20261010/verification.json"
+  ],
+  "tested_snapshot_path": "os-engineering/individual-links-20261010/evidence/tested-snapshot.json",
+  "artifact_paths": [
+    "os-engineering/individual-links-20261010/evidence/App.tsx",
+    "os-engineering/individual-links-20261010/evidence/approved-navigation.test.tsx.before",
+    "os-engineering/individual-links-20261010/evidence/assets.rs",
+    "os-engineering/individual-links-20261010/evidence/build-initial-type-failure.log",
+    "os-engineering/individual-links-20261010/evidence/build.log",
+    "os-engineering/individual-links-20261010/evidence/diff-check.log",
+    "os-engineering/individual-links-20261010/evidence/existing-bundle-entitlements.log",
+    "os-engineering/individual-links-20261010/evidence/focused.log",
+    "os-engineering/individual-links-20261010/evidence/format.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-final.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-history-timing-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-initial-evidence-discovery-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-loaded-host-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend.log",
+    "os-engineering/individual-links-20261010/evidence/history-diagnosis.log",
+    "os-engineering/individual-links-20261010/evidence/host-load.log",
+    "os-engineering/individual-links-20261010/evidence/html_commands.rs.before",
+    "os-engineering/individual-links-20261010/evidence/html_tests.rs.before",
+    "os-engineering/individual-links-20261010/evidence/i18n.ts",
+    "os-engineering/individual-links-20261010/evidence/native.log",
+    "os-engineering/individual-links-20261010/evidence/os-state-before.md",
+    "os-engineering/individual-links-20261010/evidence/project-state-before.md",
+    "os-engineering/individual-links-20261010/evidence/snapshot.log",
+    "os-engineering/individual-links-20261010/evidence/tested-paths.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-before-final-type-fix.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-before-history-fixture-fix.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-initial.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot.json",
+    "os-engineering/individual-links-20261010/evidence/worker.log",
+    "os-engineering/individual-links-20261010/evidence/workspace.test.tsx.before",
+    "os-engineering/individual-links-20261010/evidence-index.md",
+    "os-engineering/individual-links-20261010/plan.md",
+    "os-engineering/individual-links-20261010/report.md",
+    "os-engineering/individual-links-20261010/verification.json",
+    "specs/001-workspace-reader/individual-links-amendment-20261010.md"
+  ],
+  "retain_paths": [
+    "os-engineering/individual-links-20261010/evidence/App.tsx",
+    "os-engineering/individual-links-20261010/evidence/approved-navigation.test.tsx.before",
+    "os-engineering/individual-links-20261010/evidence/assets.rs",
+    "os-engineering/individual-links-20261010/evidence/build-initial-type-failure.log",
+    "os-engineering/individual-links-20261010/evidence/build.log",
+    "os-engineering/individual-links-20261010/evidence/diff-check.log",
+    "os-engineering/individual-links-20261010/evidence/existing-bundle-entitlements.log",
+    "os-engineering/individual-links-20261010/evidence/focused.log",
+    "os-engineering/individual-links-20261010/evidence/format.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-final.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-history-timing-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-initial-evidence-discovery-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend-loaded-host-failure.log",
+    "os-engineering/individual-links-20261010/evidence/frontend.log",
+    "os-engineering/individual-links-20261010/evidence/history-diagnosis.log",
+    "os-engineering/individual-links-20261010/evidence/host-load.log",
+    "os-engineering/individual-links-20261010/evidence/html_commands.rs.before",
+    "os-engineering/individual-links-20261010/evidence/html_tests.rs.before",
+    "os-engineering/individual-links-20261010/evidence/i18n.ts",
+    "os-engineering/individual-links-20261010/evidence/native.log",
+    "os-engineering/individual-links-20261010/evidence/os-state-before.md",
+    "os-engineering/individual-links-20261010/evidence/project-state-before.md",
+    "os-engineering/individual-links-20261010/evidence/snapshot.log",
+    "os-engineering/individual-links-20261010/evidence/tested-paths.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-before-final-type-fix.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-before-history-fixture-fix.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot-initial.json",
+    "os-engineering/individual-links-20261010/evidence/tested-snapshot.json",
+    "os-engineering/individual-links-20261010/evidence/worker.log",
+    "os-engineering/individual-links-20261010/evidence/workspace.test.tsx.before",
+    "os-engineering/individual-links-20261010/evidence-index.md",
+    "os-engineering/individual-links-20261010/plan.md",
+    "os-engineering/individual-links-20261010/report.md",
+    "os-engineering/individual-links-20261010/verification.json",
+    "specs/001-workspace-reader/individual-links-amendment-20261010.md"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "specs/001-workspace-reader/spec.md",
+    "specs/001-workspace-reader/individual-links-amendment-20261010.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "F001-L01\u2013L03 scoped native/UI behavior and preservation evidence.",
+      "source_path": "specs/001-workspace-reader/individual-links-amendment-20261010.md",
+      "evidence_path": "os-engineering/individual-links-20261010/verification.json",
+      "satisfied": true
+    },
+    {
+      "requirement": "F001-L04: distinguish actual macOS UX from native adapters/mocked frontend; native GUI remains unverified and acceptance has not been asserted.",
+      "source_path": "AGENTS.md",
+      "evidence_path": "os-engineering/individual-links-20261010/report.md",
+      "satisfied": false
+    }
+  ]
+}

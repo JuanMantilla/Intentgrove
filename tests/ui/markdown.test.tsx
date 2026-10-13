@@ -1,6 +1,7 @@
+import { boundedBlocks } from "../../src/reader/block-budget";
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import MarkdownView, { exceedsRenderBudget } from "../../src/reader/MarkdownView";
 import { api } from "../../src/app/api";
 import { unified } from "unified";
@@ -15,8 +16,9 @@ describe("MarkdownView", () => {
     class FakeWorker {
       onmessage: ((event: MessageEvent<{ kind: string; tree: ReturnType<typeof processor.parse> }>) => void) | null = null;
       onerror: (() => void) | null = null;
-      postMessage(content: string) {
-        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", tree: processor.parse(content) } } as MessageEvent));
+      postMessage(request: { version: number; generation: number; source: string }) {
+        const tree = processor.parse(request.source);
+        queueMicrotask(() => this.onmessage?.({ data: { kind: "parsed", version: request.version, generation: request.generation, tree, blocks: boundedBlocks(tree, request.source) } } as MessageEvent));
       }
       terminate() {}
     }
@@ -26,7 +28,53 @@ describe("MarkdownView", () => {
     expect(screen.getByRole("table")).toBeTruthy();
   });
 
-  it("renders a small document when the worker fails", async () => {
+  it("terminates replaced workers and ignores stale and wrong-generation results", async () => {
+    const processor = unified().use(remarkParse);
+    const workers: DeferredWorker[] = [];
+    class DeferredWorker {
+      onmessage: ((event: MessageEvent) => void) | null = null;
+      request!: { source: string; version: number; generation: number };
+      terminate = vi.fn();
+      constructor() { workers.push(this); }
+      postMessage(request: DeferredWorker["request"]) { this.request = request; }
+      reply(generation = this.request.generation) {
+        const tree = processor.parse(this.request.source);
+        this.onmessage?.({ data: { kind: "parsed", version: 1, generation, tree,
+          blocks: boundedBlocks(tree, this.request.source) } } as MessageEvent);
+      }
+    }
+    vi.stubGlobal("Worker", DeferredWorker);
+    const view = render(<MarkdownView content="# Old" fileId="fixture" locale="en" onNavigate={() => {}} />);
+    view.rerender(<MarkdownView content="# New" fileId="fixture" locale="en" onNavigate={() => {}} />);
+    expect(workers[0].terminate).toHaveBeenCalled();
+    act(() => workers[0].reply());
+    act(() => workers[1].reply(999));
+    expect(screen.queryByRole("heading")).toBeNull();
+    act(() => workers[1].reply());
+    expect(await screen.findByRole("heading", { name: "New" })).toBeTruthy();
+    expect(screen.queryByRole("heading", { name: "Old" })).toBeNull();
+    view.unmount();
+    expect(workers[1].terminate).toHaveBeenCalled();
+  });
+
+  it("preserves siblings and hostile source when one block exceeds the rich budget", () => {
+    render(<MarkdownView content={"# Before\n\n" + "> ".repeat(140) + "<script>attack()</script>\n\n# After"}
+      fileId="fixture" locale="en" onNavigate={() => {}} />);
+    expect(screen.getByRole("heading", { name: "Before" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "After" })).toBeTruthy();
+    expect(screen.getByText(/<script>attack/)).toBeTruthy();
+    expect(document.querySelector("script")).toBeNull();
+  });
+
+  it("preserves document-wide reference links across bounded blocks", () => {
+    const navigate = vi.fn();
+    render(<MarkdownView content={"# References\n\n[Read guide][guide]\n\n[guide]: guide.md"}
+      fileId="fixture" locale="en" onNavigate={navigate} />);
+    fireEvent.click(screen.getByRole("button", { name: "Read guide" }));
+    expect(navigate).toHaveBeenCalledWith("guide.md");
+  });
+
+  it("retains exact source without retrying failed worker work on the UI thread", async () => {
     class FailingWorker {
       onerror: (() => void) | null = null;
       postMessage() { queueMicrotask(() => this.onerror?.()); }
@@ -34,7 +82,8 @@ describe("MarkdownView", () => {
     }
     vi.stubGlobal("Worker", FailingWorker);
     render(<MarkdownView content="# Broken" fileId="fixture" locale="en" onNavigate={() => {}} />);
-    expect(await screen.findByRole("heading", { name: "Broken" })).toBeTruthy();
+    expect((await screen.findByRole("alert")).textContent).toContain("# Broken");
+    expect(screen.queryByRole("heading", { name: "Broken" })).toBeNull();
   });
   it("shows the bounded fallback for a large document when the worker fails", async () => {
     class FailingWorker {
@@ -46,14 +95,28 @@ describe("MarkdownView", () => {
     render(<MarkdownView content={"# Large\n" + "ordinary text\n".repeat(20_000)} fileId="fixture" locale="en" onNavigate={() => {}} />);
     expect((await screen.findByRole("alert")).textContent).toContain("too complex");
   });
-  it("shows a localized fallback for pathological parse shapes", () => {
+  it("shows a localized fallback for pathological parse shapes", async () => {
     expect(exceedsRenderBudget("# Ordinary\n\n| a | b |\n")).toBe(false);
     expect(exceedsRenderBudget(("# Section\n\n- " + "ordinary text ".repeat(7) + "\n").repeat(10_000))).toBe(false);
     expect(exceedsRenderBudget("x".repeat(65_537))).toBe(true);
     const { rerender } = render(<MarkdownView content={"|".repeat(513)} fileId="fixture" locale="en" onNavigate={() => {}} />);
-    expect(screen.getByRole("alert").textContent).toContain("too complex");
+    expect((await screen.findByRole("alert")).textContent).toContain("too complex");
     rerender(<MarkdownView content={"|".repeat(513)} fileId="fixture" locale="es" onNavigate={() => {}} />);
-    expect(screen.getByRole("alert").textContent).toContain("demasiado complejo");
+    expect((await screen.findByRole("alert")).textContent).toContain("demasiado complejo");
+  });
+  it("retains shared footnote targets, numbers and unique reference backlinks", () => {
+    vi.stubGlobal("Worker", undefined);
+    const navigate = vi.fn();
+    render(<MarkdownView content={"First[^a].\n\nSecond[^b], again[^a].\n\n[^a]: alpha\n\n[^b]: beta"}
+      fileId="fixture" locale="en" onNavigate={navigate} />);
+    const references = screen.getAllByRole("button", { name: "1" });
+    expect(references).toHaveLength(2);
+    expect(screen.getByRole("button", { name: "2" })).toBeTruthy();
+    expect(document.getElementById("fn-a")).toBeTruthy();
+    expect(document.getElementById("fn-b")).toBeTruthy();
+    expect(document.getElementById("fnref-a-1")).toBeTruthy();
+    expect(document.getElementById("fnref-a-2")).toBeTruthy();
+    fireEvent.click(references[0]); expect(navigate).toHaveBeenCalledWith("#fn-a");
   });
   it("renders basic GFM while keeping task controls read-only", () => {
     render(<MarkdownView
@@ -129,4 +192,14 @@ describe("MarkdownView", () => {
     expect(navigate).toHaveBeenCalledWith("../guide.md");
     expect(container.querySelector('a[href^="http"]')).toBeNull();
   });
+});
+
+it("encoded footnote fragments match the native resolver's single decoding", () => {
+  vi.stubGlobal("Worker", undefined);
+  const targets: string[] = [];
+  render(<MarkdownView content={"First[^a%20b].\n\n[^a%20b]: note"} fileId="fixture" locale="en"
+    onNavigate={target => { const id = decodeURIComponent(target.slice(1)); expect(document.getElementById(id)).toBeTruthy(); targets.push(id); }} />);
+  fireEvent.click(screen.getByRole("button", { name: "1" }));
+  fireEvent.click(screen.getByRole("button", { name: "↩" }));
+  expect(targets).toEqual(["fn-a%20b", "fnref-a%20b-1"]);
 });

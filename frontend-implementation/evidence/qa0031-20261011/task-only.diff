@@ -1,0 +1,216 @@
+--- /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx (before QA0031)
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -3207,6 +3207,17 @@
+   const contextPath = reloadMenu?.target.kind === "explicit-file" ? contextTab?.displayPath
+     : reloadMenu && root?.id === reloadMenu.target.rootId
+       ? [root.displayPath, ...reloadMenu.target.segments].join("/") : undefined;
++  const contextRevealStatus = reloadMenu && reloadResults[reloadResultKey(reloadMenu.target)];
++  const contextFileStatus = contextTab && reloadResults[`file:${contextTab.id}`];
++  const contextUnavailableCode = [contextTab?.errorCode, contextTab?.freshnessReason]
++    .find(code => code === "missing" || code === "reselection_required" || code === "root_reselection_required" || code === "denied");
++  const contextRevealReason = contextUnavailableCode ? errorText(locale, contextUnavailableCode)
++    : contextTab?.freshness === "unavailable"
++    ? contextTab.freshnessReason ? errorText(locale, contextTab.freshnessReason) : t(locale, "fileUnavailable")
++    : contextFileStatus?.state === "unavailable" ? reloadStatusText(contextFileStatus)
++    : contextRevealStatus?.state === "unavailable" ? reloadStatusText(contextRevealStatus)
++    : reloadMenu?.target.kind === "root-file" && rootProblem ? errorText(locale, rootProblem)
++    : null;
+ 
+   function historyDestinationLabel(direction: -1 | 1) {
+     const destination = history.entries[direction === -1 && !active ? history.cursor : history.cursor + direction];
+@@ -3617,6 +3628,7 @@
+                     { name: reloadMenu.label, path: contextPath ?? reloadMenu.label }); } }] : []),
+               ...(fileRevealAvailable && localAbsolutePath(contextPath) && reloadMenu.target.kind !== "folder" ? [{
+                 label: t(locale, isWindows ? "revealInFileExplorer" : "revealInFinder"),
++                disabled: !!contextRevealReason, reason: contextRevealReason ?? undefined,
+                 run: () => { if (reloadMenu.target.kind !== "folder") void revealLocalFile(contextTab
+                   ? { kind: "explicit-file", fileId: contextTab.id } : reloadMenu.target); }
+               }] : []),
+--- /Users/juanmantilla/projects/personal/md-reader/src/app/ActionMenu.tsx (before QA0031)
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/ActionMenu.tsx
+@@ -5,6 +5,7 @@
+   anchor: HTMLElement; x: number; y: number; actions: MenuAction[]; onClose: () => void; onRestoreFocus?: () => void;
+ }) {
+   const panel = useRef<HTMLDivElement>(null);
++  const focusedAction = useRef<HTMLButtonElement | null>(null);
+   const closing = useRef(onClose); closing.current = onClose;
+   const [position, setPosition] = useState({ x, y });
+   useLayoutEffect(() => {
+@@ -12,6 +13,16 @@
+     setPosition({ x: Math.max(8, Math.min(x, window.innerWidth - (bounds?.width ?? 0) - 8)),
+       y: Math.max(8, Math.min(y, window.innerHeight - (bounds?.height ?? 0) - 8)) });
+   }, [x, y]);
++  useLayoutEffect(() => {
++    const focused = focusedAction.current;
++    if (focused?.disabled && (document.activeElement === focused || document.activeElement === document.body)) {
++      const buttons = Array.from(panel.current?.querySelectorAll<HTMLButtonElement>("button") ?? []);
++      const index = buttons.indexOf(focused);
++      const next = buttons.slice(index + 1).find(button => !button.disabled)
++        ?? buttons.find(button => !button.disabled);
++      next?.focus();
++    }
++  }, [actions]);
+   useEffect(() => {
+     panel.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
+     const dismiss = (restoreFocus = false) => { closing.current(); if (restoreFocus && anchor.isConnected) { anchor.focus(); onRestoreFocus?.(); } };
+@@ -34,6 +45,9 @@
+       window.removeEventListener("scroll", scroll, true); };
+   }, [anchor]);
+   return <div ref={panel} className="context-menu action-menu" role="menu" style={{ left: position.x, top: position.y }}
++    onFocusCapture={event => {
++      if (event.target instanceof HTMLButtonElement) focusedAction.current = event.target;
++    }}
+     onKeyDown={(event) => {
+       const buttons = Array.from(panel.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") ?? []);
+       const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+--- /Users/juanmantilla/projects/personal/md-reader/tests/ui/reveal-file.test.tsx (before QA0031)
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/reveal-file.test.tsx
+@@ -1,7 +1,7 @@
+ import { projectAction } from "./project-navigation-helpers";
+ // @vitest-environment jsdom
+ import { afterEach, beforeEach, expect, it, vi } from "vitest";
+-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
++import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+ import App from "../../src/app/App";
+ 
+ vi.hoisted(() => { Object.defineProperty(navigator, "platform", { configurable: true, get: () => "MacIntel" }); });
+@@ -10,7 +10,14 @@
+   selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), cancelListing: vi.fn(),
+   readDocument: vi.fn(), resolveLink: vi.fn(), readImage: vi.fn(),
+   reloadItem: vi.fn(), cancelReload: vi.fn(), revealFile: vi.fn(),
++  listEditSections: vi.fn(), beginSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(),
++  saveSectionEdit: vi.fn(), discardSectionEdit: vi.fn(),
++  loadWorkspaceSession: vi.fn(), checkpointWorkspaceSession: vi.fn(),
+   listeners: {} as Record<string, (event: { payload: unknown }) => void>
++}));
++vi.mock("../../src/reader/SectionEditor", () => ({
++  default: ({ initialDraft, onChange }: { initialDraft: string; onChange: (draft: string) => void }) =>
++    <textarea aria-label="Fixture draft" defaultValue={initialDraft} onChange={event => onChange(event.target.value)} />
+ }));
+ vi.mock("../../src/app/api", async (importOriginal) => ({
+   ...await importOriginal<typeof import("../../src/app/api")>(), api: mocks
+@@ -40,6 +47,14 @@
+   mocks.reloadItem.mockResolvedValue({ jobId: "job-1", generation: 1, accepted: true });
+   mocks.cancelReload.mockResolvedValue({ cancelled: true });
+   mocks.cancelListing.mockResolvedValue(undefined);
++  mocks.loadWorkspaceSession.mockResolvedValue(null);
++  mocks.checkpointWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1 });
++  const section = { id: "reading", kind: "heading", ordinal: 0, level: 1, label: "Reading",
++    startByte: 0, endByte: 9, sourceHash: "reading" };
++  mocks.listEditSections.mockResolvedValue({ diskVersion: "v1", sections: [section] });
++  mocks.beginSectionEdit.mockResolvedValue({ sessionId: "edit", diskVersion: "v1", section,
++    source: "# Reading", lineSeparator: "\n" });
++  mocks.checkpointSectionEdit.mockResolvedValue({ sequence: 1, durationMs: 1 });
+ });
+ afterEach(() => { cleanup(); vi.restoreAllMocks(); });
+ 
+@@ -107,3 +122,109 @@
+   expect(await screen.findByText(/Could not reveal the file/)).toBeTruthy();
+   expect(screen.queryByRole("tab")).toBeNull();
+ });
++
++async function status(targetRef: unknown, state = "unavailable", generation = 1) {
++  await waitFor(() => expect(mocks.listeners["refresh:item_status"]).toBeTruthy());
++  await act(async () => mocks.listeners["refresh:item_status"]({ payload: {
++    generation, targetRef, state, reasonCode: state === "unavailable" ? "missing" : "", checkedAt: 1
++  } }));
++}
++
++it.each(["missing", "reselection_required", "root_reselection_required", "denied"])("disables a restored tab with known %s availability error", async errorCode => {
++  mocks.loadWorkspaceSession.mockResolvedValue({ sequence: 1, completedAtMs: 1, exitDisposition: "normal",
++    root: { id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1, errorCode: null },
++    tabs: [{ key: "restored", fileId: "restored", name: "readme.md", displayPath: "/tmp/fixture/readme.md",
++      rootSegments: ["readme.md"], explicitFile: false, anchor: null, savedDiskVersion: "v1", errorCode, editingActive: false }],
++    activeKey: "restored", tree: { expanded: [], selected: [], scrollTop: 0 }, panel: null, window: null });
++  render(<App />);
++  const tab = await screen.findByRole("tab", { name: /readme.md/ });
++  fireEvent.contextMenu(tab);
++  expect(screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" }).disabled).toBe(true);
++  expect(mocks.revealFile).not.toHaveBeenCalled();
++});
++
++it.each(["tab", "explorer", "explicit"])("disables known missing %s Reveal and retains nearby actions/focus", async entry => {
++  render(<App />);
++  if (entry === "explicit") fireEvent.click(projectAction("Open file"));
++  else {
++    fireEvent.click(projectAction("Open folder"));
++    fireEvent.click(await screen.findByTitle("readme.md"));
++  }
++  const tab = await screen.findByRole("tab", { name: entry === "explicit" ? /outside.md/ : /readme.md/ });
++  await status(entry === "explicit" ? "external" : "readme");
++  const anchor = entry === "explorer" ? screen.getByTitle("readme.md") : tab;
++  fireEvent.keyDown(anchor, { key: "F10", shiftKey: true });
++  const reveal = screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" });
++  expect(reveal.disabled).toBe(true);
++  expect(reveal.getAttribute("aria-description")).toBe("This file is missing");
++  fireEvent.click(reveal);
++  expect(mocks.revealFile).not.toHaveBeenCalled();
++  expect(screen.getByRole("menuitem", { name: /Reload / })).toBeTruthy();
++  fireEvent.keyDown(screen.getByRole("menu"), { key: "ArrowDown" });
++  expect(document.activeElement).not.toBe(reveal);
++  fireEvent.keyDown(screen.getByRole("menu"), { key: "Escape" });
++  expect(document.activeElement).toBe(anchor);
++  expect(screen.queryByRole("menu")).toBeNull();
++});
++
++it("updates an open explorer menu for missing, recovered and stale-generation states", async () => {
++  render(<App />);
++  fireEvent.click(projectAction("Open folder"));
++  const anchor = await screen.findByTitle("readme.md");
++  fireEvent.contextMenu(anchor);
++  const target = { rootId: "root", segments: ["readme.md"] };
++  await status(target, "unavailable", 0);
++  expect(screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" }).disabled).toBe(false);
++  screen.getByRole("menuitem", { name: "Reveal in Finder" }).focus();
++  await status(target);
++  const reveal = screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" });
++  expect(reveal.disabled).toBe(true);
++  expect(document.activeElement).toBe(screen.getByRole("menuitem", { name: "Reload readme.md" }));
++  fireEvent.click(reveal);
++  expect(mocks.revealFile).not.toHaveBeenCalled();
++  await status(target, "current");
++  expect(reveal.disabled).toBe(false);
++  fireEvent.click(reveal);
++  expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "root-file", rootId: "root", segments: ["readme.md"] });
++});
++
++it("disables unavailable root targets without disabling independent explicit grants", async () => {
++  render(<App />);
++  fireEvent.click(projectAction("Open folder"));
++  const file = await screen.findByTitle("readme.md");
++  fireEvent.click(projectAction("Open file"));
++  const tab = await screen.findByRole("tab", { name: /outside.md/ });
++  await status("root");
++  fireEvent.contextMenu(file);
++  expect(screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" }).disabled).toBe(true);
++  fireEvent.keyDown(window, { key: "Escape" });
++  fireEvent.contextMenu(tab);
++  expect(screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" }).disabled).toBe(false);
++});
++
++it.each(["tab", "explorer", "explicit"])("keeps saved dirty %s revealable and retains its draft after missing status", async entry => {
++  render(<App />);
++  if (entry === "explicit") fireEvent.click(projectAction("Open file"));
++  else {
++    fireEvent.click(projectAction("Open folder"));
++    fireEvent.click(await screen.findByTitle("readme.md"));
++  }
++  const tab = await screen.findByRole("tab", { name: entry === "explicit" ? /outside.md/ : /readme.md/ });
++  fireEvent.contextMenu(await screen.findByLabelText("Edit section: Reading"));
++  fireEvent.click(await screen.findByRole("menuitem", { name: "Edit section" }));
++  fireEvent.change(await screen.findByLabelText("Fixture draft"), { target: { value: "# Reading\nQA0031 unsaved" } });
++  await screen.findByRole("tab", { name: /Unsaved/ });
++  const anchor = entry === "explorer" ? screen.getByTitle("readme.md") : tab;
++  fireEvent.contextMenu(anchor);
++  const reveal = screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" });
++  expect(reveal.disabled).toBe(false);
++  fireEvent.click(reveal);
++  expect(mocks.revealFile).toHaveBeenCalledWith({ kind: "explicit-file", fileId: entry === "explicit" ? "external" : "readme" });
++  expect(screen.getByRole<HTMLTextAreaElement>("textbox", { name: "Fixture draft" }).value).toContain("QA0031 unsaved");
++  fireEvent.contextMenu(anchor);
++  await status(entry === "explicit" ? "external" : "readme");
++  expect(screen.getByRole<HTMLButtonElement>("menuitem", { name: "Reveal in Finder" }).disabled).toBe(true);
++  expect(screen.getByRole<HTMLTextAreaElement>("textbox", { name: "Fixture draft" }).value).toContain("QA0031 unsaved");
++  expect(mocks.saveSectionEdit).not.toHaveBeenCalled();
++  expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
++});

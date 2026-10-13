@@ -1,0 +1,88 @@
+Window: "Intentgrove", App: Intentgrove QA 20261007.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text intentgrove-qa-20261007-fixtures Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text intentgrove-qa-20261007-fixtures
+				10 button Project tree settings
+				11 container
+					12 button entry.md
+					13 button (collapsed) notes, Secondary Actions: Expand
+				14 text Storage and recovery
+				15 text Open edits and recovery offers: 1
+				16 button Manage…
+			17 container
+				18 container Visited files
+					19 button (disabled) Back, Help: No previous file
+					20 button (disabled) Forward, Help: No next file
+				21 tab group (selectable) Documents
+					22 container
+						23 tab (selected) scoped.md · Unsaved · This file changed in another app. Your edit is safe., Help: /private/tmp/intentgrove-qa-20261007-fixtures/notes/scoped.md
+						24 button Close tab: scoped.md, Help: Close tab
+				25 pop up button Go menu
+				26 button (collapsed) Open documents (1), Secondary Actions: Expand
+				27 container scoped.md
+					28 text scoped.md
+					29 text notes
+					30 toggle button Outline, Value: off
+					31 button (collapsed) Reading settings, Secondary Actions: Expand
+					32 button (disabled) Save file
+					33 button Return to reading
+					34 text Save returns to reading.
+					35 summary Document…, Value: off
+						36 text Document…
+				37 text The file changed while this draft was stored. Inspect it before saving.
+				38 button Dismiss
+				39 container scoped.md
+					40 container
+						41 text This file changed in another app. Your edit is safe. Another app can still write at the exact moment of Save. A recoverable copy is kept.
+						42 button Inspect versions
+						43 button Keep my edit
+						44 button Save a copy
+						45 button Use disk version
+					46 container Editing: Scoped acceptance
+						47 text Editing: Scoped acceptance
+						48 text Changes not saved to the file
+						49 text Markdown source
+						50 text entry area (settable) Markdown source: Scoped acceptance, Secondary Actions: Show Writing Tools, Value: # Scoped acceptance
+
+Needle in notes.
+
+Disposable unsaved draft 20261007
+							51 text (settable) # Scoped acceptance
+							52 text (settable) Needle in notes.
+							53 text (settable) Disposable unsaved draft 20261007
+						54 container Live preview
+							55 text Live preview
+							56 container Scoped acceptance
+								57 heading Scoped acceptance, Value: 1
+									58 text Scoped acceptance
+								59 text Needle in notes.
+								60 text Disposable unsaved draft 20261007
+						61 button Undo
+						62 button (disabled) Redo
+						63 button Discard changes…
+						64 button Save as…
+					65 container Scoped acceptance
+						66 container Edit section: Scoped acceptance
+							67 heading Scoped acceptance, Value: 1
+								68 text Scoped acceptance
+							69 button Edit section “Scoped acceptance”
+						70 text Needle in notes.
+	71 close button
+	72 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	73 minimize button
+	74 text Intentgrove
+75 menu bar
+	76 Intentgrove QA 20261007
+	77 File
+	78 Edit
+	79 View
+	80 Go
+	81 Window
+	82 Help

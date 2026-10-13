@@ -1,0 +1,88 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: café "quote" 'single' $ & # % (draft),.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) active.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Close tab: active.md, Help: Close tab
+				17 container
+					18 tab (selectable) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Close tab: inactive.md, Help: Close tab
+				20 container
+					21 tab (selectable) café "quote" 'single' $ & # % (draft),.md, Value: off, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					22 button Close tab: café "quote" 'single' $ & # % (draft),.md, Help: Close tab
+				23 container
+					24 tab (selected) unopened.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+					25 button Close tab: unopened.md, Help: Close tab
+			26 pop up button Go menu
+			27 button (collapsed) Open documents (4), Secondary Actions: Expand
+			28 container Explorer
+				29 pop up button PROJECTS
+				30 button Close Projects sidebar
+				31 button Open file
+				32 button Open folder
+				33 button Search folder
+				34 text fixtures
+				35 container
+					36 button active.md
+					37 button delete.md
+					38 button inactive.md
+					39 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					40 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					41 button rename.md
+					42 button replace.md
+					43 button unopened.md
+				44 text Storage and recovery
+				45 text Open edits and recovery offers: 0
+				46 button Manage…
+				47 button Settings…
+			48 container
+				49 container unopened.md
+					50 container unopened.md
+						51 text unopened.md
+					52 button Find in document
+					53 toggle button Outline, Value: on
+					54 button (collapsed) Reading settings, Secondary Actions: Expand
+					55 button Edit section
+					56 summary Document…, Value: off
+						57 text Document…
+					58 text Folder root
+				59 container unopened.md
+					60 container QA unopened.md
+						61 container Edit section: QA unopened.md
+							62 heading QA unopened.md, Value: 1
+								63 text QA unopened.md
+							64 button Edit section “QA unopened.md”
+						65 text Disposable Reveal fixture.
+				66 container Outline
+					67 text OUTLINE
+					68 button Close outline
+					69 container Outline
+						70 content list
+							71 button QA unopened.md
+			72 container
+				73 text Current on disk Intentgrove by Theonira
+	74 close button
+	75 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	76 minimize button
+	77 text Intentgrove Reveal QA
+78 menu bar
+	79 Intentgrove Reveal QA
+	80 File
+	81 Edit
+	82 View
+	83 Go
+	84 Window
+	85 Help

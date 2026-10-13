@@ -1,0 +1,542 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -17,7 +17,7 @@
+ import { useAppearance, type AppearanceMode } from "./appearance";
+ import { useRetainedOverlay } from "./useRetainedOverlay";
+ import MarkdownView, { exceedsRenderBudget, headingSlug } from "../reader/MarkdownView";
+-import { ownsTextInput, type DocumentSelectionAdapter } from "../reader/document-selection";
++import { ownsTextInput, watchSelectionOwner, type DocumentSelectionAdapter } from "../reader/document-selection";
+ import ImageView, { type ImageViewState } from "../reader/ImageView";
+ import { boundZoom, usePinchZoom, zoomRect, normalizeZoomRect } from "../reader/usePinchZoom";
+ import { emptyHistory, recordVisit, updateVisit, type VisitHistory } from "../workspace/visitHistory";
+@@ -42,6 +42,10 @@
+ import { validHtmlView, validLocalView } from "./htmlController";
+ import { isHtmlDocument, isHtmlLink, requireMarkdownResponse } from "./htmlBoundary";
+ 
++import PrototypeView from "../reader/PrototypeView";
++import {isPrototypeDocument,isNativeDocument,validPrototypeView} from "./documentBoundary";
++import {PrototypeController} from "./prototypeController";
++import {prototypeNative} from "./prototypeNative";
+ type OpenRequest = { fileId?: string; rootId?: string; segments?: string[]; explicitFile?: boolean };
+ const imageName = (name: string) => /\.(?:jpe?g|png|gif|webp|svg|bmp|tiff?|heic|heif)$/i.test(name);
+ 
+@@ -63,9 +67,10 @@
+   name: string;
+   displayPath: string;
+   content?: string;
+-  kind?: "markdown" | "image" | "html" | "details";
++  kind?: "markdown" | "image" | "html" | "prototype" | "details";
+   localView?: LocalView;
+   htmlState?: HtmlState;
++  prototypeReloadFailed?: boolean;
+   image?: ImageResponse;
+   imageLoading?: boolean;
+   documentLoading?: boolean;
+@@ -179,6 +184,43 @@
+   const [restoreLoadRevision, setRestoreLoadRevision] = useState(0);
+   const imageLoads = useRef(new Map<string, symbol>());
+   const documentLoads = useRef(new Map<string, symbol>());
++  const prototypeControllers = useRef(new Map<string,PrototypeController>());
++  const retainedPrototypes = useRef(new Set<string>());
++  async function disposeLocalView(view:LocalView) {
++    if(!view.viewToken)return;
++    if(view.kind==='prototype') {
++      // Duplicate/stale replies may refer to an already accepted owner.
++      if(!retainedPrototypes.current.has(view.viewToken)) await prototypeNative.dispose({viewToken:view.viewToken,generation:view.generation},true);
++    } else await htmlNative.dispose({viewToken:view.viewToken,generation:view.generation});
++  }
++  async function reloadPrototype(tabId:string) {
++    const tab=tabsRef.current.find(t=>t.id===tabId);
++    if(!tab?.localView || !validPrototypeView(tab.localView))return;
++    const token=tab.localView.viewToken;
++    let controller=prototypeControllers.current.get(token);
++    if(!controller){controller=new PrototypeController(tab.localView);prototypeControllers.current.set(token,controller);}
++    try {
++      const result=await controller.reload();
++      setTabs(old=>old.map(t=>t.localView?.viewToken===token ? {...t,localView:result.view,diskVersion:result.view.diskVersion,
++        prototypeReloadFailed:Boolean(result.reloadError),freshness:result.changed?'changed':'current',errorCode:undefined} : t));
++      if(result.reloadError)setNotice(l=>errorText(l,result.reloadError!.code));
++    } catch(error) {
++      const detail=readerError(error);
++      if(['missing','denied','invalid_grant','reselection_required','root_reselection_required','stale_view'].includes(detail.code)) {
++        setTabs(old=>old.map(t=>t.localView?.viewToken===token ? {...t,localView:undefined,errorCode:detail.code} : t));
++      } else {
++        setTabs(old=>old.map(t=>t.localView?.viewToken===token ? {...t,prototypeReloadFailed:true,freshness:'changed'} : t));
++      }
++      setNotice(l=>errorText(l,detail.code));
++    }
++  }
++  useEffect(()=>()=>{for(const c of prototypeControllers.current.values())void c.dispose().catch(()=>{});},[]);
++  useEffect(()=>{
++    const live=new Set(tabs.filter(t=>t.kind==='prototype').map(t=>t.localView?.viewToken));
++    for(const [token,c] of prototypeControllers.current)if(!live.has(token)) {
++      retainedPrototypes.current.delete(token);prototypeControllers.current.delete(token);void c.dispose().catch(()=>{});
++    }
++  },[tabs]);
+   const htmlHandles = useRef(new Map<string, HtmlHandle>());
+   const htmlLocations = useRef(new Map<string, HtmlLocation>());
+   const htmlFallbackHeadings = useRef(new Map<string, string[]>());
+@@ -315,6 +357,10 @@
+   const [editorMenu, setEditorMenu] = useState<EditorCommandState>({ owner: false, undo: false, redo: false, selection: false });
+   const editorFindRef = useRef<DraftFindAdapter | null>(null);
+   const documentSelectionRef = useRef<DocumentSelectionAdapter | null>(null);
++  const selectionAcquisition = useRef<{ token: symbol; sequence: number; generation: number } | null>(null);
++  const pendingDocumentSelection = useRef<{
++    sequence: number; generation: number; loadToken?: symbol; fileId?: string; content?: string; dispatched?: boolean
++  } | null>(null);
+   const selectionReady = useCallback((adapter: DocumentSelectionAdapter | null) => { documentSelectionRef.current = adapter; }, []);
+   const findFocusBefore = useRef<HTMLElement | null>(null);
+   const pendingSearchReveal = useRef(false);
+@@ -543,7 +589,7 @@
+         fileId: tab.request.fileId ?? null,
+         priorKey: tab.restoredKey ?? null,
+         rootSegments: !tab.request.fileId && currentRoot ? tab.request.segments ?? null : null,
+-        anchor: { ...sessionAnchor(readingAnchors.current.get(tab.id),
++        anchor: { ...sessionAnchor(tab.kind === "prototype" ? undefined : readingAnchors.current.get(tab.id),
+           { width: reader?.clientWidth ?? 0, height: reader?.clientHeight ?? 0 }, tab.diskVersion ?? null),
+           ...(tab.kind === "html" && htmlLocations.current.get(tab.id) ? {
+             htmlZoom: htmlLocations.current.get(tab.id)!.zoom, htmlScrollLeft: htmlLocations.current.get(tab.id)!.scrollLeft
+@@ -628,7 +674,7 @@
+         segments: tab.rootSegments ?? undefined, explicitFile: tab.explicitFile },
+       errorCode: tab.errorCode ?? undefined,
+       diskVersion: tab.savedDiskVersion ?? undefined,
+-      editingActive: !isHtmlDocument(tab.name) && tab.editingActive, kind: tab.kind
++      editingActive: !isNativeDocument(tab.name) && tab.editingActive, kind: tab.kind
+     }));
+     tabsRef.current = restoredTabs;
+     setTabs(restoredTabs);
+@@ -749,7 +795,7 @@
+     if (!tab?.request.fileId || (tab.kind !== "image" && !tab.restoredKey)
+       || tab.content !== undefined || tab.image || tab.imageLoading || tab.documentLoading || tab.largeInspection || tab.errorCode
+       || tab.localView || restoreLoads.current.has(tab.id)) return;
+-    if (isHtmlDocument(tab.name)) { void openDocument(tab.request, {name:tab.name,path:tab.displayPath}); return; }
++    if (isNativeDocument(tab.name)) { void openDocument(tab.request, {name:tab.name,path:tab.displayPath}); return; }
+     const token = Symbol("restored file load");
+     restoreLoads.current.set(tab.id, token);
+     const generation = generationRef.current;
+@@ -822,6 +868,9 @@
+       if (event.generation !== generationRef.current) return;
+       const tab = tabsRef.current.find((item) => item.id === event.fileId);
+       if (!tab || tab.diskVersion === event.diskVersion) return;
++      if(tab.kind==='prototype' || isPrototypeDocument(tab.name)) {
++        setTabs(old=>old.map(t=>t.id===event.fileId ? {...t,freshness:'changed',pendingDiskVersion:event.diskVersion} : t));return;
++      }
+       setTabs((old) => noteFileChange(old, event, generationRef.current));
+       if (tab.dirty || tab.editingActive) {
+         setEdits((old) => editReducer(old, { type: "conflict", tabId: event.fileId }));
+@@ -880,6 +929,14 @@
+         if (event.state !== "checking") pendingManualReloads.current.delete(targetKey);
+       }
+       if (typeof event.targetRef === "string") {
++        const prototype=tabsRef.current.find(tab=>tab.id===event.targetRef && tab.kind==='prototype');
++        if(prototype?.localView && ['missing','denied','invalid_grant','reselection_required','root_reselection_required','unsupported_type'].includes(event.reasonCode ?? '')) {
++          const view=prototype.localView;
++          retainedPrototypes.current.delete(view.viewToken!);
++          void prototypeControllers.current.get(view.viewToken!)?.dispose(true).catch(()=>{});
++          prototypeControllers.current.delete(view.viewToken!);
++          setTabs(old=>old.map(tab=>tab.id===prototype.id ? {...tab,localView:undefined,errorCode:event.reasonCode} : tab));
++        }
+         const large = tabsRef.current.find((tab) => tab.id === event.targetRef)?.largeOpened;
+         if (large && event.state !== "current") void api.closeLargeSource(large.snapshotId).catch(() => {});
+         setTabs((old) => old.map((item) => item.id === event.targetRef
+@@ -1063,6 +1120,10 @@
+   }
+ 
+   async function startReload(menu: ReloadMenu) {
++    const prototype=tabsRef.current.find(tab=>tab.kind==='prototype' && (menu.target.kind==='explicit-file'
++      ? tab.id===menu.target.fileId : menu.target.kind==='root-file' && tab.request.rootId===menu.target.rootId && pathKey(tab.request.segments ?? [])===pathKey(menu.target.segments)));
++    if(prototype){setReloadMenu(null);await reloadPrototype(prototype.id);return;}
++
+     setReloadMenu(null);
+     if (menu.anchor.isConnected) menu.anchor.focus();
+     setManualReload({ target: menu.target, label: menu.label, result: { state: "checking" } });
+@@ -1126,6 +1187,24 @@
+     const observer=new MutationObserver(measure);observer.observe(document.body,{subtree:true,attributes:true,attributeFilter:['open'],childList:true});measure();return()=>observer.disconnect();
+   },[tabs.some(tab=>tab.kind === 'html')]);
+   const active = tabs.find((tab) => tab.id === activeId) ?? null;
++  useEffect(()=>{
++    const view=active?.localView;
++    if(view?.kind!=='prototype' || !view.viewToken)return;
++    let disposed=false;
++    void prototypeNative.status({viewToken:view.viewToken,generation:view.generation}).then(result=>{
++      if(disposed || !result || !validPrototypeView(result.view) || result.view.viewToken!==view.viewToken)return;
++      if(result.changed)setTabs(old=>old.map(tab=>tab.localView?.viewToken===view.viewToken ? {...tab,freshness:'changed'} : tab));
++    }).catch(error=>{
++      if(disposed)return;
++      const detail=readerError(error);
++      if(['missing','denied','invalid_grant','reselection_required','root_reselection_required','unsupported_type','stale_view'].includes(detail.code)) {
++        retainedPrototypes.current.delete(view.viewToken!);
++        void prototypeControllers.current.get(view.viewToken!)?.dispose(true).catch(()=>{});prototypeControllers.current.delete(view.viewToken!);
++        setTabs(old=>old.map(tab=>tab.localView?.viewToken===view.viewToken ? {...tab,localView:undefined,errorCode:detail.code} : tab));
++      }
++    });
++    return ()=>{disposed=true;};
++  },[activeId,active?.localView?.viewToken]);
+   const documentOpening = Boolean(documentPending && documentPending.sequence === openSequence.current
+     && documentPending.generation === generationRef.current);
+   const documentZoom = documentZooms.current.get(activeId ?? "") ?? 1;
+@@ -1158,7 +1237,7 @@
+   function changeHistory(next: VisitHistory<VisitTarget>) { historyRef.current = next; setHistory(next); }
+   useLayoutEffect(() => {
+     if (traversal.current || !active || active.errorCode || active.imageLoading
+-      || (active.kind === "image" ? !active.image : active.content === undefined && !active.largeInspection && active.kind !== "details" && !(active.kind === "html" && ["ready","empty"].includes(active.htmlState?.state ?? "")))) return;
++      || (active.kind === "image" ? !active.image : active.content === undefined && !active.largeInspection && active.kind !== "details" && active.kind !== "prototype" && !(active.kind === "html" && ["ready","empty"].includes(active.htmlState?.state ?? "")))) return;
+     if (historyRef.current.entries[historyRef.current.cursor]?.key === active.id) return;
+     changeHistory(recordVisit(historyRef.current, { key: active.id,
+       target: { id: active.id, request: active.request, kind: active.kind, name: active.name, displayPath: active.displayPath, explicitFile: active.explicitFile,
+@@ -1354,7 +1433,7 @@
+   }
+ 
+   useEffect(() => {
+-    if (!active?.diskVersion || active.kind === "image" || active.kind === "html" || active.kind === "details" || isHtmlDocument(active.name) || active.errorCode || activeEdit) return;
++    if (!active?.diskVersion || active.kind === "image" || active.kind === "html" || active.kind === "details" || active.kind === "prototype" || isNativeDocument(active.name) || active.errorCode || activeEdit) return;
+     if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
+     void api.listEditSections(active.id).then((result) => {
+@@ -1372,7 +1451,7 @@
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+ 
+   async function startEdit(tabId: string, section: SectionDescriptor, diskVersion: string) {
+-    if (!editingAvailable || enteringSectionRef.current || tabsRef.current.find(t=>t.id===tabId)?.kind === "html") return;
++    if (!editingAvailable || enteringSectionRef.current || (tabsRef.current.find(t=>t.id===tabId)?.kind === "html" || tabsRef.current.find(t=>t.id===tabId)?.kind === "prototype")) return;
+     const token = Symbol("section entry"), generation = generationRef.current, navigation = openSequence.current;
+     const previousVersion = tabsRef.current.find(tab => tab.id === tabId)?.diskVersion;
+     enteringSectionRef.current = token;
+@@ -1772,22 +1851,27 @@
+     return request.fileId ? {fileId:request.fileId} : {rootId:request.rootId!,segments:request.segments!};
+   }
+   async function acceptLocalView(view: LocalView, request: OpenRequest, pendingId?: string, activate = true, onFailure?: (code:string)=>void): Promise<string | undefined> {
+-    if(!validLocalView(view)) throw {code:"html_view_unavailable",message:"Invalid local view response"};
++    if(!validLocalView(view)) throw {code:isPrototypeDocument(view?.name ?? "") ? "prototype_invalid" : "html_view_unavailable",message:"Invalid local view response"};
+     if(view.kind === "markdown") return openDocument({...request,fileId:view.fileId},{name:view.name,path:view.displayPath},onFailure);
+     if(view.kind === "image") return openImage({...request,fileId:view.fileId},{name:view.name,path:view.displayPath},false,true,onFailure);
+-    if(view.kind !== "details" && !validHtmlView(view)) throw {code:"html_view_unavailable",message:"Invalid isolated HTML response"};
++    if(view.kind !== "details" && !validHtmlView(view) && !validPrototypeView(view)) throw {code:"html_view_unavailable",message:"Invalid isolated HTML response"};
+     const existing=tabsRef.current.find(tab=>tab.identityKey===view.identityKey && tab.localView);
+     if(existing) {
+       // Reopening an explicit file from a deliberately selected folder must
+       // consume that returned grant, while retaining tab/session identity.
+-      if(view.kind==='html' && request.rootId && request.rootId!==existing.request.rootId) {
++      if((view.kind==='html' || view.kind==='prototype') && request.rootId && request.rootId!==existing.request.rootId) {
+         setTabs(old=>old.filter(tab=>tab.id!==pendingId || tab.id===existing.id).map(tab=>tab.id===existing.id
+           ? {...tab,localView:view,htmlState:undefined,diskVersion:view.diskVersion,explicitFile:false,request:{...request,fileId:view.fileId}} : tab));
+         if(activate){activeIdRef.current=existing.id;setActiveId(existing.id);setCompactSidebarOpen(false);}return existing.id;
+       }
+-      if(view.viewToken && view.viewToken!==existing.localView?.viewToken) await htmlNative.dispose({viewToken:view.viewToken,generation:view.generation});
++      if(view.viewToken && view.viewToken!==existing.localView?.viewToken) await disposeLocalView(view);
+       setTabs(old=>old.filter(tab=>tab.id!==pendingId || tab.id===existing.id));
+       if(activate){activeIdRef.current=existing.id;setActiveId(existing.id);}return existing.id;
++    }
++    if(validPrototypeView(view)) {
++      retainedPrototypes.current.add(view.viewToken);
++      prototypeControllers.current.set(view.viewToken,new PrototypeController(view));
++      if(typeof api.rememberRecentDocument==='function')void api.rememberRecentDocument(view.fileId).then(refreshRecents).catch(()=>{});
+     }
+     const tab:Tab={id:view.fileId,identityKey:view.identityKey,name:view.name,displayPath:view.displayPath,kind:view.kind,
+       localView:view,diskVersion:view.diskVersion,request:{...request,fileId:view.fileId},explicitFile:request.explicitFile,
+@@ -1800,13 +1884,13 @@
+       if(active) {const location=htmlLocations.current.get(active.id);changeHistory(recordVisit(historyRef.current,{key:active.id,anchor:link.anchor ?? "",
+         target:{...active,htmlLocation:location},scrollTop:location?.scrollTop ?? 0,scrollLeft:location?.scrollLeft ?? 0}));} return;
+     }
+-    if(!link.fileId || !["html","document","image","details"].includes(link.kind)) {
++    if(!link.fileId || !["html","prototype","document","image","details"].includes(link.kind)) {
+       setNotice(l=>errorText(l,link.reason ?? (link.kind==="missing"?"missing":"unsupported_type")));return;
+     }
+     const sequence=++openSequence.current, source=activeIdRef.current;
+     try {
+       const view=selected ?? await htmlNative.open({fileId:link.fileId},crypto.randomUUID());
+-      if(sequence!==openSequence.current || source!==activeIdRef.current){if(view.viewToken)await htmlNative.dispose({viewToken:view.viewToken,generation:view.generation});return;}
++      if(sequence!==openSequence.current || source!==activeIdRef.current){if(view.viewToken)await disposeLocalView(view);return;}
+       let failureCode:string|undefined;
+       const id=await acceptLocalView(view,{fileId:view.fileId,...(explicitFile ? {explicitFile:true} : {})},undefined,view.kind!=='html',code=>{failureCode=code;});
+       if(id && view.kind==='html') {
+@@ -1843,14 +1927,22 @@
+     const current = () => generation === generationRef.current && documentLoads.current.get(requestKey) === token;
+     const activate = (id: string) => {
+       if (sequence !== openSequence.current) return;
++      const selection = pendingDocumentSelection.current;
++      if (selection?.loadToken === token && selection.sequence === sequence && selection.generation === generation) {
++        selection.fileId = id;
++        selection.loadToken = undefined;
++      }
+       activeIdRef.current = id;
+       setActiveId(id); setCompactSidebarOpen(false);
+     };
+     // Acquisition reserves identity; rendering success is acknowledged separately by the native surface.
+     const pendingId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
+     const pendingName = fallback?.name ?? request.segments?.at(-1) ?? "";
+-    if (!isHtmlDocument(pendingName)) setDocumentPending({ token, name: pendingName, sequence, generation });
+-    if (isHtmlDocument(pendingName)) {
++    if (!isNativeDocument(pendingName)) {
++      selectionAcquisition.current = { token, sequence, generation };
++      setDocumentPending({ token, name: pendingName, sequence, generation });
++    }
++    if (isNativeDocument(pendingName)) {
+       // Closing a pending tab invalidates the same token as closing a settled
+       // tab, including root-relative requests whose request key differs.
+       documentLoads.current.set(pendingId, token);
+@@ -1862,18 +1954,18 @@
+       activate(pendingId);
+     }
+     try {
+-      if (isHtmlDocument(pendingName)) {
++      if (isNativeDocument(pendingName)) {
+         const opening=crypto.randomUUID();htmlOpens.current.set(pendingId,opening);
+         let view:LocalView;
+         try {view=await htmlNative.open(localTarget(request),opening);} catch(e) {
+           if(!(e && typeof e==='object' && 'code' in e) || String(e).includes('not found')) throw {code:'html_view_unavailable',message:'Isolated HTML provider unavailable'}; throw e;
+         } finally {if(htmlOpens.current.get(pendingId)===opening)htmlOpens.current.delete(pendingId);}
+-        if(!current() || documentLoads.current.get(pendingId)!==token) {if(view.viewToken)await htmlNative.dispose({viewToken:view.viewToken,generation:view.generation});return;}
++        if(!current() || documentLoads.current.get(pendingId)!==token) {if(view.viewToken)await disposeLocalView(view);return;}
+         return await acceptLocalView(view,request,pendingId,sequence===openSequence.current);
+       }
+       const document = requireMarkdownResponse(await api.readDocument(request));
+       setDocumentPending(old => old?.token === token ? null : old);
+-      if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
++      if (!current() || (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       if (typeof api.rememberRecentDocument === "function") {
+         void api.rememberRecentDocument(document.fileId).then(refreshRecents).catch(() => {});
+       }
+@@ -1949,7 +2041,7 @@
+       }
+       return tab.id;
+     } catch (error) {
+-      if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
++      if (!current() || (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       const detail = readerError(error);
+       onFailure?.(detail.code);
+       if (detail.code === "oversize") {
+@@ -2001,9 +2093,10 @@
+         : [...old, tab]);
+       activate(id);
+     } finally {
++      if (selectionAcquisition.current?.token === token) selectionAcquisition.current = null;
+       setDocumentPending(old => old?.token === token ? null : old);
+       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+-      if (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
++      if (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+     }
+   }
+ 
+@@ -2169,6 +2262,7 @@
+   }
+ 
+   async function refreshRetainedTab(tabId: string) {
++    if(tabsRef.current.find(t=>t.id===tabId)?.kind === "prototype") {await reloadPrototype(tabId);return;}
+     if(tabsRef.current.find(t=>t.id===tabId)?.kind === "html") {await htmlHandles.current.get(tabId)?.reload();return;}
+     if (tabsRef.current.find((item) => item.id === tabId)?.kind === "image") {
+       const tab = tabsRef.current.find((item) => item.id === tabId)!;
+@@ -2358,6 +2452,16 @@
+     const next = tabsRef.current.filter((tab) => !closing.has(tab.id));
+     tabsRef.current = next;
+     setTabs(next);
++    // Checkpoints refer to the remaining tabs; release native prototype grants after pending writes settle.
++    for(const tab of targets)if(tab.localView?.kind==='prototype') {
++      const token=tab.localView.viewToken!;retainedPrototypes.current.delete(token);
++      const controller=prototypeControllers.current.get(token);prototypeControllers.current.delete(token);
++      await sessionWrite.current.catch(()=>{});
++      if(controller)await controller.dispose(true).catch(()=>{});
++      else await prototypeNative.dispose({viewToken:token,generation:tab.localView.generation},true).catch(()=>{});
++    }
++    for(const tab of targets)if(isPrototypeDocument(tab.name) && !tab.localView && tab.request.fileId)
++      await prototypeNative.releaseGrant(tab.request.fileId).catch(()=>{});
+     // Session visit history retains view locations after the tabs close.
+     if (activeIdRef.current && closing.has(activeIdRef.current)) {
+       activeIdRef.current = next.at(-1)?.id ?? null;
+@@ -2615,7 +2719,7 @@
+       : tab.freshness === "checking" ? t(locale, "checking")
+       : tab.freshness === "uncertain" ? t(locale, "unableConfirm")
+       : tab.freshness === "conflict" ? t(locale, "conflictNotice")
+-      : tab.freshness === "changed" ? t(locale, "updatedFromDisk") : "";
++      : tab.freshness === "changed" ? t(locale, tab.kind === "prototype" ? "prototypeChanged" : "updatedFromDisk") : "";
+     return [tab.dirty ? t(locale, "unsaved") : "", status].filter(Boolean).join(" · ");
+   }
+ 
+@@ -2712,7 +2816,7 @@
+         const loadedId = await loading;
+         if (loadedId && loadedId === activeIdRef.current && generation === generationRef.current
+           && openIntent === openSequence.current && result.anchor) setPendingAnchor({ fileId: loadedId, anchor: result.anchor });
+-      } else if ((result.kind === "html" || result.kind === "details") && result.fileId) {
++      } else if ((result.kind === "html" || result.kind === "prototype" || result.kind === "details") && result.fileId) {
+         await followHtmlLink({...result,requestedPath:null,accessId:null,reason:null}, undefined, active.explicitFile);
+       } else if (result.kind === "image" && result.fileId) {
+         await openImage({ fileId: result.fileId, ...(active.explicitFile ? { explicitFile: true } : {}) });
+@@ -2775,10 +2879,11 @@
+       const target = entry.target;
+       const existing = tabsRef.current.find((tab) => tab.id === target.id);
+       let loaded: Tab;
+-      if(target.kind === "html" || target.kind === "details") {
++      if(target.kind === "html" || target.kind === "prototype" || target.kind === "details") {
+         const view=existing?.localView ?? await htmlNative.open(localTarget(target.request),crypto.randomUUID());
+         if(view.kind!==target.kind || (view.kind==='html' && !validHtmlView(view))) throw {code:'html_view_unavailable',message:'Isolated HTML provider unavailable'};
+         loaded={...existing,...target,id:view.fileId,localView:view,identityKey:view.identityKey,errorCode:undefined};
++        if(validPrototypeView(view)) {retainedPrototypes.current.add(view.viewToken);if(!prototypeControllers.current.has(view.viewToken))prototypeControllers.current.set(view.viewToken,new PrototypeController(view));}
+         if(target.htmlLocation) htmlLocations.current.set(loaded.id,target.htmlLocation);
+         if(target.kind==='html') {
+           if(!existing) setTabs(old=>[...old,loaded]);
+@@ -2810,7 +2915,7 @@
+             content: undefined, errorCode: undefined, largeOpened: undefined, largeConsent: false };
+         }
+       }
+-      if (!valid()) {if(!existing && loaded.localView?.viewToken)void htmlNative.dispose({viewToken:loaded.localView.viewToken,generation:loaded.localView.generation});return;}
++      if (!valid()) {if(!existing && loaded.localView?.viewToken)void disposeLocalView(loaded.localView);return;}
+       if(htmlHandles.current.size) await hideHtml();
+       // Supersede older pending reads only after the validated traversal succeeds.
+       imageLoads.current.delete(target.id); documentLoads.current.delete(target.id);
+@@ -2998,6 +3103,7 @@
+         void saveEdit(activeId);
+       } else if (key === "r" && active) {
+         event.preventDefault();
++        if(active.kind === "prototype") {void reloadPrototype(active.id);return;}
+         if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
+         if (active.largeInspection) { void reloadLargeTab(active.id); return; }
+         const target: RefreshTarget | null = active.explicitFile && active.request.fileId
+@@ -3015,15 +3121,55 @@
+ 
+   // Capture before RichSection's section-only select-all. The workspace owns
+   // the full document; native text fields and dialogs keep their own shortcut.
++  useEffect(() => watchSelectionOwner(() => findRoot, () => { pendingDocumentSelection.current = null; }), [findRoot]);
++  useEffect(() => {
++    const request = pendingDocumentSelection.current;
++    if (!request) return;
++    if (request.sequence !== openSequence.current || request.generation !== generationRef.current
++      || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, findRoot)
++      || (!request.loadToken && (request.fileId !== active?.id || active.errorCode || active.largeInspection
++        || (active.kind && active.kind !== "markdown") || (request.content !== undefined && request.content !== active.content)))) {
++      pendingDocumentSelection.current = null; return;
++    }
++    if (request.loadToken || request.dispatched || active?.documentLoading || active?.content === undefined
++      || documentSelectionRef.current?.fileId !== request.fileId) return;
++    request.content = active.content;
++    // Adapter selection flushes incremental paint synchronously; invoke outside
++    // React's commit, and retain the lease through parse/layout completion.
++    const frame = requestAnimationFrame(() => {
++      const isCurrent = () => pendingDocumentSelection.current === request
++        && request.sequence === openSequence.current && request.generation === generationRef.current
++        && request.fileId === activeIdRef.current
++        && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content;
++      if (!isCurrent() || documentSelectionRef.current?.fileId !== request.fileId) return;
++      request.dispatched = true;
++      documentSelectionRef.current.selectAll({ isCurrent, onComplete: () => {
++        if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null;
++      } });
++    });
++    return () => cancelAnimationFrame(frame);
++  });
+   useEffect(() => {
+     const selectAll = (event: KeyboardEvent) => {
++      const acquisition = selectionAcquisition.current;
++      const loading = acquisition?.sequence === openSequence.current && acquisition.generation === generationRef.current ? acquisition : null;
+       if (!commandPressed(event) || event.key.toLowerCase() !== "a" || event.shiftKey
+         || event.defaultPrevented || event.isComposing || document.querySelector('[aria-modal="true"]')
+-        || !active || (active.kind && active.kind !== "markdown") || active.errorCode
+-        || active.documentLoading || active.largeInspection || documentSelectionRef.current?.fileId !== active.id
++        || (!loading && (!active || (active.kind && active.kind !== "markdown") || active.errorCode || active.largeInspection))
+         || ownsTextInput(event.target, findRoot) || ownsTextInput(document.activeElement, findRoot)) return;
+       event.preventDefault(); event.stopPropagation();
+-      documentSelectionRef.current.selectAll();
++      const request: NonNullable<typeof pendingDocumentSelection.current> = { sequence: openSequence.current, generation: generationRef.current,
++        loadToken: loading?.token, fileId: loading ? undefined : active!.id,
++        content: loading ? undefined : active!.content };
++      pendingDocumentSelection.current = request;
++      if (!loading && !active!.documentLoading && documentSelectionRef.current?.fileId === active!.id) {
++        request.dispatched = true;
++        documentSelectionRef.current.selectAll({ isCurrent: () => pendingDocumentSelection.current === request
++          && request.sequence === openSequence.current && request.generation === generationRef.current
++          && request.fileId === activeIdRef.current
++          && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content,
++        onComplete: () => { if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null; } });
++      }
+     };
+     window.addEventListener("keydown", selectAll, true);
+     return () => window.removeEventListener("keydown", selectAll, true);
+@@ -3119,6 +3265,7 @@
+       else if (payload === "workspace_save" && activeId && edits[activeId]) void saveEdit(activeId);
+       else if (payload === "workspace_find") openFind();
+       else if (payload === "workspace_reload" && active) {
++        if(active.kind === "prototype") {void reloadPrototype(active.id);return;}
+         if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
+         if (active.largeInspection) { void reloadLargeTab(active.id); return; }
+         const target: RefreshTarget | null = active.explicitFile && active.request.fileId
+@@ -3145,7 +3292,7 @@
+   function tree(segments: string[]): React.ReactNode {
+     const state = directories[pathKey(segments)];
+     if (!state?.expanded) return null;
+-    const entries = state.entries.filter((entry) => entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isHtmlDocument(entry.name));
++    const entries = state.entries.filter((entry) => entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isNativeDocument(entry.name));
+     return (
+       <div role="group" className="tree-group">
+         {entries.map((entry) => {
+@@ -3195,9 +3342,9 @@
+                 }}
+                 onClick={() => isFolder
+                   ? toggleDirectory(path)
+-                  : (entry.kind === "markdown" || isHtmlDocument(entry.name)) && root
++                  : (entry.kind === "markdown" || isNativeDocument(entry.name)) && root
+                     ? void openDocument({ rootId: root.id, segments: path }, { name: entry.name,
+-                      path: isHtmlDocument(entry.name) ? `${root.displayPath.replace(/[\\/]+$/, "")}/${path.join("/")}` : path.join("/") })
++                      path: isNativeDocument(entry.name) ? `${root.displayPath.replace(/[\\/]+$/, "")}/${path.join("/")}` : path.join("/") })
+                     : entry.kind === "image" && root
+                       ? void openImage({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
+                     : setNotice(noticeLocale => t(noticeLocale, "unsupported"))}
+@@ -3518,7 +3665,7 @@
+                   {tree([])}
+                   {directories[pathKey([])]?.loaded
+                     && !directories[pathKey([])]?.entries.some((entry) =>
+-                      entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isHtmlDocument(entry.name)) && (
++                      entry.kind === "directory" || !markdownOnly || entry.kind === "markdown" || entry.kind === "image" || isNativeDocument(entry.name)) && (
+                     <div className="sidebar-empty">
+                       <p>{t(locale, "emptyFolder")}</p>
+                       <button type="button" onClick={() => void chooseFolder()}>{t(locale, "chooseAnother")}</button>
+@@ -3820,7 +3967,7 @@
+             beforeMenuOpen={htmlHandles.current.size ? hideHtml : undefined}
+             onMenuOpen={() => { setProjectsMenu(null); setReloadMenu(null); setGoMenu(null); }}
+             menuActions={<>
+-              {active.kind !== "image" && (narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
++              {active.kind !== "image" && active.kind !== "prototype" && (narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+                   onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+@@ -3833,7 +3980,8 @@
+ 
+               <button type="button" onClick={()=>void closeTab(active.id)}>{t(locale,"closeTab")}</button>
+               <button type="button" disabled={busy || (!active.largeInspection && !refreshTarget(active))} onClick={() => {
+-                if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
++                if(active.kind === "prototype") {void reloadPrototype(active.id);return;}
++        if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
+         if (active.largeInspection) { void reloadLargeTab(active.id); return; }
+                 const target = refreshTarget(active);
+                 if (target) void startReload({ target, label: active.name, x: 0, y: 0, anchor: readerRef.current ?? document.body });
+@@ -3841,15 +3989,15 @@
+             </>}
+             actions={<>
+               {active.kind === "image" ? <div className="image-controls-host" ref={setImageControlsHost} />
+-                : <button type="button" onClick={openFind} disabled={!findAvailable}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>}
+-              {active.kind !== "image" && !narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
++                : active.kind === "prototype" ? null : <button type="button" onClick={openFind} disabled={!findAvailable}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>}
++              {active.kind !== "image" && active.kind !== "prototype" && !narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+                   onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+                 <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+                   onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
+               </>}
+-              {active.kind !== "image" && active.kind !== "html" && active.kind !== "details" && !isHtmlDocument(active.name) && !active.largeInspection && !active.errorCode && <>
++              {active.kind !== "image" && active.kind !== "html" && active.kind !== "details" && active.kind !== "prototype" && !isNativeDocument(active.name) && !active.largeInspection && !active.errorCode && <>
+               {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
+                 <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
+                   || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
+@@ -4030,9 +4178,11 @@
+                     : <button type="button" onClick={() => void (active.kind === "image" ? openImage : openDocument)(active.request, { name: active.name, path: active.displayPath })}>
+                       {t(locale, "retry")}
+                     </button>}
+-                {isHtmlDocument(active.name) && <button type="button" onClick={() => void closeTab(active.id)}>{t(locale, "closeTab")}</button>}
++                {isNativeDocument(active.name) && <button type="button" onClick={() => void closeTab(active.id)}>{t(locale, "closeTab")}</button>}
+               </div>
+-            ) : active.kind === "html" ? null : active.kind === "details" ? (
++            ) : active.kind === "html" ? null : active.kind === "prototype" && active.localView && validPrototypeView(active.localView) ? (
++              <PrototypeView view={active.localView} locale={locale} changed={active.freshness==='changed'} reloadFailed={Boolean(active.prototypeReloadFailed)} onReload={()=>void reloadPrototype(active.id)} />
++            ) : active.kind === "details" ? (
+               <section className="error-state" role="tabpanel" aria-label={active.name}>
+                 <h1>{active.name}</h1><p>{t(locale,'previewUnavailable')}</p><p className="selectable-path" tabIndex={0}>{active.displayPath}</p>
+                 <p>{active.localView?.extension} · {copySize(active.localView?.bytes ?? 0,locale)}</p>

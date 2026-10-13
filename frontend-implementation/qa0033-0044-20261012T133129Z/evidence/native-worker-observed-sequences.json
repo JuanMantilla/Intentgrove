@@ -1,0 +1,69 @@
+{
+  "provenance": "Transcribed exact milestones from Computer Use TextEdit AX clipboard export; full raw trace remains in task-owned TextEdit scratch. These are observed successes, not failure causes. UI Save redirected to an iCloud auto-named document; filesystem read blocked and was interrupted, so no claimed raw-log file capture.",
+  "attempts": [
+    {
+      "construction_at_ms": 327061,
+      "reply_at_ms": 327113,
+      "reply_elapsed_ms": 52,
+      "visibility": "visible",
+      "focus": true,
+      "length": 4937,
+      "fileId": "6966cd25-5ab7-4aaa-82d5-ef58374fccfe",
+      "owner": 1,
+      "reply": {
+        "kind": "parsed",
+        "version": 1,
+        "generation": 1
+      },
+      "finish": {
+        "live": true,
+        "tree": true
+      }
+    },
+    {
+      "construction_at_ms": 493518,
+      "reply_at_ms": 493557,
+      "reply_elapsed_ms": 39,
+      "visibility": "visible",
+      "focus": true,
+      "length": 4937,
+      "fileId": "6966cd25-5ab7-4aaa-82d5-ef58374fccfe",
+      "owner": 1,
+      "reply": {
+        "kind": "parsed",
+        "version": 1,
+        "generation": 1
+      },
+      "finish": {
+        "live": true,
+        "tree": true
+      }
+    },
+    {
+      "construction_at_ms": 517712,
+      "reply_at_ms": 517874,
+      "reply_elapsed_ms": 162,
+      "visibility": "hidden",
+      "focus": true,
+      "length": 4937,
+      "fileId": "6966cd25-5ab7-4aaa-82d5-ef58374fccfe",
+      "owner": 1,
+      "reply": {
+        "kind": "parsed",
+        "version": 1,
+        "generation": 1
+      },
+      "finish": {
+        "live": true,
+        "tree": true
+      }
+    }
+  ],
+  "provider_incidents": [
+    "cgWindowNotFound",
+    "ScreenCaptureKit invalid parameter -3812",
+    "background picker selection did not enable Open until user foregrounded observer"
+  ],
+  "user_assisted": "User explicitly reported observer foreground ready; tests afterward are labeled assisted activation.",
+  "source_boundary": "v5 complete native + observation-only frontend; no production observer code"
+}

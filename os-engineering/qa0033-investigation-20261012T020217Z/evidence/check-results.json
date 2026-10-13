@@ -1,0 +1,255 @@
+[
+  {
+    "id": "unchanged-isolated",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:03:10.929018+00:00",
+    "finished_at": "2026-10-12T02:03:13.846565+00:00",
+    "seconds": 2.917438459,
+    "load_after": [
+      3.1298828125,
+      4.00146484375,
+      7.2412109375
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/unchanged-isolated.log",
+    "summary": [
+      "Test Files  1 passed (1)",
+      "Tests  4 passed | 73 skipped (77)",
+      "Duration  2.43s (transform 456ms, setup 0ms, import 824ms, tests 743ms, environment 774ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "unchanged-full-01",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:03:26.683343+00:00",
+    "finished_at": "2026-10-12T02:04:15.976874+00:00",
+    "seconds": 49.293284208,
+    "load_after": [
+      4.53369140625,
+      4.1552734375,
+      7.0537109375
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/unchanged-full-01.log",
+    "summary": [
+      "Test Files  67 passed (67)",
+      "Tests  670 passed (670)",
+      "Duration  48.85s (transform 1.42s, setup 0ms, import 9.46s, tests 63.77s, environment 19.06s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "diagnostic-isolated",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic.config.ts"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:04:30.683814+00:00",
+    "finished_at": "2026-10-12T02:04:32.774013+00:00",
+    "seconds": 2.0901099579999998,
+    "load_after": [
+      4.18115234375,
+      4.09716796875,
+      6.98193359375
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-isolated.log",
+    "summary": [
+      "Test Files  1 passed (1)",
+      "Tests  4 passed | 73 skipped (77)",
+      "Duration  1.76s (transform 404ms, setup 17ms, import 633ms, tests 738ms, environment 300ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "diagnostic-full-01",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic.config.ts"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:04:53.482665+00:00",
+    "finished_at": "2026-10-12T02:06:05.203148+00:00",
+    "seconds": 71.720250292,
+    "load_after": [
+      6.15625,
+      4.73291015625,
+      6.91552734375
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-full-01.log",
+    "summary": [
+      "Test Files  67 passed (67)",
+      "Tests  670 passed (670)",
+      "Duration  71.26s (transform 1.92s, setup 927ms, import 14.35s, tests 83.77s, environment 32.71s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "diagnostic-v2-isolated",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic-v2.config.ts"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:06:21.055521+00:00",
+    "finished_at": "2026-10-12T02:06:58.641582+00:00",
+    "seconds": 37.585814750000004,
+    "load_after": [
+      62.5390625,
+      18.6650390625,
+      11.84326171875
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-v2-isolated.log",
+    "summary": [
+      "Test Files  1 passed (1)",
+      "Tests  4 passed | 73 skipped (77)",
+      "Duration  36.54s (transform 12.26s, setup 173ms, import 21.98s, tests 7.34s, environment 5.50s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "diagnostic-v3-isolated",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic-v3.config.ts"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:07:33.030862+00:00",
+    "finished_at": "2026-10-12T02:08:13.565417+00:00",
+    "seconds": 40.5341145,
+    "load_after": [
+      79.42822265625,
+      31.4541015625,
+      17.14013671875
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-v3-isolated.log",
+    "summary": [
+      "Test Files  1 passed (1)",
+      "Tests  4 passed | 73 skipped (77)",
+      "Duration  39.12s (transform 21.28s, setup 115ms, import 28.13s, tests 7.33s, environment 3.16s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "diagnostic-v4-full-01",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic-v4.config.ts"
+    ],
+    "exit_code": 1,
+    "started_at": "2026-10-12T02:08:47.077148+00:00",
+    "finished_at": "2026-10-12T02:12:24.670771+00:00",
+    "seconds": 217.590277125,
+    "load_after": [
+      15.64453125,
+      31.2470703125,
+      21.791015625
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-v4-full-01.log",
+    "summary": [
+      "Test Files  2 failed | 65 passed (67)",
+      "Tests  6 failed | 664 passed (670)",
+      "Duration  216.34s (transform 5.64s, setup 1.08s, import 31.20s, tests 326.28s, environment 58.66s)"
+    ],
+    "failures": [
+      "FAIL  tests/ui/workspace-handoff.test.tsx > approved workspace handoff > reveals collapsed branches only after explicit request",
+      "FAIL  tests/ui/workspace-handoff.test.tsx > approved workspace handoff > confirms discard, preserves input on cancel and returns to the section button",
+      "FAIL  tests/ui/workspace-handoff.test.tsx > approved workspace handoff > keeps dirty source status after confirmed recovery and protects a submitted save revision",
+      "FAIL  tests/ui/workspace-handoff.test.tsx > approved workspace handoff > retains draft, selection and Undo while traversing away and back, without saving or discarding",
+      "FAIL  tests/ui/workspace-layout.test.tsx > preview navigation refinement (jsdom, native bridge mocked) > keeps narrow margin Projects keyboard-operable and returns focus without remounting an editor",
+      "FAIL  tests/ui/workspace-layout.test.tsx > Option C Projects close (native bridge mocked) > closes atlas with Enter/Space and preserves draft, reader, tabs and width"
+    ]
+  },
+  {
+    "id": "unchanged-full-02",
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-12T02:12:35.471406+00:00",
+    "finished_at": "2026-10-12T02:14:27.434864+00:00",
+    "seconds": 111.963071041,
+    "load_after": [
+      14.69287109375,
+      24.6904296875,
+      20.35791015625
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/unchanged-full-02.log",
+    "summary": [
+      "Test Files  67 passed (67)",
+      "Tests  670 passed (670)",
+      "Duration  111.54s (transform 2.50s, setup 0ms, import 20.71s, tests 145.47s, environment 44.01s)"
+    ],
+    "failures": []
+  }
+]

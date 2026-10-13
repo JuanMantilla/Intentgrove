@@ -1,0 +1,57 @@
+[
+  {
+    "name": "full-suite-before",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/full-suite-before.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "started_at": "2026-10-12T04:51:21.596018+00:00",
+    "finished_at": "2026-10-12T04:54:47.626947+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "isolated-suite",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "tests/ui/close-edit.test.tsx",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/isolated-suite.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "started_at": "2026-10-12T04:54:47.627631+00:00",
+    "finished_at": "2026-10-12T04:54:58.174454+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "full-suite-before-2",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/full-suite-before-2.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "started_at": "2026-10-12T04:54:58.174966+00:00",
+    "finished_at": "2026-10-12T04:57:31.502757+00:00",
+    "exit_code": 0
+  }
+]

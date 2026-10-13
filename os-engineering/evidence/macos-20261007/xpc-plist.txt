@@ -1,0 +1,12 @@
+{
+  "CFBundleExecutable" => "md_reader_image_xpc"
+  "CFBundleIdentifier" => "com.juanmantilla.markdownworkspace.ImageDecoder"
+  "CFBundleInfoDictionaryVersion" => "6.0"
+  "CFBundlePackageType" => "XPC!"
+  "CFBundleShortVersionString" => "0.1.0"
+  "CFBundleVersion" => "1"
+  "XPCService" => {
+    "RunLoopType" => "dispatch_main"
+    "ServiceType" => "Application"
+  }
+}

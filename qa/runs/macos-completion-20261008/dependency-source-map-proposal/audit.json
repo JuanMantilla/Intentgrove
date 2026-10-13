@@ -1,0 +1,15 @@
+{
+  "package": "source-map-js",
+  "version": "1.2.2",
+  "integrity": "sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==",
+  "sha256": "05c8cf8e7c3a6b56cada7668fe9342b10f4b625efc92aba9ba05b9e8fe4d71a3",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "npm run build && node test/run-tests.js",
+    "build": "webpack --color",
+    "toc": "doctoc --title '## Table of Contents' README.md && doctoc --title '## Table of Contents' CONTRIBUTING.md"
+  },
+  "dependencies": {},
+  "installed": false,
+  "proposalOnly": true
+}

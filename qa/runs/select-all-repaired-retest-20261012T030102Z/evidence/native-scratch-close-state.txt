@@ -1,0 +1,31 @@
+Window: "Save", App: TextEdit.
+0 sheet Description: save, ID: save-panel, Secondary Actions: Raise
+	1 split group
+		2 splitter (disabled, settable, float) -1
+		3 text Value: Where:, ID: whereLabel
+		4 pop up button Where:, Value: ⁨TextEdit⁩ — iCloud, ID: where popup
+		5 disclosure triangle Description: show more options, Value: 0
+		6 text Do you want to keep this new document “Draft Reading Passage A”? You can choose to save your changes, or delete this document immediately. You can’t undo this action. Save As:
+		7 text field (settable) Value: Draft Reading Passage A, ID: saveAsNameTextField
+		8 text Value: Tags:, ID: tagsLabel
+		9 text field (settable) tag editor
+		10 text Plain Text Encoding:
+		11 pop up button Help: Encoding to use if there is no encoding specified with the file., Value: Unicode (UTF-8)
+		12 checkbox If no extension is provided, use “.txt”., Help: Automatically append “.txt” to the file name if no known file name extension is provided., Value: 1
+		13 button Delete, ID: DontSaveButton
+		14 button Cancel, ID: CancelButton
+		15 button Save, ID: OKButton
+16 menu bar
+	17 (selected) TextEdit
+	18 File
+	19 Edit
+	20 Format
+	21 View
+	22 Window
+	23 Help
+
+Selected text: ```
+Draft Reading Passage A
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

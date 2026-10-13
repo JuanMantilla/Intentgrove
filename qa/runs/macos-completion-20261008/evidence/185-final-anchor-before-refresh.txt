@@ -1,0 +1,100 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: rich.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) hostile-matrix.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/hostile-matrix.md
+						14 button Close tab: hostile-matrix.md, Help: Close tab
+					15 container
+						16 tab (selected) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						17 button Close tab: rich.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container Visited files
+					21 text Atrás: entry-00000.md
+				22 container rich.md
+					23 text rich.md
+					24 text Folder root
+					25 button Edit section
+					26 summary Document…, Value: off
+						27 text Document…
+				28 container rich.md
+					29 container Reading acceptance
+						30 summary Metadata, Value: off
+							31 text Metadata
+						32 container Edit section: Reading acceptance
+							33 heading Reading acceptance, Value: 1
+								34 text Reading acceptance
+							35 button Edit section “Reading acceptance”
+						36 container
+							37 text Before diagrams. 
+							38 button Reference, Help: linked.md
+							39 text  and encoded footnote
+							40 button 1, Help: #fn-a%2520b
+							41 text .
+						42 text json
+						43 button Copy code
+						44 text {"highlight": true}
+
+						45 image Mermaid diagram
+						46 summary View source, Value: off
+							47 text View source
+						48 text Between diagrams.
+						49 image Mermaid diagram
+						50 summary View source, Value: off
+							51 text View source
+						52 text Diagram unavailable. The source is preserved below.
+						53 container (expanded) Secondary Actions: Collapse
+							54 summary View source, Value: on
+								55 text View source
+							56 text mermaid
+							57 button Copy code
+							58 text flowchart broken
+
+						59 text Diagram unavailable. The source is preserved below.
+						60 container (expanded) Secondary Actions: Collapse
+							61 summary View source, Value: on
+								62 text View source
+							63 text mermaid
+							64 button Copy code
+							65 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						66 text After diagrams.
+						67 container Edit section: Duplicate
+							68 heading Duplicate, Value: 2
+								69 text Duplicate
+							70 button Edit section “Duplicate”
+						71 text First duplicate target.
+						72 container Edit section: Duplicate
+							73 heading Duplicate, Value: 2
+								74 text Duplicate
+							75 button Edit section “Duplicate”
+						76 text Second duplicate target.
+						77 container
+							78 text [1] 
+							79 button ↩, Help: #fnref-a%2520b-1
+						80 text Encoded footnote body.
+	81 close button
+	82 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	83 minimize button
+	84 text Intentgrove
+85 menu bar
+	86 Intentgrove Completion 20261008
+	87 File
+	88 Edit
+	89 View
+	90 Go
+	91 Window
+	92 Help

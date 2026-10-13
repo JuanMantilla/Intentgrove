@@ -1,5 +1,7 @@
 # Markdown workspace implementation status
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](current-version-acceptance-20261010.md).
+
 Reviewed on 2026-10-05 for the owner of `md-reader`. The repository contains a working macOS application, substantial automated coverage, local app and DMG packages, and extensive specifications and design artifacts. It is beyond the original read-only reader. The complete approved product and redesign are still unfinished, and no feature ledger establishes full acceptance of the current combined application.
 
 The clearest distinction is: **many bounded implementations are finished and tested; full native acceptance and several approved capabilities remain open.** Windows has prototype source now, but no verified Windows build or runtime result.

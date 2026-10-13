@@ -1,0 +1,10 @@
+Current supported CUA native apps, AX, screenshots, keys, click, drag, window menus, Finder Other picker were discovered and used.
+File drag: Finder dragged second.md from side-by-side source coordinates [590,630] to destination [1922,600], no observed delivery. App drag with cross-window source [-692,630] raised windowNotFoundAtPosition((293.0,345.0)). File/folder/Settings drops remain unverified.
+Dock: com.apple.dock binding timed out -10005; Control-F3 did not expose Dock accessibility. LaunchServices/app activation is not Dock evidence.
+Clean Close: observing through app binding could implicitly reopen/activate a window; no reliable window-absence proof, gate unverified.
+Search: 1,500 and 20,000 disposable-file jobs completed/capped before observable Stop; no proven in-flight cancellation. Last follow-up click attempt returned -10005 noWindowsAvailable; reconnect exposed current app window with search closed. Escape after job completion is not cancellation proof.
+Stale batches/open replies: deterministic unit/UI tests are supplementary; no held native-reply final-package proof was captured.
+Finder duplicate IDs: warm attempt49 selected archived QA bundle; excluded. Exact Other picker attempt50 selects current path. Historical app directory renames preserve content, mapping retained.
+
+
+Final supported-automation recovery: uncapped query avoids10,000-result early finish and AX result overload. Observed running Stop then immediate click in same sequential CUA call succeeded; Stopped7,527entries stable54–55. Prior cancellation blocker resolved for NF26.

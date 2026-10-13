@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-08T14:09:27.515365+00:00",
+  "userStatements": [
+    "let's focus on apple silycon only, older versions aren't supported",
+    "Remove both older macOS and older-package upgrade testing"
+  ],
+  "activeArchitecture": "Apple Silicon arm64",
+  "activeRuntime": "current macOS host 27.0.1; no earlier macOS acceptance/support claim",
+  "removedCases": [
+    "CF52",
+    "CF53",
+    "CF55"
+  ],
+  "retainedCases": [
+    "CF42",
+    "CF54"
+  ],
+  "note": "Acceptance scope decision only. No deployment-target, security, packaging or signing changes. Exclusion is not PASS."
+}

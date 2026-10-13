@@ -1,14 +1,18 @@
-use crate::scope::{
-    open_relative, read_snapshot_entries, AppError, AppResult, DirectoryPage,
-};
+use crate::scope::{open_relative, read_snapshot_entries, AppError, AppResult, DirectoryPage};
 use crate::state::{AppState, DirectorySnapshot};
 use std::fs::File;
 
-
 fn directory_stamp(dir: &File) -> AppResult<String> {
     let st = crate::platform::stamp(dir)?;
-    Ok(format!("{}:{}:{}:{}:{}:{}", st.device, st.inode, st.modified_seconds,
-        st.modified_nanos, st.changed_seconds, st.changed_nanos))
+    Ok(format!(
+        "{}:{}:{}:{}:{}:{}",
+        st.device,
+        st.inode,
+        st.modified_seconds,
+        st.modified_nanos,
+        st.changed_seconds,
+        st.changed_nanos
+    ))
 }
 
 fn page(snapshot: &DirectorySnapshot, offset: usize) -> AppResult<DirectoryPage> {

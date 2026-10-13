@@ -1,0 +1,50 @@
+[
+  {
+    "name": "baseline-repeat",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--lib",
+      "--tests",
+      "--message-format=json",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/baseline-checkout",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target"
+    },
+    "started_at": "2026-10-12T04:05:41.600933+00:00",
+    "finished_at": "2026-10-12T04:06:03.518471+00:00",
+    "exit_code": 101
+  },
+  {
+    "name": "current-before-repeat",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--lib",
+      "--tests",
+      "--message-format=json",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/phase3-before-checkout",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target"
+    },
+    "started_at": "2026-10-12T04:06:03.518732+00:00",
+    "finished_at": "2026-10-12T04:06:31.154239+00:00",
+    "exit_code": 101
+  }
+]

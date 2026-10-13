@@ -1,0 +1,111 @@
+Window: "Intentgrove", App: Intentgrove HTML QA Final 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text workspace
+				10 button Project tree settings
+				11 container
+					12 button (collapsed) assets, Secondary Actions: Expand
+					13 button empty.html
+					14 button hostile.html
+					15 button malformed.html
+					16 button notes.md
+					17 button page.html
+					18 button second.htm
+					19 button unstyled.html
+				20 text Storage and recovery
+				21 text Open edits and recovery offers: 0
+				22 button Manage…
+			23 container
+				24 container Visited files
+					25 button Back, Help: Back: pixel.png
+/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/workspace/assets/pixel.png
+					26 button (disabled) Forward, Help: No next file
+				27 tab group (selectable) Documents
+					28 container
+						29 tab (selectable) page.html · workspace, Help: /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/workspace/page.html
+						30 button Close tab: page.html, Help: Close tab
+					31 container
+						32 tab (selectable) second.htm, Help: /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/workspace/second.htm
+						33 button Close tab: second.htm, Help: Close tab
+					34 container
+						35 tab (selectable) notes.md, Help: /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/workspace/notes.md
+						36 button Close tab: notes.md, Help: Close tab
+					37 container
+						38 tab (selectable) pixel.png, Help: /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/workspace/assets/pixel.png
+						39 button Close tab: pixel.png, Help: Close tab
+					40 container
+						41 tab (selected) page.html · standalone-bundle, Help: /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/page.html
+						42 button Close tab: page.html, Help: Close tab
+				43 pop up button Go menu
+				44 button (collapsed) Open documents (5), Secondary Actions: Expand
+				45 container Visited files
+					46 text Back: page.html
+				47 container page.html
+					48 text page.html
+					49 text Outside the open folder
+					50 toggle button Outline, Value: on
+					51 button (collapsed) Reading settings, Secondary Actions: Expand
+					52 summary Document…, Value: off
+						53 text Document…
+				54 container page.html
+					55 text HTML + CSS · Local file · Read only JavaScript off
+					56 container
+						57 text Zoom
+						58 pop up button (collapsed) Zoom, Value: 100%, Secondary Actions: Expand
+					59 container
+						60 text Some page styles couldn’t be loaded. The document is still readable.
+						61 button View details
+						62 button Reload
+					63 container HTML document
+					64 container Outline
+						65 button Disposable HTML fixture
+						66 button Section two
+					67 container View details
+						68 heading View details, Value: 2
+							69 text View details
+						70 button Close
+						71 text /private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/page.html
+						72 text HTML + CSS · Local file · Read only · JavaScript off
+						73 text JavaScript does not run here. Script-driven widgets may not respond.
+						74 heading Resource issues, Value: 3
+							75 text Resource issues
+						76 content list
+							77 container https://invalid.example/submit — This HTML resource or destination is not supported.
+								78 list marker •
+								79 text https://invalid.example/submit — This HTML resource or destination is not supported.
+							80 container ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/assets/page.css —Access to this local HTML resource was denied.
+								81 list marker •
+								82 text ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/assets/page.css — Access to this local HTML resource was denied.
+								83 button Choose resource…
+							84 container ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/assets/pixel.png —Access to this local HTML resource was denied.
+								85 list marker •
+								86 text ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/assets/pixel.png — Access to this local HTML resource was denied.
+								87 button Choose resource…
+							88 container ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/missing.png — Access to this local HTML resource was denied.
+								89 list marker •
+								90 text ig-html://8f6f35b5-9601-465e-9ba8-52625d281fa8/private/var/folders/q1/w_vhh3xs5xg7tzvgskbvgj440000gn/T/intentgrove-html-8LdZnr/outside/standalone-bundle/missing.png — Access to this local HTML resource was denied.
+								91 button Choose resource…
+						92 text Choose a folder to supply page assets for this view. This does not replace the workspace. Reload to apply selected resources.
+						93 button Choose resource folder…
+						94 button Reload
+	95 close button
+	96 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	97 minimize button
+	98 text Intentgrove
+99 menu bar
+	100 Intentgrove HTML QA Final 20261008
+	101 File
+	102 Edit
+	103 View
+	104 Go
+	105 Window
+	106 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

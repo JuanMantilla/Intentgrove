@@ -1,0 +1,48 @@
+{
+  "task_id": "cleanup-auto-disposable-20261011T050112Z",
+  "acceptance_version": "cleanup-auto-disposable-20261011T050112Z-v2",
+  "accepted_at": "2026-10-11T13:12:57.156205+00:00",
+  "authority": "User conditional acceptance in current request, transcribed in authorization.md",
+  "condition": "All four documented synthetic checks pass",
+  "observed_checks": [
+    {
+      "id": "synthetic_bytes_result",
+      "result": "PASS",
+      "reason": "Compared both exact file bytes and SHA-256 against preserved inputs/inventory; arithmetic 2+3=5.",
+      "finished_at": "2026-10-11T13:12:18.865004+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/checks.json"
+      ]
+    },
+    {
+      "id": "future_exact_scope",
+      "result": "PASS",
+      "reason": "New unique paths only; preexisting intermediate files retain baseline hashes.",
+      "finished_at": "2026-10-11T13:12:18.865122+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/checks.json"
+      ]
+    },
+    {
+      "id": "protected_reproducibility",
+      "result": "PASS",
+      "reason": "All final evidence and reproducibility inputs live outside deletion folder in protected qa tree.",
+      "finished_at": "2026-10-11T13:12:18.865243+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/checks.json"
+      ]
+    },
+    {
+      "id": "standing_policy_service",
+      "result": "PASS",
+      "reason": "Approved policy/config bytes unchanged; launchd observed existing service running. No new worker started.",
+      "finished_at": "2026-10-11T13:12:18.869818+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z-v2/checks.json"
+      ]
+    }
+  ],
+  "scope": "Original two exact synthetic scratch/trace outputs only; no application acceptance",
+  "supersedes_record_key": "f9547099378e1a8aea7c80ddc29ff9ae6d34096d94d4c390b362bf7dc1bb76cb",
+  "reason": "Current explicit deletion/restoration authorization replaces historical temporary retention while hook delivery was blocked. Original tests were machine-valid; their workflow retention context was obsolete for this continuation."
+}

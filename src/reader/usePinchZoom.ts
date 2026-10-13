@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from "react";
+import { useLayoutEffect, useRef, type RefObject } from "react";
 
 type Point = { x: number; y: number };
 type Gesture = Event & { scale: number; clientX: number; clientY: number };
@@ -27,7 +27,9 @@ export function usePinchZoom(ref: RefObject<HTMLElement | null>, identity: strin
   enabled: boolean, scale: number, change: (scale: number, point: Point) => void) {
   const current = useRef({ scale, change });
   current.current = { scale, change };
-  useEffect(() => {
+  // Input must be owned when the enabled content becomes observable. A passive
+  // effect leaves a committed source window briefly unable to receive pinch.
+  useLayoutEffect(() => {
     const element = ref.current;
     if (!element || !enabled) return;
     let gestureBase: number | null = null;

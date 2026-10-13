@@ -1,0 +1,45 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/src/app/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -3165,7 +3165,11 @@
+     request.content = active.content;
+     // Adapter selection flushes incremental paint synchronously; invoke outside
+     // React's commit, and retain the lease through parse/layout completion.
+-    const frame = requestAnimationFrame(() => {
++    // Native WebKit can deliver a command while animation frames are suspended
++    // by window occlusion. The adapter owns its parse/paint/layout readiness.
++    let live = true;
++    queueMicrotask(() => {
++      if (!live) return;
+       const isCurrent = () => pendingDocumentSelection.current === request
+         && request.sequence === openSequence.current && request.generation === generationRef.current
+         && request.fileId === activeIdRef.current
+@@ -3177,7 +3181,7 @@
+         if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null;
+       } });
+     });
+-    return () => cancelAnimationFrame(frame);
++    return () => { live = false; };
+   });
+   useEffect(() => {
+     const committedAcquisition = selectionAcquisition.current;
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-D/tests/ui/document-selection-readiness.test.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/document-selection-readiness.test.tsx
+@@ -48,3 +48,18 @@
+   act(() => mocks.callback?.(mocks.adapter));
+   await waitFor(() => expect(window.getSelection()!.toString()).toBe("Current documentCurrent ending."));
+ });
++it("dispatches acquired document intent without requiring a visible animation frame", async () => {
++  render(<App />); fireEvent.click(projectAction("Open folder"));
++  fireEvent.click(await screen.findByTitle("one.md"));
++  await screen.findByRole("heading", { name: "Current document" });
++  await act(async () => {});
++  const raf = vi.spyOn(window, "requestAnimationFrame").mockImplementation(() => 1);
++  const cancel = vi.spyOn(window, "cancelAnimationFrame").mockImplementation(() => {});
++  try {
++    const key = new KeyboardEvent("keydown", { key: "a", metaKey: true, bubbles: true, cancelable: true });
++    act(() => window.dispatchEvent(key));
++    expect(key.defaultPrevented).toBe(true);
++    act(() => mocks.callback?.(mocks.adapter));
++    await waitFor(() => expect(window.getSelection()!.toString()).toBe("Current documentCurrent ending."));
++  } finally { raf.mockRestore(); cancel.mockRestore(); }
++});

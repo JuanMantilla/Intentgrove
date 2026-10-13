@@ -1,0 +1,28 @@
+Window: "Intentgrove QA0035", App: Intentgrove QA0035.
+0 standard window Intentgrove QA0035, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container New Markdown file
+				4 heading New Markdown file, Value: 2
+					5 text New Markdown file
+				6 button Cancel
+				7 container
+					8 text Name your file and choose where it belongs. Filename
+					9 text field (settable) Filename, Value: QA_FILENAME_FIELD
+					10 text The .md extension is added once. QA_FILENAME_FIELD.md Destination
+					11 container Destination
+						12 text /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures
+					13 button Choose folder…
+					14 button Create file
+	15 close button
+	16 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	17 minimize button
+	18 text Intentgrove QA0035
+19 menu bar
+	20 Intentgrove QA0035
+	21 File
+	22 Edit
+	23 View
+	24 Go
+	25 Window
+	26 Help

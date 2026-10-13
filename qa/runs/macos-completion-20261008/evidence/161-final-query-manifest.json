@@ -1,0 +1,142 @@
+[
+  {
+    "query": "needle",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T04:15:20.759Z"
+  },
+  {
+    "query": "needle alpha",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:22.013Z"
+  },
+  {
+    "query": "needle beta",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:23.136Z"
+  },
+  {
+    "query": "absent-20261008",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T04:15:24.245Z"
+  },
+  {
+    "query": "# alpha 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:25.266Z"
+  },
+  {
+    "query": "# alpha 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true,
+    "at": "2026-10-08T04:15:26.332Z"
+  },
+  {
+    "query": "# beta 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:27.365Z"
+  },
+  {
+    "query": "# beta 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true,
+    "at": "2026-10-08T04:15:28.407Z"
+  },
+  {
+    "query": "alpha 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:29.454Z"
+  },
+  {
+    "query": "beta 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:30.519Z"
+  },
+  {
+    "query": "alpha 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T04:15:31.573Z"
+  },
+  {
+    "query": "beta 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T04:15:32.633Z"
+  },
+  {
+    "query": "NEEDLE",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T04:15:33.779Z"
+  },
+  {
+    "query": "alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:35.025Z"
+  },
+  {
+    "query": "beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:36.160Z"
+  },
+  {
+    "query": "match",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T04:15:37.359Z"
+  },
+  {
+    "query": "needle alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:38.632Z"
+  },
+  {
+    "query": "needle beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T04:15:39.740Z"
+  },
+  {
+    "query": "# alpha 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:40.849Z"
+  },
+  {
+    "query": "# beta 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T04:15:41.869Z"
+  }
+]

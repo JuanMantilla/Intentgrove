@@ -1,0 +1,65 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button Back, Help: Back: reading.md
+/private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+					23 container
+						24 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						25 button Close tab: reading.md, Help: Close tab
+					26 container
+						27 tab (selected) pixel.png · Select file again, Help: /private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+						28 button Close tab: pixel.png, Help: Close tab
+				29 pop up button Go menu
+				30 button (collapsed) Open documents (3), Secondary Actions: Expand
+				31 container Visited files
+					32 text Forward: reading.md
+				33 container pixel.png
+					34 text pixel.png
+					35 text Outside the open folder
+					36 container (expanded) Secondary Actions: Collapse
+						37 summary Document…, Value: on
+							38 text Document…
+						39 toggle button (disabled) Outline, Value: off
+						40 button (collapsed) Reading settings, Secondary Actions: Expand
+						41 button Copy path
+						42 button (disabled) Reload
+						43 summary Show path, Value: off
+							44 text Show path
+				45 heading Select file again, Value: 1
+					46 text Select file again
+				47 text Check the file, then try again or choose another document.
+				48 button Retry
+	49 close button
+	50 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	51 minimize button
+	52 text Intentgrove
+53 menu bar
+	54 Intentgrove Final Acceptance 20261008
+	55 File
+	56 Edit
+	57 View
+	58 Go
+	59 Window
+	60 Help
+
+The focused UI element is 37 summary Document…, Value: on

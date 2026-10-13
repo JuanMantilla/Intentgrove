@@ -1,0 +1,12 @@
+# Native default request failure — 2026-10-10
+
+User-reported actual attempt: the eligible rebuilt app asked for Make Default, then displayed “The default change was cancelled or could not be verified.” No separate macOS confirmation appeared. Absence of separate OS UI alone is not denial: the installed NSWorkspace header states that only some types require consent.
+
+Observed read-only evidence: installed /Applications copy and generated app share com.juanmantilla.markdownworkspace; /Applications copy lacks the consent marker. The local Markdown preference currently names that Intentgrove identity. This is not authoritative exact-bundle verification. Agent-context NSWorkspace queries remain unresolved; cause of the user-reported failure is UNCONFIRMED. A duplicate-copy mismatch is a hypothesis, not a proven explanation. Native CUA showed the workspace with no remaining alert; no app/file/settings/default action was performed there.
+
+Scoped repairs: distinguish macOS API error from failure to verify the requested copy; display requested application and per-extension actual handlers, identifying a different same-identity copy when observed. Perform up to three additional read-only queries at250ms after completion; never repeat an association request. Success still requires the exact bundle for both extensions. Add strict --inspect-default-markdown mode before Tauri/workspace initialization: prints JSON, reads no prompt preferences, presents no consent and invokes no setters. Existing development/QA/probe write exclusions remain unchanged.
+
+Checks PASS: focused strict-clang fake adapter tests (delayed visibility with one write, duplicate identity fixture, unknown status and EN/ES diagnostic text), native library121PASS/5ignored, final package build/strict signature/read-only diagnostic/disabled consent/extra-argument rejection. Evidence: evidence/request-failure/. No installation/default writes/preference resets/dependencies/privileges/release actions. Original reviewed artifacts and earlier evidence preserved.
+
+Real change effectiveness remains USER-REPORTED FAIL / diagnosis pending. Next: obtain --inspect-default-markdown JSON from the user's Terminal context to establish actual resolved bundle URLs before choosing a remedy. Diagnostic command:
+`/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader --inspect-default-markdown`

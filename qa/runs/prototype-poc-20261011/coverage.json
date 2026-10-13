@@ -1,0 +1,65 @@
+[
+  {
+    "id": "identity-export",
+    "result": "PASS",
+    "reason": "Four scene target sets retained; actual compiler duplicate rejection; reset pixels identical",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/identity-package-results.json"
+    ]
+  },
+  {
+    "id": "security-package",
+    "result": "PASS",
+    "reason": "23 required/malicious compiler and package rejection probes passed",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/security-results.json"
+    ]
+  },
+  {
+    "id": "native-flow-security-control",
+    "result": "PASS",
+    "reason": "26 runtime assertions; all six CLICK events native/isTrusted; controls and required native security probes passed",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/interaction-results.json"
+    ]
+  },
+  {
+    "id": "visual-review",
+    "result": "PASS",
+    "reason": "All required PNGs inspected; four native/source comparisons quantified. Fidelity remains PARTIAL with heavier text and small edge differences; no observed material layout/missing visual blocker in bounded corpus.",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/fidelity-metrics.json"
+    ]
+  },
+  {
+    "id": "vectorcraft-independence",
+    "result": "PASS",
+    "reason": "Denied checkout/executable reads and control port; full native flow/screenshot/reset passed",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/independence-results.json"
+    ]
+  },
+  {
+    "id": "performance-observation",
+    "result": "PASS",
+    "reason": "Package/load/action timings and host RSS recorded; child/package-only memory UNKNOWN",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/performance.json"
+    ]
+  },
+  {
+    "id": "tested-input-integrity",
+    "result": "PASS",
+    "reason": "All final tested source hashes match immutable v5 baseline",
+    "finished_at": "2026-10-11T22:03:41.702825+00:00",
+    "evidence_paths": [
+      "qa/runs/prototype-poc-20261011/evidence/final-tested-integrity.json"
+    ]
+  }
+]

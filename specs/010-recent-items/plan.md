@@ -1,5 +1,7 @@
 # Implementation Plan: Recent Local Items
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature:** F003R | **Date:** 2026-09-29 | **Spec:** [spec.md](spec.md) | **Status:** Proposal requiring approval
 
 ## Summary and context
@@ -19,3 +21,10 @@ Expose list/open/reselect/remove/clear native commands as in [contract](contract
 ## Source and validation map
 
 New `src-tauri/src/recents.rs`, `state.rs`, `selection.rs`, `lib.rs` own durable identity/IPC; `src/app/App.tsx`, `api.ts`, `i18n.ts`, CSS own UI. Rust/UI tests and feature `verification.md` cover R01–R08/AS-001–006/SC-001–003. Follow [quickstart](quickstart.md); record PASS/FAIL/BLOCKED/NOT TESTED. [Research](research.md) and [model](data-model.md) preserve scope. Approval of spec, visual direction and architecture is required before production edits.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003R-H01**: Recent Document entries admit Markdown and HTML with existing native-selected identity/reselection semantics, caps and storage. Opening a recent HTML selection still requires the typed HTML descriptor/mount path; saved display paths never grant siblings.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

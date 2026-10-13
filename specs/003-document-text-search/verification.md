@@ -1,5 +1,7 @@
 # F003S verification ledger
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 Approval: F003S spec/design/sketch/plan hashes in `docs/approvals.md`, approved 2026-09-29. All four files matched those hashes; active feature confirmed in `.specify/feature.json`.
 
 | IDs | Status | Evidence / limit |

@@ -1,0 +1,33 @@
+{
+  "id": "native-build-v2",
+  "command": [
+    "npm",
+    "run",
+    "tauri",
+    "build",
+    "--",
+    "--debug",
+    "--bundles",
+    "app",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/native.config.json",
+    "--",
+    "--offline",
+    "--locked"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v2",
+  "started_at": "2026-10-12T04:10:11.718513+00:00",
+  "load_before": [
+    23.67578125,
+    25.115234375,
+    19.0703125
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T04:11:45.222997+00:00",
+  "load_after": [
+    19.83056640625,
+    24.1474609375,
+    19.37548828125
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/native-build-v2.log"
+}

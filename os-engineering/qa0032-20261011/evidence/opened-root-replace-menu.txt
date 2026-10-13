@@ -1,0 +1,87 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) opened.md, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/fixtures/opened.md
+					16 button Close tab: opened.md, Help: Close tab
+			17 pop up button Go menu
+			18 button (collapsed) Open documents (1), Secondary Actions: Expand
+			19 container Explorer
+				20 pop up button PROJECTS
+				21 button Close Projects sidebar
+				22 button Open file
+				23 button Open folder
+				24 button Search folder
+				25 text fixtures
+				26 container
+					27 button after-rename-moved.md
+					28 button after-replace-original.md
+					29 button after-replace-second-original.md
+					30 button after-replace.md
+					31 button before-delete.md
+					32 button before-rename.md
+					33 button before-replace.md
+					34 button café # $ & % (draft),.md
+					35 button fresh.md
+					36 button opened.md
+				37 text Storage and recovery
+				38 text Open edits and recovery offers: 0
+				39 button Manage…
+				40 button Settings…
+			41 container
+				42 menu Secondary Actions: Cancel
+					43 (selected) Reveal in Finder
+					44 Copy path
+					45 Close tab: opened.md
+					46 (disabled) Close other tabs
+					47 (disabled) Close tabs to the right
+					48 Reload opened.md
+				49 container opened.md
+					50 container opened.md
+						51 text opened.md
+					52 button Find in document
+					53 toggle button Outline, Value: on
+					54 button (collapsed) Reading settings, Secondary Actions: Expand
+					55 button Edit section
+					56 summary Document…, Value: off
+						57 text Document…
+					58 text Folder root
+				59 container opened.md
+					60 container QA0032 opened.md
+						61 container Edit section: QA0032 opened.md
+							62 heading QA0032 opened.md, Value: 1
+								63 text QA0032 opened.md
+							64 button Edit section “QA0032 opened.md”
+						65 text Saved fixture.
+				66 container Outline
+					67 text OUTLINE
+					68 button Close outline
+					69 container Outline
+						70 content list
+							71 button QA0032 opened.md
+			72 container
+				73 text Current on disk Intentgrove by Theonira
+	74 close button
+	75 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	76 minimize button
+	77 text Intentgrove QA0032
+78 menu bar
+	79 Intentgrove QA0032
+	80 File
+	81 Edit
+	82 View
+	83 Go
+	84 Window
+	85 Help

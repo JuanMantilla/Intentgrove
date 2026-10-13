@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/diagram-parent-tests/ParentTests.app/Contents/MacOS/ParentTests",
+    "process_acceptance",
+    "--ignored",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "taskEnvironment": {
+    "INTENTGROVE_PRODUCTION_HELPER": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer",
+    "INTENTGROVE_DIAGNOSTIC_HELPER": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/diagram-diagnostic/DiagramRenderer.app/Contents/MacOS/DiagramRenderer",
+    "INTENTGROVE_EVIDENCE": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/mermaid-acceptance",
+    "INTENTGROVE_DIAG_FILE": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/mermaid-acceptance/disposable-readable-file"
+  },
+  "helperHashes": {
+    "INTENTGROVE_PRODUCTION_HELPER": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+    "INTENTGROVE_DIAGNOSTIC_HELPER": "4f8eddfd4bef894957c389d78fb40806ab5675404ff89ae36c93b92a900b2535"
+  }
+}

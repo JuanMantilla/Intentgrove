@@ -1,0 +1,62 @@
+The following is a diff from the previous accessibility tree for Window: "Settings — Intentgrove" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 0-67
++76 standard window Settings — Intentgrove, Secondary Actions: Raise
++	77 scroll area
++		78 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
++			79 container
++				80 heading Settings, Value: 1
++					81 text Settings
++				82 container General
++					83 heading General, Value: 2
++						84 text General
++					85 container
++						86 text Language
++						87 pop up button (collapsed) Language, Value: English, Secondary Actions: Expand
++						88 text Appearance
++						89 pop up button (collapsed) Appearance, Value: System, Secondary Actions: Expand
++				90 container Reading
++					91 heading Reading, Value: 2
++						92 text Reading
++					93 container
++						94 text Font
++						95 pop up button (collapsed) Font, Value: Roboto, Secondary Actions: Expand
++						96 text Text size (px)
++						97 slider (settable, float) Text size, Value: 24
++							98 value indicator 24
++						99 number field (settable) Text size (px), Value: 24
++							100 stepper 0
++								101 unknown
++								102 unknown
++						103 text Line height
++						104 slider (settable, float) Line height, Value: 1.6
++							105 value indicator 1.6
++						106 number field (settable) Line height, Value: 1.6
++							107 stepper 0
++								108 unknown
++								109 unknown
++						110 text Page width (px)
++						111 slider (settable, float) Page width, Value: 760
++							112 value indicator 760
++						113 number field (settable) Page width (px), Value: 760
++							114 stepper 0
++								115 unknown
++								116 unknown
++						117 container Page width
++							118 toggle button Comfortable, Value: on
++							119 toggle button Wide, Value: off
++						120 container Reading preview
++							121 text Reading preview
++							122 text Adjust the type to find a comfortable reading rhythm. Your document stays unchanged.
++						123 button Reset reading settings
++				124 container Project tree
++					125 heading Project tree, Value: 2
++						126 text Project tree
++					127 container
++						128 checkbox Documents and images only, Value: 1
++						129 text Documents and images only
++				130 button Done
++	131 close button
++	132 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
++	133 minimize button
++	134 text Settings — Intentgrove
+The focused UI element is 83 heading General, Value: 2

@@ -1,0 +1,2 @@
+The first URL-helper adaptation failed after disposing its own view and deadlocked by relocking its held test mutex. These are test harness errors: cache URL before disposal and use already-borrowed View for CSS graph URL. Stopped task-owned blocked test PID81635. Production authority checks unchanged.
+Also stopped earlier queued full-suite process PID81708 compiled before the helper fix; its completed cases were preserved. Final suite recompiles the corrected helper.

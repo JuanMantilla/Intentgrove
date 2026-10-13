@@ -34,7 +34,8 @@ worker.onmessage({ data: mixedBlock.repeat(Math.ceil(1_048_576 / mixedBlock.leng
 assert.equal(messages[0]?.kind, "parsed", "ordinary 1 MiB mixed Markdown must stay within the worker budget");
 messages.length = 0;
 worker.onmessage({ data: "> ".repeat(140) + "deep" });
-assert.equal(messages[0]?.kind, "overBudget");
+assert.equal(messages[0]?.kind, "parsed");
+assert.equal(messages[0].blocks[0].fallback, true);
 const codeFiles = (await readdir(assets)).filter((name) => /^codeTokens\.worker-.*\.js$/.test(name));
 assert.equal(codeFiles.length, 1, "expected one production code-token worker bundle");
 const codeMessages = [];

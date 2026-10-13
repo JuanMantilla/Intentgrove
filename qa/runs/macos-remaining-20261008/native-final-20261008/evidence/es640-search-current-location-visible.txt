@@ -1,0 +1,60 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container
+				8 container Archivos visitados
+					9 button Atrás, Help: Atrás: rich.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+					10 button (disabled) Adelante, Help: No hay archivo siguiente
+				11 tab group (selectable) Documentos
+					12 container
+						13 tab (selected) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						14 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					15 container
+						16 tab (selectable) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						17 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					18 container
+						19 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						20 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				21 pop up button Menú Ir
+				22 button (collapsed) Documentos abiertos (3), Secondary Actions: Expand
+				23 container search-navigation.md
+					24 text search-navigation.md
+					25 text Raíz de la carpeta
+					26 button Editar sección
+					27 summary Documento…, Value: off
+						28 text Documento…
+				29 text Este archivo cambió desde la búsqueda. Se muestra el contenido actual.
+				30 button Cerrar aviso
+				31 container search-navigation.md
+					32 container Search navigation
+						33 container Editar sección: Search navigation
+							34 heading Search navigation, Value: 1
+								35 text Search navigation
+							36 button Editar sección «Search navigation»
+						37 text Inserted paragraph.
+						38 text NAV_FINAL_TARGET_UNIQUE
+						39 container Editar sección: End
+							40 heading End, Value: 2
+								41 text End
+							42 button Editar sección «End»
+						43 text Tail intact.
+	44 close button
+	45 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	46 minimize button
+	47 text Intentgrove
+48 menu bar
+	49 Intentgrove
+	50 File
+	51 Edit
+	52 View
+	53 Ir
+	54 Window
+	55 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

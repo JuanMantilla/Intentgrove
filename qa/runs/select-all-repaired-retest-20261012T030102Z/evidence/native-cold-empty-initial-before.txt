@@ -1,0 +1,67 @@
+Window: "Intentgrove QA0035", App: Intentgrove QA0035.
+0 standard window Intentgrove QA0035, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) long.md, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures/long.md
+					16 button Close tab: long.md, Help: Close tab
+				17 container
+					18 tab (selected) empty.md, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/fixtures/empty.md
+					19 button Close tab: empty.md, Help: Close tab
+			20 pop up button Go menu
+			21 button (collapsed) Open documents (2), Secondary Actions: Expand
+			22 container Explorer
+				23 pop up button PROJECTS
+				24 button Close Projects sidebar
+				25 button Open file
+				26 button Open folder
+				27 button Search folder
+				28 text fixtures
+				29 container
+					30 button empty.md
+					31 button long.md
+					32 button second.md
+				33 text Storage and recovery
+				34 text Open edits and recovery offers: 1
+				35 button Manage…
+				36 button Settings…
+			37 container
+				38 container empty.md
+					39 container empty.md
+						40 text empty.md
+					41 button Find in document
+					42 toggle button (disabled) Outline, Value: on
+					43 button (collapsed) Reading settings, Secondary Actions: Expand
+					44 button Edit section
+					45 summary Document…, Value: off
+						46 text Document…
+					47 text Folder root
+				48 text Recover unsaved edit · Last recovery saved: 10/11/2026, 10:13:20 PM
+				49 button Recover unsaved edit
+				50 button Discard changes…
+				51 container empty.md
+			52 container
+				53 text Current on disk Intentgrove by Theonira
+	54 close button
+	55 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	56 minimize button
+	57 text Intentgrove QA0035
+58 menu bar
+	59 Intentgrove QA0035
+	60 File
+	61 Edit
+	62 View
+	63 Go
+	64 Window
+	65 Help

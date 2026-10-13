@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "tests/ui/close-edit.test.tsx",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-close-isolated.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+  "result": "PASS:27 tests",
+  "reporter_start_time_ms": 1791778434225,
+  "purpose": "Diagnostic isolation only; does not replace full-suite FAIL"
+}

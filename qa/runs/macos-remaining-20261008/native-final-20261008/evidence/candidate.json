@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-08T19:24:51.165309+00:00",
+  "app": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+  "identifier": "com.juanmantilla.markdownworkspace",
+  "executable": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+  "files": {
+    "Contents/Info.plist": "c19e3396db418f19d8d35c8f360ed925f24aeb6fc2eac701ee4e59f6d0abf424",
+    "Contents/_CodeSignature/CodeResources": "8b681289f4511ff926fcfb0a18f9d5f3e3e878a29a979c2559eef79df5e8bd83",
+    "Contents/MacOS/md_reader": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+    "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/Info.plist": "9bb836f58aa891de62d109b6782510d1943ba2c3ff95ce55b98d9064f4d249cf",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/_CodeSignature/CodeResources": "6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Info.plist": "0f82acb28a16138d2b62914b46624b3c8477cea1169960aab2f9de7c26643213",
+    "Contents/Helpers/DiagramRenderer.app/Contents/_CodeSignature/CodeResources": "1b403b4d03050f024676a7fe7aa8eabf03a9282d26b2323f10bd0bfadc19784e",
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/index.html": "f899fce442a48f05b13a36ea88cd8086aafaaf1633211b46389480d4d913d9d2",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/reader.bundle.js": "171438cd9642fef7c6a135f9a39249bac073a315964fa5451281aba1f0910e6a",
+    "Contents/Helpers/DiagramRenderer.app/Contents/Resources/THIRD-PARTY-NOTICES.txt": "431392458aded615ff3ebf7ec4b6bf7ae00b930fea82cdcd17b235424f802179"
+  },
+  "manifestMatches": true,
+  "changedInputs": [],
+  "host": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+  "architecture": "arm64\n",
+  "processes": [
+    "36995     1 /Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader",
+    "37004     1 /Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc"
+  ],
+  "signature": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "--prepared:/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc\n--validated:/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc\n--prepared:/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app\n--validated:/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app\n/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app: valid on disk\n/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app: satisfies its Designated Requirement\n"
+  },
+  "manifestNormalization": "strip repository-relative bundle prefix",
+  "architectures": {
+    "Contents/MacOS/md_reader": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/MacOS/md_reader: Mach-O 64-bit executable arm64",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc: Mach-O 64-bit executable arm64",
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer: Mach-O 64-bit executable arm64"
+  },
+  "helperEntitlements": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"https://www.apple.com/DTDs/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>com.apple.security.app-sandbox</key><true/></dict></plist>\n",
+  "dmgSha256": "fcc82102d694f4b89c645e49e3e44058bb451538e1e5f2b9fa3fae74a350e03c",
+  "dmgScope": "Historical b7b0f872 package; not rebuilt with current lifecycle fixes"
+}

@@ -1,0 +1,670 @@
+[
+  {
+    "n": 0,
+    "at": 7468.847333,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 7617.497125,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 2,
+    "at": 7618.923333,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 3,
+    "at": 7904.772292,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 4,
+    "at": 7976.510292,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 5,
+    "at": 7976.907917,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 6,
+    "at": 8025.067042,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 7,
+    "at": 8192.493042,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 8,
+    "at": 8274.409667,
+    "test": "keeps one in-flight document load through ten theme changes (resolve)",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 9,
+    "at": 8426.300542,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 10,
+    "at": 8539.438,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 11,
+    "at": 8540.1865,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 12,
+    "at": 8891.099833,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "open-activate",
+    "id": "error:root:[\"fixture.md\"]",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 13,
+    "at": 8962.724833,
+    "test": "keeps one in-flight document load through ten theme changes (reject)",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 14,
+    "at": 9049.549708,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 15,
+    "at": 9216.751458,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 16,
+    "at": 9217.079542,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 17,
+    "at": 9247.154958,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 18,
+    "at": 9354.622583,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 19,
+    "at": 9354.835208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 20,
+    "at": 9450.359,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 21,
+    "at": 9539.466,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 22,
+    "at": 9566.674208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/appearance-operations.test.tsx:94:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 23,
+    "at": 9567.497125,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll",
+    "value": 170
+  },
+  {
+    "n": 24,
+    "at": 10276.905583,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 25,
+    "at": 10276.998958,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 26,
+    "at": 10309.957083,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 27,
+    "at": 10388.008125,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3016:71\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 28,
+    "at": 10427.614708,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 29,
+    "at": 10499.242958,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 30,
+    "at": 10614.769083,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 31,
+    "at": 10615.0595,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 32,
+    "at": 10667.653625,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 33,
+    "at": 10848.44,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 34,
+    "at": 10848.652292,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 35,
+    "at": 10948.128583,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 36,
+    "at": 11132.804958,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 37,
+    "at": 11217.948125,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 38,
+    "at": 12333.002125,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 39,
+    "at": 12409.768125,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 47,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/appearance-operations.test.tsx:124:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 40,
+    "at": 13060.017375,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 41,
+    "at": 13060.097875,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 42,
+    "at": 13114.967833,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 43,
+    "at": 13162.761292,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "scroll-write",
+    "before": 47,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 44,
+    "at": 13291.300958,
+    "test": "does not restart Save or recreate the editor while Save is pending (resolve)",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 45,
+    "at": 13402.518333,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 46,
+    "at": 13478.105208,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 47,
+    "at": 13478.486833,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 48,
+    "at": 13531.922667,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 49,
+    "at": 13635.810458,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 50,
+    "at": 13636.06175,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 51,
+    "at": 13775.229875,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 52,
+    "at": 13889.097125,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 53,
+    "at": 13981.336,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "click",
+    "text": "Edit section",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 54,
+    "at": 14769.12525,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "click",
+    "text": "Save file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 55,
+    "at": 14846.900833,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 47,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/appearance-operations.test.tsx:124:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 56,
+    "at": 15778.489375,
+    "test": "does not restart Save or recreate the editor while Save is pending (reject)",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 57,
+    "at": 15891.943292,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 58,
+    "at": 16015.948667,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "click",
+    "text": "fixture.md",
+    "title": "fixture.md",
+    "disabled": false
+  },
+  {
+    "n": 59,
+    "at": 16016.23125,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "fixture.md"
+      ]
+    }
+  },
+  {
+    "n": 60,
+    "at": 16041.924917,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "open-activate",
+    "id": "file",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 61,
+    "at": 16104.661667,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 62,
+    "at": 16105.210917,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "n": 63,
+    "at": 16168.45475,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/appearance-operations.test.tsx:154:77\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 64,
+    "at": 16168.938792,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll",
+    "value": 170
+  },
+  {
+    "n": 65,
+    "at": 16169.531667,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 66,
+    "at": 16224.700292,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 67,
+    "at": 16771.147833,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "paint",
+    "fileId": "file",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 68,
+    "at": 16771.260583,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "n": 69,
+    "at": 16799.960667,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 70,
+    "at": 16917.1615,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 71,
+    "at": 16959.092333,
+    "test": "causal QA-0034 visible initial scroll before section readiness",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

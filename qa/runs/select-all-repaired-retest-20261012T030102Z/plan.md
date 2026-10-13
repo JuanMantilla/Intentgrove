@@ -1,0 +1,5 @@
+# QA RETEST plan
+
+Scope: QA-0033 S3 provisional, QA-0034 S3 provisional, QA-0035 S3; exact supplied final frozen source/native candidate. No product fixes, acceptance or cleanup.
+
+Use original unchanged isolated New Markdown journeys and reader-position case three times each, selection tests and affected files, and default npm test -- --dir tests three times sequentially. Retain every attempt and diagnose failures without changing or weakening original cases. Native macOS WKWebView: reading all60/end; initial open from long/empty and clean reopen immediate Cmd+A without intervening observation; rapid switches and stale ownership; mixed and whole-document live drafts; native copied value excludes UI; Filename/Find/Local target/modal ownership, modifier and undo/redo regression. Existing implementation profile/drafts retained; use run-owned fixture copies and Keep draft on workspace transitions. Native held refresh, physical IME, VoiceOver and Windows unavailable checks remain BLOCKED/NOT_RUN. Build fingerprint/integrity recorded before/after. QA completion does not imply task acceptance.

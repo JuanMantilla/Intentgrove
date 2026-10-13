@@ -1,0 +1,97 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text drop-folder-proof
+				6 button Ajustes
+			7 container
+				8 container Archivos visitados
+					9 button (disabled) Atrás, Help: No hay archivo anterior
+					10 button (disabled) Adelante, Help: No hay archivo siguiente
+				11 tab group (selectable) Documentos
+					12 container
+						13 tab (selectable) inside-drop.md, Help: /Users/Shared/Intentgrove-Acceptance-20261008/Native Drops/drop-folder-proof/inside-drop.md
+						14 button Cerrar pestaña: inside-drop.md, Help: Cerrar pestaña
+					15 container
+						16 tab (selected) rich.md, Help: /Users/Shared/Intentgrove-Acceptance-20261008/Test Documents/rich.md
+						17 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+				18 pop up button Menú Ir
+				19 button (collapsed) Documentos abiertos (2), Secondary Actions: Expand
+				20 container rich.md
+					21 text rich.md
+					22 text Fuera de la carpeta abierta
+					23 button Editar sección
+					24 summary Documento…, Value: off
+						25 text Documento…
+				26 container rich.md
+					27 container Reading acceptance
+						28 summary Metadatos, Value: off
+							29 text Metadatos
+						30 container Editar sección: Reading acceptance
+							31 heading Reading acceptance, Value: 1
+								32 text Reading acceptance
+							33 button Editar sección «Reading acceptance»
+						34 container
+							35 text Before diagrams. 
+							36 button Reference, Help: linked.md
+							37 text  and encoded footnote
+							38 button 1, Help: #fn-a%2520b
+							39 text .
+						40 text json
+						41 button Copiar código
+						42 text {"highlight": true}
+
+						43 image Diagrama Mermaid
+						44 summary Ver código fuente, Value: off
+							45 text Ver código fuente
+						46 text Between diagrams.
+						47 image Diagrama Mermaid
+						48 summary Ver código fuente, Value: off
+							49 text Ver código fuente
+						50 text Diagrama no disponible. El código fuente se conserva abajo.
+						51 container (expanded) Secondary Actions: Collapse
+							52 summary Ver código fuente, Value: on
+								53 text Ver código fuente
+							54 text mermaid
+							55 button Copiar código
+							56 text flowchart broken
+
+						57 text Diagrama no disponible. El código fuente se conserva abajo.
+						58 container (expanded) Secondary Actions: Collapse
+							59 summary Ver código fuente, Value: on
+								60 text Ver código fuente
+							61 text mermaid
+							62 button Copiar código
+							63 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						64 text After diagrams.
+						65 container Editar sección: Duplicate
+							66 heading Duplicate, Value: 2
+								67 text Duplicate
+							68 button Editar sección «Duplicate»
+						69 text First duplicate target.
+						70 container Editar sección: Duplicate
+							71 heading Duplicate, Value: 2
+								72 text Duplicate
+							73 button Editar sección «Duplicate»
+						74 text Second duplicate target.
+						75 container
+							76 text [1] 
+							77 button ↩, Help: #fnref-a%2520b-1
+						78 text Encoded footnote body.
+	79 close button
+	80 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	81 minimize button
+	82 text Intentgrove
+83 menu bar
+	84 Intentgrove
+	85 File
+	86 Edit
+	87 View
+	88 Ir
+	89 Window
+	90 Help

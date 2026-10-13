@@ -1,0 +1,16 @@
+{
+  "case": "deadline-parse",
+  "elapsedMs": 2005.631334,
+  "events": [
+    "{\"value\":\"busy-parse\",\"ppid\":30330,\"event\":\"started\",\"pid\":30342,\"time\":120510.08701500001}",
+    "{\"value\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"ppid\":30330,\"event\":\"navigation\",\"pid\":30342,\"time\":120510.20247725}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/index.html\",\"redirect\":0},\"ppid\":30330,\"event\":\"resource\",\"pid\":30342,\"time\":120510.20380304167}",
+    "{\"value\":{\"url\":\"file:\\/\\/\\/Users\\/juanmantilla\\/projects\\/personal\\/md-reader\\/src-tauri\\/target\\/diagram-diagnostic\\/DiagramRenderer.app\\/Contents\\/Resources\\/reader.bundle.js\",\"redirect\":0},\"ppid\":30330,\"event\":\"resource\",\"pid\":30342,\"time\":120510.22047916667}",
+    "{\"value\":\"{\\\"kind\\\":\\\"bridge-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.__TAURI_INTERNALS__.invoke')\\\"}\",\"ppid\":30330,\"event\":\"js\",\"pid\":30342,\"time\":120510.36613008333}",
+    "{\"value\":\"{\\\"kind\\\":\\\"wk-denied\\\",\\\"value\\\":\\\"TypeError: undefined is not an object (evaluating 'window.webkit.messageHandlers')\\\"}\",\"ppid\":30330,\"event\":\"js\",\"pid\":30342,\"time\":120510.36616758334}",
+    "{\"value\":\"{\\\"kind\\\":\\\"authority\\\",\\\"value\\\":{\\\"tauri\\\":\\\"undefined\\\",\\\"webkit\\\":\\\"undefined\\\",\\\"external\\\":\\\"undefined\\\",\\\"top\\\":true,\\\"parent\\\":true}}\",\"ppid\":30330,\"event\":\"js\",\"pid\":30342,\"time\":120510.36618962501}",
+    "{\"value\":\"{\\\"kind\\\":\\\"parse-entered\\\",\\\"value\\\":true}\",\"ppid\":30330,\"event\":\"js\",\"pid\":30342,\"time\":120510.37387504167}"
+  ],
+  "pid": 30342,
+  "result": "diagram_deadline"
+}

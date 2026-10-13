@@ -1,0 +1,62 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/html_broker.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_broker.rs
+@@ -5,29 +5,32 @@
+     target: LocalTarget,
+     expected: Option<&str>,
+ ) -> AppResult<LocalView> {
+-    let grant = match (target.file_id, target.root_id, target.segments) {
+-        (Some(id), None, None) => state.file(&id)?,
+-        (None, Some(root), Some(segments)) => {
+-            let root = state.root(&root)?;
+-            let file = scope::open_relative(&root.file, &segments, false)?;
+-            state.register_root_file(&root, segments, &file)?
+-        }
+-        _ => return Err(err("invalid_grant", "Supply exactly one native target")),
+-    };
++    crate::document_view::open_impl(
++        state,
++        service,
++        target,
++        expected,
++        &igproto_package::Control::new(std::time::Duration::from_secs(5)),
++    )
++}
++pub(crate) fn open_granted(
++    state: &AppState,
++    service: &HtmlService,
++    grant: FileGrant,
++    expected: Option<&str>,
++) -> AppResult<LocalView> {
++    if scope::prototype_name(&grant.name) {
++        return Err(err(
++            "prototype_invalid",
++            "Prototype package admission is required",
++        ));
++    }
+     let file = current(state, &grant)?;
+     let identity_key = key(grant.identity);
+     if expected.is_some_and(|value| value != identity_key) {
+         return Err(err("reselection_required", "Expected identity changed"));
+     }
+-    let kind = if scope::html_name(&grant.name) {
+-        "html"
+-    } else if scope::markdown_name(&grant.name) {
+-        "markdown"
+-    } else if scope::image_format(&grant.name).is_some() {
+-        "image"
+-    } else {
+-        "details"
+-    };
++    let kind = crate::document_view::kind(&grant.name);
+     let bytes = scope::size(&file)?;
+     let disk_version = if kind == "html" {
+         let data = bounded_bytes(&file, MAX_HTML).map_err(|e| {
+@@ -45,6 +48,8 @@
+     };
+     let token = (kind == "html").then(|| Uuid::new_v4().to_string());
+     let descriptor = LocalView {
++        prototype: None,
++        acquired_new: true,
+         file_id: grant.id.clone(),
+         identity_key,
+         disk_version,

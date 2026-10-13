@@ -1,0 +1,30 @@
+{
+  "id": "original-new-isolated-01",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx",
+    "-t",
+    "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+  "started_at": "2026-10-12T03:01:31.652959+00:00",
+  "load_before": [
+    4.85009765625,
+    16.759765625,
+    27.18408203125
+  ],
+  "original_config": true,
+  "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-01.log",
+  "exit_code": 0,
+  "result": "PASS",
+  "finished_at": "2026-10-12T03:01:35.167708+00:00",
+  "load_after": [
+    4.94189453125,
+    16.5810546875,
+    27.0595703125
+  ]
+}

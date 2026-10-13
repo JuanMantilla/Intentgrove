@@ -1,0 +1,47 @@
+{
+  "format": "intentgrove-prototype",
+  "version": 1,
+  "schemaVersion": 1,
+  "profile": "macos-svg-v1",
+  "prototypeId": "12345678-1234-1234-1234-123456789abc",
+  "graph": "prototype.json",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "capabilities": [
+    "click-v1",
+    "dissolve-v1",
+    "navigation-v1",
+    "overlay-v1",
+    "svg-v1",
+    "visibility-v1"
+  ],
+  "files": [
+    {
+      "path": "prototype.json",
+      "mediaType": "application/json",
+      "bytes": 1952,
+      "sha256": "268caecb21b3230fc2ca919257af8a9e99a1c0fa7428cb0303de19595eddd734"
+    },
+    {
+      "path": "scenes/dashboard.svg",
+      "mediaType": "image/svg+xml",
+      "bytes": 419,
+      "sha256": "bae17ad5798929431d979fd88158f26dad5ba1bb476b5f49db9c29ed860bedbe"
+    },
+    {
+      "path": "scenes/profile.svg",
+      "mediaType": "image/svg+xml",
+      "bytes": 205,
+      "sha256": "13c3b7ae6fd500287d42fe6f9f5bb488763a45bb8fe4a20d7786c4446e33f3aa"
+    },
+    {
+      "path": "scenes/settings.svg",
+      "mediaType": "image/svg+xml",
+      "bytes": 205,
+      "sha256": "ce73a7c474a43dc7c79a9cf906f14d43e3444adaf0a9688779dcafbac6027592"
+    }
+  ],
+  "title": "V1 contract fixture"
+}

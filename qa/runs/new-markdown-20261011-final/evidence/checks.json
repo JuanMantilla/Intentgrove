@@ -1,0 +1,87 @@
+[
+  {
+    "id": "frontend-focused",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "tests/ui/new-markdown.test.tsx",
+      "tests/ui/close-edit.test.tsx",
+      "tests/ui/recovery.test.tsx",
+      "tests/ui/refresh-conflict.test.tsx",
+      "tests/ui/edit-flow.test.tsx"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:01:32.967131+00:00"
+  },
+  {
+    "id": "types",
+    "command": [
+      "node_modules/.bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:01:33.507246+00:00"
+  },
+  {
+    "id": "frontend-build",
+    "command": [
+      "node_modules/.bin/vite",
+      "build",
+      "--outDir",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/new-markdown-20261011-final/scratch/dist"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:01:33.911121+00:00"
+  },
+  {
+    "id": "native-lib",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--lib"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/src-tauri",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:01:55.299656+00:00"
+  },
+  {
+    "id": "native-version",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "refresh_version"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/src-tauri",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:02:02.363412+00:00"
+  },
+  {
+    "id": "native-build",
+    "command": [
+      "npm",
+      "run",
+      "tauri",
+      "--",
+      "build",
+      "--debug",
+      "--no-bundle",
+      "--config",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/new-markdown-20261011-final/scratch/native-config.json",
+      "--",
+      "--offline",
+      "--locked"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "exit": 0,
+    "finished_at": "2026-10-11T16:02:21.519708+00:00"
+  }
+]

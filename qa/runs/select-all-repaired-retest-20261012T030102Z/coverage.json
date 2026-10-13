@@ -1,0 +1,1453 @@
+{
+  "run_id": "select-all-repaired-retest-20261012T030102Z",
+  "mode": "RETEST",
+  "qa_result": "QA_FAILED",
+  "task_state": "ACTIVE",
+  "scope_status": "PARTIAL_WITH_EXPLICIT_BLOCKERS",
+  "assessment": "BLOCKING_FINDINGS_PRESENT",
+  "candidate": {
+    "app": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+    "identifier": "com.juanmantilla.intentgrove.qa0035.r20261012",
+    "profile": "/Users/juanmantilla/Library/Application Support/com.juanmantilla.intentgrove.qa0035.r20261012",
+    "executable": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app/Contents/MacOS/md_reader",
+    "executable_sha256": "527a08482ee678471a3e3f547887a7e89f8ce494d391297e49b304d443f53b82",
+    "source_manifest": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/source-manifest-final.json",
+    "source_manifest_sha256": "e6cfb6a44094cc5d17efd985558766a0fe56a2d9887e8c07e5568188906adf04",
+    "build_config_sha256": "a0da3b645a4337cf8b3257186eec37bc121436e5e934fd716c3a5fb9a42d47e3",
+    "bundle_files": {
+      "Contents/Info.plist": "c2f735b1e8c30d7d825dafea3cbb22c921f4568f5ec230f4617d402ccabcc781",
+      "Contents/_CodeSignature/CodeResources": "2922a8d1d9b671dfa060a747efcb3c73f34e4fbd8e7b49adfc642edde7551bfb",
+      "Contents/MacOS/md_reader": "527a08482ee678471a3e3f547887a7e89f8ce494d391297e49b304d443f53b82",
+      "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693"
+    },
+    "canonical_root": "/Users/juanmantilla/projects/personal/md-reader",
+    "source_cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "observed_at": "2026-10-12T03:01:02.879100+00:00"
+  },
+  "counts": {
+    "PASS": 24,
+    "FAIL": 8,
+    "BLOCKED": 4,
+    "NOT_RUN": 3
+  },
+  "required_counts": {
+    "PASS": 24,
+    "FAIL": 4
+  },
+  "rows": [
+    {
+      "id": "I01",
+      "title": "Exact supplied frozen candidate",
+      "result": "PASS",
+      "reason": "433 source hashes, four bundle files and supplied manifest/config match handoff. Source digest e6cfb6a4\u2026; executable 527a0848\u2026; no rebuilding or source mutation. Initial identity capture preceded baseline; same frozen input identity revalidated by the final445-path audit after all checks.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:43:26.800763+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/candidate-identity.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/final-audit.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "R01",
+      "title": "Four unchanged original New Markdown journeys repeated",
+      "result": "PASS",
+      "reason": "4/4 in each of three isolated attempts. Does not clear default-context failures.",
+      "required": true,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/original-case-parity.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "original-new-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:31.652959+00:00",
+          "load_before": [
+            4.85009765625,
+            16.759765625,
+            27.18408203125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-01.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:35.167708+00:00",
+          "load_after": [
+            4.94189453125,
+            16.5810546875,
+            27.0595703125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  2.66s (transform 504ms, setup 0ms, import 927ms, tests 792ms, environment 845ms)",
+          "failure_titles": []
+        },
+        {
+          "id": "original-new-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:36.838698+00:00",
+          "load_before": [
+            4.94189453125,
+            16.5810546875,
+            27.0595703125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-02.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:39.142386+00:00",
+          "load_after": [
+            5.2666015625,
+            16.455078125,
+            26.95361328125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  1.99s (transform 519ms, setup 0ms, import 794ms, tests 785ms, environment 329ms)",
+          "failure_titles": []
+        },
+        {
+          "id": "original-new-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:41.019677+00:00",
+          "load_before": [
+            5.2666015625,
+            16.455078125,
+            26.95361328125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-03.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:43.413060+00:00",
+          "load_after": [
+            5.5654296875,
+            16.3310546875,
+            26.84814453125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  2.08s (transform 535ms, setup 0ms, import 809ms, tests 824ms, environment 362ms)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Unchanged original pending reader-position case repeated",
+      "result": "PASS",
+      "reason": "Expected170 retained in three isolated attempts and all three full contexts. QA-0034 remains unexplained; no causal repair.",
+      "required": true,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/original-case-parity.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "original-reader-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/appearance-operations.test.tsx",
+            "-t",
+            "preserves the active tab and reader position"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:35.168202+00:00",
+          "load_before": [
+            4.94189453125,
+            16.5810546875,
+            27.0595703125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-01.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:36.837861+00:00",
+          "load_after": [
+            4.94189453125,
+            16.5810546875,
+            27.0595703125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.37s (transform 419ms, setup 0ms, import 619ms, tests 349ms, environment 322ms)",
+          "failure_titles": []
+        },
+        {
+          "id": "original-reader-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/appearance-operations.test.tsx",
+            "-t",
+            "preserves the active tab and reader position"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:39.142761+00:00",
+          "load_before": [
+            5.2666015625,
+            16.455078125,
+            26.95361328125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-02.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:41.019313+00:00",
+          "load_after": [
+            5.2666015625,
+            16.455078125,
+            26.95361328125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.56s (transform 496ms, setup 0ms, import 724ms, tests 378ms, environment 378ms)",
+          "failure_titles": []
+        },
+        {
+          "id": "original-reader-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/appearance-operations.test.tsx",
+            "-t",
+            "preserves the active tab and reader position"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:43.413474+00:00",
+          "load_before": [
+            5.5654296875,
+            16.3310546875,
+            26.84814453125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-03.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:45.727113+00:00",
+          "load_after": [
+            5.5654296875,
+            16.3310546875,
+            26.84814453125
+          ],
+          "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.98s (transform 793ms, setup 0ms, import 1.08s, tests 392ms, environment 405ms)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Two original affected files",
+      "result": "PASS",
+      "reason": "82/82; all original resolve/reject, refresh/theme and Save cases.",
+      "required": true,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "affected-original-files",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "tests/ui/appearance-operations.test.tsx"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:49.311712+00:00",
+          "load_before": [
+            5.76025390625,
+            16.1923828125,
+            26.7373046875
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/affected-original-files.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:53.713431+00:00",
+          "load_after": [
+            5.779296875,
+            16.02294921875,
+            26.61572265625
+          ],
+          "summary": "Test Files  2 passed (2); Tests  82 passed (82); Duration  4.01s (transform 920ms, setup 0ms, import 1.61s, tests 4.37s, environment 1.03s)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Repaired controlled selection suite",
+      "result": "PASS",
+      "reason": "16/16, including held read/parser/layout, cancellation/ownership and replacement. Mocked boundaries do not establish native held races.",
+      "required": true,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "selection-focused",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/document-select-all.test.tsx"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:45.727516+00:00",
+          "load_before": [
+            5.5654296875,
+            16.3310546875,
+            26.84814453125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/selection-focused.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:01:49.311323+00:00",
+          "load_after": [
+            5.76025390625,
+            16.1923828125,
+            26.7373046875
+          ],
+          "summary": "Test Files  1 passed (1); Tests  16 passed (16); Duration  3.27s (transform 529ms, setup 0ms, import 795ms, tests 1.84s, environment 504ms)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Unchanged default npm test -- --dir tests repeated",
+      "result": "FAIL",
+      "reason": "706PASS/4FAIL; 709PASS/1FAIL; 709PASS/1FAIL, 710 tests/70 files each, maxWorkers2 unchanged. QA-0033 reproduces in every full attempt.",
+      "required": true,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "default-full-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:01:53.713964+00:00",
+          "load_before": [
+            5.779296875,
+            16.02294921875,
+            26.61572265625
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-01.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:05:30.877361+00:00",
+          "load_after": [
+            25.5390625,
+            24.08837890625,
+            27.88330078125
+          ],
+          "summary": "Test Files  4 failed | 66 passed (70); Tests  4 failed | 706 passed (710); Duration  216.71s (transform 3.86s, setup 0ms, import 39.80s, tests 297.65s, environment 76.69s)",
+          "failure_titles": [
+            "tests/ui/approved-navigation.test.tsx > rejects an older failure from repeated opens of the same document",
+            "tests/ui/automatic-refresh.test.tsx > automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+            "tests/ui/edit-flow.test.tsx > keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+            "tests/ui/new-markdown.test.tsx > opens from empty workspace and Projects, and restores the owning trigger"
+          ]
+        },
+        {
+          "id": "default-full-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:05:30.878741+00:00",
+          "load_before": [
+            25.5390625,
+            24.08837890625,
+            27.88330078125
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-02.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:08:02.265335+00:00",
+          "load_after": [
+            10.21435546875,
+            18.21240234375,
+            24.84228515625
+          ],
+          "summary": "Test Files  1 failed | 69 passed (70); Tests  1 failed | 709 passed (710); Duration  150.42s (transform 3.74s, setup 0ms, import 26.79s, tests 204.79s, environment 53.39s)",
+          "failure_titles": [
+            "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+          ]
+        },
+        {
+          "id": "default-full-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:08:02.266588+00:00",
+          "load_before": [
+            10.21435546875,
+            18.21240234375,
+            24.84228515625
+          ],
+          "original_config": true,
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-03.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:10:45.777423+00:00",
+          "load_after": [
+            23.97705078125,
+            19.826171875,
+            24.3583984375
+          ],
+          "summary": "Test Files  1 failed | 69 passed (70); Tests  1 failed | 709 passed (710); Duration  162.74s (transform 4.79s, setup 0ms, import 33.17s, tests 220.63s, environment 55.20s)",
+          "failure_titles": [
+            "tests/ui/new-markdown.test.tsx > preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D01",
+      "title": "Isolated original editor-startup-failure case",
+      "result": "FAIL",
+      "reason": "3/3 crash before dialog at appearance native getCurrentWindow: undefined metadata. QA-0037 harness defect; distinct from full-suite Filename absence.",
+      "required": false,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "new-startup-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "retains the created tab on editor startup failure"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:37.967944+00:00",
+          "load_before": [
+            4.73046875,
+            12.73388671875,
+            20.16455078125
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-01.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:16:40.626133+00:00",
+          "load_after": [
+            4.73046875,
+            12.73388671875,
+            20.16455078125
+          ],
+          "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.87s (transform 470ms, setup 0ms, import 908ms, tests 23ms, environment 830ms)",
+          "failure_titles": [
+            "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+          ]
+        },
+        {
+          "id": "new-startup-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "retains the created tab on editor startup failure"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:43.739911+00:00",
+          "load_before": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-02.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:16:45.273523+00:00",
+          "load_after": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.21s (transform 456ms, setup 0ms, import 686ms, tests 24ms, environment 385ms)",
+          "failure_titles": [
+            "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+          ]
+        },
+        {
+          "id": "new-startup-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/new-markdown.test.tsx",
+            "-t",
+            "retains the created tab on editor startup failure"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:48.054850+00:00",
+          "load_before": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-03.log",
+          "exit_code": 1,
+          "result": "FAIL",
+          "finished_at": "2026-10-12T03:16:49.448511+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.08s (transform 419ms, setup 0ms, import 635ms, tests 23ms, environment 317ms)",
+          "failure_titles": [
+            "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "title": "Older repeated-open failure rejection",
+      "result": "FAIL",
+      "reason": "Full01 hits unchanged5000ms deadline; Full02/03 and three isolated repetitions pass. Cause unknown; QA-0038.",
+      "required": false,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "adjacent-failures-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:40.626683+00:00",
+          "load_before": [
+            4.73046875,
+            12.73388671875,
+            20.16455078125
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-01.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:43.739425+00:00",
+          "load_after": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.81s (transform 842ms, setup 0ms, import 1.47s, tests 1.44s, environment 1.06s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:45.273958+00:00",
+          "load_before": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-02.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:48.054397+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.45s (transform 889ms, setup 0ms, import 1.56s, tests 1.45s, environment 1.19s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:49.448929+00:00",
+          "load_before": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-03.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:51.982568+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.23s (transform 827ms, setup 0ms, import 1.44s, tests 1.34s, environment 1.06s)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "title": "Pending section-entry readable passage",
+      "result": "FAIL",
+      "reason": "Full01 cannot find Edit section \u201cOne\u201d before beginSectionEdit; later full and three isolated repetitions pass. QA-0039, not proof of acquired-session disposal failure.",
+      "required": false,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "adjacent-failures-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:40.626683+00:00",
+          "load_before": [
+            4.73046875,
+            12.73388671875,
+            20.16455078125
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-01.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:43.739425+00:00",
+          "load_after": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.81s (transform 842ms, setup 0ms, import 1.47s, tests 1.44s, environment 1.06s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:45.273958+00:00",
+          "load_before": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-02.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:48.054397+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.45s (transform 889ms, setup 0ms, import 1.56s, tests 1.45s, environment 1.19s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:49.448929+00:00",
+          "load_before": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-03.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:51.982568+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.23s (transform 827ms, setup 0ms, import 1.44s, tests 1.34s, environment 1.06s)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "title": "Staged replacement heading anchor fixture",
+      "result": "FAIL",
+      "reason": "Full01 cannot find initial End heading at175; later full and three isolated repeats pass. QA-0040; fails before refresh/anchor assertions, not established QA-0012 recurrence.",
+      "required": false,
+      "environment": "macOS Vitest 4.1.11 / jsdom",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": [
+        {
+          "id": "adjacent-failures-isolated-01",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:40.626683+00:00",
+          "load_before": [
+            4.73046875,
+            12.73388671875,
+            20.16455078125
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-01.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:43.739425+00:00",
+          "load_after": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.81s (transform 842ms, setup 0ms, import 1.47s, tests 1.44s, environment 1.06s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-02",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:45.273958+00:00",
+          "load_before": [
+            4.671875,
+            12.5888671875,
+            20.06982421875
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-02.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:48.054397+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.45s (transform 889ms, setup 0ms, import 1.56s, tests 1.45s, environment 1.19s)",
+          "failure_titles": []
+        },
+        {
+          "id": "adjacent-failures-isolated-03",
+          "command": [
+            "npm",
+            "test",
+            "--",
+            "--dir",
+            "tests",
+            "tests/ui/approved-navigation.test.tsx",
+            "tests/ui/edit-flow.test.tsx",
+            "tests/ui/automatic-refresh.test.tsx",
+            "-t",
+            "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+          ],
+          "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+          "started_at": "2026-10-12T03:16:49.448929+00:00",
+          "load_before": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "original_config": true,
+          "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+          "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-03.log",
+          "exit_code": 0,
+          "result": "PASS",
+          "finished_at": "2026-10-12T03:16:51.982568+00:00",
+          "load_after": [
+            4.61767578125,
+            12.44580078125,
+            19.9755859375
+          ],
+          "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.23s (transform 827ms, setup 0ms, import 1.44s, tests 1.34s, environment 1.06s)",
+          "failure_titles": []
+        }
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "Reading sixty passages through offscreen end",
+      "result": "PASS",
+      "reason": "Actual Cmd+A at top and end; native TextEdit paste contains all60/A begin/end.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reading-selected-v3-top.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reading-selected-v3-bottom.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reading-copy-v3-value.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N02",
+      "title": "Reading chrome and embedded-control exclusion",
+      "result": "PASS",
+      "reason": "Actual native copied4928 characters omit controls; screenshots show document highlighting and unselected chrome.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-reading-selected-v3-bottom.jpg"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N03",
+      "title": "Mixed live draft and read-only siblings",
+      "result": "PASS",
+      "reason": "Retained recovered MIXED_LIVE_QA0035 plus all60/A begin/end copied from native selection.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-selected-v3.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-copy-v3-value.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N04",
+      "title": "Mixed editor/control exclusion",
+      "result": "PASS",
+      "reason": "Copied4945 characters omit formatting/status/history/actions. Selected backdrop may cross editor container, while control glyphs remain unselected.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:24:20.634720+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-mixed-selected-v3-bottom.jpg"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N05",
+      "title": "Whole rendered live draft thirty passages",
+      "result": "PASS",
+      "reason": "Unique native-created empty fixture; actual paste/Cmd+A/copy includes all30 and both sentinels; file remains0 bytes.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-whole-selection-v3.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-whole-copy-textedit-value.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N06",
+      "title": "Whole formatting/status/history exclusion",
+      "result": "PASS",
+      "reason": "Native copied1236 characters exclude embedded controls; actual screenshot inspected.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-whole-selection-v3.jpg"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N07",
+      "title": "Immediate initial open from long reading in fresh process",
+      "result": "PASS",
+      "reason": "One real Cmd+A immediately after first second.md tree open; no intervening AX/render observation; all25/end selected.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:27:39.732960+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-cold-initial-before.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-cold-initial-settled.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-cold-initial-settled.jpg",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-attempts.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N08",
+      "title": "Immediate initial open from empty reading in fresh process",
+      "result": "PASS",
+      "reason": "Fresh process restored empty.md; second.md closed/not previously read in this process. One immediate key selects25/end.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:27:39.732960+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-cold-empty-initial-before.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-cold-empty-initial-settled.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-cold-empty-initial-settled.jpg",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-attempts.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N09",
+      "title": "Immediate clean reopen from long reading",
+      "result": "FAIL",
+      "reason": "Three attempts FAIL/PASS/FAIL. First AX shows actual loading; settled screenshots lack selection. Formal supplementary-input repetition fails. QA-0035 STILL_REPRODUCIBLE.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:27:39.732960+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reopen-long-settled-01.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reopen-long-immediate-02.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-v2-reopen-long-03-settled.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-v2-reopen-long-03-settled.jpg",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-attempts.json"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "result": "FAIL"
+        },
+        {
+          "attempt": 2,
+          "result": "PASS"
+        },
+        {
+          "attempt": 3,
+          "result": "FAIL"
+        }
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Immediate clean reopen from empty reading",
+      "result": "FAIL",
+      "reason": "Two attempts PASS/FAIL; final no-second-key observation still unselected. QA-0035, no pass-based closure.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:27:39.732960+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reopen-empty-immediate-01.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-v2-reopen-empty-02-settled.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-v2-reopen-empty-final-no-second-key.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-v2-reopen-empty-final-no-second-key.jpg",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-attempts.json"
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "result": "PASS"
+        },
+        {
+          "attempt": 2,
+          "result": "FAIL"
+        }
+      ]
+    },
+    {
+      "id": "N11",
+      "title": "Separate ready selection retry/new-document-only copy",
+      "result": "PASS",
+      "reason": "Loaded retry copies all25 B/end and no A. Does not erase failed immediate key.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:23:49.540610+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-ready-B-copy-textedit.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-reopen-long-02-copy-value.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-copy-validation.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N12",
+      "title": "Rapid A\u2192B\u2192A stale intent cancellation",
+      "result": "PASS",
+      "reason": "Click B, immediate Cmd+A, click A without AX between;255ms sequence. Settled active A, no B selected. Controlled replacement coverage attributed separately.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:26:28.364946+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-stale-before.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-stale-A-B-A-settled.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-stale-A-B-A-settled.jpg"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N13",
+      "title": "Native Filename Cmd+A owner",
+      "result": "PASS",
+      "reason": "QA_FILENAME_FIELD replaced exactly by QA_REPLACED; no document command or Create during probe.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:15:38.905257+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-filename-field-selected.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-filename-field-replaced.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N14",
+      "title": "Native reading Find Cmd+A owner",
+      "result": "PASS",
+      "reason": "QA_FIND_FIELD replaced exactly by QA_FIND_REPLACED on reading B.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:15:48.488802+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-find-field-selected-v2.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-find-field-replaced-v2.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N15",
+      "title": "Native mixed Find typing ownership",
+      "result": "FAIL",
+      "reason": "Fresh query x then y/q edits MIXED_SECTION to MIyED/MIqED while query remains x. Two fresh-query failures; unchanged-query x\u2192xq comparison passes. Initial slow-type anomaly retained. All run-added mutations undone. QA-0036 S3.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:25:36.585158+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-first-key.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-second-key.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-repeat-02-second.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-repeat-03-first.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-repeat-03-second.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-repeat-03-restored.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-mixed-find-mutated-heading.jpg"
+      ],
+      "attempts": [
+        {
+          "attempt": "fresh x then y",
+          "result": "FAIL"
+        },
+        {
+          "attempt": "same query x then q",
+          "result": "PASS",
+          "limitation": "query unchanged, reveal not retriggered"
+        },
+        {
+          "attempt": "empty then x then q",
+          "result": "FAIL"
+        }
+      ]
+    },
+    {
+      "id": "N16",
+      "title": "Native Local target Cmd+A owner",
+      "result": "PASS",
+      "reason": "second.md replaced exactly with qa-native-target-replaced.md; Cancel without Apply.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:21:45.725978+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-local-target-selected-v3.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-local-target-replaced-v3.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N17",
+      "title": "Native modal Cmd+A exclusion",
+      "result": "PASS",
+      "reason": "Quit modal stays active after Cmd+A; no document-wide selected text. Native Keep draft closes normally.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:17:09.606786+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-quit-modal-CmdA.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-quit-keep-draft-provider.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N18",
+      "title": "Shift/Alt modifier exclusion",
+      "result": "PASS",
+      "reason": "Real super+shift+a and alt+super+a do not select all document.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:27:39.732361+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-shift-modifier-exclusion.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-alt-modifier-exclusion.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N19",
+      "title": "Source undo/redo preservation",
+      "result": "PASS",
+      "reason": "One Undo returns own whole paste to empty; Redo restores all30/end after document-wide selection and cancelled link field.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:22:10.725443+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-whole-undo-v3.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-whole-redo-v3.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "N20",
+      "title": "Ready native New Markdown creation",
+      "result": "PASS",
+      "reason": "Creates unique disposable zero-byte file using existing QA root and enters whole editor; no prior file overwritten. Does not test startup failure/native dirty-second-create matrix.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:20:33.794988+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-own-whole-create-before.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-own-whole-created.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-own-fixture.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "I02",
+      "title": "Input/evidence preservation",
+      "result": "PASS",
+      "reason": "445 final-scope source/config/input paths byte AND identity unchanged;358 protected earlier artifacts unchanged before appended histories. Original three fixture bytes and both prior drafts retained.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:33:36.121092+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/final-integrity-before-history.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "I03",
+      "title": "Run-owned process shutdown and retention",
+      "result": "PASS",
+      "reason": "Supplied profile retained; normal cold/final quits. Tested app and HTTP server stopped. Installed app PID6877 unoperated. Clipboard scratch saved locally4945bytes; original TextEdit PID12486 ended, later PID14673 ownership unknown and left untouched.",
+      "required": true,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:31:21.924256+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-cold-process-state.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/owned-process-stop.json",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-clipboard-scratch.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "B01",
+      "title": "New folder native picker access",
+      "result": "BLOCKED",
+      "reason": "Open disabled even selected folder; reused supplied disposable fixture profile. New run fixture copies unused. Existing native picker limitation retained.",
+      "required": false,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:02:34.896096+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-folder-picker-blocked.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-folder-picker-blocked.jpg"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "B02",
+      "title": "Actual held native refresh/theme race",
+      "result": "BLOCKED",
+      "reason": "No genuine native read-hold facility available without altering/instrumenting native candidate. Mocked held case passes; native QA-0034 cause remains unverified.",
+      "required": false,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "B03",
+      "title": "Native replacement/held incompatible-owner cancellation",
+      "result": "BLOCKED",
+      "reason": "No controllable actual native held read/parse boundary; deterministic mocked replacement/modal/composition tests pass separately. Original fixture bytes protected.",
+      "required": false,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:40:08.576252+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/attempt-summary.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "B04",
+      "title": "Find overlay visual/focus capture completeness",
+      "result": "BLOCKED",
+      "reason": "Provider screenshots omit AX-confirmed Find bar; heading mutation visible, field query evidenced by AX. Intermittent noWindowsAvailable/element frame/-3812 errors retained; not counted as product defects.",
+      "required": false,
+      "environment": "macOS native WKWebView",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-target/debug/bundle/macos/Intentgrove QA0035.app",
+      "finished_at": "2026-10-12T03:25:15.163932+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-mixed-find-second-key.txt",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/screenshots/native-mixed-find-mutated-heading.jpg",
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/native-undo-interaction-blocker.txt"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "X01",
+      "title": "Physical IME composition",
+      "result": "NOT_RUN",
+      "reason": "No configured physical IME interaction; synthetic isComposing tests do not certify it.",
+      "required": false,
+      "environment": "unavailable native/AT/platform environment",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:27:03.336882+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/environment.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "X02",
+      "title": "VoiceOver/assistive technology",
+      "result": "NOT_RUN",
+      "reason": "AX inspection is not an AT user journey or conformance check.",
+      "required": false,
+      "environment": "unavailable native/AT/platform environment",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:27:03.336882+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/environment.json"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "X03",
+      "title": "Windows native equivalent",
+      "result": "NOT_RUN",
+      "reason": "No accessible Windows native environment in this run.",
+      "required": false,
+      "environment": "unavailable native/AT/platform environment",
+      "candidate": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+      "finished_at": "2026-10-12T03:27:03.336882+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/environment.json"
+      ],
+      "attempts": []
+    }
+  ],
+  "test_attempt_counts": {
+    "PASS": 11,
+    "FAIL": 6
+  }
+}

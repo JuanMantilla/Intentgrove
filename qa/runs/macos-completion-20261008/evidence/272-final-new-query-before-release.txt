@@ -1,0 +1,127 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: never-match-final-stale, Placeholder: File name or text
+							14 text (settable) never-match-final-stale
+							15 button cancel
+					16 text Search scope: workspace · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text No results · 122 entries scanned, 4 skipped · Results: 0
+				28 text Storage and recovery
+				29 text Open edits and recovery offers: 0
+				30 button Manage…
+			31 container
+				32 container Visited files
+					33 button (disabled) Back, Help: No previous file
+					34 button (disabled) Forward, Help: No next file
+				35 tab group (selectable) Documents
+					36 container
+						37 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						38 button Close tab: plain.md, Help: Close tab
+					39 container
+						40 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						41 button Close tab: linked.md, Help: Close tab
+					42 container
+						43 tab (selectable) alpha-00.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/docs/alpha/alpha-00.md
+						44 button Close tab: alpha-00.md, Help: Close tab
+					45 container
+						46 tab (selectable) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						47 button Close tab: rich.md, Help: Close tab
+					48 container
+						49 tab (selectable) mixed-1m.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/mixed-1m.md
+						50 button Close tab: mixed-1m.md, Help: Close tab
+					51 container
+						52 tab (selectable) case-01.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-01.md
+						53 button Close tab: case-01.md, Help: Close tab
+					54 container
+						55 tab (selectable) case-02.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-02.md
+						56 button Close tab: case-02.md, Help: Close tab
+					57 container
+						58 tab (selectable) case-03.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-03.md
+						59 button Close tab: case-03.md, Help: Close tab
+					60 container
+						61 tab (selectable) case-04.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-04.md
+						62 button Close tab: case-04.md, Help: Close tab
+					63 container
+						64 tab (selected) case-05.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/reading-matrix/case-05.md
+						65 button Close tab: case-05.md, Help: Close tab
+				66 pop up button Go menu
+				67 button (collapsed) Open documents (10), Secondary Actions: Expand
+				68 container case-05.md
+					69 text case-05.md
+					70 text reading-matrix
+					71 toggle button Outline, Value: off
+					72 button (collapsed) Reading settings, Secondary Actions: Expand
+					73 button Edit section
+					74 summary Document…, Value: off
+						75 text Document…
+				76 container case-05.md
+					77 container Reading matrix 5
+						78 summary Metadata · Invalid or unsupported YAML metadata, Value: off
+							79 text Metadata · Invalid or unsupported YAML metadata
+						80 container Edit section: Reading matrix 5
+							81 heading Reading matrix 5, Value: 1
+								82 text Reading matrix 5
+							83 button Edit section “Reading matrix 5”
+						84 container
+							85 button Reference, Help: ../linked.md
+							86 text  and footnote
+							87 button 1, Help: #fn-a%2520b
+							88 text .
+						89 text json
+						90 button Copy code
+						91 text {"highlight": true}
+
+						92 text Diagram unavailable. The source is preserved below.
+						93 container (expanded) Secondary Actions: Collapse
+							94 summary View source, Value: on
+								95 text View source
+							96 text mermaid
+							97 button Copy code
+							98 text flowchart LR
+A-->B
+click A "https://example.invalid/qa"
+
+						99 text After network-link.
+						100 text Final unaffected document 5.
+						101 image Mermaid diagram
+						102 summary View source, Value: off
+							103 text View source
+						104 container
+							105 text [1] 
+							106 button ↩, Help: #fnref-a%2520b-1
+						107 text Encoded footnote document 5.
+	108 close button
+	109 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	110 minimize button
+	111 text Intentgrove
+112 menu bar
+	113 Intentgrove QA
+	114 File
+	115 Edit
+	116 View
+	117 Go
+	118 Window
+	119 Help
+
+The focused UI element is 13 search text field (settable) Search folder, Value: never-match-final-stale, Placeholder: File name or text

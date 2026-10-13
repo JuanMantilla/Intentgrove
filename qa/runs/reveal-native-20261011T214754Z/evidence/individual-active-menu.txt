@@ -1,0 +1,104 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: unopened.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) active.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Close tab: active.md, Help: Close tab
+				17 container
+					18 tab (selectable) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Close tab: inactive.md, Help: Close tab
+				20 container
+					21 tab (selectable) café "quote" 'single' $ & # % (draft),.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					22 button Close tab: café "quote" 'single' $ & # % (draft),.md, Help: Close tab
+				23 container
+					24 tab (selectable) unopened.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+					25 button Close tab: unopened.md, Help: Close tab
+				26 container
+					27 tab (selected) one.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+					28 button Close tab: one.md, Help: Close tab
+			29 pop up button Go menu
+			30 button (collapsed) Open documents (5), Secondary Actions: Expand
+			31 container Explorer
+				32 pop up button PROJECTS
+				33 button Close Projects sidebar
+				34 button Open file
+				35 button Open folder
+				36 button Search folder
+				37 text fixtures
+				38 container
+					39 button active.md
+					40 button delete.md
+					41 button inactive.md
+					42 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					43 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					44 button rename.md
+					45 button replace.md
+					46 button unopened.md
+				47 text Storage and recovery
+				48 text Open edits and recovery offers: 0
+				49 button Manage…
+				50 button Settings…
+			51 container
+				52 menu Secondary Actions: Cancel
+					53 (selected) Reveal in Finder
+					54 Copy path
+					55 Close tab: one.md
+					56 Close other tabs
+					57 (disabled) Close tabs to the right
+					58 Reload one.md
+				59 container one.md
+					60 container one.md
+						61 text one.md
+					62 button Find in document
+					63 toggle button Outline, Value: on
+					64 button (collapsed) Reading settings, Secondary Actions: Expand
+					65 button Edit section
+					66 summary Document…, Value: off
+						67 text Document…
+					68 text Outside the open folder
+				69 container one.md
+					70 container Individual one
+						71 container Edit section: Individual one
+							72 heading Individual one, Value: 1
+								73 text Individual one
+							74 button Edit section “Individual one”
+						75 text Original saved content.
+				76 container Outline
+					77 text OUTLINE
+					78 button Close outline
+					79 container Outline
+						80 content list
+							81 button Individual one
+			82 container
+				83 text Current on disk Intentgrove by Theonira
+	84 close button
+	85 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	86 minimize button
+	87 text Intentgrove Reveal QA
+88 menu bar
+	89 Intentgrove Reveal QA
+	90 File
+	91 Edit
+	92 View
+	93 Go
+	94 Window
+	95 Help
+
+Selected text: ```
+one.md
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

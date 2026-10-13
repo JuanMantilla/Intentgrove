@@ -1,0 +1,101 @@
+Window: "Intentgrove QA0031", App: Intentgrove QA0031.
+0 standard window Intentgrove QA0031, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0031-20261011/fixtures/root.md
+					16 button Close tab: root.md, Help: Close tab
+				17 container
+					18 tab (selected) existing.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0031-20261011/fixtures/existing.md
+					19 button Close tab: existing.md, Help: Close tab
+				20 container
+					21 tab (selectable) race.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0031-20261011/fixtures/race.md
+					22 button Close tab: race.md, Help: Close tab
+				23 container
+					24 tab (selectable) explicit.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0031-20261011/individual/explicit.md
+					25 button Close tab: explicit.md, Help: Close tab
+			26 pop up button Go menu
+			27 button (collapsed) Open documents (4), Secondary Actions: Expand
+			28 container Explorer
+				29 pop up button PROJECTS
+				30 button Close Projects sidebar
+				31 button Open file
+				32 button Open folder
+				33 button Search folder
+				34 text fixtures
+				35 container
+					36 button existing.md
+					37 button race-renamed.md
+					38 button root-renamed.md
+				39 text Storage and recovery
+				40 text Open edits and recovery offers: 1
+				41 button Manage…
+				42 button Settings…
+			43 container
+				44 menu Secondary Actions: Cancel
+					45 (disabled) Reveal in Finder
+					46 text This file is missing
+					47 (selected) Copy path
+					48 Close tab: explicit.md
+					49 Close other tabs
+					50 (disabled) Close tabs to the right
+					51 Reload explicit.md
+				52 container existing.md
+					53 container existing.md
+						54 text existing.md
+					55 button Find in document
+					56 button Save file
+					57 button Return to reading
+					58 button Save As
+					59 text Save returns to reading.
+					60 summary Document…, Value: off
+						61 text Document…
+					62 text Folder root
+				63 container existing.md
+					64 container Editing: QA0031 existing.md
+						65 container Editing: QA0031 existing.md
+							66 text Editing: QA0031 existing.md
+							67 text Changes not saved to the file
+							68 text entry area (settable) Editing: QA0031 existing.md, Secondary Actions: Show Writing Tools, Value: **QA0031 UNSAVED QA0031 existing.md
+**
+Disposable saved text.
+								69 heading (settable, integer) Editing: QA0031 existing.md, Value: 1
+									70 text entry area (settable) Editing: QA0031 existing.md, Value: **QA0031 UNSAVED QA0031 existing.md**, Secondary Actions: Show Writing Tools
+										71 text (settable) QA0031 UNSAVED QA0031 existing.md
+								72 text entry area (settable) Editing: QA0031 existing.md, Value: Disposable saved text., Secondary Actions: Show Writing Tools
+									73 text (settable) Disposable saved text.
+							74 button Undo
+							75 button (disabled) Redo
+							76 button Discard changes…
+							77 button Save as…
+				78 container Outline
+					79 text OUTLINE
+					80 button Close outline
+					81 container Outline
+						82 content list
+							83 button QA0031 UNSAVED QA0031 existing.md
+			84 container
+				85 text existing.md Intentgrove by Theonira
+	86 close button
+	87 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	88 minimize button
+	89 text Intentgrove QA0031
+90 menu bar
+	91 Intentgrove QA0031
+	92 File
+	93 Edit
+	94 View
+	95 Go
+	96 Window
+	97 Help

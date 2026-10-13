@@ -1,0 +1,9 @@
+# Retained failures and candidate history
+
+QA-0034: original appearance-operations assertion expected170, observed0 at line101, with confirmed refresh held and ten theme changes. [/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/retained-prior/frontend-suite-final.log](/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/retained-prior/frontend-suite-final.log). Current isolated/paired/full retests do not reproduce; cause/fix UNKNOWN.
+
+QA-0033: original full-suite confirmation cannot find New Markdown file dialog. [/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/retained-prior/frontend-suite-confirmation.log](/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/retained-prior/frontend-suite-confirmation.log). Current frozen default suites reproduce empty opening and nearby Filename failures. Isolated and single-worker passes do not clear it.
+
+QA-0035: native first-open/reopen initial Cmd+A lost2/2; ready retries/existing tab switching work. Authentic user answer requires remembered selection; requirement clarification is not implementation/task acceptance. [/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/user-loading-selection-requirement.json](/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/evidence/user-loading-selection-requirement.json).
+
+Known preparation failures: omitted Rust workspace manifest and diagram PNG caused isolated-copy failures. Only unchanged original inputs added, and affected checks rerun after new baselines. Earlier raw failures remain. Initial standard build failed on different mutable App/i18n/native inputs; frozen standard build passes and matches11 embedded assets. Later live canonical changes are not the tested candidate.

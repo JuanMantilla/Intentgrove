@@ -1,0 +1,134 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container Explorador
+				8 pop up button Proyectos
+				9 container Buscar en la carpeta
+					10 button Volver al explorador
+					11 container
+						12 text Buscar en la carpeta
+						13 search text field (settable) Buscar en la carpeta, Value: NAV_FINAL_TARGET_UNIQUE, Placeholder: Nombre o texto
+							14 text (settable) NAV_FINAL_TARGET_UNIQUE
+							15 button cancel
+					16 text Ámbito de búsqueda: fixtures · Nombres y contenido
+					17 container Buscar en
+						18 toggle button Nombres y contenido, Value: on
+						19 toggle button Nombres de archivo, Value: off
+						20 toggle button Texto del documento, Value: off
+					21 text La búsqueda de contenido incluye archivos Markdown.
+					22 container
+						23 checkbox Incluir archivos ignorados, Value: 0
+						24 text Incluir archivos ignorados
+					25 button Buscar
+					26 button Borrar búsqueda
+					27 text Búsqueda completa · 8 entradas revisadas, 1 omitidas · Resultados: 1
+					28 container search-navigation.md
+						29 heading search-navigation.md 1, Help: search-navigation.md, Value: 3
+							30 text search-navigation.md 1
+						31 button search-navigation.md · Línea 3 · NAV_FINAL_TARGET_UNIQUE, Help: search-navigation.md
+				32 text Almacenamiento y recuperación
+				33 text Ediciones abiertas y avisos de recuperación: 0
+				34 button Gestionar…
+			35 button Cerrar explorador
+			36 container
+				37 container Archivos visitados
+					38 button Atrás, Help: Atrás: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					39 button (disabled) Adelante, Help: No hay archivo siguiente
+				40 tab group (selectable) Documentos
+					41 container
+						42 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						43 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					44 container
+						45 tab (selected) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						46 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					47 container
+						48 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						49 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				50 pop up button Menú Ir
+				51 button (collapsed) Documentos abiertos (3), Secondary Actions: Expand
+				52 container rich.md
+					53 text rich.md
+					54 text Raíz de la carpeta
+					55 button Editar sección
+					56 summary Documento…, Value: off
+						57 text Documento…
+				58 text El pasaje cambió de lugar; se muestra la posición disponible más cercana
+				59 button Cerrar aviso
+				60 container rich.md
+					61 container Reading acceptance
+						62 summary Metadatos, Value: off
+							63 text Metadatos
+						64 container Editar sección: Reading acceptance
+							65 heading Reading acceptance, Value: 1
+								66 text Reading acceptance
+							67 button Editar sección «Reading acceptance»
+						68 container
+							69 text Before diagrams. 
+							70 button Reference, Help: linked.md
+							71 text  and encoded footnote
+							72 button 1, Help: #fn-a%2520b
+							73 text .
+						74 text json
+						75 button Copiar código
+						76 text {"highlight": true}
+
+						77 image Diagrama Mermaid
+						78 summary Ver código fuente, Value: off
+							79 text Ver código fuente
+						80 text Between diagrams.
+						81 image Diagrama Mermaid
+						82 summary Ver código fuente, Value: off
+							83 text Ver código fuente
+						84 text Diagrama no disponible. El código fuente se conserva abajo.
+						85 container (expanded) Secondary Actions: Collapse
+							86 summary Ver código fuente, Value: on
+								87 text Ver código fuente
+							88 text mermaid
+							89 button Copiar código
+							90 text flowchart broken
+
+						91 text Diagrama no disponible. El código fuente se conserva abajo.
+						92 container (expanded) Secondary Actions: Collapse
+							93 summary Ver código fuente, Value: on
+								94 text Ver código fuente
+							95 text mermaid
+							96 button Copiar código
+							97 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						98 text After diagrams.
+						99 container Editar sección: Duplicate
+							100 heading Duplicate, Value: 2
+								101 text Duplicate
+							102 button Editar sección «Duplicate»
+						103 text First duplicate target.
+						104 container Editar sección: Duplicate
+							105 heading Duplicate, Value: 2
+								106 text Duplicate
+							107 button Editar sección «Duplicate»
+						108 text Second duplicate target.
+						109 container
+							110 text [1] 
+							111 button ↩, Help: #fnref-a%2520b-1
+						112 text Encoded footnote body.
+	113 close button
+	114 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	115 minimize button
+	116 text Intentgrove
+117 menu bar
+	118 Intentgrove
+	119 File
+	120 Edit
+	121 View
+	122 Ir
+	123 Window
+	124 Help
+
+The focused UI element is 8 pop up button Proyectos

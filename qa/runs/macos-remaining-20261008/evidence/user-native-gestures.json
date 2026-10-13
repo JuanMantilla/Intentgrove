@@ -1,0 +1,28 @@
+[
+  {
+    "case": "file drop",
+    "userStatement": "file dropped",
+    "app": "Intentgrove QA",
+    "postcondition": "Dropped here intake; exact path selected; expected unique marker; outside folder scope"
+  },
+  {
+    "case": "folder drop",
+    "userStatement": "folder dropped",
+    "app": "Intentgrove QA",
+    "postcondition": "Dropped here intake; exact folder root; one expected child opened and correct unique marker"
+  },
+  {
+    "case": "Settings file/folder drop refusal",
+    "userStatement": "nothing happens when I drag the folder or the file in the settings app",
+    "app": "Intentgrove Completion 20261008",
+    "postcondition": "Populated Settings retained; reader tabs and folder unchanged",
+    "evidence": "018-default-settings-drop-refusal.txt"
+  },
+  {
+    "case": "Clean Close and actual Dock reopening",
+    "userStatement": "window clossed and restored same tabs",
+    "app": "Intentgrove Completion 20261008",
+    "postcondition": "Operator reports window disappeared and actual named Dock click restored; subsequent AX confirms same six tabs",
+    "evidence": "022-user-dock-reopen.txt"
+  }
+]

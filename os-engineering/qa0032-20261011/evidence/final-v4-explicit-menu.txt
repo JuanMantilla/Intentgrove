@@ -1,0 +1,98 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) opened.md, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/fixtures/opened.md
+					16 button Close tab: opened.md, Help: Close tab
+				17 container
+					18 tab (selectable) explicit.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit.md
+					19 button Close tab: explicit.md, Help: Close tab
+				20 container
+					21 tab (selectable) explicit-safe.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-safe.md
+					22 button Close tab: explicit-safe.md, Help: Close tab
+				23 container
+					24 tab (selected) explicit-fresh-final.md, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-fresh-final.md
+					25 button Close tab: explicit-fresh-final.md, Help: Close tab
+			26 pop up button Go menu
+			27 button (collapsed) Open documents (4), Secondary Actions: Expand
+			28 container Explorer
+				29 pop up button PROJECTS
+				30 button Close Projects sidebar
+				31 button Open file
+				32 button Open folder
+				33 button Search folder
+				34 text fixtures
+				35 container
+					36 button after-rename-moved.md
+					37 button after-replace-original.md
+					38 button after-replace-second-original.md
+					39 button after-replace.md
+					40 button before-rename-moved.md
+					41 button before-replace-original.md
+					42 button before-replace.md
+					43 button café # $ & % (draft),.md
+					44 button final-race-original.md
+					45 button final-race.md
+					46 button fresh.md
+					47 button opened-original.md
+					48 button opened.md
+				49 text Storage and recovery
+				50 text Open edits and recovery offers: 0
+				51 button Manage…
+				52 button Settings…
+			53 container
+				54 menu Secondary Actions: Cancel
+					55 (selected) Reveal in Finder
+					56 Copy path
+					57 Close tab: explicit-fresh-final.md
+					58 Close other tabs
+					59 (disabled) Close tabs to the right
+					60 Reload explicit-fresh-final.md
+				61 container explicit-fresh-final.md
+					62 container explicit-fresh-final.md
+						63 text explicit-fresh-final.md
+					64 button Find in document
+					65 toggle button Outline, Value: on
+					66 button (collapsed) Reading settings, Secondary Actions: Expand
+					67 button Edit section
+					68 summary Document…, Value: off
+						69 text Document…
+					70 text Outside the open folder
+				71 container explicit-fresh-final.md
+					72 container Final fresh explicit grant
+						73 container Edit section: Final fresh explicit grant
+							74 heading Final fresh explicit grant, Value: 1
+								75 text Final fresh explicit grant
+							76 button Edit section “Final fresh explicit grant”
+				77 container Outline
+					78 text OUTLINE
+					79 button Close outline
+					80 container Outline
+						81 content list
+							82 button Final fresh explicit grant
+			83 container
+				84 text Current on disk Intentgrove by Theonira
+	85 close button
+	86 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	87 minimize button
+	88 text Intentgrove QA0032
+89 menu bar
+	90 Intentgrove QA0032
+	91 File
+	92 Edit
+	93 View
+	94 Go
+	95 Window
+	96 Help

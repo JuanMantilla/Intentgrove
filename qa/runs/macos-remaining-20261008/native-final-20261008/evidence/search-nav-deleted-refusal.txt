@@ -1,0 +1,83 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: NAV_FINAL_TARGET_UNIQUE, Placeholder: File name or text
+							14 text (settable) NAV_FINAL_TARGET_UNIQUE
+							15 button cancel
+					16 text Search scope: fixtures · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text This file is missing · 8 entries scanned, 1 skipped · Results: 1
+					28 container search-navigation.md
+						29 heading search-navigation.md 1, Help: search-navigation.md, Value: 3
+							30 text search-navigation.md 1
+						31 button search-navigation.md · Line 3 · NAV_FINAL_TARGET_UNIQUE, Help: search-navigation.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 button Close sidebar
+			36 container
+				37 container Visited files
+					38 button Back, Help: Back: search-navigation.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+					39 button (disabled) Forward, Help: No next file
+				40 tab group (selectable) Documents
+					41 container
+						42 tab (selectable) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						43 button Close tab: rich.md, Help: Close tab
+					44 container
+						45 tab (selected) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						46 button Close tab: qa-image.png, Help: Close tab
+				47 pop up button Go menu
+				48 button (collapsed) Open documents (2), Secondary Actions: Expand
+				49 container qa-image.png
+					50 text qa-image.png
+					51 text Folder root
+					52 summary Document…, Value: off
+						53 text Document…
+				54 text This file changed since the search. Showing current content.
+				55 button Dismiss
+				56 container qa-image.png
+					57 text Format: PNG Dimensions: 128 × 96
+					58 container qa-image.png
+						59 toggle button Fit, Value: off
+						60 toggle button Actual size, Value: on
+						61 button Zoom out
+						62 container 100%
+							63 text 100%
+						64 button Zoom in
+					65 container qa-image.png
+						66 image qa-image.png
+	67 close button
+	68 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	69 minimize button
+	70 text Intentgrove
+71 menu bar
+	72 Intentgrove
+	73 File
+	74 Edit
+	75 View
+	76 Go
+	77 Window
+	78 Help
+
+The focused UI element is 4 button Toggle sidebar

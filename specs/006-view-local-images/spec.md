@@ -111,3 +111,10 @@ The reader sees a new image after another app changes the file and can manually 
 - The 8 MiB encoded / 40 million pixel acceptance envelope is a proposed safety and performance target, not a measured claim. Files outside safe limits receive an explicit error.
 - The existing local folder/file grants, automatic refresh, manual Reload, and tab shell are reused. F003C owns restoration after restart; F004 owns Markdown editing and recovery.
 - This specification is proposed for approval. No image-viewing production change is authorized until its specification, visual direction, and architecture are approved and recorded.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F006-H01**: HTML embedded PNG/JPEG/GIF/WebP pass a bounded native container/header preflight, then decode in the separate document engine process. Privileged host ImageIO is not used. External SVG is refused. Existing standalone/Markdown image XPC behavior is unchanged; HTML is not an image-decoder feature.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

@@ -1,0 +1,70 @@
+Window: "Settings — Intentgrove", App: Intentgrove QA 20261007.
+0 standard window Settings — Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
+			3 container
+				4 heading Settings, Value: 1
+					5 text Settings
+				6 container General
+					7 heading General, Value: 2
+						8 text General
+					9 container
+						10 text Language
+						11 pop up button (collapsed) Language, Value: English, Secondary Actions: Expand
+						12 text Appearance
+						13 pop up button (collapsed) Appearance, Value: System, Secondary Actions: Expand
+				14 container Reading
+					15 heading Reading, Value: 2
+						16 text Reading
+					17 container
+						18 text Font
+						19 pop up button (collapsed) Font, Value: Roboto, Secondary Actions: Expand
+						20 text Text size (px)
+						21 slider (settable, float) Text size, Value: 16
+							22 value indicator 16
+						23 number field (settable) Text size (px), Value: 16
+							24 stepper 0
+								25 unknown
+								26 unknown
+						27 text Line height
+						28 slider (settable, float) Line height, Value: 1.6
+							29 value indicator 1.6
+						30 number field (settable) Line height, Value: 1.6
+							31 stepper 0
+								32 unknown
+								33 unknown
+						34 text Page width (px)
+						35 slider (settable, float) Page width, Value: 760
+							36 value indicator 760
+						37 number field (settable) Page width (px), Value: 760
+							38 stepper 0
+								39 unknown
+								40 unknown
+						41 container Page width
+							42 toggle button Comfortable, Value: on
+							43 toggle button Wide, Value: off
+						44 container Reading preview
+							45 text Reading preview
+							46 text Adjust the type to find a comfortable reading rhythm. Your document stays unchanged.
+						47 button Reset reading settings
+				48 container Project tree
+					49 heading Project tree, Value: 2
+						50 text Project tree
+					51 container
+						52 checkbox Documents and images only, Value: 1
+						53 text Documents and images only
+				54 button Done
+	55 close button
+	56 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	57 minimize button
+	58 text Settings — Intentgrove
+59 menu bar
+	60 Intentgrove QA 20261007
+	61 File
+	62 Edit
+	63 View
+	64 Go
+	65 Window
+	66 Help
+
+The focused UI element is 7 heading General, Value: 2

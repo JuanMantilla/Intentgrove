@@ -1,0 +1,80 @@
+Window: "Intentgrove QA0033-0040 v5", App: Intentgrove QA0033-0040 v5.
+0 standard window Intentgrove QA0033-0040 v5, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: long.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/long.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) long.md, Value: off, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/long.md
+					16 button Close tab: long.md, Help: Close tab
+				17 container
+					18 tab (selectable) empty.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/empty.md
+					19 button Close tab: empty.md, Help: Close tab
+				20 container
+					21 tab (selectable) whole.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/whole.md
+					22 button Close tab: whole.md, Help: Close tab
+				23 container
+					24 tab (selected) second.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/second.md
+					25 button Close tab: second.md, Help: Close tab
+			26 pop up button Go menu
+			27 button (collapsed) Open documents (4), Secondary Actions: Expand
+			28 container Explorer
+				29 pop up button PROJECTS
+				30 button Close Projects sidebar
+				31 button Open file
+				32 button Open folder
+				33 button Search folder
+				34 text fixtures
+				35 container
+					36 button empty.md
+					37 button long.md
+					38 button second.md
+					39 button whole.md
+				40 text Storage and recovery
+				41 text Open edits and recovery offers: 2
+				42 button Manage…
+				43 button Settings…
+			44 container
+				45 container second.md
+					46 container second.md
+						47 text second.md
+					48 button Find in document
+					49 toggle button Outline, Value: on
+					50 button (collapsed) Reading settings, Secondary Actions: Expand
+					51 button Edit section
+					52 summary Document…, Value: off
+						53 text Document…
+					54 text Folder root
+				55 container second.md
+					56 container Loading…
+						57 text Loading…
+				58 container Outline
+					59 text OUTLINE
+					60 button Close outline
+					61 container Outline
+						62 content list
+							63 button SWITCH_BEGIN_B
+			64 container
+				65 text Current on disk Intentgrove by Theonira
+	66 close button
+	67 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	68 minimize button
+	69 text Intentgrove QA0033-0040 v5
+70 menu bar
+	71 Intentgrove QA0033-0040 v5
+	72 File
+	73 Edit
+	74 View
+	75 Go
+	76 Window
+	77 Help

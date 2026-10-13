@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-12T14:01:01.936962+00:00",
+  "correction": "The live_source_changed_since_start field in preservation-boundaries.json compares live files to the v5-based source-before-manifest, not a complete live pretask content baseline. The 15 native differences were already identified at task start in live-versus-v5.json. Do not infer this task changed those files. Only the three frontend/test paths were edited by this task.",
+  "initial_native_differences": [
+    "src-tauri/src/assets.rs",
+    "src-tauri/src/default_markdown.rs",
+    "src-tauri/src/editing.rs",
+    "src-tauri/src/html_broker.rs",
+    "src-tauri/src/html_tests.rs",
+    "src-tauri/src/image.rs",
+    "src-tauri/src/lib.rs",
+    "src-tauri/src/platform/macos.rs",
+    "src-tauri/src/recovery.rs",
+    "src-tauri/src/refresh.rs",
+    "src-tauri/src/scope.rs",
+    "src-tauri/src/search.rs",
+    "src-tauri/src/session.rs",
+    "src-tauri/src/settings.rs",
+    "src-tauri/src/state.rs"
+  ]
+}

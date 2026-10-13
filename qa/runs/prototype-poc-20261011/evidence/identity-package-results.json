@@ -1,0 +1,63 @@
+{
+  "targetsByScene": {
+    "login": [
+      "effect-probe",
+      "hidden-probe",
+      "image-probe",
+      "login-button",
+      "transform-probe"
+    ],
+    "dashboard": [
+      "effect-probe",
+      "hidden-probe",
+      "image-probe",
+      "menu-button",
+      "menu-panel",
+      "profile-avatar",
+      "settings-button",
+      "transform-probe"
+    ],
+    "settings": [
+      "back-button",
+      "effect-probe",
+      "hidden-probe",
+      "image-probe",
+      "transform-probe"
+    ],
+    "profile-overlay": [
+      "close-button",
+      "effect-probe",
+      "hidden-probe",
+      "image-probe",
+      "transform-probe"
+    ]
+  },
+  "checks": [
+    {
+      "name": "target retention login",
+      "result": "PASS"
+    },
+    {
+      "name": "target retention dashboard",
+      "result": "PASS"
+    },
+    {
+      "name": "target retention settings",
+      "result": "PASS"
+    },
+    {
+      "name": "target retention profile-overlay",
+      "result": "PASS"
+    },
+    {
+      "name": "compiler duplicate rejection",
+      "result": "PASS",
+      "reason": "duplicate/invalid prototype ID"
+    },
+    {
+      "name": "reset screenshot byte equality",
+      "result": "PASS"
+    }
+  ],
+  "finishedAt": "2026-10-11T22:02:56.179699+00:00"
+}

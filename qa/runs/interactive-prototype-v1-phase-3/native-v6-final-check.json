@@ -1,0 +1,21 @@
+{
+  "name": "native-v6",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--features",
+    "document-contract-tests",
+    "--lib",
+    "--tests"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:24:26.588002+00:00",
+  "finished_at": "2026-10-12T03:25:00.043338+00:00",
+  "exit_code": 0,
+  "log": "native-v6.log",
+  "tested_snapshot": "tested-snapshot-v6.json"
+}

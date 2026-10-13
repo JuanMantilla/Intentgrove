@@ -1,0 +1,124 @@
+Window: "Open", App: Intentgrove QA0033-0040 v3.
+0 sheet Description: open, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+			23 scroll bar (settable, float) 0
+				24 value indicator (settable, float) 0
+				25 increment arrow button
+				26 decrement arrow button
+				27 increment page button
+				28 decrement page button
+		29 splitter (disabled, settable, float) 148
+		30 scroll area
+			31 outline Description: list view, ID: ListView
+				32 row (selectable)
+					33 cell Secondary Actions: Open Finder item
+						34 image
+						35 text field (settable) Value: tested-snapshot.json, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/tested-snapshot.json
+					36 cell
+						37 text 176 KB
+					38 cell
+						39 text JSON
+					40 cell
+						41 text Today at 11:29 PM
+				42 row (selectable)
+					43 cell Secondary Actions: Open Finder item
+						44 image
+						45 text field (settable) Value: run-retests.py, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/run-retests.py
+					46 cell
+						47 text 2 KB
+					48 cell
+						49 text Python script
+					50 cell
+						51 text Today at 11:29 PM
+				52 row (selectable)
+					53 cell Secondary Actions: Open Finder item
+						54 image
+						55 text field (settable) Value: tested-paths.json, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/tested-paths.json
+					56 cell
+						57 text 50 KB
+					58 cell
+						59 text JSON
+					60 cell
+						61 text Today at 11:29 PM
+				62 row (selectable)
+					63 cell Secondary Actions: Open Finder item
+						64 image
+						65 text field (settable) Value: plan.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/plan.md
+					66 cell
+						67 text 1 KB
+					68 cell
+						69 text Markdown
+					70 cell
+						71 text Today at 11:29 PM
+				72 row (selected, collapsed) Secondary Actions: Expand
+					73 cell (selected) Secondary Actions: Open Finder item
+						74 image
+						75 text field (selected, settable) Value: fixtures, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/fixtures/
+						76 disclosure triangle 0
+					77 cell (selected)
+						78 text --
+					79 cell (selected)
+						80 text Folder
+					81 cell (selected)
+						82 text Today at 11:29 PM
+				83 row (selectable, collapsed) Secondary Actions: Expand
+					84 cell Secondary Actions: Open Finder item
+						85 image
+						86 text field (settable) Value: evidence, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/
+						87 disclosure triangle 0
+					88 cell
+						89 text --
+					90 cell
+						91 text Folder
+					92 cell
+						93 text Today at 11:29 PM
+				94 container ListViewHeader
+					95 button Description: Name, ID: name
+					96 button Description: Size, ID: size
+					97 button Description: Kind, ID: kind
+					98 button Description: Date Added, Value: AXDescendingSortDirection, ID: dateAdded
+		99 container
+			100 button back
+			101 button (disabled) forward
+		102 menu button Description: List, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		103 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		104 pop up button Where:, Value: qa0033-0040-retest-v3-20261012T042800Z, ID: where popup
+		105 search text field Search
+			106 button search
+		107 button New Folder, ID: NewFolderButton
+		108 button Cancel, ID: CancelButton
+		109 button Open, ID: OKButton
+110 menu bar
+	111 Intentgrove QA0033-0040 v3
+	112 File
+	113 Edit
+	114 View
+	115 Go
+	116 Window
+	117 Help
+
+Selected:
+	72 row (selected, collapsed) Secondary Actions: Expand
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

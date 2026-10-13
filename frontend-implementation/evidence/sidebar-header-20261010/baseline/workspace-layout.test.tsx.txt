@@ -1,0 +1,310 @@
+import { projectAction, projectsToggle, projectsMenu } from "./project-navigation-helpers";
+// @vitest-environment jsdom
+// Actual App/rendered-edit behavior, mocked Tauri integration; no real document writes.
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { typeRich, richLeaf, selectRich } from "./rich-edit-helpers";
+import { defaultSessionPanel } from "../../src/app/session";
+import App from "../../src/app/App";
+import userEvent from "@testing-library/user-event";
+import { getAppearance } from "../../src/app/appearance";
+
+const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(),
+  startFolderSearch: vi.fn(), cancelFolderSearch: vi.fn(), listEditSections: vi.fn(), beginSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(), saveSectionEdit: vi.fn(),
+  discardSectionEdit: vi.fn(), chooseSectionSaveAs: vi.fn(), commitSectionSaveAs: vi.fn(), listSafetyCopies: vi.fn(),
+  clearResolvedSafetyCopies: vi.fn(), setNativeMenuState: vi.fn(), clearAllRecovery: vi.fn(), clearWorkspaceSession: vi.fn(),
+  loadWorkspaceSession: vi.fn(), checkpointWorkspaceSession: vi.fn(),
+  settingsCheckpoint: null as null | (() => Promise<void>),
+  layoutChange: null as null | ((patch: import("../../src/app/settings-contract").PreferencePatch) => void),
+  listeners: {} as Record<string, (event: { payload: unknown }) => void> }));
+vi.mock("../../src/app/api", async (original) => ({ ...await original<typeof import("../../src/app/api")>(), api: mocks }));
+vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async (name, listener) => {
+  mocks.listeners[name] = listener; return () => { if (mocks.listeners[name] === listener) delete mocks.listeners[name]; };
+}) }));
+vi.mock("../../src/app/useSettingsOwner", () => ({ useSettingsOwner: (_values: unknown, _ready: boolean, handlers: { workspace: typeof mocks.layoutChange; checkpoint: typeof mocks.settingsCheckpoint }) => { mocks.layoutChange = handlers.workspace; mocks.settingsCheckpoint = handlers.checkpoint; } }));
+const content = "# One\nalpha\n# Two\nbeta\n";
+const sections = [
+  { id: "one", kind: "heading", ordinal: 0, level: 1, label: "One", startByte: 0, endByte: 12, sourceHash: "one" },
+  { id: "two", kind: "heading", ordinal: 1, level: 1, label: "Two", startByte: 12, endByte: 23, sourceHash: "two" }
+];
+beforeEach(() => {
+  vi.resetAllMocks(); mocks.loadWorkspaceSession.mockResolvedValue(null);
+  mocks.checkpointWorkspaceSession.mockImplementation(async input => ({sequence: input.sequence,completedAtMs: 1})); localStorage.clear(); getAppearance().applyPreference("dark");
+  mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+  mocks.listEntries.mockImplementation(async (_root, segments) => ({ snapshotId: "v1", nextOffset: null,
+    entries: segments.length ? [{ name: "a.md", kind: "markdown" }] : [
+      { name: "a.md", kind: "markdown" }, { name: "b.md", kind: "markdown" }, { name: "docs", kind: "directory" }] }));
+  mocks.readDocument.mockImplementation(async (request) => ({ fileId: request.segments?.join("/") ?? "outside",
+    identityKey: request.segments?.join("/") ?? "outside", name: request.segments?.at(-1) ?? "outside.md",
+    displayPath: request.segments ? "/tmp/fixture/" + request.segments.join("/") : "/tmp/other/outside.md", content, diskVersion: "v1" }));
+  mocks.listEditSections.mockResolvedValue({ diskVersion: "v1", sections });
+  mocks.beginSectionEdit.mockResolvedValue({ sessionId: "edit", diskVersion: "v1", section: sections[0], source: "# One\nalpha\n", lineSeparator: "\n" });
+  mocks.checkpointSectionEdit.mockImplementation(async ({ sequence }) => ({ sequence, durationMs: 1 }));
+  mocks.setNativeMenuState.mockResolvedValue(undefined);
+  mocks.startFolderSearch.mockResolvedValue({ jobId: "search", generation: 1 });
+  mocks.cancelFolderSearch.mockResolvedValue(true);
+  mocks.discardSectionEdit.mockResolvedValue(undefined); mocks.clearAllRecovery.mockResolvedValue(1);
+  mocks.listSafetyCopies.mockResolvedValue({ resolvedCount: 2, resolvedBytes: 1024, unresolvedCount: 1, unresolvedBytes: 2048, usedBytes: 3072, quotaBytes: 9999 });
+});
+afterEach(() => { cleanup(); getAppearance().applyPreference("system"); });
+async function open() {
+  render(<App />);
+  fireEvent.click(projectAction("Open folder"));
+  fireEvent.click(await screen.findByTitle("a.md"));
+  await screen.findByRole("button", { name: "Edit section “One”" });
+}
+async function edit() {
+  await open(); fireEvent.click(screen.getByRole("button", { name: "Edit section “One”" }));
+  await waitFor(() => expect(document.querySelector(".rich-section")).toBeTruthy());
+  return document.querySelector<HTMLElement>(".rich-section")!;
+}
+
+describe("workspace layout continuity (native bridge mocked)", () => {
+  it.each(["margin", "folio", "atlas"] as const)("restores saved %s from the session without a document read", async layout => {
+    mocks.loadWorkspaceSession.mockResolvedValue({sequence: 1, completedAtMs: 1, exitDisposition: "normal", root: null, tabs: [], activeKey: null,
+      tree: {expanded: [], selected: null, scrollTop: 0}, panel: {...defaultSessionPanel, workspaceLayout: layout}});
+    render(<App />);
+    await waitFor(() => expect(document.querySelector(".app-shell")?.getAttribute("data-workspace-layout")).toBe(layout));
+    expect(mocks.readDocument).not.toHaveBeenCalled();
+  });
+  it("omits unsupported session fields and keeps the explorer width when Atlas spans the window", async () => {
+    await open();
+    await act(async () => mocks.settingsCheckpoint!());
+    expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].panel.workspaceLayout).toBeUndefined();
+    const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
+    vi.spyOn(sidebar,"getBoundingClientRect").mockReturnValue({...sidebar.getBoundingClientRect(),width:1440});
+    act(() => mocks.layoutChange!({workspaceLayout:"atlas"}));
+    await act(async () => mocks.settingsCheckpoint!());
+    expect(mocks.checkpointWorkspaceSession.mock.lastCall?.[0].panel).toMatchObject({workspaceLayout:"atlas",sidebarWidth:264});
+    expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+  });
+  it("defaults to Margin and retains one live rendered editor, draft, range and undo history through all layouts", async () => {
+    const editor = await edit();
+    expect(document.querySelector(".app-shell")?.getAttribute("data-workspace-layout")).toBe("margin");
+    const reader = document.querySelector<HTMLElement>(".reader-scroll")!;
+    typeRich(" draft", richLeaf("alpha"), 5);
+    const leaf = richLeaf("alpha draft"); selectRich(leaf, 2, 5);
+    const selection = window.getSelection()!;
+    const anchor = selection.anchorNode, offset = selection.anchorOffset;
+    reader.scrollTop = 215;
+    const reads = mocks.readDocument.mock.calls.length;
+    for (const layout of ["folio", "atlas", "margin"] as const) {
+      act(() => mocks.layoutChange!({ workspaceLayout: layout }));
+      expect(document.querySelector(".app-shell")?.getAttribute("data-workspace-layout")).toBe(layout);
+      expect(document.querySelector(".rich-section")).toBe(editor);
+      expect(document.querySelector(".reader-scroll")).toBe(reader);
+      expect(reader.scrollTop).toBe(215);
+      expect(editor.textContent).toContain("alpha draft");
+      expect(selection.anchorNode).toBe(anchor); expect(selection.anchorOffset).toBe(offset);
+    }
+    expect(mocks.readDocument.mock.calls.length).toBe(reads);
+    expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+    fireEvent.keyDown(leaf, { key: "z", metaKey: true });
+    expect(editor.textContent).not.toContain("alpha draft");
+    fireEvent.keyDown(richLeaf("alpha"), { key: "z", metaKey: true, shiftKey: true });
+    expect(editor.textContent).toContain("alpha draft");
+  });
+  it("opens folder search from the keyboard while Folio navigation is collapsed", async () => {
+    await open(); act(() => mocks.layoutChange!({ workspaceLayout: "folio" }));
+    expect(screen.queryByRole("complementary", {name: "Explorer"})).toBeNull();
+    fireEvent.keyDown(window, {key: "f", metaKey: true, shiftKey: true});
+    expect(screen.getByRole("searchbox")).toBeTruthy();
+    expect(screen.getByRole("complementary", {name: "Explorer"})).toBeTruthy();
+  });
+  it("keeps folder search mounted and its query reachable through all layouts", async () => {
+    await open(); fireEvent.click(projectsMenu());
+    fireEvent.click(screen.getByRole("menuitem", { name: "Search folder" }));
+    const input = screen.getByRole("searchbox");
+    fireEvent.change(input, { target: { value: "retained query" } });
+    for (const layout of ["folio", "atlas", "margin"] as const) {
+      act(() => mocks.layoutChange!({ workspaceLayout: layout }));
+      expect(screen.getByRole("searchbox")).toBe(input);
+      expect((input as HTMLInputElement).value).toBe("retained query");
+    }
+    expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+  });
+  it("keeps document Find query, active tab and reader identity while switching", async () => {
+    await open();
+    fireEvent.keyDown(window, { key: "f", metaKey: true });
+    const find = await screen.findByRole("searchbox", { name: /Find in document/ });
+    fireEvent.change(find, { target: { value: "alpha" } });
+    const reader = document.querySelector(".reader-scroll");
+    for (const layout of ["atlas", "folio", "margin"] as const) {
+      act(() => mocks.layoutChange!({ workspaceLayout: layout }));
+      expect(screen.getByRole("searchbox", { name: /Find in document/ })).toBe(find);
+      expect((find as HTMLInputElement).value).toBe("alpha");
+      expect(document.querySelector(".reader-scroll")).toBe(reader);
+      expect(screen.getByRole("tab", { name: "a.md" }).getAttribute("aria-selected")).toBe("true");
+    }
+  });
+});
+
+
+// Cover both visibility owners and every Explorer disclosure with the real App.
+describe("sidebar view selection (native bridge mocked)", () => {
+  const cases = (["margin", "folio", "atlas"] as const).flatMap(layout =>
+    [1024, 390].map(width => ({ layout, width })));
+  it.each(cases)("selects the intended panel in $layout at $width px and retains search results", async ({ layout, width }) => {
+    const originalWidth = window.innerWidth;
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: width });
+    try {
+      await open(); act(() => mocks.layoutChange!({ workspaceLayout: layout }));
+      const reader = document.querySelector(".reader-scroll");
+      const reads = mocks.readDocument.mock.calls.length;
+      const explorer = projectsToggle();
+      const shell = document.querySelector(".app-shell")!;
+      const expectExplorer = () => {
+        expect(shell.getAttribute("data-sidebar-visible")).toBe("true");
+        expect(within(document.querySelector<HTMLElement>(".explorer-host")!).getByRole("button", { name: "a.md" })).toBeTruthy();
+        expect(screen.queryByRole("searchbox")).toBeNull();
+      };
+      const close = () => {
+        if (layout === "folio" || width === 390) fireEvent.click(screen.getByRole("button", { name: "Close sidebar" }));
+        else {
+          // Switching from Search selects Explorer; a second activation closes it.
+          fireEvent.click(explorer); expectExplorer(); fireEvent.click(explorer);
+        }
+        expect(shell.getAttribute("data-sidebar-visible")).toBe("false");
+      };
+      fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true });
+      const input = screen.getByRole("searchbox");
+      fireEvent.change(input, { target: { value: "alpha" } });
+      await waitFor(() => expect(mocks.listeners["folder-search:batch"]).toBeTruthy());
+      fireEvent.keyDown(input, { key: "Enter" });
+      await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalled());
+      await act(async () => {});
+      act(() => mocks.listeners["folder-search:batch"]({ payload: { jobId: "search", generation: 1,
+        results: [{ id: "hit", path: "a.md", segments: ["a.md"], kind: "content", line: 2,
+          context: "alpha", matchStart: 0, matchEnd: 5 }],
+        scanned: 1, skipped: 0, matched: 1, status: "complete", errorCode: null } }));
+      const result = screen.getByRole("button", { name: /a\.md.*alpha/ });
+      close(); fireEvent.click(explorer); expectExplorer(); // Search → close → Explorer
+      fireEvent.click(explorer);
+      expect(shell.getAttribute("data-sidebar-visible")).toBe("false"); // same-view toggle
+      fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true }); // Explorer → close → Search
+      expect(screen.getByRole("searchbox")).toBe(input);
+      expect((input as HTMLInputElement).value).toBe("alpha");
+      expect(screen.getByRole("button", { name: /a\.md.*alpha/ })).toBe(result);
+      fireEvent.click(explorer); expectExplorer(); // switch directly while open
+      fireEvent.click(document.querySelector<HTMLButtonElement>(".explorer-search-launcher")!);
+      expect(screen.getByRole("searchbox")).toBe(input); // switch back while open
+      fireEvent.click(document.querySelector<HTMLButtonElement>(".explorer-search-launcher")!);
+      expect(shell.getAttribute("data-sidebar-visible")).toBe("true"); // Search remains an open action
+      if (layout === "folio" && width === 1024) {
+        const rail = screen.getByRole("navigation", { name: "Workspace tools" });
+        close(); fireEvent.click(within(rail).getByRole("button", { name: "Projects" })); expectExplorer();
+        fireEvent.click(within(rail).getByRole("button", { name: "Search folder" }));
+        fireEvent.click(within(rail).getByRole("button", { name: "Projects" })); expectExplorer();
+      }
+      if (layout === "atlas" && width === 390) {
+        const projects = projectsToggle();
+        fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true });
+        close(); fireEvent.click(projects); expectExplorer();
+        fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true });
+        fireEvent.click(projects); expectExplorer();
+      }
+      // Projects and root/nested context menus are explicit Search entry points too.
+      if (screen.queryByRole("searchbox")) fireEvent.click(screen.getByRole("button", { name: "Back to explorer" }));
+      fireEvent.click(document.querySelector<HTMLButtonElement>(".projects-trigger")!);
+      fireEvent.click(screen.getByRole("menuitem", { name: "Search folder" }));
+      expect(screen.getByRole("searchbox")).toBe(input);
+      fireEvent.click(screen.getByRole("button", { name: "Back to explorer" }));
+      fireEvent.contextMenu(document.querySelector<HTMLElement>(".root-label")!);
+      fireEvent.click(screen.getByRole("menuitem", { name: "Search folder" }));
+      expect(screen.getByRole("searchbox")).toBe(input);
+      fireEvent.click(screen.getByRole("button", { name: "Back to explorer" }));
+      fireEvent.contextMenu(screen.getByTitle("docs"));
+      fireEvent.click(screen.getByRole("menuitem", { name: "Search folder" }));
+      expect(screen.getByRole("searchbox")).toBe(input);
+      expect(screen.getByText(/fixture \/ docs/)).toBeTruthy();
+      expect(document.querySelector(".reader-scroll")).toBe(reader);
+      expect(screen.getByRole("tab", { name: "a.md" }).getAttribute("aria-selected")).toBe("true");
+      expect(mocks.readDocument).toHaveBeenCalledTimes(reads);
+      expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+      expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1);
+    } finally {
+      Object.defineProperty(window, "innerWidth", { configurable: true, value: originalWidth });
+    }
+  });
+});
+
+describe("preview navigation refinement (jsdom, native bridge mocked)", () => {
+  it.each(["margin", "folio", "atlas"] as const)("keeps narrow %s Projects keyboard-operable and returns focus without remounting an editor", async layout => {
+    const width = window.innerWidth;
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 390 });
+    try {
+      const editor = await edit();
+      typeRich(" draft", richLeaf("alpha"), 5);
+      const leaf = richLeaf("alpha draft"); selectRich(leaf, 2, 5);
+      const reader = document.querySelector<HTMLDivElement>(".reader-scroll")!;
+      reader.scrollTop = 215;
+      act(() => mocks.layoutChange!({ workspaceLayout: layout }));
+      const reads = mocks.readDocument.mock.calls.length;
+      const toggle = projectsToggle();
+      expect(document.querySelector(".workspace-toolbar")).toBeNull();
+      expect(screen.queryByRole("button", { name: "Open folder" })).toBeNull();
+      toggle.focus(); await userEvent.keyboard("{Enter}");
+      const content = document.querySelector(".document-content")!;
+      expect(content.hasAttribute("inert")).toBe(true);
+      expect(content.getAttribute("aria-hidden")).toBe("true");
+      expect(screen.queryByRole("button", { name: "Save file" })).toBeNull();
+      expect(projectAction("Open file")).toBeTruthy(); expect(projectAction("Open folder")).toBeTruthy();
+      fireEvent.click(projectsMenu());
+      expect(screen.getByRole("menuitem", { name: "Open file" })).toBeTruthy();
+      await userEvent.keyboard("{Escape}");
+      expect(toggle.getAttribute("aria-expanded")).toBe("true"); // Escape closes the menu first.
+      await userEvent.keyboard("{Escape}");
+      expect(document.activeElement).toBe(toggle);
+      expect(content.hasAttribute("inert")).toBe(false);
+      expect(document.querySelector(".rich-section")).toBe(editor);
+      expect(document.querySelector(".reader-scroll")).toBe(reader); expect(reader.scrollTop).toBe(215);
+      expect(editor.textContent).toContain("alpha draft");
+      await userEvent.keyboard(" ");
+      fireEvent.click(screen.getByRole("button", { name: "Close sidebar" }));
+      expect(document.activeElement).toBe(toggle);
+      expect(mocks.readDocument).toHaveBeenCalledTimes(reads);
+      expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+      fireEvent.keyDown(leaf, { key: "z", metaKey: true });
+      expect(editor.textContent).not.toContain("alpha draft");
+    } finally { Object.defineProperty(window, "innerWidth", { configurable: true, value: width }); }
+  });
+
+  it("keeps header Find and workspace search distinct, retains both queries, and restores the keyboard search invoker", async () => {
+    await open();
+    const button = screen.getByRole("button", { name: "Find in document" });
+    expect(button.closest(".document-location")).toBeTruthy();
+    fireEvent.click(button);
+    const find = screen.getByRole("searchbox", { name: "Find in document" });
+    fireEvent.change(find, { target: { value: "alpha" } });
+    fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true });
+    const search = within(document.querySelector<HTMLElement>(".folder-search-host")!).getByRole("searchbox");
+    fireEvent.change(search, { target: { value: "workspace query" } });
+    expect(search).not.toBe(find);
+    expect((find as HTMLInputElement).value).toBe("alpha");
+    expect(mocks.startFolderSearch).not.toHaveBeenCalled();
+    const width = window.innerWidth;
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 390 });
+    try {
+      act(() => window.dispatchEvent(new Event("resize")));
+      const toggle = projectsToggle(); toggle.focus();
+      await userEvent.keyboard("{Meta>}{Shift>}f{/Shift}{/Meta}");
+      expect((screen.getByRole("searchbox") as HTMLInputElement).value).toBe("workspace query");
+      await userEvent.keyboard("{Escape}");
+      expect(document.activeElement).toBe(toggle);
+      expect(screen.getByRole("searchbox", { name: "Find in document" })).toBe(find);
+      expect((find as HTMLInputElement).value).toBe("alpha");
+    } finally { Object.defineProperty(window, "innerWidth", { configurable: true, value: width }); }
+  });
+
+  it("keeps open keyboard shortcuts and Projects menu on the real selection flows after toolbar removal", async () => {
+    await open();
+    mocks.selectFile.mockResolvedValue({ id: "outside", name: "outside.md", displayPath: "/tmp/other/outside.md", generation: 1 });
+    fireEvent.keyDown(window, { key: "o", metaKey: true });
+    await screen.findByRole("tab", { name: "outside.md" });
+    expect(mocks.selectFile).toHaveBeenCalledTimes(1);
+    fireEvent.keyDown(window, { key: "o", metaKey: true, shiftKey: true });
+    await waitFor(() => expect(mocks.selectRoot).toHaveBeenCalledTimes(2));
+    fireEvent.click(projectsMenu()); fireEvent.click(screen.getByRole("menuitem", { name: "Open folder" }));
+    await waitFor(() => expect(mocks.selectRoot).toHaveBeenCalledTimes(3));
+  });
+});

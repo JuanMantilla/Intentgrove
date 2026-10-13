@@ -1,5 +1,7 @@
 # Implementation Plan: View Local Images
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature:** F006 | **Date:** 2026-09-29 | **Spec:** [spec.md](spec.md) | **Status:** Proposal requiring user approval
 
 ## Summary and technical context
@@ -49,3 +51,10 @@ Model image tabs separately from Markdown tabs but reuse tab identity/order/clos
 ## Validation and post-design check
 
 Use [quickstart.md](quickstart.md) and disposable fixtures; record PASS/FAIL/BLOCKED/NOT TESTED. A local build is not packaged XPC/signing proof. The current sandbox has no verified display or production request observer. [Research](research.md), [data model](data-model.md), [decoder contract](contracts/image-decoder.md) and [design](design.md) preserve scope and inert output. User approval of current spec, visual direction and this architecture, including XPC/toolchain change, is required before production edits.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F006-H01**: HTML embedded PNG/JPEG/GIF/WebP pass a bounded native container/header preflight, then decode in the separate document engine process. Privileged host ImageIO is not used. External SVG is refused. Existing standalone/Markdown image XPC behavior is unchanged; HTML is not an image-decoder feature.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

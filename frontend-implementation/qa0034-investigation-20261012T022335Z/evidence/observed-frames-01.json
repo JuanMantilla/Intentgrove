@@ -1,0 +1,25 @@
+{
+  "id": "observed-frames-01",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/frames.config.ts",
+    "tests/ui/appearance-operations.test.tsx"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-12T02:29:31.802264+00:00",
+  "finished_at": "2026-10-12T02:29:34.119258+00:00",
+  "seconds": 2.3168907919999997,
+  "load_after": [
+    3.6416015625,
+    5.01123046875,
+    9.54833984375
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/evidence/observed-frames-01.log"
+}

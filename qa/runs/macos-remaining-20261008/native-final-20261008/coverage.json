@@ -1,0 +1,3621 @@
+{
+  "candidate": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+  "fullAcceptance": "INCOMPLETE / FAILURES_PRESENT",
+  "rows": [
+    {
+      "id": "IDENTITY",
+      "case": "Final package/source/helper manifest and running path",
+      "status": "PASS",
+      "evidence": [
+        "evidence/candidate.json"
+      ]
+    },
+    {
+      "id": "SETTINGS-LIVE",
+      "case": "Native18\u219220\u219218 acknowledged",
+      "status": "PASS",
+      "evidence": [
+        "evidence/settings-restored-18.txt"
+      ]
+    },
+    {
+      "id": "RESTORE-INITIAL",
+      "case": "Preexisting disposable two tabs restored, valid2diagrams and source2fallbacks",
+      "status": "PASS",
+      "evidence": [
+        "evidence/startup.txt",
+        "evidence/startup.jpg"
+      ]
+    },
+    {
+      "id": "CMDQ-CANCEL-01",
+      "case": "cmdq dirty Cancel repetition1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-1-dialog.txt",
+        "evidence/cmdq-cancel-1-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-02",
+      "case": "cmdq dirty Cancel repetition2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-2-dialog.txt",
+        "evidence/cmdq-cancel-2-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-03",
+      "case": "cmdq dirty Cancel repetition3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-3-dialog.txt",
+        "evidence/cmdq-cancel-3-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-04",
+      "case": "cmdq dirty Cancel repetition4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-4-dialog.txt",
+        "evidence/cmdq-cancel-4-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-05",
+      "case": "cmdq dirty Cancel repetition5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-5-dialog.txt",
+        "evidence/cmdq-cancel-5-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-06",
+      "case": "cmdq dirty Cancel repetition6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-6-dialog.txt",
+        "evidence/cmdq-cancel-6-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-07",
+      "case": "cmdq dirty Cancel repetition7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-7-dialog.txt",
+        "evidence/cmdq-cancel-7-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-08",
+      "case": "cmdq dirty Cancel repetition8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-8-dialog.txt",
+        "evidence/cmdq-cancel-8-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-09",
+      "case": "cmdq dirty Cancel repetition9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-9-dialog.txt",
+        "evidence/cmdq-cancel-9-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDQ-CANCEL-10",
+      "case": "cmdq dirty Cancel repetition10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-cancel-10-dialog.txt",
+        "evidence/cmdq-cancel-10-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-01",
+      "case": "cmdw dirty Cancel repetition1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-1-dialog.txt",
+        "evidence/cmdw-cancel-1-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-02",
+      "case": "cmdw dirty Cancel repetition2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-2-dialog.txt",
+        "evidence/cmdw-cancel-2-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-03",
+      "case": "cmdw dirty Cancel repetition3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-3-dialog.txt",
+        "evidence/cmdw-cancel-3-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-04",
+      "case": "cmdw dirty Cancel repetition4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-4-dialog.txt",
+        "evidence/cmdw-cancel-4-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-05",
+      "case": "cmdw dirty Cancel repetition5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-5-dialog.txt",
+        "evidence/cmdw-cancel-5-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-06",
+      "case": "cmdw dirty Cancel repetition6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-6-dialog.txt",
+        "evidence/cmdw-cancel-6-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-07",
+      "case": "cmdw dirty Cancel repetition7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-7-dialog.txt",
+        "evidence/cmdw-cancel-7-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-08",
+      "case": "cmdw dirty Cancel repetition8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-8-dialog.txt",
+        "evidence/cmdw-cancel-8-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-09",
+      "case": "cmdw dirty Cancel repetition9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-9-dialog.txt",
+        "evidence/cmdw-cancel-9-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "CMDW-CANCEL-10",
+      "case": "cmdw dirty Cancel repetition10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-cancel-10-dialog.txt",
+        "evidence/cmdw-cancel-10-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-01",
+      "case": "title dirty Cancel repetition1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-1-dialog.txt",
+        "evidence/title-cancel-1-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-02",
+      "case": "title dirty Cancel repetition2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-2-dialog.txt",
+        "evidence/title-cancel-2-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-03",
+      "case": "title dirty Cancel repetition3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-3-dialog.txt",
+        "evidence/title-cancel-3-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-04",
+      "case": "title dirty Cancel repetition4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-4-dialog.txt",
+        "evidence/title-cancel-4-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-05",
+      "case": "title dirty Cancel repetition5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-5-dialog.txt",
+        "evidence/title-cancel-5-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-06",
+      "case": "title dirty Cancel repetition6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-6-dialog.txt",
+        "evidence/title-cancel-6-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-07",
+      "case": "title dirty Cancel repetition7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-7-dialog.txt",
+        "evidence/title-cancel-7-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-08",
+      "case": "title dirty Cancel repetition8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-8-dialog.txt",
+        "evidence/title-cancel-8-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-09",
+      "case": "title dirty Cancel repetition9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-9-dialog.txt",
+        "evidence/title-cancel-9-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "TITLE-CANCEL-10",
+      "case": "title dirty Cancel repetition10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-cancel-10-dialog.txt",
+        "evidence/title-cancel-10-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-01",
+      "case": "menuquit dirty Cancel repetition1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-1-dialog.txt",
+        "evidence/menuquit-cancel-1-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-02",
+      "case": "menuquit dirty Cancel repetition2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-2-dialog.txt",
+        "evidence/menuquit-cancel-2-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-03",
+      "case": "menuquit dirty Cancel repetition3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-3-dialog.txt",
+        "evidence/menuquit-cancel-3-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-04",
+      "case": "menuquit dirty Cancel repetition4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-4-dialog.txt",
+        "evidence/menuquit-cancel-4-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-05",
+      "case": "menuquit dirty Cancel repetition5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-5-dialog.txt",
+        "evidence/menuquit-cancel-5-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-06",
+      "case": "menuquit dirty Cancel repetition6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-6-dialog.txt",
+        "evidence/menuquit-cancel-6-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-07",
+      "case": "menuquit dirty Cancel repetition7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-7-dialog.txt",
+        "evidence/menuquit-cancel-7-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-08",
+      "case": "menuquit dirty Cancel repetition8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-8-dialog.txt",
+        "evidence/menuquit-cancel-8-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-09",
+      "case": "menuquit dirty Cancel repetition9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-9-dialog.txt",
+        "evidence/menuquit-cancel-9-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "MENUQUIT-CANCEL-10",
+      "case": "menuquit dirty Cancel repetition10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-cancel-10-dialog.txt",
+        "evidence/menuquit-cancel-10-after.txt",
+        "evidence/after-cancel-source-integrity.json"
+      ],
+      "scope": "Cancel constituent only; does not close route clean/other choices"
+    },
+    {
+      "id": "DOCKQUIT-CANCEL-01",
+      "case": "Actual named Dock Quit \u2192 Cancel",
+      "status": "PASS",
+      "method": "USER_ASSISTED",
+      "userStatement": "dock quit selected",
+      "evidence": [
+        "evidence/dockquit-cancel-1-dialog.txt",
+        "evidence/dockquit-cancel-1-dialog.jpg",
+        "evidence/dockquit-cancel-1-after.txt"
+      ],
+      "scope": "one actual Dock route, retained marker and Unsaved; other choices/repetitions remain separate"
+    },
+    {
+      "id": "CMDQ-DENIED-01",
+      "case": "cmdq direct permission denied Save1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-1-dialog.txt",
+        "evidence/denied-cmdq-1-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-02",
+      "case": "cmdq direct permission denied Save2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-2-dialog.txt",
+        "evidence/denied-cmdq-2-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-03",
+      "case": "cmdq direct permission denied Save3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-3-dialog.txt",
+        "evidence/denied-cmdq-3-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-04",
+      "case": "cmdq direct permission denied Save4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-4-dialog.txt",
+        "evidence/denied-cmdq-4-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-05",
+      "case": "cmdq direct permission denied Save5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-5-dialog.txt",
+        "evidence/denied-cmdq-5-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-06",
+      "case": "cmdq direct permission denied Save6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-6-dialog.txt",
+        "evidence/denied-cmdq-6-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-07",
+      "case": "cmdq direct permission denied Save7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-7-dialog.txt",
+        "evidence/denied-cmdq-7-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-08",
+      "case": "cmdq direct permission denied Save8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-8-dialog.txt",
+        "evidence/denied-cmdq-8-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-09",
+      "case": "cmdq direct permission denied Save9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-9-dialog.txt",
+        "evidence/denied-cmdq-9-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDQ-DENIED-10",
+      "case": "cmdq direct permission denied Save10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdq-10-dialog.txt",
+        "evidence/denied-cmdq-10-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-01",
+      "case": "cmdw direct permission denied Save1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-1-dialog.txt",
+        "evidence/denied-cmdw-1-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-02",
+      "case": "cmdw direct permission denied Save2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-2-dialog.txt",
+        "evidence/denied-cmdw-2-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-03",
+      "case": "cmdw direct permission denied Save3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-3-dialog.txt",
+        "evidence/denied-cmdw-3-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-04",
+      "case": "cmdw direct permission denied Save4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-4-dialog.txt",
+        "evidence/denied-cmdw-4-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-05",
+      "case": "cmdw direct permission denied Save5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-5-dialog.txt",
+        "evidence/denied-cmdw-5-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-06",
+      "case": "cmdw direct permission denied Save6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-6-dialog.txt",
+        "evidence/denied-cmdw-6-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-07",
+      "case": "cmdw direct permission denied Save7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-7-dialog.txt",
+        "evidence/denied-cmdw-7-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-08",
+      "case": "cmdw direct permission denied Save8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-8-dialog.txt",
+        "evidence/denied-cmdw-8-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-09",
+      "case": "cmdw direct permission denied Save9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-9-dialog.txt",
+        "evidence/denied-cmdw-9-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "CMDW-DENIED-10",
+      "case": "cmdw direct permission denied Save10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-cmdw-10-dialog.txt",
+        "evidence/denied-cmdw-10-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-01",
+      "case": "title direct permission denied Save1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-1-dialog.txt",
+        "evidence/denied-title-1-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-02",
+      "case": "title direct permission denied Save2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-2-dialog.txt",
+        "evidence/denied-title-2-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-03",
+      "case": "title direct permission denied Save3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-3-dialog.txt",
+        "evidence/denied-title-3-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-04",
+      "case": "title direct permission denied Save4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-4-dialog.txt",
+        "evidence/denied-title-4-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-05",
+      "case": "title direct permission denied Save5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-5-dialog.txt",
+        "evidence/denied-title-5-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-06",
+      "case": "title direct permission denied Save6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-6-dialog.txt",
+        "evidence/denied-title-6-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-07",
+      "case": "title direct permission denied Save7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-7-dialog.txt",
+        "evidence/denied-title-7-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-08",
+      "case": "title direct permission denied Save8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-8-dialog.txt",
+        "evidence/denied-title-8-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-09",
+      "case": "title direct permission denied Save9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-9-dialog.txt",
+        "evidence/denied-title-9-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "TITLE-DENIED-10",
+      "case": "title direct permission denied Save10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-title-10-dialog.txt",
+        "evidence/denied-title-10-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-01",
+      "case": "menuquit direct permission denied Save1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-1-dialog.txt",
+        "evidence/denied-menuquit-1-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-02",
+      "case": "menuquit direct permission denied Save2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-2-dialog.txt",
+        "evidence/denied-menuquit-2-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-03",
+      "case": "menuquit direct permission denied Save3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-3-dialog.txt",
+        "evidence/denied-menuquit-3-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-04",
+      "case": "menuquit direct permission denied Save4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-4-dialog.txt",
+        "evidence/denied-menuquit-4-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-05",
+      "case": "menuquit direct permission denied Save5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-5-dialog.txt",
+        "evidence/denied-menuquit-5-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-06",
+      "case": "menuquit direct permission denied Save6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-6-dialog.txt",
+        "evidence/denied-menuquit-6-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-07",
+      "case": "menuquit direct permission denied Save7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-7-dialog.txt",
+        "evidence/denied-menuquit-7-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-08",
+      "case": "menuquit direct permission denied Save8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-8-dialog.txt",
+        "evidence/denied-menuquit-8-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-09",
+      "case": "menuquit direct permission denied Save9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-9-dialog.txt",
+        "evidence/denied-menuquit-9-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "MENUQUIT-DENIED-10",
+      "case": "menuquit direct permission denied Save10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/denied-menuquit-10-dialog.txt",
+        "evidence/denied-menuquit-10-after.txt",
+        "evidence/denied-save-integrity.json"
+      ],
+      "scope": "LF readonly fixture; dirty stays open, exact marker, Permission denied, unchanged bytes"
+    },
+    {
+      "id": "RESTART-KEEP-01",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-keep-loaded.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-02",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-2-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-03",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-3-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-04",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-4-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-05",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-5-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-06",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-6-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-07",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-7-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-08",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-8-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-09",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-9-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "RESTART-KEEP-10",
+      "case": "Real Quit Keep draft \u2192 process exit/restart",
+      "status": "PASS",
+      "evidence": [
+        "evidence/ten-restart-process-integrity.json",
+        "evidence/restart-10-draft.txt"
+      ],
+      "scope": "one tab trial1; two tabs trials2\u201310; draft marker verified; no measured recovery latency"
+    },
+    {
+      "id": "CMDW-SAVE-01",
+      "case": "cmdw save outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-save-1-dialog.txt",
+        "evidence/cmdw-save-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "save",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "native picker"
+      }
+    },
+    {
+      "id": "CMDW-SAVE-02",
+      "case": "cmdw save outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-save-2-dialog.txt",
+        "evidence/cmdw-save-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "save",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "native picker"
+      }
+    },
+    {
+      "id": "CMDW-DISCARD-01",
+      "case": "cmdw discard outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-discard-1-dialog.txt",
+        "evidence/cmdw-discard-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "discard",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "native picker"
+      }
+    },
+    {
+      "id": "CMDW-DISCARD-02",
+      "case": "cmdw discard outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-discard-2-dialog.txt",
+        "evidence/cmdw-discard-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "discard",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "native picker"
+      }
+    },
+    {
+      "id": "CMDW-KEEP-01",
+      "case": "cmdw keep outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-keep-1-dialog.txt",
+        "evidence/cmdw-keep-1-reopened-retry.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "keep",
+        "n": 1,
+        "status": "PASS",
+        "scope": "reopen interrupted; resumed exact picker and verified marker/Unsaved",
+        "evidence": "cmdw-keep-1-reopened-retry.txt"
+      }
+    },
+    {
+      "id": "CMDW-KEEP-02",
+      "case": "cmdw keep outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdw-keep-2-dialog.txt",
+        "evidence/cmdw-keep-2-reopened.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdw",
+        "outcome": "keep",
+        "n": 2,
+        "status": "PASS",
+        "scope": "capture-error retried before edit input"
+      }
+    },
+    {
+      "id": "CMDQ-SAVE-01",
+      "case": "cmdq save outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-save-1-dialog.txt",
+        "evidence/cmdq-save-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdq",
+        "outcome": "save",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "CMDQ-SAVE-02",
+      "case": "cmdq save outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-save-2-dialog.txt",
+        "evidence/cmdq-save-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdq",
+        "outcome": "save",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "CMDQ-DISCARD-01",
+      "case": "cmdq discard outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-discard-1-dialog.txt",
+        "evidence/cmdq-discard-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdq",
+        "outcome": "discard",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "CMDQ-DISCARD-02",
+      "case": "cmdq discard outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/cmdq-discard-2-dialog.txt",
+        "evidence/cmdq-discard-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "cmdq",
+        "outcome": "discard",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "MENUQUIT-SAVE-01",
+      "case": "menuquit save outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-save-1-dialog.txt",
+        "evidence/menuquit-save-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "menuquit",
+        "outcome": "save",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "MENUQUIT-SAVE-02",
+      "case": "menuquit save outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-save-2-dialog.txt",
+        "evidence/menuquit-save-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "menuquit",
+        "outcome": "save",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "MENUQUIT-DISCARD-01",
+      "case": "menuquit discard outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-discard-1-dialog.txt",
+        "evidence/menuquit-discard-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "menuquit",
+        "outcome": "discard",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "MENUQUIT-DISCARD-02",
+      "case": "menuquit discard outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/menuquit-discard-2-dialog.txt",
+        "evidence/menuquit-discard-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "menuquit",
+        "outcome": "discard",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-SAVE-01",
+      "case": "title save outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-save-1-dialog.txt",
+        "evidence/title-save-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "save",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-SAVE-02",
+      "case": "title save outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-save-2-dialog.txt",
+        "evidence/title-save-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "save",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-DISCARD-01",
+      "case": "title discard outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-discard-1-dialog.txt",
+        "evidence/title-discard-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "discard",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-DISCARD-02",
+      "case": "title discard outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-discard-2-dialog.txt",
+        "evidence/title-discard-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "discard",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-KEEP-01",
+      "case": "title keep outcome1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-keep-1-dialog.txt",
+        "evidence/title-keep-1-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "keep",
+        "n": 1,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "TITLE-KEEP-02",
+      "case": "title keep outcome2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/title-keep-2-dialog.txt",
+        "evidence/title-keep-2-reopened-0.txt"
+      ],
+      "scope": "Disk/draft operation constituent; title reopening via getApp has no proven visible Dock restoration; do not promote to full journey",
+      "details": {
+        "kind": "title",
+        "outcome": "keep",
+        "n": 2,
+        "status": "PASS",
+        "reopen": "getApp LaunchServices; not Dock"
+      }
+    },
+    {
+      "id": "CMDQ-CLEAN-01",
+      "case": "cmdq clean close/quit1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-1-absence.txt",
+        "evidence/clean-cmdq-1-before.txt",
+        "evidence/clean-cmdq-1-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-02",
+      "case": "cmdq clean close/quit2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-2-restored.txt",
+        "evidence/clean-cmdq-2-absence.txt",
+        "evidence/clean-cmdq-2-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-03",
+      "case": "cmdq clean close/quit3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-3-restored.txt",
+        "evidence/clean-cmdq-3-before.txt",
+        "evidence/clean-cmdq-3-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-04",
+      "case": "cmdq clean close/quit4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-4-before.txt",
+        "evidence/clean-cmdq-4-restored.txt",
+        "evidence/clean-cmdq-4-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-05",
+      "case": "cmdq clean close/quit5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-5-restored.txt",
+        "evidence/clean-cmdq-5-absence.txt",
+        "evidence/clean-cmdq-5-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-06",
+      "case": "cmdq clean close/quit6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-6-before.txt",
+        "evidence/clean-cmdq-6-absence.txt",
+        "evidence/clean-cmdq-6-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-07",
+      "case": "cmdq clean close/quit7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-7-absence.txt",
+        "evidence/clean-cmdq-7-restored.txt",
+        "evidence/clean-cmdq-7-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-08",
+      "case": "cmdq clean close/quit8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-8-absence.txt",
+        "evidence/clean-cmdq-8-restored.txt",
+        "evidence/clean-cmdq-8-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-09",
+      "case": "cmdq clean close/quit9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-9-before.txt",
+        "evidence/clean-cmdq-9-restored.txt",
+        "evidence/clean-cmdq-9-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDQ-CLEAN-10",
+      "case": "cmdq clean close/quit10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdq-10-absence.txt",
+        "evidence/clean-cmdq-10-before.txt",
+        "evidence/clean-cmdq-10-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-01",
+      "case": "menuquit clean close/quit1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-1-restored.txt",
+        "evidence/clean-menuquit-1-before.txt",
+        "evidence/clean-menuquit-1-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-02",
+      "case": "menuquit clean close/quit2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-2-absence.txt",
+        "evidence/clean-menuquit-2-before.txt",
+        "evidence/clean-menuquit-2-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-03",
+      "case": "menuquit clean close/quit3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-3-before.txt",
+        "evidence/clean-menuquit-3-absence.txt",
+        "evidence/clean-menuquit-3-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-04",
+      "case": "menuquit clean close/quit4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-4-absence.txt",
+        "evidence/clean-menuquit-4-before.txt",
+        "evidence/clean-menuquit-4-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-05",
+      "case": "menuquit clean close/quit5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-5-before.txt",
+        "evidence/clean-menuquit-5-absence.txt",
+        "evidence/clean-menuquit-5-restored.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-06",
+      "case": "menuquit clean close/quit6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-6-restored.txt",
+        "evidence/clean-menuquit-6-before.txt",
+        "evidence/clean-menuquit-6-body-0.txt",
+        "evidence/clean-menuquit-6-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-07",
+      "case": "menuquit clean close/quit7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-7-restored.txt",
+        "evidence/clean-menuquit-7-absence.txt",
+        "evidence/clean-menuquit-7-before.txt",
+        "evidence/clean-menuquit-7-body-0.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-08",
+      "case": "menuquit clean close/quit8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-8-absence.txt",
+        "evidence/clean-menuquit-8-restored.txt",
+        "evidence/clean-menuquit-8-body-0.txt",
+        "evidence/clean-menuquit-8-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-09",
+      "case": "menuquit clean close/quit9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-9-body-0.txt",
+        "evidence/clean-menuquit-9-before.txt",
+        "evidence/clean-menuquit-9-restored.txt",
+        "evidence/clean-menuquit-9-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "MENUQUIT-CLEAN-10",
+      "case": "menuquit clean close/quit10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-menuquit-10-body-0.txt",
+        "evidence/clean-menuquit-10-before.txt",
+        "evidence/clean-menuquit-10-restored.txt",
+        "evidence/clean-menuquit-10-absence.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-01",
+      "case": "cmdw clean close/quit1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-1-before.txt",
+        "evidence/clean-cmdw-1-after.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-02",
+      "case": "cmdw clean close/quit2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-2-after.txt",
+        "evidence/clean-cmdw-2-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-03",
+      "case": "cmdw clean close/quit3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-3-before.txt",
+        "evidence/clean-cmdw-3-after.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-04",
+      "case": "cmdw clean close/quit4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-4-before.txt",
+        "evidence/clean-cmdw-4-after.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-05",
+      "case": "cmdw clean close/quit5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-5-before.txt",
+        "evidence/clean-cmdw-5-after.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-06",
+      "case": "cmdw clean close/quit6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-6-after.txt",
+        "evidence/clean-cmdw-6-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-07",
+      "case": "cmdw clean close/quit7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-7-after.txt",
+        "evidence/clean-cmdw-7-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-08",
+      "case": "cmdw clean close/quit8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-8-before.txt",
+        "evidence/clean-cmdw-8-after.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-09",
+      "case": "cmdw clean close/quit9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-9-post-retry.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CMDW-CLEAN-10",
+      "case": "cmdw clean close/quit10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/clean-cmdw-10-after.txt",
+        "evidence/clean-cmdw-10-before.txt"
+      ],
+      "scope": "Cmd-W tree/clean tab close; Quit real exit and tab restoration, process transitions separate. Native body evidence may be subsequent trial before snapshot."
+    },
+    {
+      "id": "CRLF-SAVE",
+      "case": "Writable consistent CRLF native edit direct Save and Quit Save",
+      "status": "NOT_APPLICABLE",
+      "finding": "QA-0017",
+      "evidence": [
+        "evidence/crlf-writable-save-error.txt",
+        "evidence/crlf-writable-save-error.jpg",
+        "evidence/crlf-source-integrity.json",
+        "evidence/crlf-quit-save-remains-open.txt"
+      ],
+      "historicalStatusBeforeDeferral": "FAIL",
+      "acceptanceRequired": false,
+      "disposition": "QA-0017 known defect DEFERRED by user; not fixed",
+      "scopeDecision": "docs/macos-crlf-save-deferral-20261008.md"
+    },
+    {
+      "id": "DOCK-MATRIX",
+      "case": "Remaining actual Dock Quit/reopen compound repetitions",
+      "status": "NOT_APPLICABLE",
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "Two direct Dock CUA probes timeoutReached; user declined remaining nine operator cycles. One actual Quit Cancel passed. One clean reopen gesture pending.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    },
+    {
+      "id": "TITLE-CLEAN-MATRIX",
+      "case": "Ten visible clean title Close \u2192 actual Dock reopen journeys",
+      "status": "NOT_APPLICABLE",
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "One no-window geometry observed with process retained; CUA can expose hidden AX and stale screenshot. No repeated visible actual Dock reopening proof. Earlier title outcome rows are disk/AX constituents only.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    },
+    {
+      "id": "SEARCH-QUERY-01",
+      "case": "MANIFEST_QUERY_01_UNIQUE \u2192 group-01/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-01.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-02",
+      "case": "MANIFEST_QUERY_02_UNIQUE \u2192 group-02/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-02.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-03",
+      "case": "MANIFEST_QUERY_03_UNIQUE \u2192 group-03/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-03.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-04",
+      "case": "MANIFEST_QUERY_04_UNIQUE \u2192 group-04/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-04.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-05",
+      "case": "MANIFEST_QUERY_05_UNIQUE \u2192 group-05/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-05.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-06",
+      "case": "MANIFEST_QUERY_06_UNIQUE \u2192 group-06/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-06.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-07",
+      "case": "MANIFEST_QUERY_07_UNIQUE \u2192 group-07/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-07.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-08",
+      "case": "MANIFEST_QUERY_08_UNIQUE \u2192 group-08/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-08.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-09",
+      "case": "MANIFEST_QUERY_09_UNIQUE \u2192 group-09/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-09.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-10",
+      "case": "MANIFEST_QUERY_10_UNIQUE \u2192 group-10/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-10.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-11",
+      "case": "MANIFEST_QUERY_11_UNIQUE \u2192 group-11/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-11.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-12",
+      "case": "MANIFEST_QUERY_12_UNIQUE \u2192 group-12/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-12.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-13",
+      "case": "MANIFEST_QUERY_13_UNIQUE \u2192 group-13/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-13.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-14",
+      "case": "MANIFEST_QUERY_14_UNIQUE \u2192 group-14/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-14.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-15",
+      "case": "MANIFEST_QUERY_15_UNIQUE \u2192 group-15/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-15.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-16",
+      "case": "MANIFEST_QUERY_16_UNIQUE \u2192 group-16/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-16.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-17",
+      "case": "MANIFEST_QUERY_17_UNIQUE \u2192 group-17/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-17.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-18",
+      "case": "MANIFEST_QUERY_18_UNIQUE \u2192 group-18/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-18.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-19",
+      "case": "MANIFEST_QUERY_19_UNIQUE \u2192 group-19/document-000.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-19.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-QUERY-00",
+      "case": "MANIFEST_QUERY_00_UNIQUE \u2192 group-00/caf\u00e9-\u6771\u4eac.md line2, exactly1 result",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-00.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-01",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-1-executing.txt",
+        "evidence/search-stop-1-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-02",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-2-executing.txt",
+        "evidence/search-stop-2-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-03",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-3-executing.txt",
+        "evidence/search-stop-3-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-04",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-4-executing.txt",
+        "evidence/search-stop-4-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-05",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-5-executing.txt",
+        "evidence/search-stop-5-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-06",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-6-executing.txt",
+        "evidence/search-stop-6-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-07",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-7-executing.txt",
+        "evidence/search-stop-7-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-08",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-8-executing.txt",
+        "evidence/search-stop-8-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-09",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-9-executing.txt",
+        "evidence/search-stop-9-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-STOP-10",
+      "case": "Observed executing production search \u2192 Stop \u2192 partial Stopped",
+      "status": "PASS",
+      "scope": "No product latency measurement; delayed stability still pending",
+      "evidence": [
+        "evidence/search-stop-10-executing.txt",
+        "evidence/search-stop-10-after.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-IGNORE",
+      "case": "Filename document-240.md default18/includeignored20; restored off",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-ignored-default.txt",
+        "evidence/search-ignored-included.txt"
+      ]
+    },
+    {
+      "id": "SEARCH-NONE",
+      "case": "Document text query no result; scanned/skipped summary",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-no-results.txt"
+      ]
+    },
+    {
+      "id": "DOCK-REOPEN-USER-1",
+      "case": "Actual user named Dock click restores visible rich/plain clean tabs",
+      "status": "PASS",
+      "method": "USER_ASSISTED",
+      "userStatement": "repoened",
+      "scope": "One trial; no ten-trial claim",
+      "evidence": [
+        "evidence/user-dock-reopened.txt",
+        "evidence/user-dock-reopened.jpg"
+      ]
+    },
+    {
+      "id": "SEARCH-TIMING-QA",
+      "case": "Ten trusted executing Stop acknowledgments <=250ms",
+      "status": "PASS",
+      "build": "30d5af11e68b14bb96f2706a93b26eadcef19fad8d3915bd1eac69c92739dd63 QA opt-in",
+      "scope": "10/10:1\u20133ms renderer performance.now trusted native click \u2192 Stopped mutation; production latency not measured",
+      "evidence": [
+        "evidence/qa-stop-trusted-timing.json",
+        "evidence/qa-stop-observations.json",
+        "evidence/qa-search-timing-authenticated/protocol.jsonl"
+      ]
+    },
+    {
+      "id": "SEARCH-TIMING-DEFAULT",
+      "case": "Exact default production Stop latency measurement",
+      "status": "NOT_APPLICABLE",
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "Default package lacks authenticated measurement channel; trusted same-source QA timing is separate supporting evidence. Tool-call duration excluded.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-03",
+      "case": "cmdw save repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-3-dialog.txt",
+        "evidence/repeat-cmdw-save-3-restored.txt",
+        "evidence/repeat-cmdw-save-3-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-04",
+      "case": "cmdw save repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-4-dialog.txt",
+        "evidence/repeat-cmdw-save-4-after.txt",
+        "evidence/repeat-cmdw-save-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-05",
+      "case": "cmdw save repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-5-restored.txt",
+        "evidence/repeat-cmdw-save-5-dialog.txt",
+        "evidence/repeat-cmdw-save-5-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-06",
+      "case": "cmdw save repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-6-after.txt",
+        "evidence/repeat-cmdw-save-6-restored.txt",
+        "evidence/repeat-cmdw-save-6-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-07",
+      "case": "cmdw save repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-7-after.txt",
+        "evidence/repeat-cmdw-save-7-restored.txt",
+        "evidence/repeat-cmdw-save-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-08",
+      "case": "cmdw save repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-8-dialog.txt",
+        "evidence/repeat-cmdw-save-8-after.txt",
+        "evidence/repeat-cmdw-save-8-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-09",
+      "case": "cmdw save repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-9-dialog.txt",
+        "evidence/repeat-cmdw-save-9-after.txt",
+        "evidence/repeat-cmdw-save-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-SAVE-10",
+      "case": "cmdw save repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-save-10-restored.txt",
+        "evidence/repeat-cmdw-save-10-dialog.txt",
+        "evidence/repeat-cmdw-save-10-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-03",
+      "case": "cmdw discard repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-3-dialog.txt",
+        "evidence/repeat-cmdw-discard-3-after.txt",
+        "evidence/repeat-cmdw-discard-3-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-04",
+      "case": "cmdw discard repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-4-dialog.txt",
+        "evidence/repeat-cmdw-discard-4-restored.txt",
+        "evidence/repeat-cmdw-discard-4-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-05",
+      "case": "cmdw discard repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-5-restored.txt",
+        "evidence/repeat-cmdw-discard-5-after.txt",
+        "evidence/repeat-cmdw-discard-5-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-06",
+      "case": "cmdw discard repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-6-dialog.txt",
+        "evidence/repeat-cmdw-discard-6-restored.txt",
+        "evidence/repeat-cmdw-discard-6-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-07",
+      "case": "cmdw discard repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-7-after.txt",
+        "evidence/repeat-cmdw-discard-7-restored.txt",
+        "evidence/repeat-cmdw-discard-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-08",
+      "case": "cmdw discard repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-8-after.txt",
+        "evidence/repeat-cmdw-discard-8-dialog.txt",
+        "evidence/repeat-cmdw-discard-8-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-09",
+      "case": "cmdw discard repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-9-dialog.txt",
+        "evidence/repeat-cmdw-discard-9-restored.txt",
+        "evidence/repeat-cmdw-discard-9-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-DISCARD-10",
+      "case": "cmdw discard repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-discard-10-restored.txt",
+        "evidence/repeat-cmdw-discard-10-dialog.txt",
+        "evidence/repeat-cmdw-discard-10-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-03",
+      "case": "cmdw keep repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-3-dialog.txt",
+        "evidence/repeat-cmdw-keep-3-restored.txt",
+        "evidence/repeat-cmdw-keep-3-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-04",
+      "case": "cmdw keep repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-4-after.txt",
+        "evidence/repeat-cmdw-keep-4-dialog.txt",
+        "evidence/repeat-cmdw-keep-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-05",
+      "case": "cmdw keep repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-5-restored.txt",
+        "evidence/repeat-cmdw-keep-5-after.txt",
+        "evidence/repeat-cmdw-keep-5-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-06",
+      "case": "cmdw keep repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-6-dialog.txt",
+        "evidence/repeat-cmdw-keep-6-restored.txt",
+        "evidence/repeat-cmdw-keep-6-after.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-07",
+      "case": "cmdw keep repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-7-restored.txt",
+        "evidence/repeat-cmdw-keep-7-after.txt",
+        "evidence/repeat-cmdw-keep-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-08",
+      "case": "cmdw keep repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-8-restored.txt",
+        "evidence/repeat-cmdw-keep-8-after.txt",
+        "evidence/repeat-cmdw-keep-8-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-09",
+      "case": "cmdw keep repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-9-after.txt",
+        "evidence/repeat-cmdw-keep-9-restored.txt",
+        "evidence/repeat-cmdw-keep-9-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDW-KEEP-10",
+      "case": "cmdw keep repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdw-keep-10-restored.txt",
+        "evidence/repeat-cmdw-keep-10-after.txt",
+        "evidence/repeat-cmdw-keep-10-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-03",
+      "case": "cmdq save repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-3-dialog.txt",
+        "evidence/repeat-cmdq-save-3-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-04",
+      "case": "cmdq save repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-4-dialog.txt",
+        "evidence/repeat-cmdq-save-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-05",
+      "case": "cmdq save repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-5-restored.txt",
+        "evidence/repeat-cmdq-save-5-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-06",
+      "case": "cmdq save repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-6-dialog.txt",
+        "evidence/repeat-cmdq-save-6-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-07",
+      "case": "cmdq save repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-7-restored.txt",
+        "evidence/repeat-cmdq-save-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-08",
+      "case": "cmdq save repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-8-restored.txt",
+        "evidence/repeat-cmdq-save-8-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-09",
+      "case": "cmdq save repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-9-dialog.txt",
+        "evidence/repeat-cmdq-save-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-SAVE-10",
+      "case": "cmdq save repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-save-10-dialog.txt",
+        "evidence/repeat-cmdq-save-10-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-03",
+      "case": "cmdq discard repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-3-restored.txt",
+        "evidence/repeat-cmdq-discard-3-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-04",
+      "case": "cmdq discard repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-4-dialog.txt",
+        "evidence/repeat-cmdq-discard-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-05",
+      "case": "cmdq discard repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-5-dialog.txt",
+        "evidence/repeat-cmdq-discard-5-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-06",
+      "case": "cmdq discard repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-6-restored.txt",
+        "evidence/repeat-cmdq-discard-6-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-07",
+      "case": "cmdq discard repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-7-restored.txt",
+        "evidence/repeat-cmdq-discard-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-08",
+      "case": "cmdq discard repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-8-dialog.txt",
+        "evidence/repeat-cmdq-discard-8-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-09",
+      "case": "cmdq discard repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-9-dialog.txt",
+        "evidence/repeat-cmdq-discard-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-DISCARD-10",
+      "case": "cmdq discard repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-discard-10-restored.txt",
+        "evidence/repeat-cmdq-discard-10-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-01",
+      "case": "cmdq keep repetition 1: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-1-dialog.txt",
+        "evidence/repeat-cmdq-keep-1-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-02",
+      "case": "cmdq keep repetition 2: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-2-restored.txt",
+        "evidence/repeat-cmdq-keep-2-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-03",
+      "case": "cmdq keep repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-3-dialog.txt",
+        "evidence/repeat-cmdq-keep-3-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-04",
+      "case": "cmdq keep repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-4-dialog.txt",
+        "evidence/repeat-cmdq-keep-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-05",
+      "case": "cmdq keep repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-5-restored.txt",
+        "evidence/repeat-cmdq-keep-5-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-06",
+      "case": "cmdq keep repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-6-dialog.txt",
+        "evidence/repeat-cmdq-keep-6-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-07",
+      "case": "cmdq keep repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-7-restored.txt",
+        "evidence/repeat-cmdq-keep-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-08",
+      "case": "cmdq keep repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-8-restored.txt",
+        "evidence/repeat-cmdq-keep-8-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-09",
+      "case": "cmdq keep repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-9-restored.txt",
+        "evidence/repeat-cmdq-keep-9-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-CMDQ-KEEP-10",
+      "case": "cmdq keep repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-cmdq-keep-10-dialog.txt",
+        "evidence/repeat-cmdq-keep-10-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-03",
+      "case": "menuquit save repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-3-restored.txt",
+        "evidence/repeat-menuquit-save-3-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-04",
+      "case": "menuquit save repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-4-restored.txt",
+        "evidence/repeat-menuquit-save-4-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-05",
+      "case": "menuquit save repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-5-restored.txt",
+        "evidence/repeat-menuquit-save-5-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-06",
+      "case": "menuquit save repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-6-dialog.txt",
+        "evidence/repeat-menuquit-save-6-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-07",
+      "case": "menuquit save repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-7-restored.txt",
+        "evidence/repeat-menuquit-save-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-08",
+      "case": "menuquit save repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-8-restored.txt",
+        "evidence/repeat-menuquit-save-8-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-09",
+      "case": "menuquit save repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-9-dialog.txt",
+        "evidence/repeat-menuquit-save-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-SAVE-10",
+      "case": "menuquit save repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-save-10-dialog.txt",
+        "evidence/repeat-menuquit-save-10-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-03",
+      "case": "menuquit discard repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-3-dialog.txt",
+        "evidence/repeat-menuquit-discard-3-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-04",
+      "case": "menuquit discard repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-4-dialog.txt",
+        "evidence/repeat-menuquit-discard-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-05",
+      "case": "menuquit discard repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-5-dialog.txt",
+        "evidence/repeat-menuquit-discard-5-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-06",
+      "case": "menuquit discard repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-6-restored.txt",
+        "evidence/repeat-menuquit-discard-6-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-07",
+      "case": "menuquit discard repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-7-restored.txt",
+        "evidence/repeat-menuquit-discard-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-08",
+      "case": "menuquit discard repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-8-dialog.txt",
+        "evidence/repeat-menuquit-discard-8-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-09",
+      "case": "menuquit discard repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-9-dialog.txt",
+        "evidence/repeat-menuquit-discard-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-DISCARD-10",
+      "case": "menuquit discard repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-discard-10-dialog.txt",
+        "evidence/repeat-menuquit-discard-10-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-01",
+      "case": "menuquit keep repetition 1: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-1-dialog.txt",
+        "evidence/repeat-menuquit-keep-1-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-02",
+      "case": "menuquit keep repetition 2: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-2-dialog.txt",
+        "evidence/repeat-menuquit-keep-2-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-03",
+      "case": "menuquit keep repetition 3: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-3-dialog.txt",
+        "evidence/repeat-menuquit-keep-3-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-04",
+      "case": "menuquit keep repetition 4: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-4-dialog.txt",
+        "evidence/repeat-menuquit-keep-4-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-05",
+      "case": "menuquit keep repetition 5: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-5-dialog.txt",
+        "evidence/repeat-menuquit-keep-5-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-06",
+      "case": "menuquit keep repetition 6: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-6-restored.txt",
+        "evidence/repeat-menuquit-keep-6-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-07",
+      "case": "menuquit keep repetition 7: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-7-restored.txt",
+        "evidence/repeat-menuquit-keep-7-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-08",
+      "case": "menuquit keep repetition 8: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-8-restored.txt",
+        "evidence/repeat-menuquit-keep-8-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-09",
+      "case": "menuquit keep repetition 9: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-9-dialog.txt",
+        "evidence/repeat-menuquit-keep-9-restored.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "REPEAT-MENUQUIT-KEEP-10",
+      "case": "menuquit keep repetition 10: source/following section and restoration",
+      "status": "PASS",
+      "evidence": [
+        "evidence/repeat-menuquit-keep-10-restored.txt",
+        "evidence/repeat-menuquit-keep-10-dialog.txt",
+        "evidence/additional-outcome-summary.json"
+      ],
+      "scope": "LF constituent; real process absence on Quit routes. Does not establish title/Dock compound journeys."
+    },
+    {
+      "id": "SEARCH-STABILITY-01",
+      "case": "Executing search stability trial 1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-02",
+      "case": "Executing search stability trial 2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-03",
+      "case": "Executing search stability trial 3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-04",
+      "case": "Executing search stability trial 4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-05",
+      "case": "Executing search stability trial 5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-06",
+      "case": "Executing search stability trial 6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-07",
+      "case": "Executing search stability trial 7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-08",
+      "case": "Executing search stability trial 8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-09",
+      "case": "Executing search stability trial 9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-STABILITY-10",
+      "case": "Executing search stability trial 10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-stability-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-01",
+      "case": "Executing search query-change trial 1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-02",
+      "case": "Executing search query-change trial 2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-03",
+      "case": "Executing search query-change trial 3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-04",
+      "case": "Executing search query-change trial 4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-05",
+      "case": "Executing search query-change trial 5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-06",
+      "case": "Executing search query-change trial 6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-07",
+      "case": "Executing search query-change trial 7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-08",
+      "case": "Executing search query-change trial 8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-09",
+      "case": "Executing search query-change trial 9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-QUERY-CHANGE-10",
+      "case": "Executing search query-change trial 10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-query-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-01",
+      "case": "Executing search panel-close trial 1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-02",
+      "case": "Executing search panel-close trial 2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-03",
+      "case": "Executing search panel-close trial 3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-04",
+      "case": "Executing search panel-close trial 4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-05",
+      "case": "Executing search panel-close trial 5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-06",
+      "case": "Executing search panel-close trial 6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-07",
+      "case": "Executing search panel-close trial 7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-08",
+      "case": "Executing search panel-close trial 8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-09",
+      "case": "Executing search panel-close trial 9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-PANEL-CLOSE-10",
+      "case": "Executing search panel-close trial 10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-panel-close-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-01",
+      "case": "Executing search root-change trial 1",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-02",
+      "case": "Executing search root-change trial 2",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-03",
+      "case": "Executing search root-change trial 3",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-04",
+      "case": "Executing search root-change trial 4",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-05",
+      "case": "Executing search root-change trial 5",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-06",
+      "case": "Executing search root-change trial 6",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-07",
+      "case": "Executing search root-change trial 7",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-08",
+      "case": "Executing search root-change trial 8",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-09",
+      "case": "Executing search root-change trial 9",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-ROOT-CHANGE-10",
+      "case": "Executing search root-change trial 10",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-root-change-summary.json"
+      ],
+      "scope": "Observable production outcome; no latency inferred from transport duration."
+    },
+    {
+      "id": "SEARCH-NAV-EXACT-OPEN",
+      "case": "Current unchanged result opens highlighted match",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-nav-exact-open.txt",
+        "evidence/search-nav-exact-open.jpg"
+      ]
+    },
+    {
+      "id": "SEARCH-NAV-CHANGED-FALLBACK",
+      "case": "Changed target displays current contents and explanation",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-nav-changed-fallback.txt",
+        "evidence/search-nav-changed-fallback.jpg"
+      ]
+    },
+    {
+      "id": "SEARCH-NAV-MOVED-CURRENT-LOCATION",
+      "case": "Moved match displays fresh contents and changed-file explanation",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-nav-moved-current-location.txt",
+        "evidence/search-nav-moved-current-location.jpg"
+      ]
+    },
+    {
+      "id": "SEARCH-NAV-DELETED-REFUSAL",
+      "case": "Removed result target reports missing without old contents",
+      "status": "PASS",
+      "evidence": [
+        "evidence/search-nav-deleted-refusal.txt",
+        "evidence/search-nav-deleted-refusal.jpg"
+      ]
+    },
+    {
+      "id": "LAYOUT-EN-640",
+      "case": "EN 640\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/en640-search-keyboard-exact.jpg",
+        "evidence/en640-reader-unobscured-exact.jpg",
+        "evidence/en640-fallback-unobscured-exact.jpg",
+        "evidence/en640-fallback-exact.jpg",
+        "evidence/en640-keyboard-exact.jpg",
+        "evidence/en640-settings-top-exact.jpg",
+        "evidence/en640-keyboard-image-unobscured-exact.jpg",
+        "evidence/en640-search-exact.jpg",
+        "evidence/en640-image-exact.jpg",
+        "evidence/en640-image-unobscured-exact.jpg",
+        "evidence/en640-reduce-motion-focus-exact.jpg",
+        "evidence/en640-reader-exact.jpg",
+        "evidence/en640-settings-bottom-exact.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "LAYOUT-EN-900",
+      "case": "EN 900\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/en900-reader-exact.jpg",
+        "evidence/en900-settings-bottom-exact.jpg",
+        "evidence/en900-image-exact.jpg",
+        "evidence/en900-search-fallback-exact.jpg",
+        "evidence/en900-keyboard-find-exact.jpg",
+        "evidence/en900-reduce-motion-focus-exact.jpg",
+        "evidence/en900-settings-top-exact.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "LAYOUT-EN-1440",
+      "case": "EN 1440\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/en1440-reduce-motion-focus-exact.jpg",
+        "evidence/en1440-reader-exact.jpg",
+        "evidence/en1440-settings-bottom-exact.jpg",
+        "evidence/en1440-settings-top-exact.jpg",
+        "evidence/en1440-fallback-exact.jpg",
+        "evidence/en1440-image-exact.jpg",
+        "evidence/en1440-keyboard-exact.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "LAYOUT-ES-640",
+      "case": "ES 640\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/es640-reduce-motion-focus-exact.jpg",
+        "evidence/es640-reader-rich-visible.jpg",
+        "evidence/es640-search-result-scroll-visible.jpg",
+        "evidence/es640-image-keyboard-visible.jpg",
+        "evidence/es640-search-results-visible.jpg",
+        "evidence/es640-search-keyboard-focus-exact.jpg",
+        "evidence/es640-settings-bottom-visible.jpg",
+        "evidence/es640-search-current-location-visible.jpg",
+        "evidence/es640-reader-rich-settled-visible.jpg",
+        "evidence/es640-image-visible.jpg",
+        "evidence/es640-mermaid-fallbacks-visible.jpg",
+        "evidence/es640-settings-visible.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "LAYOUT-ES-900",
+      "case": "ES 900\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/es900-fallback-source-exact.jpg",
+        "evidence/es900-image-verified-visible.jpg",
+        "evidence/es900-settings-top-exact.jpg",
+        "evidence/es900-reduce-motion-focus-exact.jpg",
+        "evidence/es900-find-keyboard-exact.jpg",
+        "evidence/es900-visible-dock-geometry.jpg",
+        "evidence/es900-malformed-hostile-fallback-exact.jpg",
+        "evidence/es900-settings-bottom-exact.jpg",
+        "evidence/es900-search-result-exact.jpg",
+        "evidence/es900-fallbacks-verified-visible.jpg",
+        "evidence/es900-search-verified-visible.jpg",
+        "evidence/es900-reader-verified-visible.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "LAYOUT-ES-1440",
+      "case": "ES 1440\u00d7800 point native screenshot review",
+      "status": "PASS",
+      "evidence": [
+        "evidence/es1440-search-fallback-exact.jpg",
+        "evidence/es1440-reduce-motion-focus-exact.jpg",
+        "evidence/es1440-keyboard-find-exact.jpg",
+        "evidence/es1440-image-exact.jpg",
+        "evidence/es1440-reader-exact.jpg",
+        "evidence/es1440-settings-top-exact.jpg",
+        "evidence/es1440-settings-bottom-exact.jpg"
+      ],
+      "scope": "Dimension-verified static reader/Settings/search/image/fallback and Find focus constituents. Not full keyboard search journeys, animation measurement, or all original CF48 criteria."
+    },
+    {
+      "id": "MOTION-MATRIX",
+      "case": "Reduce Motion enabled: EN/ES Find focus and Escape at 640/900/1440; preference restored",
+      "status": "PASS",
+      "evidence": [
+        "evidence/reduce-motion-matrix-enabled.json",
+        "evidence/reduce-motion-matrix-restored.json"
+      ],
+      "scope": "Native functional focus/layout checks; no animation latency inferred from still images."
+    },
+    {
+      "id": "MERMAID-RESIZE-INTERMITTENT",
+      "case": "Valid flowchart/sequence intermittently fall back after repeated resize/tab/locale changes",
+      "status": "FAIL",
+      "evidence": [
+        "evidence/es900-fallback-source-exact.jpg",
+        "evidence/en640-reduce-motion-focus-exact.jpg"
+      ],
+      "finding": "QA-0018",
+      "scope": "Observed rendering failure and subsequent recovery; causal trigger/root/deadline not established."
+    },
+    {
+      "id": "CF48-KEYBOARD-SEARCH-JOURNEYS",
+      "case": "All start/result-open/toggle/Stop/empty/error/close keyboard journeys EN/ES each exact width",
+      "status": "NOT_APPLICABLE",
+      "evidence": [],
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "Exact visible-window geometry regressed to zero System Events windows; full sequential keyboard search journeys at all6locale/width combinations are not demonstrated. Actual Dock visibility needed; static/focus constituents separate.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    },
+    {
+      "id": "CURRENT-INSTALL-ROLLBACK",
+      "case": "Install latest frozen package, ten ordinary launches and reversible uninstall/rollback",
+      "status": "NOT_APPLICABLE",
+      "evidence": [],
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "Installed Applications app and DMG remain b7 historical candidate. Finder initial access works intermittently, then cgWindowNotFound on native fixture action. No latest install/rollback acceptance inferred.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      },
+      "newerBuildTesting": {
+        "owner": "USER",
+        "agentAcceptanceRequired": false,
+        "decision": "docs/macos-newer-build-user-testing-20261008.md"
+      }
+    },
+    {
+      "id": "CURRENT-NATIVE-OPEN-DROPS",
+      "case": "Current-candidate Finder Open With and real file/folder/Settings drops, required repetitions",
+      "status": "NOT_APPLICABLE",
+      "evidence": [],
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "Finder native action cgWindowNotFound. Current actual fixture drop requested; historical b7 passes separate.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    },
+    {
+      "id": "PNG-SAME-INODE",
+      "case": "Manual Reload displays changed same-inode bytes/dimensions",
+      "status": "PASS",
+      "evidence": [
+        "evidence/png-same-inode-refresh-red.txt",
+        "evidence/png-same-inode-refresh-red.jpg"
+      ],
+      "scope": "Current default production constituent; no product timing claim."
+    },
+    {
+      "id": "PNG-CORRUPT",
+      "case": "Corrupt bytes produce specific refusal instead of old pixels",
+      "status": "PASS",
+      "evidence": [
+        "evidence/png-minimal-corrupt-settled.txt",
+        "evidence/png-minimal-corrupt.jpg"
+      ],
+      "scope": "Current default production constituent; no product timing claim."
+    },
+    {
+      "id": "PNG-RETRY-RECOVERY",
+      "case": "Retry recovers valid restored/replacement bytes",
+      "status": "PASS",
+      "evidence": [
+        "evidence/png-replacement-retry.jpg",
+        "evidence/png-minimal-recovery-retry-success.txt",
+        "evidence/png-minimal-recovery-retry-success.jpg"
+      ],
+      "scope": "Current default production constituent; no product timing claim."
+    },
+    {
+      "id": "PNG-OPEN-DEDUP",
+      "case": "Native Open File accepts valid PNG and deduplicates existing tab",
+      "status": "PASS",
+      "evidence": [
+        "evidence/png-open-file-enabled.txt",
+        "evidence/png-open-file-enabled.jpg",
+        "evidence/png-open-file-deduplicated-success.txt",
+        "evidence/png-open-file-deduplicated-success.jpg"
+      ],
+      "scope": "Current default production constituent; no product timing claim."
+    },
+    {
+      "id": "PNG-RELOAD-RECOVERY",
+      "case": "Manual Reload fails to clear resolved corruption error",
+      "status": "FAIL",
+      "evidence": [
+        "evidence/png-minimal-recovery-later.txt",
+        "evidence/png-minimal-recovery-reload-settled.jpg",
+        "evidence/png-minimal-recovery-retry-success.jpg"
+      ],
+      "finding": "QA-0019"
+    },
+    {
+      "id": "FIND-EMPTY",
+      "case": "Find empty guidance",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-empty-current.txt",
+        "evidence/document-find-cleared-guidance-640.txt"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-ZERO",
+      "case": "Find absent query reports zero matches",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-no-matches-640.txt"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-COUNT",
+      "case": "Case-insensitive Find counts all3 Unicode-context/offscreen matches",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-typed-three.txt"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-WRAP",
+      "case": "Focused Return/ShiftReturn navigate3offscreen matches and wrap both ways",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-typed-next.txt",
+        "evidence/document-find-typed-last.txt",
+        "evidence/document-find-typed-forward-wrap.txt",
+        "evidence/document-find-typed-backward-wrap.txt"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-ESCAPE",
+      "case": "Escape clears Find/highlights and retains last reading position",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-typed-escape-retained.txt",
+        "evidence/document-find-typed-escape-retained.jpg"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-TABS",
+      "case": "Tab change clears Find and returning keeps it closed",
+      "status": "PASS",
+      "evidence": [
+        "evidence/document-find-tab-switch-clears.txt",
+        "evidence/document-find-tab-return-stays-closed.txt"
+      ],
+      "scope": "Functional AX/reading-position constituent; blank-control screenshots and zero-window geometry prevent full visible keyboard acceptance."
+    },
+    {
+      "id": "FIND-VISIBLE-GEOMETRY",
+      "case": "Find control painting/visible geometry discrepancy",
+      "status": "NOT_APPLICABLE",
+      "evidence": [
+        "evidence/document-find-reopen-empty-640.jpg",
+        "evidence/document-find-no-matches-640.jpg"
+      ],
+      "historicalStatus": "BLOCKED",
+      "historicalReason": "CUA shows blank allocated control strip while AX responds; System Events again zero windows. No product defect attributed without actual visible-window verification.",
+      "acceptanceRequired": false,
+      "exclusion": {
+        "authority": "explicit user instruction",
+        "quote": "Exclude the seven blocked checks; retain all three defects",
+        "document": "docs/macos-acceptance-exclusions-20261008.md",
+        "recordedUTC": "2026-10-08T21:38:45.559000+00:00"
+      }
+    }
+  ],
+  "counts": {
+    "PASS": 315,
+    "NOT_APPLICABLE": 8,
+    "FAIL": 2
+  },
+  "updatedAt": "2026-10-08T22:10:08.794272+00:00",
+  "checkpointUTC": "2026-10-08T21:38:45.559000+00:00",
+  "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md"
+}

@@ -39,3 +39,10 @@ Default exclusions follow the approved F001 tree policy where applicable and are
 ## IR-05 native supplement � 2026-10-06
 
 The authorized optional subtree and native Go extension is specified in [ir05-native-amendment.md](ir05-native-amendment.md). Original approved artifacts and packaged acceptance remain intact.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003F-H01**: HTML/HTM names are included without reading or indexing HTML contents. Content search remains Markdown. open_local_search_hit validates the existing job/root/scope/hit and returns a typed LocalView; the original open_search_hit remains the Markdown consumer contract.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

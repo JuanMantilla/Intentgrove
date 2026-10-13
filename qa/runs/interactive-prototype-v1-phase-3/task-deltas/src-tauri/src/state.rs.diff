@@ -1,0 +1,158 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/state.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/state.rs
+@@ -9,12 +9,14 @@
+ #[derive(Clone)]
+ pub struct AppState {
+     inner: Arc<Mutex<Registry>>,
++    pub(crate) prototypes: Arc<crate::prototype::PrototypeService>,
+ }
+ 
+ impl Default for AppState {
+     fn default() -> Self {
+         Self {
+             inner: Arc::new(Mutex::new(Registry::default())),
++            prototypes: Arc::default(),
+         }
+     }
+ }
+@@ -23,6 +25,7 @@
+ struct Registry {
+     roots: HashMap<String, RootGrant>,
+     files: HashMap<String, FileGrant>,
++    closed_prototypes: HashMap<String, (crate::session::StoredTabSource, Identity)>,
+     snapshots: HashMap<String, DirectorySnapshot>,
+     cancelled: HashSet<String>,
+     generation: u64,
+@@ -207,14 +210,18 @@
+         };
+         state.roots.clear();
+         state.files.clear();
++        state.closed_prototypes.clear();
+         state.snapshots.clear();
+         state.cancelled.clear();
+         state.roots.insert(id.clone(), grant);
++        let generation = state.generation;
++        drop(state);
++        self.prototypes.clear();
+         Ok(GrantInfo {
+             id,
+             name,
+             display_path: path.display().to_string(),
+-            generation: state.generation,
++            generation,
+         })
+     }
+ 
+@@ -585,8 +592,112 @@
+     }
+ 
+     pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
++        self.prototypes.restart();
+         *self.lock()? = Registry::default();
+         Ok(())
++    }
++
++    pub(crate) fn unload_prototypes(&self) -> AppResult<()> {
++        let ids: Vec<_> = self
++            .lock()?
++            .files
++            .values()
++            .filter(|g| crate::scope::prototype_name(&g.name))
++            .map(|g| g.id.clone())
++            .collect();
++        self.prototypes.shutdown();
++        for id in ids {
++            self.release_prototype_file(&id)?;
++        }
++        Ok(())
++    }
++
++    pub(crate) fn rebind_prototype_file(
++        &self,
++        id: &str,
++        source: &FileGrant,
++    ) -> AppResult<FileGrant> {
++        let mut registry = self.lock()?;
++        let previous = registry
++            .files
++            .get(id)
++            .ok_or_else(|| AppError::new("invalid_grant", "File selection expired"))?;
++        if previous.identity != source.identity || !crate::scope::prototype_name(&source.name) {
++            return Err(AppError::new(
++                "reselection_required",
++                "Document identity changed",
++            ));
++        }
++        let mut rebound = source.clone();
++        rebound.id = id.into();
++        if source.id != id {
++            registry.files.remove(&source.id);
++        }
++        registry.files.insert(id.into(), rebound.clone());
++        Ok(rebound)
++    }
++
++    /// Release native handles while retaining only the same native-recorded reopen reference as sessions.
++    pub(crate) fn release_prototype_file(&self, id: &str) -> AppResult<()> {
++        let mut registry = self.lock()?;
++        if registry
++            .files
++            .get(id)
++            .is_some_and(|g| crate::scope::prototype_name(&g.name))
++        {
++            let grant = registry.files.remove(id).unwrap();
++            use crate::session::{StoredSelection, StoredTabSource};
++            let source = match grant.source {
++                FileSource::Root { segments, .. } => StoredTabSource::Root { segments },
++                FileSource::Explicit { path, .. } => StoredTabSource::Explicit {
++                    selection: StoredSelection {
++                        path: path.display().to_string(),
++                        identity: grant.identity,
++                    },
++                },
++            };
++            // Native references only; bounded by existing session tab capacity. No package bytes or handle retained.
++            if registry.closed_prototypes.len() >= 100 {
++                registry.closed_prototypes.clear();
++            }
++            registry
++                .closed_prototypes
++                .insert(id.into(), (source, grant.identity));
++        }
++        Ok(())
++    }
++    pub(crate) fn reopen_prototype_file(&self, id: &str) -> AppResult<FileGrant> {
++        let (source, expected) = self
++            .lock()?
++            .closed_prototypes
++            .get(id)
++            .cloned()
++            .ok_or_else(|| AppError::new("invalid_grant", "File selection expired"))?;
++        use crate::session::StoredTabSource;
++        let info = match source {
++            StoredTabSource::Explicit { selection } => self.register_explicit_file_with_identity(
++                Path::new(&selection.path),
++                Some(expected),
++                None,
++            )?,
++            StoredTabSource::Root { segments } => {
++                let root =
++                    self.lock()?.roots.values().next().cloned().ok_or_else(|| {
++                        AppError::new("invalid_grant", "Folder selection expired")
++                    })?;
++                root.verify_current()?;
++                let file = crate::scope::open_relative(&root.file, &segments, false)?;
++                if identity(&file)? != expected {
++                    return Err(AppError::new(
++                        "reselection_required",
++                        "Document identity changed",
++                    ));
++                }
++                let grant = self.register_root_file(&root, segments, &file)?;
++                return Ok(grant);
++            }
++        };
++        self.file(&info.id)
+     }
+ 
+     pub fn store_snapshot(

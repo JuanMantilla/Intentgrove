@@ -1,0 +1,76 @@
+[
+  {
+    "id": "unit",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "/Users/juanmantilla/projects/personal/md-reader/crates/Cargo.toml",
+      "--locked",
+      "--workspace"
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "started_at": "2026-10-12T00:38:53.370872+00:00",
+    "finished_at": "2026-10-12T00:38:56.639639+00:00",
+    "evidence_paths": [
+      "qa/runs/interactive-prototype-v1-phase-2/unit.log"
+    ]
+  },
+  {
+    "id": "format",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "/Users/juanmantilla/projects/personal/md-reader/crates/Cargo.toml",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "started_at": "2026-10-12T00:38:53.371089+00:00",
+    "finished_at": "2026-10-12T00:38:53.712368+00:00",
+    "evidence_paths": [
+      "qa/runs/interactive-prototype-v1-phase-2/format.log"
+    ]
+  },
+  {
+    "id": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "/Users/juanmantilla/projects/personal/md-reader/crates/Cargo.toml",
+      "--locked",
+      "--workspace",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "started_at": "2026-10-12T00:38:53.371183+00:00",
+    "finished_at": "2026-10-12T00:38:55.110456+00:00",
+    "evidence_paths": [
+      "qa/runs/interactive-prototype-v1-phase-2/clippy.log"
+    ]
+  },
+  {
+    "id": "dependencies",
+    "command": [
+      "python3",
+      "-B",
+      "/Users/juanmantilla/projects/personal/md-reader/crates/check_boundaries.py"
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "started_at": "2026-10-12T00:38:53.373446+00:00",
+    "finished_at": "2026-10-12T00:38:53.586650+00:00",
+    "evidence_paths": [
+      "qa/runs/interactive-prototype-v1-phase-2/dependencies.log"
+    ]
+  }
+]

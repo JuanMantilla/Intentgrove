@@ -1,0 +1,43 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/platform/test_support.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/test_support.rs
+@@ -5,19 +5,19 @@
+ };
+ 
+ /// Exclusive creation, canonical temporary parent, and identity-checked cleanup.
+-pub(crate) struct FixtureDir {
++pub struct FixtureDir {
+     path: PathBuf,
+     identity: crate::scope::Identity,
+ }
+ impl FixtureDir {
+-    pub(crate) fn new(prefix: &str) -> Self {
++    pub fn new(prefix: &str) -> Self {
+         let parent = fs::canonicalize(std::env::temp_dir()).unwrap();
+         let path = parent.join(format!("{prefix}-{}", uuid::Uuid::new_v4()));
+         fs::create_dir(&path).unwrap();
+         let identity = super::identity(&super::open_selected(&path, true).unwrap()).unwrap();
+         Self { path, identity }
+     }
+-    pub(crate) fn path(&self) -> &Path {
++    pub fn path(&self) -> &Path {
+         &self.path
+     }
+ }
+@@ -45,7 +45,7 @@
+ }
+ 
+ /// A directory symlink on macOS or an NTFS junction on Windows, without elevation.
+-pub(crate) struct DirectoryLink(PathBuf);
++pub struct DirectoryLink(PathBuf);
+ impl Drop for DirectoryLink {
+     fn drop(&mut self) {
+         #[cfg(target_os = "macos")]
+@@ -54,7 +54,7 @@
+         let _ = fs::remove_dir(&self.0); // unlink the junction itself, never its target
+     }
+ }
+-pub(crate) fn directory_link(target: &Path, link: &Path) -> io::Result<DirectoryLink> {
++pub fn directory_link(target: &Path, link: &Path) -> io::Result<DirectoryLink> {
+     #[cfg(target_os = "macos")]
+     std::os::unix::fs::symlink(target, link)?;
+     #[cfg(target_os = "windows")]

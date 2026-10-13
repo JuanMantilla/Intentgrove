@@ -1,0 +1,35 @@
+{
+  "sourceVersion": 1,
+  "prototypeId": "12345678-1234-1234-1234-123456789abc",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "entry": "dashboard",
+  "visualSources": [
+    {
+      "id": "design",
+      "path": "design.vectorcraft",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "exportProfile": "vectorcraft-svg-v1"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "dashboard",
+      "kind": "base",
+      "visualBinding": {
+        "source": "design",
+        "rootTarget": "scene-dashboard",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": []
+    }
+  ],
+  "interactions": []
+}

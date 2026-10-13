@@ -1,0 +1,70 @@
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/investigation-source/src/reader/usePinchZoom.ts	2026-10-04 21:50:48
++++ /Users/juanmantilla/projects/personal/md-reader/src/reader/usePinchZoom.ts	2026-10-12 08:48:55
+@@ -1,4 +1,4 @@
+-import { useEffect, useRef, type RefObject } from "react";
++import { useLayoutEffect, useRef, type RefObject } from "react";
+ 
+ type Point = { x: number; y: number };
+ type Gesture = Event & { scale: number; clientX: number; clientY: number };
+@@ -27,7 +27,9 @@
+   enabled: boolean, scale: number, change: (scale: number, point: Point) => void) {
+   const current = useRef({ scale, change });
+   current.current = { scale, change };
+-  useEffect(() => {
++  // Input must be owned when the enabled content becomes observable. A passive
++  // effect leaves a committed source window briefly unable to receive pinch.
++  useLayoutEffect(() => {
+     const element = ref.current;
+     if (!element || !enabled) return;
+     let gestureBase: number | null = null;
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/investigation-source/tests/ui/large-source.test.tsx	2026-10-10 11:03:04
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/large-source.test.tsx	2026-10-12 08:48:36
+@@ -1,6 +1,6 @@
+ // @vitest-environment jsdom
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
++import { cleanup, configure, getConfig, fireEvent, render, screen, waitFor } from "@testing-library/react";
+ import App from "../../src/app/App";
+ 
+ const mocks = vi.hoisted(() => ({
+@@ -42,6 +42,28 @@
+ });
+ afterEach(cleanup);
+ 
++it("accepts pinch on the first committed source text without an incidental timer drain", async () => {
++  const { asyncWrapper } = getConfig();
++  // Observe DOM readiness directly. The default wrapper's zero-delay timer can
++  // accidentally hide an input-listener gap after the text has committed.
++  configure({ asyncWrapper: async callback => await callback() });
++  try {
++    render(<App />);
++    fireEvent.click(screen.getAllByRole("button", { name: "Open file" })[0]);
++    fireEvent.click(await screen.findByRole("button", { name: "Open read-only source" }));
++    const source = await screen.findByText("# first line");
++    const wheel = new WheelEvent("wheel", { deltaY: -100, ctrlKey: true, cancelable: true });
++    fireEvent(source, wheel);
++    expect(wheel.defaultPrevented).toBe(true);
++    await waitFor(() => expect(Number(source.dataset.sourceZoom)).toBeGreaterThan(1));
++    expect(source.textContent).toBe("# first line\n");
++    expect(mocks.readSourceWindow).toHaveBeenCalledTimes(1);
++  } finally {
++    cleanup();
++    configure({ asyncWrapper });
++  }
++});
++
+ describe("large source consent and bounded view", () => {
+   it("requires explicit consent and never sends the oversized document to MarkdownView", async () => {
+     render(<App />);
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/investigation-source/tests/ui/new-markdown.test.tsx	2026-10-11 23:06:56
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx	2026-10-12 08:49:21
+@@ -66,6 +66,9 @@
+   fireEvent.change(screen.getByLabelText("Filename"), { target: { value: "first.MD" } });
+   fireEvent.click(screen.getByText("Choose folder…")); await waitFor(() => expect(mocks.chooseMarkdownDestination).toHaveBeenCalledOnce());
+   expect(screen.getByLabelText("Filename").getAttribute("value")).toBe("first.MD");
++  // Invocation is not cancellation acknowledgement: React may still expose the
++  // pending picker control after the null reply. Wait for its actual ownership.
++  await waitFor(() => expect(screen.getByText("Choose folder…").hasAttribute("disabled")).toBe(false));
+   mocks.chooseMarkdownDestination.mockRejectedValueOnce({ code: "denied", message: "test" }); fireEvent.click(screen.getByText("Choose folder…"));
+   expect((await screen.findByRole("alert")).textContent).toMatch(/Permission denied/);
+   mocks.chooseMarkdownDestination.mockResolvedValueOnce({ token: "choice", name: folder.name, displayPath: folder.displayPath }); fireEvent.click(screen.getByText("Choose folder…")); await screen.findByText(folder.displayPath);

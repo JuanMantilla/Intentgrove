@@ -1,0 +1,17 @@
+{
+  "name": "frontend-v2",
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--reporter=json",
+    "--outputFile=qa/runs/interactive-prototype-v1-phase-3/frontend-v2.json"
+  ],
+  "started_at": "2026-10-12T02:06:24.643975+00:00",
+  "finished_at": "2026-10-12T02:11:51.112986+00:00",
+  "exit_code": 1,
+  "log": "frontend-v2.log",
+  "tested_snapshot": "tested-snapshot-v2.json"
+}

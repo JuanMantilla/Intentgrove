@@ -1,0 +1,5 @@
+# Native New Markdown evidence
+
+Authoritative final baseline: /Users/juanmantilla/projects/personal/md-reader/os-engineering/new-markdown-20261011/evidence/tested-snapshot-v11.json; exact tested paths in tested-paths.json. Final results and timezone-aware finish time in coverage.json. Current checks: native-tests-v11.log, native-build-v11.log, frontend-mocks-v11.log, source-types-v11.log, diff-check-v11.log, aggregate-native-tests-v11.log. Source-types/diff logs are empty on exit0; command outcomes also recorded in coverage.json.
+
+Environment and disposable equivalence observations: environment.json, filesystem-equivalence.json. Installed workflow state: speckit.json and speckit-handoff.json. Pre-edit inventory: worktree-before.txt; current dirty-tree aggregate diff: worktree-diff-final.txt (not an isolated task patch). All earlier logs/snapshots are retained as superseded diagnosis evidence, not final certification. native-tests-v1.log records the repaired compiler error; v3 and later aggregate logs record standalone refresh import failures. Final acceptance and Windows rollout remain pending/blocked.

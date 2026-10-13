@@ -1,0 +1,31 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/scope.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/scope.rs
+@@ -5,6 +5,8 @@
+ pub struct AppError {
+     pub code: &'static str,
+     pub message: String,
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub package_diagnostics: Option<igproto_package::Report>,
+ }
+ 
+ impl AppError {
+@@ -12,6 +14,7 @@
+         Self {
+             code,
+             message: message.into(),
++            package_diagnostics: None,
+         }
+     }
+ }
+@@ -114,5 +117,10 @@
+     )
+ }
+ pub fn document_name(name: &str) -> bool {
+-    markdown_name(name) || html_name(name)
++    markdown_name(name) || html_name(name) || prototype_name(name)
+ }
++
++/// V1 routing is extension-based; ZIP contents alone never select this kind.
++pub fn prototype_name(name: &str) -> bool {
++    name.to_ascii_lowercase().ends_with(".igproto")
++}

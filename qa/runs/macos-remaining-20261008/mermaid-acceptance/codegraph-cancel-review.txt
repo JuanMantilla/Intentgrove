@@ -1,0 +1,256 @@
+**Exploration: src-tauri/src/diagram.rs execute Control cancel**
+
+Found 23 symbols across 1 file. No indexed file uniquely matches `src-tauri/src/diagram.rs`.
+
+**Blast radius — what depends on these (update/verify before editing)**
+
+- `cancel` (src-tauri/src/acceptance_harness.rs:71) — 2 callers in `src-tauri/src/acceptance_harness.rs`; no tests found within 3 caller hops
+- `cancel` (src-tauri/src/state.rs:433) — 3 callers in `src-tauri/src/listing.rs`, `src-tauri/src/refresh.rs`; tests: `src-tauri/tests/manual_reload.rs`
+- `cancelReloadJob` (src/app/App.tsx:809) — 1 caller in `src/app/App.tsx`; tested via callers: `tests/ui/refresh-conflict.test.tsx`, `tests/ui/refresh-recovery.test.tsx` +3
+
+**Source Code**
+
+> The code below is the **verbatim, current on-disk source** of these files — re-read from disk on this call and line-numbered, byte-for-byte identical to what the Read tool returns. It is NOT a summary, outline, or stale cache. Treat each block as a Read you have already performed: do not Read a file shown here. (Exception: files flagged "⚠ changed on disk" below drifted from the index after their last sync — their source is omitted rather than risk a mis-sliced block; Read those specific files.)
+
+**`src/app/App.tsx`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+**`src-tauri/src/acceptance_harness.rs`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+**`src-tauri/src/large_source.rs`** — ⚠ changed on disk after the last index sync — source omitted (indexed line ranges no longer match, so a slice could show the wrong code). Read this file directly for current content; the change is picked up on that project's next index sync.
+
+**`src-tauri/src/state.rs`** — references(references), AppResult(references), calls(calls), new(calls), lock(calls), +28 more
+
+```rust
+102	}
+103	
+104	impl AppState {
+105	    pub fn prepare_root(&self, path: &Path) -> AppResult<String> {
+106	        let selected = open_selected(path, true)?;
+107	        let selected_identity = identity(&selected)?;
+108	        let token = Uuid::new_v4().to_string();
+109	        let mut state = self.lock()?;
+110	        state.selection_epoch = state.selection_epoch.wrapping_add(1);
+111	        let epoch = state.selection_epoch;
+112	        state.pending_root = Some((token.clone(), path.to_path_buf(), selected_identity, epoch));
+113	        Ok(token)
+114	    }
+115	
+116	    pub fn commit_prepared_root(&self, token: &str) -> AppResult<GrantInfo> {
+117	        let (path, expected, epoch) = {
+118	            let mut state = self.lock()?;
+119	            let Some((stored_token, path, identity, epoch)) = state.pending_root.take() else {
+120	                return Err(AppError::new("invalid_grant", "No folder choice is pending"));
+121	            };
+122	            if stored_token != token {
+123	                state.pending_root = Some((stored_token, path, identity, epoch));
+124	                return Err(AppError::new("invalid_grant", "Folder choice token is invalid"));
+125	            }
+126	            (path, identity, epoch)
+127	        };
+128	        self.register_root_with_identity(&path, Some(expected), Some(epoch))
+129	    }
+130	
+131	    pub fn cancel_prepared_root(&self, token: &str) -> AppResult<()> {
+132	        let mut state = self.lock()?;
+133	        if state.pending_root.as_ref().is_some_and(|(stored, ..)| stored == token) {
+134	            state.pending_root = None;
+135	        }
+136	        Ok(())
+137	    }
+138	    fn lock(&self) -> AppResult<std::sync::MutexGuard<'_, Registry>> {
+139	        self.inner
+140	            .lock()
+141	            .map_err(|_| AppError::new("internal", "Grant state is unavailable"))
+142	    }
+143	
+144	    pub fn register_root(&self, path: &Path) -> AppResult<GrantInfo> {
+145	        self.register_root_with_identity(path, None, None)
+146	    }
+147	
+148	    /// Rebuild authority only from a previously native-recorded selection.
+149	    /// The identity check and grant insertion use the same opened handle.
+150	    pub(crate) fn restore_root(&self, path: &Path, expected: Identity) -> AppResult<GrantInfo> {
+151	        self.register_root_with_identity(path, Some(expected), Some(0))
+152	    }
+153	
+154	    pub(crate) fn reopen_root(&self, path: &Path, expected: Identity,
+155	        expected_epoch: u64) -> AppResult<GrantInfo> {
+156	        self.register_root_with_identity(path, Some(expected), Some(expected_epoch))
+157	    }
+158	
+159	    fn register_root_with_identity(&self, path: &Path, expected: Option<Identity>,
+160	        expected_epoch: Option<u64>) -> AppResult<GrantInfo> {
+161	        let file = open_selected(path, true)?;
+162	        let selected_identity = identity(&file)?;
+163	        if expected.is_some_and(|value| value != selected_identity) {
+164	            return Err(AppError::new("root_reselection_required", "Selected folder changed; select it again"));
+165	        }
+166	        let id = Uuid::new_v4().to_string();
+167	        let name = path
+168	            .file_name()
+169	            .map(|n| n.to_string_lossy().into_owned())
+170	            .unwrap_or_else(|| path.display().to_string());
+171	        let mut state = self.lock()?;
+172	        if expected_epoch.is_some_and(|value| value != state.selection_epoch) {
+173	            return Err(AppError::new("cancelled", "Session restore was replaced by a new selection"));
+174	        }
+175	        state.generation = state.generation.wrapping_add(1);
+176	        state.selection_epoch = state.selection_epoch.wrapping_add(1);
+177	        let grant = RootGrant {
+178	            id: id.clone(),
+179	            file: Arc::new(file),
+180	            path: path.to_path_buf(),
+181	            identity: selected_identity,
+182	            generation: state.generation,
+
+... (gap) ...
+
+186	        state.snapshots.clear();
+187	        state.cancelled.clear();
+188	        state.roots.insert(id.clone(), grant);
+189	        Ok(GrantInfo {
+190	            id,
+191	            name,
+192	            display_path: path.display().to_string(),
+
+... (gap) ...
+
+194	        })
+195	    }
+196	
+197	    pub fn register_explicit_file(&self, path: &Path) -> AppResult<GrantInfo> {
+198	        self.register_explicit_file_with_identity(path, None, None)
+199	    }
+200	
+201	    pub(crate) fn restore_explicit_file(&self, path: &Path, expected: Identity,
+202	        expected_epoch: u64) -> AppResult<GrantInfo> {
+203	        self.register_explicit_file_with_identity(path, Some(expected), Some(expected_epoch))
+204	    }
+205	
+206	    fn register_explicit_file_with_identity(&self, path: &Path, expected: Option<Identity>,
+207	        expected_epoch: Option<u64>) -> AppResult<GrantInfo> {
+208	        let file = open_selected(path, false)?;
+209	        let identity = identity(&file)?;
+210	        if expected.is_some_and(|value| value != identity) {
+211	            return Err(AppError::new("reselection_required", "Selected file changed; select it again"));
+212	        }
+213	        let name = path
+214	            .file_name()
+215	            .map(|n| n.to_string_lossy().into_owned())
+216	            .unwrap_or_else(|| path.display().to_string());
+217	        let display_path = path.display().to_string();
+218	        let mut state = self.lock()?;
+219	        if expected_epoch.is_some_and(|value| value != state.selection_epoch) {
+220	            return Err(AppError::new("cancelled", "Session restore was replaced by a new selection"));
+221	        }
+222	        state.selection_epoch = state.selection_epoch.wrapping_add(1);
+223	        if let Some(existing) = state.files.values().find(|grant| {
+224	            grant.identity == identity && matches!(grant.source, FileSource::Explicit { .. })
+225	        }) {
+226	            return Ok(GrantInfo {
+227	                id: existing.id.clone(),
+228	                name: existing.name.clone(),
+229	                display_path: existing.display_path.clone(),
+
+... (gap) ...
+
+231	            });
+232	        }
+233	        let id = Uuid::new_v4().to_string();
+234	        let grant = FileGrant {
+235	            id: id.clone(),
+236	            source: FileSource::Explicit {
+237	                file: Arc::new(file),
+238	                path: path.to_path_buf(),
+239	            },
+240	            identity,
+
+... (gap) ...
+
+242	            display_path: display_path.clone(),
+243	        };
+244	        state.files.insert(id.clone(), grant);
+245	        Ok(GrantInfo {
+246	            id,
+247	            name,
+248	            display_path,
+
+... (gap) ...
+
+251	    }
+252	
+253	    /// Called only after a new native picker choice, never from a watcher path.
+254	    pub fn reselect_root(&self, previous_id: &str, path: &Path) -> AppResult<GrantInfo> {
+255	        self.reselect_root_with(previous_id, path, |_, _| Ok(()))
+256	    }
+257	
+258	    pub fn reselect_root_with(&self, previous_id: &str, path: &Path,
+259	        before_commit: impl FnOnce(&[(String, String, String)], &Path) -> AppResult<()>) -> AppResult<GrantInfo> {
+260	        let file = open_selected(path, true)?;
+261	        let selected_identity = identity(&file)?;
+262	        let mut registry = self.lock()?;
+263	        let previous = registry.roots.get(previous_id)
+264	            .ok_or_else(|| AppError::new("invalid_grant", "Folder selection has expired"))?;
+265	        if path != previous.path && selected_identity != previous.identity {
+266	            return Err(AppError::new("root_reselection_required", "Select the original folder or its replacement"));
+267	        }
+268	        let moved_files: Vec<_> = registry.files.values().filter_map(|grant| {
+269	            let FileSource::Root { root_id, segments } = &grant.source else { return None };
+270	            if root_id != previous_id { return None; }
+271	            let mut destination = path.to_path_buf();
+272	            for segment in segments { destination.push(segment); }
+273	            Some((grant.id.clone(), grant.display_path.clone(), destination.display().to_string()))
+274	        }).collect();
+275	        before_commit(&moved_files, path)?;
+
+... (gap) ...
+
+430	        Ok(grant)
+431	    }
+432	
+433	    pub fn cancel(&self, token: String) -> AppResult<()> {
+434	        let mut state = self.lock()?;
+435	        if state.cancelled.len() > 128 {
+436	            state.cancelled.clear();
+437	        }
+438	        state.cancelled.insert(token);
+439	        Ok(())
+440	    }
+441	
+442	    pub fn is_cancelled(&self, token: &str) -> bool {
+443	        self.inner
+
+... (gap) ...
+
+446	            .unwrap_or(true)
+447	    }
+448	
+449	    pub fn generation(&self) -> AppResult<u64> {
+450	        Ok(self.lock()?.generation)
+451	    }
+452	
+453	    pub(crate) fn selection_epoch(&self) -> AppResult<u64> {
+454	        Ok(self.lock()?.selection_epoch)
+455	    }
+456	
+457	    pub(crate) fn clear_for_window_reopen(&self) -> AppResult<()> {
+458	        *self.lock()? = Registry::default();
+```
+
+
+> ⚠ Changed on disk after the last index sync: src/app/App.tsx, src-tauri/src/acceptance_harness.rs, src-tauri/src/large_source.rs. Line numbers referencing these files elsewhere in this response (flow steps, blast radius, symbol lists) may be shifted until that project's next sync re-indexes them.
+**Not shown above — explore these names for their source**
+
+- src/app/App.tsx: cancelReloadJob:809, App:71, reloadProgress:773, applyReadingSettings:162, refreshRecents:245, refreshNativeEntries:262, +16 more
+- src-tauri/src/acceptance_harness.rs: cancel:71, Host:49, setup:168, serve:207, fixture_save_failure:63, enter:72, +14 more
+- src-tauri/src/large_source.rs: cancel_large_open:270, cancel_large_find:438, LargeSourceState:23
+- src-tauri/src/refresh.rs: cancel_reload_now:927, reload_item:1020, cancel_reload:1030, reconcile_visible_state:1039, get_confirmed_document:1075, RefreshService:481, +11 more
+- src-tauri/src/lib.rs: NativeMenuControls:26, run:193, install_quit_menu:98, set_native_menu_state:40, show_or_create_main_window:154, install_native_quit_guard:89, +3 more
+- src/app/api.ts: cancelReload:404, readerError:312
+- src-tauri/src/scope.rs: AppResult:25, new:17
+- src-tauri/src/native_entry.rs: default:19, take:58, list_native_entries:91, accept_native_entry:104, dismiss_native_entry:124, enqueue:41
+- src-tauri/src/editing.rs: path:814, list_edit_sections:233, begin_section_edit:252, discard_section_edit:314, suspend_section_edit:332, choose_section_save_as:473, +2 more
+- src-tauri/src/recents.rs: lock:132, remember_recent_document:227, open_recent_item:272, reselect_recent_item:307
+- ... and 8 more files
+
+> Some file sections were trimmed for size. For a specific symbol you still need, run another `codegraph_explore` (or `codegraph_node`) with its exact name — line-numbered source, cheaper and more complete than Read.

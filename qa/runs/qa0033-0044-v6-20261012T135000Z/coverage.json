@@ -1,0 +1,196 @@
+{
+  "candidate": {
+    "source": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-source-v6",
+    "manifest_sha256": "1c561799e5225d0c4f5230ae442efa0896b4b25cb201e811da2c68527b6293bd",
+    "native_boundary": "Complete v5 native source, 15 concurrent modified native paths plus live-only native files excluded",
+    "bundle": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-target/debug/bundle/macos/Intentgrove QA0033-0044 v6.app",
+    "bundle_files": {
+      "Contents/Info.plist": "9e29ef10cf6f0da9627393b4cf4aeb2d70e72ca39a4254a5d338f7428cadd4e9",
+      "Contents/_CodeSignature/CodeResources": "2922a8d1d9b671dfa060a747efcb3c73f34e4fbd8e7b49adfc642edde7551bfb",
+      "Contents/MacOS/md_reader": "c5c6889506f3c69d3aa5937632def2cb05312e24e234e3eba06eb5fb1b3200c5",
+      "Contents/Resources/icon.icns": "1535d355994f8ee82da91384d2a29e04d5b4440f3e6051b5c8b06e7a62283693"
+    },
+    "config_sha256": "450bf982b86e127e52ed6fe620d7ffac8b5bc92c341b2cab2d38497f0292598a"
+  },
+  "qa_result": "QA_FAILED",
+  "task_state": "ACTIVE",
+  "acceptance": "PENDING",
+  "checks": [
+    {
+      "id": "startup-isolated",
+      "result": "PASS",
+      "reason": "Original standalone native=true startup-failure assertion passes; 77 unrelated cases filtered by -t. No priming test or product accommodation.",
+      "finished_at": "2026-10-12T13:51:56.918829+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/startup-isolated.log"
+      ]
+    },
+    {
+      "id": "affected",
+      "result": "PASS",
+      "reason": "181 affected tests across11 files pass.",
+      "finished_at": "2026-10-12T13:52:18.213399+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/affected.log"
+      ]
+    },
+    {
+      "id": "default-full-01",
+      "result": "PASS",
+      "reason": "717/717;71 files; unchanged default maxWorkers2.",
+      "finished_at": "2026-10-12T13:54:15.346092+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/default-full-01.log"
+      ]
+    },
+    {
+      "id": "default-full-02",
+      "result": "PASS",
+      "reason": "717/717;71 files; unchanged default maxWorkers2.",
+      "finished_at": "2026-10-12T13:56:20.595961+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/default-full-02.log"
+      ]
+    },
+    {
+      "id": "default-full-03",
+      "result": "PASS",
+      "reason": "717/717;71 files; unchanged default maxWorkers2.",
+      "finished_at": "2026-10-12T13:58:21.858370+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/logs/default-full-03.log"
+      ]
+    },
+    {
+      "id": "native-reopen-immediate-select-all",
+      "result": "PASS",
+      "reason": "READING_BEGIN_A; all Passage A001 through A060; MIXED_SECTION; unchanged MIXED_ORIGINAL text for editing.; READING_END_A; END_SENTINEL_A content beyond initial viewport. No Edit section, outline, chrome or recovery text in actual pasted contents.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "native-find-input-ownership",
+      "result": "PASS",
+      "reason": "x shows 1 of 3 and Find owns focus; xy shows No matches and Find retains focus. Editable section still MIXED_SECTION / MIXED_ORIGINAL text for editing.; Save file and Undo disabled, No pending changes. Return to reading; recovery count0. No source save.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "native-filename-ownership",
+      "result": "PASS",
+      "reason": "Filename equals qa_v6_beta. No file created.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "exact-candidate-integrity-signature",
+      "result": "PASS",
+      "reason": "434 source hashes,455 tested input hashes,4 bundle hashes,2983 protected historical hashes unchanged; codesign strict verify passes. Old v5 bundle unchanged.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/integrity.json",
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/preservation-boundaries.json",
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/preservation-boundaries-clarification.json"
+      ]
+    },
+    {
+      "id": "QA-0038-causal-closure",
+      "result": "FAIL",
+      "reason": "Repeated-open rejection exceeded original5000ms; stalled failing wait and promise order not captured.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "frontend-implementation/qa0033-0044-20261012T133129Z/report.md",
+        "qa/findings/QA-0038.md"
+      ]
+    },
+    {
+      "id": "QA-0039-causal-closure",
+      "result": "FAIL",
+      "reason": "Initial Edit section One missing before section-edit actions; failing read/parse/layout order not captured.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "frontend-implementation/qa0033-0044-20261012T133129Z/report.md",
+        "qa/findings/QA-0039.md"
+      ]
+    },
+    {
+      "id": "QA-0040-causal-closure",
+      "result": "FAIL",
+      "reason": "Initial End heading missing before refresh actions; failing worker reply/paint order not captured.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "frontend-implementation/qa0033-0044-20261012T133129Z/report.md",
+        "qa/findings/QA-0040.md"
+      ]
+    },
+    {
+      "id": "QA-0041-causal-closure",
+      "result": "FAIL",
+      "reason": "Initial remembered second heading missing before clear-state actions; failed restoration/read/render order not captured.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "frontend-implementation/qa0033-0044-20261012T133129Z/report.md",
+        "qa/findings/QA-0041.md"
+      ]
+    },
+    {
+      "id": "QA-0044-causal-closure",
+      "result": "FAIL",
+      "reason": "Small4937-byte native original fixture fallback cause unknown; constructor/error/reply/deadline failure not captured. Three observer successes including hidden window do not establish cause.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "frontend-implementation/qa0033-0044-20261012T133129Z/report.md",
+        "qa/findings/QA-0044.md"
+      ]
+    },
+    {
+      "id": "held-native-and-overlay",
+      "result": "BLOCKED",
+      "reason": "No deterministic native IPC/refresh hold or controlled overlay available through current UI surface.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "windows",
+      "result": "NOT_RUN",
+      "reason": "No Windows runtime exercised.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "physical-ime",
+      "result": "NOT_RUN",
+      "reason": "No physical IME input exercised.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    },
+    {
+      "id": "voiceover",
+      "result": "NOT_RUN",
+      "reason": "No VoiceOver session exercised.",
+      "finished_at": "2026-10-12T14:01:01.936962+00:00",
+      "evidence_paths": [
+        "qa/runs/qa0033-0044-v6-20261012T135000Z/evidence/native-observations.json"
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 9,
+    "FAIL": 5,
+    "BLOCKED": 1,
+    "NOT_RUN": 3
+  },
+  "provenance": "Same agent sequential responsible roles; no independent-review claim. Mocked jsdom tests are not native integration. Build completed before final tested snapshot and is separately recorded as candidate construction evidence."
+}

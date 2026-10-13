@@ -1,0 +1,251 @@
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/App.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -232,6 +232,7 @@
+   const settingsTriggerRef = useRef<HTMLButtonElement>(null);
+   const sidebarTriggerRef = useRef<HTMLButtonElement>(null);
+   const sidebarInvoker = useRef<HTMLElement | null>(null);
++  const railProjectsRef = useRef<HTMLButtonElement>(null);
+   const narrowSidebarWasVisible = useRef(false);
+   const [imageControlsHost, setImageControlsHost] = useState<HTMLDivElement | null>(null);
+   const outlineTriggerRef = useRef<HTMLButtonElement>(null);
+@@ -2864,8 +2865,13 @@
+   }
+ 
+   function dismissProjects() {
+-    setCompactSidebarOpen(false);
+-    (sidebarInvoker.current?.isConnected ? sidebarInvoker.current : sidebarTriggerRef.current)?.focus();
++    if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
++    setProjectsMenu(null);
++    setReloadMenu(null);
++    if (compactSidebar) setCompactSidebarOpen(false);
++    else setSidebarOpen(false);
++    // Always return to a visible Projects control, even when Search opened the panel.
++    (layout === "folio" && !narrowWorkspace ? railProjectsRef.current : sidebarTriggerRef.current)?.focus();
+   }
+ 
+   function rememberSidebarInvoker() {
+@@ -3299,7 +3305,7 @@
+           </div>
+ 
+         <nav className="folio-rail" hidden={layout !== "folio" || narrowWorkspace} aria-label={t(locale, "workspaceTools")}>
+-          <button type="button" aria-label={t(locale, "projects")} title={t(locale, "projects")} aria-expanded={sidebarVisible} onClick={toggleExplorer}><WorkspaceIcon name="panel-left" /></button>
++          <button ref={railProjectsRef} type="button" aria-label={t(locale, "projects")} title={t(locale, "projects")} aria-expanded={sidebarVisible} onClick={toggleExplorer}><WorkspaceIcon name="panel-left" /></button>
+           <button type="button" aria-label={t(locale, "folderSearch")} title={t(locale, "folderSearch")} disabled={!root} onClick={showFolderSearch}><WorkspaceIcon name="search" /></button>
+           <button type="button" aria-label={t(locale, "openFolder")} title={t(locale, "openFolder")} disabled={busy} onClick={() => void chooseFolder()}><WorkspaceIcon name="folder-open" /></button>
+           <button type="button" aria-label={locale === "es" ? "Ajustes" : "Settings"} title={locale === "es" ? "Ajustes" : "Settings"} onClick={() => openSettings("General")}><WorkspaceIcon name="settings-2" /></button>
+@@ -3321,7 +3327,10 @@
+                   const anchor=event.currentTarget;showHtmlOverlay(()=>setProjectsMenu({anchor,x:bounds.left,y:bounds.bottom+4}));
+                 }}><span>{t(locale, "projects")}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                 <path d="M1 3 L6 8 L11 3" fill="none" stroke="currentColor" strokeWidth="1.75" /></svg></button>
+-              {compactSidebar && <button type="button" className="projects-close" aria-label={t(locale, "closeSidebar")} onClick={dismissProjects}>×</button>}
++              <button type="button" className="projects-close" aria-label={t(locale, "closeProjectsSidebar")}
++                title={t(locale, "closeProjectsSidebar")} onClick={dismissProjects}>
++                <span className="projects-close-surface"><WorkspaceIcon name="panel-left-close" /></span>
++              </button>
+             </div>
+             <div className="project-open-actions">
+               <button type="button" disabled={busy} onClick={() => void chooseFile()}>{t(locale, "openFile")}</button>
+@@ -3398,8 +3407,6 @@
+             </div>
+           </aside>
+ 
+-        {compactSidebar && !narrowWorkspace && compactSidebarOpen && <button type="button" className="sidebar-scrim" aria-label={t(locale, "closeSurface")}
+-          onClick={dismissProjects} />}
+         <main className="main-panel">
+           {historyAnnouncement && <span className="sr-only" role="status" aria-label={t(locale, "visitHistory")}>{historyAnnouncement}</span>}
+           {historyOpen && <WorkspaceDialog title={t(locale, "visitHistory")} closeLabel={t(locale, "closeSurface")}
+@@ -3757,7 +3764,7 @@
+             }}>
+             {tabs.filter(tab=>tab.kind==='html' && tab.localView).map(tab=><HtmlView key={tab.localView!.viewToken!}
+               view={tab.localView!} active={tab.id===activeId} outlineOpen={outlineVisible} locale={locale}
+-              blocked={htmlShellOverlay || busy || documentsOpen || historyOpen || storageOpen || Boolean(closeIntent) || compactSidebarOpen || readingSettingsOpen}
++              blocked={htmlShellOverlay || busy || documentsOpen || historyOpen || storageOpen || Boolean(closeIntent) || (narrowWorkspace && sidebarVisible) || readingSettingsOpen}
+               baseline={{font:readingSettings.readingFont,size:readingSettings.readingSize,lineHeight:readingSettings.readingLineHeight}}
+               initialLocation={htmlLocations.current.get(tab.id)} fallbackHeadings={htmlFallbackHeadings.current.get(tab.id)}
+               register={handle=>{if(handle)htmlHandles.current.set(tab.id,handle);else htmlHandles.current.delete(tab.id);}}
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/WorkspaceIcon.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/WorkspaceIcon.tsx
+@@ -1,5 +1,6 @@
+ // Lucide geometry from the approved local Theonira study; ISC notice in assets/theonira.
+ const shapes = {
++  "panel-left-close": <><rect x="0" y="0" width="14" height="14" rx="2" /><path d="M4.5 0v14 M11.5 7H6.5 M8.5 4.5L6 7l2.5 2.5" /></>,
+   "folder": <><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></>,
+   "folder-open": <><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></>,
+   "file-text": <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></>,
+@@ -17,5 +18,5 @@
+   "chevron-down": <><path d="m6 9 6 6 6-6" /></>,
+ };
+ export default function WorkspaceIcon({ name }: { name: keyof typeof shapes }) {
+-  return <svg className="workspace-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{shapes[name]}</svg>;
++  return <svg className="workspace-icon" viewBox={name === "panel-left-close" ? "0 0 14 14" : "0 0 24 24"} fill="none" stroke="currentColor" strokeWidth={name === "panel-left-close" ? "1.2" : "1.6"} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{shapes[name]}</svg>;
+ }
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/i18n.ts.txt
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/i18n.ts
+@@ -75,6 +75,7 @@
+     historySessionLimit: "This window keeps up to 100 visits for this session.",
+     clearVisitHistory: "Clear visit history",
+     closeSidebar: "Close sidebar",
++    closeProjectsSidebar: "Close Projects sidebar",
+     projects: "Projects",
+     documentMenu: "Document…",
+     pathCopied: "Path copied",
+@@ -464,6 +465,7 @@
+     historySessionLimit: "Esta ventana conserva hasta 100 visitas durante esta sesión.",
+     clearVisitHistory: "Borrar historial de visitas",
+     closeSidebar: "Cerrar explorador",
++    closeProjectsSidebar: "Cerrar barra lateral de Proyectos",
+     projects: "Proyectos",
+     documentMenu: "Documento…",
+     pathCopied: "Ruta copiada",
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/app.css.txt
++++ /Users/juanmantilla/projects/personal/md-reader/src/styles/app.css
+@@ -1091,3 +1091,30 @@
+ .app-shell[data-narrow="true"] .document-location-actions { width: 100%; }
+ .app-shell[data-narrow="true"] .image-controls { gap: 6px; }
+ @media (max-width: 700px) { .image-meta { padding: 10px 16px; } }
++
++/* Approved Option C: one header row, small outlined chrome, independent hit area. */
++.sidebar { container-type: inline-size; }
++.sidebar .sidebar-heading { flex: none; flex-wrap: nowrap; align-items: center; gap: 8px; padding: 0 16px 8px 24px; }
++.sidebar .projects-trigger { width: auto; min-width: 0; flex: 1; justify-content: flex-start; gap: 8px; padding: 0; }
++.projects-trigger > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.projects-trigger > svg { flex: none; }
++.sidebar .projects-close { display: grid; place-items: center; flex: 0 0 36px; width: 36px; height: 36px; min-width: 36px; min-height: 36px; padding: 0; border: 0; background: transparent; text-decoration: none; }
++.sidebar .projects-close:is(:hover, :active, :focus-visible) { background: transparent; }
++.projects-close-surface { position: relative; display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid var(--control-edge); border-radius: 4px; background: var(--surface); color: var(--muted); }
++.projects-close-surface .workspace-icon { width: 14px; height: 14px; overflow: visible; }
++.projects-close:hover .projects-close-surface { background: var(--hover); color: var(--text); }
++.projects-close:focus-visible .projects-close-surface { background: var(--hover); color: var(--focus); }
++.projects-close:focus-visible .projects-close-surface::after { content: ""; position: absolute; box-sizing: border-box; width: 24px; height: 24px; border: 2px solid var(--focus); border-radius: 5px; pointer-events: none; }
++.projects-close:active .projects-close-surface { background: var(--selection); color: var(--text); }
++@container (max-width: 220px) { .sidebar .sidebar-heading { padding-inline: 12px; } }
++/* Wide Folio owns three columns below tabs; its compact width remains nonresizable. */
++.app-shell[data-workspace-layout="folio"][data-narrow="false"] .workspace-layout { grid-template-columns: 64px auto minmax(0,1fr); }
++.app-shell[data-workspace-layout="folio"][data-narrow="false"] .sidebar[data-compact="true"] { position: relative; inset: auto; grid-column: 2; grid-row: 2; max-width: min(800px,70vw); box-shadow: none; padding-top: 16px; }
++.app-shell[data-workspace-layout="folio"][data-narrow="false"] .main-panel { grid-column: 3; }
++/* Reserve the shared header target within the established Atlas shelf. */
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .sidebar-heading { padding: 0 16px 0 0; }
++
++/* Absolute narrow panels use the second grid row as their containing area. */
++.app-shell[data-narrow="true"] .sidebar[data-compact="true"] { grid-column: 1 / -1; grid-row: 2; top: 0; }
++/* Keep a reachable results viewport when search controls exceed the panel height. */
++.sidebar .folder-search-groups { flex: 1 0 120px; }
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/workspace-layout.test.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/workspace-layout.test.tsx
+@@ -159,11 +159,10 @@
+         expect(screen.queryByRole("searchbox")).toBeNull();
+       };
+       const close = () => {
+-        if (layout === "folio" || width === 390) fireEvent.click(screen.getByRole("button", { name: "Close sidebar" }));
+-        else {
+-          // Switching from Search selects Explorer; a second activation closes it.
+-          fireEvent.click(explorer); expectExplorer(); fireEvent.click(explorer);
+-        }
++        fireEvent.click(screen.getByRole("button", { name: "Close Projects sidebar" }));
++        const invoker = layout === "folio" && width !== 390
++          ? within(screen.getByRole("navigation", { name: "Workspace tools" })).getByRole("button", { name: "Projects" }) : explorer;
++        expect(document.activeElement).toBe(invoker);
+         expect(shell.getAttribute("data-sidebar-visible")).toBe("false");
+       };
+       fireEvent.keyDown(window, { key: "f", metaKey: true, shiftKey: true });
+@@ -260,7 +259,7 @@
+       expect(document.querySelector(".reader-scroll")).toBe(reader); expect(reader.scrollTop).toBe(215);
+       expect(editor.textContent).toContain("alpha draft");
+       await userEvent.keyboard(" ");
+-      fireEvent.click(screen.getByRole("button", { name: "Close sidebar" }));
++      fireEvent.click(screen.getByRole("button", { name: "Close Projects sidebar" }));
+       expect(document.activeElement).toBe(toggle);
+       expect(mocks.readDocument).toHaveBeenCalledTimes(reads);
+       expect(mocks.saveSectionEdit).not.toHaveBeenCalled(); expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+@@ -308,3 +307,36 @@
+     await waitFor(() => expect(mocks.selectRoot).toHaveBeenCalledTimes(3));
+   });
+ });
++
++
++describe("Option C Projects close (native bridge mocked)", () => {
++  it.each(["margin", "folio", "atlas"] as const)("closes %s with Enter/Space and preserves draft, reader, tabs and width", async layout => {
++    const editor = await edit();
++    typeRich(" draft", richLeaf("alpha"), 5);
++    act(() => mocks.layoutChange!({workspaceLayout: layout}));
++    const invoker = layout === "folio" ? within(screen.getByRole("navigation", {name: "Workspace tools"})).getByRole("button", {name: "Projects"}) : projectsToggle();
++    if (document.querySelector(".app-shell")!.getAttribute("data-sidebar-visible") === "false") fireEvent.click(invoker);
++    const reader = document.querySelector<HTMLElement>(".reader-scroll")!;
++    reader.scrollTop = 215;
++    const width = document.querySelector<HTMLElement>(".sidebar")!.style.width;
++    const reads = mocks.readDocument.mock.calls.length;
++    for (const key of ["{Enter}", " "]) {
++      const close = screen.getByRole("button", {name: "Close Projects sidebar"});
++      expect(close.title).toBe("Close Projects sidebar");
++      expect(close.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 14 14");
++      close.focus(); await userEvent.keyboard(key);
++      expect(document.querySelector(".app-shell")!.getAttribute("data-sidebar-visible")).toBe("false");
++      expect(document.activeElement).toBe(invoker);
++      expect(screen.getByRole("tab", {name: /a.md/}).getAttribute("aria-selected")).toBe("true");
++      expect(document.querySelector(".reader-scroll")).toBe(reader);
++      expect(reader.scrollTop).toBe(215);
++      expect(document.querySelector(".rich-section")).toBe(editor);
++      expect(editor.textContent).toContain("alpha draft");
++      await userEvent.keyboard("{Enter}");
++      expect(document.querySelector<HTMLElement>(".sidebar")!.style.width).toBe(width);
++    }
++    expect(mocks.readDocument).toHaveBeenCalledTimes(reads);
++    expect(mocks.saveSectionEdit).not.toHaveBeenCalled();
++    expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
++  });
++});
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/approved-navigation.test.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/approved-navigation.test.tsx
+@@ -200,7 +200,7 @@
+     const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
+     expect(sidebar.dataset.compact).toBe("true"); expect(sidebar.dataset.open).toBe("false"); expect(sidebar.hasAttribute("inert")).toBe(true);
+     fireEvent.click(projectsToggle());
+-    expect(sidebar.dataset.open).toBe("true"); expect(screen.getByRole("button", { name: "Close sidebar" })).toBeTruthy();
++    expect(sidebar.dataset.open).toBe("true"); expect(screen.getByRole("button", { name: "Close Projects sidebar" })).toBeTruthy();
+     Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 }); fireEvent(window, new Event("resize"));
+     expect(sidebar.dataset.compact).toBe("false"); expect(sidebar.dataset.open).toBe("false");
+   } finally { Object.defineProperty(window, "innerWidth", original); }
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/html-integration.test.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/html-integration.test.tsx
+@@ -11,6 +11,8 @@
+ vi.mock('../../src/app/htmlNative',()=>({htmlNative:mocks}));
+ vi.mock('@tauri-apps/api/window',()=>({getCurrentWindow:()=>({isFocused:async()=>true})}));
+ vi.mock('@tauri-apps/api/event',()=>({listen:vi.fn(async(name,callback)=>{if(!events.has(name))events.set(name,new Set());events.get(name)!.add(callback);return()=>events.get(name)?.delete(callback);})}));
++const layoutChange=vi.hoisted(()=>({current:null as null|((values:{workspaceLayout:"margin"|"folio"|"atlas"})=>void)}));
++vi.mock('../../src/app/useSettingsOwner',()=>({useSettingsOwner:(_values:unknown,_ready:boolean,handlers:{workspace:NonNullable<typeof layoutChange.current>})=>{layoutChange.current=handlers.workspace;}}));
+ const location={headingId:'start',offset:0,scrollTop:0,scrollLeft:0,zoom:1};
+ function view(name:string):LocalView{return {fileId:name,identityKey:`identity:${name}`,diskVersion:'v1',name,displayPath:`/tmp/fixture/${name}`,kind:'html',viewToken:`token:${name}`,generation:1,bytes:100,extension:name.split('.').at(-1)!};}
+ function state(token:string,requestId=1):HtmlState{return {viewToken:token,generation:1,requestId,revision:1,state:'ready',reasonCode:null,headings:[{key:'start',authoredId:'start',level:1,text:'Authored heading'}],issues:[],location};}
+@@ -65,3 +67,19 @@
+  expect(await screen.findByText('This file is missing')).toBeTruthy();
+  expect(mocks.readDocument).not.toHaveBeenCalled();
+ });
++
++it('keeps the HTML surface visible beside wide Folio Projects and retains its owner on close/reopen',async()=>{
++ await openHtml();
++ act(()=>layoutChange.current!({workspaceLayout:'folio'}));
++ const rail=document.querySelector<HTMLButtonElement>('.folio-rail button[aria-label="Projects"]')!;
++ fireEvent.click(rail);
++ await waitFor(()=>expect(mocks.viewport.mock.calls.at(-1)?.[2]).toBe(true));
++ const mounts=mocks.mount.mock.calls.length;
++ fireEvent.click(screen.getByRole('button',{name:'Close Projects sidebar'}));
++ expect(document.activeElement).toBe(rail);
++ fireEvent.click(rail);
++ await waitFor(()=>expect(mocks.viewport.mock.calls.at(-1)?.[2]).toBe(true));
++ expect(screen.getByRole('tab',{name:'page.html'}).getAttribute('aria-selected')).toBe('true');
++ expect(mocks.mount).toHaveBeenCalledTimes(mounts);
++ expect(mocks.dispose).not.toHaveBeenCalled();
++});
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/sidebar-header-20261010/baseline/redesign-preview.tsx.txt
++++ /Users/juanmantilla/projects/personal/md-reader/tests/fixtures/redesign-preview.tsx
+@@ -82,8 +82,8 @@
+         tabs: names.map((name) => ({ key: name, fileId: name, name, displayPath: path(name), rootSegments: [name], explicitFile: false,
+           anchor: { headingId: null, offset: 0, scrollTop: 0, viewportWidth: 1440, viewportHeight: 900, contentVersion: "v1" },
+           savedDiskVersion: "v1", errorCode: null, editingActive: false })), activeKey: "AGENTS.md",
+-        tree: { expanded: [], selected: ["AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, readingWidth: 760, outlineOpen: true, workspaceLayout: (["margin", "folio", "atlas"].includes(params.get("layout") ?? "") ? params.get("layout") : "margin") } };
+-      case "list_entries": return { entries: names.map((name) => ({ name, kind: name.endsWith(".svg") ? "image" : "markdown" })), nextOffset: null, snapshotId: "fixture" };
++        tree: { expanded: [], selected: ["AGENTS.md"], scrollTop: 0 }, panel: { ...defaultSessionPanel, sidebarWidth: Number(params.get("sidebarWidth")) || defaultSessionPanel.sidebarWidth, readingWidth: 760, outlineOpen: true, workspaceLayout: (["margin", "folio", "atlas"].includes(params.get("layout") ?? "") ? params.get("layout") : "margin") } };
++      case "list_entries": return { entries: [...names, ...(params.has("longTree") ? Array.from({length: 80}, (_, i) => `disposable-long-project-file-${i}.md`) : [])].map((name) => ({ name, kind: name.endsWith(".svg") ? "image" : "markdown" })), nextOffset: null, snapshotId: "fixture" };
+       case "read_document": return documentFor(name);
+       case "list_edit_sections": return { diskVersion: "v1", sections: sectionsFor(name) };
+       case "begin_section_edit": {

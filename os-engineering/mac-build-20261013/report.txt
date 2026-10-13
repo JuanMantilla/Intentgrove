@@ -1,0 +1,9 @@
+macOS build repair — 2026-10-13
+
+Cause: macOS 27.0.1 rejects stripped Rust proc-macro dylibs with mis-aligned LINKEDIT string pool. Original ref_cast_impl dlopen reproduced this; full original packaging build failed on serde_derive with the same loader error. Upstream: https://github.com/rust-lang/rust/issues/157750
+
+Change: /Users/juanmantilla/projects/personal/md-reader/src-tauri/Cargo.toml adds [profile.release.build-override] strip = "none". Dependencies and toolchain were not upgraded. Existing unrelated edits preserved.
+
+PASS: npm run build:mac (exit 0), complete frontend/native/helper packaging, rebuilt ref_cast_impl dlopen, deep strict ad-hoc signature verification. Build configuration/lockfile hashes unchanged during remaining compilation. macOS 27.0.1 arm64, rustc/cargo 1.88.0.
+
+Warnings: existing frontend chunk-size and WebKit deprecations remain nonfatal. This is a local ad-hoc signed app, not notarized. Runtime UX and wider outstanding QA findings were not tested or accepted by this build check. No installation, publication, cleanup or worker.

@@ -1,0 +1,28 @@
+{
+  "id": "frame-gap-after",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/document-selection-readiness.test.tsx",
+    "tests/ui/document-select-all.test.tsx",
+    "tests/ui/find.test.tsx"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T05:45:57.532941+00:00",
+  "load_before": [
+    7.9658203125,
+    7.8271484375,
+    13.03662109375
+  ],
+  "exit_code": 1,
+  "finished_at": "2026-10-12T05:46:19.472907+00:00",
+  "load_after": [
+    8.2724609375,
+    7.93115234375,
+    12.923828125
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/frame-gap-after.log"
+}

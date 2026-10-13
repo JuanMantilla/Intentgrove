@@ -1,0 +1,24 @@
+{
+  "id": "diagnostic-v4-full-01",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/diagnostic-v4.config.ts"
+  ],
+  "exit_code": 1,
+  "started_at": "2026-10-12T02:08:47.077148+00:00",
+  "finished_at": "2026-10-12T02:12:24.670771+00:00",
+  "seconds": 217.590277125,
+  "load_after": [
+    15.64453125,
+    31.2470703125,
+    21.791015625
+  ],
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "log": "/Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0033-investigation-20261012T020217Z/evidence/diagnostic-v4-full-01.log"
+}

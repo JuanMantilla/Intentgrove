@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Manifest",
+  "type": "object",
+  "properties": {
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Capability"
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FileRecord"
+      }
+    },
+    "format": {
+      "$ref": "#/$defs/Format"
+    },
+    "generator": {
+      "$ref": "#/$defs/Generator"
+    },
+    "graph": {
+      "$ref": "#/$defs/GraphPath"
+    },
+    "profile": {
+      "$ref": "#/$defs/Profile"
+    },
+    "prototypeId": {
+      "$ref": "#/$defs/PrototypeId"
+    },
+    "schemaVersion": {
+      "$ref": "#/$defs/Version1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "#/$defs/Version1"
+    },
+    "viewport": {
+      "$ref": "#/$defs/Viewport"
+    }
+  },
+  "$comment": "GENERATED from igproto-model Rust types. Do not edit. Semantic/reference and UTF-8 byte limits require the Rust validator.",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "version",
+    "schemaVersion",
+    "profile",
+    "prototypeId",
+    "graph",
+    "viewport",
+    "capabilities",
+    "files"
+  ],
+  "$defs": {
+    "Capability": {
+      "type": "string",
+      "enum": [
+        "arial-text-v1",
+        "click-v1",
+        "dissolve-v1",
+        "navigation-v1",
+        "overlay-v1",
+        "png-v1",
+        "svg-v1",
+        "visibility-v1"
+      ]
+    },
+    "FileRecord": {
+      "type": "object",
+      "properties": {
+        "bytes": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0
+        },
+        "mediaType": {
+          "$ref": "#/$defs/MediaType"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "mediaType",
+        "bytes",
+        "sha256"
+      ]
+    },
+    "Format": {
+      "type": "string",
+      "enum": [
+        "intentgrove-prototype"
+      ]
+    },
+    "Generator": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ]
+    },
+    "GraphPath": {
+      "type": "string",
+      "enum": [
+        "prototype.json"
+      ]
+    },
+    "MediaType": {
+      "type": "string",
+      "enum": [
+        "application/json",
+        "image/svg+xml",
+        "image/png"
+      ]
+    },
+    "Profile": {
+      "type": "string",
+      "enum": [
+        "macos-svg-v1"
+      ]
+    },
+    "PrototypeId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "Version1": {
+      "type": "integer",
+      "const": 1
+    },
+    "Viewport": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "format": "uint32",
+          "maximum": 4096,
+          "minimum": 1
+        },
+        "width": {
+          "type": "integer",
+          "format": "uint32",
+          "maximum": 4096,
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height"
+      ]
+    }
+  }
+}

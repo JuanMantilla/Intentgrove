@@ -1,0 +1,60 @@
+[
+  {
+    "args": [
+      "hdiutil",
+      "attach",
+      "-readonly",
+      "-nobrowse",
+      "-mountpoint",
+      "/private/tmp/intentgrove-final-dmg-20261008",
+      "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg"
+    ],
+    "exit": 0,
+    "stdout": "expected   CRC32 $F056D0F5\n/dev/disk4          \tGUID_partition_scheme          \t\n/dev/disk4s1        \tApple_APFS                     \t\n/dev/disk5          \tEF57347C-0000-11AA-AA11-0030654\t\n/dev/disk5s1        \t41504653-0000-11AA-AA11-0030654\t/private/tmp/intentgrove-final-dmg-20261008\n",
+    "stderr": "hdiutil: WARNING: 'hdiutil attach -readonly -nobrowse -mountpoint ...' is deprecated. Please use 'diskutil image attach --readOnly --mountOptions nobrowse --mountPoint ...' instead.\n"
+  },
+  {
+    "entries": [
+      "Intentgrove.app",
+      "Applications"
+    ]
+  },
+  {
+    "args": [
+      "codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "--verbose=2",
+      "/private/tmp/intentgrove-final-dmg-20261008/Intentgrove.app"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "--prepared:/private/tmp/intentgrove-final-dmg-20261008/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc\n--validated:/private/tmp/intentgrove-final-dmg-20261008/Intentgrove.app/Contents/XPCServices/ImageDecoder.xpc\n/private/tmp/intentgrove-final-dmg-20261008/Intentgrove.app: valid on disk\n/private/tmp/intentgrove-final-dmg-20261008/Intentgrove.app: satisfies its Designated Requirement\n"
+  },
+  {
+    "mounted_file": "Contents/MacOS/md_reader",
+    "sha256": "7885115fc30e33e5b451ab614c93770c0b2a3c950a882f36a1d3cad43cfa7491",
+    "equals_packaged": true
+  },
+  {
+    "mounted_file": "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc",
+    "sha256": "0d32ac9979d400bb9c6ed52c120b842c2db61b20e2507b6816b9c69de69ed194",
+    "equals_packaged": true
+  },
+  {
+    "mounted_file": "Contents/Info.plist",
+    "sha256": "c19e3396db418f19d8d35c8f360ed925f24aeb6fc2eac701ee4e59f6d0abf424",
+    "equals_packaged": true
+  },
+  {
+    "args": [
+      "hdiutil",
+      "detach",
+      "/private/tmp/intentgrove-final-dmg-20261008"
+    ],
+    "exit": 0,
+    "stdout": "\"disk4\" ejected.\n",
+    "stderr": "hdiutil: WARNING: 'hdiutil detach ...' is deprecated. Please use 'diskutil eject ...' instead.\n"
+  }
+]

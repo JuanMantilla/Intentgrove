@@ -1,0 +1,54 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: find-acceptance.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/find-acceptance.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) find-acceptance.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/find-acceptance.md
+						14 button Close tab: find-acceptance.md, Help: Close tab
+					15 container
+						16 tab (selected) qa-image.png, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						17 button Close tab: qa-image.png, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container qa-image.png
+					21 text qa-image.png
+					22 text Folder root
+					23 summary Document…, Value: off
+						24 text Document…
+				25 text The passage moved; showing the closest available position
+				26 button Dismiss
+				27 container qa-image.png
+					28 text Format: PNG Dimensions: 128 × 96
+					29 container qa-image.png
+						30 toggle button Fit, Value: on
+						31 toggle button Actual size, Value: off
+						32 button Zoom out
+						33 container 100%
+							34 text 100%
+						35 button Zoom in
+					36 container qa-image.png
+						37 image qa-image.png
+	38 close button
+	39 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	40 minimize button
+	41 text Intentgrove
+42 menu bar
+	43 Intentgrove
+	44 File
+	45 Edit
+	46 View
+	47 Go
+	48 Window
+	49 Help
+
+The focused UI element is 16 tab (selected) qa-image.png, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png

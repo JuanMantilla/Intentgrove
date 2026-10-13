@@ -1,0 +1,1670 @@
+[
+  {
+    "n": 0,
+    "at": 1831.668792,
+    "test": "validates note",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 1,
+    "at": 1833.810333,
+    "test": "validates note.MD",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 2,
+    "at": 1835.475042,
+    "test": "validates note.md.md",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 3,
+    "at": 1836.60875,
+    "test": "validates Niño",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 4,
+    "at": 1837.783792,
+    "test": "validates ",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 5,
+    "at": 1838.639125,
+    "test": "validates .MD",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 6,
+    "at": 1839.311542,
+    "test": "validates ../file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 7,
+    "at": 1839.972083,
+    "test": "validates a\\b",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 8,
+    "at": 1840.649292,
+    "test": "validates NUL.txt",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 9,
+    "at": 1841.379542,
+    "test": "validates file.",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 10,
+    "at": 1842.19175,
+    "test": "validates  file",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 11,
+    "at": 1843.108,
+    "test": "validates file ",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 12,
+    "at": 1843.787667,
+    "test": "validates CONIN$",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 13,
+    "at": 1844.51075,
+    "test": "validates LPT¹",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 14,
+    "at": 1845.187083,
+    "test": "validates a\u0000b",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 15,
+    "at": 1845.552542,
+    "test": "validates aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 16,
+    "at": 2092.908292,
+    "test": "focuses Filename, contains Tab, cancels and restores focus without invoking native IO",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 17,
+    "at": 2112.264083,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 18,
+    "at": 2124.446167,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 19,
+    "at": 2145.571333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 20,
+    "at": 2158.794333,
+    "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 21,
+    "at": 2166.948083,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "click",
+    "text": "Elegir carpeta…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 22,
+    "at": 2181.040042,
+    "test": "keeps picker ownership until acknowledgement; Escape and repeat clicks cannot cancel it",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 23,
+    "at": 2206.070875,
+    "test": "submits validation with Enter semantics without creating a file or inventing success",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 24,
+    "at": 2314.881542,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 25,
+    "at": 2335.629792,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)\n    at HTMLDivElement.callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)"
+  },
+  {
+    "n": 26,
+    "at": 2358.82,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 27,
+    "at": 2378.333208,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "Projects",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 28,
+    "at": 2410.8805,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "click",
+    "text": "New Markdown file⌘T",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 29,
+    "at": 2413.58,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at Object.openNewMarkdown [as run] (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at onClick (/Users/juanmantilla/projects/personal/md-reader/src/app/ActionMenu.tsx:66:84)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)"
+  },
+  {
+    "n": 30,
+    "at": 2435.673083,
+    "test": "opens from empty workspace and Projects, and restores the owning trigger",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 31,
+    "at": 2504.223292,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "new-activate",
+    "ready": false,
+    "sessionReady": false,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at shortcut (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3246:26)\n    at callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)\n    at innerInvokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:360:16)\n    at invokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:296:3)\n    at HTMLDivElementImpl._dispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:227:9)\n    at HTMLDivElementImpl.dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:114:17)\n    at HTMLDivElement.dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventTarget.js:241:34)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/dom/dist/events.js:19:20\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/pure.js:113:18"
+  },
+  {
+    "n": 32,
+    "at": 2505.965708,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at Object.App.menuActionRef.current (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3253:51)\n    at Object.menu (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3287:73)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:73:19\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:47:24\n    at process.env.NODE_ENV.exports.act (/Users/juanmantilla/projects/personal/md-reader/node_modules/react/cjs/react.development.js:890:22)\n    at Proxy.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:46:25)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:73:3\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 33,
+    "at": 2541.798083,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "click",
+    "text": "Cancel",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 34,
+    "at": 2622.57225,
+    "test": "deduplicates native menu and focused-editor shortcut delivery; leaves browser shortcut alone",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 35,
+    "at": 2694.221,
+    "test": "does not open over another modal",
+    "event": "new-activate",
+    "ready": false,
+    "sessionReady": false,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": true,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at shortcut (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3246:26)\n    at callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)\n    at innerInvokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:360:16)\n    at invokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:296:3)\n    at EventTargetImpl._dispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:227:9)\n    at EventTargetImpl.dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:114:17)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventTarget.js:241:34)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/dom/dist/events.js:19:20\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/pure.js:113:18"
+  },
+  {
+    "n": 36,
+    "at": 2694.975083,
+    "test": "does not open over another modal",
+    "event": "new-activate",
+    "ready": false,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": true,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at Object.App.menuActionRef.current (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3253:51)\n    at Object.menu (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3287:73)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:84:75\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:47:24\n    at process.env.NODE_ENV.exports.act (/Users/juanmantilla/projects/personal/md-reader/node_modules/react/cjs/react.development.js:890:22)\n    at Proxy.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:46:25)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:84:59\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 37,
+    "at": 2700.239542,
+    "test": "does not open over another modal",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 38,
+    "at": 2707.3375,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 39,
+    "at": 2722.979208,
+    "test": "uses the non-destructive picker with existing documents",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 40,
+    "at": 2748.927042,
+    "test": "uses root authority and normalized filename exactly once while create is pending",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 41,
+    "at": 2759.245542,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 42,
+    "at": 2769.660333,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 43,
+    "at": 2794.413958,
+    "test": "releases superseded/current tokens and retains fields after duplicate rejection",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 44,
+    "at": 2820.584125,
+    "test": "prevents recreation after committed outcome",
+    "event": "click",
+    "text": "Reopen created file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 45,
+    "at": 2824.949708,
+    "test": "prevents recreation after committed outcome",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 46,
+    "at": 2850.582458,
+    "test": "prevents recreation after uncertain outcome",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 47,
+    "at": 2946.424,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 48,
+    "at": 2947.464583,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)\n    at HTMLDivElement.callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)"
+  },
+  {
+    "n": 49,
+    "at": 2983.525,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 50,
+    "at": 3003.842583,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 51,
+    "at": 3007.598583,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 52,
+    "at": 3008.449167,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 53,
+    "at": 3050.995167,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 54,
+    "at": 3051.73625,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 55,
+    "at": 3095.39675,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 56,
+    "at": 3132.23725,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "rendered",
+    "id": "native-created"
+  },
+  {
+    "n": 57,
+    "at": 3160.903042,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "restore-ready",
+    "activeId": "native-created",
+    "scrollTop": 0
+  },
+  {
+    "n": 58,
+    "at": 3161.452208,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 59,
+    "at": 3230.196,
+    "test": "real App mock journey opens native identity then enters the existing empty rendered section",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 60,
+    "at": 3236.495125,
+    "test": "blocks composition Enter and cancels without creating",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 61,
+    "at": 3311.688875,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 62,
+    "at": 3312.299167,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)\n    at HTMLDivElement.callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)"
+  },
+  {
+    "n": 63,
+    "at": 3338.014375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 64,
+    "at": 3350.914167,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 65,
+    "at": 3352.987667,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 66,
+    "at": 3353.396583,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 67,
+    "at": 3376.754375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 68,
+    "at": 3377.189375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 69,
+    "at": 3413.604375,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 70,
+    "at": 3438.759583,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "rendered",
+    "id": "native-created"
+  },
+  {
+    "n": 71,
+    "at": 3461.953208,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "restore-ready",
+    "activeId": "native-created",
+    "scrollTop": 0
+  },
+  {
+    "n": 72,
+    "at": 3462.220833,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 73,
+    "at": 3623.653875,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at shortcut (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3246:26)\n    at callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)\n    at innerInvokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:360:16)\n    at invokeEventListeners (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:296:3)\n    at HTMLSpanElementImpl._dispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:227:9)\n    at HTMLSpanElementImpl.dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:114:17)\n    at HTMLSpanElement.dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventTarget.js:241:34)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/dom/dist/events.js:19:20\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/pure.js:113:18"
+  },
+  {
+    "n": 74,
+    "at": 3645.468458,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "new-activate",
+    "ready": false,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": true,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": true,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at Object.App.menuActionRef.current (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3253:51)\n    at Object.menu (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3287:73)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:168:103\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:47:24\n    at process.env.NODE_ENV.exports.act (/Users/juanmantilla/projects/personal/md-reader/node_modules/react/cjs/react.development.js:890:22)\n    at Proxy.<anonymous> (/Users/juanmantilla/projects/personal/md-reader/node_modules/@testing-library/react/dist/act-compat.js:46:25)\n    at /Users/juanmantilla/projects/personal/md-reader/tests/ui/new-markdown.test.tsx:168:89\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 75,
+    "at": 3659.084917,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 76,
+    "at": 3713.459833,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 77,
+    "at": 3717.459833,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "fileId": "second-native-id",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 78,
+    "at": 3717.844125,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "open-activate",
+    "id": "second-native-id",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 79,
+    "at": 3740.836958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-start",
+    "id": "second-native-id",
+    "version": "empty-v1"
+  },
+  {
+    "n": 80,
+    "at": 3825.403042,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "sections-resolved",
+    "id": "second-native-id",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 81,
+    "at": 3852.833958,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "rendered",
+    "id": "second-native-id"
+  },
+  {
+    "n": 82,
+    "at": 3877.853542,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "restore-ready",
+    "activeId": "second-native-id",
+    "scrollTop": 0
+  },
+  {
+    "n": 83,
+    "at": 3878.188625,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 84,
+    "at": 3902.920333,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "click",
+    "text": "first.md",
+    "title": "/tmp/disposable/first.md",
+    "disabled": false
+  },
+  {
+    "n": 85,
+    "at": 3934.373083,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "rendered",
+    "id": "native-created"
+  },
+  {
+    "n": 86,
+    "at": 3958.19475,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "restore-ready",
+    "activeId": "native-created",
+    "scrollTop": 0
+  },
+  {
+    "n": 87,
+    "at": 3958.42825,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 88,
+    "at": 4069.440208,
+    "test": "preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 89,
+    "at": 4142.625417,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "New Markdown file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 90,
+    "at": 4143.240417,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "new-activate",
+    "ready": true,
+    "sessionReady": true,
+    "sessionReadyRef": true,
+    "restoreOffer": false,
+    "restoreLoads": 0,
+    "owner": false,
+    "busy": false,
+    "documentPending": false,
+    "selectionPending": false,
+    "enteringSection": false,
+    "savingTabId": null,
+    "copySaving": null,
+    "cleanupBusy": false,
+    "historyBusy": false,
+    "openingRecent": null,
+    "modal": false,
+    "stack": "Error: \n    at openNewMarkdown (/Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3188:506)\n    at executeDispatch (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20804:9)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at processDispatchQueue (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:20854:19)\n    at /Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21423:9\n    at batchedUpdates$1 (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)\n    at dispatchEventForPluginEventSystem (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7)\n    at dispatchEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26142:11)\n    at dispatchDiscreteEvent (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:26110:11)\n    at HTMLDivElement.callTheUserObjectsOperation (/Users/juanmantilla/projects/personal/md-reader/node_modules/jsdom/lib/generated/idl/EventListener.js:26:30)"
+  },
+  {
+    "n": 91,
+    "at": 4168.173125,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "Choose folder…",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 92,
+    "at": 4182.533875,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 93,
+    "at": 4183.894583,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "fileId": "native-created",
+      "explicitFile": true
+    }
+  },
+  {
+    "n": 94,
+    "at": 4184.21325,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "open-activate",
+    "id": "native-created",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 95,
+    "at": 4205.720792,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "paint",
+    "fileId": "native-created",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 96,
+    "at": 4206.22725,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "sections-start",
+    "id": "native-created",
+    "version": "empty-v1"
+  },
+  {
+    "n": 97,
+    "at": 4240.144333,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "sections-resolved",
+    "id": "native-created",
+    "version": "empty-v1",
+    "cancelled": false,
+    "resultVersion": "empty-v1"
+  },
+  {
+    "n": 98,
+    "at": 4260.397292,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "rendered",
+    "id": "native-created"
+  },
+  {
+    "n": 99,
+    "at": 4280.235333,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "restore-ready",
+    "activeId": "native-created",
+    "scrollTop": 0
+  },
+  {
+    "n": 100,
+    "at": 4280.569583,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx:3000:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 101,
+    "at": 4303.038583,
+    "test": "retains the created tab on editor startup failure without trying to create again",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 102,
+    "at": 4315.882,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 103,
+    "at": 4325.00975,
+    "test": "rejects note  inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 104,
+    "at": 4335.315375,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 105,
+    "at": 4345.263583,
+    "test": "rejects note. inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 106,
+    "at": 4356.181958,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 107,
+    "at": 4364.719042,
+    "test": "rejects note.md  inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 108,
+    "at": 4376.571583,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 109,
+    "at": 4385.503833,
+    "test": "rejects note .MD.md inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 110,
+    "at": 4395.867917,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 111,
+    "at": 4404.262,
+    "test": "rejects file.txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 112,
+    "at": 4414.839625,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 113,
+    "at": 4421.991125,
+    "test": "rejects note inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 114,
+    "at": 4430.804042,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 115,
+    "at": 4439.313083,
+    "test": "rejects CON .txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 116,
+    "at": 4450.406167,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 117,
+    "at": 4461.933167,
+    "test": "rejects con   .notes.MD inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 118,
+    "at": 4474.307167,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 119,
+    "at": 4485.04875,
+    "test": "rejects LPT¹ .txt inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 120,
+    "at": 4497.384708,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 121,
+    "at": 4506.8695,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 122,
+    "at": 4518.184208,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 123,
+    "at": 4527.5105,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 124,
+    "at": 4538.813208,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": true
+  },
+  {
+    "n": 125,
+    "at": 4546.757917,
+    "test": "rejects ab inline and guards keyboard/form submission",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 126,
+    "at": 4553.139708,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 127,
+    "at": 4559.264833,
+    "test": "preserves native normalization and Enter for Niño",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 128,
+    "at": 4564.70725,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 129,
+    "at": 4569.6335,
+    "test": "preserves native normalization and Enter for 🚀",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 130,
+    "at": 4575.364875,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 131,
+    "at": 4580.26,
+    "test": "preserves native normalization and Enter for éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 132,
+    "at": 4585.621875,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 133,
+    "at": 4589.935125,
+    "test": "preserves native normalization and Enter for 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 134,
+    "at": 4594.725333,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 135,
+    "at": 4599.232042,
+    "test": "preserves native normalization and Enter for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 136,
+    "at": 4603.951458,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 137,
+    "at": 4608.54625,
+    "test": "preserves native normalization and Enter for ﻿note",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 138,
+    "at": 4609.397,
+    "test": "checks every interior C1 control and exact multibyte limits",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 139,
+    "at": 4614.472792,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "click",
+    "text": "Crear archivo",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 140,
+    "at": 4621.836208,
+    "test": "retains native invalid-filename rejection without success, text loss or grant reselection",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 141,
+    "at": 4622.177042,
+    "test": "QA-0030 UI policy: 'note '",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 142,
+    "at": 4622.3845,
+    "test": "QA-0030 UI policy: 'note.'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 143,
+    "at": 4622.572667,
+    "test": "QA-0030 UI policy: 'note.md '",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 144,
+    "at": 4622.75,
+    "test": "QA-0030 UI policy: 'note .MD.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 145,
+    "at": 4622.918208,
+    "test": "QA-0030 UI policy: 'file.txt'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 146,
+    "at": 4623.089208,
+    "test": "QA-0030 UI policy: 'notes.v1.txt'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 147,
+    "at": 4623.253667,
+    "test": "QA-0030 UI policy: 'release.v2'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 148,
+    "at": 4623.423375,
+    "test": "QA-0030 UI policy: 'release.v2.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 149,
+    "at": 4623.707417,
+    "test": "QA-0030 UI policy: 'note.MD'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 150,
+    "at": 4623.882292,
+    "test": "QA-0030 UI policy: 'note.md.MD.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 151,
+    "at": 4624.046167,
+    "test": "QA-0030 UI policy: ' file'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 152,
+    "at": 4624.211708,
+    "test": "QA-0030 UI policy: 'Niño'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 153,
+    "at": 4624.378583,
+    "test": "QA-0030 UI policy: 'Niño.🚀'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 154,
+    "at": 4624.54175,
+    "test": "QA-0030 UI policy: 'file.abcdefghi'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 155,
+    "at": 4624.702625,
+    "test": "QA-0030 UI policy: 'file.txt.md'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 156,
+    "at": 4624.88325,
+    "test": "QA-0030 UI policy: '\\u0085note\\u0085'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 157,
+    "at": 4625.045125,
+    "test": "QA-0030 UI policy: ' note'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 158,
+    "at": 4625.207667,
+    "test": "QA-0030 UI policy: 'ééééééééééééééééééééééééééééééééééééé…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 159,
+    "at": 4625.37025,
+    "test": "QA-0030 UI policy: 'ééééééééééééééééééééééééééééééééééééé…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 160,
+    "at": 4625.532792,
+    "test": "QA-0030 UI policy: '🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 161,
+    "at": 4625.701125,
+    "test": "QA-0030 UI policy: '🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 162,
+    "at": 4625.867708,
+    "test": "QA-0030 UI policy: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…'",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 163,
+    "at": 4631.501542,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 164,
+    "at": 4635.946292,
+    "test": "QA-0030 Enter creates release.v2.md and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 165,
+    "at": 4641.114083,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 166,
+    "at": 4645.324083,
+    "test": "QA-0030 Enter creates note.MD and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 167,
+    "at": 4650.384667,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "click",
+    "text": "Create file",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 168,
+    "at": 4655.994375,
+    "test": "QA-0030 Enter creates note.md.MD.md and retains destination",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

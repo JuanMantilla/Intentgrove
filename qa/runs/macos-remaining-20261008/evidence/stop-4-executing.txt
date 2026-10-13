@@ -1,0 +1,60 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text search-25000 Local files only
+				6 button (disabled) Outline
+				7 button (collapsed) Reading settings, Secondary Actions: Expand
+				8 button Settings
+			9 container Explorer
+				10 pop up button Projects
+				11 container Search folder
+					12 button Back to explorer
+					13 container
+						14 text Search folder
+						15 search text field (settable) Search folder, Value: NO_MATCH_STOP_TRIAL_04, Placeholder: File name or text
+							16 text (settable) NO_MATCH_STOP_TRIAL_04
+							17 button cancel
+					18 text Search scope: search-25000 · Names and content
+					19 container Search in
+						20 toggle button Names and content, Value: on
+						21 toggle button File names, Value: off
+						22 toggle button Document text, Value: off
+					23 text Contents search covers Markdown files.
+					24 container
+						25 checkbox Include ignored files, Value: 0
+						26 text Include ignored files
+					27 button Stop
+					28 button Clear search
+					29 text Searching… · 12,544 entries scanned, 10,005 skipped · Results: 0
+				30 text Storage and recovery
+				31 text Open edits and recovery offers: 0
+				32 button Manage…
+			33 container
+				34 container Visited files
+					35 button (disabled) Back, Help: No previous file
+					36 button (disabled) Forward, Help: No next file
+				37 tab group (selectable) Documents
+				38 pop up button Go menu
+				39 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+				40 heading Read your local Markdown, Value: 1
+					41 text Read your local Markdown
+				42 text Open a Markdown file to start reading.
+				43 button Open folder
+				44 button Open file
+	45 close button
+	46 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	47 minimize button
+	48 text Intentgrove
+49 menu bar
+	50 Intentgrove QA
+	51 File
+	52 Edit
+	53 View
+	54 Go
+	55 Window
+	56 Help
+
+The focused UI element is 15 search text field (settable) Search folder, Value: NO_MATCH_STOP_TRIAL_04, Placeholder: File name or text

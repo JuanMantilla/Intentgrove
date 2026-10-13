@@ -1,0 +1,1982 @@
+[
+  {
+    "id": "NR-002-unbundled-settled",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-002-unbundled-settled.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:09:55.128781-05:00",
+    "sha256": "6ecd21234cd43995a28f1282df1b1da4b48b3ec2e8071edabd61dbe8e3f289f9",
+    "accepted": false,
+    "runtime": "P-00, unbundledPID9137/window29671",
+    "theme_language": "unobserved; native background dark",
+    "fixture": "none",
+    "reproduction": "PID-scoped CG enumeration \u2192 screencapture -l29671; one settled retry",
+    "supports": "failed smoke evidence",
+    "observations": "Settled retry still blank; fails real-content verification.",
+    "limitations": "Correct owner/title/bounds but no live app content; excluded from targeted evidence.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-002-unbundled-settled.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NR-001-unbundled-smoke",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-001-unbundled-smoke.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:09:24.244525-05:00",
+    "sha256": "6ecd21234cd43995a28f1282df1b1da4b48b3ec2e8071edabd61dbe8e3f289f9",
+    "accepted": false,
+    "runtime": "P-00, unbundledPID9137/window29671",
+    "theme_language": "unobserved; native background dark",
+    "fixture": "none",
+    "reproduction": "PID-scoped CG enumeration \u2192 screencapture -l29671; one settled retry",
+    "supports": "failed smoke evidence",
+    "observations": "Blank native body before wrapper; fails real-content verification.",
+    "limitations": "Correct owner/title/bounds but no live app content; excluded from targeted evidence.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-001-unbundled-smoke.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NR-003-wrapper-smoke-before",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-003-wrapper-smoke-before.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:10:54.685965-05:00",
+    "sha256": "939a2a1fe65c3ff938db59c5d9d6789791676c45980e0426c5c0945b0468c8c9",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowIsOnscreen": true,
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "none",
+    "reproduction": "Identify wrapper \u2192 inspect welcome and open Projects",
+    "supports": "Smoke/P-01",
+    "observations": "Live welcome, native title, complete Projects/footer; 1280\u00d7820.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-003-wrapper-smoke-before.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NR-004-wrapper-smoke-projects-closed",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-004-wrapper-smoke-projects-closed.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:11:04.853865-05:00",
+    "sha256": "8403dcbffb95f08687128efcce5bf15e9af297e4391658d3a78c07f2de4c84b5",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowIsOnscreen": true,
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "none",
+    "reproduction": "Close Projects via AX button; inspect; reopen via Projects button",
+    "supports": "Smoke/control",
+    "observations": "Projects absent; welcome remains; reopening verified by AX.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NR-004-wrapper-smoke-projects-closed.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-001-projects-baseline-en-dark",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-001-projects-baseline-en-dark.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:11:42.205990-05:00",
+    "sha256": "f1806d52e8f7838294a52597975056acda9ed112908196c2b401c7b10ff9fcd4",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowIsOnscreen": true,
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowIsOnscreen": true,
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "short.md",
+    "reproduction": "Open fixture folder via native picker direct path; open short.md; tree top",
+    "supports": "DR-001/DR-005",
+    "observations": "Projects header close, tabs, document toolbar, outline and footer visible. Alpha/beta rows render shared truncated prefixes.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-001-projects-baseline-en-dark.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-002-search-settled-en-dark",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-002-search-settled-en-dark.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:12:02.395145-05:00",
+    "sha256": "efad199c2dfe23a61996080f349926d222bb0b4d11b17f5016e59841dd1a1443",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "short.md",
+    "reproduction": "Search folder \u2192 validationneedle \u2192 Return; completion verified by AX",
+    "supports": "DR-001",
+    "observations": "Query/scope/control stack visible; result summary/rows below visible search area. AX confirms24 scanned/24 results/0 skipped.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-002-search-settled-en-dark.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-003-search-keyboard-scroll-en-dark",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-003-search-keyboard-scroll-en-dark.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:12:46.613945-05:00",
+    "sha256": "e02f5653cdabfd97dbee7acbac3dd0df09a34dc971694e96d889c5fe1adac61b",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "short.md",
+    "reproduction": "Rerun Search then Tab twice before focus settles",
+    "supports": "DR-001 failed acquisition",
+    "observations": "No result visible; rejected for intended scrolled state.",
+    "accepted": false,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-003-search-keyboard-scroll-en-dark.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-004-search-result-focused-en-dark",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-004-search-result-focused-en-dark.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:13:24.132063-05:00",
+    "sha256": "ecf9d1309928abff1fa24836f779f0413085564182c2c6ba01fd12ea30b95dd6",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "short.md",
+    "reproduction": "Raise main \u2192 focus query \u2192 Tab through search controls into first result",
+    "supports": "DR-001",
+    "observations": "First alpha snippet visible; query/back-to-explorer absent from visible region. Result heading only its ending visible.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-004-search-result-focused-en-dark.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-005-search-later-result-en-dark",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-005-search-later-result-en-dark.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:13:38.770901-05:00",
+    "sha256": "a1b2d5c753c6425d832fb970478b874497af92bd2d1a719bd93910ac19d9f761",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "EN/dark",
+    "fixture": "short.md",
+    "reproduction": "Tab once from first result into beta result",
+    "supports": "DR-001",
+    "observations": "Later beta snippet and ending visible; original query remains in AX but outside capture. Footer intact.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-005-search-later-result-en-dark.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-006-search-settled-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-006-search-settled-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:14:36.282739-05:00",
+    "sha256": "446e01f6f21817d865955752588dedeba38515e3a5dc13e999d35989d1828390",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "short.md",
+    "reproduction": "Main language menu ES; main Appearance light; restore short.md; close incidental beta tab; rerun same query; focus query",
+    "supports": "DR-001",
+    "observations": "Identical query/fixture/bounds; three mode rows, scope and query visible. Result summary outside visible region.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-006-search-settled-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-007-search-later-result-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-007-search-later-result-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:14:52.054945-05:00",
+    "sha256": "e1a6e8c83cee7d83da2d05898c0f81083196784d7278519a5872ab6361f7ec97",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "short.md",
+    "reproduction": "Run same settled search; Tab into results",
+    "supports": "DR-001",
+    "observations": "Beta heading ending and complete snippet visible with24-result summary; query outside visible search area.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-007-search-later-result-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-008-short-header-tree-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-008-short-header-tree-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:15:16.781413-05:00",
+    "sha256": "cec05a85f36aa67cbd70fb2a56de7c507da2e1d76ab8ae6ba0fb94cd38e9d4bb",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "short.md",
+    "reproduction": "Return to explorer; keep outline and Projects open",
+    "supports": "DR-002/DR-005",
+    "observations": "Short identity region y151\u2013231 (~80px); document area y231\u2013789 (~558px). Tree labels have matching visible prefixes. Pixel-derived geometry, not independently measured DOM bounds.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-008-short-header-tree-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-009-long-header-tree-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-009-long-header-tree-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:15:24.406544-05:00",
+    "sha256": "e4637bf6ef7800a2a419ce65e6b19415ec9d5c9cef700f6d2798cd3775c02009",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "same-content long-name alpha.md",
+    "reproduction": "Open long fixture in same layout/bounds, Projects and outline open",
+    "supports": "DR-002",
+    "observations": "Long title wraps6 lines; identity region y151\u2013351 (~200px); document area y351\u2013789 (~438px). Approx120px additional header height. Content equals short fixture; tabs count2 versus1 is a recorded difference.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-009-long-header-tree-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-010-full-name-disclosure-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-010-full-name-disclosure-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:16:19.864344-05:00",
+    "sha256": "7411a6d0b1880e32250d75c230c61cda248260a8b5c3a4a76eb9a34384836e7b",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "alpha/beta + short/long open",
+    "reproduction": "Open both shared-prefix fixtures \u2192 Documentos abiertos",
+    "supports": "DR-005",
+    "observations": "Existing modal exposes complete alpha/beta filenames and full fixture paths. No hover-only disclosure certification; tree second-width test blocked.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-010-full-name-disclosure-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  },
+  {
+    "id": "NV-011-unsaved-dialog-es-light",
+    "path": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-011-unsaved-dialog-es-light.png",
+    "format": "PNG",
+    "captured_at": "2026-10-10T21:16:56.201153-05:00",
+    "sha256": "90444f14b90e2181919ee30f9bfe76ff634ea30922124eb29fd246382955e42a",
+    "runtime": "P-01",
+    "metadata": {
+      "bundleIdentifier": "com.juanmantilla.intentgrove.nativevalidation.r20261010210040",
+      "bundleURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app",
+      "executableURL": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/Intentgrove Native Validation.app/Contents/MacOS/md_reader",
+      "pid": 9232,
+      "screenCapturePreflight": true,
+      "screens": [
+        {
+          "frame": "{{0, 0}, {2560, 1440}}",
+          "scale": 1,
+          "visibleFrame": "{{0, 0}, {2560, 1410}}"
+        }
+      ],
+      "windows": [
+        {
+          "kCGWindowAlpha": 0.10000000149011612,
+          "kCGWindowBounds": {
+            "Height": 48,
+            "Width": 256,
+            "X": 1003,
+            "Y": 813
+          },
+          "kCGWindowLayer": 103,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29724,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 500,
+            "Width": 500,
+            "X": 0,
+            "Y": 940
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29690,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29689,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29688,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29687,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 30,
+            "Width": 2560,
+            "X": 0,
+            "Y": 0
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "",
+          "kCGWindowNumber": 29686,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        },
+        {
+          "kCGWindowAlpha": 1,
+          "kCGWindowBounds": {
+            "Height": 820,
+            "Width": 1280,
+            "X": 640,
+            "Y": 178
+          },
+          "kCGWindowLayer": 0,
+          "kCGWindowMemoryUsage": 2432,
+          "kCGWindowName": "Intentgrove \u2014 Native validation",
+          "kCGWindowNumber": 29685,
+          "kCGWindowOwnerName": "Intentgrove Native Validation",
+          "kCGWindowOwnerPID": 9232,
+          "kCGWindowSharingState": 1,
+          "kCGWindowStoreType": 1
+        }
+      ]
+    },
+    "theme_language": "ES/light",
+    "fixture": "short.md edited in memory",
+    "reproduction": "Open short via document list \u2192 Edit Search section \u2192 replace short with edited \u2192 Return to reading; capture \u2192 Cancel",
+    "supports": "DR-004",
+    "observations": "Actual dialog title/body and Cancelar/Descartar/Guardar/Conservar borrador visible, editor context behind. Source file remains unchanged.",
+    "accepted": true,
+    "limitations": "P-01 current-native development wrapper; main incognito; Settings excluded. Actual window bounds/display scale from PID-scoped metadata; no independent WebView viewport measurement. Geometry observations derived from PNG pixels.",
+    "decoder_check": "/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-capture-recovery-20261010-210908/originals/NV-011-unsaved-dialog-es-light.png\n  pixelWidth: 1280\n  pixelHeight: 820",
+    "visually_inspected": true
+  }
+]

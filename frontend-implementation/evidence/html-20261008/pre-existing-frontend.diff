@@ -1,0 +1,367 @@
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 14264bf..9d0739e 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -4,6 +4,7 @@ import { getAppearance } from "./appearance";
+ import { settingsApi, type SettingsGroup } from "./settings-contract";
+ import { useSettingsOwner } from "./useSettingsOwner";
+ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
++import { flushSync } from "react-dom";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type DirectoryEntry, type DocumentResponse, type FolderSearchHit, type GrantInfo, type ImageResponse, type LargeInspection, type LargeOpened, type NativePreview, type OpenFolderSearchHit, type RecentItem, type RecentList, type RefreshDirectoryChanged, type RefreshFileChanged, type RefreshItemStatus, type RefreshJobProgress, type RefreshTarget, type SectionDescriptor, type RecoveryResponse, type SaveEditResponse, type SafetyCopyInventory, type SessionCheckpointInput, type SessionPanel, type SessionRestore } from "./api";
+ import { errorText, sessionErrorText, t, type Locale } from "./i18n";
+@@ -93,6 +94,7 @@ export default function App() {
+   const [directories, setDirectories] = useState<Record<string, DirectoryState>>({});
+   const [tabs, setTabs] = useState<Tab[]>([]);
+   const [sectionsByTab, setSectionsByTab] = useState<Record<string, SectionDescriptor[]>>({});
++  const [sectionLayoutVersions, setSectionLayoutVersions] = useState<Record<string, string>>({});
+   const [edits, setEdits] = useState<Record<string, SectionEdit>>({});
+   const editsRef = useRef(edits);
+   const [pendingRecoveries, setPendingRecoveries] = useState<Record<string, RecoveryResponse>>({});
+@@ -197,6 +199,7 @@ export default function App() {
+   const [headingsByTab, setHeadingsByTab] = useState<Record<string, HeadingEntry[]>>({});
+   const [renderedMarkdown, setRenderedMarkdown] = useState<{ id: string; content: string } | null>(null);
+   const [activeOutlineId, setActiveOutlineId] = useState<string | null>(null);
++  const [folderSearchScope, setFolderSearchScope] = useState<string[]>([]);
+   const [sidebarPanel, setSidebarPanel] = useState<"explorer" | "search">("explorer");
+   const [sidebarWidth, setSidebarWidth] = useState(264);
+   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+@@ -422,7 +425,10 @@ export default function App() {
+         savedDiskVersion: tab.diskVersion ?? null,
+         editingActive: Boolean(editsRef.current[tab.id] && !editsRef.current[tab.id].paused)
+       })),
+-      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey ?? currentActive,
++      // Opening may reserve an active ID before React commits its tab. Snapshot
++      // only committed tabs; keep the pending ID for reply ownership checks.
++      activeKey: currentTabs.find((tab) => tab.id === currentActive)?.restoredKey
++        ?? currentTabs.find((tab) => tab.id === currentActive)?.id ?? null,
+       tree: {
+         expanded: Object.entries(currentDirectories).filter(([, value]) => value.expanded)
+           .map(([key]) => JSON.parse(key) as string[]).filter((path) => path.length > 0),
+@@ -443,7 +449,12 @@ export default function App() {
+       return Promise.resolve();
+     if (sessionTimer.current) clearTimeout(sessionTimer.current);
+     sessionTimer.current = null;
+-    const input = sessionSnapshot();
++    let input: SessionCheckpointInput;
++    try { input = sessionSnapshot(); }
++    catch (error) {
++      setSessionNotice({ operation: final ? "close" : "checkpoint", code: readerError(error).code });
++      return Promise.reject(error);
++    }
+     const write = sessionWrite.current.catch(() => {}).then(async () => {
+       if (final && typeof api.finishWorkspaceSession === "function") await api.finishWorkspaceSession(input);
+       else await api.checkpointWorkspaceSession(input);
+@@ -772,7 +783,7 @@ export default function App() {
+     };
+     void (async () => {
+       try {
+-        const subscriptions = await Promise.all([
++        await Promise.all([
+           listen<RefreshFileChanged>("refresh:file_changed", ({ payload }) => onFileChanged(payload)),
+           listen<RefreshDirectoryChanged>("refresh:directory_changed", ({ payload }) => onDirectoryChanged(payload)),
+           listen<RefreshItemStatus>("refresh:item_status", ({ payload }) => onItemStatus(payload)),
+@@ -788,9 +799,10 @@ export default function App() {
+               setCloseIntent({ kind: payload === "window" ? "window" : "app" });
+             else void finishClose(payload !== "window");
+           })
+-        ]);
+-        if (disposed) subscriptions.forEach((remove) => remove());
+-        else unlisten = subscriptions;
++        ].map(subscription => subscription.then(remove => {
++          // Retain each successful registration even if a sibling rejects.
++          if (disposed) remove(); else unlisten.push(remove);
++        })));
+       } catch { /* Native event bridge is unavailable in a browser-only preview. */ }
+     })();
+     return () => {
+@@ -851,7 +863,7 @@ export default function App() {
+       anchor });
+   }
+ 
+-  useEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
++  useLayoutEffect(() => { setReloadMenu(null); setProjectsMenu(null); setGoMenu(null); }, [activeId, root?.id]);
+   useEffect(() => { setManualReload(null); pendingManualReloads.current.clear(); manualJobTargets.current.clear(); }, [root?.id, root?.generation]);
+   useEffect(() => {
+     if (reloadMenu || projectsMenu || goMenu) {
+@@ -917,8 +929,9 @@ export default function App() {
+       }
+       const imageTab = tabsRef.current.find((tab) => tab.kind === "image" && (
+         menu.target.kind === "explicit-file" ? tab.id === menu.target.fileId
+-          : menu.target.kind === "root-file" && tab.request.rootId === menu.target.rootId
+-            && pathKey(tab.request.segments ?? []) === pathKey(menu.target.segments)));
++          : menu.target.kind === "root-file" && refreshTarget(tab)?.kind === "root-file"
++            && pathKey(documentSegments(tab) ?? []) === pathKey(menu.target.segments)
++            && rootRef.current?.id === menu.target.rootId));
+       if (imageTab) void refreshRetainedTab(imageTab.id);
+     } catch (error) {
+       const reasonCode = readerError(error).code;
+@@ -1153,15 +1166,19 @@ export default function App() {
+   }
+ 
+   useEffect(() => {
+-    if (!active?.diskVersion || active.errorCode || activeEdit) return;
++    if (!active?.diskVersion || active.kind === "image" || active.errorCode || activeEdit) return;
+     if (!editingAvailable || typeof api.listEditSections !== "function") return;
+     let cancelled = false;
+     void api.listEditSections(active.id).then((result) => {
+-      if (!cancelled && result.diskVersion === active.diskVersion) {
+-        setSectionsByTab((old) => ({ ...old, [active.id]: result.sections }));
++      if (!cancelled) {
++        setSectionsByTab((old) => ({ ...old, [active.id]: result.diskVersion === active.diskVersion ? result.sections : [] }));
++        setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
+       }
+     }).catch(() => {
+-      if (!cancelled) setSectionsByTab((old) => ({ ...old, [active.id]: [] }));
++      if (!cancelled) {
++        setSectionsByTab((old) => ({ ...old, [active.id]: [] }));
++        setSectionLayoutVersions((old) => ({ ...old, [active.id]: active.diskVersion! }));
++      }
+     });
+     return () => { cancelled = true; };
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+@@ -1487,6 +1504,7 @@ export default function App() {
+     for (const directory of Object.values(directoriesRef.current)) {
+       if (directory.loading) void api.cancelListing(directory.token).catch(() => {});
+     }
++    setFolderSearchScope([]);
+     setRoot(selected);
+     setRootProblem(null);
+     setDirectories({});
+@@ -1736,14 +1754,19 @@ export default function App() {
+   async function openFolderSearchResult(result: OpenFolderSearchHit,
+     hit: FolderSearchHit, query: string, selectedRootId: string) {
+     if (rootRef.current?.id !== selectedRootId) return;
+-    await openDocument({ rootId: selectedRootId, segments: hit.segments },
++    const opening = openDocument({ rootId: selectedRootId, segments: hit.segments },
+       { name: hit.segments.at(-1) ?? hit.path, path: hit.path });
++    const owner = openSequence.current, generation = generationRef.current;
++    const current = () => rootRef.current?.id === selectedRootId
++      && owner === openSequence.current && generation === generationRef.current;
++    await opening;
++    if (!current()) return;
+     if (result.matchMoved) setNotice(noticeLocale => t(noticeLocale, "folderSearchMoved"));
+     else if (result.changed) setNotice(noticeLocale => t(noticeLocale, "folderSearchChanged"));
+     if (hit.kind === "content" && result.ordinal !== null) {
+       pendingSearchReveal.current = true;
+       requestAnimationFrame(() => {
+-        if (rootRef.current?.id !== selectedRootId) return;
++        if (!current()) return;
+         setFindOpen(true);
+         setFindQuery(query);
+         setFindOrdinal(result.ordinal ?? 0);
+@@ -1831,7 +1854,7 @@ export default function App() {
+   async function refreshRetainedTab(tabId: string) {
+     if (tabsRef.current.find((item) => item.id === tabId)?.kind === "image") {
+       const tab = tabsRef.current.find((item) => item.id === tabId)!;
+-      await openImage({ fileId: tabId }, { name: tab.name, path: tab.displayPath }, true, false);
++      await openImage({ ...tab.request, fileId: tabId, explicitFile: tab.explicitFile }, { name: tab.name, path: tab.displayPath }, true, false);
+       return;
+     }
+     if (tabsRef.current.find((item) => item.id === tabId)?.largeInspection) {
+@@ -1890,7 +1913,8 @@ export default function App() {
+       if (!selected) return;
+       generationRef.current = selected.generation;
+       rootRef.current = selected;
+-      setRoot(selected); setRootProblem(null);
++      setFolderSearchScope([]);
++    setRoot(selected); setRootProblem(null);
+       inspectionSequence.current += 1;
+       inspectedDiskRef.current = null; setInspectedDisk(null);
+       discardConflictRef.current = null; setDiscardConflictConfirm(null);
+@@ -2075,10 +2099,13 @@ export default function App() {
+         if (!(await discardEdit(id))) return;
+       }
+     }
+-    setCloseIntent(null);
+     if (intent.kind === "app" || intent.kind === "window") {
+-      if (typeof api.finishWorkspaceSession === "function")
+-        await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
++      // Commit saved tabs/removed edits and their layout-owned snapshot refs
++      // before the final durable checkpoint. Closing must work even when an
++      // occluded WebView stops receiving animation frames.
++      flushSync(() => setCloseIntent(null));
++    } else setCloseIntent(null);
++    if (intent.kind === "app" || intent.kind === "window") {
+       await finishClose(intent.kind === "app");
+     } else if (intent.kind === "folder" && pendingFolder) {
+       try {
+@@ -2364,11 +2391,20 @@ export default function App() {
+     }
+   }
+ 
++  function hasPendingSectionLayout(tab: Tab) {
++    return editingAvailable && typeof api.listEditSections === "function"
++      && Boolean(tab.diskVersion) && !editsRef.current[tab.id]
++      && sectionLayoutVersions[tab.id] !== tab.diskVersion;
++  }
++
+   function captureReadingPosition(id: string, reader: HTMLDivElement) {
+-    // A worker's pending view has no passage geometry; keep the retained position.
++    // Loading and partially painted replacements can clamp the native scroll
++    // position. Their geometry must not overwrite the last complete passage.
+     const tab = tabsRef.current.find(item => item.id === id);
+     if (tab && tab.kind !== "image" && !tab.largeInspection
+-      && (tab.content === undefined || !reader.querySelector(".document-page .markdown-body"))) return;
++      && (hasPendingSectionLayout(tab) || tab.content === undefined || renderedMarkdown?.id !== id
++        || renderedMarkdown.content !== tab.content
++        || !reader.querySelector(".document-page .markdown-body"))) return;
+     const scrollTop = reader.scrollTop;
+     scrollPositions.current.set(id, scrollTop);
+     const headings = Array.from(reader.querySelectorAll<HTMLElement>(
+@@ -2377,7 +2413,9 @@ export default function App() {
+     let closest: { headingId: string | null; offset: number; scrollTop: number } = { headingId: null, offset: 0, scrollTop };
+     for (const heading of headings) {
+       const top = zoomRect(heading, documentZooms.current.get(id) ?? 1).top - readerTop + scrollTop;
+-      if (top <= scrollTop + 24) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
++      // Outline navigation leaves a 24px scroll margin. Native scrollTop can
++      // round down while heading geometry retains its fractional CSS pixel.
++      if (top <= scrollTop + 25) closest = { headingId: heading.id, offset: scrollTop - top, scrollTop };
+     }
+     readingAnchors.current.set(id, closest);
+     historyRef.current = updateVisit(historyRef.current, id, { scrollTop, scrollLeft: reader.scrollLeft });
+@@ -2481,7 +2519,7 @@ export default function App() {
+     const reader = readerRef.current;
+     if (!reader) return;
+     if (!active || (active.kind !== "image" && !active.largeInspection
+-      && (active.content === undefined || renderedMarkdown?.id !== active.id
++      && (hasPendingSectionLayout(active) || active.content === undefined || renderedMarkdown?.id !== active.id
+         || renderedMarkdown.content !== active.content))) return;
+     const saved = readingAnchors.current.get(activeId ?? "");
+     setActiveOutlineId((prior) => prior === (saved?.headingId ?? null)
+@@ -2492,14 +2530,21 @@ export default function App() {
+         const headingBox = zoomRect(heading, documentZooms.current.get(activeId ?? "") ?? 1);
+         const readerBox = reader.getBoundingClientRect();
+         const top = headingBox.top - readerBox.top + reader.scrollTop;
+-        reader.scrollTop = headingBox.height === 0 && readerBox.height === 0
+-          ? saved.scrollTop : Math.max(0, top + saved.offset);
++        if (headingBox.height === 0 && readerBox.height === 0) reader.scrollTop = saved.scrollTop;
++        else {
++          const position = Math.max(0, top + saved.offset);
++          reader.scrollTop = position;
++          // Some native WebKit views floor fractional scroll coordinates.
++          // Avoid accumulating that error beyond the heading's scroll margin.
++          if (reader.scrollTop < position && position - reader.scrollTop < 1)
++            reader.scrollTop = Math.ceil(position);
++        }
+         return;
+       }
+       setNotice(noticeLocale => t(noticeLocale, "readingPositionShifted"));
+     }
+     reader.scrollTop = saved?.scrollTop ?? scrollPositions.current.get(activeId ?? "") ?? 0;
+-  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown]);
++  }, [activeId, active?.content, readingSettings, sidebarOpen, outlineOpen, viewportWidth, renderedMarkdown, sectionLayoutVersions, sectionsByTab]);
+ 
+   useEffect(() => {
+     const resize = () => {
+@@ -2814,7 +2859,11 @@ export default function App() {
+               <>
+                 <div hidden={sidebarPanel !== "search"} inert={sidebarPanel !== "search"} className="folder-search-host">
+                   <FolderSearchPanel key={root.id} root={root} locale={locale} active={sidebarPanel === "search"}
+-                    query={folderQuery} onQueryChange={setFolderQuery}
++                    scopeSegments={folderSearchScope} query={folderQuery} onQueryChange={setFolderQuery}
++                    captureOpenIntent={() => {
++                      const owner = ++openSequence.current, generation = generationRef.current;
++                      return () => owner === openSequence.current && generation === generationRef.current;
++                    }}
+                     onClose={() => { setSidebarPanel("explorer"); searchTrigger.current?.focus(); }}
+                     onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+                 </div>
+@@ -3088,7 +3137,7 @@ export default function App() {
+             { label: t(locale, "openFile"), hint: shortcutHint("O"), disabled: busy, run: () => void chooseFile() },
+             { label: t(locale, "openFolder"), hint: shortcutHint("O", true), disabled: busy, run: () => void chooseFolder() },
+             { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), disabled: !root,
+-              run: () => { setSidebarOpen(true); setSidebarPanel("search"); } },
++              run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } },
+             ...(root ? [
+               { label: `${t(locale, "reload")} ${root.name} ${t(locale, "folder")}`, disabled: busy,
+                 run: () => void startReload({ ...projectsMenu, target: { kind: "folder", rootId: root.id, segments: [] }, label: root.name }) },
+@@ -3104,13 +3153,16 @@ export default function App() {
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length === 0 ? [
+                 { label: t(locale, "openFile"), hint: shortcutHint("O"), run: () => void chooseFile() },
+                 { label: t(locale, "openFolder"), hint: shortcutHint("O", true), run: () => void chooseFolder() },
+-                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setSidebarOpen(true); setSidebarPanel("search"); } }
++                { label: t(locale, "folderSearch"), hint: shortcutHint("F", true), run: () => { setFolderSearchScope([]); setSidebarOpen(true); setSidebarPanel("search"); } }
+               ] : []),
+               ...(reloadMenu.target.kind === "folder" && reloadMenu.target.segments.length > 0 ? [
+                 { label: t(locale, directories[pathKey(reloadMenu.target.segments)]?.expanded ? "collapseFolder" : "expandFolder"),
+                   run: () => { if (reloadMenu.target.kind === "folder") toggleDirectory(reloadMenu.target.segments); } },
+-                { label: t(locale, "folderSearch"), disabled: true,
+-                  reason: t(locale, "searchFolderUnavailable"), run: () => {} }
++                { label: t(locale, "folderSearch"), run: () => {
++                  if (reloadMenu.target.kind !== "folder") return;
++                  setFolderSearchScope([...reloadMenu.target.segments]);
++                  setSidebarOpen(true); setSidebarPanel("search");
++                } }
+               ] : []),
+               ...(reloadMenu.target.kind === "root-file" && reloadMenu.anchor.getAttribute("role") !== "tab" ? [{ label: `${t(locale, "openRecent")} ${reloadMenu.label}`,
+                 disabled: !/\.(md|markdown)$/i.test(reloadMenu.label) && !imageName(reloadMenu.label),
+@@ -3453,6 +3505,7 @@ export default function App() {
+                     : setCloseIntent({ kind: "read", tabId: active.id })}
+                 />}
+                 <MarkdownView content={active.content ?? ""} fileId={active.id} locale={locale}
++                  layoutPending={hasPendingSectionLayout(active)}
+                   findRootRef={findRootRef}
+                   onRendered={(id, content) => setRenderedMarkdown({ id, content })}
+                   onHeadings={(entries) => updateHeadings(active.id, entries)}
+diff --git a/src/app/api.ts b/src/app/api.ts
+index b2fe7f1..c6f7389 100644
+--- a/src/app/api.ts
++++ b/src/app/api.ts
+@@ -318,6 +318,8 @@ export function readerError(error: unknown): ReaderError {
+ }
+ 
+ export const api = {
++  renderDiagram: (source: string, jobId: string, generation: number) => invoke<import("../reader/diagram-host").DiagramPixels>("render_diagram", { source, jobId, generation }),
++  cancelDiagram: (jobId: string) => invoke<void>("cancel_diagram", { jobId }),
+   listRecentItems: () => invoke<RecentList>("list_recent_items"),
+   openRecentItem: (entryId: string) => invoke<RecentOpen>("open_recent_item", { entryId }),
+   reselectRecentItem: (entryId: string) => invoke<RecentOpen | null>("reselect_recent_item", { entryId }),
+diff --git a/src/app/i18n.ts b/src/app/i18n.ts
+index 445050f..67bc7d8 100644
+--- a/src/app/i18n.ts
++++ b/src/app/i18n.ts
+@@ -71,6 +71,7 @@ const catalog = {
+     wideWidth: "Wide",
+     customWidth: "Custom width",
+     searchScope: "Search scope",
++    searchScopeChanged: "The searched folder changed. Search again or select the folder again.",
+     clearSearch: "Clear search",
+     backToExplorer: "Back to explorer",
+     searchResultCount: "Results",
+@@ -266,6 +267,9 @@ const catalog = {
+     metadata: "Metadata",
+     invalidMetadata: "Invalid or unsupported YAML metadata",
+     metadataSource: "View metadata source",
++    blockSource: "View source",
++    diagramAlt: "Mermaid diagram",
++    diagramUnavailable: "Diagram unavailable. The source is preserved below.",
+     outline: "Outline",
+     closeOutline: "Close outline",
+     outlineEmpty: "No headings in this document",
+@@ -391,6 +395,7 @@ const catalog = {
+     wideWidth: "Amplio",
+     customWidth: "Ancho personalizado",
+     searchScope: "Ámbito de búsqueda",
++    searchScopeChanged: "La carpeta buscada cambió. Busca de nuevo o vuelve a seleccionar la carpeta.",
+     clearSearch: "Borrar búsqueda",
+     backToExplorer: "Volver al explorador",
+     searchResultCount: "Resultados",
+@@ -586,6 +591,9 @@ const catalog = {
+     metadata: "Metadatos",
+     invalidMetadata: "Metadatos YAML no válidos o no compatibles",
+     metadataSource: "Ver código fuente de los metadatos",
++    blockSource: "Ver código fuente",
++    diagramAlt: "Diagrama Mermaid",
++    diagramUnavailable: "Diagrama no disponible. El código fuente se conserva abajo.",
+     outline: "Índice",
+     closeOutline: "Cerrar índice",
+     outlineEmpty: "Este documento no tiene títulos",
+@@ -670,6 +678,7 @@ export function errorText(locale: Locale, code: string): string {
+     oversize: "oversize",
+     changed: "changed",
+     cloud_placeholder: "cloudPlaceholder",
++    scope_changed: "searchScopeChanged",
+     invalid_grant: "invalidGrant",
+     unsupported_type: "unsupported",
+     unsupported_asset: "imageBlocked",

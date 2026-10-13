@@ -1,0 +1,5 @@
+# Reveal local files — user-authorized IMPLEMENT
+
+On 2026-10-11 the user explicitly requested os-senior-expert to inspect and implement “Reveal in Finder” in file and file-tab context menus using existing project patterns. Requirements: absolute native path resolution; hide/disable unsaved/virtual/nonlocal items; graceful missing-file handling; safe native integration without shell path interpolation; respect Windows/Linux conventions; verify both menus and special-character paths; report changes/checks.
+
+This is a bounded extension of the existing workspace menus and native grant boundary. No redesign, dependency change, privilege change, release, installation, commit or cleanup authorized. Spec Kit current feature state was inspected: specs/013-windows-desktop. Global feature state remains unchanged; no new feature scaffolding or approval inferred for unrelated work. User acceptance of the delivered implementation remains pending. Applicable instructions: repository AGENTS.md and parent .agents/qa-cleanup-integration.md; os-senior-expert IMPLEMENT workflow.

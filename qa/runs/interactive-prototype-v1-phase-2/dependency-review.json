@@ -1,0 +1,817 @@
+{
+  "new_direct_dependencies": [
+    {
+      "name": "zip",
+      "version": "6.0.0",
+      "license": "MIT",
+      "rust_version": "1.83.0",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zip-6.0.0/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/spec.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/types.rs",
+          "tokens": 13
+        },
+        {
+          "path": "src/write.rs",
+          "tokens": 3
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "flate2",
+      "version": "1.1.10",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.67.0",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.10/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/lib.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/mem.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/ffi/mod.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/ffi/c.rs",
+          "tokens": 25
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "roxmltree",
+      "version": "0.21.1",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.60",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/roxmltree-0.21.1/Cargo.toml",
+      "unsafe_source_token_scan": [],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "svgtypes",
+      "version": "0.16.1",
+      "license": "Apache-2.0 OR MIT",
+      "rust_version": "1.85",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/svgtypes-0.16.1/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/lib.rs",
+          "tokens": 1
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "cssparser",
+      "version": "0.36.0",
+      "license": "MPL-2.0",
+      "rust_version": "1.68",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cssparser-0.36.0/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/macros.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/serializer.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/tokenizer.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/cow_rc_str.rs",
+          "tokens": 6
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "png",
+      "version": "0.18.1",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.73",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/png-0.18.1/Cargo.toml",
+      "unsafe_source_token_scan": [],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "sha2",
+      "version": "0.10.9",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": null,
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.10.9/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/sha256.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/sha512.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/sha512/loongarch64_asm.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/sha512/x86.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/sha512/aarch64.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/sha256/loongarch64_asm.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/sha256/x86.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/sha256/aarch64.rs",
+          "tokens": 6
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "crc32fast",
+      "version": "1.5.2",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.63",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/crc32fast-1.5.2/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/specialized/pclmulqdq.rs",
+          "tokens": 11
+        },
+        {
+          "path": "src/specialized/aarch64.rs",
+          "tokens": 4
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "base64",
+      "version": "0.22.1",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.48.0",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/base64-0.22.1/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/display.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/engine/general_purpose/mod.rs",
+          "tokens": 1
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    },
+    {
+      "name": "rustix",
+      "version": "1.1.2",
+      "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "rust_version": "1.63",
+      "manifest": "/Users/juanmantilla/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rustix-1.1.2/Cargo.toml",
+      "unsafe_source_token_scan": [
+        {
+          "path": "src/runtime.rs",
+          "tokens": 24
+        },
+        {
+          "path": "src/not_implemented.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/pid.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/signal.rs",
+          "tokens": 38
+        },
+        {
+          "path": "src/lib.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/system.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/shm.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/prctl.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/pipe.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/weak.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/stdio.rs",
+          "tokens": 18
+        },
+        {
+          "path": "src/buffer.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/kernel_sigset.rs",
+          "tokens": 20
+        },
+        {
+          "path": "src/pty.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/bitcast.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/utils.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/cstr.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/net/addr.rs",
+          "tokens": 15
+        },
+        {
+          "path": "src/net/types.rs",
+          "tokens": 7
+        },
+        {
+          "path": "src/net/socket_addr_any.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/net/wsa.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/net/send_recv/mod.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/net/send_recv/msg.rs",
+          "tokens": 17
+        },
+        {
+          "path": "src/termios/types.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/termios/tty.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/termios/ioctl.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/path/arg.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/path/dec_int.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/io/read_write.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/io/close.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/io/ioctl.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/backend/linux_raw/vdso_wrappers.rs",
+          "tokens": 22
+        },
+        {
+          "path": "src/backend/linux_raw/conv.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/vdso.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/backend/linux_raw/reg.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/backend/linux_raw/pipe/syscalls.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/backend/linux_raw/net/addr.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/backend/linux_raw/net/sockopt.rs",
+          "tokens": 12
+        },
+        {
+          "path": "src/backend/linux_raw/net/read_sockaddr.rs",
+          "tokens": 11
+        },
+        {
+          "path": "src/backend/linux_raw/net/msghdr.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/linux_raw/net/syscalls.rs",
+          "tokens": 39
+        },
+        {
+          "path": "src/backend/linux_raw/net/netdevice.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/backend/linux_raw/prctl/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/linux_raw/pty/syscalls.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/linux_raw/termios/syscalls.rs",
+          "tokens": 15
+        },
+        {
+          "path": "src/backend/linux_raw/io/errno.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/backend/linux_raw/io/syscalls.rs",
+          "tokens": 25
+        },
+        {
+          "path": "src/backend/linux_raw/runtime/syscalls.rs",
+          "tokens": 19
+        },
+        {
+          "path": "src/backend/linux_raw/param/auxv.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/backend/linux_raw/param/libc_auxv.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/param/init.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/backend/linux_raw/time/syscalls.rs",
+          "tokens": 13
+        },
+        {
+          "path": "src/backend/linux_raw/system/syscalls.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/backend/linux_raw/pid/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/linux_raw/arch/thumb.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/powerpc64.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/mips64.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/s390x.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/riscv64.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/x86_64.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/powerpc.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/x86.rs",
+          "tokens": 22
+        },
+        {
+          "path": "src/backend/linux_raw/arch/mips32r6.rs",
+          "tokens": 15
+        },
+        {
+          "path": "src/backend/linux_raw/arch/arm.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/mips64r6.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/arch/mips.rs",
+          "tokens": 15
+        },
+        {
+          "path": "src/backend/linux_raw/arch/aarch64.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/backend/linux_raw/mount/syscalls.rs",
+          "tokens": 16
+        },
+        {
+          "path": "src/backend/linux_raw/mm/syscalls.rs",
+          "tokens": 24
+        },
+        {
+          "path": "src/backend/linux_raw/ugid/syscalls.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/backend/linux_raw/io_uring/syscalls.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/backend/linux_raw/rand/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/linux_raw/fs/dir.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/linux_raw/fs/syscalls.rs",
+          "tokens": 100
+        },
+        {
+          "path": "src/backend/linux_raw/thread/syscalls.rs",
+          "tokens": 31
+        },
+        {
+          "path": "src/backend/linux_raw/event/syscalls.rs",
+          "tokens": 10
+        },
+        {
+          "path": "src/backend/linux_raw/process/wait.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/backend/linux_raw/process/syscalls.rs",
+          "tokens": 45
+        },
+        {
+          "path": "src/backend/libc/mod.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/backend/libc/conv.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/libc/c.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/backend/libc/pipe/syscalls.rs",
+          "tokens": 7
+        },
+        {
+          "path": "src/backend/libc/net/addr.rs",
+          "tokens": 7
+        },
+        {
+          "path": "src/backend/libc/net/sockopt.rs",
+          "tokens": 11
+        },
+        {
+          "path": "src/backend/libc/net/ext.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/backend/libc/net/read_sockaddr.rs",
+          "tokens": 12
+        },
+        {
+          "path": "src/backend/libc/net/msghdr.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/backend/libc/net/syscalls.rs",
+          "tokens": 23
+        },
+        {
+          "path": "src/backend/libc/net/netdevice.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/backend/libc/shm/syscalls.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/libc/prctl/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/libc/pty/syscalls.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/backend/libc/termios/syscalls.rs",
+          "tokens": 21
+        },
+        {
+          "path": "src/backend/libc/io/windows_syscalls.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/backend/libc/io/syscalls.rs",
+          "tokens": 21
+        },
+        {
+          "path": "src/backend/libc/param/auxv.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/backend/libc/time/syscalls.rs",
+          "tokens": 19
+        },
+        {
+          "path": "src/backend/libc/system/syscalls.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/backend/libc/pid/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/libc/mount/syscalls.rs",
+          "tokens": 16
+        },
+        {
+          "path": "src/backend/libc/mm/syscalls.rs",
+          "tokens": 24
+        },
+        {
+          "path": "src/backend/libc/ugid/syscalls.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/backend/libc/io_uring/syscalls.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/backend/libc/rand/syscalls.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/libc/fs/dir.rs",
+          "tokens": 15
+        },
+        {
+          "path": "src/backend/libc/fs/makedev.rs",
+          "tokens": 16
+        },
+        {
+          "path": "src/backend/libc/fs/syscalls.rs",
+          "tokens": 113
+        },
+        {
+          "path": "src/backend/libc/thread/types.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/backend/libc/thread/cpu_set.rs",
+          "tokens": 7
+        },
+        {
+          "path": "src/backend/libc/thread/syscalls.rs",
+          "tokens": 30
+        },
+        {
+          "path": "src/backend/libc/event/windows_syscalls.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/libc/event/poll_fd.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/backend/libc/event/syscalls.rs",
+          "tokens": 24
+        },
+        {
+          "path": "src/backend/libc/process/syscalls.rs",
+          "tokens": 45
+        },
+        {
+          "path": "src/param/init.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/mm/madvise.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/mm/msync.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/mm/mmap.rs",
+          "tokens": 9
+        },
+        {
+          "path": "src/mm/userfaultfd.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/maybe_polyfill/no_std/io/mod.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/maybe_polyfill/no_std/os/fd/owned.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/maybe_polyfill/no_std/os/fd/raw.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/maybe_polyfill/no_std/os/windows/io/raw.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/maybe_polyfill/no_std/os/windows/io/socket.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/io_uring/bindgen_types.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/io_uring/mod.rs",
+          "tokens": 17
+        },
+        {
+          "path": "src/rand/getrandom.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/fs/abs.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/fs/at.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/fs/inotify.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/fs/constants.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/fs/fcopyfile.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/fs/raw_dir.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/fs/special.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/fs/ioctl.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/fs/xattr.rs",
+          "tokens": 12
+        },
+        {
+          "path": "src/thread/id.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/thread/futex.rs",
+          "tokens": 14
+        },
+        {
+          "path": "src/thread/libcap.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/thread/prctl.rs",
+          "tokens": 31
+        },
+        {
+          "path": "src/thread/setns.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/event/epoll.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/event/port.rs",
+          "tokens": 5
+        },
+        {
+          "path": "src/event/select.rs",
+          "tokens": 6
+        },
+        {
+          "path": "src/event/kqueue.rs",
+          "tokens": 4
+        },
+        {
+          "path": "src/ioctl/patterns.rs",
+          "tokens": 16
+        },
+        {
+          "path": "src/ioctl/mod.rs",
+          "tokens": 8
+        },
+        {
+          "path": "src/process/types.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/process/wait.rs",
+          "tokens": 3
+        },
+        {
+          "path": "src/process/id.rs",
+          "tokens": 2
+        },
+        {
+          "path": "src/process/procctl.rs",
+          "tokens": 16
+        },
+        {
+          "path": "src/process/prctl.rs",
+          "tokens": 37
+        },
+        {
+          "path": "src/process/chdir.rs",
+          "tokens": 1
+        },
+        {
+          "path": "src/process/ioctl.rs",
+          "tokens": 3
+        }
+      ],
+      "note": "Lexical unsafe-token inventory includes documentation and disabled code. It is not an unsafe audit or a count of reachable unsafe operations."
+    }
+  ],
+  "own_crates": "forbid(unsafe_code)",
+  "runtime_external_execution": false,
+  "review_kind": "Scoped source/manifests/feature review; not fuzzing or complete advisory certification."
+}

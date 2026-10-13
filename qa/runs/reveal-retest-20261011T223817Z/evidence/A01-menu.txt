@@ -1,0 +1,101 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+			17 pop up button Go menu
+			18 button (collapsed) Open documents (1), Secondary Actions: Expand
+			19 container Explorer
+				20 pop up button PROJECTS
+				21 button Close Projects sidebar
+				22 button Open file
+				23 button Open folder
+				24 button Search folder
+				25 text fixtures
+				26 container
+					27 button active.md
+					28 button fresh.md
+					29 button inactive.md
+					30 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					31 button opened-after-delete.md
+					32 button opened-after-rename.md
+					33 button opened-after-replace.md
+					34 button opened-before-delete.md
+					35 button opened-before-rename.md
+					36 button opened-before-replace.md
+					37 button root-dirty.md
+					38 button root-missing-moved.md
+					39 button sentinel.md
+					40 button unopened-after-delete.md
+					41 button unopened-after-rename-moved.md
+					42 button unopened-after-replace-original.md
+					43 button unopened-after-replace.md
+					44 button unopened-before-delete.md
+					45 button unopened-before-rename.md
+					46 button unopened-before-replace.md
+				47 text Storage and recovery
+				48 text Open edits and recovery offers: 0
+				49 button Manage…
+				50 button Settings…
+			51 container
+				52 menu Secondary Actions: Cancel
+					53 (disabled) Reveal in Finder
+					54 text This file is missing
+					55 (selected) Copy path
+					56 Close tab: root-missing.md
+					57 (disabled) Close other tabs
+					58 (disabled) Close tabs to the right
+					59 Reload root-missing.md
+				60 container root-missing.md
+					61 container root-missing.md
+						62 text root-missing.md
+					63 button Find in document
+					64 toggle button Outline, Value: on
+					65 button (collapsed) Reading settings, Secondary Actions: Expand
+					66 button Edit section
+					67 summary Document…, Value: off
+						68 text Document…
+					69 text Folder root
+				70 container root-missing.md
+					71 container
+						72 text This file is missing
+						73 button Retry
+					74 container root-missing.md
+						75 container Edit section: root-missing.md
+							76 heading root-missing.md, Value: 1
+								77 text root-missing.md
+							78 button Edit section “root-missing.md”
+						79 text Original QA saved bytes.
+				80 container Outline
+					81 text OUTLINE
+					82 button Close outline
+					83 container Outline
+						84 content list
+							85 button root-missing.md
+			86 container
+				87 text root-missing.md Intentgrove by Theonira
+	88 close button
+	89 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	90 minimize button
+	91 text Intentgrove Reveal Retest
+92 menu bar
+	93 Intentgrove Reveal Retest
+	94 File
+	95 Edit
+	96 View
+	97 Go
+	98 Window
+	99 Help

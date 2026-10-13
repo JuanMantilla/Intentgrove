@@ -1,0 +1,734 @@
+import copy
+import json
+from pathlib import Path
+import shlex
+import sys
+import tempfile
+import unittest
+from unittest import mock
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import cleanup as c
+import file_guard as guard
+
+
+class Fixture(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='qa-cleanup-test-', dir='/private/tmp')
+        self.root = Path(self.temp.name).resolve()
+        self.patch = mock.patch.multiple(c, WORKSPACE=self.root, STATE=self.root / '.agents/state',
+                                        POLICY=self.root / '.agents/policy.json')
+        self.patch.start()
+        self.p = {'schema_version': 1, 'allowed_cleanup_roots': ['artifacts'], 'protected_paths': ['qa', '.agents'],
+                  'max_attempts': 2, 'review_timeout_seconds': 60, 'max_candidates': 10, 'gitlab_evidence': False}
+        c.write(c.POLICY, self.p)
+        (self.root / 'artifacts').mkdir()
+        (self.root / 'source.py').write_text('print("test fixture")\n')
+        for name in ('report.txt', 'evidence.txt', 'requirements.txt', 'acceptance.txt', 'final.txt'):
+            (self.root / name).write_text('Disposable test evidence: ' + name)
+        (self.root / 'artifacts/old.log').write_text('obsolete fixture log')
+        c.write(self.root / 'snapshot.json', {'schema_version': 1, 'created_at': guard.utc_now(),
+                                            'snapshot': c.snapshot(self.root, ['source.py'])})
+        self.entry = {'schema_version': 1, 'task_id': 'test-task', 'acceptance_version': 'v1', 'session_kind': 'qa',
+                      'qa_result': 'QA_PASSED', 'task_state': 'DONE_ACCEPTED', 'unresolved_blockers': [],
+                      'required_checks': [{'id': 'check1', 'result': 'PASS', 'reason': 'fixture pass',
+                                          'evidence_paths': ['evidence.txt'], 'finished_at': guard.utc_now()}],
+                      'final_report': 'report.txt', 'evidence_paths': ['evidence.txt'], 'retain_paths': ['final.txt'],
+                      'tested_snapshot_path': 'snapshot.json', 'artifact_paths': ['artifacts/old.log'],
+                      'requirements_source_paths': ['requirements.txt'],
+                      'completion_requirements': [{'requirement': 'Existing acceptance requirement (fixture only)',
+                                                   'source_path': 'requirements.txt', 'evidence_path': 'acceptance.txt',
+                                                   'satisfied': True}]}
+        self.input = self.root / 'completion.json'
+        c.write(self.input, self.entry)
+        self.receipt = c.record(str(self.root), str(self.input))
+        self.event = {'hook_event_name': 'PostToolUse', 'tool_name': 'Bash', 'tool_use_id': 'fixture-tool',
+                      'tool_input': {'command': ' '.join(shlex.quote(w) for w in
+                          ['python3', '-B', str(c.HELPER), '--root', str(self.root), '--input', str(self.input)])},
+                      'tool_response': {'exit_code': 0, 'output': 'QA_COMPLETION_RECEIPT=' + json.dumps(self.receipt)}}
+        self.key = self.receipt['record_key']
+        self.request_path = c.STATE / 'queue' / (self.key + '.json')
+
+    def tearDown(self):
+        self.patch.stop()
+        self.temp.cleanup()  # Only this disposable fixture tree.
+
+    def raw_hook_event(self, output, exit_code=0, status='completed'):
+        session = '11111111-2222-3333-4444-555555555555'
+        home = self.root / 'host-home'
+        env = mock.patch.dict('os.environ', {'CODEX_HOME': str(home)})
+        env.start()
+        self.addCleanup(env.stop)
+        event = dict(self.event, session_id=session, tool_response=output)
+        path = home / 'sessions/2026/10/10' / ('rollout-fixture-' + session + '.jsonl')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        rows = [{'type': 'session_meta', 'payload': {'id': session}},
+                {'type': 'event_msg', 'payload': {'type': 'item_completed', 'item': {
+                    'type': 'CommandExecution', 'id': event['tool_use_id'], 'status': status,
+                    'exit_code': exit_code, 'command': ['/bin/zsh', '-lc', event['tool_input']['command']],
+                    'aggregated_output': output}}}]
+        path.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
+        return event
+
+    def test_observed_warning_raw_stdout_enqueues_and_retries(self):
+        observed = json.loads((Path(__file__).parent / 'fixtures/accepted-hook-0.162.1.json').read_text())
+        output = observed['warning_prefix'] + self.event['tool_response']['output'] + '\n'
+        event = self.raw_hook_event(output)
+        outcome = {}
+        self.assertEqual(c.hook(event, outcome), self.key)
+        self.assertEqual(outcome['disposition'], 'ENQUEUED')
+        self.assertIsNone(c.hook(event, outcome))
+        self.assertEqual(outcome['disposition'], 'DUPLICATE')
+        self.assertEqual(len(list((c.STATE / 'queue').glob('*.json'))), 1)
+
+    def test_raw_stdout_requires_explicit_correlated_success(self):
+        output = self.event['tool_response']['output']
+        for code, status in ((1, 'failed'), (None, 'completed'), (False, 'completed'), (0, 'inProgress')):
+            event = self.raw_hook_event(output, code, status)
+            self.assertIsNone(c.hook(event))
+        self.assertIsNone(c.hook(dict(self.event, tool_response=output)))
+        event = self.raw_hook_event(output)
+        event['tool_use_id'] = 'different'
+        self.assertIsNone(c.hook(event))
+        self.assertFalse(self.request_path.exists())
+
+    def test_raw_correlation_allows_only_exact_supported_shell_invocations(self):
+        output = self.event['tool_response']['output']
+        event = self.raw_hook_event(output)
+        path = next((self.root / 'host-home/sessions').glob('*/*/*/*.jsonl'))
+        rows = [json.loads(line) for line in path.read_text().splitlines()]
+        for shell in ('/bin/zsh', '/bin/bash'):
+            for mode in ('-c', '-lc'):
+                rows[1]['payload']['item']['command'] = [shell, mode, event['tool_input']['command']]
+                path.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
+                self.assertTrue(c.correlated_exit(event, output))
+        for command in (['/bin/sh', '-c', event['tool_input']['command']],
+                        ['/bin/bash', '-c', event['tool_input']['command'] + ' ; true'],
+                        ['/bin/bash', '-c', event['tool_input']['command'], 'extra']):
+            rows[1]['payload']['item']['command'] = command
+            path.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
+            self.assertFalse(c.correlated_exit(event, output))
+        self.assertFalse(self.request_path.exists())
+
+    def test_recognized_unsuccessful_command_has_safe_diagnostics(self):
+        outcome = {}
+        event = dict(self.event, tool_response={'exit_code': 1, 'output': 'failed'})
+        self.assertIsNone(c.hook(event, outcome))
+        self.assertTrue(outcome['command_recognized'])
+        self.assertEqual(outcome['tool_name'], 'Bash')
+        self.assertEqual(outcome['disposition'], 'SKIPPED')
+        self.assertEqual(outcome['response_sha256'], c.digest(event['tool_response']))
+        self.assertNotIn('tool_response', outcome)
+        self.assertFalse(self.request_path.exists())
+
+    def test_enqueue_write_failure_has_no_committed_disposition_and_retry(self):
+        real_write = c.write
+        def fail_queue(path, *args, **kwargs):
+            if Path(path) == self.request_path:
+                raise OSError('fixture write failure')
+            return real_write(path, *args, **kwargs)
+        outcome = {}
+        with mock.patch.object(c, 'write', side_effect=fail_queue):
+            with self.assertRaises(OSError):
+                c.hook(self.event, outcome)
+        self.assertNotEqual(outcome.get('disposition'), 'ENQUEUED')
+        self.assertFalse(self.request_path.exists())
+        self.assertEqual(c.hook(self.event, outcome), self.key)
+        c.write(self.request_path, dict(c.read(self.request_path), state='READY_FOR_APPROVAL'))
+        self.assertIsNone(c.hook(self.event, outcome))
+        self.assertEqual(c.read(self.request_path)['state'], 'READY_FOR_APPROVAL')
+
+    def test_queue_directory_sync_failure_retry_preserves_request(self):
+        real_sync = guard.sync_directory
+        def fail_sync(path):
+            if Path(path) == self.request_path.parent:
+                raise OSError('fixture directory sync failure')
+            return real_sync(path)
+        outcome = {}
+        with mock.patch.object(guard, 'sync_directory', side_effect=fail_sync):
+            with self.assertRaises(OSError):
+                c.hook(self.event, outcome)
+        self.assertNotEqual(outcome.get('disposition'), 'ENQUEUED')
+        before = c.read(self.request_path)
+        self.assertIsNone(c.hook(self.event, outcome))
+        self.assertEqual(outcome['disposition'], 'DUPLICATE')
+        self.assertEqual(c.read(self.request_path), before)
+
+    def candidate(self, inventory):
+        return {'id': 'C1', 'path': 'artifacts/old.log', 'snapshot': inventory['artifacts/old.log']['snapshot'],
+                'role': 'disposable_task_artifact', 'completion_evidence': ['acceptance.txt'],
+                'obsolescence_evidence': ['final.txt'], 'retained_replacements': ['final.txt'],
+                'code_or_runtime_or_fixture_or_current_document': False, 'reference_check_complete': True, 'blockers': []}
+
+    def fake_ai(self, mode, root, body, run_id, run_dir, payload):
+        if mode == 'discover':
+            return {'schema_version': 1, 'root': str(root), 'run_id': run_id, 'coverage': ['explicit task paths'],
+                    'limitations': [], 'candidates': [self.candidate(payload['inventory'])]}
+        self.assertEqual(set(payload), {'manifest', 'manifest_sha256', 'completion'})
+        self.assertNotIn('conversation', json.dumps(payload))
+        return {'root': str(root), 'run_id': run_id, 'manifest_sha256': payload['manifest_sha256'], 'limitations': [],
+                'decisions': [{'id': 'C1', 'path': 'artifacts/old.log', 'decision': 'delete',
+                               'reason': 'Independent disposable fixture superseded by retained final.txt',
+                               'fresh_evidence': ['acceptance.txt', 'final.txt'], 'safe_non_code_disposable': True}]}
+
+    def ready(self):
+        c.hook(self.event)
+        c.process_job(self.request_path, self.fake_ai)
+        request = c.read(self.request_path)
+        self.assertEqual(request['state'], 'READY_FOR_APPROVAL', request)
+        return request['run_id']
+
+    def test_hook_deduplicates(self):
+        self.assertEqual(c.hook(self.event), self.key)
+        self.assertIsNone(c.hook(self.event))
+        self.assertEqual(len(list((c.STATE / 'queue').glob('*.json'))), 1)
+
+    def test_text_response_supported_and_nonzero_ignored(self):
+        e = copy.deepcopy(self.event)
+        e['tool_response'] = 'Process exited with code 0\nFinal output:\nQA_COMPLETION_RECEIPT=' + json.dumps(self.receipt)
+        self.assertEqual(c.hook(e), self.key)
+        e['tool_response'] = e['tool_response'].replace('code 0', 'code 1')
+        self.assertIsNone(c.hook(e))
+
+    def test_attempt_and_yield_do_not_queue(self):
+        for response in ({'exit_code': 1, 'output': self.event['tool_response']['output']},
+                         {'session_id': 42, 'output': self.event['tool_response']['output']}, 'done',
+                         {'exit_code': False, 'output': self.event['tool_response']['output']}):
+            event = dict(self.event, tool_response=response)
+            self.assertIsNone(c.hook(event))
+        self.assertFalse(self.request_path.exists())
+
+    def test_unrelated_stop_cleanup_and_chains_ignored(self):
+        for changes in ({'hook_event_name': 'Stop'}, {'tool_name': 'other'},
+                        {'tool_input': {'command': 'echo done'}},
+                        {'tool_input': {'command': self.event['tool_input']['command'] + '; true'}}):
+            self.assertIsNone(c.hook(dict(self.event, **changes)))
+        with mock.patch.dict('os.environ', {'QA_CLEANUP_SESSION': '1'}):
+            self.assertIsNone(c.hook(self.event))
+
+    def test_uncommitted_or_wrong_receipt_rejected(self):
+        e = copy.deepcopy(self.event)
+        r = dict(self.receipt, receipt_nonce='forged')
+        e['tool_response']['output'] = 'QA_COMPLETION_RECEIPT=' + json.dumps(r)
+        with self.assertRaisesRegex(guard.GuardError, 'receipt'):
+            c.hook(e)
+
+    def test_failed_blocked_and_awaiting_do_not_trigger(self):
+        for n, (qa, state) in enumerate([('QA_FAILED', 'ACTIVE'), ('QA_BLOCKED', 'BLOCKED'),
+                                        ('QA_PASSED', 'AWAITING_ACCEPTANCE')]):
+            entry = copy.deepcopy(self.entry)
+            entry.update(qa_result=qa, task_state=state, acceptance_version='nonaccepted' + str(n))
+            c.write(self.input, entry)
+            receipt = c.record(self.root, self.input)
+            event = copy.deepcopy(self.event)
+            event['tool_response']['output'] = 'QA_COMPLETION_RECEIPT=' + json.dumps(receipt)
+            self.assertIsNone(c.hook(event))
+        self.assertFalse(self.request_path.exists())
+
+    def test_false_acceptance_blockers_and_missing_authority_rejected(self):
+        for changes in ({'qa_result': 'QA_FAILED'}, {'unresolved_blockers': ['unresolved']},
+                        {'completion_requirements': []}):
+            entry = dict(self.entry, **changes)
+            with self.assertRaises(guard.GuardError):
+                c.validate_completion(self.root, entry)
+
+    def test_changed_snapshot_and_evidence_rejected(self):
+        (self.root / 'source.py').write_text('changed')
+        with self.assertRaisesRegex(guard.GuardError, 'snapshot_changed'):
+            c.accepted(self.key)
+
+    def test_revocation_and_policy_change_rejected(self):
+        entry = dict(self.entry, acceptance_version='revoked', task_state='AWAITING_ACCEPTANCE')
+        c.write(self.input, entry)
+        c.record(self.root, self.input)
+        with self.assertRaisesRegex(guard.GuardError, 'superseded'):
+            c.accepted(self.key)
+
+    def test_ready_never_deletes_and_dry_run_preserves(self):
+        run = self.ready()
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+        report = c.apply(run, True)
+        self.assertEqual(report['outcomes'][0]['outcome'], 'not_attempted')
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+        self.assertFalse((c.STATE / 'runs' / run / 'approval.json').exists())
+
+    def test_recovery_restore_and_no_overwrite(self):
+        run = self.ready()
+        result = c.apply(run, False, run)
+        self.assertEqual(result['outcomes'][0]['outcome'], 'deleted', result)
+        self.assertFalse((self.root / 'artifacts/old.log').exists())
+        self.assertTrue(Path(result['outcomes'][0]['recovery_path']).exists())
+        self.assertEqual(c.restore(run)[0]['outcome'], 'restored')
+        (self.root / 'artifacts/old.log').write_text('new contents')
+        self.assertEqual(c.restore(run)[0]['outcome'], 'kept')
+        self.assertEqual((self.root / 'artifacts/old.log').read_text(), 'new contents')
+
+    def test_wrong_confirmation_and_changed_file_preserve(self):
+        run = self.ready()
+        with self.assertRaisesRegex(guard.GuardError, 'confirmation'):
+            c.apply(run, False, 'other')
+        (self.root / 'artifacts/old.log').write_text('modified fixture')
+        self.assertEqual(c.apply(run, False, run)['outcomes'][0]['outcome'], 'changed')
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+
+    def test_empty_roots_force_keep(self):
+        self.p['allowed_cleanup_roots'] = []
+        c.write(c.POLICY, self.p)
+        # New acceptance record is needed because the policy was changed.
+        self.entry['acceptance_version'] = 'empty-roots'
+        c.write(self.input, self.entry)
+        self.receipt = c.record(self.root, self.input)
+        self.key = self.receipt['record_key']
+        self.request_path = c.STATE / 'queue' / (self.key + '.json')
+        self.event['tool_response']['output'] = 'QA_COMPLETION_RECEIPT=' + json.dumps(self.receipt)
+        run = self.ready()
+        review = c.read(c.STATE / 'runs' / run / 'review.json')
+        self.assertEqual(review['decisions'][0]['decision'], 'keep')
+        self.assertIn('allowed_cleanup_roots', review['decisions'][0]['reason'])
+
+    def test_tampered_review_rejected(self):
+        run = self.ready()
+        path = c.STATE / 'runs' / run / 'review.json'
+        review = c.read(path)
+        review['decisions'][0]['path'] = 'other.log'
+        c.write(path, review)
+        with self.assertRaisesRegex(guard.GuardError, 'modified_approved_manifest'):
+            c.apply(run, True)
+
+    def test_symlink_hardlink_traversal_and_code_protected(self):
+        with self.assertRaises(guard.GuardError):
+            guard.target_path(self.root, '../other')
+        (self.root / 'artifacts/link.log').symlink_to(self.root / 'artifacts/old.log')
+        with self.assertRaises(guard.GuardError):
+            guard.fingerprint(self.root / 'artifacts/link.log')
+        import os
+        os.link(self.root / 'artifacts/old.log', self.root / 'artifacts/hard.log')
+        with self.assertRaises(guard.GuardError):
+            guard.fingerprint(self.root / 'artifacts/hard.log')
+        with self.assertRaises(guard.GuardError):
+            guard.target_path(self.root, 'source.py')
+
+    def test_worker_interruption_and_bounded_restart(self):
+        c.hook(self.event)
+        def interrupted(*args):
+            raise KeyboardInterrupt()
+        with self.assertRaises(KeyboardInterrupt):
+            c.process_job(self.request_path, interrupted)
+        self.assertEqual(c.read(self.request_path)['state'], 'RETRY')
+        c.process_job(self.request_path, self.fake_ai)
+        self.assertEqual(c.read(self.request_path)['state'], 'READY_FOR_APPROVAL')
+        self.assertTrue((c.STATE / 'runs' / (self.key[:20] + '-1') / 'request.json').exists())
+
+    def test_failure_attempts_are_bounded(self):
+        c.hook(self.event)
+        def failed(*args):
+            raise RuntimeError('fixture invalid model result')
+        for i in range(3):
+            c.process_job(self.request_path, failed)
+        req = c.read(self.request_path)
+        self.assertEqual(req['attempts'], 2)
+        self.assertEqual(req['state'], 'FAILED')
+
+    def test_lock_prevents_parallel_operations(self):
+        with c.lock('worker'):
+            with self.assertRaises(BlockingIOError):
+                with c.lock('worker'):
+                    pass
+
+    def test_schema_and_exact_review_coverage(self):
+        run = self.ready()
+        directory = c.STATE / 'runs' / run
+        manifest = c.read(directory / 'candidates.json')
+        review = c.read(directory / 'review.json')
+        review['decisions'] = []
+        with self.assertRaises(guard.GuardError):
+            c.validate_review(review, manifest, saved=True)
+        with self.assertRaises(guard.GuardError):
+            c.validate_schema({'unexpected': True}, c.schema('review'))
+
+    def test_immediate_acceptance_guard_prevents_unlink(self):
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log')}}
+        candidate = self.candidate(inventory)
+        manifest = self.root / 'manifest.json'
+        c.write(manifest, {'schema_version': 1, 'root': str(self.root), 'candidates': [candidate]})
+        def reject():
+            raise guard.GuardError('acceptance_revoked_before_unlink')
+        result = guard.remove_one(self.root, candidate, manifest, self.root / 'recovery',
+                                  self.root / 'receipt.json', before_unlink=reject)
+        self.assertNotEqual(result['status'], 'deleted')
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+        self.assertTrue(Path(result['recovery_path']).exists())
+
+
+    def test_raw_stdout_receipt_and_stale_replay(self):
+        e = self.raw_hook_event(self.event['tool_response']['output'])
+        self.assertEqual(c.hook(e), self.key)
+        old = copy.deepcopy(self.entry)
+        self.entry.update(acceptance_version='revoked', task_state='AWAITING_ACCEPTANCE')
+        c.write(self.input, self.entry)
+        c.record(self.root, self.input)
+        c.write(self.input, old)
+        with self.assertRaisesRegex(guard.GuardError, 'older_acceptance'):
+            c.record(self.root, self.input)
+
+    def test_policy_and_evidence_changes_block_apply(self):
+        run = self.ready()
+        (self.root / 'acceptance.txt').write_text('different acceptance')
+        with self.assertRaisesRegex(guard.GuardError, 'evidence_changed'):
+            c.apply(run, True)
+
+    def test_manifest_path_and_duplicate_rejections(self):
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log')}}
+        row = self.candidate(inventory)
+        value = {'schema_version': 1, 'root': str(self.root), 'run_id': 'test-run', 'coverage': [],
+                 'limitations': [], 'candidates': [row, copy.deepcopy(row)]}
+        with self.assertRaisesRegex(guard.GuardError, 'duplicate'):
+            c.validate_manifest(value, self.root, self.entry, 'test-run', inventory)
+        row['path'] = 'other.log'
+        value['candidates'] = [row]
+        with self.assertRaisesRegex(guard.GuardError, 'scope'):
+            c.validate_manifest(value, self.root, self.entry, 'test-run', inventory)
+
+    def test_fixture_tracked_modified_is_protected(self):
+        c.git(self.root, 'init', '-q')
+        c.git(self.root, 'add', 'artifacts/old.log')
+        # Staged is protected without needing a fixture commit.
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        candidate = self.candidate({'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log')}})
+        with self.assertRaisesRegex(guard.GuardError, 'staged_or_modified'):
+            c.eligibility(self.root, body, candidate, self.p)
+
+    def test_absent_candidate_and_missing_obsolescence_keep(self):
+        run = self.ready()
+        # Removal of disposable fixture only, simulating an independently absent file.
+        (self.root / 'artifacts/old.log').unlink()
+        self.assertEqual(c.apply(run, False, run)['outcomes'][0]['outcome'], 'already_absent')
+
+    def test_ai_command_isolated_and_new_without_history(self):
+        homes = []
+        def fake_process(argv, **kwargs):
+            self.assertNotIn('/usr/bin/sandbox-exec', argv)
+            self.assertNotIn('--output-last-message', argv)
+            self.assertNotIn('--resume', argv)
+            self.assertIn('--ignore-user-config', argv)
+            self.assertIn('read-only', argv)
+            self.assertIn('--no-daemon', argv)
+            self.assertIn('hooks', argv)
+            self.assertIn('plugins', argv)
+            self.assertEqual(set(kwargs['env']), {'PATH', 'HOME', 'CODEX_HOME', 'TMPDIR', 'QA_CLEANUP_SESSION'})
+            homes.append(kwargs['env']['HOME'])
+            process = mock.Mock(returncode=0)
+            value = {'limitations': [], 'decisions': []}
+            events = json.dumps({'type': 'item.completed', 'item': {'type': 'agent_message', 'text': json.dumps(value)}}) + '\n'
+            process.communicate.return_value = (events, '')
+            return process
+        with mock.patch.dict(c.os.environ, {'QA_CLEANUP_AUTH_HOME': str(self.root / 'mock-auth')}), \
+                mock.patch.object(c, 'runtime_check', return_value='/fake/codex'), mock.patch.object(c.subprocess, 'Popen', fake_process), mock.patch.object(c.codex_launch, 'model_child', side_effect=lambda exe, home, cwd, schema, auth: (c.codex_launch.arguments(exe, home, cwd, schema), {'PATH': '/usr/bin:/bin', 'HOME': str(home), 'CODEX_HOME': str(home), 'TMPDIR': str(home), 'QA_CLEANUP_SESSION': '1'})):
+            for i in range(2):
+                output = self.root / ('output' + str(i))
+                c.ai_pass('review', self.root, self.entry, 'test', output,
+                          {'manifest': {'candidates': []}, 'manifest_sha256': c.digest({'candidates': []}), 'completion': {}})
+        self.assertNotEqual(homes[0], homes[1])
+
+
+    def test_wire_discovery_uses_runner_snapshots_and_rejects_extra_paths(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        row = self.candidate(inventory)
+        row.pop('snapshot')
+        value = {'coverage': ['task paths'], 'limitations': [], 'candidates': [row]}
+        result = c.expand_response('discover', value, self.root, 'test-run', {'inventory': inventory})
+        c.validate_manifest(result, self.root, body, 'test-run', inventory)
+        self.assertEqual(result['candidates'][0]['snapshot'], inventory['artifacts/old.log']['snapshot'])
+        value['candidates'][0]['path'] = 'source.py'
+        with self.assertRaisesRegex(guard.GuardError, 'outside_inventory'):
+            c.expand_response('discover', value, self.root, 'test-run', {'inventory': inventory})
+
+    def test_candidate_token_contract_rejects_paths_and_duplicates(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        row = self.candidate(inventory)
+        row.pop('snapshot')
+        value = {'coverage': [], 'limitations': [], 'candidates': [row]}
+        for bad_id in ('artifacts/obsolete.txt', '', 'C 1', 'C1\n'):
+            with self.subTest(id=bad_id):
+                row['id'] = bad_id
+                with self.assertRaisesRegex(guard.GuardError, 'structured_pattern'):
+                    c.expand_response('discover', value, self.root, 'test-run', {'inventory': inventory})
+        row['id'] = 'C1'
+        value['candidates'].append(dict(row))
+        result = c.expand_response('discover', value, self.root, 'test-run', {'inventory': inventory})
+        with self.assertRaisesRegex(guard.GuardError, 'duplicate_candidate_id'):
+            c.validate_manifest(result, self.root, body, 'test-run', inventory)
+
+    def test_wire_handoff_preserves_judgments_and_strict_role_eligibility(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        row = self.candidate(inventory)
+        row.pop('snapshot')
+        wire = {'coverage': ['task artifacts'], 'limitations': [], 'candidates': [row]}
+        manifest = c.expand_response('discover', wire, self.root, 'test-run', {'inventory': inventory})
+        c.validate_manifest(manifest, self.root, body, 'test-run', inventory)
+        c.eligibility(self.root, body, manifest['candidates'][0], self.p)
+        payload = {'completion': body, 'manifest': manifest, 'manifest_sha256': c.digest(manifest)}
+        projected = c.prompt_payload(payload)
+        self.assertEqual(set(projected), {'completion', 'manifest', 'manifest_sha256'})
+        self.assertEqual(projected['manifest']['candidates'], [row])
+        review_wire = {'limitations': [], 'decisions': [{'id': 'C1', 'decision': 'delete',
+            'reason': 'Reopened acceptance and retained replacement', 'fresh_evidence': ['acceptance.txt', 'final.txt'],
+            'safe_non_code_disposable': True}]}
+        review = c.expand_response('review', review_wire, self.root, 'test-run', payload)
+        c.validate_review(review, manifest)
+        self.assertEqual(review['decisions'][0]['path'], row['path'])
+        self.assertTrue((self.root / row['path']).exists())
+        # Descriptive/uncertain roles remain valid records, never eligible removal.
+        for role in ('Temporary intermediate output from completed task', 'unknown', 'source_code'):
+            candidate = dict(manifest['candidates'][0], role=role)
+            c.validate_schema(candidate, c.schema('discover')['properties']['candidates']['items'])
+            with self.assertRaisesRegex(guard.GuardError, 'unknown_or_protected_file_role'):
+                c.eligibility(self.root, body, candidate, self.p)
+        for field, value in [('blockers', ['uncertain use']), ('reference_check_complete', False),
+                             ('completion_evidence', []), ('obsolescence_evidence', []),
+                             ('code_or_runtime_or_fixture_or_current_document', True)]:
+            with self.subTest(field=field), self.assertRaises(guard.GuardError):
+                c.eligibility(self.root, body, dict(manifest['candidates'][0], **{field: value}), self.p)
+
+    def test_model_contract_in_schema_and_phase_instructions(self):
+        for phase, rows in [('discover', 'candidates'), ('review', 'decisions')]:
+            props = c.wire_schema(phase)['properties'][rows]['items']['properties']
+            self.assertEqual(props['id']['pattern'], '^[A-Za-z0-9_-]+$')
+        role = c.wire_schema('discover')['properties']['candidates']['items']['properties']['role']
+        self.assertIn('disposable_task_artifact', role['description'])
+        payload = {'completion': self.entry, 'inventory': {}}
+        discovery = c.build_prompt('discover', self.root, payload, self.p)
+        review = c.build_prompt('review', self.root, payload, self.p)
+        for text in ('unique IDs matching [A-Za-z0-9_-]+', 'role disposable_task_artifact exactly',
+                     'reference_check_complete must be true', 'policy.max_candidates'):
+            self.assertIn(text, discovery)
+        for text in ('exactly one decision for every manifest candidate', 'nonempty fresh_evidence',
+                     'safe_non_code_disposable=true', 'no deletion authority'):
+            self.assertIn(text, review)
+
+    def test_bounded_inventory_accounts_for_protected_source_in_review(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        body = dict(body, artifact_paths=['artifacts/old.log', 'source.py'])
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None},
+                     'source.py': {'snapshot': body['tested_snapshot']['files']['source.py'], 'error': None}}
+        disposable = self.candidate(inventory)
+        disposable.pop('snapshot')
+        source = dict(disposable, id='C2', path='source.py', role='protected_source_code',
+                      completion_evidence=[], obsolescence_evidence=[], retained_replacements=[],
+                      code_or_runtime_or_fixture_or_current_document=True,
+                      blockers=['Current executable source and protected tested input'])
+        payload = {'completion': body, 'inventory': inventory}
+        prompt = c.build_prompt('discover', self.root, payload, self.p)
+        self.assertIn('one row for every inventory path, including protected code', prompt)
+        self.assertIn('replaces the general skill instruction', prompt)
+        self.assertIn('exceeds the limit, identify omitted paths', prompt)
+        manifest = c.expand_response('discover', {'coverage': ['explicit inventory'], 'limitations': [],
+            'candidates': [disposable, source]}, self.root, 'mixed-run', payload)
+        c.validate_manifest(manifest, self.root, body, 'mixed-run', inventory)
+        handoff = {'completion': body, 'manifest': manifest, 'manifest_sha256': c.digest(manifest)}
+        self.assertEqual(c.prompt_payload(handoff)['manifest']['candidates'], [disposable, source])
+        review = c.expand_response('review', {'limitations': [], 'decisions': [
+            {'id': 'C1', 'decision': 'delete', 'reason': 'Reopened obsolete output and retained replacement',
+             'fresh_evidence': ['acceptance.txt', 'final.txt'], 'safe_non_code_disposable': True},
+            {'id': 'C2', 'decision': 'keep', 'reason': 'Current executable source and tested input',
+             'fresh_evidence': ['source.py', 'snapshot.json'], 'safe_non_code_disposable': False}]},
+            self.root, 'mixed-run', handoff)
+        c.validate_review(review, manifest)
+        self.assertEqual({d['path']: d['decision'] for d in review['decisions']},
+                         {'artifacts/old.log': 'delete', 'source.py': 'keep'})
+        c.eligibility(self.root, body, manifest['candidates'][0], self.p)
+        with self.assertRaises(guard.GuardError):
+            c.eligibility(self.root, body, manifest['candidates'][1], self.p)
+        self.assertTrue((self.root / 'source.py').exists())
+
+    def test_wire_review_identity_and_complete_decisions_still_required(self):
+        run = self.ready()
+        manifest = c.read(c.STATE / 'runs' / run / 'candidates.json')
+        full = c.read(c.STATE / 'runs' / run / 'review.json')
+        compact = {'limitations': full['limitations'], 'decisions': [
+            {k: v for k, v in d.items() if k != 'path'} for d in full['decisions']]}
+        payload = {'manifest': manifest, 'manifest_sha256': c.digest(manifest)}
+        result = c.expand_response('review', compact, self.root, run, payload)
+        c.validate_review(result, manifest)
+        self.assertEqual(result['decisions'][0]['path'], manifest['candidates'][0]['path'])
+        compact['decisions'][0]['id'] = 'C-other'
+        with self.assertRaisesRegex(guard.GuardError, 'unknown_review'):
+            c.expand_response('review', compact, self.root, run, payload)
+
+    def test_prompt_preserves_skill_semantics_without_machine_metadata(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        p = dict(self.p, gitlab_readonly_installation={'sentinel': 'NEVER_SEND_PIN'})
+        payload = {'completion': body, 'inventory': inventory}
+        prompt = c.build_prompt('discover', self.root, payload, p)
+        self.assertTrue(prompt.startswith(c.SKILL.read_text()))
+        self.assertNotIn('NEVER_SEND_PIN', prompt)
+        self.assertNotIn('mtime_ns', prompt)
+        self.assertNotIn('receipt_nonce', prompt)
+        projected = c.prompt_payload(payload)['completion']
+        for field in ('required_checks', 'completion_requirements', 'requirements_source_paths',
+                      'final_report', 'evidence_paths', 'retain_paths', 'artifact_paths', 'unresolved_blockers'):
+            self.assertEqual(projected[field], body[field])
+        self.assertIn('source.py', projected['protected_files'])
+        self.assertIn('final.txt', projected['protected_files'])
+        self.assertLess(len(prompt), 18000)
+
+    def test_review_retry_reuses_only_unchanged_discovery(self):
+        calls = []
+        def fail_review(mode, *args):
+            calls.append(mode)
+            if mode == 'review':
+                raise RuntimeError('temporary reviewer failure')
+            return self.fake_ai(mode, *args)
+        c.hook(self.event)
+        c.process_job(self.request_path, fail_review)
+        self.assertEqual(c.read(self.request_path)['state'], 'RETRY')
+        def retry(mode, *args):
+            calls.append(mode)
+            return self.fake_ai(mode, *args)
+        c.process_job(self.request_path, retry)
+        self.assertEqual(calls, ['discover', 'review', 'review'])
+        request = c.read(self.request_path)
+        self.assertEqual(request['state'], 'READY_FOR_APPROVAL')
+        self.assertTrue((c.STATE / 'runs' / request['run_id'] / 'discovery-reuse.json').exists())
+        self.assertTrue((self.root / 'artifacts/old.log').exists())
+
+    def test_changed_artifact_prevents_discovery_reuse(self):
+        def fail_review(mode, *args):
+            if mode == 'review':
+                raise RuntimeError('fixture review failure')
+            return self.fake_ai(mode, *args)
+        c.hook(self.event)
+        c.process_job(self.request_path, fail_review)
+        (self.root / 'artifacts/old.log').write_text('different content')
+        calls = []
+        def retry(mode, *args):
+            calls.append(mode)
+            return self.fake_ai(mode, *args)
+        c.process_job(self.request_path, retry)
+        self.assertEqual(calls, ['discover', 'review'])
+        self.assertEqual(c.read(self.request_path)['state'], 'READY_FOR_APPROVAL')
+
+    def test_tampered_checkpoint_manifest_prevents_reuse(self):
+        def fail_review(mode, *args):
+            if mode == 'review':
+                raise RuntimeError('fixture review failure')
+            return self.fake_ai(mode, *args)
+        c.hook(self.event)
+        c.process_job(self.request_path, fail_review)
+        request = c.read(self.request_path)
+        path = c.STATE / 'runs' / request['run_id'] / 'candidates.json'
+        value = c.read(path)
+        value['candidates'] = []
+        c.write(path, value)
+        calls = []
+        def retry(mode, *args):
+            calls.append(mode)
+            return self.fake_ai(mode, *args)
+        c.process_job(self.request_path, retry)
+        self.assertEqual(calls, ['discover', 'review'])
+
+    def test_revoked_acceptance_makes_no_retry_model_calls(self):
+        def fail_review(mode, *args):
+            if mode == 'review':
+                raise RuntimeError('fixture review failure')
+            return self.fake_ai(mode, *args)
+        c.hook(self.event)
+        c.process_job(self.request_path, fail_review)
+        self.entry.update(acceptance_version='revocation', task_state='AWAITING_ACCEPTANCE')
+        c.write(self.input, self.entry)
+        c.record(self.root, self.input)
+        calls = []
+        c.process_job(self.request_path, lambda *args: calls.append(args))
+        self.assertEqual(calls, [])
+        self.assertEqual(c.read(self.request_path)['state'], 'FAILED')
+
+    def test_usage_records_reported_values_and_unknowns(self):
+        usage = {'input_tokens': 120, 'cached_input_tokens': 40, 'output_tokens': 20,
+                 'cache_write_input_tokens': 0, 'reasoning_output_tokens': 5}
+        events = '\n'.join(json.dumps({'type': 'turn.completed', 'usage': usage}) for _ in range(2))
+        result = c.usage_record(events, 'example', 'review')
+        self.assertEqual(result['reported_token_totals']['input_tokens'], 240)
+        self.assertEqual(result['reported_token_totals']['reasoning_output_tokens'], 10)
+        self.assertIsNone(c.usage_record('', 'example', 'review')['reported_token_totals'])
+        self.assertIsNone(c.usage_record('{"type":"turn.completed","usage":{}}', 'example', 'review')['reported_token_totals'])
+        self.assertIsNone(c.usage_record('null\ninvalid', 'example', 'review')['reported_token_totals'])
+
+    def test_checkpoint_binding_invalidated_by_runner_or_skill_change(self):
+        body = c.read(c.STATE / 'completions' / (self.key + '.json'))['body']
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        before = c.discovery_binding(body, inventory)
+        skill = self.root / 'local-skill.md'
+        skill.write_text('different skill')
+        with mock.patch.object(c, 'SKILL', skill):
+            self.assertNotEqual(c.discovery_binding(body, inventory), before)
+
+
+
+    def test_interrupted_review_restarts_with_new_review_only(self):
+        calls = []
+        def first(mode, *args):
+            calls.append(mode)
+            if mode == 'review':
+                raise KeyboardInterrupt()
+            return self.fake_ai(mode, *args)
+        c.hook(self.event)
+        with self.assertRaises(KeyboardInterrupt):
+            c.process_job(self.request_path, first)
+        def second(mode, *args):
+            calls.append(mode)
+            return self.fake_ai(mode, *args)
+        c.process_job(self.request_path, second)
+        self.assertEqual(calls, ['discover', 'review', 'review'])
+        self.assertEqual(c.read(self.request_path)['state'], 'READY_FOR_APPROVAL')
+
+    def test_model_cannot_supply_its_own_snapshot(self):
+        inventory = {'artifacts/old.log': {'snapshot': guard.fingerprint(self.root / 'artifacts/old.log'), 'error': None}}
+        value = {'coverage': [], 'limitations': [], 'candidates': [self.candidate(inventory)]}
+        with self.assertRaisesRegex(guard.GuardError, 'extra_structured_keys'):
+            c.expand_response('discover', value, self.root, 'test', {'inventory': inventory})
+
+    def test_interrupted_ai_saves_available_reported_usage(self):
+        import subprocess
+        reported = {'input_tokens': 8, 'cached_input_tokens': 0, 'output_tokens': 2}
+        stdout = json.dumps({'type': 'turn.completed', 'usage': reported}) + '\n'
+        process = mock.Mock(pid=123, returncode=-15)
+        process.communicate.side_effect = [subprocess.TimeoutExpired('fake', 1), (stdout, 'interrupted')]
+        out = self.root / 'interrupted-model-fixture'
+        with mock.patch.dict(c.os.environ, {'QA_CLEANUP_AUTH_HOME': str(self.root / 'mock-auth')}), \
+                mock.patch.object(c, 'runtime_check', return_value='/fake/codex'), \
+                mock.patch.object(c.subprocess, 'Popen', return_value=process), mock.patch.object(c.os, 'killpg'), mock.patch.object(c.codex_launch, 'model_child', return_value=(['/fake/codex'], {})):
+            with self.assertRaises(subprocess.TimeoutExpired):
+                c.ai_pass('review', self.root, self.entry, 'test', out,
+                          {'completion': {}, 'manifest': {'candidates': []}, 'manifest_sha256': 'fixture'})
+        value = c.read(out / 'review-usage.json')
+        self.assertTrue(value['interrupted'])
+        self.assertEqual(value['reported_token_totals']['input_tokens'], 8)
+        outcome = c.read(out / 'review-process.json')
+        self.assertEqual(outcome['returncode'], -15)
+        self.assertEqual(outcome['signal'], 15)
+        self.assertTrue(outcome['timeout'])
+
+
+
+    def test_skill_changed_during_discovery_cannot_create_reusable_checkpoint(self):
+        skill = self.root / 'changing-skill.md'
+        skill.write_text('fixture skill before')
+        def changed(mode, *args):
+            result = self.fake_ai(mode, *args)
+            skill.write_text('fixture skill changed during discovery')
+            return result
+        c.hook(self.event)
+        with mock.patch.object(c, 'SKILL', skill):
+            c.process_job(self.request_path, changed)
+        request = c.read(self.request_path)
+        self.assertEqual(request['state'], 'RETRY')
+        self.assertEqual(request['reason'], 'discovery_inputs_changed_during_pass')
+        self.assertNotIn('discovery_checkpoint', request)
+
+
+if __name__ == '__main__':
+    unittest.main()

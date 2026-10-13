@@ -1,0 +1,293 @@
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/before/App.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx
+@@ -17,7 +17,7 @@
+ import { useAppearance, type AppearanceMode } from "./appearance";
+ import { useRetainedOverlay } from "./useRetainedOverlay";
+ import MarkdownView, { exceedsRenderBudget, headingSlug } from "../reader/MarkdownView";
+-import { ownsTextInput, type DocumentSelectionAdapter } from "../reader/document-selection";
++import { ownsTextInput, watchSelectionOwner, type DocumentSelectionAdapter } from "../reader/document-selection";
+ import ImageView, { type ImageViewState } from "../reader/ImageView";
+ import { boundZoom, usePinchZoom, zoomRect, normalizeZoomRect } from "../reader/usePinchZoom";
+ import { emptyHistory, recordVisit, updateVisit, type VisitHistory } from "../workspace/visitHistory";
+@@ -357,6 +357,10 @@
+   const [editorMenu, setEditorMenu] = useState<EditorCommandState>({ owner: false, undo: false, redo: false, selection: false });
+   const editorFindRef = useRef<DraftFindAdapter | null>(null);
+   const documentSelectionRef = useRef<DocumentSelectionAdapter | null>(null);
++  const selectionAcquisition = useRef<{ token: symbol; sequence: number; generation: number } | null>(null);
++  const pendingDocumentSelection = useRef<{
++    sequence: number; generation: number; loadToken?: symbol; fileId?: string; content?: string; dispatched?: boolean
++  } | null>(null);
+   const selectionReady = useCallback((adapter: DocumentSelectionAdapter | null) => { documentSelectionRef.current = adapter; }, []);
+   const findFocusBefore = useRef<HTMLElement | null>(null);
+   const pendingSearchReveal = useRef(false);
+@@ -1923,13 +1927,21 @@
+     const current = () => generation === generationRef.current && documentLoads.current.get(requestKey) === token;
+     const activate = (id: string) => {
+       if (sequence !== openSequence.current) return;
++      const selection = pendingDocumentSelection.current;
++      if (selection?.loadToken === token && selection.sequence === sequence && selection.generation === generation) {
++        selection.fileId = id;
++        selection.loadToken = undefined;
++      }
+       activeIdRef.current = id;
+       setActiveId(id); setCompactSidebarOpen(false);
+     };
+     // Acquisition reserves identity; rendering success is acknowledged separately by the native surface.
+     const pendingId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
+     const pendingName = fallback?.name ?? request.segments?.at(-1) ?? "";
+-    if (!isNativeDocument(pendingName)) setDocumentPending({ token, name: pendingName, sequence, generation });
++    if (!isNativeDocument(pendingName)) {
++      selectionAcquisition.current = { token, sequence, generation };
++      setDocumentPending({ token, name: pendingName, sequence, generation });
++    }
+     if (isNativeDocument(pendingName)) {
+       // Closing a pending tab invalidates the same token as closing a settled
+       // tab, including root-relative requests whose request key differs.
+@@ -2081,6 +2093,7 @@
+         : [...old, tab]);
+       activate(id);
+     } finally {
++      if (selectionAcquisition.current?.token === token) selectionAcquisition.current = null;
+       setDocumentPending(old => old?.token === token ? null : old);
+       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+       if (isNativeDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+@@ -3108,15 +3121,56 @@
+ 
+   // Capture before RichSection's section-only select-all. The workspace owns
+   // the full document; native text fields and dialogs keep their own shortcut.
++  useEffect(() => watchSelectionOwner(() => findRoot, () => { pendingDocumentSelection.current = null; }), [findRoot]);
++  useEffect(() => {
++    const request = pendingDocumentSelection.current;
++    if (!request) return;
++    if (request.sequence !== openSequence.current || request.generation !== generationRef.current
++      || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, findRoot)
++      || (!request.loadToken && (!active || request.fileId !== active.id || active.errorCode || active.largeInspection
++        || (active.kind && active.kind !== "markdown") || (request.content !== undefined && request.content !== active.content)))) {
++      pendingDocumentSelection.current = null; return;
++    }
++    if (request.loadToken || request.dispatched || active?.documentLoading || active?.content === undefined
++      || documentSelectionRef.current?.fileId !== request.fileId) return;
++    request.content = active.content;
++    // Adapter selection flushes incremental paint synchronously; invoke outside
++    // React's commit, and retain the lease through parse/layout completion.
++    const frame = requestAnimationFrame(() => {
++      const isCurrent = () => pendingDocumentSelection.current === request
++        && request.sequence === openSequence.current && request.generation === generationRef.current
++        && request.fileId === activeIdRef.current
++        && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content;
++      const adapter = documentSelectionRef.current;
++      if (!isCurrent() || !adapter || adapter.fileId !== request.fileId) return;
++      request.dispatched = true;
++      adapter.selectAll({ isCurrent, onComplete: () => {
++        if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null;
++      } });
++    });
++    return () => cancelAnimationFrame(frame);
++  });
+   useEffect(() => {
+     const selectAll = (event: KeyboardEvent) => {
++      const acquisition = selectionAcquisition.current;
++      const loading = acquisition?.sequence === openSequence.current && acquisition.generation === generationRef.current ? acquisition : null;
+       if (!commandPressed(event) || event.key.toLowerCase() !== "a" || event.shiftKey
+         || event.defaultPrevented || event.isComposing || document.querySelector('[aria-modal="true"]')
+-        || !active || (active.kind && active.kind !== "markdown") || active.errorCode
+-        || active.documentLoading || active.largeInspection || documentSelectionRef.current?.fileId !== active.id
++        || (!loading && (!active || (active.kind && active.kind !== "markdown") || active.documentLoading || active.errorCode || active.largeInspection))
+         || ownsTextInput(event.target, findRoot) || ownsTextInput(document.activeElement, findRoot)) return;
+       event.preventDefault(); event.stopPropagation();
+-      documentSelectionRef.current.selectAll();
++      const request: NonNullable<typeof pendingDocumentSelection.current> = { sequence: openSequence.current, generation: generationRef.current,
++        loadToken: loading?.token, fileId: loading ? undefined : active!.id,
++        content: loading ? undefined : active!.content };
++      pendingDocumentSelection.current = request;
++      if (!loading && !active!.documentLoading && documentSelectionRef.current?.fileId === active!.id) {
++        request.dispatched = true;
++        documentSelectionRef.current.selectAll({ isCurrent: () => pendingDocumentSelection.current === request
++          && request.sequence === openSequence.current && request.generation === generationRef.current
++          && request.fileId === activeIdRef.current
++          && tabsRef.current.find(tab => tab.id === request.fileId)?.content === request.content,
++        onComplete: () => { if (pendingDocumentSelection.current === request) pendingDocumentSelection.current = null; } });
++      }
+     };
+     window.addEventListener("keydown", selectAll, true);
+     return () => window.removeEventListener("keydown", selectAll, true);
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/before/MarkdownView.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/src/reader/MarkdownView.tsx
+@@ -1,7 +1,7 @@
+ import { Component, createElement, cloneElement, isValidElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ReactElement, type Ref } from "react";
+ import Markdown, { type Components } from "react-markdown";
+ import { createPortal, flushSync } from "react-dom";
+-import { selectDocumentContents, ownsTextInput, type DocumentSelectionAdapter } from "./document-selection";
++import { selectDocumentContents, ownsTextInput, watchSelectionOwner, type DocumentSelectionAdapter, type DocumentSelectionRequest } from "./document-selection";
+ import remarkGfm from "remark-gfm";
+ import type { Root } from "mdast";
+ import type { Plugin } from "unified";
+@@ -152,7 +152,11 @@
+     if (typeof findRootRef === "function") findRootRef(node);
+     else if (findRootRef) findRootRef.current = node;
+   }, [findRootRef]);
+-  const [selectionRequest, setSelectionRequest] = useState<{ fileId: string; content: string } | null>(null);
++  const [selectionRequest, setSelectionRequest] = useState<({ fileId: string; content: string } & DocumentSelectionRequest) | null>(null);
++  useEffect(() => {
++    if (!selectionRequest) return;
++    return watchSelectionOwner(() => selectionRoot.current, () => setSelectionRequest(null));
++  }, [selectionRequest]);
+   const [editMenu, setEditMenu] = useState<{
+     section?: SectionDescriptor; reason?: string; x: number; y: number; anchor: HTMLElement
+   } | null>(null);
+@@ -256,11 +260,11 @@
+     if (!layoutPending && renderReady && painted >= blocks.length) renderedCallback.current?.(fileId, content);
+   }, [fileId, content, renderReady, painted, blocks.length, layoutPending, sections]);
+   useEffect(() => {
+-    onSelectionReady?.({ fileId, selectAll: () => {
++    onSelectionReady?.({ fileId, selectAll: (request = {}) => {
+       // Include blocks that incremental painting has not mounted yet. A request
+       // during parsing waits for the current document, never the retained tree.
+       flushSync(() => {
+-        setSelectionRequest({ fileId, content });
++        setSelectionRequest({ fileId, content, ...request });
+         if (selectionReady) setPainted(blocks.length);
+       });
+     } });
+@@ -268,7 +272,7 @@
+   }, [onSelectionReady, fileId, content, selectionReady, blocks.length]);
+   useLayoutEffect(() => {
+     if (!selectionRequest) return;
+-    if (selectionRequest.fileId !== fileId || selectionRequest.content !== content
++    if (selectionRequest.fileId !== fileId || selectionRequest.content !== content || selectionRequest.isCurrent?.() === false
+       || document.querySelector('[aria-modal="true"]') || ownsTextInput(document.activeElement, selectionRoot.current)) {
+       setSelectionRequest(null); return;
+     }
+@@ -280,6 +284,7 @@
+         if (details) details.open = true;
+       }
+       selectDocumentContents(selectionRoot.current);
++      selectionRequest.onComplete?.();
+     }
+     setSelectionRequest(null);
+   }, [selectionRequest, fileId, content, selectionReady, sourceFallback, painted, blocks.length, layoutPending]);
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/before/document-selection.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/reader/document-selection.ts
+@@ -2,7 +2,28 @@
+ // history only, so there is no whole-document EditorView to dispatch to.
+ const selectionUi = ".section-edit-button, .section-editor-header, .section-editor-status, .section-editor-actions, .rich-formatting, .rich-table-controls, .rich-properties, .rich-reason, .rich-history, .rich-lock, .rich-property-trigger, .code-block-toolbar, [role='status']";
+ 
+-export interface DocumentSelectionAdapter { fileId: string; selectAll: () => void }
++export interface DocumentSelectionRequest { isCurrent?: () => boolean; onComplete?: () => void }
++export interface DocumentSelectionAdapter { fileId: string; selectAll: (request?: DocumentSelectionRequest) => void }
++
++// Cancel even if an incompatible owner subsequently disappears before parsing
++// finishes. Checking focus only at completion would steal its earlier command.
++export function watchSelectionOwner(root: () => HTMLElement | null, cancel: () => void) {
++  const focus = (event: FocusEvent) => { if (ownsTextInput(event.target, root())) cancel(); };
++  const modal = '[aria-modal="true"]';
++  const observer = new MutationObserver(records => {
++    if (document.querySelector(modal) || records.some(record =>
++      record.type === "attributes" && (record.oldValue === "true" || (record.target instanceof Element && record.target.matches(modal)))
++      || Array.from(record.addedNodes).some(node => node instanceof Element && (node.matches(modal) || node.querySelector(modal))))) cancel();
++  });
++  document.addEventListener("focusin", focus, true);
++  document.addEventListener("compositionstart", cancel, true);
++  observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-modal"], attributeOldValue: true });
++  return () => {
++    document.removeEventListener("focusin", focus, true);
++    document.removeEventListener("compositionstart", cancel, true);
++    observer.disconnect();
++  };
++}
+ 
+ export function selectDocumentContents(root: HTMLElement) {
+   const selection = window.getSelection();
+--- /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/before/document-select-all.test.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/tests/ui/document-select-all.test.tsx
+@@ -56,6 +56,63 @@
+ }
+ 
+ describe("document select all", () => {
++  function holdSecondRead() {
++    let resolve!: (value: object) => void;
++    const normalRead = mocks.readDocument.getMockImplementation()!;
++    mocks.readDocument.mockImplementation((request: { segments: string[] }) => request.segments[0] === "two.md"
++      ? new Promise(value => { resolve = value; }) : normalRead(request));
++    return async () => { await act(async () => resolve({ fileId: "two.md", identityKey: "two.md", name: "two.md",
++      displayPath: "/tmp/selection-fixture/two.md", diskVersion: "v1", content: "# Second document\n\nNew active ending." })); };
++  }
++
++  it("remembers one Cmd+A across first read and close/reopen without selecting the retained document", async () => {
++    await openOne();
++    const release = holdSecondRead();
++    for (let attempt = 0; attempt < 2; attempt++) {
++      fireEvent.click(screen.getByTitle("two.md"));
++      expect(shortcut().defaultPrevented).toBe(true);
++      expect(window.getSelection()!.toString()).toBe("");
++      await release();
++      await waitFor(() => expect(window.getSelection()!.toString()).toBe("Second documentNew active ending."));
++      expectDocumentSelection();
++      window.getSelection()!.removeAllRanges();
++      fireEvent.keyDown(window, { key: "w", metaKey: true });
++      await screen.findByRole("heading", { name: "First document" });
++    }
++  });
++
++  it("remembers loading intent from an empty workspace before any reader adapter exists", async () => {
++    const release = holdSecondRead();
++    render(<App />); fireEvent.click(projectAction("Open folder"));
++    fireEvent.click(await screen.findByTitle("two.md"));
++    expect(shortcut().defaultPrevented).toBe(true);
++    await release();
++    await waitFor(() => expect(window.getSelection()!.toString()).toBe("Second documentNew active ending."));
++  });
++
++  it("cancels a queued read on rapid A to B to A, even when B later completes", async () => {
++    await openOne(); const release = holdSecondRead();
++    fireEvent.click(screen.getByTitle("two.md")); shortcut();
++    fireEvent.click(screen.getByRole("tab", { name: /one.md/ }));
++    await release();
++    await screen.findByRole("heading", { name: "First document" });
++    expect(window.getSelection()!.toString()).toBe("");
++    shortcut(); expect(window.getSelection()!.toString()).toBe("First documentFirst active ending.");
++  });
++
++  it.each(["field", "modal", "composition"])("cancels remembered loading intent after transient %s ownership", async owner => {
++    await openOne(); const release = holdSecondRead();
++    fireEvent.click(screen.getByTitle("two.md")); shortcut();
++    const field = document.createElement("input"); document.body.append(field);
++    if (owner === "field") { field.focus(); expect(shortcut(field).defaultPrevented).toBe(false); }
++    if (owner === "modal") { field.setAttribute("aria-modal", "true"); field.remove(); await act(async () => {}); }
++    if (owner === "composition") fireEvent.compositionStart(field);
++    field.remove();
++    await release(); await screen.findByRole("heading", { name: "Second document" });
++    expect(window.getSelection()!.toString()).toBe("");
++    shortcut(); expect(window.getSelection()!.toString()).toBe("Second documentNew active ending.");
++  });
++
+   it("selects only the active document from reading, project and tab focus", async () => {
+     await openOne();
+     const root = document.querySelector<HTMLElement>(".document-selection-root")!;
+@@ -188,4 +245,26 @@
+     expect(window.getSelection()!.toString()).toBe("");
+     act(() => adapter!.selectAll()); expect(window.getSelection()!.toString()).toBe("Newly active");
+   });
++
++  it("cancels deferred layout selection on content replacement, revoked navigation, and transient field focus", () => {
++    let adapter: DocumentSelectionAdapter | null = null;
++    const ready = (value: DocumentSelectionAdapter | null) => { adapter = value; };
++    const props = { fileId: "same", locale: "en" as const, onNavigate: () => {}, onSelectionReady: ready };
++    const view = render(<MarkdownView {...props} content="# Original" layoutPending />);
++    act(() => adapter!.selectAll());
++    view.rerender(<MarkdownView {...props} content="# Replacement" />);
++    expect(window.getSelection()!.toString()).toBe("");
++    view.rerender(<MarkdownView {...props} content="# Replacement" layoutPending />);
++    let current = true;
++    act(() => adapter!.selectAll({ isCurrent: () => current })); current = false;
++    view.rerender(<MarkdownView {...props} content="# Replacement" />);
++    expect(window.getSelection()!.toString()).toBe("");
++    view.rerender(<MarkdownView {...props} content="# Replacement" layoutPending />);
++    act(() => adapter!.selectAll());
++    const field = document.createElement("input"); document.body.append(field);
++    act(() => field.focus()); field.remove();
++    view.rerender(<MarkdownView {...props} content="# Replacement" />);
++    expect(window.getSelection()!.toString()).toBe("");
++    act(() => adapter!.selectAll()); expect(window.getSelection()!.toString()).toBe("Replacement");
++  });
+ });

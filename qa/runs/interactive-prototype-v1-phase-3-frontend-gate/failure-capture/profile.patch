@@ -1,0 +1,75 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/qa-recorder.ts
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-profile/qa-recorder.ts
+@@ -1,3 +1,7 @@
++import {execFileSync} from "node:child_process";
++import {loadavg,freemem} from "node:os";
++import {Session} from "node:inspector";
++import {monitorEventLoopDelay} from "node:perf_hooks";
+ // Disposable QA only. Imported exclusively by the copied workspace-handoff suite.
+ import { mkdirSync, writeFileSync } from 'node:fs';
+ import { resolve } from 'node:path';
+@@ -8,7 +12,11 @@
+   'SELECTION_ADAPTER_PUBLISHED','SELECTION_ADAPTER_CLEARED','MARKDOWN_PAINTED','MARKDOWN_RENDERED',
+   'EDITOR_MOUNT_REQUESTED','EDITOR_MOUNTED','EDITOR_UNMOUNTED','EDITABLE_HEADING_RENDERED',
+   'HEADING_LOOKUP_BEGIN','EDITABLE_HEADING_AVAILABLE','HEADING_LOOKUP_FAILED','TEST_FAILED',
+-  'DOCUMENT_RESULT_STALE','SELECTION_REQUEST_CANCELLED','SELECTION_REQUEST_WAITING','SELECTION_REQUEST_COMPLETED'];
++  'DOCUMENT_RESULT_STALE','SELECTION_REQUEST_CANCELLED','SELECTION_REQUEST_WAITING','SELECTION_REQUEST_COMPLETED','HEADING_LOOKUP_SYNC_RETURN','FILE_CLICK_BEGIN','FILE_CLICK_END'];
++const profiler=new Session();
++const loop=monitorEventLoopDelay({resolution:20});
++let profileStarted=false,profileStopped=false;
++let testCpu=process.cpuUsage();
+ const capacity=512;
+ const ring=Array.from({length:capacity},()=>({t:0,event:0,id:null as any,value:null as any,generation:null as any}));
+ let count=0, captured=false, mocks:any, test='', headingsSeen=new Set<unknown>();
+@@ -20,6 +28,12 @@
+   if(headingsSeen.has(section))return;headingsSeen.add(section);event(19,id,section);
+ }
+ export function begin(nativeMocks:any){
++  if(!profileStarted){
++    profiler.connect();profiler.post('Profiler.enable');
++    profiler.post('Profiler.setSamplingInterval',{interval:2000});profiler.post('Profiler.start');
++    profileStarted=true;loop.enable();
++  }
++  loop.reset();testCpu=process.cpuUsage();
+   count=0;captured=false;headingsSeen.clear();mocks=nativeMocks;
+   for(const key of Object.keys(providers))delete providers[key];
+   test=expect.getState().currentTestName??'unknown';
+@@ -32,6 +46,7 @@
+ export function failure(error:unknown,code=22){
+   if(captured)return; event(code); captured=true;
+   const failureTime=performance.now();
++  const resource={loadavg:loadavg(),freeMemory:freemem(),clock:{hrtimeUs:Number(process.hrtime.bigint()/1000n),performanceMs:performance.now()},testCpu:process.cpuUsage(testCpu),loopMaxMs:loop.max/1e6,loopMeanMs:loop.mean/1e6,loopP99Ms:loop.percentile(99)/1e6,cpu:process.cpuUsage(),memory:process.memoryUsage()};
+   const events=Array.from({length:Math.min(count,capacity)},(_,i)=>{
+     const e=ring[(Math.max(0,count-capacity)+i)%capacity];
+     return {...e,event:names[e.event]};
+@@ -53,10 +68,16 @@
+     documentView:reader?.outerHTML??null,expectedEditorParent:markdown?.outerHTML??null};
+   const dir=resolve(__dirname,'../captures',Date.now()+'-'+process.pid);
+   mkdirSync(dir,{recursive:true});
++  writeFileSync(resolve(dir,'resource-at-failure.json'),JSON.stringify(resource,null,2));
++  if(!profileStopped){profileStopped=true;profiler.post('Profiler.stop',(error,result)=>{
++    writeFileSync(resolve(dir,'failure.cpuprofile'),JSON.stringify(error?{error:String(error)}:result.profile));
++    profiler.disconnect();loop.disable();
++  });}
+   writeFileSync(resolve(dir,'failing-ring-buffer.json'),JSON.stringify({test,failureTime,dropped:Math.max(0,count-capacity),events},null,2));
+   writeFileSync(resolve(dir,'failing-state.json'),JSON.stringify({test,failureTime,error:String(error),states,native:safe(native),headings,
+     domTabs:[...document.querySelectorAll('[role="tab"]')].map(e=>({text:e.textContent,selected:e.getAttribute('aria-selected')})),
+     worker:typeof Worker,fakeTimers:Boolean((setTimeout as any).clock)},null,2));
+   writeFileSync(resolve(dir,'focused-dom.txt'),JSON.stringify(dom,null,2));
++  try { writeFileSync(resolve(dir,'processes-after-failure.txt'), execFileSync('/bin/ps',['-axo','pid,ppid,pcpu,pmem,etime,comm'],{encoding:'utf8'}).split('\n').filter(line=>/PID|node|cargo|rustc|clang|Python/.test(line)).join('\n')); } catch {}
+ }
+ export function end(){delete (globalThis as any).__fc;}
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder/tests/ui/workspace-handoff.test.tsx
++++ /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-profile/tests/ui/workspace-handoff.test.tsx
+@@ -45,9 +45,9 @@
+ async function open() {
+   mark(1); render(<App />); mark(2);
+   fireEvent.click(projectAction("Open folder"));
+-  fireEvent.click(await screen.findByTitle("a.md"));
++  const file = await screen.findByTitle("a.md"); mark(29); fireEvent.click(file); mark(30);
+   mark(20);
+-  try { await screen.findByRole("button", { name: "Edit section “One”" }); mark(21); }
++  try { const lookup = screen.findByRole("button", { name: "Edit section “One”" }); mark(28); await lookup; mark(21); }
+   catch (error) { failure(error); throw error; }
+ }
+ async function edit() {

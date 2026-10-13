@@ -1,0 +1,201 @@
+import { projectAction, projectsToggle } from "./project-navigation-helpers";
+// @vitest-environment jsdom
+// Real App behavior; Tauri/file writes are mocked. Fixtures never use user files.
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import App from "../../src/app/App";
+import { listen } from "@tauri-apps/api/event";
+const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(), openImage: vi.fn(),
+  listEditSections: vi.fn(), loadSectionRecovery: vi.fn(), resolveLink: vi.fn(), inspectLargeFile: vi.fn(),
+  setNativeMenuState: vi.fn(), menu: null as null | ((event: { payload: string }) => void) }));
+vi.mock("../../src/app/api", async (original) => ({ ...await original<typeof import("../../src/app/api")>(), api: mocks }));
+vi.mock("@tauri-apps/api/event", () => ({ listen: vi.fn(async () => () => {}) }));
+const documentFor = (name: string) => ({ fileId: name, identityKey: name, name, displayPath: `/tmp/fixture/${name}`,
+  content: `# ${name}\n\nText.\n`, diskVersion: "v1" });
+const pixels = { fileId: "figure.png", identityKey: "pixels", name: "figure.png", displayPath: "/tmp/fixture/figure.png",
+  width: 400, height: 200, format: "png", mime: "image/png", bytes: [137,80,78,71], still: false, diskVersion: "v1" };
+function deferred<T>() { let resolve!: (value: T) => void, reject!: (reason: unknown) => void;
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; }
+beforeEach(() => {
+  vi.resetAllMocks(); localStorage.clear();
+  mocks.menu = null;
+  mocks.setNativeMenuState.mockResolvedValue(undefined);
+  vi.mocked(listen).mockImplementation(async (event, handler) => {
+    if (event === "native:menu") mocks.menu = handler as (event: { payload: string }) => void;
+    return () => {};
+  });
+  vi.stubGlobal("URL", { ...URL, createObjectURL: vi.fn(() => "blob:pixels"), revokeObjectURL: vi.fn() });
+  mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+  mocks.listEntries.mockResolvedValue({ entries: ["a.md","b.md","c.md","figure.png"].map(name => ({ name, kind: name.endsWith("png") ? "image" : "markdown" })), nextOffset: null });
+  mocks.readDocument.mockImplementation(async (request) => documentFor(request.fileId ?? request.segments?.at(-1)));
+  mocks.openImage.mockResolvedValue(pixels); mocks.loadSectionRecovery.mockResolvedValue(null);
+  mocks.resolveLink.mockResolvedValue({ kind: "blocked" });
+  mocks.listEditSections.mockResolvedValue({ diskVersion: "v1", sections: [] });
+});
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+async function start() { render(<App />); fireEvent.click(projectAction("Open folder")); await screen.findByTitle("a.md"); }
+async function open(name: string) { fireEvent.click(screen.getByTitle(name)); await screen.findByRole("tab", { name }); }
+const selected = () => document.querySelector('[role="tab"][aria-selected="true"]')?.textContent;
+it("never displays a false unavailable alert while reopening released image pixels", async () => {
+  await start(); await open("figure.png"); await screen.findByRole("img", { name: "figure.png" });
+  await open("a.md");
+  const pending = deferred<typeof pixels>(); mocks.openImage.mockReturnValueOnce(pending.promise);
+  fireEvent.click(screen.getByRole("tab", { name: "figure.png" }));
+  await waitFor(() => expect(mocks.openImage).toHaveBeenCalledTimes(2));
+  expect(screen.queryByRole("alert")).toBeNull();
+  expect(screen.getByText("Loading local image…")).toBeTruthy();
+  await act(async () => pending.resolve(pixels)); await screen.findByRole("img", { name: "figure.png" });
+  expect(screen.queryByRole("alert")).toBeNull();
+});
+it("shows a real image reactivation failure and keeps a later selected file stable", async () => {
+  await start(); await open("figure.png"); await screen.findByRole("img", { name: "figure.png" }); await open("a.md");
+  mocks.openImage.mockRejectedValueOnce({ code: "image_corrupt", message: "Fixture image is corrupt" }); fireEvent.click(screen.getByRole("tab", { name: "figure.png" }));
+  expect(await screen.findByRole("alert")).toBeTruthy();
+  fireEvent.click(screen.getByRole("tab", { name: "a.md" })); expect(selected()).toContain("a.md"); expect(screen.queryByRole("alert")).toBeNull();
+});
+it("rejects an older failure from repeated opens of the same document", async () => {
+  await start(); const older = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(older.promise);
+  fireEvent.click(screen.getByTitle("a.md")); await open("a.md");
+  await act(async () => older.reject({ code: "missing", message: "Fixture no longer exists" }));
+  expect(selected()).toContain("a.md"); expect(screen.queryByRole("alert")).toBeNull(); expect(screen.getByRole("heading", { name: "a.md" })).toBeTruthy();
+});
+it("a slower earlier open never steals selection from the last requested file", async () => {
+  await start(); const older = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(older.promise);
+  fireEvent.click(screen.getByTitle("a.md")); await open("b.md");
+  await act(async () => older.resolve(documentFor("a.md")));
+  expect(selected()).toContain("b.md"); expect(screen.getAllByRole("tab")).toHaveLength(2);
+});
+it("a stale large-file inspection failure cannot replace a later successful reopen", async () => {
+  await start();
+  mocks.readDocument.mockRejectedValueOnce({ code: "oversize", message: "Disposable large-file inspection" });
+  const inspection = deferred<never>(); mocks.inspectLargeFile.mockReturnValueOnce(inspection.promise);
+  fireEvent.click(screen.getByTitle("a.md")); await waitFor(() => expect(mocks.inspectLargeFile).toHaveBeenCalledOnce());
+  await open("a.md"); await act(async () => inspection.reject({ code: "missing", message: "Outdated inspection" }));
+  expect(selected()).toContain("a.md"); expect(screen.queryByRole("alert")).toBeNull();
+  expect(screen.getByRole("heading", { name: "a.md" })).toBeTruthy();
+});
+it("a stale link resolution cannot navigate away from a newer selected file", async () => {
+  await start(); mocks.readDocument.mockResolvedValueOnce({ ...documentFor("a.md"), content: "# a.md\n\n[Linked guide](guide.md)\n" });
+  await open("a.md"); const pending = deferred<{ kind: string; fileId: string }>(); mocks.resolveLink.mockReturnValueOnce(pending.promise);
+  fireEvent.click(await screen.findByRole("button", { name: "Linked guide" })); await open("b.md");
+  await act(async () => pending.resolve({ kind: "document", fileId: "c.md" }));
+  expect(selected()).toContain("b.md"); expect(screen.queryByRole("tab", { name: "c.md" })).toBeNull();
+});
+it("a stale linked document response cannot apply its fragment to a newer file", async () => {
+  await start(); mocks.readDocument.mockResolvedValueOnce({ ...documentFor("a.md"), content: "# a.md\n\n[Linked passage](guide.md#current)\n" });
+  await open("a.md");
+  mocks.resolveLink.mockResolvedValueOnce({ kind: "document", fileId: "c.md", anchor: "current" });
+  const pending = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(pending.promise);
+  fireEvent.click(await screen.findByRole("button", { name: "Linked passage" }));
+  await waitFor(() => expect(mocks.readDocument).toHaveBeenCalledTimes(2));
+  mocks.readDocument.mockResolvedValueOnce({ ...documentFor("b.md"), content: "# current\n" });
+  await open("b.md"); const heading = await screen.findByRole("heading", { name: "current" });
+  const scroll = vi.fn(); heading.scrollIntoView = scroll;
+  await act(async () => { pending.resolve(documentFor("c.md")); await new Promise(resolve => setTimeout(resolve, 60)); });
+  expect(selected()).toContain("b.md"); expect(scroll).not.toHaveBeenCalled();
+});
+it("uses fixed D controls for Back/Forward, branches and retains tabs", async () => {
+  await start(); await open("a.md"); await open("b.md"); await open("c.md");
+  const back = screen.getByRole("button", { name: "Back" }) as HTMLButtonElement, forward = screen.getByRole("button", { name: "Forward" }) as HTMLButtonElement;
+  expect(back.closest('.history-controls')?.parentElement).toBe(document.querySelector('.document-tabs'));
+  back.focus(); fireEvent.click(back); await waitFor(() => expect(selected()).toContain("b.md"));
+  await waitFor(() => expect(forward.disabled).toBe(false));
+  fireEvent.click(forward); await waitFor(() => expect(selected()).toContain("c.md"));
+  fireEvent.click(back); await waitFor(() => expect(selected()).toContain("b.md"));
+  await open("a.md"); await waitFor(() => expect(forward.disabled).toBe(true)); expect(screen.getAllByRole("tab")).toHaveLength(3);
+});
+it("failed history access retains source and cursor, then Retry succeeds", async () => {
+  await start(); await open("a.md"); await open("b.md"); mocks.readDocument.mockRejectedValueOnce({ code: "missing", message: "Fixture no longer exists" });
+  fireEvent.click(screen.getByRole("button", { name: "Back" }));
+  await screen.findByText(/a.md:.*This file is missing/); expect(selected()).toContain("b.md");
+  expect((screen.getByRole("button", { name: "Forward" }) as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: "Back" })); await waitFor(() => expect(selected()).toContain("a.md"));
+});
+it("closing the last tab leaves history able to reopen the retained file", async () => {
+  await start(); await open("a.md"); fireEvent.click(screen.getByRole("button", { name: "Close tab: a.md" }));
+  await waitFor(() => expect(screen.queryByRole("tab")).toBeNull());
+  expect((screen.getByRole("button", { name: "Back" }) as HTMLButtonElement).disabled).toBe(false);
+  fireEvent.contextMenu(screen.getByRole("button", { name: "Back" }));
+  const history = await screen.findByRole("dialog", { name: "Visited files" });
+  fireEvent.click(within(history).getByRole("button", { name: /a.md/ }));
+  await screen.findByRole("tab", { name: "a.md" });
+});
+it("history restores the retained passage and returns focus when the invoking Back becomes disabled", async () => {
+  await start(); await open("a.md"); const reader = document.querySelector<HTMLDivElement>(".reader-scroll")!;
+  reader.scrollTop = 420; fireEvent.scroll(reader); await open("b.md"); reader.scrollTop = 90; fireEvent.scroll(reader);
+  const back = screen.getByRole("button", { name: "Back" }); back.focus(); fireEvent.click(back);
+  await waitFor(() => expect(selected()).toContain("a.md"));
+  await waitFor(() => expect(reader.scrollTop).toBe(420));
+  await waitFor(() => expect(document.activeElement).toBe(screen.getByRole("tab", { name: "a.md" })));
+});
+it("cancels a pending traversal and rejects its late successful response", async () => {
+  await start(); await open("a.md"); await open("b.md");
+  const pending = deferred<ReturnType<typeof documentFor>>(); mocks.readDocument.mockReturnValueOnce(pending.promise);
+  fireEvent.click(screen.getByRole("button", { name: "Back" }));
+  expect(selected()).toContain("b.md"); fireEvent.click(await screen.findByRole("button", { name: "Cancel" }));
+  await act(async () => pending.resolve(documentFor("a.md")));
+  expect(selected()).toContain("b.md"); expect((screen.getByRole("button", { name: "Forward" }) as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: "Back" })); await waitFor(() => expect(selected()).toContain("a.md"));
+});
+it("late image restoration cannot replace a successful forced reopening", async () => {
+  await start(); await open("figure.png"); await screen.findByRole("img", { name: "figure.png" }); await open("a.md");
+  const older = deferred<typeof pixels>(); mocks.openImage.mockReturnValueOnce(older.promise);
+  fireEvent.click(screen.getByRole("tab", { name: "figure.png" }));
+  await waitFor(() => expect(mocks.openImage).toHaveBeenCalledTimes(2));
+  // Leave the pending image and traverse back: this validates a fresh read before committing.
+  fireEvent.click(screen.getByRole("tab", { name: "a.md" }));
+  fireEvent.click(screen.getByRole("button", { name: "Back" }));
+  await screen.findByRole("img", { name: "figure.png" });
+  await act(async () => older.reject({ code: "missing", message: "Outdated fixture read" }));
+  expect(screen.queryByRole("alert")).toBeNull(); expect(selected()).toContain("figure.png");
+});
+it("Go exposes labeled traversal and clearing history keeps the current document", async () => {
+  await start(); await open("a.md"); await open("b.md");
+  fireEvent.click(screen.getByRole("button", { name: "Go menu" }));
+  fireEvent.click(screen.getByRole("menuitem", { name: /^Back: a\.md · / })); await waitFor(() => expect(selected()).toContain("a.md"));
+  fireEvent.click(screen.getByRole("button", { name: "Go menu" }));
+  fireEvent.click(screen.getByRole("menuitem", { name: "Clear visit history" }));
+  expect(selected()).toContain("a.md"); expect(screen.getAllByRole("tab")).toHaveLength(2);
+  expect((screen.getByRole("button", { name: "Back" }) as HTMLButtonElement).disabled).toBe(true);
+  expect((screen.getByRole("button", { name: "Forward" }) as HTMLButtonElement).disabled).toBe(true);
+});
+it("native Go reuses committed client history and publishes the same enabled state", async () => {
+  await start(); await open("a.md"); await open("b.md");
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({
+    back: true, forward: false, visited: true, clearHistory: true
+  })));
+  act(() => mocks.menu?.({ payload: "go_back" }));
+  await waitFor(() => expect(selected()).toContain("a.md"));
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({ back: false, forward: true })));
+  act(() => mocks.menu?.({ payload: "go_forward" }));
+  await waitFor(() => expect(selected()).toContain("b.md"));
+  act(() => mocks.menu?.({ payload: "go_visited" }));
+  expect(await screen.findByRole("dialog", { name: "Visited files" })).toBeTruthy();
+  act(() => mocks.menu?.({ payload: "go_clear" }));
+  expect(selected()).toContain("b.md");
+  await waitFor(() => expect(mocks.setNativeMenuState).toHaveBeenLastCalledWith(expect.objectContaining({ back: false, forward: false })));
+});
+it("pinch zoom is file-specific, keeps chrome stable and leaves normal wheel scrolling alone", async () => {
+  await start(); await open("a.md"); const reader = document.querySelector('.reader-scroll') ?? document.querySelector('[data-document-zoom]')?.parentElement;
+  expect(reader).toBeTruthy();
+  const ordinary = new WheelEvent('wheel', { deltaY: -60, bubbles: true, cancelable: true }); fireEvent(reader!, ordinary); expect(ordinary.defaultPrevented).toBe(false);
+  const pinch = new WheelEvent('wheel', { deltaY: -100, ctrlKey: true, bubbles: true, cancelable: true, clientX: 100, clientY: 100 }); fireEvent(reader!, pinch);
+  expect(pinch.defaultPrevented).toBe(true); expect(Number(document.querySelector('[data-document-zoom]')?.getAttribute('data-document-zoom'))).toBeGreaterThan(1);
+  await open("b.md"); expect(document.querySelector('[data-document-zoom]')?.getAttribute('data-document-zoom')).toBe('1');
+  fireEvent.click(screen.getByRole("tab", { name: "a.md" })); expect(Number(document.querySelector('[data-document-zoom]')?.getAttribute('data-document-zoom'))).toBeGreaterThan(1);
+  expect(document.querySelector('.app-shell')?.getAttribute('style') ?? '').not.toContain('zoom');
+});
+it("uses a dismissible narrow sidebar without overwriting the wider-window visibility choice", async () => {
+  await start();
+  fireEvent.click(projectsToggle()); // user closes the wide sidebar.
+  const original = Object.getOwnPropertyDescriptor(window, "innerWidth")!;
+  try {
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 640 }); fireEvent(window, new Event("resize"));
+    const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
+    expect(sidebar.dataset.compact).toBe("true"); expect(sidebar.dataset.open).toBe("false"); expect(sidebar.hasAttribute("inert")).toBe(true);
+    fireEvent.click(projectsToggle());
+    expect(sidebar.dataset.open).toBe("true"); expect(screen.getByRole("button", { name: "Close sidebar" })).toBeTruthy();
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 }); fireEvent(window, new Event("resize"));
+    expect(sidebar.dataset.compact).toBe("false"); expect(sidebar.dataset.open).toBe("false");
+  } finally { Object.defineProperty(window, "innerWidth", original); }
+});

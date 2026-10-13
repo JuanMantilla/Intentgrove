@@ -1,0 +1,100 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/html_commands.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_commands.rs
+@@ -1,86 +1,4 @@
+ use super::*;
+-#[tauri::command]
+-pub async fn open_local_view(
+-    window: tauri::WebviewWindow,
+-    target: LocalTarget,
+-    expected_identity: Option<String>,
+-    request_id: String,
+-) -> AppResult<LocalView> {
+-    caller(&window)?;
+-    if request_id.is_empty() || request_id.len() > 64 {
+-        return Err(err(
+-            "invalid_request",
+-            "Open request ID must contain 1–64 bytes",
+-        ));
+-    }
+-    let h = host()?;
+-    let control = Arc::new(std::sync::atomic::AtomicBool::new(false));
+-    if h.service
+-        .cancelled_opens
+-        .lock()
+-        .unwrap()
+-        .contains(&request_id)
+-    {
+-        return Err(err("cancelled", "Open was cancelled before start"));
+-    }
+-    {
+-        let mut opens = h.service.opens.lock().unwrap();
+-        if opens.len() >= 16 {
+-            return Err(err("html_limit", "Too many pending opens"));
+-        }
+-        if let Some(previous) = opens.insert(request_id.clone(), control.clone()) {
+-            previous.store(true, std::sync::atomic::Ordering::SeqCst);
+-        }
+-    }
+-    let result = tauri::async_runtime::spawn_blocking(move || {
+-        let h = host()?;
+-        open_impl(&h.state, &h.service, target, expected_identity.as_deref())
+-    })
+-    .await
+-    .map_err(|_| err("internal", "HTML open task failed"))?;
+-    {
+-        let mut opens = h.service.opens.lock().unwrap();
+-        if opens
+-            .get(&request_id)
+-            .is_some_and(|c| Arc::ptr_eq(c, &control))
+-        {
+-            opens.remove(&request_id);
+-        }
+-    }
+-    if control.load(std::sync::atomic::Ordering::SeqCst)
+-        || h.service
+-            .cancelled_opens
+-            .lock()
+-            .unwrap()
+-            .contains(&request_id)
+-    {
+-        if let Ok(view) = &result {
+-            if let Some(t) = &view.view_token {
+-                let _ = dispose_impl(&h.service, t, view.generation);
+-            }
+-        }
+-        return Err(err("cancelled", "Open was cancelled"));
+-    }
+-    result
+-}
+-#[tauri::command]
+-pub fn cancel_html_open(window: tauri::WebviewWindow, request_id: String) -> AppResult<bool> {
+-    caller(&window)?;
+-    if request_id.is_empty() || request_id.len() > 64 {
+-        return Err(err("invalid_request", "Invalid open request ID"));
+-    }
+-    let h = host()?;
+-    let mut cancelled = h.service.cancelled_opens.lock().unwrap();
+-    if cancelled.len() >= 256 {
+-        cancelled.pop_front();
+-    }
+-    cancelled.push_back(request_id.clone());
+-    if let Some(control) = h.service.opens.lock().unwrap().get(&request_id) {
+-        control.store(true, std::sync::atomic::Ordering::SeqCst);
+-        return Ok(true);
+-    }
+-    Ok(false)
+-}
+ #[tauri::command]
+ pub fn get_html_state(
+     window: tauri::WebviewWindow,
+@@ -634,7 +552,9 @@
+     let grant = state.register_root_file(&root, parts, &file)?;
+     Ok(HtmlLinkResponse {
+         link: crate::assets::LinkResponse {
+-            kind: if scope::html_name(&grant.name) {
++            kind: if scope::prototype_name(&grant.name) {
++                "prototype"
++            } else if scope::html_name(&grant.name) {
+                 "html"
+             } else if scope::markdown_name(&grant.name) {
+                 "document"

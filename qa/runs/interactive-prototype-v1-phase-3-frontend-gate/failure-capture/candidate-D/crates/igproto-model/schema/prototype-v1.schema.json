@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Prototype",
+  "type": "object",
+  "properties": {
+    "entry": {
+      "$ref": "#/$defs/SceneId"
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Interaction"
+      },
+      "maxItems": 1024
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CompiledScene"
+      },
+      "maxItems": 32,
+      "minItems": 1
+    },
+    "schemaVersion": {
+      "$ref": "#/$defs/Version1"
+    }
+  },
+  "$comment": "GENERATED from igproto-model Rust types. Do not edit. Semantic/reference and UTF-8 byte limits require the Rust validator.",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "entry",
+    "scenes",
+    "interactions"
+  ],
+  "$defs": {
+    "Action": {
+      "oneOf": [
+        {
+          "description": "Base → different base; push old base, truncate oldest at history capacity 32.",
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "#/$defs/SceneId"
+            },
+            "type": {
+              "type": "string",
+              "const": "NAVIGATE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "scene"
+          ]
+        },
+        {
+          "description": "Base only; pop history or explicit no-op when empty. No destination payload.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "BACK"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "description": "Base → overlay; empty overlay stack required. V1 capacity is one.",
+          "type": "object",
+          "properties": {
+            "scene": {
+              "$ref": "#/$defs/SceneId"
+            },
+            "type": {
+              "type": "string",
+              "const": "OPEN_OVERLAY"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "scene"
+          ]
+        },
+        {
+          "description": "Overlay only; pop top, preserving base/history. No destination payload.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "CLOSE_OVERLAY"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "description": "Negate this scene's declared visibility boolean; override group display inline/none.",
+          "type": "object",
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/TargetId"
+            },
+            "type": {
+              "type": "string",
+              "const": "TOGGLE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "target"
+          ]
+        }
+      ]
+    },
+    "CompiledScene": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SceneId"
+        },
+        "kind": {
+          "$ref": "#/$defs/SceneKind"
+        },
+        "label": {
+          "type": "string"
+        },
+        "localState": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VisibilityState"
+          },
+          "maxItems": 64
+        },
+        "visual": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "visual",
+        "localState"
+      ]
+    },
+    "DissolveDuration": {
+      "type": "integer",
+      "const": 100
+    },
+    "Interaction": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "id": {
+          "$ref": "#/$defs/InteractionId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "scene": {
+          "$ref": "#/$defs/SceneId"
+        },
+        "target": {
+          "$ref": "#/$defs/TargetId"
+        },
+        "transition": {
+          "$ref": "#/$defs/Transition"
+        },
+        "trigger": {
+          "$ref": "#/$defs/Trigger"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scene",
+        "target",
+        "trigger",
+        "action",
+        "transition"
+      ]
+    },
+    "InteractionId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "SceneId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "SceneKind": {
+      "type": "string",
+      "enum": [
+        "base",
+        "overlay"
+      ]
+    },
+    "TargetId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "Transition": {
+      "description": "DISSOLVE: prepared destination base opacity 0→1, linear; reduced motion is instant.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "INSTANT"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "durationMs": {
+              "$ref": "#/$defs/DissolveDuration"
+            },
+            "type": {
+              "type": "string",
+              "const": "DISSOLVE"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "durationMs"
+          ]
+        }
+      ]
+    },
+    "Trigger": {
+      "type": "string",
+      "enum": [
+        "CLICK"
+      ]
+    },
+    "Version1": {
+      "type": "integer",
+      "const": 1
+    },
+    "VisibilityState": {
+      "type": "object",
+      "properties": {
+        "initialVisible": {
+          "type": "boolean"
+        },
+        "target": {
+          "$ref": "#/$defs/TargetId"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "initialVisible"
+      ]
+    }
+  }
+}

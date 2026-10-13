@@ -1,5 +1,7 @@
 # Implementation Plan: Dark Theme
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature:** F002A, specs/007-dark-theme  
 **Date:** 2026-09-28  
 **Status:** Existing production architecture retained; test architecture amendment A1 PENDING APPROVAL  

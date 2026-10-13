@@ -1,0 +1,36 @@
+{
+  "sourceVersion": 1,
+  "prototypeId": "69d61c4a-38ce-49ab-86b9-5308800d0d04",
+  "title": "Minimal native export contract",
+  "viewport": {
+    "width": 100,
+    "height": 100
+  },
+  "entry": "home",
+  "visualSources": [
+    {
+      "id": "visual",
+      "path": "visual.vectorcraft",
+      "sha256": "dfd120a8d4b98c22e5419e9ea17507506df1468ad85158c7fad140fcc6aa9ff7",
+      "exportProfile": "vectorcraft-svg-v1"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "home",
+      "kind": "base",
+      "visualBinding": {
+        "source": "visual",
+        "rootTarget": "root",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 100,
+          "height": 100
+        }
+      },
+      "localState": []
+    }
+  ],
+  "interactions": []
+}

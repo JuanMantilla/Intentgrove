@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "task_id": "new-markdown-option-b-20261011",
+  "acceptance_version": "new-markdown-option-b-20261011-handoff-v2",
+  "session_kind": "qa",
+  "qa_result": "QA_FAILED",
+  "task_state": "BLOCKED",
+  "unresolved_blockers": [
+    "Native exclusive-create and non-destructive destination picker contract awaits review/implementation",
+    "Native File menus and physical shortcuts not implemented/verified; Windows rendered editing unavailable",
+    "Standard build fails on untouched folder-search test type error",
+    "Narrow viewport override ineffective; native lifecycle/accessibility checks NOT RUN"
+  ],
+  "required_checks": [
+    {
+      "id": "frontend-regression",
+      "result": "PASS",
+      "reason": "578 tests / 65 files; mocked/native integration distinctions retained",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/tests-final-v2.log"
+      ]
+    },
+    {
+      "id": "creation-focused",
+      "result": "PASS",
+      "reason": "22 tests; includes blocked destructive picker and inline invalid blur",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/focused-final-v2.log"
+      ]
+    },
+    {
+      "id": "source-types",
+      "result": "PASS",
+      "reason": "Production sources only; does not waive standard build",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/source-types-v2.log"
+      ]
+    },
+    {
+      "id": "local-bundle",
+      "result": "PASS",
+      "reason": "Vite build; existing chunk-size warning",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/vite-build-v2.log"
+      ]
+    },
+    {
+      "id": "standard-build",
+      "result": "FAIL",
+      "reason": "Untouched tests/ui/folder-search.test.tsx:270 uses unsupported ByRoleOptions exact",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/build-final-v2.log"
+      ]
+    },
+    {
+      "id": "diff-check",
+      "result": "PASS",
+      "reason": "git diff --check",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/diff-check-v2.log"
+      ]
+    },
+    {
+      "id": "wide-render",
+      "result": "PASS",
+      "reason": "Four actual 2560x1262 Chrome App renders, EN/ES light/dark; UI only",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+      ]
+    },
+    {
+      "id": "narrow-render",
+      "result": "NOT_RUN",
+      "reason": "Viewport capability override ineffective; measured size remained wide",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+      ]
+    },
+    {
+      "id": "native-filesystem-and-lifecycle",
+      "result": "NOT_RUN",
+      "reason": "New command and grant-preserving destination picker not implemented; native approval boundary",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/authorization.json"
+      ]
+    },
+    {
+      "id": "native-shortcuts-and-File-menu",
+      "result": "NOT_RUN",
+      "reason": "Physical/native accelerators/menu not implemented; Windows editing unsupported",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/authorization.json"
+      ]
+    },
+    {
+      "id": "screen-reader-IME-zoom",
+      "result": "NOT_RUN",
+      "reason": "No screen reader/physical IME/200% test executed",
+      "finished_at": "2026-10-11T14:13:47.363705+00:00",
+      "evidence_paths": [
+        "frontend-implementation/evidence/new-markdown-20261011/visual-review.json"
+      ]
+    }
+  ],
+  "final_report": "frontend-implementation/new-markdown-20261011-report.md",
+  "evidence_paths": [
+    "frontend-implementation/evidence/new-markdown-20261011/evidence-index.md",
+    "frontend-implementation/evidence/new-markdown-20261011/coverage.json"
+  ],
+  "tested_snapshot_path": "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot-final-v2.json",
+  "artifact_paths": [
+    "frontend-implementation/new-markdown-20261011-plan.md",
+    "frontend-implementation/new-markdown-20261011-report.md",
+    "frontend-implementation/new-markdown-20261011-native-request.md",
+    "frontend-implementation/evidence/new-markdown-20261011/authorization.json",
+    "frontend-implementation/evidence/new-markdown-20261011/build-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/build.log",
+    "frontend-implementation/evidence/new-markdown-20261011/coverage.json",
+    "frontend-implementation/evidence/new-markdown-20261011/dark-en-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/dark-es-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/design-integrity.json",
+    "frontend-implementation/evidence/new-markdown-20261011/diff-check-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/diff-check.log",
+    "frontend-implementation/evidence/new-markdown-20261011/evidence-index.md",
+    "frontend-implementation/evidence/new-markdown-20261011/final-dark-en.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-dark-es.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-light-en.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-light-es.png",
+    "frontend-implementation/evidence/new-markdown-20261011/focused-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/light-en-narrow.png",
+    "frontend-implementation/evidence/new-markdown-20261011/light-en-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/light-es-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/source-tsconfig.json",
+    "frontend-implementation/evidence/new-markdown-20261011/source-types-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/source-types.log",
+    "frontend-implementation/evidence/new-markdown-20261011/system-en-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-paths.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot-final-v2.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot-final.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tests-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/tests-final.log",
+    "frontend-implementation/evidence/new-markdown-20261011/tests.log",
+    "frontend-implementation/evidence/new-markdown-20261011/visual-review.json",
+    "frontend-implementation/evidence/new-markdown-20261011/vite-build-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/vite-build.log"
+  ],
+  "retain_paths": [
+    "src/app/App.tsx",
+    "src/app/NewMarkdownDialog.tsx",
+    "src/app/WorkspaceDialog.tsx",
+    "src/app/i18n.ts",
+    "src/styles/app.css",
+    "tests/ui/new-markdown.test.tsx",
+    "frontend-implementation/STATE.md",
+    "frontend-implementation/plan.md",
+    "frontend-implementation/report.md",
+    "frontend-implementation/new-markdown-20261011-plan.md",
+    "frontend-implementation/new-markdown-20261011-report.md",
+    "frontend-implementation/new-markdown-20261011-native-request.md",
+    "frontend-implementation/evidence/new-markdown-20261011/authorization.json",
+    "frontend-implementation/evidence/new-markdown-20261011/build-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/build.log",
+    "frontend-implementation/evidence/new-markdown-20261011/coverage.json",
+    "frontend-implementation/evidence/new-markdown-20261011/dark-en-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/dark-es-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/design-integrity.json",
+    "frontend-implementation/evidence/new-markdown-20261011/diff-check-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/diff-check.log",
+    "frontend-implementation/evidence/new-markdown-20261011/evidence-index.md",
+    "frontend-implementation/evidence/new-markdown-20261011/final-dark-en.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-dark-es.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-light-en.png",
+    "frontend-implementation/evidence/new-markdown-20261011/final-light-es.png",
+    "frontend-implementation/evidence/new-markdown-20261011/focused-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/light-en-narrow.png",
+    "frontend-implementation/evidence/new-markdown-20261011/light-en-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/light-es-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/source-tsconfig.json",
+    "frontend-implementation/evidence/new-markdown-20261011/source-types-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/source-types.log",
+    "frontend-implementation/evidence/new-markdown-20261011/system-en-actual-wide.png",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-paths.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot-final-v2.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot-final.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tested-snapshot.json",
+    "frontend-implementation/evidence/new-markdown-20261011/tests-final-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/tests-final.log",
+    "frontend-implementation/evidence/new-markdown-20261011/tests.log",
+    "frontend-implementation/evidence/new-markdown-20261011/visual-review.json",
+    "frontend-implementation/evidence/new-markdown-20261011/vite-build-v2.log",
+    "frontend-implementation/evidence/new-markdown-20261011/vite-build.log"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "frontend-implementation/evidence/new-markdown-20261011/authorization.json"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "Option B and shortcut amendment selected by user",
+      "source_path": "frontend-implementation/evidence/new-markdown-20261011/authorization.json",
+      "evidence_path": "frontend-implementation/evidence/new-markdown-20261011/authorization.json",
+      "satisfied": true
+    },
+    {
+      "requirement": "All required native/renderer checks and separate final user acceptance",
+      "source_path": "frontend-implementation/evidence/new-markdown-20261011/authorization.json",
+      "evidence_path": "frontend-implementation/new-markdown-20261011-report.md",
+      "satisfied": false
+    }
+  ]
+}

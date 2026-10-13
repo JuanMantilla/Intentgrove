@@ -1,0 +1,5 @@
+CUA sent super+q to isolated candidate. Subsequent getAXState returned SCStreamErrorDomain -3811. Process inventory separately establishes that isolated candidate has exited, without relaunching it. Run-owned profile/drafts/fixtures retained.
+['92499     1 /Users/juanmantilla/projects/personal/md-reader/Intentgrove.app/Contents/MacOS/md_reader', '97157     1 /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/native-target/debug/bundle/macos/Intentgrove Select All Retest.app/Contents/MacOS/md_reader']
+
+CORRECTION: first inventory still contained candidate PID97157; earlier exit sentence was erroneous. Separate CUA AX retry exposed Quit Intentgrove? with Keep draft. Click16 Keep draft returned App quit. Final process inventory at 2026-10-12T01:38:28.376443+00:00 contains only preexisting PID92499. No product Save/Discard or profile deletion.
+['92499     1 /Users/juanmantilla/projects/personal/md-reader/Intentgrove.app/Contents/MacOS/md_reader']

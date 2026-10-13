@@ -1,0 +1,21 @@
+# Exact v6 implementation handoff
+PARTIAL / QA_FAILED / ACTIVE. QA33–37 preserved/regressed; QA42 product gap and QA43 harness ownership receive bounded verified repairs. QA38–41/44 remain causally unresolved; passing executions do not close them.
+
+Source: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-source-v6](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-source-v6>)
+Source manifest: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/source-manifest-v6.json](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/source-manifest-v6.json>)
+Manifest SHA256: `1c561799e5225d0c4f5230ae442efa0896b4b25cb201e811da2c68527b6293bd`
+Native app: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-target/debug/bundle/macos/Intentgrove QA0033-0044 v6.app](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-target/debug/bundle/macos/Intentgrove QA0033-0044 v6.app>)
+Executable SHA256: `c5c6889506f3c69d3aa5937632def2cb05312e24e234e3eba06eb5fb1b3200c5`
+Identity/bundle/config hashes: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-identity-v6.json](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/candidate-identity-v6.json>)
+Native config: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-v6.config.json](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/native-v6.config.json>)
+
+Complete v5 native source boundary;15 concurrent modified native paths listed in [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/evidence/live-versus-v5.json](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/evidence/live-versus-v5.json>) and live-only native files excluded. The combined live tree is not tested. Final source contains no observer hooks. Prior v5 is immutable. Task-only profile identifier com.juanmantilla.intentgrove.qa0033to44.r20261012t133129z. Original fixtures were only opened; no Save operation.
+
+Implementation and causal evidence: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/report.md](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/report.md>)
+Candidate construction log: [/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/evidence/logs/native-v6-build.log](</Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0044-20261012T133129Z/evidence/logs/native-v6-build.log>)
+Exact QA report: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/report.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/report.md>)
+Coverage: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/coverage.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/coverage.json>)
+Remaining owner prompts: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/department-handoff.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/department-handoff.md>)
+Snapshot: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/tested-snapshot.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0044-v6-20261012T135000Z/tested-snapshot.json>)
+
+All original promise replies/assertions/deadlines preserved; maxWorkers2. QA37 remains standalone native=true with legitimate owned window/appearance mock. QA43 adds an observable cancellation boundary; new QA42 regression removes incidental timer drain in its own scoped wrapper and restores configuration. No task acceptance or release approval.

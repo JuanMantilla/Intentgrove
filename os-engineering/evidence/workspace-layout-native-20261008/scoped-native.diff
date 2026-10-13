@@ -1,0 +1,286 @@
+--- before/src-tauri/src/settings.rs
++++ after/src-tauri/src/settings.rs
+@@ -14,6 +14,21 @@
+     Reading,
+     ProjectTree,
+ }
++/// Shared Settings/session preference. No document or grant authority.
++#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(rename_all = "lowercase")]
++pub enum WorkspaceLayout {
++    #[default]
++    Margin,
++    Folio,
++    Atlas,
++}
++impl WorkspaceLayout {
++    pub(crate) fn is_margin(&self) -> bool {
++        *self == Self::Margin
++    }
++}
++
+ #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+ #[serde(rename_all = "camelCase", deny_unknown_fields)]
+ pub struct Preferences {
+@@ -24,6 +39,8 @@
+     pub reading_line_height: f64,
+     pub reading_width: f64,
+     pub documents_and_images_only: bool,
++    #[serde(default)]
++    pub workspace_layout: WorkspaceLayout,
+ }
+ impl Default for Preferences {
+     fn default() -> Self {
+@@ -35,6 +52,7 @@
+             reading_line_height: 1.6,
+             reading_width: 760.,
+             documents_and_images_only: true,
++            workspace_layout: WorkspaceLayout::Margin,
+         }
+     }
+ }
+@@ -55,6 +73,8 @@
+     pub reading_width: Option<f64>,
+     #[serde(skip_serializing_if = "Option::is_none")]
+     pub documents_and_images_only: Option<bool>,
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub workspace_layout: Option<WorkspaceLayout>,
+ }
+ impl Patch {
+     fn general(&self) -> bool {
+@@ -66,6 +86,7 @@
+             || self.reading_line_height.is_some()
+             || self.reading_width.is_some()
+             || self.documents_and_images_only.is_some()
++            || self.workspace_layout.is_some()
+     }
+     fn apply(&self, current: &Preferences) -> AppResult<Preferences> {
+         if self.general() == self.workspace() {
+@@ -89,6 +110,7 @@
+         field!(reading_line_height);
+         field!(reading_width);
+         field!(documents_and_images_only);
++        field!(workspace_layout);
+         if next.reading_width != current.reading_width
+             && !(480. ..=1200.).contains(&next.reading_width)
+         {
+@@ -608,6 +630,98 @@
+         Patch {
+             reading_size: Some(size),
+             ..Patch::default()
++        }
++    }
++
++    #[test]
++    fn layout_capability_defaults_validation_failure_retry_and_owner_lifecycle() {
++        let defaults = serde_json::to_value(Preferences::default()).unwrap();
++        assert_eq!(defaults["workspaceLayout"], "margin");
++        let mut legacy = defaults.clone();
++        legacy.as_object_mut().unwrap().remove("workspaceLayout");
++        assert_eq!(
++            serde_json::from_value::<Preferences>(legacy)
++                .unwrap()
++                .workspace_layout,
++            WorkspaceLayout::Margin
++        );
++        for value in ["unknown", "Margin", "", "../atlas"] {
++            assert!(
++                serde_json::from_value::<Patch>(serde_json::json!({"workspaceLayout":value}))
++                    .is_err()
++            );
++        }
++        for (index, layout) in [
++            WorkspaceLayout::Margin,
++            WorkspaceLayout::Folio,
++            WorkspaceLayout::Atlas,
++        ]
++        .into_iter()
++        .enumerate()
++        {
++            let mut c = owner();
++            let patch = Patch {
++                workspace_layout: Some(layout),
++                ..Patch::default()
++            };
++            assert!(patch.workspace());
++            assert!(!patch.general());
++            let request = format!("layout-{index}");
++            let pending = c.request(request.clone(), 0, patch.clone()).unwrap();
++            assert_eq!(pending.persistence, Persistence::Pending);
++            assert_eq!(pending.values.workspace_layout, WorkspaceLayout::Margin);
++            assert_eq!(
++                c.acknowledge("settings", &request, pending.revision, Persistence::Saved)
++                    .unwrap_err()
++                    .code,
++                "settings_denied"
++            );
++            let failed = c
++                .acknowledge("main", &request, pending.revision, Persistence::Failed)
++                .unwrap();
++            assert_eq!(failed.values.workspace_layout, layout);
++            assert_eq!(failed.persistence, Persistence::Failed);
++            assert_eq!(
++                failed.retry_patch.as_ref().unwrap().workspace_layout,
++                Some(layout)
++            );
++            let retry = c
++                .request(format!("retry-{index}"), failed.revision, patch.clone())
++                .unwrap();
++            assert!(c
++                .acknowledge("main", &request, pending.revision, Persistence::Saved)
++                .is_err());
++            let saved = c
++                .acknowledge(
++                    "main",
++                    &format!("retry-{index}"),
++                    retry.revision,
++                    Persistence::Saved,
++                )
++                .unwrap();
++            assert_eq!(saved.values.workspace_layout, layout);
++            assert!(saved.retry_patch.is_none());
++            let loss = c
++                .request(format!("loss-{index}"), saved.revision, patch.clone())
++                .unwrap();
++            c.owner_closed();
++            assert!(c
++                .acknowledge(
++                    "main",
++                    &format!("loss-{index}"),
++                    loss.revision,
++                    Persistence::Saved
++                )
++                .is_err());
++            assert_eq!(
++                c.request(format!("closed-{index}"), c.snapshot.revision, patch)
++                    .unwrap_err()
++                    .code,
++                "settings_owner_unavailable"
++            );
++            let returned = c.publish(c.snapshot.revision, saved.values).unwrap();
++            assert!(returned.owner_available);
++            assert_eq!(returned.values.workspace_layout, layout);
+         }
+     }
+ 
+--- before/src-tauri/src/session.rs
++++ after/src-tauri/src/session.rs
+@@ -95,6 +95,13 @@
+         skip_serializing_if = "is_true"
+     )]
+     pub documents_and_images_only: bool,
++    // Keep schema1's canonical checksum byte-for-byte compatible when the
++    // preference is absent/default. Restore IPC advertises Margin explicitly.
++    #[serde(
++        default,
++        skip_serializing_if = "crate::settings::WorkspaceLayout::is_margin"
++    )]
++    pub workspace_layout: crate::settings::WorkspaceLayout,
+ }
+ 
+ fn default_documents_and_images_only() -> bool {
+@@ -538,8 +545,21 @@
+     tabs: Vec<RestoreTab>,
+     active_key: Option<String>,
+     tree: TreeState,
++    #[serde(serialize_with = "serialize_restored_panel")]
+     panel: PanelState,
+     window: Option<WindowBounds>,
++}
++
++// Storage omits default Margin for legacy checksum compatibility. IPC always
++// includes the capability field, even for a legacy profile's default Margin.
++fn serialize_restored_panel<S: serde::Serializer>(
++    panel: &PanelState,
++    serializer: S,
++) -> Result<S::Ok, S::Error> {
++    let mut value = serde_json::to_value(panel).map_err(serde::ser::Error::custom)?;
++    value["workspaceLayout"] =
++        serde_json::to_value(panel.workspace_layout).map_err(serde::ser::Error::custom)?;
++    value.serialize(serializer)
+ }
+ 
+ fn current_window(window: &Window) -> AppResult<Option<WindowBounds>> {
+@@ -1251,9 +1271,82 @@
+                 reading_size: default_reading_size(),
+                 reading_line_height: default_reading_line_height(),
+                 documents_and_images_only: true,
++                workspace_layout: crate::settings::WorkspaceLayout::Margin,
+             },
+             window: None,
+         }
++    }
++
++    #[test]
++    fn workspace_layout_durable_roundtrip_legacy_checksum_and_failed_write() {
++        use crate::settings::WorkspaceLayout;
++        let dir = std::env::temp_dir().join(format!("intentgrove-layout-{}", Uuid::new_v4()));
++        #[cfg(target_os = "macos")]
++        fs::create_dir(&dir).unwrap();
++        #[cfg(target_os = "windows")]
++        crate::platform::storage::ensure_private_dir(&dir).unwrap();
++        assert!(load_at(&dir).unwrap().is_none());
++        let mut payload = sample(1);
++        payload.tabs[0].editing_active = true;
++        payload.tabs[0].recovery_owner = Some(Uuid::new_v4().to_string());
++        let original = serde_json::to_value(&payload).unwrap();
++        // Exact pre-extension schema1 bytes: default serialization must not
++        // insert a field and invalidate the original checksum.
++        let legacy = encode(&payload).unwrap();
++        assert!(!String::from_utf8_lossy(&legacy).contains("workspaceLayout"));
++        fs::write(record_path(&dir), &legacy).unwrap();
++        assert_eq!(
++            load_at(&dir).unwrap().unwrap().panel.workspace_layout,
++            WorkspaceLayout::Margin
++        );
++        for layout in [
++            WorkspaceLayout::Folio,
++            WorkspaceLayout::Atlas,
++            WorkspaceLayout::Margin,
++        ] {
++            payload.sequence += 1;
++            payload.panel.workspace_layout = layout;
++            write_at(&dir, &payload).unwrap();
++            // Fresh read/decode through the real platform storage adapter.
++            let restored = load_at(&dir).unwrap().unwrap();
++            assert_eq!(restored.panel.workspace_layout, layout);
++            let mut neutral = restored.clone();
++            neutral.sequence = 1;
++            neutral.panel.workspace_layout = WorkspaceLayout::Margin;
++            assert_eq!(serde_json::to_value(neutral).unwrap(), original);
++            #[derive(Serialize)]
++            struct Wire<'a> {
++                #[serde(serialize_with = "serialize_restored_panel")]
++                panel: &'a PanelState,
++            }
++            let wire = serde_json::to_value(Wire {
++                panel: &restored.panel,
++            })
++            .unwrap();
++            assert_eq!(
++                wire["panel"]["workspaceLayout"],
++                serde_json::to_value(layout).unwrap()
++            );
++        }
++        // A real adapter failure cannot replace the completed checkpoint.
++        fs::remove_file(previous_path(&dir)).unwrap();
++        fs::create_dir(previous_path(&dir)).unwrap();
++        payload.sequence += 1;
++        payload.panel.workspace_layout = WorkspaceLayout::Atlas;
++        assert!(write_at(&dir, &payload).is_err());
++        assert_eq!(
++            load_at(&dir).unwrap().unwrap().panel.workspace_layout,
++            WorkspaceLayout::Margin
++        );
++        fs::remove_dir(previous_path(&dir)).unwrap();
++        write_at(&dir, &payload).unwrap();
++        assert_eq!(
++            load_at(&dir).unwrap().unwrap().panel.workspace_layout,
++            WorkspaceLayout::Atlas
++        );
++        let raw = String::from_utf8(encode(&payload).unwrap()).unwrap();
++        assert!(decode(raw.replace("\"atlas\"", "\"unknown\"").as_bytes()).is_err());
++        fs::remove_dir_all(dir).unwrap();
+     }
+ 
+     #[test]

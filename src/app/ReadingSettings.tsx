@@ -1,6 +1,7 @@
-import { useEffect, useId, useState, type CSSProperties } from "react";
+import { useLayoutEffect, useId, useState, type CSSProperties } from "react";
 import type { SessionPanel } from "./api";
 import { t, type Locale } from "./i18n";
+import SelectChevron from "./SelectChevron";
 import { defaultSessionPanel } from "./session";
 
 export type ReadingPreferences = Pick<SessionPanel,
@@ -13,7 +14,7 @@ function ReadingNumber({ locale, label, value, min, max, step, unit, onChange }:
   const id = useId();
   const [draft, setDraft] = useState(String(value));
   const [invalid, setInvalid] = useState(false);
-  useEffect(() => { setDraft(String(value)); setInvalid(false); }, [value]);
+  useLayoutEffect(() => { setDraft(String(value)); setInvalid(false); }, [value]);
   function commit() {
     // Merely focusing a restored value must not normalize or reject it.
     if (draft === String(value)) { setInvalid(false); return; }
@@ -57,13 +58,13 @@ export default function ReadingSettings({ locale, value, onChange }: {
     "--reading-line-height": value.readingLineHeight,
     maxWidth: value.readingWidth } as CSSProperties;
   return <div className="reading-settings-fields">
-    <label>{t(locale, "readingFont")}
-      <select value={value.readingFont} onChange={event => onChange({
+    <label className="reading-font-field"><span>{t(locale, "readingFont")}</span>
+      <span className="select-field"><select value={value.readingFont} onChange={event => onChange({
         ...value, readingFont: event.target.value as ReadingPreferences["readingFont"] })}>
         <option value="roboto">Roboto</option><option value="serif">{t(locale, "systemSerif")}</option>
         <option value="sans">{t(locale, "systemSans")}</option>
         <option value="mono">{t(locale, "systemMono")}</option>
-      </select>
+      </select><SelectChevron /></span>
     </label>
     <ReadingNumber locale={locale} label={t(locale, "readingSize")} value={value.readingSize}
       min={12} max={24} step={1} unit="px" onChange={readingSize => onChange({ ...value, readingSize })} />
@@ -84,8 +85,8 @@ export default function ReadingSettings({ locale, value, onChange }: {
         {t(locale, "readingPreviewText")}
       </p>
     </section>
-    <button type="button" onClick={() => onChange({ readingFont: defaultSessionPanel.readingFont,
+    <div className="reading-reset"><p className="settings-help">{t(locale, "readingScopeHelp")}</p><button type="button" onClick={() => onChange({ readingFont: defaultSessionPanel.readingFont,
       readingSize: defaultSessionPanel.readingSize, readingLineHeight: defaultSessionPanel.readingLineHeight,
-      readingWidth: defaultSessionPanel.readingWidth })}>{t(locale, "resetReading")}</button>
+      readingWidth: defaultSessionPanel.readingWidth })}>{t(locale, "resetReading")}</button></div>
   </div>;
 }

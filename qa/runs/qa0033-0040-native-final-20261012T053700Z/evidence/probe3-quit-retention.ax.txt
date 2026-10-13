@@ -1,0 +1,32 @@
+Window: "Intentgrove QA0033-0040 probe3", App: Intentgrove QA0033-0040 probe3.
+0 standard window Intentgrove QA0033-0040 probe3, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container Quit Intentgrove?
+				4 text Quit Intentgrove?
+				5 text Choose what happens to your changes. whole.md
+				6 heading Save to file, Value: 3
+					7 text Save to file
+				8 text Updates the Markdown file with your changes.
+				9 heading Keep draft, Value: 3
+					10 text Keep draft
+				11 text Continues without changing the Markdown file and keeps your edit as a draft.
+				12 text Discard removes this edit. Cancel keeps you editing.
+				13 button Cancel
+				14 button Discard
+				15 button Save to file
+				16 button Keep draft
+			17 container QA diagnostic observation
+			18 button Copy QA diagnostic log
+	19 close button
+	20 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	21 minimize button
+	22 text Intentgrove QA0033-0040 probe3
+23 menu bar
+	24 Intentgrove QA0033-0040 probe3
+	25 File
+	26 Edit
+	27 View
+	28 Go
+	29 Window
+	30 Help

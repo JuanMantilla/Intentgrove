@@ -1,0 +1,8 @@
+import {writeFileSync} from 'node:fs';import {beforeEach,afterEach,afterAll,expect} from 'vitest';import {configure,getConfig} from '@testing-library/dom';
+const rows:unknown[]=[];const selected=()=>/session.test|large-source.test/.test(expect.getState().testPath??'');
+(globalThis as any).__qaTrace=(event:string,data:object={})=>{if(selected())rows.push({at:performance.now(),test:expect.getState().currentTestName,event,...data});};
+const snapshot=()=>({headings:[...document.querySelectorAll('h1,h2')].map(x=>x.textContent),tabs:[...document.querySelectorAll('[role=tab]')].map(x=>x.textContent),statuses:[...document.querySelectorAll('[role=status]')].map(x=>x.textContent),source:document.querySelector('.large-source-text')?.textContent,zoom:(document.querySelector('.large-source-text') as HTMLElement)?.dataset.sourceZoom,worker:typeof Worker});
+const originalError=getConfig().getElementError;configure({getElementError(message,container){(globalThis as any).__qaTrace?.('query-error',{message,...snapshot()});return originalError(message,container);}});
+function wheel(e:Event){const w=e as WheelEvent;(globalThis as any).__qaTrace?.('wheel-capture',{ctrl:w.ctrlKey,target:(w.target as HTMLElement)?.className,defaultPrevented:w.defaultPrevented,...snapshot()});}
+beforeEach(()=>{if(selected())document.addEventListener('wheel',wheel,true);});afterEach(()=>{if(selected()){document.removeEventListener('wheel',wheel,true);(globalThis as any).__qaTrace('case-end',snapshot());}});
+afterAll(()=>{if(rows.length)writeFileSync("/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/evidence"+'/remaining-trace-'+process.pid+'-'+Date.now()+'.json',JSON.stringify(rows,null,2));delete(globalThis as any).__qaTrace;});

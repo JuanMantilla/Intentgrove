@@ -1,0 +1,46 @@
+{
+  "observer": "task-owned loopback HTTP request log",
+  "positiveControls": [
+    "/positive-before",
+    "/positive-after"
+  ],
+  "observed": [
+    "/positive-before",
+    "/positive-after"
+  ],
+  "documentTriggeredRequests": [],
+  "fixtureUnchanged": true,
+  "before": {
+    "page.html": "4c44917bd5b1d2ddce04bff9d9a096c22e9ad4e003f93fd5e5e2e32612b9df28",
+    "malformed.html": "152bf2ba7ff242432fc518c7841a1e874c73f662838d6fa96dc394fac333794b",
+    "unstyled.html": "5ef5e3a3b811d82de0e29efe998fb97734b9684bc766df8f7a16cad9a0f0a99d",
+    "hostile.html": "96b37d34ed59da7becfb3a4b674cc5c3712b3b2c1940eb6970def9a7aaad6f65",
+    "second.htm": "3eb6eb94bc0ebd7766e57e949891f7110bf5ae9c256a34eab556607620dd457c",
+    "notes.md": "690de7c9b39cd541eea418054730a65244c18252769f4bccaad6f9fb27728275",
+    "other.txt": "f051d27f19889f5630fba25c288273ddd8344e0ee0d399a0b2bc1b27548b8d97",
+    "empty.html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "assets/hostile.css": "2b9dcfc2c80a068db36c1ec62309003dd000befd678da2ad8e67b696b69a44b1",
+    "assets/font.ttf": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+    "assets/pixel.png": "fe11a7ab8511e5ad32b105a51de7675a11ba3e7cbd8b6b19729c0f3b5d5a9ad6",
+    "assets/nested.css": "825b4bacd54d2524fe9e8d9126ce0db59ad4ac5bc5a30116daab80d60e679125",
+    "assets/page.css": "c4c98d6d8ebe4ddbed28af18a4c92b5dadb9599dbefe684d2144c18cfda9f2c1",
+    "assets/unsafe.svg": "85bb0d880f0e6dbbaddb6cc28b8a609e5a2734b156a76b41babbae7c89101495"
+  },
+  "after": {
+    "page.html": "4c44917bd5b1d2ddce04bff9d9a096c22e9ad4e003f93fd5e5e2e32612b9df28",
+    "malformed.html": "152bf2ba7ff242432fc518c7841a1e874c73f662838d6fa96dc394fac333794b",
+    "unstyled.html": "5ef5e3a3b811d82de0e29efe998fb97734b9684bc766df8f7a16cad9a0f0a99d",
+    "hostile.html": "96b37d34ed59da7becfb3a4b674cc5c3712b3b2c1940eb6970def9a7aaad6f65",
+    "second.htm": "3eb6eb94bc0ebd7766e57e949891f7110bf5ae9c256a34eab556607620dd457c",
+    "notes.md": "690de7c9b39cd541eea418054730a65244c18252769f4bccaad6f9fb27728275",
+    "other.txt": "f051d27f19889f5630fba25c288273ddd8344e0ee0d399a0b2bc1b27548b8d97",
+    "empty.html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "assets/hostile.css": "2b9dcfc2c80a068db36c1ec62309003dd000befd678da2ad8e67b696b69a44b1",
+    "assets/font.ttf": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+    "assets/pixel.png": "fe11a7ab8511e5ad32b105a51de7675a11ba3e7cbd8b6b19729c0f3b5d5a9ad6",
+    "assets/nested.css": "825b4bacd54d2524fe9e8d9126ce0db59ad4ac5bc5a30116daab80d60e679125",
+    "assets/page.css": "c4c98d6d8ebe4ddbed28af18a4c92b5dadb9599dbefe684d2144c18cfda9f2c1",
+    "assets/unsafe.svg": "85bb0d880f0e6dbbaddb6cc28b8a609e5a2734b156a76b41babbae7c89101495"
+  },
+  "limit": "observes fixture-targeted loopback endpoints; not whole-system packet capture or proof of arbitrary hostname/DNS behavior"
+}

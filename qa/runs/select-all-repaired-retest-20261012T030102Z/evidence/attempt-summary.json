@@ -1,0 +1,561 @@
+[
+  {
+    "id": "adjacent-failures-isolated-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "tests/ui/edit-flow.test.tsx",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:40.626683+00:00",
+    "load_before": [
+      4.73046875,
+      12.73388671875,
+      20.16455078125
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-01.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:16:43.739425+00:00",
+    "load_after": [
+      4.671875,
+      12.5888671875,
+      20.06982421875
+    ],
+    "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.81s (transform 842ms, setup 0ms, import 1.47s, tests 1.44s, environment 1.06s)",
+    "failure_titles": []
+  },
+  {
+    "id": "adjacent-failures-isolated-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "tests/ui/edit-flow.test.tsx",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:45.273958+00:00",
+    "load_before": [
+      4.671875,
+      12.5888671875,
+      20.06982421875
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-02.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:16:48.054397+00:00",
+    "load_after": [
+      4.61767578125,
+      12.44580078125,
+      19.9755859375
+    ],
+    "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.45s (transform 889ms, setup 0ms, import 1.56s, tests 1.45s, environment 1.19s)",
+    "failure_titles": []
+  },
+  {
+    "id": "adjacent-failures-isolated-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "tests/ui/edit-flow.test.tsx",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "rejects an older failure|keeps the passage readable during section entry|retains the heading anchor"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:49.448929+00:00",
+    "load_before": [
+      4.61767578125,
+      12.44580078125,
+      19.9755859375
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/adjacent-failures-isolated-03.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:16:51.982568+00:00",
+    "load_after": [
+      4.61767578125,
+      12.44580078125,
+      19.9755859375
+    ],
+    "summary": "Test Files  3 passed (3); Tests  4 passed | 33 skipped (37); Duration  2.23s (transform 827ms, setup 0ms, import 1.44s, tests 1.34s, environment 1.06s)",
+    "failure_titles": []
+  },
+  {
+    "id": "affected-original-files",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "tests/ui/appearance-operations.test.tsx"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:49.311712+00:00",
+    "load_before": [
+      5.76025390625,
+      16.1923828125,
+      26.7373046875
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/affected-original-files.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:53.713431+00:00",
+    "load_after": [
+      5.779296875,
+      16.02294921875,
+      26.61572265625
+    ],
+    "summary": "Test Files  2 passed (2); Tests  82 passed (82); Duration  4.01s (transform 920ms, setup 0ms, import 1.61s, tests 4.37s, environment 1.03s)",
+    "failure_titles": []
+  },
+  {
+    "id": "default-full-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:53.713964+00:00",
+    "load_before": [
+      5.779296875,
+      16.02294921875,
+      26.61572265625
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-01.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:05:30.877361+00:00",
+    "load_after": [
+      25.5390625,
+      24.08837890625,
+      27.88330078125
+    ],
+    "summary": "Test Files  4 failed | 66 passed (70); Tests  4 failed | 706 passed (710); Duration  216.71s (transform 3.86s, setup 0ms, import 39.80s, tests 297.65s, environment 76.69s)",
+    "failure_titles": [
+      "tests/ui/approved-navigation.test.tsx > rejects an older failure from repeated opens of the same document",
+      "tests/ui/automatic-refresh.test.tsx > automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+      "tests/ui/edit-flow.test.tsx > keeps the passage readable during section entry, blocks duplicate entry, and discards a stale acquired session after close",
+      "tests/ui/new-markdown.test.tsx > opens from empty workspace and Projects, and restores the owning trigger"
+    ]
+  },
+  {
+    "id": "default-full-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:05:30.878741+00:00",
+    "load_before": [
+      25.5390625,
+      24.08837890625,
+      27.88330078125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-02.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:08:02.265335+00:00",
+    "load_after": [
+      10.21435546875,
+      18.21240234375,
+      24.84228515625
+    ],
+    "summary": "Test Files  1 failed | 69 passed (70); Tests  1 failed | 709 passed (710); Duration  150.42s (transform 3.74s, setup 0ms, import 26.79s, tests 204.79s, environment 53.39s)",
+    "failure_titles": [
+      "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+    ]
+  },
+  {
+    "id": "default-full-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:08:02.266588+00:00",
+    "load_before": [
+      10.21435546875,
+      18.21240234375,
+      24.84228515625
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/default-full-03.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:10:45.777423+00:00",
+    "load_after": [
+      23.97705078125,
+      19.826171875,
+      24.3583984375
+    ],
+    "summary": "Test Files  1 failed | 69 passed (70); Tests  1 failed | 709 passed (710); Duration  162.74s (transform 4.79s, setup 0ms, import 33.17s, tests 220.63s, environment 55.20s)",
+    "failure_titles": [
+      "tests/ui/new-markdown.test.tsx > preserves another dirty rendered draft when creating a second file and deduplicates editor keyboard/menu"
+    ]
+  },
+  {
+    "id": "new-startup-isolated-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:37.967944+00:00",
+    "load_before": [
+      4.73046875,
+      12.73388671875,
+      20.16455078125
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-01.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:16:40.626133+00:00",
+    "load_after": [
+      4.73046875,
+      12.73388671875,
+      20.16455078125
+    ],
+    "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.87s (transform 470ms, setup 0ms, import 908ms, tests 23ms, environment 830ms)",
+    "failure_titles": [
+      "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+    ]
+  },
+  {
+    "id": "new-startup-isolated-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:43.739911+00:00",
+    "load_before": [
+      4.671875,
+      12.5888671875,
+      20.06982421875
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-02.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:16:45.273523+00:00",
+    "load_after": [
+      4.671875,
+      12.5888671875,
+      20.06982421875
+    ],
+    "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.21s (transform 456ms, setup 0ms, import 686ms, tests 24ms, environment 385ms)",
+    "failure_titles": [
+      "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+    ]
+  },
+  {
+    "id": "new-startup-isolated-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:16:48.054850+00:00",
+    "load_before": [
+      4.61767578125,
+      12.44580078125,
+      19.9755859375
+    ],
+    "original_config": true,
+    "diagnostic_reason": "Repeat exact failed original cases without changing assertions, deadlines, promises, workers or source",
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/new-startup-isolated-03.log",
+    "exit_code": 1,
+    "result": "FAIL",
+    "finished_at": "2026-10-12T03:16:49.448511+00:00",
+    "load_after": [
+      4.61767578125,
+      12.44580078125,
+      19.9755859375
+    ],
+    "summary": "Test Files  1 failed (1); Tests  1 failed | 76 skipped (77); Duration  1.08s (transform 419ms, setup 0ms, import 635ms, tests 23ms, environment 317ms)",
+    "failure_titles": [
+      "tests/ui/new-markdown.test.tsx > retains the created tab on editor startup failure without trying to create again"
+    ]
+  },
+  {
+    "id": "original-new-isolated-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:31.652959+00:00",
+    "load_before": [
+      4.85009765625,
+      16.759765625,
+      27.18408203125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-01.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:35.167708+00:00",
+    "load_after": [
+      4.94189453125,
+      16.5810546875,
+      27.0595703125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  2.66s (transform 504ms, setup 0ms, import 927ms, tests 792ms, environment 845ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "original-new-isolated-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:36.838698+00:00",
+    "load_before": [
+      4.94189453125,
+      16.5810546875,
+      27.0595703125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-02.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:39.142386+00:00",
+    "load_after": [
+      5.2666015625,
+      16.455078125,
+      26.95361328125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  1.99s (transform 519ms, setup 0ms, import 794ms, tests 785ms, environment 329ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "original-new-isolated-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:41.019677+00:00",
+    "load_before": [
+      5.2666015625,
+      16.455078125,
+      26.95361328125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-new-isolated-03.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:43.413060+00:00",
+    "load_after": [
+      5.5654296875,
+      16.3310546875,
+      26.84814453125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  4 passed | 73 skipped (77); Duration  2.08s (transform 535ms, setup 0ms, import 809ms, tests 824ms, environment 362ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "original-reader-isolated-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:35.168202+00:00",
+    "load_before": [
+      4.94189453125,
+      16.5810546875,
+      27.0595703125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-01.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:36.837861+00:00",
+    "load_after": [
+      4.94189453125,
+      16.5810546875,
+      27.0595703125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.37s (transform 419ms, setup 0ms, import 619ms, tests 349ms, environment 322ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "original-reader-isolated-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:39.142761+00:00",
+    "load_before": [
+      5.2666015625,
+      16.455078125,
+      26.95361328125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-02.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:41.019313+00:00",
+    "load_after": [
+      5.2666015625,
+      16.455078125,
+      26.95361328125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.56s (transform 496ms, setup 0ms, import 724ms, tests 378ms, environment 378ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "original-reader-isolated-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:43.413474+00:00",
+    "load_before": [
+      5.5654296875,
+      16.3310546875,
+      26.84814453125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/original-reader-isolated-03.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:45.727113+00:00",
+    "load_after": [
+      5.5654296875,
+      16.3310546875,
+      26.84814453125
+    ],
+    "summary": "Test Files  1 passed (1); Tests  1 passed | 4 skipped (5); Duration  1.98s (transform 793ms, setup 0ms, import 1.08s, tests 392ms, environment 405ms)",
+    "failure_titles": []
+  },
+  {
+    "id": "selection-focused",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/document-select-all.test.tsx"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/candidate-source-final",
+    "started_at": "2026-10-12T03:01:45.727516+00:00",
+    "load_before": [
+      5.5654296875,
+      16.3310546875,
+      26.84814453125
+    ],
+    "original_config": true,
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-repaired-retest-20261012T030102Z/evidence/logs/selection-focused.log",
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T03:01:49.311323+00:00",
+    "load_after": [
+      5.76025390625,
+      16.1923828125,
+      26.7373046875
+    ],
+    "summary": "Test Files  1 passed (1); Tests  16 passed (16); Duration  3.27s (transform 529ms, setup 0ms, import 795ms, tests 1.84s, environment 504ms)",
+    "failure_titles": []
+  }
+]

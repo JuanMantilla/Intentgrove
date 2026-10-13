@@ -1,0 +1,109 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) active.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Close tab: active.md, Help: Close tab
+				17 container
+					18 tab (selectable) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Close tab: inactive.md, Help: Close tab
+				20 container
+					21 tab (selectable) café "quote" 'single' $ & # % (draft),.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					22 button Close tab: café "quote" 'single' $ & # % (draft),.md, Help: Close tab
+				23 container
+					24 tab (selectable) one.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+					25 button Close tab: one.md, Help: Close tab
+				26 container
+					27 tab (selectable) two.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/two.md
+					28 button Close tab: two.md, Help: Close tab
+				29 container
+					30 tab (selectable) delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/delete.md
+					31 button Close tab: delete.md, Help: Close tab
+			32 pop up button Go menu
+			33 button (collapsed) Open documents (6), Secondary Actions: Expand
+			34 container Explorer
+				35 pop up button PROJECTS
+				36 button Close Projects sidebar
+				37 button Open file
+				38 button Open folder
+				39 button Search folder
+				40 text fixtures
+				41 container
+					42 button active.md
+					43 button delete-renamed.md
+					44 button inactive.md
+					45 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					46 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					47 button race-verify-original.md
+					48 button race-verify.md
+					49 button rename-moved.md
+					50 button replace-original.md
+					51 button replace.md
+					52 button unopened.md
+				53 text Storage and recovery
+				54 text Open edits and recovery offers: 1
+				55 button Manage…
+				56 button Settings…
+			57 container
+				58 container active.md
+					59 container active.md
+						60 text active.md
+					61 button Find in document
+					62 button Save file
+					63 button Return to reading
+					64 button Save As
+					65 text Save returns to reading.
+					66 summary Document…, Value: off
+						67 text Document…
+					68 text Folder root
+				69 container active.md
+					70 container Editing: QA active.md
+						71 container Editing: QA active.md
+							72 text Editing: QA active.md
+							73 text Changes not saved to the file
+							74 text entry area (settable) Editing: QA active.md, Secondary Actions: Show Writing Tools, Value: **ROOT UNSAVED QA active.md
+**
+Disposable Reveal fixture.
+								75 heading (settable, integer) Editing: QA active.md, Value: 1
+									76 text entry area (settable) Editing: QA active.md, Value: **ROOT UNSAVED QA active.md**, Secondary Actions: Show Writing Tools
+										77 text (settable) ROOT UNSAVED QA active.md
+								78 text entry area (settable) Editing: QA active.md, Value: Disposable Reveal fixture., Secondary Actions: Show Writing Tools
+									79 text (settable) Disposable Reveal fixture.
+							80 button Undo
+							81 button (disabled) Redo
+							82 button Discard changes…
+							83 button Save as…
+				84 container Outline
+					85 text OUTLINE
+					86 button Close outline
+					87 container Outline
+						88 content list
+							89 button ROOT UNSAVED QA active.md
+			90 container
+				91 text active.md Intentgrove by Theonira
+	92 close button
+	93 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	94 minimize button
+	95 text Intentgrove Reveal QA
+96 menu bar
+	97 Intentgrove Reveal QA
+	98 File
+	99 Edit
+	100 View
+	101 Go
+	102 Window
+	103 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

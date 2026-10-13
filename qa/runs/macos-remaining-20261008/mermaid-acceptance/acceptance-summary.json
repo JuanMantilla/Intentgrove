@@ -1,0 +1,153 @@
+{
+  "CF37": "PASS",
+  "CF38": "PASS",
+  "scope": "macOS27.0.1 arm64; real production parent/decoder/components in authenticated QA, unchanged packaged production helper separately executed; not full production-ID UX acceptance",
+  "records": {
+    "native-admission": 3,
+    "malformed-invoke": 1,
+    "document": 40,
+    "forged-child": 14,
+    "resource-probes": 1,
+    "cancel": 20,
+    "ownership": 1,
+    "pre-cancel": 1,
+    "deadline": 2,
+    "late-real-reply": 3,
+    "forged-transport": 4
+  },
+  "nativeAcknowledgmentMs": {
+    "min": 11,
+    "max": 137
+  },
+  "unrelatedReadyMs": {
+    "min": 42,
+    "max": 248
+  },
+  "ownerWindowCleanup": {
+    "alive": false,
+    "cancelled": true,
+    "elapsedMs": 18.912125,
+    "passed": true,
+    "pid": 30105
+  },
+  "ownedHelperPIDsObserved": 127,
+  "helperDescendantsObserved": 0,
+  "sourceFilesUnchanged": 20,
+  "candidates": {
+    "production": {
+      "Contents/MacOS/md_reader": "6fb642dee4f39d22fb602634c5c9a2fb933eefaa33046a53e9a5e66dc4e7b49a",
+      "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+      "Contents/Helpers/DiagramRenderer.app/Contents/Resources/reader.bundle.js": "171438cd9642fef7c6a135f9a39249bac073a315964fa5451281aba1f0910e6a",
+      "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d"
+    },
+    "qa": {
+      "Contents/MacOS/md_reader": "60397783f841ffb1451457a58301289586b67a28d7ac44b0ac8d3bf7c9661dd4",
+      "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+      "Contents/Helpers/DiagramRenderer.app/Contents/Resources/reader.bundle.js": "171438cd9642fef7c6a135f9a39249bac073a315964fa5451281aba1f0910e6a",
+      "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+      "diagnosticExecutable": "fc25e662134b9025c6463af1238b19b6350a756ba9f192fa337303ddb02a764a",
+      "diagnosticBundle": "0b5f024719fbbd7de8381389db741b4b1146840439b8673c7509cc43ac69517a"
+    }
+  },
+  "deliberateResourceProbes": {
+    "nativeFile": {
+      "allowed": 0,
+      "errno": 1
+    },
+    "nativeNetwork": {
+      "result": -1,
+      "errno": 1
+    },
+    "cspEvents": [
+      {
+        "directive": "connect-src",
+        "blocked": "https://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "img-src",
+        "blocked": "https://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "style-src-elem",
+        "blocked": "https://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "connect-src",
+        "blocked": "file"
+      },
+      {
+        "directive": "img-src",
+        "blocked": "file"
+      },
+      {
+        "directive": "style-src-elem",
+        "blocked": "file"
+      },
+      {
+        "directive": "object-src",
+        "blocked": "https://127.0.0.1:9"
+      },
+      {
+        "directive": "frame-src",
+        "blocked": "file"
+      },
+      {
+        "directive": "connect-src",
+        "blocked": "http://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "img-src",
+        "blocked": "http://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "style-src-elem",
+        "blocked": "http://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "object-src",
+        "blocked": "file"
+      },
+      {
+        "directive": "script-src-elem",
+        "blocked": "http://127.0.0.1:9/probe"
+      },
+      {
+        "directive": "object-src",
+        "blocked": "http://127.0.0.1:9"
+      }
+    ]
+  },
+  "explicitBusyCancellation": {
+    "parse": {
+      "elapsedMs": 5.9498750000000005,
+      "result": "diagram_cancelled",
+      "pid": 30975
+    },
+    "render": {
+      "elapsedMs": 3.367042,
+      "result": "diagram_cancelled",
+      "pid": 30976
+    }
+  },
+  "nativeDeadlineMs": {
+    "parse": 2004.7685830000003,
+    "render": 2005.143875
+  },
+  "parentChildInvocations": 72,
+  "extendedParentResources": {
+    "result": "pixels",
+    "directives": [
+      "connect-src",
+      "font-src",
+      "form-action",
+      "frame-src",
+      "img-src",
+      "object-src",
+      "script-src-elem",
+      "style-src-elem"
+    ],
+    "parentCommand": "parent-command.json",
+    "diagnosticExecutableSHA256": "4f8eddfd4bef894957c389d78fb40806ab5675404ff89ae36c93b92a900b2535",
+    "diagnosticBundleSHA256": "7e6d437e0945f95acb1136673ff1a77fc39ca9c8c38af23409f527bcf3e3fad7"
+  }
+}

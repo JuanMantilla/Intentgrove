@@ -1,0 +1,84 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: plain.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+					15 container
+						16 tab (selected) permission.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+						17 button Close tab: permission.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container permission.md
+					21 text permission.md
+					22 text Folder root
+					23 button Save file
+					24 button Return to reading
+					25 text Save returns to reading.
+					26 summary Document…, Value: off
+						27 text Document…
+				28 text Permission denied
+				29 button Dismiss
+				30 container permission.md
+					31 container Editing: Permission proof
+						32 text Editing: Permission proof
+						33 text Changes not saved to the file
+						34 text Markdown source
+						35 text entry area (settable) Markdown source: Permission proof, Secondary Actions: Show Writing Tools, Value: # Permission proof
+
+DIRECT_DENIED_SAVE_MARKER
+
+
+
+							36 text (settable) # Permission proof
+							37 text (settable) DIRECT_DENIED_SAVE_MARKER
+						38 container Live preview
+							39 text Live preview
+							40 container Permission proof
+								41 heading Permission proof, Value: 1
+									42 text Permission proof
+								43 text DIRECT_DENIED_SAVE_MARKER
+						44 button Undo
+						45 button (disabled) Redo
+						46 button Discard changes…
+						47 button Save as…
+					48 container Permission proof
+						49 container Edit section: Permission proof
+							50 heading Permission proof, Value: 1
+								51 text Permission proof
+							52 button Edit section “Permission proof”
+						53 text BASE_PERMISSION
+						54 container Edit section: Following section
+							55 heading Following section, Value: 2
+								56 text Following section
+							57 button Edit section “Following section”
+						58 text PERMISSION_FOLLOWING_UNCHANGED
+	59 close button
+	60 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	61 minimize button
+	62 text Intentgrove
+63 menu bar
+	64 Intentgrove
+	65 File
+	66 Edit
+	67 View
+	68 Go
+	69 Window
+	70 Help
+
+The focused UI element is 35 text entry area (settable) Markdown source: Permission proof, Secondary Actions: Show Writing Tools, Value: # Permission proof
+
+DIRECT_DENIED_SAVE_MARKER
+
+

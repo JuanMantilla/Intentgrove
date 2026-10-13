@@ -1,0 +1,153 @@
+--- before/src/app/NewMarkdownDialog.tsx
++++ src/app/NewMarkdownDialog.tsx
+@@ -5,11 +5,13 @@
+ 
+ /** Portable UI validation; native validation and exclusive creation remain authoritative. */
+ export function markdownFilename(value: string): string | null {
+-  value = value.trim();
+-  if (!value || /[<>:"/\\|?*\u0000-\u001f\u007f]/.test(value) || /[. ]$/.test(value)) return null;
++  // Match Rust str::trim (Unicode White_Space), including U+0085, excluding U+FEFF.
++  value = value.replace(/^\p{White_Space}+|\p{White_Space}+$/gu, "");
++  if (!value || /[<>:"/\\|?*\u0000-\u001f\u007f-\u009f]/.test(value) || /[. ]$/.test(value)) return null;
+   const stem = value.replace(/(?:\.md)+$/i, "");
++  const reserved = stem.split(".", 1)[0].replace(/ +$/, "");
+   if (!stem || stem === "." || stem === ".." || /[. ]$/.test(stem)
+-    || /^(?:con|conin\$|conout\$|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\.|$)/i.test(stem)) return null;
++    || /^(?:con|conin\$|conout\$|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])$/i.test(reserved)) return null;
+   const filename = `${stem}.md`;
+   return new TextEncoder().encode(filename).length <= 255 ? filename : null;
+ }
+@@ -34,6 +36,8 @@
+     token.current = null;
+   }; }, []);
+   const normalized = markdownFilename(filename);
++  const nameInvalid = invalid || (filename.length > 0 && !normalized);
++  const inlineError = nameInvalid ? t(locale, "newInvalidName") : error;
+   const blocked = pending || Boolean(committed) || uncertain;
+   const displayPath = destination?.kind === "root" ? destination.grant.displayPath : destination?.selected.displayPath;
+   async function chooseDestination() {
+@@ -53,8 +57,8 @@
+   }
+   async function submit() {
+     if (owner.current || blocked) return;
+-    if (!normalized || !destination) {
+-      setInvalid(!normalized); setError(t(locale, !normalized ? "newInvalidName" : "newNoFolder")); return;
++    if (nameInvalid || !normalized || !destination) {
++      setInvalid(nameInvalid || !normalized); setError(t(locale, nameInvalid || !normalized ? "newInvalidName" : "newNoFolder")); return;
+     }
+     if (!available || !onCreated) return;
+     owner.current = true; setPending(true); setError(null);
+@@ -85,7 +89,7 @@
+       <p>{t(locale, "newDescription")}</p>
+       <label htmlFor={`${id}-filename`}>{t(locale, "newFilename")}</label>
+       <input id={`${id}-filename`} autoComplete="off" value={filename} disabled={blocked}
+-        aria-invalid={invalid} aria-describedby={`${id}-extension${error ? ` ${id}-error` : ""}`}
++        aria-invalid={nameInvalid} aria-describedby={`${id}-extension${inlineError ? ` ${id}-error` : ""}`}
+         onBlur={() => { if (filename && !normalized) { setInvalid(true); setError(t(locale, "newInvalidName")); } }}
+         onChange={event => { setFilename(event.target.value); setInvalid(false); setError(null); }} />
+       <p id={`${id}-extension`}>{t(locale, "newExtension")}{normalized ? ` ${normalized}` : ""}</p>
+@@ -94,7 +98,7 @@
+         <output aria-label={t(locale, "newDestination")}>{displayPath ?? t(locale, "newNoFolder")}</output>
+         <button type="button" disabled={blocked} onClick={() => void chooseDestination()}>{t(locale, "newChooseFolder")}</button>
+       </div>
+-      {error && <p id={`${id}-error`} className="new-markdown-error" role="alert">{error}</p>}
++      {inlineError && <p id={`${id}-error`} className="new-markdown-error" role="alert">{inlineError}</p>}
+       {pending && <p role="status">{t(locale, "newWorking")}</p>}
+       {!available && <p id={`${id}-availability`} role="status">{t(locale, "newUnavailable")}</p>}
+       {committed?.fileId && <button type="button" disabled={pending} onClick={async () => {
+@@ -104,7 +108,7 @@
+         finally { owner.current = false; if (mounted.current) setPending(false); }
+       }}>{t(locale, "newReopen")}</button>}
+       <div className="new-markdown-actions"><button className="primary-button" type="submit"
+-        disabled={!available || !onCreated || blocked || !normalized || !destination}
++        disabled={!available || !onCreated || blocked || nameInvalid || !normalized || !destination}
+         aria-describedby={!available ? `${id}-availability` : undefined}>{t(locale, "newCreate")}</button></div>
+     </form>
+   </WorkspaceDialog>;
+--- before/tests/ui/new-markdown.test.tsx
++++ tests/ui/new-markdown.test.tsx
+@@ -181,3 +181,51 @@
+  await waitFor(()=>expect(mocks.beginSectionEdit).toHaveBeenCalledOnce()); expect(await screen.findByRole("tab",{name:"first.md"})).toBeTruthy();
+  expect(mocks.createMarkdownFile).toHaveBeenCalledOnce();expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
+ });
++
++// QA-0028: consumer contract; bridge calls below are mocked, not filesystem evidence.
++it.each(["CON .txt", "con   .notes.MD", "LPT¹ .txt", "a\u0085b", "a\u0080b", "a\u009fb"])("rejects %s inline and guards keyboard/form submission", async name => {
++  const created = vi.fn(), close = vi.fn();
++  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={close} />);
++  const input = screen.getByLabelText("Filename");
++  fireEvent.change(input, { target: { value: name } });
++  expect(input.getAttribute("value")).toBe(name);
++  expect(input.getAttribute("aria-invalid")).toBe("true");
++  expect(input.getAttribute("aria-describedby")?.split(" ")).toContain(screen.getByRole("alert").id);
++  expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(true);
++  await userEvent.setup().keyboard("{Enter}");
++  fireEvent.submit(input.closest("form")!);
++  expect(mocks.createMarkdownFile).not.toHaveBeenCalled();
++  expect(created).not.toHaveBeenCalled(); expect(close).not.toHaveBeenCalled();
++  expect(input.getAttribute("value")).toBe(name);
++  fireEvent.change(input, { target: { value: "Niño.🚀" } });
++  expect(screen.queryByRole("alert")).toBeNull();
++  expect(input.getAttribute("aria-invalid")).toBe("false");
++  expect(screen.getByRole("button", { name: "Create file" }).hasAttribute("disabled")).toBe(false);
++});
++it.each(["Niño", "🚀", "notes.v1.txt", "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\ufeffnote", "\u0085note\u0085"])("preserves native normalization and Enter for %s", async name => {
++  mocks.createMarkdownFile.mockResolvedValue(opened);
++  const created = vi.fn().mockResolvedValue(undefined);
++  render(<NewMarkdownDialog locale="en" defaultDestination={folder} available onCreated={created} onClose={vi.fn()} />);
++  fireEvent.change(screen.getByLabelText("Filename"), { target: { value: name } });
++  await userEvent.setup().keyboard("{Enter}");
++  const expected = name === "\u0085note\u0085" ? "note.md" : `${name}.md`;
++  await waitFor(() => expect(created).toHaveBeenCalledOnce());
++  expect(mocks.createMarkdownFile).toHaveBeenCalledExactlyOnceWith({ rootId: folder.id, segments: [], filename: expected });
++});
++it("checks every interior C1 control and exact multibyte limits", () => {
++  for (let code = 0x7f; code <= 0x9f; code++) expect(markdownFilename(`a${String.fromCharCode(code)}b`)).toBeNull();
++  for (const name of ["é".repeat(126) + "a", "🚀".repeat(63) + "a", "a".repeat(253)]) expect(markdownFilename(name)).toBeNull();
++});
++it("retains native invalid-filename rejection without success, text loss or grant reselection", async () => {
++  mocks.createMarkdownFile.mockRejectedValue({ code: "invalid_filename", message: "native rejected" });
++  const created = vi.fn(), close = vi.fn();
++  render(<NewMarkdownDialog locale="es" defaultDestination={folder} available onCreated={created} onClose={close} />);
++  fireEvent.change(screen.getByLabelText("Nombre del archivo"), { target: { value: "Niño" } });
++  await userEvent.setup().keyboard("{Enter}");
++  await screen.findByRole("alert");
++  const input = screen.getByLabelText("Nombre del archivo");
++  expect(input.getAttribute("value")).toBe("Niño");
++  expect(input.getAttribute("aria-invalid")).toBe("true");
++  expect(created).not.toHaveBeenCalled(); expect(close).not.toHaveBeenCalled();
++  expect(mocks.selectRoot).not.toHaveBeenCalled(); expect(screen.getByText(folder.displayPath)).toBeTruthy();
++});
+--- before/src-tauri/src/creation.rs
++++ src-tauri/src/creation.rs
+@@ -401,6 +401,30 @@
+         assert!(filename(&"é".repeat(127)).is_err());
+     }
+     #[test]
++    fn qa0028_malformed_names_never_write_or_consume_authority() {
++        let dir = FixtureDir::new("qa0028-invalid");
++        let state = AppState::default();
++        let choices = CreationState::default();
++        let root = state.register_root(dir.path()).unwrap();
++        let choice = choices.choose(dir.path().to_owned()).unwrap();
++        let mut bad = vec!["CON .txt".to_owned(), "con   .notes.MD".to_owned(), "LPT¹ .txt".to_owned(), "é".repeat(126) + "a", "🚀".repeat(63) + "a"];
++        bad.extend((0x7f..=0x9f).map(|c| format!("a{}b", char::from_u32(c).unwrap())));
++        for name in bad {
++            for token in [false, true] {
++                let req = if token { CreateRequest { root_id: None, segments: None, destination_token: Some(choice.token.clone()), filename: name.clone() } } else { request(&root.id, &name) };
++                let error = match create(&state, &choices, req) { Err(error) => error, Ok(_) => panic!("false success: {name:?}") };
++                assert_eq!(error.code, "invalid_filename");
++                assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 0);
++                assert!(state.root(&root.id).is_ok());
++                assert!(choices.lock().unwrap().contains_key(&choice.token));
++            }
++        }
++        for name in ["Niño".to_owned(), "🚀".to_owned(), "notes.v1.txt".to_owned(), "é".repeat(126), "🚀".repeat(63), "a".repeat(252), "\u{feff}note".to_owned()] {
++            assert_eq!(filename(&name).unwrap(), format!("{name}.md"));
++        }
++        assert_eq!(filename("\u{85}note\u{85}").unwrap(), "note.md");
++    }
++    #[test]
+     fn real_empty_identity_duplicate_directory_and_drafts_preserved() {
+         let dir = FixtureDir::new("md-create");
+         std::fs::write(dir.path().join("existing.md"), "# Existing\n").unwrap();

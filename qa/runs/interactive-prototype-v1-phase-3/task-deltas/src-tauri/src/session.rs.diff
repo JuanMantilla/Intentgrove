@@ -1,0 +1,234 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/session.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/session.rs
+@@ -104,6 +104,24 @@
+     pub workspace_layout: crate::settings::WorkspaceLayout,
+ }
+ 
++// No prototype playback/location state is persisted or restored in V1.
++fn lifecycle_anchor(name: &str, anchor: ReadingAnchor) -> ReadingAnchor {
++    if crate::scope::prototype_name(name) {
++        ReadingAnchor {
++            heading_id: None,
++            offset: 0.,
++            scroll_top: 0.,
++            viewport_width: 0.,
++            viewport_height: 0.,
++            content_version: None,
++            html_zoom: None,
++            html_scroll_left: None,
++        }
++    } else {
++        anchor
++    }
++}
++
+ fn default_documents_and_images_only() -> bool {
+     true
+ }
+@@ -221,11 +239,12 @@
+         ));
+     }
+     if payload.tabs.iter().any(|t| {
+-        crate::scope::html_name(&t.name) && (t.editing_active || t.recovery_owner.is_some())
++        (crate::scope::html_name(&t.name) || crate::scope::prototype_name(&t.name))
++            && (t.editing_active || t.recovery_owner.is_some())
+     }) {
+         return Err(session_error(
+             "session_corrupt",
+-            "HTML tabs cannot contain edit recovery state",
++            "Read-only tabs cannot contain edit recovery state",
+         ));
+     }
+     if payload
+@@ -649,14 +668,14 @@
+     for tab in input.tabs {
+         if tab.editing_active
+             && tab.file_id.as_ref().is_some_and(|id| {
+-                state
+-                    .file(id)
+-                    .is_ok_and(|g| crate::scope::html_name(&g.name))
++                state.file(id).is_ok_and(|g| {
++                    crate::scope::html_name(&g.name) || crate::scope::prototype_name(&g.name)
++                })
+             })
+         {
+             return Err(session_error(
+                 "unsupported_type",
+-                "HTML tabs never have editing or recovery state",
++                "Read-only tabs never have editing or recovery state",
+             ));
+         }
+         let recovery_owner = if tab.editing_active {
+@@ -732,12 +751,13 @@
+             }
+             (prior.source.clone(), prior.name.clone())
+         };
++        let anchor = lifecycle_anchor(&name, tab.anchor);
+         tabs.push(StoredTab {
+             key: tab.key,
+             source,
+             name,
+             saved_disk_version: tab.saved_disk_version,
+-            anchor: tab.anchor,
++            anchor,
+             editing_active: tab.editing_active,
+             recovery_owner,
+         });
+@@ -937,7 +957,9 @@
+                 }
+             };
+             tabs.push(RestoreTab {
+-                kind: if crate::scope::html_name(&tab.name) {
++                kind: if crate::scope::prototype_name(&tab.name) {
++                    "prototype"
++                } else if crate::scope::html_name(&tab.name) {
+                     "html"
+                 } else if crate::scope::image_format(&tab.name).is_some() {
+                     "image"
+@@ -950,7 +972,7 @@
+                 display_path,
+                 root_segments,
+                 explicit_file,
+-                anchor: tab.anchor.clone(),
++                anchor: lifecycle_anchor(&tab.name, tab.anchor.clone()),
+                 saved_disk_version: tab.saved_disk_version.clone(),
+                 error_code,
+                 editing_active: tab.editing_active,
+@@ -997,8 +1019,8 @@
+             .add_filter(
+                 "Documents and images",
+                 &[
+-                    "md", "markdown", "html", "htm", "jpg", "jpeg", "png", "gif", "webp", "svg",
+-                    "bmp", "tif", "tiff", "heic", "heif",
++                    "md", "markdown", "html", "htm", "igproto", "jpg", "jpeg", "png", "gif",
++                    "webp", "svg", "bmp", "tif", "tiff", "heic", "heif",
+                 ],
+             )
+             .blocking_pick_file()
+@@ -1058,6 +1080,14 @@
+     let Some(payload) = load_at(&dir)? else {
+         return Ok(None);
+     };
++    restore_payload(state, payload).map(Some)
++}
++
++fn restore_payload(state: &AppState, payload: SessionPayload) -> AppResult<RestoreResponse> {
++    validate(&payload)?;
++    if state.selection_epoch()? != 0 {
++        return Err(session_error("session_busy", "A workspace is already open"));
++    }
+     let root = payload.root.as_ref().map(|saved| {
+         match state.restore_root(Path::new(&saved.path), saved.identity) {
+             Ok(grant) => RestoreRoot {
+@@ -1145,7 +1175,9 @@
+             }
+         };
+         tabs.push(RestoreTab {
+-            kind: if crate::scope::html_name(&tab.name) {
++            kind: if crate::scope::prototype_name(&tab.name) {
++                "prototype"
++            } else if crate::scope::html_name(&tab.name) {
+                 "html"
+             } else if crate::scope::image_format(&tab.name).is_some() {
+                 "image"
+@@ -1158,7 +1190,7 @@
+             display_path,
+             root_segments,
+             explicit_file,
+-            anchor: tab.anchor.clone(),
++            anchor: lifecycle_anchor(&tab.name, tab.anchor.clone()),
+             saved_disk_version: tab.saved_disk_version.clone(),
+             error_code,
+             editing_active: tab.editing_active,
+@@ -1170,7 +1202,7 @@
+             "Session restore was replaced by a new selection",
+         ));
+     }
+-    Ok(Some(RestoreResponse {
++    Ok(RestoreResponse {
+         sequence: payload.sequence,
+         completed_at_ms: payload.completed_at_ms,
+         exit_disposition: payload.exit_disposition,
+@@ -1180,7 +1212,7 @@
+         tree: payload.tree,
+         panel: payload.panel,
+         window: payload.window,
+-    }))
++    })
+ }
+ 
+ #[tauri::command]
+@@ -1221,6 +1253,73 @@
+     use std::fs;
+     #[cfg(target_os = "macos")]
+     use std::os::unix::fs::symlink;
++
++    #[test]
++    #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
++    fn prototype_session_reopens_revalidates_and_excludes_runtime_and_recovery() {
++        let dir = std::env::temp_dir().join(format!("igproto-session-{}", Uuid::new_v4()));
++        fs::create_dir(&dir).unwrap();
++        let path = dir.join("prototype.igproto");
++        fs::write(
++            &path,
++            include_bytes!("../../tests/fixtures/prototype/phase-2/representative-v1.igproto"),
++        )
++        .unwrap();
++        let file = open_selected(&path, false).unwrap();
++        let mut payload = sample(1);
++        payload.root = None;
++        payload.tabs.truncate(1);
++        payload.tabs[0].name = "prototype.igproto".into();
++        payload.tabs[0].source = StoredTabSource::Explicit {
++            selection: StoredSelection {
++                path: path.display().to_string(),
++                identity: identity(&file).unwrap(),
++            },
++        };
++        payload.active_key = Some(payload.tabs[0].key.clone());
++        payload.tabs[0].anchor =
++            lifecycle_anchor(&payload.tabs[0].name, payload.tabs[0].anchor.clone());
++        write_at(&dir, &payload).unwrap();
++        let loaded = load_at(&dir).unwrap().unwrap();
++        let serialized = String::from_utf8(encode(&loaded).unwrap()).unwrap();
++        for forbidden in [
++            "viewToken",
++            "sceneStack",
++            "navigation",
++            "overlay",
++            "localState",
++            "entryScene",
++            "htmlZoom",
++        ] {
++            assert!(!serialized.contains(forbidden));
++        }
++        assert_eq!(loaded.schema, 1);
++        assert_eq!(loaded.tabs[0].anchor.scroll_top, 0.);
++        let state = AppState::default();
++        let restored = restore_payload(&state, loaded.clone()).unwrap();
++        assert_eq!(restored.tabs[0].kind, "prototype");
++        let id = restored.tabs[0].file_id.clone().unwrap();
++        let control = igproto_package::Control::new(std::time::Duration::from_secs(5));
++        let (view, _) =
++            crate::prototype::open(&state, state.file(&id).unwrap(), None, &control).unwrap();
++        assert!(view.prototype.unwrap().restore_to_entry);
++        state.prototypes.clear();
++        fs::write(&path, b"invalid changed package").unwrap();
++        let fresh = AppState::default();
++        let restored = restore_payload(&fresh, loaded.clone()).unwrap();
++        let id = restored.tabs[0].file_id.clone().unwrap();
++        assert!(crate::prototype::open(&fresh, fresh.file(&id).unwrap(), None, &control).is_err());
++        let mut invalid = loaded.clone();
++        invalid.tabs[0].editing_active = true;
++        assert!(encode(&invalid).is_err());
++        invalid.tabs[0].editing_active = false;
++        invalid.tabs[0].recovery_owner = Some("owner".into());
++        assert!(encode(&invalid).is_err());
++        fs::remove_file(&path).unwrap();
++        let absent = restore_payload(&AppState::default(), loaded.clone()).unwrap();
++        assert!(absent.tabs[0].error_code.is_some());
++        fs::remove_dir_all(dir).unwrap();
++    }
+ 
+     fn sample(sequence: u64) -> SessionPayload {
+         SessionPayload {

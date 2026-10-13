@@ -1,0 +1,44 @@
+{
+  "baseline_path": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-eligibility-20261011T043134Z-b2c144/tested-snapshot.json",
+  "baseline_created_at": "2026-10-11T04:31:41.345370+00:00",
+  "checks": [
+    {
+      "id": "accepted-state-integrity",
+      "result": "FAIL",
+      "reason": "40 of 472 accepted paths changed; 432 match.",
+      "finished_at": "2026-10-11T04:33:48.507694+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-eligibility-20261011T043134Z-b2c144/acceptance-integrity.json"
+      ]
+    },
+    {
+      "id": "current-completion-eligibility",
+      "result": "BLOCKED",
+      "reason": "Four records for three task IDs are QA_BLOCKED and BLOCKED/AWAITING_ACCEPTANCE.",
+      "finished_at": "2026-10-11T04:33:48.507816+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-eligibility-20261011T043134Z-b2c144/completion-eligibility.json"
+      ]
+    },
+    {
+      "id": "disposable-scope-inventory",
+      "result": "PASS",
+      "reason": "Approved Intentgrove disposable folder is empty.",
+      "finished_at": "2026-10-11T04:33:48.507848+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/qa/runs/cleanup-eligibility-20261011T043134Z-b2c144/approved-scope.json"
+      ]
+    },
+    {
+      "id": "candidate-retention",
+      "result": "PASS",
+      "reason": "All 54 logs reopened; snapshots and counterpart hashes checked; all outside scope and retained.",
+      "finished_at": "2026-10-11T04:33:48.507875+00:00",
+      "evidence_paths": [
+        "/Users/juanmantilla/projects/personal/md-reader/.cleanup-audit/20261011T043134Z-b2c144/guard-snapshots.json",
+        "/Users/juanmantilla/projects/personal/md-reader/.cleanup-audit/20261011T043134Z-b2c144/current-references.txt"
+      ]
+    }
+  ],
+  "scope": "Acceptance/evidence/cleanup eligibility verification only; no application tests rerun."
+}

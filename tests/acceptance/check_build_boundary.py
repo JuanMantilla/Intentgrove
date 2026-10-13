@@ -29,6 +29,8 @@ def main():
         p.error('native QA boundary mismatch')
     if not qa and any(marker in strings for marker in MARKERS):
         p.error('QA frontend embedded in production')
+    if not qa and any(marker in contents or marker in strings for marker in [b'diagram_acceptance', b'INTENTGROVE_DIAGRAM_ACCEPTANCE', b'INTENTGROVE_DIAG:', b'__diagMode', b'QA Settings evidence', b'QA Settings probe', b'bounded owner trace exceeded']):
+        p.error('diagram diagnostic capability in production')
     print('PASS: '+args.kind+' asset/binary marker boundary; runtime verification remains separate')
 
 if __name__ == '__main__': main()

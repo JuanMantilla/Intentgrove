@@ -1,0 +1,71 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+			14 pop up button Go menu
+			15 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+			16 container Explorer
+				17 pop up button PROJECTS
+				18 button Close Projects sidebar
+				19 button Open file
+				20 button Open folder
+				21 button Search folder
+				22 text fixtures
+				23 container
+					24 button after-delete.md
+					25 button after-rename-moved.md
+					26 button after-replace-original.md
+					27 button after-replace.md
+					28 button before-delete.md
+					29 button before-rename.md
+					30 button before-replace.md
+					31 button café # $ & % (draft),.md
+					32 button fresh.md
+					33 button opened.md
+				34 text Storage and recovery
+				35 text Open edits and recovery offers: 0
+				36 button Manage…
+				37 button Settings…
+			38 container
+				39 menu Secondary Actions: Cancel
+					40 Open after-delete.md
+					41 (selected) Reveal in Finder
+					42 Copy path
+					43 Reload after-delete.md
+				44 heading Read your local Markdown, Value: 1
+					45 text Read your local Markdown
+				46 text Open a Markdown file to start reading.
+				47 button New Markdown file
+				48 button Open folder
+				49 button Open file
+			50 container
+				51 text Local files only Intentgrove by Theonira
+	52 close button
+	53 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	54 minimize button
+	55 text Intentgrove QA0032
+56 menu bar
+	57 Intentgrove QA0032
+	58 File
+	59 Edit
+	60 View
+	61 Go
+	62 Window
+	63 Help
+
+Selected text: ```
+delete.md
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

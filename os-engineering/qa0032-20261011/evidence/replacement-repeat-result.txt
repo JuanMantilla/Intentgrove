@@ -1,0 +1,62 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+			14 pop up button Go menu
+			15 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+			16 container Explorer
+				17 pop up button PROJECTS
+				18 button Close Projects sidebar
+				19 button Open file
+				20 button Open folder
+				21 button Search folder
+				22 text fixtures
+				23 container
+					24 button after-rename-moved.md
+					25 button after-replace-original.md
+					26 button after-replace-second-original.md
+					27 button after-replace.md
+					28 button before-delete.md
+					29 button before-rename.md
+					30 button before-replace.md
+					31 button café # $ & % (draft),.md
+					32 button fresh.md
+					33 button opened.md
+				34 text Storage and recovery
+				35 text Open edits and recovery offers: 0
+				36 button Manage…
+				37 button Settings…
+			38 container
+				39 text Could not reveal the file. Select file again
+				40 button Dismiss
+				41 heading Read your local Markdown, Value: 1
+					42 text Read your local Markdown
+				43 text Open a Markdown file to start reading.
+				44 button New Markdown file
+				45 button Open folder
+				46 button Open file
+			47 container
+				48 text Local files only Intentgrove by Theonira
+	49 close button
+	50 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	51 minimize button
+	52 text Intentgrove QA0032
+53 menu bar
+	54 Intentgrove QA0032
+	55 File
+	56 Edit
+	57 View
+	58 Go
+	59 Window
+	60 Help

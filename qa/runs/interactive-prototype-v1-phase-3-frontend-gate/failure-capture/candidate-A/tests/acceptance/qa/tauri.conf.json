@@ -1,0 +1,8 @@
+{
+  "identifier": "com.juanmantilla.markdownworkspace.qa",
+  "productName": "Intentgrove QA",
+  "build": {
+    "frontendDist": "../target/qa-dist",
+    "beforeBuildCommand": "npx vite build --config tests/acceptance/qa/vite.config.ts"
+  }
+}

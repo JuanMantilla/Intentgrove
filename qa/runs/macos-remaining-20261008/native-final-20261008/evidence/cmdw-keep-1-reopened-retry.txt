@@ -1,0 +1,76 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: plain.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) plain.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+					15 container
+						16 tab (selected) permission.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+						17 button Close tab: permission.md, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container permission.md
+					21 text permission.md
+					22 text Folder root
+					23 button Save file
+					24 button Return to reading
+					25 text Save returns to reading.
+					26 summary Document…, Value: off
+						27 text Document…
+				28 container permission.md
+					29 container Editing: Permission proof
+						30 text Editing: Permission proof
+						31 text Changes not saved to the file
+						32 text Markdown source
+						33 text entry area (settable) Markdown source: Permission proof, Secondary Actions: Show Writing Tools, Value: # Permission proof
+
+OUTCOME_cmdw_keep_1
+
+
+
+							34 text (settable) # Permission proof
+							35 text (settable) OUTCOME_cmdw_keep_1
+						36 container Live preview
+							37 text Live preview
+							38 container Permission proof
+								39 heading Permission proof, Value: 1
+									40 text Permission proof
+								41 text OUTCOME_cmdw_keep_1
+						42 button Undo
+						43 button (disabled) Redo
+						44 button Discard changes…
+						45 button Save as…
+					46 container Permission proof
+						47 container Edit section: Permission proof
+							48 heading Permission proof, Value: 1
+								49 text Permission proof
+							50 button Edit section “Permission proof”
+						51 text OUTCOME_cmdw_save_2
+						52 container Edit section: Following section
+							53 heading Following section, Value: 2
+								54 text Following section
+							55 button Edit section “Following section”
+						56 text PERMISSION_FOLLOWING_UNCHANGED
+	57 close button
+	58 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	59 minimize button
+	60 text Intentgrove
+61 menu bar
+	62 Intentgrove
+	63 File
+	64 Edit
+	65 View
+	66 Go
+	67 Window
+	68 Help

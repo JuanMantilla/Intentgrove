@@ -1,0 +1,91 @@
+{
+  "environment": {
+    "host": "native macOS27.0.1 arm64",
+    "rust": "1.88.0",
+    "node": "20.19.6",
+    "frontend": "jsdom Vitest4.1.11 mocked Tauri"
+  },
+  "checks": [
+    {
+      "id": "frontend-regression",
+      "result": "PASS",
+      "reason": "Final npm test -- --maxWorkers=1:546 passed across63 files, deadlines/assertions unchanged. Prior default-worker pass and later timing/deadline failures retained, not waived.",
+      "finished_at": "2026-10-10T19:05:08.376415+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/frontend-final.log",
+        "os-engineering/individual-links-20261010/evidence/frontend-loaded-host-failure.log",
+        "os-engineering/individual-links-20261010/evidence/frontend-history-timing-failure.log",
+        "os-engineering/individual-links-20261010/evidence/host-load.log"
+      ]
+    },
+    {
+      "id": "native-library",
+      "result": "PASS",
+      "reason": "macOS arm64 real native adapter/library tests:125 passed,5 existing ignored; not packaged GUI.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/native.log"
+      ]
+    },
+    {
+      "id": "frontend-build",
+      "result": "PASS",
+      "reason": "TypeScript noEmit and Vite production build; no app installation or signing.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/build.log"
+      ]
+    },
+    {
+      "id": "production-workers",
+      "result": "PASS",
+      "reason": "Existing worker bundle validation against freshly built output.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/worker.log"
+      ]
+    },
+    {
+      "id": "touched-rust-format",
+      "result": "PASS",
+      "reason": "rustfmt check for four touched Rust files; repository-wide pre-existing formatting is excluded.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/format.log"
+      ]
+    },
+    {
+      "id": "scoped-diff",
+      "result": "PASS",
+      "reason": "Whitespace check on touched source/tests, unrelated edits preserved.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/evidence/diff-check.log"
+      ]
+    },
+    {
+      "id": "native-gui",
+      "result": "NOT_RUN",
+      "reason": "No current packaged app launched on a disposable profile; actual Finder/terminal/WebKit/TCC/exact-file picker approval remain unverified. No real user documents accessed.",
+      "finished_at": "2026-10-10T19:03:57.959675+00:00",
+      "evidence_paths": [
+        "os-engineering/individual-links-20261010/report.md",
+        "os-engineering/individual-links-20261010/evidence/existing-bundle-entitlements.log"
+      ]
+    }
+  ],
+  "requirements": {
+    "F001-L01": "Native sibling/parent/Unicode/fragment/typed-target tests and rendered-App native-entry links.",
+    "F001-L02": "Real chmod denial,no-follow directory-link rejection,file-only grant assertions; live OS dialogs NOT RUN.",
+    "F001-L03": "Rendered App repeated navigation,heading scrolling,Back/Forward,existing dirty edit ownership; external-link regressions in full suite.",
+    "F001-L04": "Native library/build/worker checks and frontend regressions; packaged native UX NOT RUN."
+  },
+  "observed_prior_failures": [
+    "Initial backup test discovery failure corrected by .before evidence suffix.",
+    "Initial TypeScript nullable callback corrected with optional active access.",
+    "History fixture scroll preceded rendered passage; visible-heading readiness added without weakening assertions.",
+    "Later two-worker run had five editor-fixture/timeout failures under high observed load; raw failures retained; single-worker final verification keeps deadlines."
+  ],
+  "completion": "Implementation handoff; not native UX or release acceptance.",
+  "finished_at": "2026-10-10T19:05:08.376415+00:00"
+}

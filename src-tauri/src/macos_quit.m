@@ -29,3 +29,16 @@ bool md_install_quit_guard(MDQuitGuard guard) {
     if (![NSThread isMainThread]) return false;
     return md_install_quit_guard_on_delegate([NSApp delegate], guard);
 }
+
+// File URLs preserve spaces, Unicode and URL/shell punctuation as path data.
+bool md_reveal_file(const char *path) {
+    @autoreleasepool {
+        NSString *name = path ? [NSString stringWithUTF8String:path] : nil;
+        if (!name || ![name isAbsolutePath]) return false;
+        NSURL *url = [NSURL fileURLWithPath:name];
+        NSError *error = nil;
+        if (![url checkResourceIsReachableAndReturnError:&error]) return false;
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
+        return true;
+    }
+}

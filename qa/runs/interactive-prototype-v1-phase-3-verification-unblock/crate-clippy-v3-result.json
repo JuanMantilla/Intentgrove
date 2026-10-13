@@ -1,0 +1,25 @@
+{
+  "name": "crate-clippy-v3",
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+  },
+  "started_at": "2026-10-12T04:07:38.119418+00:00",
+  "finished_at": "2026-10-12T04:07:38.643063+00:00",
+  "exit_code": 0,
+  "log": "crate-clippy-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

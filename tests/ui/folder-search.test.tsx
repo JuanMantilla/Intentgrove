@@ -36,6 +36,18 @@ const hit = { id: "hit-1", segments: ["a.md"], path: "a.md", line: 1,
   ignored: false, version: "v1" };
 
 describe("folder search panel", () => {
+  it.each(["en", "es"] as const)("names a completed scan with skips honestly in %s", async locale => {
+    render(<FolderSearchPanel root={root} locale={locale} onOpen={vi.fn()} />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.keyDown(screen.getByRole("searchbox"), { key: "Enter" });
+    await act(async () => {});
+    act(() => mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [hit],
+      scanned: 12, skipped: 3, matched: 1, status: "complete", errorCode: null } }));
+    expect(screen.getByRole("status").textContent).toContain(locale === "en" ? "Scan finished" : "Exploración finalizada");
+    expect(screen.getByRole("status").textContent).toContain("12");
+    expect(screen.getByRole("status").textContent).toContain("3");
+  });
   it("stops a pending start and cancels the job as soon as its ID arrives", async () => {
     let resolve!: (value: unknown) => void;
     mocks.startFolderSearch.mockReturnValueOnce(new Promise(done => { resolve = done; }));
@@ -77,7 +89,7 @@ describe("folder search panel", () => {
       { target: { value: "Needle" } });
     fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith(
-      "root-1", "Needle", "both", false));
+      "root-1", "Needle", "both", false, []));
     mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [hit],
       scanned: 12, skipped: 3, matched: 1, status: "searching", errorCode: null } });
     expect(await screen.findByRole("button", { name: /a\.md/ })).toBeTruthy();
@@ -112,11 +124,159 @@ describe("folder search panel", () => {
       { target: { value: "Needle" } });
     fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1));
+    fireEvent.click(screen.getByRole("button", { name: /Names and content/ }));
     fireEvent.click(screen.getByRole("checkbox", { name: "Include ignored files" }));
     expect(mocks.startFolderSearch).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenLastCalledWith(
-      "root-1", "Needle", "both", true));
+      "root-1", "Needle", "both", true, []));
     expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("job-1");
   });
+});
+
+
+describe("selected scope ownership", () => {
+  const batch = (jobId: string, errorCode: string | null = null): FolderSearchBatch => ({
+    jobId, generation: 1, results: [hit], scanned: 1, skipped: 0, matched: 1,
+    status: "complete", errorCode
+  });
+  it("passes literal scope and displays native confirmation independently of mode", async () => {
+    mocks.startFolderSearch.mockResolvedValue({ jobId: "job-1", generation: 1, scopeSegments: ["confirmed"] });
+    render(<FolderSearchPanel root={root} scopeSegments={["requested"]} locale="en" onOpen={vi.fn()} />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledWith("root-1", "Needle", "both", false, ["requested"]));
+    expect(await screen.findByText(/fixture \/ confirmed/)).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Clear search" }));
+    expect(screen.getByText(/fixture \/ confirmed/)).toBeTruthy();
+  });
+  it("cancels a pending scope owner and refuses its buffered and late batches", async () => {
+    let resolve!: (value: unknown) => void;
+    mocks.startFolderSearch.mockReturnValueOnce(new Promise(done => { resolve = done; }));
+    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={vi.fn()} />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    act(() => mocks.listener?.({ payload: batch("old") }));
+    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={vi.fn()} />);
+    await act(async () => resolve({ jobId: "old", generation: 1, scopeSegments: ["old"] }));
+    expect(mocks.cancelFolderSearch).toHaveBeenCalledWith("old");
+    act(() => mocks.listener?.({ payload: batch("old") }));
+    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
+    expect(screen.getByText(/fixture \/ new/)).toBeTruthy();
+  });
+  it("rejects open replies after scope replacement", async () => {
+    const onOpen = vi.fn(); let resolve!: (value: unknown) => void;
+    const view = render(<FolderSearchPanel root={root} scopeSegments={["old"]} locale="en" onOpen={onOpen} />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    await act(async () => {});
+    act(() => mocks.listener?.({ payload: batch("job-1") }));
+    mocks.openSearchHit.mockReturnValueOnce(new Promise(done => { resolve = done; }));
+    fireEvent.click(screen.getByRole("button", { name: /a\.md/ }));
+    view.rerender(<FolderSearchPanel root={root} scopeSegments={["new"]} locale="en" onOpen={onOpen} />);
+    await act(async () => resolve({ line: 1 }));
+    expect(onOpen).not.toHaveBeenCalled();
+  });
+  it("discards changed-scope hits and explains Spanish recovery", async () => {
+    render(<FolderSearchPanel root={root} scopeSegments={["notes"]} locale="es" onOpen={vi.fn()} />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.click(screen.getByRole("button", { name: "Buscar" }));
+    await act(async () => {});
+    act(() => mocks.listener?.({ payload: batch("job-1", "scope_changed") }));
+    expect(screen.queryByRole("button", { name: /a\.md/ })).toBeNull();
+    expect(screen.getByRole("status").textContent).toContain("La carpeta buscada cambió");
+    expect(screen.getByRole("button", { name: "Buscar" })).toBeTruthy();
+  });
+});
+
+
+describe("pending passage navigation ownership", () => {
+  it.each(["panel hidden", "newer document intent"])("rejects a held reply after %s", async (change) => {
+    const onOpen = vi.fn();
+    let navigation = 0;
+    const captureOpenIntent = () => { const owner = ++navigation; return () => owner === navigation; };
+    const props = { root, locale: "en" as const, onOpen, captureOpenIntent };
+    const view = render(<FolderSearchPanel {...props} active />);
+    await waitFor(() => expect(mocks.listener).toBeTruthy());
+    fireEvent.change(screen.getByRole("searchbox"), { target: { value: "Needle" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    await act(async () => {});
+    act(() => mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [hit],
+      scanned: 1, skipped: 0, matched: 1, status: "complete", errorCode: null } }));
+    let release!: (value: unknown) => void;
+    mocks.openSearchHit.mockReturnValueOnce(new Promise(done => { release = done; }));
+    fireEvent.click(screen.getByRole("button", { name: /a\.md/ }));
+    expect(mocks.openSearchHit).toHaveBeenCalledWith("job-1", "hit-1");
+    if (change === "panel hidden") view.rerender(<FolderSearchPanel {...props} active={false} />);
+    else navigation += 1;
+    await act(async () => release({ line: 1 }));
+    expect(onOpen).not.toHaveBeenCalled();
+  });
+});
+
+it("retains readable old results while a replacement starts, then swaps only on the matching batch", async () => {
+  render(<FolderSearchPanel root={root} locale="en" onOpen={vi.fn()} />);
+  await waitFor(()=>expect(mocks.listener).toBeTruthy());
+  const input = screen.getByRole("searchbox");
+  fireEvent.change(input,{target:{value:"Needle"}}); fireEvent.keyDown(input,{key:"Enter"});
+  await act(async()=>{});
+  act(()=>mocks.listener?.({payload:{jobId:"job-1",generation:1,results:[hit],scanned:8,skipped:0,matched:1,status:"complete",errorCode:null}}));
+  const result = screen.getByRole("button",{name:/a\.md/});
+  mocks.startFolderSearch.mockResolvedValueOnce({jobId:"job-2",generation:1});
+  fireEvent.change(input,{target:{value:"Replacement"}}); fireEvent.keyDown(input,{key:"Enter"});
+  await act(async()=>{});
+  expect(result.isConnected).toBe(true); expect((result as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(result); expect(mocks.openSearchHit).not.toHaveBeenCalled();
+  act(()=>mocks.listener?.({payload:{jobId:"job-1",generation:1,results:[{...hit,context:"Stale"}],scanned:9,skipped:0,matched:2,status:"complete",errorCode:null}}));
+  expect(screen.queryByText("Stale")).toBeNull();
+  act(()=>mocks.listener?.({payload:{jobId:"job-2",generation:1,results:[{...hit,id:"new",context:"Replacement"}],scanned:10,skipped:0,matched:1,status:"searching",errorCode:null}}));
+  expect(screen.queryByRole("button",{name:/Needle/})).toBeNull(); expect(screen.getByRole("button",{name:/Replacement/})).toBeTruthy();
+  expect(screen.getByRole("progressbar").hasAttribute("aria-valuenow")).toBe(false);
+  fireEvent.click(screen.getByRole("button",{name:"Stop"}));
+  await waitFor(()=>expect(screen.queryByRole("progressbar")).toBeNull());
+  expect(screen.getByRole("button",{name:/Replacement/})).toBeTruthy();
+});
+
+it("operates options with arrows, returns focus on selection and dismisses options before Projects", async () => {
+  const dismiss = vi.fn();
+  render(<FolderSearchPanel root={root} locale="en" onOpen={vi.fn()} onDismiss={dismiss} />);
+  const trigger = screen.getByRole("button", { name: /Names and content/ });
+  fireEvent.click(trigger);
+  const selected = screen.getAllByRole("button", { name: /Names and content/ }).find(button => button.hasAttribute("aria-pressed"))!;
+  expect(document.activeElement).toBe(selected);
+  fireEvent.keyDown(selected, { key: "ArrowDown" });
+  expect(document.activeElement).toBe(screen.getByRole("button", { name: "File names" }));
+  fireEvent.click(screen.getByRole("button", { name: "File names" }));
+  expect(document.activeElement).toBe(trigger);
+  expect(trigger.getAttribute("aria-expanded")).toBe("false");
+  fireEvent.click(trigger);
+  expect(screen.getByText("Contents search covers Markdown files.")).toBeTruthy();
+  fireEvent.keyDown(document.activeElement!, { key: "Escape" });
+  expect(dismiss).not.toHaveBeenCalled();
+  expect(document.activeElement).toBe(trigger);
+  fireEvent.keyDown(trigger, { key: "Escape" });
+  expect(dismiss).toHaveBeenCalledTimes(1);
+});
+
+it.each(["en", "es"] as const)("keeps failed starts truthful and permits retry in %s", async locale => {
+  mocks.startFolderSearch.mockRejectedValueOnce({ code: "search_unavailable" });
+  render(<FolderSearchPanel root={root} locale={locale} onOpen={vi.fn()} />);
+  await waitFor(() => expect(mocks.listener).toBeTruthy());
+  const query = screen.getByRole("searchbox");
+  const search = screen.getByRole("button", { name: locale === "en" ? "Search" : "Buscar" });
+  expect((search as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.change(query, { target: { value: "Needle" } });
+  fireEvent.click(search);
+  await waitFor(() => expect(screen.getByRole("status").textContent).not.toContain(locale === "en" ? "Searching…" : "Buscando…"));
+  expect(screen.getByRole("status").textContent).not.toContain(locale === "en" ? "Search complete" : "Búsqueda completa");
+  expect(screen.getByRole("status").textContent).toContain("0");
+  fireEvent.click(search);
+  await waitFor(() => expect(mocks.startFolderSearch).toHaveBeenCalledTimes(2));
+  act(() => mocks.listener?.({ payload: { jobId: "job-1", generation: 1, results: [], scanned: 4, skipped: 0, matched: 0, status: "complete", errorCode: null } }));
+  expect(screen.getByRole("status").textContent).toContain(locale === "en" ? "No results" : "Sin resultados");
+  expect(screen.getByRole("status").textContent).toContain("4");
 });

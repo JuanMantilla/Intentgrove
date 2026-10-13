@@ -30,7 +30,10 @@ pub fn immediate_bytes_and_version(file: &File) -> AppResult<(Vec<u8>, String)> 
     let bytes = bounded_bytes(file, MAX_DOCUMENT_BYTES)?;
     let after = stamp(file)?;
     if before != after {
-        return Err(AppError::new("changed", "File changed during the save check"));
+        return Err(AppError::new(
+            "changed",
+            "File changed during the save check",
+        ));
     }
     let digest = Sha256::digest(&bytes);
     let token = format!(
@@ -69,8 +72,7 @@ pub fn bounded_bytes(file: &File, max: usize) -> AppResult<Vec<u8>> {
         result.extend_from_slice(&chunk[..amount]);
     }
     let after = stamp(file)?;
-    if before != after || result.len() as u64 != after.length
-    {
+    if before != after || result.len() as u64 != after.length {
         return Err(AppError::new(
             "changed",
             "File changed while it was being read; retry",
@@ -138,8 +140,11 @@ pub fn read_document_impl(
 // Search supplies a file opened beneath its retained scope handle. The normal
 // root/generation, stable-byte and current-path postchecks still apply.
 pub(crate) fn read_document_with_file(
-    state: &AppState, file_id: Option<&str>, root_id: Option<&str>,
-    segments: Option<Vec<String>>, scoped_file: Option<File>,
+    state: &AppState,
+    file_id: Option<&str>,
+    root_id: Option<&str>,
+    segments: Option<Vec<String>>,
+    scoped_file: Option<File>,
 ) -> AppResult<DocumentResponse> {
     let (file, mut grant, post_check) = if let Some(file_id) = file_id {
         let grant = state.file(file_id)?;
@@ -244,7 +249,10 @@ pub async fn read_document(
     .map_err(|error| AppError::new("internal", error.to_string()))?;
     #[cfg(feature = "acceptance-harness")]
     {
-        let result = result.and_then(|document| { qa.injected()?; Ok(document) });
+        let result = result.and_then(|document| {
+            qa.injected()?;
+            Ok(document)
+        });
         return qa.finish(result);
     }
     #[cfg(not(feature = "acceptance-harness"))]

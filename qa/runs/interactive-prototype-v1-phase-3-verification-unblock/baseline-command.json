@@ -1,0 +1,35 @@
+{
+  "command": [
+    "cargo",
+    "clippy",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--lib",
+    "--tests",
+    "--message-format=json",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "baseline_cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/baseline-checkout",
+  "current_before_cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "baseline_exit_code": 101,
+  "current_before_exit_code": 101,
+  "toolchain": "1.88.0-aarch64-apple-darwin",
+  "target": "aarch64-apple-darwin (implicit host; no --target)",
+  "package": "md_reader via src-tauri/Cargo.toml; --lib --tests; no --workspace or -p",
+  "features": "default=[]; no explicit --features",
+  "environment_file": "environment.json",
+  "baseline_environment_override": {
+    "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target"
+  },
+  "current_before_environment_override": {},
+  "effective_target_directory_identical": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target",
+  "historical_environment_limitation": "Prior Phase 3 did not retain a complete build-environment manifest; toolchain/command are recorded. This investigation records its current environment explicitly.",
+  "baseline_head": "7e00d3316ce46563cafb46ba928498fcb0d82880",
+  "baseline_identity": "Pre-Phase-3 dirty-source snapshot atop this HEAD, not a committed feature revision; original native source/manifests/tests verified against pre-existing-files.json. A HEAD-only worktree would be the wrong baseline.",
+  "identical_explicit_environment_replay": "baseline-repeat-commands.json",
+  "replay_result": "repeat-comparison.json"
+}

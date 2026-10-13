@@ -1,0 +1,537 @@
+Window: "Intentgrove", App: Intentgrove Completion 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: entry-00000.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/bulk/entry-00000.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) hostile-matrix.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/hostile-matrix.md
+						14 button Close tab: hostile-matrix.md, Help: Close tab
+				15 pop up button Go menu
+				16 button (collapsed) Open documents (1), Secondary Actions: Expand
+				17 container Visited files
+					18 text Atrás: entry-00000.md
+				19 container hostile-matrix.md
+					20 text hostile-matrix.md
+					21 text Folder root
+					22 button Edit section
+					23 summary Document…, Value: off
+						24 text Document…
+				25 container hostile-matrix.md
+					26 container Final hostile matrix
+						27 container Edit section: Final hostile matrix
+							28 heading Final hostile matrix, Value: 1
+								29 text Final hostile matrix
+							30 button Edit section “Final hostile matrix”
+						31 text Before hostile blocks.
+						32 container Edit section: directive
+							33 heading directive, Value: 2
+								34 text directive
+							35 button Edit section “directive”
+						36 text Diagram unavailable. The source is preserved below.
+						37 container (expanded) Secondary Actions: Collapse
+							38 summary View source, Value: on
+								39 text View source
+							40 text mermaid
+							41 button Copy code
+							42 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+A-->B
+
+						43 text After directive.
+						44 container Edit section: html
+							45 heading html, Value: 2
+								46 text html
+							47 button Edit section “html”
+						48 text Diagram unavailable. The source is preserved below.
+						49 container (expanded) Secondary Actions: Collapse
+							50 summary View source, Value: on
+								51 text View source
+							52 text mermaid
+							53 button Copy code
+							54 text flowchart LR
+A["<img src=x onerror=alert(1)>"]
+
+						55 text After html.
+						56 container Edit section: svg
+							57 heading svg, Value: 2
+								58 text svg
+							59 button Edit section “svg”
+						60 text Diagram unavailable. The source is preserved below.
+						61 container (expanded) Secondary Actions: Collapse
+							62 summary View source, Value: on
+								63 text View source
+							64 text mermaid
+							65 button Copy code
+							66 text flowchart LR
+A["<svg onload=alert(1)>"]
+
+						67 text After svg.
+						68 container Edit section: file-link
+							69 heading file-link, Value: 2
+								70 text file-link
+							71 button Edit section “file-link”
+						72 text Diagram unavailable. The source is preserved below.
+						73 container (expanded) Secondary Actions: Collapse
+							74 summary View source, Value: on
+								75 text View source
+							76 text mermaid
+							77 button Copy code
+							78 text flowchart LR
+A-->B
+click A "file:///etc/passwd"
+
+						79 text After file-link.
+						80 container Edit section: network-link
+							81 heading network-link, Value: 2
+								82 text network-link
+							83 button Edit section “network-link”
+						84 text Diagram unavailable. The source is preserved below.
+						85 container (expanded) Secondary Actions: Collapse
+							86 summary View source, Value: on
+								87 text View source
+							88 text mermaid
+							89 button Copy code
+							90 text flowchart LR
+A-->B
+click A "https://example.invalid/qa"
+
+						91 text After network-link.
+						92 container Edit section: script-link
+							93 heading script-link, Value: 2
+								94 text script-link
+							95 button Edit section “script-link”
+						96 text Diagram unavailable. The source is preserved below.
+						97 container (expanded) Secondary Actions: Collapse
+							98 summary View source, Value: on
+								99 text View source
+							100 text mermaid
+							101 button Copy code
+							102 text flowchart LR
+A-->B
+click A "javascript:alert(1)"
+
+						103 text After script-link.
+						104 container Edit section: config
+							105 heading config, Value: 2
+								106 text config
+							107 button Edit section “config”
+						108 text Diagram unavailable. The source is preserved below.
+						109 container (expanded) Secondary Actions: Collapse
+							110 summary View source, Value: on
+								111 text View source
+							112 text mermaid
+							113 button Copy code
+							114 text ---
+config: {}
+---
+flowchart LR
+A-->B
+
+						115 text After config.
+						116 container Edit section: callback
+							117 heading callback, Value: 2
+								118 text callback
+							119 button Edit section “callback”
+						120 text Diagram unavailable. The source is preserved below.
+						121 container (expanded) Secondary Actions: Collapse
+							122 summary View source, Value: on
+								123 text View source
+							124 text mermaid
+							125 button Copy code
+							126 text flowchart LR
+A-->B
+click A callback
+
+						127 text After callback.
+						128 container Edit section: class
+							129 heading class, Value: 2
+								130 text class
+							131 button Edit section “class”
+						132 text Diagram unavailable. The source is preserved below.
+						133 container (expanded) Secondary Actions: Collapse
+							134 summary View source, Value: on
+								135 text View source
+							136 text mermaid
+							137 button Copy code
+							138 text flowchart LR
+A-->B
+classDef x fill:url(https://example.invalid/qa)
+
+						139 text After class.
+						140 container Edit section: foreign
+							141 heading foreign, Value: 2
+								142 text foreign
+							143 button Edit section “foreign”
+						144 text Diagram unavailable. The source is preserved below.
+						145 container (expanded) Secondary Actions: Collapse
+							146 summary View source, Value: on
+								147 text View source
+							148 text mermaid
+							149 button Copy code
+							150 text flowchart LR
+A["<foreignObject>x</foreignObject>"]
+
+						151 text After foreign.
+						152 container Edit section: source-limit
+							153 heading source-limit, Value: 2
+								154 text source-limit
+							155 button Edit section “source-limit”
+						156 container
+							157 text This document is too complex to render safely
+							158 summary View source, Value: off
+								159 text View source
+						160 text After source-limit.
+						161 container Edit section: node-limit
+							162 heading node-limit, Value: 2
+								163 text node-limit
+							164 button Edit section “node-limit”
+						165 text Diagram unavailable. The source is preserved below.
+						166 container (expanded) Secondary Actions: Collapse
+							167 summary View source, Value: on
+								168 text View source
+							169 text mermaid
+							170 button Copy code
+							171 text flowchart LR
+N0
+N1
+N2
+N3
+N4
+N5
+N6
+N7
+N8
+N9
+N10
+N11
+N12
+N13
+N14
+N15
+N16
+N17
+N18
+N19
+N20
+N21
+N22
+N23
+N24
+N25
+N26
+N27
+N28
+N29
+N30
+N31
+N32
+N33
+N34
+N35
+N36
+N37
+N38
+N39
+N40
+N41
+N42
+N43
+N44
+N45
+N46
+N47
+N48
+N49
+N50
+N51
+N52
+N53
+N54
+N55
+N56
+N57
+N58
+N59
+N60
+N61
+N62
+N63
+N64
+N65
+N66
+N67
+N68
+N69
+N70
+N71
+N72
+N73
+N74
+N75
+N76
+N77
+N78
+N79
+N80
+N81
+N82
+N83
+N84
+N85
+N86
+N87
+N88
+N89
+N90
+N91
+N92
+N93
+N94
+N95
+N96
+N97
+N98
+N99
+N100
+N101
+N102
+N103
+N104
+N105
+N106
+N107
+N108
+N109
+N110
+N111
+N112
+N113
+N114
+N115
+N116
+N117
+N118
+N119
+N120
+N121
+						172 text After node-limit.
+						173 container Edit section: edge-limit
+							174 heading edge-limit, Value: 2
+								175 text edge-limit
+							176 button Edit section “edge-limit”
+						177 text Diagram unavailable. The source is preserved below.
+						178 container (expanded) Secondary Actions: Collapse
+							179 summary View source, Value: on
+								180 text View source
+							181 text mermaid
+							182 button Copy code
+							183 text flowchart LR
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A-->B
+A
+						184 text After edge-limit.
+						185 container Edit section: unsupported
+							186 heading unsupported, Value: 2
+								187 text unsupported
+							188 button Edit section “unsupported”
+						189 text Diagram unavailable. The source is preserved below.
+						190 container (expanded) Secondary Actions: Collapse
+							191 summary View source, Value: on
+								192 text View source
+							193 text mermaid
+							194 button Copy code
+							195 text gantt
+ title Unsupported fallback
+
+						196 text After unsupported.
+						197 container Edit section: malformed
+							198 heading malformed, Value: 2
+								199 text malformed
+							200 button Edit section “malformed”
+						201 text Diagram unavailable. The source is preserved below.
+						202 container (expanded) Secondary Actions: Collapse
+							203 summary View source, Value: on
+								204 text View source
+							205 text mermaid
+							206 button Copy code
+							207 text flowchart LR
+A-->[
+
+						208 text After malformed.
+						209 container Edit section: math
+							210 heading math, Value: 2
+								211 text math
+							212 button Edit section “math”
+						213 text Diagram unavailable. The source is preserved below.
+						214 container (expanded) Secondary Actions: Collapse
+							215 summary View source, Value: on
+								216 text View source
+							217 text mermaid
+							218 button Copy code
+							219 text flowchart LR
+A["$$x$$"]
+
+						220 text After math.
+						221 container Edit section: iframe
+							222 heading iframe, Value: 2
+								223 text iframe
+							224 button Edit section “iframe”
+						225 text Diagram unavailable. The source is preserved below.
+						226 container (expanded) Secondary Actions: Collapse
+							227 summary View source, Value: on
+								228 text View source
+							229 text mermaid
+							230 button Copy code
+							231 text flowchart LR
+A["<iframe src=file:///etc/passwd>"]
+
+						232 text After iframe.
+						233 container Edit section: entity
+							234 heading entity, Value: 2
+								235 text entity
+							236 button Edit section “entity”
+						237 image Mermaid diagram
+						238 summary View source, Value: off
+							239 text View source
+						240 text After entity.
+						241 container Edit section: style
+							242 heading style, Value: 2
+								243 text style
+							244 button Edit section “style”
+						245 text Diagram unavailable. The source is preserved below.
+						246 container (expanded) Secondary Actions: Collapse
+							247 summary View source, Value: on
+								248 text View source
+							249 text mermaid
+							250 button Copy code
+							251 text flowchart LR
+A-->B
+style A fill:red
+
+						252 text After style.
+						253 container Edit section: href
+							254 heading href, Value: 2
+								255 text href
+							256 button Edit section “href”
+						257 text Diagram unavailable. The source is preserved below.
+						258 container (expanded) Secondary Actions: Collapse
+							259 summary View source, Value: on
+								260 text View source
+							261 text mermaid
+							262 button Copy code
+							263 text flowchart LR
+A[href]-->B
+
+						264 text After href.
+						265 container Edit section: Valid neighbor
+							266 heading Valid neighbor, Value: 2
+								267 text Valid neighbor
+							268 button Edit section “Valid neighbor”
+						269 image Mermaid diagram
+						270 summary View source, Value: off
+							271 text View source
+						272 text Final unaffected text.
+	273 close button
+	274 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	275 minimize button
+	276 text Intentgrove
+277 menu bar
+	278 Intentgrove Completion 20261008
+	279 File
+	280 Edit
+	281 View
+	282 Go
+	283 Window
+	284 Help
+
+The focused UI element is 32 container Edit section: directive

@@ -1,0 +1,658 @@
+use super::*;
+use crate::platform::test_support::FixtureDir;
+fn target(id: String) -> LocalTarget {
+    LocalTarget {
+        file_id: Some(id),
+        root_id: None,
+        segments: None,
+    }
+}
+fn html(state: &AppState, service: &HtmlService, path: &Path) -> LocalView {
+    let grant = state.register_explicit_file(path).unwrap();
+    open_impl(state, service, target(grant.id), None).unwrap()
+}
+fn view_url(service: &HtmlService, token: &str, relative: &str) -> String {
+    let views = lock(service).unwrap();
+    tauri::Url::parse(&start_url(views.get(token).unwrap()))
+        .unwrap()
+        .join(relative)
+        .unwrap()
+        .to_string()
+}
+#[test]
+fn explicit_file_never_grants_siblings_and_selected_assets_keep_identity() {
+    let dir = FixtureDir::new("html-file-grant");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    std::fs::write(dir.join("a.css"), "body{color:red}").unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    let url = view_url(&service, &token, "a.css");
+    assert_eq!(
+        resource_impl(&state, &service, &token, &url)
+            .unwrap_err()
+            .code,
+        "outside_grant"
+    );
+    let path = dir.join("a.css");
+    let file = scope::open_selected(&path, false).unwrap();
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .assets
+        .push(SelectedAsset {
+            path: path.clone(),
+            identity: scope::identity(&file).unwrap(),
+            file: Arc::new(file),
+            folder: false,
+        });
+    assert!(resource_impl(&state, &service, &token, &url).is_ok());
+    std::fs::rename(&path, dir.join("old.css")).unwrap();
+    std::fs::write(&path, "body{color:blue}").unwrap();
+    assert_eq!(
+        resource_impl(&state, &service, &token, &url)
+            .unwrap_err()
+            .code,
+        "changed"
+    );
+    assert!(state.root("not-granted").is_err());
+}
+#[test]
+fn folder_resources_missing_remote_svg_escape_replacement_and_disposal() {
+    let dir = FixtureDir::new("html-root-grant");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    std::fs::write(dir.join("a.css"), "@import 'b.css';").unwrap();
+    std::fs::write(dir.join("b.css"), "body{color:red}").unwrap();
+    let state = AppState::default();
+    let root = state.register_root(&dir).unwrap();
+    let service = HtmlService::default();
+    let view = open_impl(
+        &state,
+        &service,
+        LocalTarget {
+            file_id: None,
+            root_id: Some(root.id),
+            segments: Some(vec!["a.html".into()]),
+        },
+        None,
+    )
+    .unwrap();
+    let token = view.view_token.unwrap();
+    for path in ["a.html", "a.css", "b.css"] {
+        assert!(resource_impl(
+            &state,
+            &service,
+            &token,
+            &format!("ig-html://{token}/{path}")
+        )
+        .is_ok());
+    }
+    for (url, reason) in [
+        (format!("ig-html://{token}/missing.css"), "missing"),
+        ("https://example.test/a.css".into(), "remote_blocked"),
+        (format!("ig-html://{token}/vector.svg"), "unsupported"),
+        (format!("ig-html://{token}/%2fetc.css"), "invalid_path"),
+    ] {
+        assert_eq!(
+            resource_impl(&state, &service, &token, &url)
+                .unwrap_err()
+                .code,
+            reason
+        );
+    }
+    std::fs::rename(dir.join("b.css"), dir.join("old.css")).unwrap();
+    std::fs::write(dir.join("b.css"), "p{}").unwrap();
+    assert_eq!(
+        resource_impl(
+            &state,
+            &service,
+            &token,
+            &format!("ig-html://{token}/b.css")
+        )
+        .unwrap_err()
+        .code,
+        "changed"
+    );
+    let disposed_url = view_url(&service, &token, "a.css");
+    assert!(dispose_impl(&service, &token, 1).unwrap());
+    assert!(!dispose_impl(&service, &token, 1).unwrap());
+    assert_eq!(
+        resource_impl(&state, &service, &token, &disposed_url)
+            .unwrap_err()
+            .code,
+        "stale_view"
+    );
+}
+#[test]
+fn stale_requests_css_cycles_depth_and_source_changes_fail_closed() {
+    let dir = FixtureDir::new("html-order");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    {
+        let mut views = lock(&service).unwrap();
+        checked(&mut views, &token, 1, Some(2)).unwrap();
+        assert!(matches!(
+            checked(&mut views, &token, 1, Some(1)),
+            Err(AppError {
+                code: "stale_request",
+                ..
+            })
+        ));
+        assert!(matches!(
+            checked(&mut views, &token, 2, None),
+            Err(AppError {
+                code: "stale_view",
+                ..
+            })
+        ));
+        let v = checked(&mut views, &token, 1, None).unwrap();
+        let base = tauri::Url::parse(&start_url(v))
+            .unwrap()
+            .join("a.css")
+            .unwrap();
+        assert!(check_css_imports(v, &base, "@import 'b.css';").is_ok());
+        assert_eq!(
+            check_css_imports(v, &base.join("b.css").unwrap(), "@import 'a.css';")
+                .unwrap_err()
+                .code,
+            "limit"
+        );
+    }
+    std::fs::write(dir.join("a.html"), "<h1>Replaced in place</h1>").unwrap();
+    assert_eq!(
+        resource_impl(
+            &state,
+            &service,
+            &token,
+            &view_url(&service, &token, "a.html")
+        )
+        .unwrap_err()
+        .code,
+        "changed"
+    );
+}
+#[test]
+fn asset_folder_is_view_local_and_symlinks_never_gain_access() {
+    let dir = FixtureDir::new("html-assets");
+    std::fs::write(dir.join("a.html"), "<p>A</p>").unwrap();
+    std::fs::write(dir.join("a.css"), "p{}").unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    let file = scope::open_selected(&dir, true).unwrap();
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .assets
+        .push(SelectedAsset {
+            path: dir.to_path_buf(),
+            identity: scope::identity(&file).unwrap(),
+            file: Arc::new(file),
+            folder: true,
+        });
+    assert!(resource_impl(
+        &state,
+        &service,
+        &token,
+        &view_url(&service, &token, "a.css")
+    )
+    .is_ok());
+    let second = html(&state, &service, &dir.join("a.html"))
+        .view_token
+        .unwrap();
+    assert_eq!(
+        resource_impl(
+            &state,
+            &service,
+            &second,
+            &view_url(&service, &second, "a.css")
+        )
+        .unwrap_err()
+        .code,
+        "outside_grant"
+    );
+    let _link = crate::platform::test_support::directory_link(&dir, &dir.join("linked")).unwrap();
+    assert!(resource_impl(
+        &state,
+        &service,
+        &token,
+        &view_url(&service, &token, "linked/a.css")
+    )
+    .is_err());
+}
+#[test]
+fn routing_is_read_only_and_html_is_never_markdown() {
+    let dir = FixtureDir::new("html-routing");
+    for (name, content) in [
+        ("a.html", "<h1>A</h1>"),
+        ("a.md", "# M"),
+        ("a.txt", "details"),
+        ("README", "details"),
+    ] {
+        std::fs::write(dir.join(name), content).unwrap();
+    }
+    let state = AppState::default();
+    let root = state.register_root(&dir).unwrap();
+    let service = HtmlService::default();
+    let v = open_impl(
+        &state,
+        &service,
+        LocalTarget {
+            file_id: None,
+            root_id: Some(root.id),
+            segments: Some(vec!["a.html".into()]),
+        },
+        None,
+    )
+    .unwrap();
+    assert_eq!(
+        crate::document::read_document_impl(&state, Some(&v.file_id), None, None)
+            .unwrap_err()
+            .code,
+        "unsupported_type"
+    );
+    let details_link = crate::assets::resolve_link_impl(&state, &v.file_id, "README").unwrap();
+    let details = open_impl(
+        &state,
+        &service,
+        target(details_link.file_id.unwrap()),
+        None,
+    )
+    .unwrap();
+    assert_eq!(details.kind, "details");
+    assert_eq!(details.extension, "");
+    for (path, kind) in [
+        ("a.md", "document"),
+        ("a.html", "html"),
+        ("a.txt", "details"),
+    ] {
+        assert_eq!(
+            crate::assets::resolve_link_impl(&state, &v.file_id, path)
+                .unwrap()
+                .kind,
+            kind
+        );
+    }
+}
+#[test]
+fn html_limits_encoding_font_signatures_import_depth_and_deadline() {
+    let dir = FixtureDir::new("html-limits");
+    let state = AppState::default();
+    let service = HtmlService::default();
+    std::fs::write(dir.join("a.html"), [0xff, 0xfe]).unwrap();
+    let grant = state.register_explicit_file(&dir.join("a.html")).unwrap();
+    assert!(matches!(
+        open_impl(&state, &service, target(grant.id), None),
+        Err(AppError {
+            code: "encoding",
+            ..
+        })
+    ));
+    std::fs::write(dir.join("a.html"), vec![b' '; MAX_HTML + 1]).unwrap();
+    let grant = state.register_explicit_file(&dir.join("a.html")).unwrap();
+    assert!(matches!(
+        open_impl(&state, &service, target(grant.id), None),
+        Err(AppError {
+            code: "html_limit",
+            ..
+        })
+    ));
+    std::fs::write(dir.join("a.html"), "<p>bounded</p>").unwrap();
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    {
+        let mut views = lock(&service).unwrap();
+        let v = views.get_mut(&token).unwrap();
+        for i in 0..10 {
+            let base = tauri::Url::parse(&format!("ig-html://{token}/{i}.css")).unwrap();
+            let r = check_css_imports(v, &base, &format!("@import '{}.css';", i + 1));
+            if i >= 8 {
+                assert!(r.is_err());
+            }
+        }
+        assert!(check_css_imports(
+            v,
+            &tauri::Url::parse(&format!("ig-html://{token}/escape.css")).unwrap(),
+            r"@\69mport 'a.css'"
+        )
+        .is_err());
+        v.started = Instant::now() - std::time::Duration::from_secs(6);
+    }
+    assert_eq!(
+        resource_impl(
+            &state,
+            &service,
+            &token,
+            &view_url(&service, &token, "a.html")
+        )
+        .unwrap_err()
+        .code,
+        "limit"
+    );
+    assert!(font_magic(b"wOFFbounded"));
+    assert!(!font_magic(b"<svg>"));
+}
+#[test]
+fn image_header_budget_rejects_mismatch_active_content_and_expansion() {
+    let png = include_bytes!("../../tests/fixtures/diagram-pixels.png");
+    assert!(image_budget::decoded_budget(png, "image/png").is_ok());
+    assert!(image_budget::decoded_budget(b"<svg onload='exec()'/>", "image/png").is_err());
+    let mut huge = png.to_vec();
+    huge[16..20].copy_from_slice(&1_000_000u32.to_be_bytes());
+    assert!(matches!(
+        image_budget::decoded_budget(&huge, "image/png"),
+        Err(AppError {
+            code: "image_limit",
+            ..
+        })
+    ));
+    assert!(image_budget::decoded_budget(png, "image/jpeg").is_err());
+}
+#[test]
+fn native_link_intents_are_single_use_typed_and_file_only_requires_access() {
+    let dir = FixtureDir::new("html-intents");
+    for (name, text) in [
+        ("a.html", "<h1>A</h1>"),
+        ("b.htm", "<p>B</p>"),
+        ("c.md", "# C"),
+        ("d.txt", "D"),
+    ] {
+        std::fs::write(dir.join(name), text).unwrap();
+    }
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let root = state.register_root(&dir).unwrap();
+    let view = open_impl(
+        &state,
+        &service,
+        LocalTarget {
+            file_id: None,
+            root_id: Some(root.id),
+            segments: Some(vec!["a.html".into()]),
+        },
+        None,
+    )
+    .unwrap();
+    let token = view.view_token.unwrap();
+    for (name, kind) in [
+        ("b.htm", "html"),
+        ("c.md", "document"),
+        ("d.txt", "details"),
+        ("missing.htm", "missing"),
+        ("a.html#start", "anchor"),
+    ] {
+        lock(&service)
+            .unwrap()
+            .get_mut(&token)
+            .unwrap()
+            .pending_links
+            .insert("intent".into(), format!("ig-html://{token}/{name}"));
+        assert_eq!(
+            resolve_link_intent(&state, &service, &token, 1, "intent")
+                .unwrap()
+                .link
+                .kind,
+            kind
+        );
+        assert!(matches!(
+            resolve_link_intent(&state, &service, &token, 1, "intent"),
+            Err(AppError {
+                code: "stale_navigation",
+                ..
+            })
+        ));
+    }
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    let destination = view_url(&service, &token, "c.md");
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .pending_links
+        .insert("intent".into(), destination);
+    let result = resolve_link_intent(&state, &service, &token, 1, "intent").unwrap();
+    assert_eq!(result.link.kind, "document");
+    assert!(result.access_id.is_none());
+    assert!(result.requested_path.unwrap().ends_with("c.md"));
+    assert!(matches!(
+        state.file(&result.link.file_id.unwrap()).unwrap().source,
+        FileSource::Explicit { .. }
+    ));
+    #[cfg(target_os = "macos")]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        let denied = dir.join("c.md");
+        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0)).unwrap();
+        let destination = view_url(&service, &token, "c.md#heading");
+        lock(&service)
+            .unwrap()
+            .get_mut(&token)
+            .unwrap()
+            .pending_links
+            .insert("denied".into(), destination);
+        let denied_result = resolve_link_intent(&state, &service, &token, 1, "denied");
+        std::fs::set_permissions(&denied, std::fs::Permissions::from_mode(0o600)).unwrap();
+        let denied_result = denied_result.unwrap();
+        assert_eq!(denied_result.link.kind, "access_required");
+        assert_eq!(denied_result.link.anchor.as_deref(), Some("heading"));
+        assert!(denied_result.access_id.is_some());
+        assert_eq!(
+            denied_result.requested_path,
+            Some(denied.display().to_string())
+        );
+    }
+}
+#[test]
+fn html_fingerprint_accepts_root_replacement_but_not_explicit_replacement() {
+    let dir = FixtureDir::new("html-refresh");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    let state = AppState::default();
+    let root = state.register_root(&dir).unwrap();
+    let service = HtmlService::default();
+    let view = open_impl(
+        &state,
+        &service,
+        LocalTarget {
+            file_id: None,
+            root_id: Some(root.id),
+            segments: Some(vec!["a.html".into()]),
+        },
+        None,
+    )
+    .unwrap();
+    std::fs::rename(dir.join("a.html"), dir.join("old.html")).unwrap();
+    std::fs::write(dir.join("a.html"), "<h1>B</h1>").unwrap();
+    let result = fingerprint(&state, &view.file_id).unwrap();
+    assert_ne!(result.0, view.disk_version);
+    let view = html(&state, &service, &dir.join("a.html"));
+    std::fs::rename(dir.join("a.html"), dir.join("second.html")).unwrap();
+    std::fs::write(dir.join("a.html"), "<h1>C</h1>").unwrap();
+    assert_eq!(
+        fingerprint(&state, &view.file_id).unwrap_err().code,
+        "reselection_required"
+    );
+}
+
+#[test]
+fn explicit_ancestor_urls_require_deliberate_asset_grants() {
+    let dir = FixtureDir::new("html-ancestor-grants");
+    std::fs::create_dir(dir.join("docs")).unwrap();
+    std::fs::create_dir(dir.join("assets")).unwrap();
+    std::fs::write(
+        dir.join("docs/a.html"),
+        "<link rel='stylesheet' href='../assets/a.css'><h1>A</h1>",
+    )
+    .unwrap();
+    std::fs::write(dir.join("assets/a.css"), "body{color:red}").unwrap();
+    std::fs::write(dir.join("notes.md"), "# Notes").unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let view = html(&state, &service, &dir.join("docs/a.html"));
+    let token = view.view_token.unwrap();
+    let css = view_url(&service, &token, "../assets/a.css");
+    assert_eq!(
+        resource_impl(&state, &service, &token, &css)
+            .unwrap_err()
+            .code,
+        "outside_grant"
+    );
+    let path = dir.join("assets/a.css");
+    let file = scope::open_selected(&path, false).unwrap();
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .assets
+        .push(SelectedAsset {
+            path: path.clone(),
+            identity: scope::identity(&file).unwrap(),
+            file: Arc::new(file),
+            folder: false,
+        });
+    assert!(resource_impl(&state, &service, &token, &css).is_ok());
+    let destination = view_url(&service, &token, "../notes.md");
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .pending_links
+        .insert("ancestor".into(), destination);
+    let link = resolve_link_intent(&state, &service, &token, 1, "ancestor").unwrap();
+    assert_eq!(link.link.kind, "document");
+    assert_eq!(
+        link.requested_path,
+        Some(dir.join("notes.md").display().to_string())
+    );
+    assert!(matches!(
+        state.file(&view.file_id).unwrap().source,
+        FileSource::Explicit { .. }
+    ));
+}
+
+#[test]
+fn disposal_revokes_a_read_without_waiting_for_resource_work() {
+    use std::sync::Barrier;
+    let dir = FixtureDir::new("html-pending-resource");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    let state = AppState::default();
+    let service = Arc::new(HtmlService::default());
+    let view = html(&state, &service, &dir.join("a.html"));
+    let token = view.view_token.unwrap();
+    let url = view_url(&service, &token, "a.html");
+    let entered = Arc::new(Barrier::new(2));
+    let release = Arc::new(Barrier::new(2));
+    let a = entered.clone();
+    let b = release.clone();
+    *service.read_hook.lock().unwrap() = Some(Arc::new(move || {
+        a.wait();
+        b.wait();
+    }));
+    let worker_state = state.clone();
+    let worker_service = service.clone();
+    let t = token.clone();
+    let worker =
+        std::thread::spawn(move || resource_impl(&worker_state, &worker_service, &t, &url));
+    entered.wait();
+    assert!(dispose_impl(&service, &token, 1).unwrap());
+    release.wait();
+    assert_eq!(worker.join().unwrap().unwrap_err().code, "stale_view");
+}
+
+#[test]
+fn failed_assets_consume_read_budgets_and_diagnostics_keep_full_urls() {
+    let dir = FixtureDir::new("html-budget-failures");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    std::fs::write(dir.join("invalid.otf"), [0u8; 100]).unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let descriptor = html(&state, &service, &dir.join("a.html"));
+    let token = descriptor.view_token.unwrap();
+    let path = dir.join("invalid.otf");
+    let file = scope::open_selected(&path, false).unwrap();
+    lock(&service)
+        .unwrap()
+        .get_mut(&token)
+        .unwrap()
+        .assets
+        .push(SelectedAsset {
+            path,
+            identity: scope::identity(&file).unwrap(),
+            file: Arc::new(file),
+            folder: false,
+        });
+    let url = view_url(&service, &token, "invalid.otf");
+    assert_eq!(
+        resource_impl(&state, &service, &token, &url)
+            .unwrap_err()
+            .code,
+        "unsupported"
+    );
+    let mut views = lock(&service).unwrap();
+    let v = views.get_mut(&token).unwrap();
+    assert_eq!((v.total, v.font_bytes), (101, 100));
+    assert_eq!(v.state.issues[0].kind, "font");
+    let long = format!("ig-html://{token}/{}.css", "a".repeat(2500));
+    issue(v, &long, "stylesheet", "outside_grant");
+    let diagnostic = v.state.issues.last().unwrap();
+    assert_eq!(diagnostic.declared_url.chars().count(), 2048);
+    assert_eq!(v.issue_urls[&diagnostic.id], long);
+}
+
+#[test]
+fn css_import_declarations_are_bounded_across_stylesheets_including_remote() {
+    let dir = FixtureDir::new("html-import-budget");
+    std::fs::write(dir.join("a.html"), "<h1>A</h1>").unwrap();
+    let state = AppState::default();
+    let service = HtmlService::default();
+    let descriptor = html(&state, &service, &dir.join("a.html"));
+    let token = descriptor.view_token.unwrap();
+    let mut views = lock(&service).unwrap();
+    let v = views.get_mut(&token).unwrap();
+    let base = tauri::Url::parse(&start_url(v)).unwrap();
+    check_css_imports(
+        v,
+        &base,
+        &"@import 'https://example.invalid/a.css';".repeat(128),
+    )
+    .unwrap();
+    assert_eq!(v.css_imports, 128);
+    assert_eq!(
+        check_css_imports(v, &base, "@import 'local.css';")
+            .unwrap_err()
+            .code,
+        "limit"
+    );
+    v.css_imports = 0;
+    v.css_graph.clear();
+    // Repeated edges must not expand into 15^8 recursive visits.
+    for n in 0..8 {
+        let css = base.join(&format!("{n}.css")).unwrap();
+        check_css_imports(v, &css, &format!("@import '{}.css';", n + 1).repeat(15)).unwrap();
+    }
+}
+
+#[test]
+fn resource_hints_are_removed_before_engine_parsing_including_noscript_entities() {
+    let html = without_network_hints("<!doctype html><link rel='StyleSheet' href='local.css'><link rel='pre&#99;onnect' href='https://example.invalid'><noscript><link rel='dns-prefetch' href='//example.invalid'></noscript><meta http-equiv='REFRESH' content='0;url=https://example.invalid'><p>Preserved</p>").unwrap();
+    assert!(html.contains("local.css"));
+    assert!(!html.contains("example.invalid"));
+    assert!(html.contains("Preserved"));
+}
+
+#[test]
+fn external_url_attributes_and_active_embeds_are_inert_before_engine_loading() {
+    let html = without_network_hints(r#"<base href="https://example.invalid"><a href="https://example.invalid">Remote</a><a href="java&#10;script:alert(1)">Exec</a><a href="notes.md">Local</a><iframe src="https://example.invalid"></iframe><img src="//example.invalid/p.png"><script>window.__inert=1</script>"#).unwrap();
+    assert!(!html.contains("example.invalid"));
+    assert!(!html.contains("alert(1)"));
+    assert!(!html.contains("<iframe"));
+    assert!(html.contains("notes.md"));
+    assert!(html.contains("window.__inert=1"));
+}

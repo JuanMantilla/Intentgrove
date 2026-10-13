@@ -1,0 +1,85 @@
+1: import type { DirectoryPage, DocumentResponse, RefreshDirectoryChanged, RefreshFileChanged } from "../app/api";
+2: 
+3: export type Freshness = "current" | "checking" | "changed" | "uncertain" | "unavailable" | "conflict";
+4: 
+5: export interface RefreshableTab {
+6:   id: string;
+7:   content?: string;
+8:   identityKey?: string;
+9:   name?: string;
+10:   displayPath?: string;
+11:   diskVersion?: string;
+12:   pendingDiskVersion?: string;
+13:   freshness?: Freshness;
+14:   dirty?: boolean;
+15:   editingActive?: boolean;
+16: }
+17: 
+18: export interface RefreshableDirectory {
+19:   entries: DirectoryPage["entries"];
+20:   nextOffset: number | null;
+21:   snapshotId?: string;
+22:   expanded: boolean;
+23:   loading: boolean;
+24:   loaded: boolean;
+25:   refreshStatus?: Freshness;
+26:   error?: string;
+27: }
+28: 
+29: export function noteFileChange<T extends RefreshableTab>(
+30:   tabs: T[], event: RefreshFileChanged, generation: number
+31: ): T[] {
+32:   if (event.generation !== generation) return tabs;
+33:   return tabs.map((tab) => {
+34:     if (tab.id !== event.fileId || tab.diskVersion === event.diskVersion) return tab;
+35:     return {
+36:       ...tab,
+37:       pendingDiskVersion: event.diskVersion,
+38:       freshness: tab.dirty || tab.editingActive ? "conflict" as const : "checking" as const
+39:     };
+40:   });
+41: }
+42: 
+43: export function confirmCleanDocument<T extends RefreshableTab>(
+44:   tabs: T[], document: DocumentResponse, generation: number, currentGeneration: number
+45: ): T[] {
+46:   if (generation !== currentGeneration) return tabs;
+47:   return tabs.map((tab) => {
+48:     if (tab.id !== document.fileId || tab.dirty || tab.editingActive || tab.pendingDiskVersion !== document.diskVersion) return tab;
+49:     return {
+50:       ...tab,
+51:       content: document.content,
+52:       identityKey: document.identityKey,
+53:       name: document.name,
+54:       displayPath: document.displayPath,
+55:       diskVersion: document.diskVersion,
+56:       pendingDiskVersion: undefined,
+57:       freshness: "changed" as const
+58:     };
+59:   });
+60: }
+61: 
+62: export function noteDirectoryChange<T extends RefreshableDirectory>(
+63:   directories: Record<string, T>, key: string, event: RefreshDirectoryChanged, generation: number
+64: ): Record<string, T> {
+65:   if (event.generation !== generation || !directories[key]?.expanded) return directories;
+66:   return {
+67:     ...directories,
+68:     [key]: { ...directories[key], refreshStatus: "checking" as const }
+69:   };
+70: }
+71: 
+72: export function confirmDirectoryPage<T extends RefreshableDirectory>(
+73:   current: T, page: DirectoryPage, append: boolean
+74: ): T {
+75:   return {
+76:     ...current,
+77:     entries: append ? [...current.entries, ...page.entries] : page.entries,
+78:     nextOffset: page.nextOffset,
+79:     snapshotId: page.snapshotId,
+80:     loading: false,
+81:     loaded: true,
+82:     refreshStatus: "current",
+83:     error: undefined
+84:   };
+85: }

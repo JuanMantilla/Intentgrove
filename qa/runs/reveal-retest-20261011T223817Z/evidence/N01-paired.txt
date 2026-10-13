@@ -1,0 +1,76 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+			14 pop up button Go menu
+			15 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+			16 container Explorer
+				17 pop up button PROJECTS
+				18 button Close Projects sidebar
+				19 button Open file
+				20 button Open folder
+				21 button Search folder
+				22 text fixtures
+				23 container
+					24 button active.md
+					25 button fresh.md
+					26 button inactive.md
+					27 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					28 button opened-after-delete.md
+					29 button opened-after-rename.md
+					30 button opened-after-replace.md
+					31 button opened-before-delete.md
+					32 button opened-before-rename.md
+					33 button opened-before-replace.md
+					34 button root-dirty.md
+					35 button root-missing.md
+					36 button sentinel.md
+					37 button unopened-after-delete.md
+					38 button unopened-after-rename.md
+					39 button unopened-after-replace.md
+					40 button unopened-before-delete.md
+					41 button unopened-before-rename.md
+					42 button unopened-before-replace.md
+				43 text Storage and recovery
+				44 text Open edits and recovery offers: 0
+				45 button Manage…
+				46 button Settings…
+			47 container
+				48 menu Secondary Actions: Cancel
+					49 (selected) Open fresh.md
+					50 Reveal in Finder
+					51 Copy path
+					52 Reload fresh.md
+				53 heading Read your local Markdown, Value: 1
+					54 text Read your local Markdown
+				55 text Open a Markdown file to start reading.
+				56 button New Markdown file
+				57 button Open folder
+				58 button Open file
+			59 container
+				60 text Local files only Intentgrove by Theonira
+	61 close button
+	62 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	63 minimize button
+	64 text Intentgrove Reveal Retest
+65 menu bar
+	66 Intentgrove Reveal Retest
+	67 File
+	68 Edit
+	69 View
+	70 Go
+	71 Window
+	72 Help
+
+The focused UI element is 49 (selected) Open fresh.md

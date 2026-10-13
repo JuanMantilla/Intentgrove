@@ -1,0 +1,16 @@
+[package]
+name = "md_diagram_raster_probe"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+publish = false
+
+[dependencies]
+resvg = { version = "=0.48.1", default-features = false, features = ["text"] }
+roxmltree = "=0.21.1"
+libc = "0.2"
+
+
+[lib]
+path="lib.rs"
+crate-type=["staticlib"]

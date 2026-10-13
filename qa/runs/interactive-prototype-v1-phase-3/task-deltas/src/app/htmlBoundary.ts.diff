@@ -1,0 +1,12 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/htmlBoundary.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/htmlBoundary.ts
+@@ -14,6 +14,9 @@
+ /** HTML must not enter the privileged Markdown renderer, even if a newer host
+  * returns its bytes through an older command. An isolated view is required. */
+ export function requireMarkdownResponse(document: DocumentResponse): DocumentResponse {
++  if (/\.igproto$/i.test(document.name)) {
++    throw {code:"prototype_invalid",message:"A validated prototype document is required"};
++  }
+   if (isHtmlDocument(document.name)) {
+     throw { code: "html_view_unavailable", message: "An isolated HTML viewer is required" };
+   }

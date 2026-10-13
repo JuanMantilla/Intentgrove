@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-10T18:05:06.695789+00:00",
+  "feature": "F005",
+  "authority": "../authority.json",
+  "checks": {
+    "frontend_full": {
+      "status": "PASS",
+      "tests": 534,
+      "files": 62,
+      "evidence": "frontend-full.log",
+      "boundary": "App/editor/local-view adapter with mocked Tauri transport"
+    },
+    "native_library": {
+      "status": "PASS",
+      "tests": 123,
+      "ignored": 5,
+      "evidence": "native-library.log",
+      "boundary": "Real library and disposable filesystem validation; no Finder GUI"
+    },
+    "frontend_build": {
+      "status": "PASS",
+      "evidence": "macos-build.log",
+      "boundary": "Final build runs tsc and vite"
+    },
+    "worker_bundle": {
+      "status": "PASS",
+      "evidence": "worker.log"
+    },
+    "script": {
+      "status": "PASS",
+      "evidence": "script-check.log",
+      "boundary": "Disposable fake app; no actual default setter"
+    },
+    "macos_package": {
+      "status": "PASS",
+      "evidence": [
+        "macos-build.log",
+        "package-inspection.log"
+      ],
+      "boundary": "arm64 ad-hoc app; no installation/notarization"
+    },
+    "original_reviewed_hashes": {
+      "status": "PASS",
+      "evidence": "original-reviewed-hashes.json"
+    },
+    "finder_drop_packaged_gui": {
+      "status": "NOT TESTED",
+      "reason": "No production-profile launch; isolated native acceptance remains pending"
+    },
+    "actual_macos_default_consent": {
+      "status": "NOT TESTED",
+      "reason": "No actual associations changed by automated tests; separate prior feature acceptance"
+    },
+    "full_rust_integration": {
+      "status": "NOT TESTED",
+      "reason": "Prior full command has unrelated harness missing HTML/image imports; relevant library command passed"
+    }
+  }
+}

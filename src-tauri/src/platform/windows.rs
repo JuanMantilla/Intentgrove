@@ -14,14 +14,13 @@ use std::{
 };
 use windows_sys::Wdk::Foundation::OBJECT_ATTRIBUTES;
 use windows_sys::Wdk::Storage::FileSystem::{
-    FileFsDeviceInformation, NtCreateFile, NtQueryVolumeInformationFile,
-    FileRenameInformation, FileRenameInformationEx, NtSetInformationFile, FILE_RENAME_INFORMATION,
-    FILE_RENAME_REPLACE_IF_EXISTS, FILE_RENAME_POSIX_SEMANTICS,
-    FILE_CREATE, FILE_DIRECTORY_FILE, FILE_OPEN, FILE_OPEN_NO_RECALL, FILE_OPEN_REPARSE_POINT,
-    FILE_SYNCHRONOUS_IO_NONALERT,
+    FileFsDeviceInformation, FileRenameInformation, FileRenameInformationEx, NtCreateFile,
+    NtQueryVolumeInformationFile, NtSetInformationFile, FILE_CREATE, FILE_DIRECTORY_FILE,
+    FILE_OPEN, FILE_OPEN_NO_RECALL, FILE_OPEN_REPARSE_POINT, FILE_RENAME_INFORMATION,
+    FILE_RENAME_POSIX_SEMANTICS, FILE_RENAME_REPLACE_IF_EXISTS, FILE_SYNCHRONOUS_IO_NONALERT,
 };
 use windows_sys::Win32::Foundation::{
-    RtlNtStatusToDosError, ERROR_NO_MORE_FILES, HANDLE, UNICODE_STRING, OBJ_DONT_REPARSE,
+    RtlNtStatusToDosError, ERROR_NO_MORE_FILES, HANDLE, OBJ_CASE_INSENSITIVE, OBJ_DONT_REPARSE, UNICODE_STRING,
 };
 use windows_sys::Win32::Storage::FileSystem::*;
 use windows_sys::Win32::System::IO::IO_STATUS_BLOCK;
@@ -100,7 +99,9 @@ pub(super) fn native_open_with_share(
         Length: size_of::<OBJECT_ATTRIBUTES>() as u32,
         RootDirectory: parent,
         ObjectName: &string,
-        Attributes: OBJ_DONT_REPARSE,
+        // Exclusive creation uses Windows filename equivalence even if a
+        // case-sensitive directory is selected. Existing traversal is unchanged.
+        Attributes: OBJ_DONT_REPARSE | if disposition == FILE_CREATE { OBJ_CASE_INSENSITIVE } else { 0 },
         SecurityDescriptor: security,
         SecurityQualityOfService: std::ptr::null(),
     };
@@ -151,18 +152,37 @@ pub(super) fn info<T>(file: &File, class: FILE_INFO_BY_HANDLE_CLASS) -> AppResul
     }
     Ok(out)
 }
-pub(super) fn rename_file(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+pub(super) fn rename_file(
+    file: &File,
+    parent: &File,
+    target: &str,
+    replace: bool,
+) -> AppResult<()> {
     rename_with_flags(file, parent, target, replace as u32, FileRenameInformation)
 }
-pub(super) fn rename_document(file: &File, parent: &File, target: &str, replace: bool) -> AppResult<()> {
+pub(super) fn rename_document(
+    file: &File,
+    parent: &File,
+    target: &str,
+    replace: bool,
+) -> AppResult<()> {
     // Document grants retain readable handles to the old version. Ex semantics
     // permit those handles; the commit guard still requests DELETE and denies
     // concurrent write opens. No ignore-readonly/access-check-bypass flags.
-    let flags = if replace { FILE_RENAME_REPLACE_IF_EXISTS | FILE_RENAME_POSIX_SEMANTICS } else { 0 };
+    let flags = if replace {
+        FILE_RENAME_REPLACE_IF_EXISTS | FILE_RENAME_POSIX_SEMANTICS
+    } else {
+        0
+    };
     rename_with_flags(file, parent, target, flags, FileRenameInformationEx)
 }
-fn rename_with_flags(file: &File, parent: &File, target: &str, flags: u32,
-    class: windows_sys::Wdk::Storage::FileSystem::FILE_INFORMATION_CLASS) -> AppResult<()> {
+fn rename_with_flags(
+    file: &File,
+    parent: &File,
+    target: &str,
+    flags: u32,
+    class: windows_sys::Wdk::Storage::FileSystem::FILE_INFORMATION_CLASS,
+) -> AppResult<()> {
     checked(file, false)?;
     checked(parent, true)?;
     validate_segment(target)?;
@@ -180,8 +200,18 @@ fn rename_with_flags(file: &File, parent: &File, target: &str, flags: u32,
         std::ptr::copy_nonoverlapping(wide.as_ptr(), (*rename).FileName.as_mut_ptr(), wide.len());
     }
     let mut status: IO_STATUS_BLOCK = unsafe { zeroed() };
-    let code = unsafe { NtSetInformationFile(file.as_raw_handle(), &mut status, rename.cast(), length as u32, class) };
-    if code < 0 { return Err(nt_error(code)); }
+    let code = unsafe {
+        NtSetInformationFile(
+            file.as_raw_handle(),
+            &mut status,
+            rename.cast(),
+            length as u32,
+            class,
+        )
+    };
+    if code < 0 {
+        return Err(nt_error(code));
+    }
     Ok(())
 }
 pub(super) fn checked(file: &File, directory: bool) -> AppResult<()> {
@@ -443,12 +473,30 @@ fn entries(
                         "directory"
                     } else if markdown_name(&name) {
                         "markdown"
+                    } else if crate::scope::html_name(&name) {
+                        "html"
                     } else if image_format(&name).is_some() {
                         "image"
                     } else {
                         "other"
                     };
-                    result.push(Entry { name, kind });
+                    // Capture identity while producing the native listing, before
+                    // its directory-stamp validation. Unsafe/unreadable entries
+                    // remain listed but cannot authorize Reveal.
+                    let listed_identity = if apply_exclusions
+                        && record.FileAttributes & (unsafe_attrs | FILE_ATTRIBUTE_DIRECTORY) == 0
+                    {
+                        open_relative(dir, &[name.clone()], false)
+                            .and_then(|file| identity(&file))
+                            .ok()
+                    } else {
+                        None
+                    };
+                    result.push(Entry {
+                        name,
+                        kind,
+                        identity: listed_identity,
+                    });
                 }
             }
             if record.NextEntryOffset == 0 {

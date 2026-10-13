@@ -1,0 +1,18 @@
+# Frontend IMPLEMENT and QA handoff — 2026-10-08
+
+User-authorized maintenance, no redesign. Source frozen for native QA after Settings document-focus fix. [QA report](../../../qa/runs/macos-finish-20261008/report.md) and [ledger](../../../qa/runs/macos-finish-20261008/coverage.json) are authoritative for native scope.
+
+Implemented bounded worker parsing with10MiB document limit,64KiB region limit,128KiB cumulative rich parse budget,32KiB reference context,4096regions/lines, linear hostile-line/pipe/nesting checks; safe exact-source fallback compacts adjacent rejected regions and preserves siblings. Parent deadline terminates worker after5s; worker failure does not trigger unbounded UI-thread retry. Version/generation checks reject stale work. Global reference context, adjusted positions and footnote normalization retain metadata, local highlighting, reference navigation and duplicate heading identity. Tests cover capped tail and malicious blocks. Complex list/encoded-footnote semantics still need broader cases; complete-document rich rendering is intentionally bounded with source degradation, not claimed as full-format equivalence.
+
+QA0007: active session serialization now resolves the committed tab list, not a reserved asynchronous activation ref; sync snapshot errors become explicit rejected persistence results. Controlled close-during-recovery regression covers the ownership gap. Initial root menu reset uses layout timing so a late passive reset cannot erase a newly opened menu.
+
+QA0008: numeric draft synchronization and Settings activation/focus run in layout effects. Mock history/implementations reset; focus readiness is explicit. Controlled delayed passive-hook negative control reproduces draft23→16 and incorrect first-Escape closure, current layout version preserves the draft. Exact historical scheduler attribution remains limited. QA0009: window bubbling Escape listener with cleanup honors defaultPrevented/stopPropagation; native document focus after Enter can now close Settings. Pre-fix native screenshot and deterministic failure preserved, post-fix native first/second/document Escape PASS.
+
+QA AUTOMATE removed repeated application actions from edit-flow waitFor: wait for readiness, dispatch once, await menu, click once. This addressed the final321PASS/1FAIL attempt; focused5PASS and final322/322PASS46files. Vitest two-worker configuration bounds host contention, no retries/test suppression/assertion weakening. Native97PASS3ignored; typecheck/build/worker guards PASS. QA0006 native image fingerprint repair belongs OS; frontend image status retested natively.
+
+Mermaid remains source-only: valid/malformed native FAIL. No unproved diagram enablement. [Proposed isolation amendment](../../../specs/008-rich-reading/isolation-amendment-20261008.md). Whole F002R feature incomplete; performance/native/network/language-width gates remain per handoff. Historical source/evidence/packages preserved.
+
+
+## Authorization update — 2026-10-08
+
+[Actual user approval and exact boundaries](../../../docs/macos-continuation-approval-20261008.md) recorded. Previously pending disposable isolation probe/audited Mermaid11.17.2/project-lockfile addition and isolated Applications install/update checks are authorized. Original measured results, failed probes, packages and source provenance above remain historical; no acceptance or task gate is completed by approval alone. Separate rendering-process fallback remains subject to concrete architecture approval; environment/prior-package prerequisites remain. Documentation-only recording performed, no restricted release/security action.

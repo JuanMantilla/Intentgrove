@@ -1,0 +1,106 @@
+[
+  {
+    "name": "D-seeded-1",
+    "variant": "D",
+    "failures": []
+  },
+  {
+    "name": "recorder-seeded-1",
+    "variant": "recorder",
+    "failures": [
+      {
+        "file": "tests/ui/workspace-handoff.test.tsx",
+        "test": "approved workspace handoff reveals collapsed branches only after explicit request",
+        "duration": 2910.050625,
+        "message": "Error: Unable to find role=\"button\" and name \"Edit section \u201cOne\u201d\""
+      }
+    ]
+  },
+  {
+    "name": "A-seeded-1",
+    "variant": "A",
+    "failures": []
+  },
+  {
+    "name": "B-seeded-1",
+    "variant": "B",
+    "failures": []
+  },
+  {
+    "name": "C-seeded-1",
+    "variant": "C",
+    "failures": [
+      {
+        "file": "tests/ui/document-selection-readiness.test.tsx",
+        "test": "wakes queued document intent when its adapter arrives after the active commit",
+        "duration": 1320.4625419999998,
+        "message": "AssertionError: expected '' to be 'Current documentCurrent ending.' // Object.is equality"
+      },
+      {
+        "file": "tests/ui/new-markdown.test.tsx",
+        "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+        "duration": 1100.8320830000002,
+        "message": "Error: Unable to find role=\"alert\""
+      }
+    ]
+  },
+  {
+    "name": "D-warm-2",
+    "variant": "D",
+    "failures": []
+  },
+  {
+    "name": "A-warm-2",
+    "variant": "A",
+    "failures": []
+  },
+  {
+    "name": "B-warm-2",
+    "variant": "B",
+    "failures": []
+  },
+  {
+    "name": "C-warm-2",
+    "variant": "C",
+    "failures": [
+      {
+        "file": "tests/ui/document-selection-readiness.test.tsx",
+        "test": "wakes queued document intent when its adapter arrives after the active commit",
+        "duration": 1511.761541,
+        "message": "AssertionError: expected '' to be 'Current documentCurrent ending.' // Object.is equality"
+      }
+    ]
+  },
+  {
+    "name": "profile-seeded-1",
+    "variant": "profile",
+    "failures": []
+  },
+  {
+    "name": "recorder-warm-2",
+    "variant": "recorder",
+    "failures": []
+  },
+  {
+    "name": "D-fresh-3",
+    "variant": "D",
+    "failures": []
+  },
+  {
+    "name": "D-failing-order-replay",
+    "variant": "order",
+    "failures": [
+      {
+        "file": "tests/ui/new-markdown.test.tsx",
+        "test": "retains filename and destination through cancellation/failure, and uses an explicit grant",
+        "duration": 1014.6102920000001,
+        "message": "Error: Unable to find role=\"alert\""
+      }
+    ]
+  },
+  {
+    "name": "current-late-seeded-1",
+    "variant": "current-late",
+    "failures": []
+  }
+]

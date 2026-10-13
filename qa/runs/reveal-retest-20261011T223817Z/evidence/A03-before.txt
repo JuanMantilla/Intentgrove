@@ -1,0 +1,114 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: root-missing.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selected) root-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+			20 pop up button Go menu
+			21 button (collapsed) Open documents (2), Secondary Actions: Expand
+			22 container Explorer
+				23 pop up button PROJECTS
+				24 button Close Projects sidebar
+				25 button Open file
+				26 button Open folder
+				27 button Search folder
+				28 text fixtures
+				29 container
+					30 button active.md
+					31 button fresh.md
+					32 button inactive.md
+					33 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					34 button opened-after-delete.md
+					35 button opened-after-rename.md
+					36 button opened-after-replace.md
+					37 button opened-before-delete.md
+					38 button opened-before-rename.md
+					39 button opened-before-replace.md
+					40 button root-dirty.md
+					41 button root-missing-moved.md
+					42 button sentinel.md
+					43 button unopened-after-delete.md
+					44 button unopened-after-rename-moved.md
+					45 button unopened-after-replace-original.md
+					46 button unopened-after-replace.md
+					47 button unopened-before-delete.md
+					48 button unopened-before-rename.md
+					49 button unopened-before-replace.md
+				50 text Storage and recovery
+				51 text Open edits and recovery offers: 1
+				52 button Manage…
+				53 button Settings…
+			54 container
+				55 container root-dirty.md
+					56 container root-dirty.md
+						57 text root-dirty.md
+					58 button Find in document
+					59 button Save file
+					60 button Return to reading
+					61 button Save As
+					62 text Save returns to reading.
+					63 summary Document…, Value: off
+						64 text Document…
+					65 text Folder root
+				66 container root-dirty.md
+					67 container Editing: root-dirty.md
+						68 container Editing: root-dirty.md
+							69 text Editing: root-dirty.md
+							70 text Changes not saved to the file
+							71 toolbar Text formatting
+								72 button (disabled) Bold
+								73 button (disabled) Italic
+								74 button (disabled) Inline code
+								75 button (disabled) Strikethrough
+								76 button (disabled) Link…
+								77 summary Block type / More…, Value: off
+									78 text Block type / More…
+							79 text entry area (settable) Editing: root-dirty.md, Secondary Actions: Show Writing Tools, Value: QA RETEST ROOT UNSAVEDroot-dirty.md
+
+Original QA saved bytes.
+								80 heading (settable, integer) Editing: root-dirty.md, Value: 1
+									81 text entry area (settable) Editing: root-dirty.md, Secondary Actions: Show Writing Tools
+								82 text entry area (settable) Editing: root-dirty.md, Value: QA RETEST ROOT UNSAVEDroot-dirty.md, Secondary Actions: Show Writing Tools
+									83 text (settable) QA RETEST ROOT UNSAVEDroot-dirty.md
+								84 text entry area (settable) Editing: root-dirty.md, Value: Original QA saved bytes., Secondary Actions: Show Writing Tools
+									85 text (settable) Original QA saved bytes.
+							86 button Undo
+							87 button (disabled) Redo
+							88 button Discard changes…
+							89 button Save as…
+				90 container Outline
+					91 text OUTLINE
+					92 button Close outline
+					93 container Outline
+						94 content list
+							95 button root-dirtymd
+			96 container
+				97 text root-dirty.md Intentgrove by Theonira
+	98 close button
+	99 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	100 minimize button
+	101 text Intentgrove Reveal Retest
+102 menu bar
+	103 Intentgrove Reveal Retest
+	104 File
+	105 Edit
+	106 View
+	107 Go
+	108 Window
+	109 Help

@@ -1,0 +1,23 @@
+{
+  "identifier": "com.juanmantilla.intentgrove.qa0033to40.r20261012t035255zv3",
+  "productName": "Intentgrove QA0033-0040 probe2",
+  "build": {
+    "frontendDist": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/dist-probe2",
+    "beforeBuildCommand": "npm run build -- --outDir /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/dist-probe2"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Intentgrove QA0033-0040 probe2",
+        "create": false,
+        "width": 1280,
+        "height": 820,
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  }
+}

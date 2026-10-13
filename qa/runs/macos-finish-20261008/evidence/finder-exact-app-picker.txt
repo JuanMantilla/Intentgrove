@@ -1,0 +1,81 @@
+Window: "Choose Application", App: Finder.
+0 sheet Description: choose application, ID: open-panel, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selected) Description: home, Value: juanmantilla
+				14 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				15 row (selectable) Description: Small circle badge, filled, Value: Red
+				16 row (selectable) Description: Small circle badge, filled, Value: Orange
+				17 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				18 row (selectable) Description: Small circle badge, filled, Value: Green
+				19 row (selectable) Description: Small circle badge, filled, Value: Blue
+				20 row (selectable) Description: Small circle badge, filled, Value: Purple
+				21 row (selectable) Description: Small circle badge, filled, Value: Gray
+				22 row (selectable) Description: Two small circle badges, Value: All Tags…
+			23 scroll bar (settable, float) 0
+				24 value indicator (settable, float) 0
+				25 increment arrow button
+				26 decrement arrow button
+				27 increment page button
+				28 decrement page button
+		29 splitter (disabled, settable, float) 148
+		30 browser Description: column view, ID: ColumnView
+			31 scroll area Secondary Actions: Scroll Left, Scroll Right
+				32 scroll area Secondary Actions: Scroll Up, Scroll Down
+				33 scroll area Secondary Actions: Scroll Up, Scroll Down
+				34 scroll area Secondary Actions: Scroll Up, Scroll Down
+				35 scroll area Secondary Actions: Scroll Up, Scroll Down
+				36 scroll area Secondary Actions: Scroll Up, Scroll Down
+				37 scroll area Secondary Actions: Scroll Up, Scroll Down
+				38 scroll area Secondary Actions: Scroll Up, Scroll Down
+				39 scroll area Secondary Actions: Scroll Up, Scroll Down
+				40 scroll area Secondary Actions: Scroll Up, Scroll Down
+				41 scroll area Secondary Actions: Scroll Up, Scroll Down
+					42 image Description: Preview, ID: QLAXImageAndText_Image
+					43 text Intentgrove Final Acceptance 20261008 Application - 21,9 MB Information Created Today, 8:24 PM Modified Today, 8:24 PM Version 0.1.0 Tags
+					44 scroll area
+						45 text field Description: tag editor, Placeholder: Add Tags…
+					46 scroll bar (settable, float) 0
+						47 value indicator (settable, float) 0
+						48 increment arrow button
+						49 decrement arrow button
+						50 increment page button
+						51 decrement page button
+				52 scroll bar (settable, float) 0.9883245767659078
+					53 value indicator (settable, float) 0.9883245767659078
+					54 increment arrow button
+					55 decrement arrow button
+					56 increment page button
+					57 decrement page button
+		58 container
+			59 button back
+			60 button (disabled) forward
+		61 menu button Description: column view, Help: Show as Icons, List, or Columns, and hide/show the sidebar, ID: View Options
+		62 menu button Description: Three-by-one square grid below a one-by-two line grid, Help: Change the item grouping (hold down Option to change the sort), ID: Group or Sort By
+		63 pop up button Where:, Value: macos, ID: where popup
+		64 search text field Search
+			65 button search
+		66 text Choose an application to open the document “second.md”. Enable:
+		67 pop up button Recommended Applications
+		68 checkbox Always Open With, Value: 0
+		69 button Hide Options, ID: OptionsButton
+		70 button Cancel, ID: CancelButton
+		71 button Open, ID: OKButton
+72 menu bar
+	73 Finder
+	74 File
+	75 Edit
+	76 View
+	77 Go
+	78 Window
+	79 Help

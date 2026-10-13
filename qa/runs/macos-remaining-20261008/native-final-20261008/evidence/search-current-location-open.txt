@@ -1,0 +1,71 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text search-25000
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: MANIFEST_QUERY_00_UNIQUE, Placeholder: File name or text
+							14 text (settable) MANIFEST_QUERY_00_UNIQUE
+							15 button cancel
+					16 text Search scope: search-25000 · Document text
+					17 container Search in
+						18 toggle button Names and content, Value: off
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: on
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Search complete · 25,002 entries scanned, 19,985 skipped · Results: 1
+					28 container group-00/café-東京.md
+						29 heading group-00/café-東京.md 1, Help: group-00/café-東京.md, Value: 3
+							30 text group-00/café-東京.md 1
+						31 button group-00/café-東京.md · Line 2 · MANIFEST_QUERY_00_UNIQUE, Help: group-00/café-東京.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 container
+				36 container Visited files
+					37 button (disabled) Back, Help: No previous file
+					38 button (disabled) Forward, Help: No next file
+				39 tab group (selectable) Documents
+					40 container
+						41 tab (selected) café-東京.md, Help: /private/tmp/intentgrove-remaining-20261008/search-25000/group-00/café-東京.md
+						42 button Close tab: café-東京.md, Help: Close tab
+				43 pop up button Go menu
+				44 button (collapsed) Open documents (1), Secondary Actions: Expand
+				45 container café-東京.md
+					46 text café-東京.md
+					47 text group-00
+					48 toggle button Outline, Value: off
+					49 button (collapsed) Reading settings, Secondary Actions: Expand
+					50 button Edit section
+					51 summary Document…, Value: off
+						52 text Document…
+				53 container café-東京.md
+					54 container
+						55 text This document is too complex to render safely
+						56 summary View source, Value: off
+							57 text View source
+	58 close button
+	59 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	60 minimize button
+	61 text Intentgrove
+62 menu bar
+	63 Intentgrove
+	64 File
+	65 Edit
+	66 View
+	67 Go
+	68 Window
+	69 Help

@@ -1,0 +1,36 @@
+{
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "scope": "Native integration handoff; new two Rust fields/enum and focused tests; frontend production inputs reused unchanged",
+  "files": {
+    "src/app/App.tsx": "de7f0ef08f0e82def2f3df423c445f86c787573a6ef81bdbe5b68311a58cb395",
+    "src/app/SettingsWindow.tsx": "09a847f0f75dcd684ea91463a079bf4185beceda1bb1bdafa7aea39b16f17c44",
+    "src/app/api.ts": "28a886debc9eceb34f05225fbe8dd4325163f5c69bafa075c977f54cc52b2bf9",
+    "src/app/settings-contract.ts": "6de0fcbeba290b85ed00127994a3e45531ff7103753268c7e986a3f91b2c28f4",
+    "src/app/useSettingsOwner.ts": "6b261ed1337a717989026009ffa81627c56abc593192a7320f1be9b54193e0c3",
+    "src/app/workspaceLayout.ts": "7fd1b608d2fb90882d5aace43c84656519eb1b5b678c195c598928644f93805b",
+    "src/styles/app.css": "92b7e93c1e6e9e2f011c4f825e6c1a9f5b91da5159e38376f6b72a7c0f250207",
+    "tests/ui/settings-window.test.tsx": "e72973be7130d5a84784113f760bd0deaefbe716cb46712e61d30cd55ee5b21c",
+    "tests/ui/settings-owner-lifecycle.test.tsx": "ad7a0bdba42a6d29ca94955c76d933acc3d9e2fb1ae466d0d483082cf52f3966",
+    "tests/ui/workspace-layout.test.tsx": "b3cdf934715cefc6d1e18e5ad1f4fcc6290b91be33ef3a9fe2acceb32dbdcccc",
+    "tests/ui/workspace.test.tsx": "0631d40f56a52315d7f205a731b203abb71d2f85899d8928f7e5fa010defc7d1",
+    "tests/ui/workspace-handoff.test.tsx": "18d139af225083003e39969edaa8fbe45ee3f178cff151c827c5076b89ef49c1",
+    "tests/ui/refresh-recovery.test.tsx": "f952fa491a1e3fe3942a3804a2da435c2364e5bd6a93582407f95a23b69a3d8c",
+    "tests/fixtures/redesign-preview.tsx": "cbab7db0aaf408ec77d0e494d15d784483878e86649f179170af2b7eafd4ed9a",
+    "src-tauri/src/settings.rs": "47233e8723edf67bfcecf34f8db11b1e327f9243f8b4decb0f94bfc75ef0dbb6",
+    "src-tauri/src/session.rs": "c92803f98abcc1257955e692d0a48e923b67a5717265be84b0fb6bf28b794978",
+    "src-tauri/Cargo.toml": "95e497b86dcd2f2da0bd41a243fd7b08ac991d301e11f58afca9bc759c02849d",
+    "src-tauri/Cargo.lock": "3f12460428ea095fa6d811f2317b2eba0618c80f7893cb6fe319e1e76901dc76",
+    "package.json": "8303b7692a92900784927f876ad1b9ee345c815ae3fdee88180b15b307b94f95",
+    "package-lock.json": "3095f0eeec772a160f898cde261a9c4d0451055ac99dbfcf8e0934b0edab3c4e",
+    "src-tauri/capabilities/settings.json": "278f198a69ccf6e58eefd180036704381157e0feadc4768987272d11bd521740"
+  },
+  "priorFrontendProductionInputsUnchanged": {
+    "src/app/App.tsx": true,
+    "src/app/SettingsWindow.tsx": true,
+    "src/app/api.ts": true,
+    "src/app/settings-contract.ts": true,
+    "src/app/useSettingsOwner.ts": true,
+    "src/app/workspaceLayout.ts": true,
+    "src/styles/app.css": true
+  }
+}

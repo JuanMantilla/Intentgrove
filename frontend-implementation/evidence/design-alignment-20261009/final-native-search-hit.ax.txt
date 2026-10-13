@@ -1,0 +1,124 @@
+Window: "Intentgrove", App: Intentgrove Alignment 20261009.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button (collapsed) Mostrar u ocultar explorador, Secondary Actions: Expand
+				5 container Archivos visitados
+					6 button (disabled) Atrás, Help: No hay archivo anterior
+					7 button (disabled) Adelante, Help: No hay archivo siguiente
+				8 tab group (selectable) Documentos
+					9 container
+						10 tab (selected) reading.md, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/design-alignment-20261009/fixtures/reading.md
+						11 button Cerrar pestaña: reading.md, Help: Cerrar pestaña
+					12 container
+						13 tab (selectable) page.html, Help: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/design-alignment-20261009/fixtures/page.html
+						14 button Cerrar pestaña: page.html, Help: Cerrar pestaña
+				15 pop up button Menú Ir
+				16 button (collapsed) Documentos abiertos(2), Secondary Actions: Expand
+				17 container reading.md
+					18 text reading.md
+					19 text Raíz de la carpeta
+					20 toggle button Índice, Value: on
+					21 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					22 button Editar sección
+					23 summary Documento…, Value: off
+						24 text Documento…
+				25 container Buscar en el documento
+					26 search text field (settable) Buscar en el documento, Value: local, Placeholder: Buscar texto
+						27 text (settable) local
+						28 button cancel
+					29 text 2 de 10
+					30 button Resultado anterior
+					31 button Resultado siguiente
+					32 button Cerrar búsqueda
+				33 container reading.md
+					34 container Design alignment fixture
+						35 container Editar sección: Design alignment fixture
+							36 heading Design alignment fixture, Value: 1
+								37 text Design alignment fixture
+							38 button Editar sección «Design alignment fixture»
+						39 text Disposable local document for frontend verification.
+						40 container Editar sección: PurposeVerifiednativeedit.
+							41 heading PurposeVerifiednativeedit., Value: 2
+								42 text PurposeVerifiednativeedit.
+							43 button Editar sección «PurposeVerifiednativeedit.»
+						44 text Read and edit local documents while retaining file identity, history and recovery. A long search passage should wrap inside a narrow panel without requiring horizontal scrolling.
+						45 container Editar sección: Further reading
+							46 heading Further reading, Value: 2
+								47 text Further reading
+							48 button Editar sección «Further reading»
+						49 container
+							50 button Authored HTML, Help: page.html
+							51 text  · 
+							52 button Second document, Help: second.md
+						53 container Editar sección: Additional context
+							54 heading Additional context, Value: 2
+								55 text Additional context
+							56 button Editar sección «Additional context»
+						57 text Local documents preserve source text and reading context.
+						58 container Editar sección: Additional context
+							59 heading Additional context, Value: 2
+								60 text Additional context
+							61 button Editar sección «Additional context»
+						62 text Local documents preserve source text and reading context.
+						63 container Editar sección: Additional context
+							64 heading Additional context, Value: 2
+								65 text Additional context
+							66 button Editar sección «Additional context»
+						67 text Local documents preserve source text and reading context.
+						68 container Editar sección: Additional context
+							69 heading Additional context, Value: 2
+								70 text Additional context
+							71 button Editar sección «Additional context»
+						72 text Local documents preserve source text and reading context.
+						73 container Editar sección: Additional context
+							74 heading Additional context, Value: 2
+								75 text Additional context
+							76 button Editar sección «Additional context»
+						77 text Local documents preserve source text and reading context.
+						78 container Editar sección: Additional context
+							79 heading Additional context, Value: 2
+								80 text Additional context
+							81 button Editar sección «Additional context»
+						82 text Local documents preserve source text and reading context.
+						83 container Editar sección: Additional context
+							84 heading Additional context, Value: 2
+								85 text Additional context
+							86 button Editar sección «Additional context»
+						87 text Local documents preserve source text and reading context.
+						88 container Editar sección: Additional context
+							89 heading Additional context, Value: 2
+								90 text Additional context
+							91 button Editar sección «Additional context»
+						92 text Local documents preserve source text and reading context.
+				93 container Índice
+					94 text Índice
+					95 button Cerrar índice
+					96 container Índice
+						97 content list
+							98 button Design alignment fixture
+							99 button PurposeVerifiednativeedit.
+							100 button Further reading
+							101 button Additional context
+							102 button Additional context
+							103 button Additional context
+							104 button Additional context
+							105 button Additional context
+							106 button Additional context
+							107 button Additional context
+							108 button Additional context
+	109 close button
+	110 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	111 minimize button
+	112 text Intentgrove
+113 menu bar
+	114 Intentgrove Alignment 20261009
+	115 File
+	116 Edit
+	117 View
+	118 Ir
+	119 Window
+	120 Help
+
+The focused UI element is 26 search text field (settable) Buscar en el documento, Value: local, Placeholder: Buscar texto

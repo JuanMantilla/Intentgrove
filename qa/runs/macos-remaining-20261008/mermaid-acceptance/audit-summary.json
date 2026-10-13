@@ -1,0 +1,153 @@
+{
+  "scope": "complete npm lock graph, both Cargo registry lock graphs; aarch64-apple-darwin applicability",
+  "npmFull": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "npmProduction": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "npmTarballsVerified": 404,
+  "installedSignatureAudit": {
+    "invalid": [],
+    "missing": []
+  },
+  "sourceMapJS": {
+    "path": "node_modules/source-map-js",
+    "version": "1.2.2",
+    "integrity": "sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==",
+    "sha256": "05c8cf8e7c3a6b56cada7668fe9342b10f4b625efc92aba9ba05b9e8fe4d71a3",
+    "verified": true
+  },
+  "lockAndManifestHashesUnchangedSinceStart": {
+    "package.json": "8303b7692a92900784927f876ad1b9ee345c815ae3fdee88180b15b307b94f95",
+    "package-lock.json": "3095f0eeec772a160f898cde261a9c4d0451055ac99dbfcf8e0934b0edab3c4e",
+    "src-tauri/Cargo.lock": "590a8085ed282c2f89abe8b93e3da8eef55f6b06dddbd717521a6ca89a24d584",
+    "src-tauri/xpc/Cargo.lock": "ef14772284e2096590635608f9867b8715814dea8859ebab2324f14fd5b07525"
+  },
+  "cargoRegistryNameVersions": 489,
+  "cargoAuditMethod": "OSV read-only query snapshot; cargo-audit unavailable; target inverse tree logs",
+  "cargoFindings": [
+    {
+      "name": "glib",
+      "version": "0.18.5",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "GHSA-wrw7-89jp-8q8g",
+          "modified": "2025-10-28T06:29:26.473225Z"
+        },
+        {
+          "id": "RUSTSEC-2024-0429",
+          "modified": "2025-10-28T06:29:26.473225Z"
+        }
+      ],
+      "supportedTargetApplicable": false,
+      "classification": "unsound iterator; excluded target"
+    },
+    {
+      "name": "proc-macro-error",
+      "version": "1.0.4",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2024-0370",
+          "modified": "2026-06-07T20:00:03.923932Z"
+        }
+      ],
+      "supportedTargetApplicable": false,
+      "classification": "unmaintained"
+    },
+    {
+      "name": "unic-char-property",
+      "version": "0.9.0",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2025-0081",
+          "modified": "2025-10-21T11:12:59Z"
+        }
+      ],
+      "supportedTargetApplicable": true,
+      "classification": "unmaintained"
+    },
+    {
+      "name": "unic-char-range",
+      "version": "0.9.0",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2025-0075",
+          "modified": "2025-10-22T14:41:04Z"
+        }
+      ],
+      "supportedTargetApplicable": true,
+      "classification": "unmaintained"
+    },
+    {
+      "name": "unic-common",
+      "version": "0.9.0",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2025-0080",
+          "modified": "2025-10-21T11:12:59Z"
+        }
+      ],
+      "supportedTargetApplicable": true,
+      "classification": "unmaintained"
+    },
+    {
+      "name": "unic-ucd-ident",
+      "version": "0.9.0",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2025-0100",
+          "modified": "2025-10-21T11:12:59Z"
+        }
+      ],
+      "supportedTargetApplicable": true,
+      "classification": "unmaintained"
+    },
+    {
+      "name": "unic-ucd-version",
+      "version": "0.9.0",
+      "locks": [
+        "src-tauri/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2025-0098",
+          "modified": "2025-10-21T11:12:59Z"
+        }
+      ],
+      "supportedTargetApplicable": true,
+      "classification": "unmaintained"
+    }
+  ],
+  "supportedTargetMaintenanceAdvisories": 5,
+  "supportedTargetKnownVulnerabilityFindings": 0,
+  "dependencyChangesThisSession": false
+}

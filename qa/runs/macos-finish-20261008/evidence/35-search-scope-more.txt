@@ -1,0 +1,83 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: needle, Placeholder: File name or text
+							14 text (settable) needle
+							15 button cancel
+					16 text Search scope: fixtures / more · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Search complete · 1 entries scanned, 0 skipped · Results: 1
+					28 container more/other.md
+						29 heading more/other.md 1, Help: more/other.md, Value: 3
+							30 text more/other.md 1
+						31 button more/other.md · Line 3 · needle from more, Help: more/other.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 button Close sidebar
+			36 container
+				37 container Visited files
+					38 button Back, Help: Back: second.md
+/private/tmp/intentgrove-finish-20261008/fixtures/second.md
+					39 button (disabled) Forward, Help: No next file
+				40 tab group (selectable) Documents
+					41 container
+						42 tab (selected) scoped.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/docs/scoped.md
+						43 button Close tab: scoped.md, Help: Close tab
+				44 pop up button Go menu
+				45 button (collapsed) Open documents (1), Secondary Actions: Expand
+				46 container scoped.md
+					47 text scoped.md
+					48 text docs
+					49 button Edit section
+					50 summary Document…, Value: off
+						51 text Document…
+				52 container Find in document
+					53 search text field (settable) Find in document, Value: needle, Placeholder: Find text
+						54 text (settable) needle
+						55 button cancel
+					56 text 1 of 1
+					57 button Previous match
+					58 button Next match
+					59 button Close Find
+				60 container scoped.md
+					61 container Scoped
+						62 container Edit section: Scoped
+							63 heading Scoped, Value: 1
+								64 text Scoped
+							65 button Edit section “Scoped”
+						66 text needle within docs
+	67 close button
+	68 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	69 minimize button
+	70 text Intentgrove
+71 menu bar
+	72 Intentgrove Final Acceptance 20261008
+	73 File
+	74 Edit
+	75 View
+	76 Go
+	77 Window
+	78 Help
+
+The focused UI element is 13 search text field (settable) Search folder, Value: needle, Placeholder: File name or text

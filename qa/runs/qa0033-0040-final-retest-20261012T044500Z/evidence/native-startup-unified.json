@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/usr/bin/log",
+    "show",
+    "--last",
+    "25m",
+    "--style",
+    "compact",
+    "--predicate",
+    "processIdentifier == 31077 OR processIdentifier == 28614"
+  ],
+  "exit_code": 0,
+  "at": "2026-10-12T05:05:29.300082+00:00",
+  "scope": "only two run-owned candidate process IDs"
+}

@@ -1,5 +1,7 @@
 # IR-05 native delivery — 2026-10-06
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
+
 IMPLEMENT complete in the requested native scope. The optional subtree contract and native Go routes are implemented; API types and existing client history routing are connected. Folder-action/search-panel scope UI remains a precise frontend handoff, not claimed complete. No dependencies, shortcuts, grants, session schema, installation, release or commit were added. Preexisting changes and IR-04 evidence were preserved.
 
 ## Implemented boundaries

@@ -30,6 +30,19 @@ __pycache__/
 .ruff_cache/
 *.tsbuildinfo
 
+# Isolated QA compilation outputs and retained desktop build copies
+native-target/
+frontend-build*/
+dist-*/
+standard-check-dist/
+*.app.historical/
+*.tgz
+
+# Local cleanup audit scratch data and disposable fixtures
+/.cleanup-audit/
+/cleanup-disposable/
+**/scratch/preexisting-md_reader
+
 # Generated desktop bundles, installers and their checksums
 *.app/
 *.dmg

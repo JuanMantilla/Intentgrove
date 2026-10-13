@@ -1,0 +1,82 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text search-25000 Local files only
+				6 button Settings
+			7 container Items opened from macOS
+				8 text Items opened from macOS
+				9 container
+					10 text drop-proof.md · Dropped here
+					11 button Open item: drop-proof.md
+					12 button Dismiss: drop-proof.md
+			13 container Explorer
+				14 pop up button Projects
+				15 container Search folder
+					16 button Back to explorer
+					17 container
+						18 text Search folder
+						19 search text field (settable) Search folder, Value: NO_MATCH_STABLE_STOP_20, Placeholder: File name or text
+							20 text (settable) NO_MATCH_STABLE_STOP_20
+							21 button cancel
+					22 text Search scope: search-25000 · Names and content
+					23 container Search in
+						24 toggle button Names and content, Value: on
+						25 toggle button File names, Value: off
+						26 toggle button Document text, Value: off
+					27 text Contents search covers Markdown files.
+					28 container
+						29 checkbox Include ignored files, Value: 0
+						30 text Include ignored files
+					31 button Search
+					32 button Clear search
+					33 text Stopped · partial results · 17,655 entries scanned, 14,005 skipped · Results: 0
+				34 text Storage and recovery
+				35 text Open edits and recovery offers: 0
+				36 button Manage…
+			37 container
+				38 container Visited files
+					39 button Back, Help: Back: plain.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+					40 button (disabled) Forward, Help: No next file
+				41 tab group (selectable) Documents
+					42 container
+						43 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						44 button Close tab: plain.md, Help: Close tab
+					45 container
+						46 tab (selectable) busy.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/busy.md
+						47 button Close tab: busy.md, Help: Close tab
+					48 container
+						49 tab (selected) drop-proof.md, Help: /private/tmp/intentgrove-remaining-20261008/native-gestures/drop-proof.md
+						50 button Close tab: drop-proof.md, Help: Close tab
+				51 pop up button Go menu
+				52 button (collapsed) Open documents (3), Secondary Actions: Expand
+				53 container drop-proof.md
+					54 text drop-proof.md
+					55 text Outside the open folder
+					56 toggle button Outline, Value: off
+					57 button (collapsed) Reading settings, Secondary Actions: Expand
+					58 button Edit section
+					59 summary Document…, Value: off
+						60 text Document…
+				61 container drop-proof.md
+					62 container Native file drop proof
+						63 container Edit section: Native file drop proof
+							64 heading Native file drop proof, Value: 1
+								65 text Native file drop proof
+							66 button Edit section “Native file drop proof”
+						67 text Unique marker: DROP-FILE-20261008.
+	68 close button
+	69 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	70 minimize button
+	71 text Intentgrove
+72 menu bar
+	73 Intentgrove QA
+	74 File
+	75 Edit
+	76 View
+	77 Go
+	78 Window
+	79 Help

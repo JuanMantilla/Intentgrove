@@ -1,0 +1,303 @@
+{
+  "at": "2026-10-08T13:56:06.329609+00:00",
+  "helper": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app/Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer",
+  "helperSHA256": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690",
+  "scope": "Unmodified packaged helper direct-stdin component runtime; not full parent bridge/resource-attempt or forged-child-reply proof",
+  "results": [
+    {
+      "case": "flowchart",
+      "expectedValid": true,
+      "exit": 0,
+      "elapsedSeconds": 1.0082689999999999,
+      "reply": {
+        "sourceDigest": "e8b4f9391fa66e594cc92d6bc6fb7085a80e11cbef428601e00034b79551ff32",
+        "height": 65,
+        "generation": 1,
+        "width": 248,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-flowchart",
+        "byteLength": 1722
+      },
+      "outputBytes": 1722,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "sequence",
+      "expectedValid": true,
+      "exit": 0,
+      "elapsedSeconds": 0.29905012499999994,
+      "reply": {
+        "sourceDigest": "a25a5768435f0c05cb23e9831ef6d4e9c41fae787c375e68d26d698433d76c24",
+        "height": 219,
+        "generation": 1,
+        "width": 450,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-sequence",
+        "byteLength": 4134
+      },
+      "outputBytes": 4134,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "malformed",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.24264054199999996,
+      "reply": {
+        "sourceDigest": "578b65f9ba592961276ea3be072a97c0c8a804df289c852126e2711bb4fb2005",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-malformed",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "directive",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.2117413749999999,
+      "reply": {
+        "sourceDigest": "e846aa944dad23a200356729fb29fc622c1369a2fe8414545737eaabfc083c90",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-directive",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "html",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.23457845799999988,
+      "reply": {
+        "sourceDigest": "ced3909a9de3adc6d455efb20cd681d291be0a768b6bc62e7618c91d41cb42ee",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-html",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "click",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.24283258399999985,
+      "reply": {
+        "sourceDigest": "7477e5dde5bf8a1ac95d0538026503d3f1e46750331e2bcf87ffa7ad2422279c",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-click",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "svg",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.2068461659999996,
+      "reply": {
+        "sourceDigest": "d8278f66b7a1f6d6c298b8ce8e2d48bb70df8da57e268b4978bd135c57c120af",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-svg",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "file-link",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.2010844999999999,
+      "reply": {
+        "sourceDigest": "5e0c7f2b0087a23b96d77178cfae3061468db6bc964d5f87c307ec2379490983",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-file-link",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "javascript-link",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.2269850830000002,
+      "reply": {
+        "sourceDigest": "9cfbe2195226d4e5a57785cc2faf6f7a3cd4fcc6cbe01930f7cf758f930024d4",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-javascript-link",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "config",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.21943645899999975,
+      "reply": {
+        "sourceDigest": "def4c552ecc6b1baf017dd400b80febea6bba95dec8500b7c2648f97e310be69",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-config",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "source-limit",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.20203912499999976,
+      "reply": {
+        "sourceDigest": "d73a6b32c480de17b6b40962b659b6ba1f3fcb02a39bbd91c42add3e8cb32727",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-source-limit",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "node-limit",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 1.0510354580000003,
+      "reply": {
+        "sourceDigest": "97346d99812e83df4c81cda8e0d5d200b6478dc8efc4718fcae572c10dae1f88",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-node-limit",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "edge-limit",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 0.22733541699999993,
+      "reply": {
+        "sourceDigest": "fd7e376a18e06cbadf6a62a01bde7041a7050a3321ae62e0784d6d4508e503d2",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-edge-limit",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "pixel-limit",
+      "expectedValid": false,
+      "exit": 0,
+      "elapsedSeconds": 1.756247459,
+      "reply": {
+        "sourceDigest": "d69677d8bcac51ffcffa54d501446a5890c9420da8a1b393c31e1b162f22191e",
+        "generation": 1,
+        "version": 1,
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "jobId": "final-component-pixel-limit",
+        "error": "diagram_rejected",
+        "byteLength": 0
+      },
+      "outputBytes": 0,
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "case": "invalid-version",
+      "exit": 11,
+      "elapsedSeconds": 0.010458082999999618,
+      "stdoutBytes": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "invalid-token",
+      "exit": 11,
+      "elapsedSeconds": 0.008832208000000286,
+      "stdoutBytes": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "invalid-digest",
+      "exit": 11,
+      "elapsedSeconds": 0.009148041999999634,
+      "stdoutBytes": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "zero-generation",
+      "exit": 11,
+      "elapsedSeconds": 0.00887195800000029,
+      "stdoutBytes": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "oversized-job",
+      "exit": 11,
+      "elapsedSeconds": 0.008756625000000184,
+      "stdoutBytes": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "input-byte-limit",
+      "exit": 10,
+      "elapsedSeconds": 0.009121957999999708,
+      "status": "PASS"
+    }
+  ]
+}

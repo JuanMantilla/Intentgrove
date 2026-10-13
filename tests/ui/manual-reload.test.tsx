@@ -1,3 +1,4 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -40,7 +41,7 @@ afterEach(cleanup);
 
 it("returns menu focus on Escape and can reopen with keyboard navigation", async () => {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open file" }));
+  fireEvent.click(projectAction("Open file"));
   const tab = await screen.findByRole("tab", { name: /outside.md/i });
   fireEvent.contextMenu(tab);
   const menu = screen.getByRole("menu");
@@ -57,7 +58,7 @@ it("returns menu focus on Escape and can reopen with keyboard navigation", async
 
 it("offers scoped Reload from mouse and keyboard tree context menus without opening a closed file", async () => {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   const file = await screen.findByTitle("readme.md");
   fireEvent.contextMenu(file);
   fireEvent.click(screen.getByRole("menuitem", { name: /Reload readme.md/i }));
@@ -75,7 +76,7 @@ it("offers scoped Reload from mouse and keyboard tree context menus without open
 
 it("offers file-only Reload on an explicit tab and shows progress and cancellation without moving focus", async () => {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open file" }));
+  fireEvent.click(projectAction("Open file"));
   const tab = await screen.findByRole("tab", { name: /outside.md/i });
   fireEvent.contextMenu(tab);
   fireEvent.click(screen.getByRole("menuitem", { name: /Reload outside.md/i }));
@@ -93,7 +94,7 @@ it("offers file-only Reload on an explicit tab and shows progress and cancellati
 
 it("keeps a cancelled folder job and its unchecked branch visible", async () => {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   const folder = await screen.findByTitle("docs");
   fireEvent.contextMenu(folder);
   fireEvent.click(screen.getByRole("menuitem", { name: /Reload docs folder/i }));
@@ -111,7 +112,7 @@ it("keeps a cancelled folder job and its unchecked branch visible", async () => 
 
 it("keeps manual success out of tree rows and retains it in the target menu after dismissal", async () => {
   render(<App />);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   const file = await screen.findByTitle("readme.md");
   const rows = document.querySelectorAll(".tree-row").length;
   fireEvent.contextMenu(file);

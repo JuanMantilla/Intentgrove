@@ -1,0 +1,125 @@
+Window: "individual", App: Finder.
+0 standard window individual, ID: FinderWindow, Secondary Actions: Raise
+	1 split group
+		2 scroll area Secondary Actions: Scroll Up, Scroll Down
+			3 outline sidebar
+				4 row (selectable) Description: clock, Value: Recents
+				5 row (selectable) Description: Two people, Value: Shared
+				6 row (selectable, expanded) Value: Favorites, Secondary Actions: Collapse
+				7 row (selectable) Description: App Store letter A icon, Value: Applications
+				8 row (selectable) Description: Menu bar with dock on a rectangle, Value: Desktop
+				9 row (selectable) Description: Document page, Value: Documents
+				10 row (selectable) Description: Arrow Down Circle, Value: Downloads
+				11 row (selectable, expanded) Value: Locations, Secondary Actions: Collapse
+				12 row (selectable) Description: iCloud, Value: iCloud Drive
+				13 row (selectable) Description: home, Value: juanmantilla
+				14 row (selectable) Description: AirDrop concentric radio waves, Value: AirDrop
+				15 row (selectable) Description: trash, Value: Trash
+				16 row (selectable, expanded) Value: Tags, Secondary Actions: Collapse
+				17 row (selectable) Description: Small circle badge, filled, Value: Red
+				18 row (selectable) Description: Small circle badge, filled, Value: Orange
+				19 row (selectable) Description: Small circle badge, filled, Value: Yellow
+				20 row (selectable) Description: Small circle badge, filled, Value: Green
+				21 row (selectable) Description: Small circle badge, filled, Value: Blue
+				22 row (selectable) Description: Small circle badge, filled, Value: Purple
+				23 row (selectable) Description: Small circle badge, filled, Value: Gray
+				24 row (selectable) Description: Two small circle badges, Value: All Tags…
+			25 scroll bar (settable, float) 0
+				26 value indicator (settable, float) 0
+				27 increment arrow button
+				28 decrement arrow button
+				29 increment page button
+				30 decrement page button
+		31 splitter (disabled, settable, float) 223
+		32 scroll area Secondary Actions: Scroll Left, Scroll Right
+			33 outline Description: list view, ID: ListView
+				34 row (selected)
+					35 cell (selected) Secondary Actions: Open Finder item
+						36 image
+						37 text field (selected, settable) Value: explicit-fresh-final.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-fresh-final.md
+					38 cell (selected)
+						39 text Today at 5:32 PM
+					40 cell (selected)
+						41 text 29 bytes
+					42 cell (selected)
+						43 text Markdown
+				44 row (selectable)
+					45 cell Secondary Actions: Open Finder item
+						46 image
+						47 text field (settable) Value: explicit-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-original.md
+					48 cell
+						49 text Today at 5:23 PM
+					50 cell
+						51 text 36 bytes
+					52 cell
+						53 text Markdown
+				54 row (selectable)
+					55 cell Secondary Actions: Open Finder item
+						56 image
+						57 text field (settable) Value: explicit-safe-original.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-safe-original.md
+					58 cell
+						59 text Today at 5:27 PM
+					60 cell
+						61 text 31 bytes
+					62 cell
+						63 text Markdown
+				64 row (selectable)
+					65 cell Secondary Actions: Open Finder item
+						66 image
+						67 text field (settable) Value: explicit-safe.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-safe-original.md
+					68 cell
+						69 text Today at 5:27 PM
+					70 cell
+						71 text 30 bytes
+					72 cell
+						73 text Markdown
+				74 row (selectable)
+					75 cell Secondary Actions: Open Finder item
+						76 image
+						77 text field (settable) Value: explicit.md, Secondary Actions: Open Finder item, URL: file:///Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-original.md
+					78 cell
+						79 text Today at 5:26 PM
+					80 cell
+						81 text 23 bytes
+					82 cell
+						83 text Markdown
+				84 container ListViewHeader
+					85 button Description: Name, Value: AXAscendingSortDirection, ID: name
+					86 button Description: Date Modified, ID: dateModified
+					87 button Description: Size, ID: size
+					88 button Description: Kind, ID: kind
+			89 scroll bar (settable, float) 0
+				90 value indicator (settable, float) 0
+				91 increment arrow button
+				92 decrement arrow button
+				93 increment page button
+				94 decrement page button
+		95 unknown Details: status bar, ID: statusBar
+			96 text Value: 1 of 5 selected, 18,33 GB available, ID: statusBarText
+	97 toolbar
+		98 container Back/Forward
+			99 button (disabled) back
+			100 button (disabled) forward
+		101 pop up button Description: list view, Value: as List
+		102 menu button Description: Group, Help: Change the item grouping (hold down Option to change the sort), Secondary Actions: Move previous, Move next, Remove from toolbar
+		103 button Description: Share, Help: Share the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		104 button Description: Add Tags, Help: Edit Tags, Secondary Actions: Move previous, Move next, Remove from toolbar
+		105 menu button Description: Action, Help: Perform tasks with the selected items, Secondary Actions: Move previous, Move next, Remove from toolbar
+		106 button Search
+	107 close button
+	108 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	109 minimize button
+	110 text individual
+111 menu bar
+	112 Finder
+	113 File
+	114 Edit
+	115 View
+	116 Go
+	117 Window
+	118 Help
+
+Selected:
+	34 row (selected)
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

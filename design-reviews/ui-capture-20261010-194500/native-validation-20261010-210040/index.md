@@ -1,0 +1,3 @@
+# Native screenshot index
+
+0 accepted/inspected screenshots. Capture target unavailable; all five targeted sequences NOT TESTED. See [/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-validation-20261010-210040/validation.md](/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-validation-20261010-210040/validation.md) and [/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-validation-20261010-210040/provenance.md](/Users/juanmantilla/projects/personal/md-reader/design-reviews/ui-capture-20261010-194500/native-validation-20261010-210040/provenance.md).

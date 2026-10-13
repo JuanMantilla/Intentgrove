@@ -1,5 +1,7 @@
 # IR-04 implementation report — 2026-10-06
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
+
 Native implementation and functional frontend bridge: **COMPLETE_IN_SCOPE**. Final visual/user acceptance and current macOS build/runtime: **NOT TESTED**. No deployment, installation, signing or commit. Preexisting worktree changes were retained.
 
 The native coordinator in `src-tauri/src/settings.rs` owns the singleton Settings lifetime, validated preference-only requests, revisions, group activation, one in-flight request, bounded recent-ID replay detection, caller/request/revision-correlated acknowledgments, failure/Retry and owner timeout/reconciliation. General remains app-scoped on the existing storage keys. Main remains the sole session writer for Reading/tree. The separate window is created through the actual Tauri window builder, with the native titlebar and work-area bounds; no native popover substitution.
@@ -27,3 +29,8 @@ Reproduce from the repo root with installed tools/offline cache: `os-engineering
 Exact consumer integration and remaining frontend/QA work: [frontend-handoff.md](frontend-handoff.md). Shared canonical amendment: [F003C IR-04 supplement](../specs/004-restore-workspace-session/ir04-settings-amendment.md). Installed Spec Kit selection remains F007W.
 
 IR-05 native follow-on: [delivery report](ir05-report.md), [frontend handoff](ir05-frontend-handoff.md), evidence/ir05/. IR-04 evidence above is retained.
+
+
+## Workspace layout native integration — 2026-10-08
+
+Native contract COMPLETE_IN_SCOPE; real macOS switching/restart/failureRetry/dirtyRecovery exercised.120libraryPASS/5ignored,488frontendPASS/build/workerPASS; broader native integration targets FAIL compilation. Partial native visual matrix/runtime user acceptance pending. Canonical report: evidence/workspace-layout-native-20261008/report.md. Earlier reports remain historical.

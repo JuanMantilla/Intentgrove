@@ -1,0 +1,23 @@
+{
+  "name": "recorder-seeded-1",
+  "variant": "recorder",
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/candidate-recorder",
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/failure-capture/recorder-seeded-1.json"
+  ],
+  "environment_overrides": {},
+  "started_at": "2026-10-12T05:22:44.058614+00:00",
+  "exit_code": 1,
+  "finished_at": "2026-10-12T05:29:21.778514+00:00",
+  "passed": 711,
+  "failed": 1,
+  "total": 712
+}

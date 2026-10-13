@@ -1,10 +1,11 @@
+import PreviewLoading from "../reader/PreviewLoading";
 import type { SafetyCopyInventory } from "./api";
 import { t, type Locale } from "./i18n";
 import WorkspaceDialog from "./WorkspaceDialog";
 
-export default function StorageManagement({ locale, inventory, loading, busy, suspended, exclusions, onClose,
+export default function StorageManagement({ locale, inventory, loading, busy, cleanupPending = false, suspended, exclusions, onClose,
   onRetry, onSession, onRecents, onDrafts, onCopies, recentsEmpty }:
-  { locale: Locale; inventory: SafetyCopyInventory | null; loading: boolean; busy: boolean; suspended: boolean;
+  { locale: Locale; inventory: SafetyCopyInventory | null; loading: boolean; busy: boolean; cleanupPending?: boolean; suspended: boolean;
     exclusions: boolean; recentsEmpty: boolean; onClose: () => void; onRetry: () => void;
     onSession: () => void; onRecents: () => void; onDrafts: () => void; onCopies: () => void }) {
   const size = (bytes: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(bytes / 1024) + " KiB";
@@ -12,7 +13,7 @@ export default function StorageManagement({ locale, inventory, loading, busy, su
     suspended={suspended} onClose={onClose}>
     <p>{t(locale, "draftStorage")}</p><p>{t(locale, "rememberWorkspace")}</p>
     {exclusions && <details><summary>{t(locale, "excluded")}</summary><p>{t(locale, "localOnly")}</p></details>}
-    <div role="status">{loading ? t(locale, "checking") : inventory
+    <div role="status">{loading ? <PreviewLoading inline label={t(locale, "checking")} announce={false} /> : inventory
       ? `${t(locale, "resolvedCopies")}: ${inventory.resolvedCount} (${size(inventory.resolvedBytes)}) · ${t(locale, "unresolvedCopies")}: ${inventory.unresolvedCount} (${size(inventory.unresolvedBytes)})`
       : t(locale, "storageUnknown")}</div>
     {inventory && inventory.unresolvedCount > 0 && <p>{t(locale, "backupReviewDeferred")}</p>}
@@ -27,6 +28,6 @@ export default function StorageManagement({ locale, inventory, loading, busy, su
       <section><h3>{t(locale, "clearSafetyCopies")}</h3><p>{t(locale, "clearSafetyCopiesDetail")}</p>
         <button type="button" disabled={busy || loading || !inventory?.resolvedCount} onClick={onCopies}>{t(locale, "clearSafetyCopies")}</button></section>
     </div>
-    {busy && <p role="status">{t(locale, "cleanupBusy")}</p>}
+    {cleanupPending && !suspended && <p role="status">{t(locale, "cleanupBusy")}</p>}
   </WorkspaceDialog>;
 }

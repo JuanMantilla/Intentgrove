@@ -1,0 +1,202 @@
+[
+  {
+    "query": "needle",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T03:33:39.246Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "needle alpha",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:33:40.952Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "needle beta",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:33:42.605Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "absent-20261008",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T03:33:46.695Z",
+    "completionObserved": false,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# alpha 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:33:48.155Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# alpha 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true,
+    "at": "2026-10-08T03:33:49.698Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# beta 0",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:33:51.223Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# beta 1",
+    "expected": 11,
+    "actual": 11,
+    "pass": true,
+    "at": "2026-10-08T03:33:52.744Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "alpha 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:33:54.267Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "beta 39",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:33:55.778Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "alpha 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T03:33:59.864Z",
+    "completionObserved": false,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "beta 40",
+    "expected": 0,
+    "actual": 0,
+    "pass": true,
+    "at": "2026-10-08T03:34:03.944Z",
+    "completionObserved": false,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "NEEDLE",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T03:34:05.584Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:34:07.309Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:34:08.902Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "match",
+    "expected": 80,
+    "actual": 80,
+    "pass": true,
+    "at": "2026-10-08T03:34:10.604Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "needle alpha match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:34:12.265Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "needle beta match",
+    "expected": 40,
+    "actual": 40,
+    "pass": true,
+    "at": "2026-10-08T03:34:13.905Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# alpha 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:34:15.488Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  },
+  {
+    "query": "# beta 20",
+    "expected": 1,
+    "actual": 1,
+    "pass": true,
+    "at": "2026-10-08T03:34:16.997Z",
+    "completionObserved": true,
+    "terminalStateObserved": true,
+    "reassessment": "Original polling recognized only nonempty complete label. Stored zero-result AX explicitly shows terminal Sin resultados; no retry."
+  }
+]

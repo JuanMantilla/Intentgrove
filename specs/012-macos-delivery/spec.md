@@ -28,7 +28,7 @@ Install and use the private Markdown workspace on macOS without development tool
 
 ## Success criteria
 
-- **SC-001:** Ten install/launch trials of the packaged app on a recorded compatible Mac work without dev tools; local DMG and installed app checksums/signing results are captured.
+- **SC-001: WITHDRAWN** by explicit user instruction on 2026-10-08; no install/launch repetition gate. See [scope decision](../../docs/macos-sc001-withdrawal-20261008.md). Historical criteria/evidence remain preserved.
 - **SC-002:** Ten Finder Open With and ten drop trials open exact fixture files/folders or show scoped errors; zero sibling files become readable through file-only selection and hashes remain unchanged.
 - **SC-003:** All five Close/Quit routes and Dock reopen pass ten disposable dirty/clean journeys after F003C/F004 integration, including Cancel and failed Save.
 - **SC-004:** The final v1 matrix contains an explicit status and evidence path for every accepted feature criterion; no BLOCKED/NOT TESTED check is described as verified.
@@ -36,3 +36,24 @@ Install and use the private Markdown workspace on macOS without development tool
 ## Assumptions
 
 The verified development host is macOS arm64. Minimum supported macOS and extra architectures require tested decisions. Private ad-hoc signing is sufficient for local development evidence but is not a public distribution claim. F006 image association is conditional on F006 approval/implementation; F003C and F004 supply lifecycle state.
+
+
+## User-directed support scope — 2026-10-08
+
+The user explicitly narrowed current acceptance to Apple Silicon on the current macOS release and removed both older macOS and older-package upgrade testing. See [decision](../../docs/macos-supported-scope-20261008.md). F005-R03/AS-002 target arm64/current macOS; Intel, universal and macOS 14 acceptance are outside current delivery scope. AS-008/F005-R09 retain source/app-data preservation during fresh installation and relaunch; an upgrade from an older package is outside this acceptance gate. SC-001 is now withdrawn by the subsequent user decision; other requirements retain their applicable explicit scope amendments. Excluded historical cases are preserved and are not recorded as passes.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F005-H01**: HTML/HTM file associations and native entries reuse the shared Tauri host. A standalone unprivileged WKWebView is linked into the native library; default builds exclude the html-native-probe executable and feature-only diagnostic APIs. Private package checks do not establish installed UX or supported-version coverage.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.
+
+
+## Proposed Markdown default-app opt-in — 2026-10-10
+
+New user-requested work; DRAFT FOR REVIEW, separate from accepted current-version closeout. Specification: [concrete amendment](default-markdown-20261010/spec.md). No implementation or real association changes performed.
+
+## Automatic native files — 2026-10-10 user refinement
+
+F005-R05/R06 and AS-004/AS-005: supported files from cold/warm macOS Opened events and drops open automatically in a focused new tab, preserving the current workspace and drafts. Existing identities focus their tab. Session restoration and blocking operations settle first. Folder workspace changes remain explicit; native automatic acceptance rejects directory replacement before any root grant. [Authority/requirements](automatic-native-open-20261010/amendment.md).

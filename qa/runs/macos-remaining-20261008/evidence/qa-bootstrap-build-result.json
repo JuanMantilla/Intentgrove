@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "profileOverride": "CARGO_PROFILE_RELEASE_STRIP=none",
+  "scope": "QA package only; production candidates unchanged",
+  "failedAttempts": [
+    "qa-bootstrap-build.log",
+    "qa-bootstrap-fresh-build.log",
+    "qa-bootstrap-cargo-verbose.log"
+  ],
+  "successfulLog": "qa-bootstrap-unstripped-build.log",
+  "cause": "Disabling release stripping removed observed E0463 build failures; precise toolchain cause not established",
+  "helpers": "Copied unchanged from archived QA package; deep strict signature verification passed"
+}

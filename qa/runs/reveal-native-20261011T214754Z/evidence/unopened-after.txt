@@ -1,0 +1,57 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+			14 pop up button Go menu
+			15 button (disabled, collapsed) Open documents (0), Secondary Actions: Expand
+			16 container Explorer
+				17 pop up button PROJECTS
+				18 button Close Projects sidebar
+				19 button Open file
+				20 button Open folder
+				21 button Search folder
+				22 text fixtures
+				23 container
+					24 button active.md
+					25 button delete.md
+					26 button inactive.md
+					27 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					28 button rename.md
+					29 button replace.md
+					30 button unopened.md
+				31 text Storage and recovery
+				32 text Open edits and recovery offers: 0
+				33 button Manage…
+				34 button Settings…
+			35 container
+				36 heading Read your local Markdown, Value: 1
+					37 text Read your local Markdown
+				38 text Open a Markdown file to start reading.
+				39 button New Markdown file
+				40 button Open folder
+				41 button Open file
+			42 container
+				43 text Local files only Intentgrove by Theonira
+	44 close button
+	45 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	46 minimize button
+	47 text Intentgrove Reveal QA
+48 menu bar
+	49 Intentgrove Reveal QA
+	50 File
+	51 Edit
+	52 View
+	53 Go
+	54 Window
+	55 Help

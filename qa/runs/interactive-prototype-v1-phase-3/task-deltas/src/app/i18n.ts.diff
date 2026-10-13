@@ -1,0 +1,47 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src/app/i18n.ts
++++ /Users/juanmantilla/projects/personal/md-reader/src/app/i18n.ts
+@@ -3,6 +3,17 @@
+ 
+ const catalog = {
+   en: {
++    prototypeTitle: "Interactive prototype",
++    prototypeReady: "Validated read-only prototype. Playback is unavailable in this build.",
++    prototypeScenes: "scenes",
++    prototypeChanged: "Prototype changed — Reload to restart",
++    prototypeReloadFailed: "Reload failed; showing previous version",
++    prototypeInvalid: "Invalid prototype package",
++    prototypeVersion: "This prototype uses an unsupported version. This build supports .igproto version 1.",
++    prototypeIntegrity: "Prototype integrity verification failed",
++    prototypeLimit: "Prototype exceeds a package or open-document security limit",
++    prototypePlatform: "Prototypes require macOS arm64",
++
+     newPickerUnavailable: "Changing destination is unavailable while a workspace or document is open.",
+     newWorking: "Working…",
+     newDuplicate: "A file or folder with this name already exists. Choose another name.",
+@@ -427,6 +438,17 @@
+     startFresh: "Start fresh"
+   },
+   es: {
++    prototypeTitle: "Prototipo interactivo",
++    prototypeReady: "Prototipo validado de solo lectura. La reproducción no está disponible en esta versión.",
++    prototypeScenes: "escenas",
++    prototypeChanged: "El prototipo cambió — Recargar para reiniciar",
++    prototypeReloadFailed: "La recarga falló; se muestra la versión anterior",
++    prototypeInvalid: "Paquete de prototipo no válido",
++    prototypeVersion: "El prototipo usa una versión no compatible. Esta aplicación admite .igproto versión 1.",
++    prototypeIntegrity: "Falló la verificación de integridad del prototipo",
++    prototypeLimit: "El prototipo supera un límite de seguridad de paquetes o documentos abiertos",
++    prototypePlatform: "Los prototipos requieren macOS arm64",
++
+     newPickerUnavailable: "No se puede cambiar el destino mientras haya un espacio de trabajo o documento abierto.",
+     newWorking: "Procesando…",
+     newDuplicate: "Ya existe un archivo o carpeta con este nombre. Elige otro nombre.",
+@@ -871,6 +893,8 @@
+ 
+ export function errorText(locale: Locale, code: string): string {
+   const mapping: Record<string, MessageKey> = {
++    prototype_invalid: "prototypeInvalid", prototype_version_unsupported: "prototypeVersion",
++    prototype_integrity: "prototypeIntegrity", prototype_limit: "prototypeLimit", prototype_platform_unsupported: "prototypePlatform",
+     missing: "missing",
+     denied: "denied",
+     binary: "binary",

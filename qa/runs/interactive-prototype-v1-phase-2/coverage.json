@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "rust_total": 332,
+  "failed": 0,
+  "suites": {
+    "cli": 12,
+    "compiler": 45,
+    "model": 86,
+    "aggregate_limits": 8,
+    "package_security": 70,
+    "svg_security": 111
+  },
+  "phase1_original_tests": 84,
+  "phase1_added_regressions": 2,
+  "requirements": {
+    "IG-P01": "Exact V1 container/model/member validation",
+    "IG-P03": "Offline export compiler and deterministic CLI",
+    "IG-P04": "Canonical authoring source reused, no draft editor",
+    "IG-P08": "ZIP/XML/CSS/PNG admission and bounds",
+    "IG-P11": "Focused test/snapshot/evidence preservation",
+    "IG-P12": "Strict canonical V1/version behavior",
+    "IG-P14": "Clean dependency closure and offline independence"
+  },
+  "later_phases": "NOT TESTED: native document/player/runtime/MCP/fuzz/release",
+  "unresolved_in_scope_blockers": []
+}

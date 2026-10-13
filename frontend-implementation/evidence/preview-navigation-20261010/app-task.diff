@@ -1,0 +1,406 @@
+--- baseline/App.tsx
++++ src/app/App.tsx
+@@ -227,6 +227,9 @@
+   const [readingSettingsOpen, setReadingSettingsOpen] = useState(false);
+   const settingsTriggerRef = useRef<HTMLButtonElement>(null);
+   const sidebarTriggerRef = useRef<HTMLButtonElement>(null);
++  const sidebarInvoker = useRef<HTMLElement | null>(null);
++  const narrowSidebarWasVisible = useRef(false);
++  const [imageControlsHost, setImageControlsHost] = useState<HTMLDivElement | null>(null);
+   const outlineTriggerRef = useRef<HTMLButtonElement>(null);
+   const sidebarElementRef = useRef<HTMLElement>(null);
+   const outlineElementRef = useRef<HTMLElement>(null);
+@@ -1143,7 +1146,7 @@
+   }, [activeId]);
+ 
+   useEffect(() => {
+-    if (findOpen) findInputRef.current?.focus();
++    if (findOpen && !findInputRef.current?.closest("[inert]")) findInputRef.current?.focus();
+   }, [findOpen]);
+ 
+   useLayoutEffect(() => {
+@@ -1210,7 +1213,8 @@
+     if (!active || active.kind === "image") return;
+     findFocusBefore.current = document.activeElement as HTMLElement | null;
+     setFindOpen(true);
+-    requestAnimationFrame(() => findInputRef.current?.focus());
++    // New Find inputs focus after commit; an already-open input can focus now.
++    if (!findInputRef.current?.closest("[inert]")) findInputRef.current?.focus();
+   }
+ 
+   useEffect(() => {
+@@ -2806,13 +2810,24 @@
+     (disclosure && !disclosure.open ? disclosure.querySelector("summary") : trigger)?.focus();
+   }
+ 
+-  function toggleExplorer() {
++  function dismissProjects() {
++    setCompactSidebarOpen(false);
++    (sidebarInvoker.current?.isConnected ? sidebarInvoker.current : sidebarTriggerRef.current)?.focus();
++  }
++
++  function rememberSidebarInvoker() {
++    if (!sidebarVisible && document.activeElement instanceof HTMLElement) sidebarInvoker.current = document.activeElement;
++  }
++
++  function toggleExplorer(event?: React.MouseEvent<HTMLButtonElement>) {
++    if (!sidebarVisible) sidebarInvoker.current = event?.currentTarget ?? sidebarTriggerRef.current;
+     // A view control selects its own panel; only the already-visible view toggles closed.
+     setSidebarPanel("explorer");
+     if (sidebarVisible && sidebarPanel !== "explorer") return;
+     if (compactSidebar) {
+-      if (compactSidebarOpen) sidebarTriggerRef.current?.focus();
+-      setCompactSidebarOpen((open) => !open); return;
++      if (compactSidebarOpen) dismissProjects();
++      else setCompactSidebarOpen(true);
++      return;
+     }
+     if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
+     if (sidebarElementRef.current?.contains(document.activeElement)) sidebarTriggerRef.current?.focus();
+@@ -2821,6 +2836,15 @@
+     sidebarAnimationTimer.current = setTimeout(() => setSidebarAnimating(false), 180);
+     setSidebarOpen((open) => !open);
+   }
++
++  useLayoutEffect(() => {
++    if (narrowWorkspace && sidebarVisible) {
++      sidebarElementRef.current?.querySelector<HTMLElement>(sidebarPanel === "search" ? 'input[type="search"]' : ".projects-trigger")?.focus();
++    }
++    else if (narrowSidebarWasVisible.current && !sidebarVisible && sidebarElementRef.current?.contains(document.activeElement))
++      (sidebarInvoker.current?.isConnected ? sidebarInvoker.current : sidebarTriggerRef.current)?.focus();
++    narrowSidebarWasVisible.current = narrowWorkspace && sidebarVisible;
++  }, [narrowWorkspace, sidebarVisible, sidebarPanel]);
+ 
+   function toggleOutline() {
+     if (activeId && readerRef.current) captureReadingPosition(activeId, readerRef.current);
+@@ -2842,8 +2866,8 @@
+ 
+   useEffect(() => {
+     const handler = (event: KeyboardEvent) => {
+-      if (event.key === "Escape" && compactSidebar && compactSidebarOpen) {
+-        event.preventDefault(); setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); return;
++      if (event.key === "Escape" && compactSidebar && compactSidebarOpen && !projectsMenu && !reloadMenu && !goMenu && !document.querySelector('[aria-modal="true"]')) {
++        event.preventDefault(); dismissProjects(); return;
+       }
+       if (event.key === "Escape" && historyBusy) { event.preventDefault(); cancelHistoryTraversal(); return; }
+       if (event.key === "Escape" && findOpen) {
+@@ -2856,7 +2880,7 @@
+       if (key === "s" && !editingAvailable) { event.preventDefault(); return; }
+       if (key === "f") {
+         event.preventDefault();
+-        if (event.shiftKey && root) { setSidebarOpen(true); if (compactSidebar) setCompactSidebarOpen(true); setSidebarPanel("search"); }
++        if (event.shiftKey && root) { rememberSidebarInvoker(); setSidebarOpen(true); if (compactSidebar) setCompactSidebarOpen(true); setSidebarPanel("search"); }
+         else openFind();
+       } else if (key === "o") {
+         event.preventDefault();
+@@ -3032,6 +3056,7 @@
+   }
+ 
+   function showFolderSearch() {
++    rememberSidebarInvoker();
+     setFolderSearchScope([]); setSidebarOpen(true);
+     if (compactSidebar) setCompactSidebarOpen(true);
+     setSidebarPanel("search");
+@@ -3075,21 +3100,10 @@
+             </div>}
+           </div>
+         </div>
+-        <div className="workspace-toolbar">
+-          <button ref={sidebarTriggerRef} className="ghost-button explorer-toggle" type="button" onClick={toggleExplorer}
+-            aria-label={t(locale, "toggleSidebar")} aria-expanded={sidebarVisible}><WorkspaceIcon name="panel-left" />{t(locale, "explorer")}</button>
+-          <strong className="workspace-title">{root?.name ?? t(locale, "workspace")}</strong>
+-          <div className="workspace-toolbar-actions">
+-            {selectionPending && !documentOpening && <PreviewLoading inline label={t(locale, "loading")} />}
+-            <button type="button" onClick={() => void chooseFile()} disabled={busy}><WorkspaceIcon name="file-text" />{t(locale, "openFile")}</button>
+-            <button type="button" onClick={() => void chooseFolder()} disabled={busy}><WorkspaceIcon name="folder-open" />{t(locale, "openFolder")}</button>
+-            <button type="button" className="ghost-button" onClick={openFind} disabled={!active || active.kind === "image"}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>
+-          </div>
+-          {!active && !isTauri() && <button ref={settingsTriggerRef} type="button" onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>}
+-        </div>
++
+       </header>
+ 
+-      {settingsOverlay.shown && <section id="reading-settings-panel" className="reading-settings-panel"
++      {settingsOverlay.shown && active?.kind !== "image" && <section id="reading-settings-panel" className="reading-settings-panel"
+         data-closing={settingsOverlay.closing} inert={settingsOverlay.closing}
+         aria-hidden={settingsOverlay.closing} aria-label={t(locale, "readingSettings")}
+         onKeyDown={(event) => {
+@@ -3127,11 +3141,9 @@
+       </div>}
+ 
+       <div className="workspace-layout">
+-        <div className="compact-projects" hidden={layout !== "atlas" || !narrowWorkspace}>
+-          <button type="button" aria-expanded={sidebarVisible} onClick={toggleExplorer}><WorkspaceIcon name="folder" />{t(locale, "projects")}<WorkspaceIcon name="chevron-down" /></button>
+-          <span>{root?.name}</span>
+-        </div>
+           <div className="document-tabs">
++          <button ref={sidebarTriggerRef} type="button" className="projects-toggle" aria-label={t(locale, "projects")}
++            aria-expanded={sidebarVisible} onClick={toggleExplorer}><WorkspaceIcon name="panel-left" />{t(locale, "projects")}</button>
+           <div className="history-controls" role="group" aria-label={t(locale, "visitHistory")}>
+             {([-1, 1] as const).map((direction) => {
+               const cursor = direction === -1 && !active ? history.cursor : history.cursor + direction;
+@@ -3234,7 +3246,7 @@
+           </div>
+ 
+         <nav className="folio-rail" hidden={layout !== "folio" || narrowWorkspace} aria-label={t(locale, "workspaceTools")}>
+-          <button type="button" aria-label={t(locale, "explorer")} title={t(locale, "explorer")} onClick={toggleExplorer}><WorkspaceIcon name="panel-left" /></button>
++          <button type="button" aria-label={t(locale, "projects")} title={t(locale, "projects")} aria-expanded={sidebarVisible} onClick={toggleExplorer}><WorkspaceIcon name="panel-left" /></button>
+           <button type="button" aria-label={t(locale, "folderSearch")} title={t(locale, "folderSearch")} disabled={!root} onClick={showFolderSearch}><WorkspaceIcon name="search" /></button>
+           <button type="button" aria-label={t(locale, "openFolder")} title={t(locale, "openFolder")} disabled={busy} onClick={() => void chooseFolder()}><WorkspaceIcon name="folder-open" /></button>
+           <button type="button" aria-label={locale === "es" ? "Ajustes" : "Settings"} title={locale === "es" ? "Ajustes" : "Settings"} onClick={() => openSettings("General")}><WorkspaceIcon name="settings-2" /></button>
+@@ -3256,6 +3268,12 @@
+                   const anchor=event.currentTarget;showHtmlOverlay(()=>setProjectsMenu({anchor,x:bounds.left,y:bounds.bottom+4}));
+                 }}><span>{t(locale, "projects")}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                 <path d="M1 3 L6 8 L11 3" fill="none" stroke="currentColor" strokeWidth="1.75" /></svg></button>
++              {compactSidebar && <button type="button" className="projects-close" aria-label={t(locale, "closeSidebar")} onClick={dismissProjects}>×</button>}
++            </div>
++            <div className="project-open-actions">
++              <button type="button" disabled={busy} onClick={() => void chooseFile()}>{t(locale, "openFile")}</button>
++              <button type="button" disabled={busy} onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
++              {selectionPending && !documentOpening && <PreviewLoading inline label={t(locale, "loading")} />}
+             </div>
+             <button className="explorer-search-launcher" type="button" disabled={!root} onClick={showFolderSearch}>
+               <WorkspaceIcon name="search" />{t(locale, "folderSearch")}</button>
+@@ -3268,6 +3286,7 @@
+                       const owner = ++openSequence.current, generation = generationRef.current;
+                       return () => owner === openSequence.current && generation === generationRef.current;
+                     }}
++                    onDismiss={narrowWorkspace ? dismissProjects : undefined}
+                     onClose={() => { setSidebarPanel("explorer"); searchTrigger.current?.focus(); }}
+                     onLocalOpen={async view=>{await acceptLocalView(view,{fileId:view.fileId});}}
+                 onOpen={(result, hit, query) => openFolderSearchResult(result, hit, query, root.id)} />
+@@ -3301,7 +3320,6 @@
+             ) : (
+               <div className="sidebar-empty">
+                 <p>{t(locale, "noDocument")}</p>
+-                <button type="button" onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
+               </div>
+             )}
+             <section className="shelf-documents" hidden={layout !== "atlas" || compactSidebar || sidebarPanel === "search"} aria-label={t(locale, "openDocuments")}>
+@@ -3327,8 +3345,8 @@
+             </div>
+           </aside>
+ 
+-        {compactSidebar && compactSidebarOpen && <button type="button" className="sidebar-scrim" aria-label={t(locale, "closeSidebar")}
+-          onClick={() => { setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); }} />}
++        {compactSidebar && !narrowWorkspace && compactSidebarOpen && <button type="button" className="sidebar-scrim" aria-label={t(locale, "closeSurface")}
++          onClick={dismissProjects} />}
+         <main className="main-panel">
+           {historyAnnouncement && <span className="sr-only" role="status" aria-label={t(locale, "visitHistory")}>{historyAnnouncement}</span>}
+           {historyOpen && <WorkspaceDialog title={t(locale, "visitHistory")} closeLabel={t(locale, "closeSurface")}
+@@ -3377,84 +3395,6 @@
+               finally { setBusy(false); }
+             }}>{t(locale, "discard")}</button>
+           </WorkspaceDialog>}
+-          {active && <DocumentLocation key={active.id} name={active.name} path={active.displayPath} locale={locale}
+-            folders={documentSegments(active)?.slice(0, -1).join(" / ") ?? null}
+-            onReveal={documentSegments(active) ? () => void revealDocument(active) : undefined} revealing={revealing}
+-            beforeMenuOpen={htmlHandles.current.size ? hideHtml : undefined}
+-            onMenuOpen={() => { setProjectsMenu(null); setReloadMenu(null); setGoMenu(null); }}
+-            menuActions={<>
+-              {(narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
+-                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+-                  aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+-                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+-                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
+-              </>}
+-              <button type="button" disabled={!navigator.clipboard?.writeText} aria-description={!navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined}
+-                onClick={() => void copyPath(active.displayPath)}>{t(locale, "copyPath")}</button>
+-              {active.kind==='html' && <button type="button" onClick={()=>void htmlHandles.current.get(active.id)?.details()}>{t(locale,'viewDetails')}</button>}
+-              <button type="button" onClick={openFind} disabled={!findAvailable}>{t(locale,"findInDocument")}</button>
+-              <button type="button" onClick={()=>void closeTab(active.id)}>{t(locale,"closeTab")}</button>
+-              <button type="button" disabled={busy || (!active.largeInspection && !refreshTarget(active))} onClick={() => {
+-                if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
+-        if (active.largeInspection) { void reloadLargeTab(active.id); return; }
+-                const target = refreshTarget(active);
+-                if (target) void startReload({ target, label: active.name, x: 0, y: 0, anchor: readerRef.current ?? document.body });
+-              }}>{t(locale, "reload")}</button>
+-            </>}
+-            actions={<>
+-              {!narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
+-                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+-                  aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+-                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+-                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
+-              </>}
+-              {active.kind !== "image" && active.kind !== "html" && active.kind !== "details" && !isHtmlDocument(active.name) && !active.largeInspection && !active.errorCode && <>
+-              {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
+-                <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
+-                  || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
+-                  aria-label={t(locale, "saveFile")} onClick={() => void saveEdit(active.id)}>{savingTabId === active.id && !closeIntent && !pendingSection ? <PreviewLoading inline label={t(locale, "sourceSaving")} /> : <WorkspaceIcon name="save" />}{t(locale, "saveFile")}</button>
+-                <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
+-                  ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
+-                <button type="button" disabled={busy} onClick={() => void saveEditAs(active.id)}>{t(locale, "saveAs")}</button>
+-                <small>{copySaving === active.id && !pendingSaveAs ? <PreviewLoading inline visibleLabel label={t(locale, "saveAsCopy")} /> : t(locale, "saveReturnsReading")}</small>
+-              </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} aria-disabled={Boolean(enteringSection)} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
+-                onClick={() => {
+-                  const reader = readerRef.current;
+-                  const top = reader?.getBoundingClientRect().top ?? 0;
+-                  const region = Array.from(reader?.querySelectorAll<HTMLElement>("[data-section-id]") ?? [])
+-                    .find((element) => zoomRect(element, documentZoom).bottom > top + 24);
+-                  const section = sectionsByTab[active.id]?.find((item) => item.id === region?.dataset.sectionId)
+-                    ?? sectionsByTab[active.id]?.[0];
+-                  if (section) void beginEdit(section);
+-                }}><WorkspaceIcon name="pencil" />{t(locale, "editSection")}</button>}
+-              {!editingAvailable && <small>{t(locale, "editingUnavailable")}</small>}
+-            </>} </>} />}
+-          {documentOpening && <div className="document-acquisition">{documentPending?.name && <span>{documentPending.name}</span>}{active && <PreviewLoading inline label={t(locale, "loading")} />}</div>}
+-          {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
+-            <input ref={findInputRef} type="search" value={findQuery} autoComplete="off"
+-              maxLength={active?.kind === "html" ? 256 : 4096}
+-              aria-label={t(locale, "findInDocument")} placeholder={t(locale, "findPlaceholder")}
+-              onChange={(event) => { setFindQuery(event.target.value); setFindOrdinal(0); }}
+-              onKeyDown={(event) => {
+-                if (event.key === "Enter") { event.preventDefault(); moveFind(event.shiftKey ? -1 : 1); }
+-                if (event.key === "Escape") { event.preventDefault(); closeFind(); }
+-              }} />
+-            <span className="find-count" role="status" aria-live="polite">
+-              {!findAvailable || findIndexError ? t(locale, "findUnavailable")
+-                : !findQuery.trim() ? t(locale, "findEntry")
+-                  : !findResults ? <PreviewLoading inline announce={false} label={t(locale, "checking")} />
+-                    : findResults.count === 0 ? t(locale, "findZero")
+-                      : t(locale, "findPosition").replace("{current}", String(activeFindOrdinal + 1))
+-                        .replace("{total}", String(findResults.count))}
+-            </span>
+-            <button type="button" aria-label={t(locale, "findPrevious")}
+-              disabled={!findResults?.count} onClick={() => moveFind(-1)}>↑</button>
+-            <button type="button" aria-label={t(locale, "findNext")}
+-              disabled={!findResults?.count} onClick={() => moveFind(1)}>↓</button>
+-            <button type="button" aria-label={t(locale, "closeFind")} onClick={closeFind}>×</button>
+-          </div>}
+           {historyBusy && <div className="notice"><PreviewLoading inline label={t(locale, "loading")} />
+             <button type="button" onClick={cancelHistoryTraversal}>{t(locale, "cancel")}</button></div>}
+           {goMenu && <ActionMenu {...goMenu} onClose={() => setGoMenu(null)} actions={[
+@@ -3650,6 +3590,87 @@
+               </div>
+             </div>
+           </div>}
++          <div className="document-content" inert={narrowWorkspace && sidebarVisible} aria-hidden={narrowWorkspace && sidebarVisible}>
++          {active && <DocumentLocation key={active.id} name={active.name} path={active.displayPath} locale={locale}
++            folders={documentSegments(active)?.slice(0, -1).join(" / ") ?? null}
++            onReveal={documentSegments(active) ? () => void revealDocument(active) : undefined} revealing={revealing}
++            beforeMenuOpen={htmlHandles.current.size ? hideHtml : undefined}
++            onMenuOpen={() => { setProjectsMenu(null); setReloadMenu(null); setGoMenu(null); }}
++            menuActions={<>
++              {active.kind !== "image" && (narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
++                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
++                  aria-description={active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
++                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
++                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
++                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
++              </>}
++              <button type="button" disabled={!navigator.clipboard?.writeText} aria-description={!navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined}
++                onClick={() => void copyPath(active.displayPath)}>{t(locale, "copyPath")}</button>
++              {active.kind==='html' && <button type="button" onClick={()=>void htmlHandles.current.get(active.id)?.details()}>{t(locale,'viewDetails')}</button>}
++
++              <button type="button" onClick={()=>void closeTab(active.id)}>{t(locale,"closeTab")}</button>
++              <button type="button" disabled={busy || (!active.largeInspection && !refreshTarget(active))} onClick={() => {
++                if(active.kind === "html") {void htmlHandles.current.get(active.id)?.reload();return;}
++        if (active.largeInspection) { void reloadLargeTab(active.id); return; }
++                const target = refreshTarget(active);
++                if (target) void startReload({ target, label: active.name, x: 0, y: 0, anchor: readerRef.current ?? document.body });
++              }}>{t(locale, "reload")}</button>
++            </>}
++            actions={<>
++              {active.kind === "image" ? <div className="image-controls-host" ref={setImageControlsHost} />
++                : <button type="button" onClick={openFind} disabled={!findAvailable}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>}
++              {active.kind !== "image" && !narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
++                <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
++                  aria-description={active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
++                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
++                <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
++                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
++              </>}
++              {active.kind !== "image" && active.kind !== "html" && active.kind !== "details" && !isHtmlDocument(active.name) && !active.largeInspection && !active.errorCode && <>
++              {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
++                <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
++                  || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
++                  aria-label={t(locale, "saveFile")} onClick={() => void saveEdit(active.id)}>{savingTabId === active.id && !closeIntent && !pendingSection ? <PreviewLoading inline label={t(locale, "sourceSaving")} /> : <WorkspaceIcon name="save" />}{t(locale, "saveFile")}</button>
++                <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
++                  ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
++                <button type="button" disabled={busy} onClick={() => void saveEditAs(active.id)}>{t(locale, "saveAs")}</button>
++                <small>{copySaving === active.id && !pendingSaveAs ? <PreviewLoading inline visibleLabel label={t(locale, "saveAsCopy")} /> : t(locale, "saveReturnsReading")}</small>
++              </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} aria-disabled={Boolean(enteringSection)} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
++                onClick={() => {
++                  const reader = readerRef.current;
++                  const top = reader?.getBoundingClientRect().top ?? 0;
++                  const region = Array.from(reader?.querySelectorAll<HTMLElement>("[data-section-id]") ?? [])
++                    .find((element) => zoomRect(element, documentZoom).bottom > top + 24);
++                  const section = sectionsByTab[active.id]?.find((item) => item.id === region?.dataset.sectionId)
++                    ?? sectionsByTab[active.id]?.[0];
++                  if (section) void beginEdit(section);
++                }}><WorkspaceIcon name="pencil" />{t(locale, "editSection")}</button>}
++              {!editingAvailable && <small>{t(locale, "editingUnavailable")}</small>}
++            </>} </>} />}
++          {documentOpening && <div className="document-acquisition">{documentPending?.name && <span>{documentPending.name}</span>}{active && <PreviewLoading inline label={t(locale, "loading")} />}</div>}
++          {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
++            <input ref={findInputRef} type="search" value={findQuery} autoComplete="off"
++              maxLength={active?.kind === "html" ? 256 : 4096}
++              aria-label={t(locale, "findInDocument")} placeholder={t(locale, "findPlaceholder")}
++              onChange={(event) => { setFindQuery(event.target.value); setFindOrdinal(0); }}
++              onKeyDown={(event) => {
++                if (event.key === "Enter") { event.preventDefault(); moveFind(event.shiftKey ? -1 : 1); }
++                if (event.key === "Escape") { event.preventDefault(); closeFind(); }
++              }} />
++            <span className="find-count" role="status" aria-live="polite">
++              {!findAvailable || findIndexError ? t(locale, "findUnavailable")
++                : !findQuery.trim() ? t(locale, "findEntry")
++                  : !findResults ? <PreviewLoading inline announce={false} label={t(locale, "checking")} />
++                    : findResults.count === 0 ? t(locale, "findZero")
++                      : t(locale, "findPosition").replace("{current}", String(activeFindOrdinal + 1))
++                        .replace("{total}", String(findResults.count))}
++            </span>
++            <button type="button" aria-label={t(locale, "findPrevious")}
++              disabled={!findResults?.count} onClick={() => moveFind(-1)}>↑</button>
++            <button type="button" aria-label={t(locale, "findNext")}
++              disabled={!findResults?.count} onClick={() => moveFind(1)}>↓</button>
++            <button type="button" aria-label={t(locale, "closeFind")} onClick={closeFind}>×</button>
++          </div>}
+           {activeId && pendingRecoveries[activeId] && <div className="notice recovery-notice" role="status">
+             <span>{t(locale, "recoverEdit")}{pendingRecoveries[activeId].conflict
+               ? " · " + t(locale, "draftConflict") : ""}
+@@ -3664,7 +3685,7 @@
+             style={{ "--reading-width": `${readingSettings.readingWidth}px`,
+               "--reading-size": `${readingSettings.readingSize}px`,
+               "--reading-line-height": String(readingSettings.readingLineHeight) } as CSSProperties}>
+-          <div className="reader-scroll" ref={readerRef}
++          <div className="reader-scroll" data-image={active?.kind === "image"} ref={readerRef}
+             onScroll={(event) => {
+               if (!activeId) return;
+               captureReadingPosition(activeId, event.currentTarget);
+@@ -3720,6 +3741,7 @@
+                   </button>
+                 </div>}
+                 <div className="welcome-actions">
++                  {!isTauri() && <button ref={settingsTriggerRef} type="button" onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>}
+                   <button className="primary-button" type="button" onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
+                   <button type="button" onClick={() => void chooseFile()}>{t(locale, "openFile")}</button>
+                 </div>
+@@ -3793,7 +3815,7 @@
+                 <button disabled title={t(locale,'defaultAppUnavailable')}>{t(locale,'openDefaultApp')}</button><p>{t(locale,'defaultAppUnavailable')}</p>
+               </section>
+             ) : active.kind === "image" ? (
+-              active.image ? <ImageView key={active.id} image={active.image} locale={locale} hideIdentity
++              active.image ? <ImageView key={active.id} image={active.image} locale={locale} hideIdentity controlsHost={imageControlsHost}
+                 initialView={imageViews.current.get(active.id)} onViewChange={(view) => {
+                   imageViews.current.set(active.id, view);
+                   const visit = historyRef.current.entries[historyRef.current.cursor];
+@@ -3891,7 +3913,7 @@
+               </div>
+             )}
+           </div>
+-          {active?.content && <aside ref={outlineElementRef} className="outline-panel"
++          {active?.content && active.kind !== "image" && <aside ref={outlineElementRef} className="outline-panel"
+             data-open={outlineVisible} aria-hidden={!outlineVisible} inert={!outlineVisible}
+             aria-label={t(locale, "outline")}>
+             <div className="outline-heading">
+@@ -3917,6 +3939,7 @@
+             style={{ left: overlay.left, top: overlay.top,
+               width: overlay.width, height: overlay.height }} />)}
+ 
++          </div>
+         </main>
+       </div>
+       <footer className="workspace-status">

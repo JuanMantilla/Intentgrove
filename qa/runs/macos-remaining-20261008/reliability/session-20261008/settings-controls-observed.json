@@ -1,0 +1,17 @@
+{
+  "attempt01": {
+    "verdict": "FAIL (restoration prerequisite intentionally unhandled in initial probe)",
+    "actualNativeState": "result.json: revision0, ownerAvailable=false",
+    "actualReaderState": "sessionReady=false, restorePending=true, listenerCount0",
+    "actualSettingsAX": "owner unavailable notice; Reading/tree disabled; General enabled",
+    "historicalAttribution": "this recovers the same symptom causally in current QA, not proof that the historical snapshot had identical reader state"
+  },
+  "attempt02": {
+    "verdict": "FAIL (new Settings-local harness synchronization)",
+    "control": "Actual Restore workspace on verified empty QA checkpoint permits owner publication and native22px saved acknowledgment",
+    "failure": "Probe attempted restoration16 before Settings UI re-enabled, so local change was ignored while busy. No deadline was increased; corrected probe waits for enabled UI.",
+    "recovery": "CUA actual22→16 restored and acknowledged; main native owner probe can complete, but this does not erase Settings-local failure",
+    "actualSettingsAX": "22px enabled then16px enabled; local probe failure at revision2 saved22px",
+    "productionChanges": false
+  }
+}

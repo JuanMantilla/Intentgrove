@@ -1,0 +1,141 @@
+{
+  "sourceVersion": 1,
+  "prototypeId": "12345678-1234-1234-1234-123456789abc",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "entry": "dashboard",
+  "visualSources": [
+    {
+      "id": "design",
+      "path": "design.vectorcraft",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "exportProfile": "vectorcraft-svg-v1"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "dashboard",
+      "kind": "base",
+      "visualBinding": {
+        "source": "design",
+        "rootTarget": "scene-dashboard",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": [
+        {
+          "target": "menu-panel",
+          "initialVisible": false
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "kind": "base",
+      "visualBinding": {
+        "source": "design",
+        "rootTarget": "scene-settings",
+        "bounds": {
+          "x": 500,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": []
+    },
+    {
+      "id": "profile",
+      "kind": "overlay",
+      "visualBinding": {
+        "source": "design",
+        "rootTarget": "scene-profile",
+        "bounds": {
+          "x": 1000,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": []
+    }
+  ],
+  "interactions": [
+    {
+      "id": "settings",
+      "scene": "dashboard",
+      "target": "settings-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "NAVIGATE",
+        "scene": "settings"
+      },
+      "transition": {
+        "type": "DISSOLVE",
+        "durationMs": 100
+      },
+      "label": "settings"
+    },
+    {
+      "id": "back",
+      "scene": "settings",
+      "target": "back-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "BACK"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "back"
+    },
+    {
+      "id": "profile",
+      "scene": "dashboard",
+      "target": "profile-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "OPEN_OVERLAY",
+        "scene": "profile"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "profile"
+    },
+    {
+      "id": "close",
+      "scene": "profile",
+      "target": "close-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "CLOSE_OVERLAY"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "close"
+    },
+    {
+      "id": "toggle",
+      "scene": "dashboard",
+      "target": "menu-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "TOGGLE",
+        "target": "menu-panel"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "toggle"
+    }
+  ],
+  "title": "V1 contract fixture"
+}

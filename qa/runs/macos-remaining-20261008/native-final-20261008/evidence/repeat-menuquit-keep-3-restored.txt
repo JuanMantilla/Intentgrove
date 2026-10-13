@@ -1,0 +1,93 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text fixtures
+				10 button Project tree settings
+				11 container
+					12 button edit-proof.md
+					13 button lifecycle.md
+					14 button linked.md
+					15 button permission.md
+					16 button plain.md
+					17 button qa-image.png
+					18 button rich.md
+					19 button search-navigation.md
+				20 text Storage and recovery
+				21 text Open edits and recovery offers: 1
+				22 button Manage…
+			23 container
+				24 container Visited files
+					25 button (disabled) Back, Help: No previous file
+					26 button (disabled) Forward, Help: No next file
+				27 tab group (selectable) Documents
+					28 container
+						29 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						30 button Close tab: search-navigation.md, Help: Close tab
+					31 container
+						32 tab (selected) permission.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+						33 button Close tab: permission.md, Help: Close tab
+				34 pop up button Go menu
+				35 button (collapsed) Open documents (2), Secondary Actions: Expand
+				36 container permission.md
+					37 text permission.md
+					38 text Folder root
+					39 toggle button Outline, Value: off
+					40 button (collapsed) Reading settings, Secondary Actions: Expand
+					41 button Save file
+					42 button Return to reading
+					43 text Save returns to reading.
+					44 summary Document…, Value: off
+						45 text Document…
+				46 container permission.md
+					47 container Editing: Permission proof
+						48 text Editing: Permission proof
+						49 text Changes not saved to the file
+						50 text Markdown source
+						51 text entry area (settable) Markdown source: Permission proof, Secondary Actions: Show Writing Tools, Value: # Permission proof
+
+FINAL_REPEAT_menuquit_keep_3
+
+
+
+							52 text (settable) # Permission proof
+							53 text (settable) FINAL_REPEAT_menuquit_keep_3
+						54 container Live preview
+							55 text Live preview
+							56 container Permission proof
+								57 heading Permission proof, Value: 1
+									58 text Permission proof
+								59 text FINAL_REPEAT_menuquit_keep_3
+						60 button Undo
+						61 button (disabled) Redo
+						62 button Discard changes…
+						63 button Save as…
+					64 container Permission proof
+						65 container Edit section: Permission proof
+							66 heading Permission proof, Value: 1
+								67 text Permission proof
+							68 button Edit section “Permission proof”
+						69 text FINAL_REPEAT_menuquit_save_10
+						70 container Edit section: Following section
+							71 heading Following section, Value: 2
+								72 text Following section
+							73 button Edit section “Following section”
+						74 text PERMISSION_FOLLOWING_UNCHANGED
+	75 close button
+	76 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	77 minimize button
+	78 text Intentgrove
+79 menu bar
+	80 Intentgrove
+	81 File
+	82 Edit
+	83 View
+	84 Go
+	85 Window
+	86 Help

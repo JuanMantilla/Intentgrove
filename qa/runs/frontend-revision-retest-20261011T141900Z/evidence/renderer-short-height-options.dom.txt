@@ -1,0 +1,263 @@
+- banner:
+  - strong: Theonira
+  - generic: / Intentgrove
+  - text: Local files only
+  - button "Appearance":
+  - generic: Language
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Settings":
+- button "Projects" [expanded]:
+  - text: Projects
+- group "Visited files":
+  - button "Back" [disabled]:
+  - button "Forward" [disabled]:
+- tablist "Documents":
+  - tab "short.md" [selected]:
+    - generic: short.md
+  - 'button "Close tab: short.md"': ×
+- button "Go menu": Go
+- button "Open documents (1)"
+- complementary "Explorer":
+  - button "Projects":
+    - generic: Projects
+  - button "Close Projects sidebar":
+  - button "Open file"
+  - button "Open folder"
+  - search "Search folder":
+    - button "Back to explorer"
+    - text: Search folder
+    - searchbox "Search folder": validationneedle
+    - button "Search"
+    - paragraph:
+      - 'generic "Search scope: fixtures"': fixtures
+    - button "Clear search": Clear
+    - button "Names and content" [expanded]:
+      - generic: Names and content
+    - group "Search in":
+      - button "Names and content" [active] [pressed]:
+        - generic: ✓
+        - text: Names and content
+      - button "File names": File names
+      - button "Markdown contents": Markdown contents
+      - checkbox "Include ignored files"
+      - text: Include ignored files
+      - paragraph: Contents search covers Markdown files.
+    - status:
+      - strong: 24 Results
+      - generic "Search complete ⌄"
+      - text: "· 24 entries scanned, 0 skipped · Results: 24"
+    - region "Results":
+      - region "close-review-similar-filename-with-shared-prefix-alpha.md":
+        - heading "close-review-similar-filename-with-shared-prefix-alpha.md 1" [level=3]:
+          - generic "close-review-similar-filename-with-shared-prefix-alpha.md": close-revie…-shared-prefix-alpha.md
+          - generic: "1"
+        - list:
+          - button "close-review-similar-filename-with-shared-prefix-alpha.md · Line 3 · validationneedle identity fixture.":
+            - generic: Line 3 · validationneedle identity fixture.
+      - region "close-review-similar-filename-with-shared-prefix-beta.md":
+        - heading "close-review-similar-filename-with-shared-prefix-beta.md 1" [level=3]:
+          - generic "close-review-similar-filename-with-shared-prefix-beta.md": close-revie…h-shared-prefix-beta.md
+          - generic: "1"
+        - list:
+          - button "close-review-similar-filename-with-shared-prefix-beta.md · Line 3 · validationneedle identity fixture.":
+            - generic: Line 3 · validationneedle identity fixture.
+      - region "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md":
+        - heading "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md 1" [level=3]:
+          - generic "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md": disposable-…uishing-ending-alpha.md
+          - generic: "1"
+        - list:
+          - button "disposable-long-project-file-name-for-native-header-comparison-with-many-descriptive-words-and-a-distinguishing-ending-alpha.md · Line 7 · validationneedle short document match.":
+            - generic: Line 7 · validationneedle short document match.
+      - region "document01.md":
+        - heading "document01.md 1" [level=3]:
+          - generic "document01.md"
+          - generic: "1"
+        - list:
+          - button "document01.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document02.md":
+        - heading "document02.md 1" [level=3]:
+          - generic "document02.md"
+          - generic: "1"
+        - list:
+          - button "document02.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document03.md":
+        - heading "document03.md 1" [level=3]:
+          - generic "document03.md"
+          - generic: "1"
+        - list:
+          - button "document03.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document04.md":
+        - heading "document04.md 1" [level=3]:
+          - generic "document04.md"
+          - generic: "1"
+        - list:
+          - button "document04.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document05.md":
+        - heading "document05.md 1" [level=3]:
+          - generic "document05.md"
+          - generic: "1"
+        - list:
+          - button "document05.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document06.md":
+        - heading "document06.md 1" [level=3]:
+          - generic "document06.md"
+          - generic: "1"
+        - list:
+          - button "document06.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document07.md":
+        - heading "document07.md 1" [level=3]:
+          - generic "document07.md"
+          - generic: "1"
+        - list:
+          - button "document07.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document08.md":
+        - heading "document08.md 1" [level=3]:
+          - generic "document08.md"
+          - generic: "1"
+        - list:
+          - button "document08.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document09.md":
+        - heading "document09.md 1" [level=3]:
+          - generic "document09.md"
+          - generic: "1"
+        - list:
+          - button "document09.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document10.md":
+        - heading "document10.md 1" [level=3]:
+          - generic "document10.md"
+          - generic: "1"
+        - list:
+          - button "document10.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document11.md":
+        - heading "document11.md 1" [level=3]:
+          - generic "document11.md"
+          - generic: "1"
+        - list:
+          - button "document11.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document12.md":
+        - heading "document12.md 1" [level=3]:
+          - generic "document12.md"
+          - generic: "1"
+        - list:
+          - button "document12.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document13.md":
+        - heading "document13.md 1" [level=3]:
+          - generic "document13.md"
+          - generic: "1"
+        - list:
+          - button "document13.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document14.md":
+        - heading "document14.md 1" [level=3]:
+          - generic "document14.md"
+          - generic: "1"
+        - list:
+          - button "document14.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document15.md":
+        - heading "document15.md 1" [level=3]:
+          - generic "document15.md"
+          - generic: "1"
+        - list:
+          - button "document15.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document16.md":
+        - heading "document16.md 1" [level=3]:
+          - generic "document16.md"
+          - generic: "1"
+        - list:
+          - button "document16.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document17.md":
+        - heading "document17.md 1" [level=3]:
+          - generic "document17.md"
+          - generic: "1"
+        - list:
+          - button "document17.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document18.md":
+        - heading "document18.md 1" [level=3]:
+          - generic "document18.md"
+          - generic: "1"
+        - list:
+          - button "document18.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document19.md":
+        - heading "document19.md 1" [level=3]:
+          - generic "document19.md"
+          - generic: "1"
+        - list:
+          - button "document19.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "document20.md":
+        - heading "document20.md 1" [level=3]:
+          - generic "document20.md"
+          - generic: "1"
+        - list:
+          - button "document20.md · Line 3 · validationneedle disposable match.":
+            - generic: Line 3 · validationneedle disposable match.
+      - region "short.md":
+        - heading "short.md 1" [level=3]:
+          - generic "short.md"
+          - generic: "1"
+        - list:
+          - button "short.md · Line 7 · validationneedle short document match.":
+            - generic: Line 7 · validationneedle short document match.
+  - strong: Storage and recovery
+  - generic: "Open edits and recovery offers: 0"
+  - status: "Unresolved or unverified: 1"
+  - button "Manage…"
+  - button "Settings…"
+- main:
+  - group "short.md":
+    - strong:
+      - generic "short.md"
+    - button "Find in document":
+      - text: Find in document
+    - button "Outline" [pressed]:
+      - text: Outline
+    - button "Reading settings":
+      - text: Reading settings
+    - button "Edit section":
+      - text: Edit section
+    - generic "Document…"
+    - generic: Folder root
+  - tabpanel "short.md":
+    - article:
+      - 'generic "Edit section: Native validation"':
+        - heading "Native validation" [level=1]
+        - button "Edit section “Native validation”": Edit section
+      - paragraph: A disposable document for layout validation.
+      - 'generic "Edit section: Search section"':
+        - heading "Search section" [level=2]
+        - button "Edit section “Search section”": Edit section
+      - paragraph: validationneedle short document match.
+      - 'generic "Edit section: Another section"':
+        - heading "Another section" [level=2]
+        - button "Edit section “Another section”": Edit section
+      - paragraph: Keep this reading content visible.
+  - complementary "Outline":
+    - strong: Outline
+    - button "Close outline": ×
+    - navigation "Outline":
+      - list:
+        - button "Native validation"
+        - button "Search section"
+        - button "Another section"
+- contentinfo:
+  - generic: Current on disk
+  - generic: Intentgrove by Theonira

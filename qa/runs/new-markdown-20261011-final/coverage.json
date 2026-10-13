@@ -1,0 +1,1386 @@
+[
+  {
+    "id": "C01-browser_mock",
+    "case": "Projects entry",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Projects opened dialog; project root displayed",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C01-real_macos",
+    "case": "Projects entry",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Spanish Projects menu invokes shared dialog",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-projects-entry.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C01-real_windows",
+    "case": "Projects entry",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C02-browser_mock",
+    "case": "Empty workspace entry",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Welcome New opened dialog in matrix",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C02-real_macos",
+    "case": "Empty workspace entry",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Welcome button opens filename-focused dialog",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-light-en-dialog.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C02-real_windows",
+    "case": "Empty workspace entry",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C03-browser_mock",
+    "case": "Native File menu intent",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Mocked menu event routes one dialog; no real menu proof",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C03-real_macos",
+    "case": "Native File menu intent",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Real File menu New dispatched dialog",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-file-menu.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C03-real_windows",
+    "case": "Native File menu intent",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C04-browser_mock",
+    "case": "Cmd+T",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Meta+T component event ownership; ordinary browser shortcut retained",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C04-real_macos",
+    "case": "Cmd+T",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Native synthesized Cmd+T opens one dialog",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C04-real_windows",
+    "case": "Cmd+T",
+    "environment": "real_windows",
+    "result": "NOT_APPLICABLE",
+    "reason": "Cmd+T is macOS-specific; Windows Ctrl+T untested",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C05-browser_mock",
+    "case": "Ctrl+T",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C05-real_macos",
+    "case": "Ctrl+T",
+    "environment": "real_macos",
+    "result": "NOT_APPLICABLE",
+    "reason": "Ctrl+T requested for Windows; macOS uses Cmd+T",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C05-real_windows",
+    "case": "Ctrl+T",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C06-browser_mock",
+    "case": "Editor-focused shortcut",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Focused editor plus native event deduplication in component test",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C06-real_macos",
+    "case": "Editor-focused shortcut",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Cmd+T from dirty first-created-file editor opens New",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C06-real_windows",
+    "case": "Editor-focused shortcut",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C07-browser_mock",
+    "case": "Combined native/DOM delivery",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Combined synthetic event paths yield one dialog",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C07-real_macos",
+    "case": "Combined native/DOM delivery",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "No native instrumentation proving both deliveries for one physical chord; mock result separate",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C07-real_windows",
+    "case": "Combined native/DOM delivery",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C08-browser_mock",
+    "case": "Repeated invocation",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Repeat event retains fields and one owner",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C08-real_macos",
+    "case": "Repeated invocation",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Two repeated Cmd+T retain first-native.MD.md without stacking",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C08-real_windows",
+    "case": "Repeated invocation",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C09-browser_mock",
+    "case": "Existing dirty draft and second creation",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "32-case suite creates second mocked file while preserving other dirty draft",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C09-real_macos",
+    "case": "Existing dirty draft and second creation",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Existing dirty draft survived New/Cancel; second actual creation blocked by picker",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-first-content.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C09-real_windows",
+    "case": "Existing dirty draft and second creation",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C10-browser_mock",
+    "case": "Modal, picker and Settings ownership",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Component modal/picker guards plus browser pending controls disabled; outside mock fixture cannot acknowledge while inert",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive+component"
+  },
+  {
+    "id": "C10-real_macos",
+    "case": "Modal, picker and Settings ownership",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Settings Cmd+T leaves Settings; main readiness returns after Done. Picker cancellation retained form; owned-dialog repetition tested",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-settings-new-owner.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C10-real_windows",
+    "case": "Modal, picker and Settings ownership",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C11-browser_mock",
+    "case": "Destination defaults",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Project root displayed; welcome requires explicit picker",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C11-real_macos",
+    "case": "Destination defaults",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "No real selected project-root default journey; welcome no-folder observed",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-destination.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C11-real_windows",
+    "case": "Destination defaults",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C12-browser_mock",
+    "case": "Individual-file parent restriction",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No browser journey with individually opened file; native library supplement separately",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "scope gap"
+  },
+  {
+    "id": "C12-real_macos",
+    "case": "Individual-file parent restriction",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "New from token-created explicit file offers no implied parent grant",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-editor-new-no-parent.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C12-real_windows",
+    "case": "Individual-file parent restriction",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C13-browser_mock",
+    "case": "Destination change and cancellation",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Component null picker retains fields; superseded token cancellation verified",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C13-real_macos",
+    "case": "Destination change and cancellation",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Initial folder selection PASS. Later picker Open disabled; cancellation retains discard-native. Retry also blocked; QA-0029",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C13-real_windows",
+    "case": "Destination change and cancellation",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C14-browser_mock",
+    "case": "Retained grants",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Non-destructive picker with documents tested through mock contracts",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component"
+  },
+  {
+    "id": "C14-real_macos",
+    "case": "Retained grants",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Actual root/documents grant-retention journey requires destination change that is blocked",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C14-real_windows",
+    "case": "Retained grants",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C15-browser_mock",
+    "case": "Invalid, reserved and control-character filenames",
+    "environment": "browser_mock",
+    "result": "FAIL",
+    "reason": "CON .txt and interior U+0085 enable Create although native validator rejects; QA-0028",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive+source"
+  },
+  {
+    "id": "C15-real_macos",
+    "case": "Invalid, reserved and control-character filenames",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "bad/name blur shows inline error and disabled creation. Exhaustive native validator checks supplementary",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C15-real_windows",
+    "case": "Invalid, reserved and control-character filenames",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C16-browser_mock",
+    "case": "Unicode and long filenames",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Ni\u00f1o and 252-byte ASCII stem accepted; 253 rejected; Unicode UTF-8 length component assertions",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive+component"
+  },
+  {
+    "id": "C16-real_macos",
+    "case": "Unicode and long filenames",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "No real native Unicode/long creation journey; real filesystem library supplement separate",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C16-real_windows",
+    "case": "Unicode and long filenames",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C17-browser_mock",
+    "case": "md, MD and repeated extensions",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "md/MD/repeated suffix preview normalizes to one md",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C17-real_macos",
+    "case": "md, MD and repeated extensions",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "first-native.MD.md creates actual first-native.md",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C17-real_windows",
+    "case": "md, MD and repeated extensions",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C18-browser_mock",
+    "case": "Trailing spaces and competing extensions",
+    "environment": "browser_mock",
+    "result": "FAIL",
+    "reason": "note + trailing space and file.txt accepted against Option B rule; QA-0030",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C18-real_macos",
+    "case": "Trailing spaces and competing extensions",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "Native UI trailing-space/competing-extension submission not executed; source shares policy deviation QA-0030",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C18-real_windows",
+    "case": "Trailing spaces and competing extensions",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C19-browser_mock",
+    "case": "Duplicate collision",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "README.MD.md duplicate error retains input and root",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-duplicate.png"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C19-real_macos",
+    "case": "Duplicate collision",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Second create/duplicate journey cannot obtain destination; library collision tests pass separately",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C19-real_windows",
+    "case": "Duplicate collision",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C20-browser_mock",
+    "case": "Racing creators",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C20-real_macos",
+    "case": "Racing creators",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "Native UI concurrent creator scenario not executed; native library real race test separate",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C20-real_windows",
+    "case": "Racing creators",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C21-browser_mock",
+    "case": "Creation failure / committed or uncertain outcome",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Component precommit/committed/unknown outcomes retain fields and prevent unsafe recreation; UI-held fault attempt could not acknowledge through inert fixture",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component only"
+  },
+  {
+    "id": "C21-real_macos",
+    "case": "Creation failure / committed or uncertain outcome",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "No native pre/postcommit creation fault injection through UI; picker blocker prevents further creation",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C21-real_windows",
+    "case": "Creation failure / committed or uncertain outcome",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C22-browser_mock",
+    "case": "Write failure without false success",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C22-real_macos",
+    "case": "Write failure without false success",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "No real first-new-file write-failure journey after saved tab closed; tests supplemental",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C22-real_windows",
+    "case": "Write failure without false success",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C23-browser_mock",
+    "case": "Actual empty-file bytes and identity",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C23-real_macos",
+    "case": "Actual empty-file bytes and identity",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Actual zero bytes, empty SHA256, inode/device and native file-backed editor observed",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-empty-file.json"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C23-real_windows",
+    "case": "Actual empty-file bytes and identity",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C24-browser_mock",
+    "case": "First content and explicit Save",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Mock identity enters real rendered empty editor; existing mocked edit/Save suite passes; no disk claim",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "component+renderer"
+  },
+  {
+    "id": "C24-real_macos",
+    "case": "First content and explicit Save",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Draft leaves source empty; explicit Save writes First native content plus existing Markdown hard-break spaces and returns to reading",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-after-save.json"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C24-real_windows",
+    "case": "First content and explicit Save",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C25-browser_mock",
+    "case": "Close and reopen saved new file",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C25-real_macos",
+    "case": "Close and reopen saved new file",
+    "environment": "real_macos",
+    "result": "FAIL",
+    "reason": "Saved tab closes; immediately opening its Recent item says Changed at this path/reselect with no external writer; QA-0027",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-recents-reselection.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C25-real_windows",
+    "case": "Close and reopen saved new file",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C26-browser_mock",
+    "case": "Discard leaves created empty file",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C26-real_macos",
+    "case": "Discard leaves created empty file",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Second created-empty-file discard journey unreachable through blocked destination picker",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-second-picker.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C26-real_windows",
+    "case": "Discard leaves created empty file",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C27-browser_mock",
+    "case": "External conflict",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C27-real_macos",
+    "case": "External conflict",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "New file conflict journey not reached after saved tab closed; real native existing-edit tests supplemental",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C27-real_windows",
+    "case": "External conflict",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C28-browser_mock",
+    "case": "Dirty exit and relaunch recovery",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "No complete new-file journey executed for this boundary; do not infer from supporting suite",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C28-real_macos",
+    "case": "Dirty exit and relaunch recovery",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "Dirty new-file exit/relaunch not executed. Clean/empty checkpoint restore after diagnostic interruption is not dirty recovery proof",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-runtime.log"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C28-real_windows",
+    "case": "Dirty exit and relaunch recovery",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C29-browser_mock",
+    "case": "Tab and Shift+Tab",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Component Tab containment; browser Shift+Tab Cancel then Tab Filename",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive+component"
+  },
+  {
+    "id": "C29-real_macos",
+    "case": "Tab and Shift+Tab",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Shift+Tab -> Cancel; Tab -> Filename -> Choose folder -> Cancel",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-tab-loop.json"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C29-real_windows",
+    "case": "Tab and Shift+Tab",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C30-browser_mock",
+    "case": "Enter creation",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Enter produced normalized mock file/editor in render matrix",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C30-real_macos",
+    "case": "Enter creation",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "Actual native creation confirmed with Create button; Enter submission not exercised",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-repeat.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C30-real_windows",
+    "case": "Enter creation",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C31-browser_mock",
+    "case": "Escape and focus return",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "Escape closes and focus returns to exact Projects trigger",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "interactive"
+  },
+  {
+    "id": "C31-real_macos",
+    "case": "Escape and focus return",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Escape closes top dialog and returns to welcome or Projects owner",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-escape-focus.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C31-real_windows",
+    "case": "Escape and focus return",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C32-browser_mock",
+    "case": "Inline accessible errors",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "role alert, aria-invalid=true and describedby verified; no screen-reader claim",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/browser-events.json"
+    ],
+    "evidence_kind": "DOM semantics"
+  },
+  {
+    "id": "C32-real_macos",
+    "case": "Inline accessible errors",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Inline native AX text observed; live VoiceOver announcement/error focus semantics unavailable",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-invalid.txt"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C32-real_windows",
+    "case": "Inline accessible errors",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C33-browser_mock",
+    "case": "Wide themes/locales",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "1280x820 EN/ES Light/Dark/System dialog and ready editor measured without horizontal overflow",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-matrix.json"
+    ],
+    "evidence_kind": "measured renderer"
+  },
+  {
+    "id": "C33-real_macos",
+    "case": "Wide themes/locales",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Actual 1280x820 window captures EN dark/Light and ES Light/Dark/System reviewed. Editor theme matrix remains incomplete",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-light-es-dialog.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C33-real_windows",
+    "case": "Wide themes/locales",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C34-browser_mock",
+    "case": "Narrow themes/locales",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "390x844 EN/ES Light/Dark/System measured; desktop stress size, not native minimum",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+    ],
+    "evidence_kind": "measured renderer"
+  },
+  {
+    "id": "C34-real_macos",
+    "case": "Narrow themes/locales",
+    "environment": "real_macos",
+    "result": "BLOCKED",
+    "reason": "Native edge drag returns noWindowsAvailable; existing QA-0025 reproduced",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-invalid.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C34-real_windows",
+    "case": "Narrow themes/locales",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C35-browser_mock",
+    "case": "System current appearance",
+    "environment": "browser_mock",
+    "result": "PASS",
+    "reason": "System resolves to observed dark media preference",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+    ],
+    "evidence_kind": "current preference"
+  },
+  {
+    "id": "C35-real_macos",
+    "case": "System current appearance",
+    "environment": "real_macos",
+    "result": "PASS",
+    "reason": "Isolated Settings System selected; main dark capture matches current dark device preference; no dynamic transition proof",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C35-real_windows",
+    "case": "System current appearance",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "C36-browser_mock",
+    "case": "System live appearance changes",
+    "environment": "browser_mock",
+    "result": "NOT_RUN",
+    "reason": "Live OS appearance change not performed; no isolated media-emulation capability verified",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/render-editor-stable.json"
+    ],
+    "evidence_kind": "scope gap"
+  },
+  {
+    "id": "C36-real_macos",
+    "case": "System live appearance changes",
+    "environment": "real_macos",
+    "result": "NOT_RUN",
+    "reason": "Live system appearance transition not performed",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-system-es-dialog.jpg"
+    ],
+    "evidence_kind": "native UI"
+  },
+  {
+    "id": "C36-real_windows",
+    "case": "System live appearance changes",
+    "environment": "real_windows",
+    "result": "BLOCKED",
+    "reason": "No accessible real Windows runner/device; shipped write gate remains disabled, not a PASS",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/capabilities.md"
+    ],
+    "evidence_kind": "access inventory"
+  },
+  {
+    "id": "S-frontend-focused",
+    "case": "frontend-focused",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:01:32.967131+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-focused.log"
+    ]
+  },
+  {
+    "id": "S-types",
+    "case": "types",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:01:33.507246+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/types.log"
+    ]
+  },
+  {
+    "id": "S-frontend-build",
+    "case": "frontend-build",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:01:33.911121+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-build.log"
+    ]
+  },
+  {
+    "id": "S-native-lib",
+    "case": "native-lib",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:01:55.299656+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-lib.log"
+    ]
+  },
+  {
+    "id": "S-native-version",
+    "case": "native-version",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:02:02.363412+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-version.log"
+    ]
+  },
+  {
+    "id": "S-native-build",
+    "case": "native-build",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "Existing suite/build; not native GUI/platform certification",
+    "finished_at": "2026-10-11T16:02:21.519708+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/native-build.log"
+    ]
+  },
+  {
+    "id": "S-full",
+    "case": "Full frontend suite",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "588 tests / 65 files, exit0; mocks distinct from GUI",
+    "finished_at": "2026-10-11T16:17:25.836934+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/frontend-full-attempt2.log"
+    ]
+  },
+  {
+    "id": "S-integrity",
+    "case": "Read-only input integrity",
+    "environment": "supporting_check",
+    "result": "PASS",
+    "reason": "All 213 snapshot inputs byte-identical after checks",
+    "finished_at": "2026-10-11T16:30:49.865650+00:00",
+    "evidence_paths": [
+      "qa/runs/new-markdown-20261011-final/evidence/input-integrity.json"
+    ]
+  }
+]

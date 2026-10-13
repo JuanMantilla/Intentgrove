@@ -1,0 +1,23 @@
+{
+  "identifier": "com.juanmantilla.intentgrove.qa0030.r20261011",
+  "productName": "Intentgrove QA0030 Repair",
+  "build": {
+    "frontendDist": "/Users/juanmantilla/projects/personal/md-reader/target/qa0030-dist",
+    "beforeBuildCommand": "npm run build -- --outDir target/qa0030-dist --emptyOutDir false"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Intentgrove QA0030 Repair",
+        "create": false,
+        "width": 1280,
+        "height": 820,
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  }
+}

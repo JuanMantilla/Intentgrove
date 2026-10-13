@@ -1,0 +1,764 @@
+[
+  {
+    "id": "original-new-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:34.189481+00:00",
+    "load_before": [
+      3.2451171875,
+      5.05810546875,
+      9.53271484375
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:37.362723+00:00",
+    "load_after": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-new-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  4 passed | 74 skipped (78)",
+      "   Duration  2.36s (transform 416ms, setup 0ms, import 736ms, tests 738ms, environment 801ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-reader-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:37.363533+00:00",
+    "load_before": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:38.910890+00:00",
+    "load_after": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-reader-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 5 skipped (6)",
+      "   Duration  1.26s (transform 384ms, setup 0ms, import 565ms, tests 322ms, environment 296ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-startup-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:38.911250+00:00",
+    "load_before": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:40.429559+00:00",
+    "load_after": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-startup-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 77 skipped (78)",
+      "   Duration  1.19s (transform 408ms, setup 0ms, import 614ms, tests 174ms, environment 318ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-repeated-open-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "-t",
+      "rejects an older failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:40.429950+00:00",
+    "load_before": [
+      3.30517578125,
+      5.04052734375,
+      9.5
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:41.945457+00:00",
+    "load_after": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-repeated-open-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 16 skipped (17)",
+      "   Duration  1.22s (transform 443ms, setup 0ms, import 645ms, tests 186ms, environment 302ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-section-entry-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/edit-flow.test.tsx",
+      "-t",
+      "keeps the passage readable during section entry"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:41.945888+00:00",
+    "load_before": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:43.408582+00:00",
+    "load_after": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-section-entry-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 12 skipped (13)",
+      "   Duration  1.18s (transform 371ms, setup 0ms, import 530ms, tests 275ms, environment 297ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-staged-paint-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "retains the heading anchor at margin"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:43.409007+00:00",
+    "load_before": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:45.333775+00:00",
+    "load_after": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-staged-paint-01.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  2 passed | 5 skipped (7)",
+      "   Duration  1.63s (transform 405ms, setup 0ms, import 602ms, tests 652ms, environment 301ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-new-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:45.334220+00:00",
+    "load_before": [
+      3.5205078125,
+      5.05615234375,
+      9.4794921875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:47.250014+00:00",
+    "load_after": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-new-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  4 passed | 74 skipped (78)",
+      "   Duration  1.64s (transform 377ms, setup 0ms, import 574ms, tests 689ms, environment 299ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-reader-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:47.250456+00:00",
+    "load_before": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:48.751467+00:00",
+    "load_after": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-reader-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 5 skipped (6)",
+      "   Duration  1.22s (transform 373ms, setup 0ms, import 549ms, tests 312ms, environment 287ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-startup-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:48.751931+00:00",
+    "load_before": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:50.127335+00:00",
+    "load_after": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-startup-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 77 skipped (78)",
+      "   Duration  1.10s (transform 374ms, setup 0ms, import 570ms, tests 168ms, environment 288ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-repeated-open-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "-t",
+      "rejects an older failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:50.127798+00:00",
+    "load_before": [
+      3.3984375,
+      5.00537109375,
+      9.435546875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:51.535996+00:00",
+    "load_after": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-repeated-open-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 16 skipped (17)",
+      "   Duration  1.14s (transform 408ms, setup 0ms, import 593ms, tests 174ms, environment 294ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-section-entry-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/edit-flow.test.tsx",
+      "-t",
+      "keeps the passage readable during section entry"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:51.536480+00:00",
+    "load_before": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:53.059313+00:00",
+    "load_after": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-section-entry-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 12 skipped (13)",
+      "   Duration  1.22s (transform 368ms, setup 0ms, import 526ms, tests 267ms, environment 346ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-staged-paint-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "retains the heading anchor at margin"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:53.059989+00:00",
+    "load_before": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:54.905110+00:00",
+    "load_after": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-staged-paint-02.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  2 passed | 5 skipped (7)",
+      "   Duration  1.56s (transform 370ms, setup 0ms, import 551ms, tests 641ms, environment 288ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-new-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "opens from empty workspace|deduplicates native menu|real App mock journey|preserves another dirty rendered draft"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:54.905648+00:00",
+    "load_before": [
+      3.3662109375,
+      4.9716796875,
+      9.3974609375
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:56.818416+00:00",
+    "load_after": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-new-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  4 passed | 74 skipped (78)",
+      "   Duration  1.63s (transform 379ms, setup 0ms, import 576ms, tests 694ms, environment 288ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-reader-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/appearance-operations.test.tsx",
+      "-t",
+      "preserves the active tab and reader position"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:56.818957+00:00",
+    "load_before": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:58.309703+00:00",
+    "load_after": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-reader-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 5 skipped (6)",
+      "   Duration  1.22s (transform 375ms, setup 0ms, import 553ms, tests 300ms, environment 288ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-startup-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/new-markdown.test.tsx",
+      "-t",
+      "retains the created tab on editor startup failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:58.310279+00:00",
+    "load_before": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:29:59.689669+00:00",
+    "load_after": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-startup-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 77 skipped (78)",
+      "   Duration  1.10s (transform 377ms, setup 0ms, import 574ms, tests 168ms, environment 287ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-repeated-open-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/approved-navigation.test.tsx",
+      "-t",
+      "rejects an older failure"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:29:59.690236+00:00",
+    "load_before": [
+      3.17626953125,
+      4.9052734375,
+      9.34814453125
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:30:01.102190+00:00",
+    "load_after": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-repeated-open-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 16 skipped (17)",
+      "   Duration  1.13s (transform 397ms, setup 0ms, import 576ms, tests 190ms, environment 287ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-section-entry-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/edit-flow.test.tsx",
+      "-t",
+      "keeps the passage readable during section entry"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:30:01.102784+00:00",
+    "load_before": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:30:02.528074+00:00",
+    "load_after": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-section-entry-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  1 passed | 12 skipped (13)",
+      "   Duration  1.12s (transform 338ms, setup 0ms, import 491ms, tests 263ms, environment 293ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "original-staged-paint-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/automatic-refresh.test.tsx",
+      "-t",
+      "retains the heading anchor at margin"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:30:02.528738+00:00",
+    "load_before": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:30:04.359036+00:00",
+    "load_after": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/original-staged-paint-03.log",
+    "summary": [
+      " Test Files  1 passed (1)",
+      "      Tests  2 passed | 5 skipped (7)",
+      "   Duration  1.55s (transform 368ms, setup 0ms, import 547ms, tests 640ms, environment 288ms)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "adjacent-selection-find",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests",
+      "tests/ui/document-select-all.test.tsx",
+      "tests/ui/document-selection-readiness.test.tsx",
+      "tests/ui/find.test.tsx",
+      "tests/ui/appearance-operations.test.tsx"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:30:04.359652+00:00",
+    "load_before": [
+      3.08203125,
+      4.85693359375,
+      9.3046875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:30:08.920319+00:00",
+    "load_after": [
+      3.3154296875,
+      4.87548828125,
+      9.28515625
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/adjacent-selection-find.log",
+    "summary": [
+      " Test Files  4 passed (4)",
+      "      Tests  31 passed (31)",
+      "   Duration  4.28s (transform 826ms, setup 0ms, import 1.59s, tests 4.87s, environment 1.21s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "default-full-01",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:30:08.920961+00:00",
+    "load_before": [
+      3.3154296875,
+      4.87548828125,
+      9.28515625
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:31:13.753239+00:00",
+    "load_after": [
+      7.9755859375,
+      5.84326171875,
+      9.3154296875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/default-full-01.log",
+    "summary": [
+      " Test Files  71 passed (71)",
+      "      Tests  715 passed (715)",
+      "   Duration  64.50s (transform 1.94s, setup 0ms, import 12.72s, tests 80.86s, environment 26.61s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "default-full-02",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:31:13.755648+00:00",
+    "load_before": [
+      7.9755859375,
+      5.84326171875,
+      9.3154296875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:33:25.124883+00:00",
+    "load_after": [
+      7.38134765625,
+      6.60498046875,
+      9.138671875
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/default-full-02.log",
+    "summary": [
+      " Test Files  71 passed (71)",
+      "      Tests  715 passed (715)",
+      "   Duration  130.25s (transform 3.68s, setup 0ms, import 22.14s, tests 190.02s, environment 37.53s)"
+    ],
+    "failures": []
+  },
+  {
+    "id": "default-full-03",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--dir",
+      "tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3",
+    "started_at": "2026-10-12T04:33:25.127176+00:00",
+    "load_before": [
+      7.38134765625,
+      6.60498046875,
+      9.138671875
+    ],
+    "exit_code": 0,
+    "result": "PASS",
+    "finished_at": "2026-10-12T04:35:02.258108+00:00",
+    "load_after": [
+      6.84814453125,
+      6.56591796875,
+      8.83349609375
+    ],
+    "log": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-v3-20261012T042800Z/evidence/logs/default-full-03.log",
+    "summary": [
+      " Test Files  71 passed (71)",
+      "      Tests  715 passed (715)",
+      "   Duration  96.58s (transform 2.46s, setup 0ms, import 17.19s, tests 132.24s, environment 33.09s)"
+    ],
+    "failures": []
+  }
+]

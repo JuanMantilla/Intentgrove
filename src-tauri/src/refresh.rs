@@ -6,10 +6,27 @@ use notify::{Event, RecommendedWatcher, RecursiveMode, Watcher};
 use serde::Serialize;
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::mpsc::{self, Receiver, RecvTimeoutError, Sender};
+#[cfg(feature = "document-contract-tests")]
+use std::sync::mpsc::RecvTimeoutError;
+use std::sync::mpsc::{self, Receiver, Sender};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use tauri::{AppHandle, Emitter};
+
+fn file_fingerprint(state: &AppState, file_id: &str) -> AppResult<(String, String)> {
+    if crate::scope::prototype_name(&state.file(file_id)?.name) {
+        crate::prototype::fingerprint(state, file_id)
+    } else if crate::scope::html_name(&state.file(file_id)?.name) {
+        crate::html::fingerprint(state, file_id)
+    } else if crate::scope::image_format(&state.file(file_id)?.name).is_some() {
+        let (_, version, identity) =
+            crate::image::image_fingerprint(state, Some(file_id), None, None)?;
+        Ok((version, identity))
+    } else {
+        let document = read_document_impl(state, Some(file_id), None, None)?;
+        Ok((document.disk_version, document.identity_key))
+    }
+}
 
 #[derive(Clone, Debug)]
 pub enum RefreshNotice {
@@ -122,6 +139,7 @@ impl RefreshCore {
         while self.receiver.try_recv().is_ok() {}
     }
 
+    #[cfg(feature = "document-contract-tests")]
     pub fn wait_for_hint(&self, timeout: Duration) -> AppResult<bool> {
         match self.receiver.recv_timeout(timeout) {
             Ok(Ok(event)) => {
@@ -151,13 +169,15 @@ impl RefreshCore {
                 Ok(Ok(_)) => changed = true,
                 Ok(Err(error)) => return Err(AppError::new("watch_failed", error.to_string())),
                 Err(mpsc::TryRecvError::Empty) => break,
-                Err(mpsc::TryRecvError::Disconnected) =>
-                    return Err(AppError::new("watch_failed", "Watcher disconnected")),
+                Err(mpsc::TryRecvError::Disconnected) => {
+                    return Err(AppError::new("watch_failed", "Watcher disconnected"))
+                }
             }
         }
         Ok(changed)
     }
 
+    #[cfg(feature = "document-contract-tests")]
     pub fn reconcile_visible(
         &mut self,
         root_id: &str,
@@ -190,17 +210,17 @@ impl RefreshCore {
             if !in_scope {
                 continue;
             }
-            match read_document_impl(&self.state, Some(file_id), None, None) {
-                Ok(document) => {
+            match file_fingerprint(&self.state, file_id) {
+                Ok((disk_version, identity_key)) => {
                     let prior = self
                         .file_versions
-                        .insert(file_id.clone(), document.disk_version.clone());
-                    if prior.as_deref() != Some(document.disk_version.as_str()) {
+                        .insert(file_id.clone(), disk_version.clone());
+                    if prior.as_deref() != Some(disk_version.as_str()) {
                         notices.push(RefreshNotice::FileChanged {
                             generation,
                             file_id: file_id.clone(),
-                            disk_version: document.disk_version,
-                            identity_key: document.identity_key,
+                            disk_version,
+                            identity_key,
                             checked_at: checked_at(),
                         });
                     }
@@ -311,17 +331,17 @@ pub fn run_reload(
         if cancelled() || state.generation()? != generation {
             return Err(AppError::new("cancelled", "Reload stopped"));
         }
-        let document = read_document_impl(state, Some(file_id), None, None)?;
+        let (disk_version, identity_key) = file_fingerprint(state, file_id)?;
         let previous = core
             .file_versions
-            .insert(file_id.to_string(), document.disk_version.clone());
-        let changed = previous.as_deref() != Some(document.disk_version.as_str());
+            .insert(file_id.to_string(), disk_version.clone());
+        let changed = previous.as_deref() != Some(disk_version.as_str());
         if changed && open_file_ids.iter().any(|open| open == file_id) {
             emit(ReloadUpdate::Notice(RefreshNotice::FileChanged {
                 generation,
                 file_id: file_id.to_string(),
-                disk_version: document.disk_version,
-                identity_key: document.identity_key,
+                disk_version,
+                identity_key,
                 checked_at: checked_at(),
             }));
         }
@@ -353,8 +373,22 @@ pub fn run_reload(
                 validate_segment(segment)?;
             }
             state.root(root_id)?;
-            let document = read_document_impl(state, None, Some(root_id), Some(segments.clone()))?;
-            check_file(&document.file_id, target, &mut emit)?;
+            let file_id = if segments.last().is_some_and(|name| {
+                crate::scope::html_name(name) || crate::scope::prototype_name(name)
+            }) {
+                let root = state.root(root_id)?;
+                let file = crate::scope::open_relative(&root.file, segments, false)?;
+                state.register_root_file(&root, segments.clone(), &file)?.id
+            } else if segments
+                .last()
+                .is_some_and(|name| crate::scope::image_format(name).is_some())
+            {
+                crate::image::image_fingerprint(state, None, Some(root_id), Some(segments.clone()))?
+                    .0
+            } else {
+                read_document_impl(state, None, Some(root_id), Some(segments.clone()))?.file_id
+            };
+            check_file(&file_id, target, &mut emit)?;
             outcome.examined_count = 1;
             outcome.confirmed_count = 1;
         }
@@ -754,11 +788,17 @@ impl RefreshService {
     }
 
     pub fn suspend_watches(&self) {
-        if let Ok(mut visible) = self.visible.lock() { *visible = VisibleState::default(); }
-        if let Ok(jobs) = self.reload_jobs.lock() {
-            for cancelled in jobs.values() { cancelled.store(true, Ordering::SeqCst); }
+        if let Ok(mut visible) = self.visible.lock() {
+            *visible = VisibleState::default();
         }
-        if let Ok(mut core) = self.core() { core.stop_watches(); }
+        if let Ok(jobs) = self.reload_jobs.lock() {
+            for cancelled in jobs.values() {
+                cancelled.store(true, Ordering::SeqCst);
+            }
+        }
+        if let Ok(mut core) = self.core() {
+            core.stop_watches();
+        }
     }
 
     pub fn reload_now(
@@ -1059,27 +1099,37 @@ pub async fn reconcile_visible_state(
 }
 
 pub fn get_confirmed_document_impl(
-    state: &AppState, file_id: &str, expected_disk_version: &str, generation: u64,
+    state: &AppState,
+    file_id: &str,
+    expected_disk_version: &str,
+    generation: u64,
 ) -> AppResult<DocumentResponse> {
     if state.generation()? != generation {
         return Err(AppError::new("version_changed", "Workspace changed"));
     }
     let document = read_document_impl(state, Some(file_id), None, None)?;
     if document.disk_version != expected_disk_version || state.generation()? != generation {
-        return Err(AppError::new("version_changed", "Disk or workspace version changed again"));
+        return Err(AppError::new(
+            "version_changed",
+            "Disk or workspace version changed again",
+        ));
     }
     Ok(document)
 }
 
 #[tauri::command]
 pub async fn get_confirmed_document(
-    state: tauri::State<'_, AppState>, file_id: String, expected_disk_version: String, generation: u64,
+    state: tauri::State<'_, AppState>,
+    file_id: String,
+    expected_disk_version: String,
+    generation: u64,
 ) -> AppResult<DocumentResponse> {
     #[cfg(feature = "acceptance-harness")]
     let qa = crate::acceptance_harness::enter("confirmed-refresh").await?;
     let state = state.inner().clone();
-    let result = tauri::async_runtime::spawn_blocking(move ||
-        get_confirmed_document_impl(&state, &file_id, &expected_disk_version, generation))
+    let result = tauri::async_runtime::spawn_blocking(move || {
+        get_confirmed_document_impl(&state, &file_id, &expected_disk_version, generation)
+    })
     .await
     .map_err(|error| AppError::new("internal", error.to_string()))?;
     #[cfg(feature = "acceptance-harness")]
@@ -1091,6 +1141,46 @@ pub async fn get_confirmed_document(
 #[cfg(test)]
 mod worker_tests {
     use super::*;
+
+    #[test]
+    fn image_refresh_uses_granted_fingerprint_and_preserves_reselection() {
+        use std::fs;
+        let dir =
+            std::env::temp_dir().join(format!("intentgrove-refresh-{}", uuid::Uuid::new_v4()));
+        fs::create_dir(&dir).unwrap();
+        let path = dir.join("pixel.png");
+        fs::write(&path, b"first-image-bytes").unwrap();
+        let state = AppState::default();
+        let grant = state.register_explicit_file(&path).unwrap();
+        let mut core = RefreshCore::new(state.clone());
+        let first = core
+            .reconcile_visible_scopes(None, &[grant.id.clone()], &[])
+            .unwrap();
+        assert!(matches!(&first[0], RefreshNotice::FileChanged { .. }));
+        assert!(core
+            .reconcile_visible_scopes(None, &[grant.id.clone()], &[])
+            .unwrap()
+            .is_empty());
+        fs::write(&path, b"second-image-bytes").unwrap();
+        assert!(matches!(
+            &core
+                .reconcile_visible_scopes(None, &[grant.id.clone()], &[])
+                .unwrap()[0],
+            RefreshNotice::FileChanged { .. }
+        ));
+        fs::rename(&path, dir.join("old.png")).unwrap();
+        fs::write(&path, b"replacement").unwrap();
+        assert!(matches!(
+            &core
+                .reconcile_visible_scopes(None, &[grant.id], &[])
+                .unwrap()[0],
+            RefreshNotice::Uncertain {
+                reason_code: "reselection_required",
+                ..
+            }
+        ));
+        fs::remove_dir_all(dir).unwrap();
+    }
 
     #[test]
     fn idle_worker_does_not_hold_the_scope_mutex() {
@@ -1112,7 +1202,9 @@ mod worker_tests {
     #[test]
     fn a_watcher_error_reports_uncertainty_instead_of_a_confirmed_hint() {
         let core = RefreshCore::new(AppState::default());
-        core.sender.send(Err(notify::Error::generic("fixture watcher unavailable"))).unwrap();
+        core.sender
+            .send(Err(notify::Error::generic("fixture watcher unavailable")))
+            .unwrap();
         assert_eq!(core.poll_hint().unwrap_err().code, "watch_failed");
     }
 }

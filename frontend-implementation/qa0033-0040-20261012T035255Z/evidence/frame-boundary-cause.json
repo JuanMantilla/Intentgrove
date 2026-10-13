@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-10-12T05:47:28.132972+00:00",
+  "native_trace": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-native-final-20261012T053700Z/evidence/probe3-native-selection-events.json",
+  "order": "raw-key a/meta BODY; app queue created; fileId acquired; target/adapter/content match; repeated queue effects; no queue-frame or after-select before diagnostic copy",
+  "webkit_occlusion": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-native-final-20261012T053700Z/evidence/probe3-webkit-occlusion.log",
+  "boundary": "WebKit native environment suspends animation frames while owner still accepts commands. Product dispatch needlessly gated by first visible animation frame. Native identity/current document lease survives; rendering adapter separately owns readiness.",
+  "controlled_failing_before": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/frame-gap-before.json",
+  "repair": "cancellable microtask after React commit; same identity/generation/current content/modal/input/composition checks and adapter parse/layout ownership",
+  "unrelated_anchor_frame": "unchanged; first edit accidentally matched it, new test failed; corrected and retained attempt"
+}

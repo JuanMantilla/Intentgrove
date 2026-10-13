@@ -1,0 +1,239 @@
+{
+  "result": "PASS",
+  "dedicated_rejection_tests": 153,
+  "svg_tests": [
+    "script",
+    "inline_event",
+    "mixed_case_event",
+    "namespaced_event",
+    "network_image",
+    "file_image",
+    "javascript_image",
+    "protocol_relative_image",
+    "blob_image",
+    "custom_scheme_image",
+    "external_css_url",
+    "escaped_css_url",
+    "css_import",
+    "css_var",
+    "css_calc",
+    "css_behavior",
+    "css_animation",
+    "css_important",
+    "css_nested_rgb",
+    "foreign_object",
+    "animation",
+    "set_element",
+    "stylesheet",
+    "link",
+    "use_element",
+    "symbol",
+    "pattern",
+    "mask",
+    "fe_image",
+    "external_font",
+    "font_url",
+    "xml_base",
+    "tabindex",
+    "aria_override",
+    "unknown_attribute",
+    "wrong_attribute_domain",
+    "gradient_attribute_on_shape",
+    "unexpected_namespace",
+    "nested_svg",
+    "malformed_xml",
+    "processing_instruction",
+    "target_in_defs",
+    "target_on_filter",
+    "duplicate_targets",
+    "malformed_marker",
+    "duplicate_visual_ids",
+    "missing_gradient",
+    "wrong_fragment_type",
+    "external_gradient",
+    "cyclic_gradient",
+    "unordered_stops",
+    "nonfinite_coordinate",
+    "excess_coordinate",
+    "negative_dimensions",
+    "opacity_range",
+    "font_size_range",
+    "unsupported_units",
+    "percent_shape",
+    "transform_scale",
+    "composed_scale",
+    "three_ancestor_scale",
+    "relative_path_overflow",
+    "arc_operand_overflow",
+    "odd_points",
+    "blur_range",
+    "offset_range",
+    "filter_forward_reference",
+    "filter_reserved_result",
+    "filter_arithmetic",
+    "filter_missing_input",
+    "filter_region",
+    "scaled_filter_region",
+    "resolved_bbox_blur",
+    "rgb_infinite",
+    "rgba_range",
+    "world_coordinate_overflow",
+    "resolved_filter_coordinate_overflow",
+    "text_spacing_filter_bomb",
+    "text_position_filter_bomb",
+    "text_delta_filter_bomb",
+    "inherited_text_spacing_bomb",
+    "target_on_unrendered_text_child",
+    "target_inside_title",
+    "transformed_blur_bomb",
+    "transformed_offset_bomb",
+    "dtd_entities",
+    "runtime_style_prohibited",
+    "conflicting_xml_encoding_rejected"
+  ],
+  "package_tests": [
+    "invalid_manifest",
+    "invalid_graph",
+    "unsupported_version",
+    "boolean_version",
+    "executable_action",
+    "graph_missing_target",
+    "wrong_mime",
+    "wrong_hash",
+    "wrong_length",
+    "capability_mismatch",
+    "missing_manifest",
+    "missing_graph",
+    "missing_scene",
+    "missing_asset",
+    "duplicate_json_key",
+    "malicious_svg_in_package",
+    "content_type_not_extension",
+    "undeclared_scene",
+    "invalid_png",
+    "png_bad_crc",
+    "png_trailing_bytes",
+    "png_truncated_pixels",
+    "png_apng",
+    "png_unknown_critical",
+    "png_dimension_cap",
+    "png_encoded_cap",
+    "zip_duplicate_required",
+    "zip_case_collision",
+    "zip_symlink",
+    "zip_device",
+    "zip_directory",
+    "zip_invalid_method",
+    "zip_malformed",
+    "zip_crc_mismatch",
+    "zip_header_mismatch",
+    "zip_trailing_payload",
+    "zip_encryption",
+    "zip_descriptor",
+    "zip_entry_oversize",
+    "zip_expansion_bomb",
+    "zip_aggregate_oversize",
+    "zip_excess_entries",
+    "zip_archive_cap",
+    "zip_overlapping_ranges",
+    "zip_unknown_version_needed",
+    "zip_extra_metadata",
+    "deflate_trailing_bytes",
+    "zero_png_dimension",
+    "wrong_root_viewport",
+    "bounded_model_diagnostics",
+    "png_chunk_length_overflow",
+    "zip_local_offset_overflow",
+    "embedded_local_headers_overlap_rejected",
+    "zip_traversal",
+    "zip_absolute",
+    "zip_encoded_traversal",
+    "zip_backslash",
+    "zip_drive",
+    "zip_dot",
+    "zip_empty_segment",
+    "zip_unicode",
+    "zip_query",
+    "zip_executable_member",
+    "zip_authoring_member",
+    "zip_asset_traversal"
+  ],
+  "poc_case_mapping": {
+    "script": [
+      "svg_security::script"
+    ],
+    "event-handler": [
+      "svg_security::inline_event"
+    ],
+    "network-image": [
+      "svg_security::network_image"
+    ],
+    "external-file-image": [
+      "svg_security::file_image"
+    ],
+    "javascript-url": [
+      "svg_security::javascript_image"
+    ],
+    "external-css-resource": [
+      "svg_security::external_css_url"
+    ],
+    "css-escaped-url": [
+      "svg_security::escaped_css_url"
+    ],
+    "path-traversal": [
+      "package_security::zip_traversal"
+    ],
+    "encoded-traversal": [
+      "package_security::zip_encoded_traversal"
+    ],
+    "asset-traversal": [
+      "package_security::zip_asset_traversal",
+      "compiler::authoring_traversal_image"
+    ],
+    "missing-scene": [
+      "package_security::invalid_graph",
+      "package_security::missing_scene"
+    ],
+    "missing-target": [
+      "package_security::graph_missing_target",
+      "compiler::missing_target"
+    ],
+    "duplicate-prototype-id": [
+      "svg_security::duplicate_targets"
+    ],
+    "foreign-object": [
+      "svg_security::foreign_object"
+    ],
+    "svg-animation": [
+      "svg_security::animation"
+    ],
+    "entity": [
+      "svg_security::dtd_entities"
+    ],
+    "package-javascript": [
+      "package_security::zip_executable_member"
+    ],
+    "boolean-version": [
+      "package_security::boolean_version"
+    ],
+    "unknown-version": [
+      "package_security::unsupported_version"
+    ],
+    "script-action": [
+      "package_security::executable_action"
+    ],
+    "duplicate-json-key": [
+      "package_security::duplicate_json_key"
+    ],
+    "expansion-limit": [
+      "package_security::zip_expansion_bomb",
+      "package_security::zip_aggregate_oversize"
+    ],
+    "compiler-duplicate": [
+      "compiler::duplicate_target"
+    ]
+  },
+  "preserved_malicious_archives": 14,
+  "evidence": "unit.log",
+  "scope": "Compiler/package admission; native runtime probes and independent fuzz/security review are later-phase work."
+}

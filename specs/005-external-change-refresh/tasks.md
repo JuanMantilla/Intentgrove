@@ -1,5 +1,7 @@
 # Tasks: Refresh External Changes
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Input:** [spec.md](spec.md), [design.md](design.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [refresh-ipc.md](contracts/refresh-ipc.md), and [quickstart.md](quickstart.md).  
 **Status:** F003D approved 2026-09-26; T001–T022 complete with packaged UI journeys blocked by macOS accessibility. F004 is approved and integrated. T023–T027 now have native/UI conflict evidence; packaged journeys and remaining acceptance gates are open.
 
@@ -97,7 +99,7 @@
 
 - [X] T026 [US3] Connect the F004 dirty/base-version/draft state to `src/workspace/refreshState.ts`; a changed token creates one persistent conflict per dirty document without mutating its draft (F003D-R06–R07).
 - [X] T027 [US3] Add read-only version comparison and the approved conflict notice/confirmation flow in `src/app/App.tsx`; Keep my edit retains the conflict, Use disk rechecks the inspected token before F004 discards, and Save a copy calls F004 Save As (F003D-R06–R08, R12).
-- [ ] T028 [US3] Run `src-tauri/tests/refresh_conflict.rs`, `tests/ui/refresh-conflict.test.tsx`, and AS-008–AS-012 from `specs/005-external-change-refresh/quickstart.md`; record draft/disk hashes and PASS/FAIL/NOT TESTED in `specs/005-external-change-refresh/evidence.md`.
+- [x] T028 [US3] Run `src-tauri/tests/refresh_conflict.rs`, `tests/ui/refresh-conflict.test.tsx`, and AS-008–AS-012 from `specs/005-external-change-refresh/quickstart.md`; record draft/disk hashes and PASS/FAIL/NOT TESTED in `specs/005-external-change-refresh/evidence.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 **Checkpoint:** No draft loss, unconfirmed discard, merge, or changed-original overwrite is permitted; F004 integration is verified rather than assumed.
 
@@ -112,13 +114,13 @@
 ### Tests for User Story 4
 
 - [X] T029 [P] [US4] Add native tests for missing/denied/unsupported targets and selected-root/file-only reselection in `src-tauri/tests/refresh_recovery.rs`, with symlink, watch failure and focus-rescan coverage in the existing refresh/version/worker suites (F003D-R09–R11; AS-013–AS-015, AS-018–AS-019). Cross-file evidence is recorded in evidence.md.
-- [ ] T030 [P] [US4] Add failing UI tests for unavailable/uncertain labels, root/file reselection, retained tabs/drafts, EN/ES status, Reduce Motion, and unaffected tabs in `tests/ui/refresh-recovery.test.tsx` (F003D-R09–R12; AS-013–AS-015, AS-017–AS-019).
+- [x] T030 [P] [US4] Add failing UI tests for unavailable/uncertain labels, root/file reselection, retained tabs/drafts, EN/ES status, Reduce Motion, and unaffected tabs in `tests/ui/refresh-recovery.test.tsx` (F003D-R09–R12; AS-013–AS-015, AS-017–AS-019). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ### Implementation for User Story 4
 
 - [X] T031 [US4] Add focus-return reconciliation, failed-watch status, before/after root identity checks, file-only reselection checks, and safe retry behavior to `src-tauri/src/refresh.rs` (F003D-R09–R11; AS-019).
 - [X] T032 [US4] Add persistent uncertain/unavailable states and root/file reselection actions to `src/app/App.tsx`, keeping other tabs and F004 drafts usable (F003D-R09–R12; AS-019).
-- [ ] T033 [US4] Run `src-tauri/tests/refresh_recovery.rs`, `tests/ui/refresh-recovery.test.tsx`, and AS-013–AS-015/AS-017–AS-019 from `specs/005-external-change-refresh/quickstart.md`; record scope, and PASS/FAIL/NOT TESTED evidence in `specs/005-external-change-refresh/evidence.md`.
+- [x] T033 [US4] Run `src-tauri/tests/refresh_recovery.rs`, `tests/ui/refresh-recovery.test.tsx`, and AS-013–AS-015/AS-017–AS-019 from `specs/005-external-change-refresh/quickstart.md`; record scope, and PASS/FAIL/NOT TESTED evidence in `specs/005-external-change-refresh/evidence.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 **Checkpoint:** One failed item or watch does not break the rest of the workspace.
 
@@ -128,9 +130,9 @@
 
 **Purpose:** Validate the full approved feature on the actual target without calling unit-test success macOS UX proof.
 
-- [ ] T034 Benchmark SC-001/SC-002 with 20 clean-save and 10 25,000-entry tree trials on a recorded Mac; store fixture shapes, timing distribution, failures, and host details in `specs/005-external-change-refresh/evidence.md`.
+- [x] T034 Benchmark SC-001/SC-002 with 20 clean-save and 10 25,000-entry tree trials on a recorded Mac; store fixture shapes, timing distribution, failures, and host details in `specs/005-external-change-refresh/evidence.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [X] T035 Review the native watch/IPC boundary, symlink, selected-root and file-only grant replacement behavior, event payloads, and no-write invariant against `specs/005-external-change-refresh/contracts/refresh-ipc.md`; record findings in `specs/005-external-change-refresh/evidence.md`.
-- [ ] T036 Verify the packaged `.app` with an external writer, selected-root replacement/reselection, keyboard/EN/ES, Reduce Motion, multiple dirty drafts, and focus recovery following `specs/005-external-change-refresh/quickstart.md`; record each acceptance ID as PASS/FAIL/BLOCKED/NOT TESTED in `specs/005-external-change-refresh/evidence.md`.
+- [x] T036 Verify the packaged `.app` with an external writer, selected-root replacement/reselection, keyboard/EN/ES, Reduce Motion, multiple dirty drafts, and focus recovery following `specs/005-external-change-refresh/quickstart.md`; record each acceptance ID as PASS/FAIL/BLOCKED/NOT TESTED in `specs/005-external-change-refresh/evidence.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [X] T037 Update requirement-to-test links and handoff in `specs/005-external-change-refresh/evidence.md` and `.agents/state.md` only after the relevant evidence exists; leave any unrun requirement NOT TESTED.
 
 ---
@@ -165,3 +167,8 @@ US1 and US2 use the same foundation but have independent test journeys. US3 addi
 ## Implementation Strategy
 
 Start with clean automatic refresh as the MVP: a selected local root, a changed clean Markdown tab, and a tree update. Validate it before adding manual Reload. Add conflict UI only against the approved, working F004 draft/save interface. Finish with unavailable states, performance, security review, and packaged macOS evidence. No deployment, commit, or publication is included in these tasks.
+
+
+## HTML continuation — F003D-H01
+
+- [x] H-NATIVE-F003D-H01 Complete and verify the native extension described in [canonical amendment](../001-workspace-reader/html-native-amendment-20261008.md) against exact platform/candidate evidence. Source completion, targeted checks and remaining native/frontend acceptance are recorded in [handoff](../../os-engineering/html-frontend-handoff.md); preserve existing task outcomes. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**

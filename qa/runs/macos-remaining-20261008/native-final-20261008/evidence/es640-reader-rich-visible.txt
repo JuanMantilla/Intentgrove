@@ -1,0 +1,93 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container
+				8 container Archivos visitados
+					9 button Atrás, Help: Atrás: search-navigation.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+					10 button (disabled) Adelante, Help: No hay archivo siguiente
+				11 tab group (selectable) Documentos
+					12 container
+						13 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						14 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					15 container
+						16 tab (selected) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						17 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					18 container
+						19 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						20 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				21 pop up button Menú Ir
+				22 button (collapsed) Documentos abiertos (3), Secondary Actions: Expand
+				23 container rich.md
+					24 text rich.md
+					25 text Raíz de la carpeta
+					26 button Editar sección
+					27 summary Documento…, Value: off
+						28 text Documento…
+				29 text Este archivo cambió desde la búsqueda. Se muestra el contenido actual.
+				30 button Cerrar aviso
+				31 container rich.md
+					32 container Reading acceptance
+						33 summary Metadatos, Value: off
+							34 text Metadatos
+						35 container Editar sección: Reading acceptance
+							36 heading Reading acceptance, Value: 1
+								37 text Reading acceptance
+							38 button Editar sección «Reading acceptance»
+						39 container
+							40 text Before diagrams. 
+							41 button Reference, Help: linked.md
+							42 text  and encoded footnote
+							43 button 1, Help: #fn-a%2520b
+							44 text .
+						45 text json
+						46 button Copiar código
+						47 text {"highlight": true}
+
+						48 image Diagrama Mermaid
+						49 summary Ver código fuente, Value: off
+							50 text Ver código fuente
+						51 text Between diagrams.
+						52 text Cargando…
+						53 summary Ver código fuente, Value: off
+							54 text Ver código fuente
+						55 text Cargando…
+						56 summary Ver código fuente, Value: off
+							57 text Ver código fuente
+						58 text Cargando…
+						59 summary Ver código fuente, Value: off
+							60 text Ver código fuente
+						61 text After diagrams.
+						62 container Editar sección: Duplicate
+							63 heading Duplicate, Value: 2
+								64 text Duplicate
+							65 button Editar sección «Duplicate»
+						66 text First duplicate target.
+						67 container Editar sección: Duplicate
+							68 heading Duplicate, Value: 2
+								69 text Duplicate
+							70 button Editar sección «Duplicate»
+						71 text Second duplicate target.
+						72 container
+							73 text [1] 
+							74 button ↩, Help: #fnref-a%2520b-1
+						75 text Encoded footnote body.
+	76 close button
+	77 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	78 minimize button
+	79 text Intentgrove
+80 menu bar
+	81 Intentgrove
+	82 File
+	83 Edit
+	84 View
+	85 Ir
+	86 Window
+	87 Help
+
+The focused UI element is 4 button Mostrar u ocultar explorador

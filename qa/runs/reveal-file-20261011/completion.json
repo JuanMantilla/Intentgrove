@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "task_id": "reveal-file-20261011",
+  "acceptance_version": "reveal-file-20261011T2145Z-v1",
+  "session_kind": "qa",
+  "qa_result": "QA_PASSED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [],
+  "required_checks": [
+    {
+      "id": "menus",
+      "result": "PASS",
+      "reason": "32 mocked frontend tests: explorer closed-file mouse menu, root-file tab keyboard menu, explicit tab mouse menu; missing files in both; absent/relative/virtual paths hidden; Windows label/grant; existing menu/navigation regressions",
+      "finished_at": "2026-10-11T21:45:27.611573+00:00",
+      "evidence_paths": [
+        "qa/runs/reveal-file-20261011/ui-tests-final.log"
+      ]
+    },
+    {
+      "id": "native-policy",
+      "result": "PASS",
+      "reason": "macOS arm64 cargo test --offline --lib: 140 passed, 5 existing ignored. Two new reveal tests cover actual grants/path resolution, special characters, traversal/empty paths, expired grant, missing/replaced file, valid request field names, rejected folders/arbitrary renderer paths",
+      "finished_at": "2026-10-11T21:45:27.611573+00:00",
+      "evidence_paths": [
+        "qa/runs/reveal-file-20261011/native-tests-final.log"
+      ]
+    },
+    {
+      "id": "frontend-build",
+      "result": "PASS",
+      "reason": "TypeScript and production frontend build into task-owned dist",
+      "finished_at": "2026-10-11T21:45:27.611573+00:00",
+      "evidence_paths": [
+        "qa/runs/reveal-file-20261011/build-final.log"
+      ]
+    },
+    {
+      "id": "finder",
+      "result": "PASS",
+      "reason": "Production Cocoa bridge compiled in standalone probe; real Finder selection queried through AppleScript, exactly matching fixture absolute path. Missing target rejected with exit 1",
+      "finished_at": "2026-10-11T21:45:27.611573+00:00",
+      "evidence_paths": [
+        "qa/runs/reveal-file-20261011/finder-selection-final.json"
+      ]
+    },
+    {
+      "id": "diff",
+      "result": "PASS",
+      "reason": "git diff --check",
+      "finished_at": "2026-10-11T21:45:27.611573+00:00",
+      "evidence_paths": [
+        "qa/runs/reveal-file-20261011/diff-check.log"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/reveal-file-20261011/report.md",
+  "evidence_paths": [
+    "qa/runs/reveal-file-20261011/evidence-index.md",
+    "qa/runs/reveal-file-20261011/coverage.json"
+  ],
+  "tested_snapshot_path": "qa/runs/reveal-file-20261011/tested-snapshot-final.json",
+  "artifact_paths": [
+    "qa/runs/reveal-file-20261011/types.log",
+    "qa/runs/reveal-file-20261011/ui-tests-final.log",
+    "qa/runs/reveal-file-20261011/finder-selection-final.json",
+    "qa/runs/reveal-file-20261011/.DS_Store",
+    "qa/runs/reveal-file-20261011/evidence-index.md",
+    "qa/runs/reveal-file-20261011/native-tests-final.log",
+    "qa/runs/reveal-file-20261011/report.md",
+    "qa/runs/reveal-file-20261011/finder-probe.m",
+    "qa/runs/reveal-file-20261011/ui-tests-v3.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-v2.json",
+    "qa/runs/reveal-file-20261011/ui-tests-v2.log",
+    "qa/runs/reveal-file-20261011/finder-probe",
+    "qa/runs/reveal-file-20261011/ui-tests.log",
+    "qa/runs/reveal-file-20261011/diff-check.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-v3.json",
+    "qa/runs/reveal-file-20261011/finder-selection.json",
+    "qa/runs/reveal-file-20261011/build-final.log",
+    "qa/runs/reveal-file-20261011/native-tests-v3.log",
+    "qa/runs/reveal-file-20261011/snapshot-final.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-final.json",
+    "qa/runs/reveal-file-20261011/snapshot-v3.log",
+    "qa/runs/reveal-file-20261011/coverage.json",
+    "qa/runs/reveal-file-20261011/snapshot-v2.log",
+    "qa/runs/reveal-file-20261011/native-tests.log",
+    "qa/runs/reveal-file-20261011/task.md",
+    "qa/runs/reveal-file-20261011/tested-paths.json",
+    "qa/runs/reveal-file-20261011/types-v2.log",
+    "qa/runs/reveal-file-20261011/build.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot.json",
+    "qa/runs/reveal-file-20261011/fixture space # &/caf\u00e9 # $&' (draft), %.md"
+  ],
+  "retain_paths": [
+    "qa/runs/reveal-file-20261011/types.log",
+    "qa/runs/reveal-file-20261011/ui-tests-final.log",
+    "qa/runs/reveal-file-20261011/finder-selection-final.json",
+    "qa/runs/reveal-file-20261011/.DS_Store",
+    "qa/runs/reveal-file-20261011/evidence-index.md",
+    "qa/runs/reveal-file-20261011/native-tests-final.log",
+    "qa/runs/reveal-file-20261011/report.md",
+    "qa/runs/reveal-file-20261011/finder-probe.m",
+    "qa/runs/reveal-file-20261011/ui-tests-v3.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-v2.json",
+    "qa/runs/reveal-file-20261011/ui-tests-v2.log",
+    "qa/runs/reveal-file-20261011/finder-probe",
+    "qa/runs/reveal-file-20261011/ui-tests.log",
+    "qa/runs/reveal-file-20261011/diff-check.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-v3.json",
+    "qa/runs/reveal-file-20261011/finder-selection.json",
+    "qa/runs/reveal-file-20261011/build-final.log",
+    "qa/runs/reveal-file-20261011/native-tests-v3.log",
+    "qa/runs/reveal-file-20261011/snapshot-final.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot-final.json",
+    "qa/runs/reveal-file-20261011/snapshot-v3.log",
+    "qa/runs/reveal-file-20261011/coverage.json",
+    "qa/runs/reveal-file-20261011/snapshot-v2.log",
+    "qa/runs/reveal-file-20261011/native-tests.log",
+    "qa/runs/reveal-file-20261011/task.md",
+    "qa/runs/reveal-file-20261011/tested-paths.json",
+    "qa/runs/reveal-file-20261011/types-v2.log",
+    "qa/runs/reveal-file-20261011/build.log",
+    "qa/runs/reveal-file-20261011/tested-snapshot.json",
+    "qa/runs/reveal-file-20261011/fixture space # &/caf\u00e9 # $&' (draft), %.md",
+    ".agents/state.md",
+    "os-engineering/STATE.md"
+  ],
+  "requirements_source_paths": [
+    "qa/runs/reveal-file-20261011/task.md",
+    "AGENTS.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "User acceptance of delivered scoped implementation",
+      "source_path": "AGENTS.md",
+      "evidence_path": "qa/runs/reveal-file-20261011/task.md",
+      "satisfied": false
+    }
+  ]
+}

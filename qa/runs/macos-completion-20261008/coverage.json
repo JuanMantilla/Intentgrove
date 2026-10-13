@@ -1,0 +1,725 @@
+[
+  {
+    "id": "CF01",
+    "case": "Isolated final-source launch",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source edd21f77\u2026",
+    "evidence": [
+      "evidence/206-final-default-rich-launch.txt",
+      "evidence/isolated-rounding-final-provenance.json"
+    ],
+    "reason": "Fresh default-feature isolated executableedd21f77\u2026 launched with task-owned session and rendered actual content. Exact production ID remains separate.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF02",
+    "case": "Settings menu and Command-comma",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/208-final-settings-initial.txt",
+      "evidence/210-final-native-settings-menu.txt"
+    ],
+    "reason": "Command-comma and actual native application menu Settings\u2026 both open separate Settings window.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF03",
+    "case": "Settings focus and Command-O suppression",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/208-final-settings-initial.txt"
+    ],
+    "reason": "Settings initially focuses General; Command-O leaves Settings and focused heading intact without file picker.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF04",
+    "case": "Numeric first/second Escape",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/209-final-first-escape.txt"
+    ],
+    "reason": "Uncommitted23 reverted to21 on first Escape while Settings stayed open; second Escape closed it.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF05",
+    "case": "Go Back/Forward",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/217-final-go-navigation.txt"
+    ],
+    "reason": "Back restored rich.md and Forward reopened linked.md with visited targets.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF06",
+    "case": "Visited list/Clear visited",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/239-final-clear-visited.txt"
+    ],
+    "reason": "Actual Go menu exposes visited files and clear; clearing disables Back/Forward while28open document tabs remain.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF07",
+    "case": "Command-F and Escape focus",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/212-final-find-duplicate.txt"
+    ],
+    "reason": "Command-F focused Find, Duplicate yielded4matches and Escape closed it.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF08",
+    "case": "Finder cold open",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/237-final-finder-cold.txt",
+      "evidence/236-final-quit-save-process.json"
+    ],
+    "reason": "Actual Finder Open With Other selects exact final app path while process absent; app queues plain.md\u00b7Finder, explicit Open item renders requested file. Prior automatic-open polling mismatch retained.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF09",
+    "case": "Finder warm open",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/238-final-finder-warm.txt"
+    ],
+    "reason": "Actual Finder context Open With on rich.md delivered queued Finder item to running final app; explicit Open item rendered rich document.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF10",
+    "case": "File drop",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/265-final-actual-file-drop.txt",
+      "activity-timeline.json"
+    ],
+    "reason": "Actual Finder plain.md drag attempted with opposite native screen halves; no app entry queue observed. Supported coordinate path does not establish cross-app event delivery; cannot distinguish tooling from product yet.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF11",
+    "case": "Folder drop",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/266-final-actual-folder-drop.txt"
+    ],
+    "reason": "Actual Finder docs folder drag attempted; no native queue/root change. Cross-app drop delivery unproven; picker not substituted.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF12",
+    "case": "Settings drop refusal",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/267-final-settings-drop-attempt.txt"
+    ],
+    "reason": "Actual Finder file drag toward Settings attempted, Settings unchanged; delivery not established so refusal cannot be markedPASS.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF13",
+    "case": "Clean Close",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/270-final-clean-close-inventory.json",
+      "activity-timeline.json"
+    ],
+    "reason": "Actual clean native window close button clicked; supported nonactivating inventory only reports process running and omits windows. Window disappearance remains unverified; activating capture can reopen window.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF14",
+    "case": "Actual Dock reopen",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/250-final-dock-capability.txt",
+      "activity-timeline.json"
+    ],
+    "reason": "Fresh supported Dock binding failed; no actual Dock click occurred. LaunchServices/activation not substituted.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF15",
+    "case": "Dirty Close Cancel",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/225-final-dirty-close.txt",
+      "evidence/226-final-close-cancel.txt"
+    ],
+    "reason": "Dirty Command-W prompts; Cancel returns full unsaved source and leaves file bytes unchanged.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF16",
+    "case": "Dirty Quit Cancel",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/227-final-dirty-quit.txt",
+      "evidence/228-final-quit-cancel.txt"
+    ],
+    "reason": "Dirty Command-Q prompts; Cancel retains complete draft and unchanged disk bytes.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF17",
+    "case": "Successful Save source bytes",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/229-final-successful-save.txt",
+      "evidence/229-final-saved-bytes.json"
+    ],
+    "reason": "Command-S persists selected replacement source, preserves following section, and returns to reading. Exact before/after fixture bytes retained.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF18",
+    "case": "Failed Save preserves draft",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/231-final-permission-draft-input.txt",
+      "evidence/232-final-permission-draft-retained.txt"
+    ],
+    "reason": "Owned parent0555 produces actual Permission denied; complete asserted draft retained and disk bytes unchanged; parent0755 restored in finally. Initial input-focus test ownership failure retained230.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF19",
+    "case": "Dirty Close Save",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/268-final-close-save-draft.txt",
+      "evidence/268-final-close-save-bytes.txt",
+      "evidence/268-final-close-save-inventory.json",
+      "evidence/269-final-close-save-committed-bytes.txt"
+    ],
+    "reason": "Actual native window Close\u2192Save writes intended source (bytes retained); nonactivating macOS inventory exposes no windows, so closed-window absence cannot be proven without reactivating app. Do not substitute file write for full Close journey. Initial268file sample preceded async commit; subsequent269contains exact intended replacement and preserved following section.",
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF20",
+    "case": "Dirty Quit Save",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/236-final-quit-save-process.json"
+    ],
+    "reason": "Actual dirty Quit/Save wrote full recovered draft and originalPID314 was absent before any UI reactivation.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF21",
+    "case": "Preferences restart",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/249-final-preference-restarts.json"
+    ],
+    "reason": "Preferences persist after actual Quit/relaunch; English and typography restored; ten-cycle evidence separate.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF22",
+    "case": "Session restore",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source edd21f77\u2026",
+    "evidence": [
+      "evidence/206-final-default-rich-launch.txt"
+    ],
+    "reason": "Fresh isolated build restored task-owned two-tab session; valuable production profile untouched.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF23",
+    "case": "Draft recovery",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/233-final-keep-draft-prompt.txt",
+      "evidence/235-final-recovery-settled.txt"
+    ],
+    "reason": "Keep draft followed by original process exit and native relaunch restores complete asserted permission draft; disk bytes unchanged. Initial pre-exit sample and early recovery state retained.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF24",
+    "case": "Scoped search query/open",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/243-final-query-manifest.json",
+      "evidence/244-final-scoped-open.txt"
+    ],
+    "reason": "Twenty native queries matched expected counts20/20; actual alpha-00 line2 result opened scoped passage. Spanish completion matcher omissions retained as QA errors.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF25",
+    "case": "Scope changes",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/242-final-root-search.txt",
+      "evidence/245-final-alpha-scope.txt",
+      "evidence/246-final-beta-scope.txt",
+      "evidence/245-alpha-query-input-error.txt"
+    ],
+    "reason": "Root80 replaced by selected docs/alpha40, then docs/beta40 with explicit scope labels. Initial preserved draft append test error retained.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF26",
+    "case": "Search cancellation",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/247-final-executing-search.txt",
+      "evidence/247-final-search-stopped.txt",
+      "evidence/248-final-search-count-stable.txt",
+      "evidence/248-final-ten-cancellations.json"
+    ],
+    "reason": "Actual uncapped20,000file search cancellation: initial6141stable plus10additional executing Stop trials all stopped counts fixed through Settings interaction. CUAlatency excluded from250msclaim.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF27",
+    "case": "Stale batches/open replies",
+    "status": "PASS",
+    "buildClass": "final instrumented49cb00e3\u2026 authenticated held native batch/open replies",
+    "evidence": [
+      "evidence/271-final-held-native-batch.txt",
+      "evidence/272-final-new-query-before-release.txt",
+      "evidence/273-final-old-batch-release-ignored.txt",
+      "evidence/275-final-newer-linked-before-release.txt",
+      "evidence/276-final-stale-open-release-ignored.txt",
+      "evidence/final-instrumented-native-protocol.jsonl"
+    ],
+    "reason": "Final instrumented49cb00\u2026 holds actual native search-batch operation6 and search-open-reply13 via authenticated QA-only gate. New query completes before6release; linked document activates before13release. Releasing either does not reclaim newer results/document/Find. Native gate feature excluded default build.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF28",
+    "case": "PNG same-inode refresh",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/219-final-png-same-inode.txt",
+      "evidence/220-final-png-identities.json"
+    ],
+    "reason": "Same inode retained while bytes changed to orange; manual reload shows decoded PNG dimensions without unsupported status.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF29",
+    "case": "PNG replacement refresh",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/220-final-png-replacement.txt",
+      "evidence/220-final-png-identities.json"
+    ],
+    "reason": "Atomic replacement changes inode; refreshed blue PNG decodes with supported format status.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF30",
+    "case": "PNG reopen status",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/221-final-png-reopen.txt",
+      "activity-timeline.json"
+    ],
+    "reason": "Actual tab close and reopen yields displayed supported PNG; invalid stale AX action retained as tool error before fresh current control.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF31",
+    "case": "Image failure/recovery",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/222-final-corrupt-png.txt",
+      "evidence/223-final-png-recovery.txt"
+    ],
+    "reason": "Corrupt same-inode bytes cause explicit file-type error; replacing with valid bytes and Retry restores supported PNG.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF32",
+    "case": "Image security neighbors",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/224-final-image-security.png",
+      "evidence/224-final-image-security.txt"
+    ],
+    "reason": "Inspected native screenshot224: valid inline blue PNG displayed; corrupt/hostile SVG/remote/outside images show blocked-or-unsupported fallback. AX exposes only image alt labels, so earlier text polling timeout is a QA assertion mismatch, retained.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF33",
+    "case": "Metadata/highlight/reference/footnote/duplicate headings",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/213-final-scalar-metadata.txt",
+      "evidence/214-final-footnote.txt",
+      "evidence/215-final-second-duplicate.txt",
+      "evidence/216-final-reference-link.txt"
+    ],
+    "reason": "Supported scalar metadata title/owner, highlighted JSON, encoded footnote/backlink, second duplicate outline target and actual reference link opened linked.md.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF34",
+    "case": "Hostile per-block fallback",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/238-final-finder-warm.txt",
+      "evidence/207-matrix-results.json"
+    ],
+    "reason": "Malformed and configuration-directive Mermaid blocks have independent error/source fallbacks; neighboring two diagrams and After diagrams remain.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF35",
+    "case": "Valid Mermaid rendering",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/206-final-default-rich-launch.png",
+      "evidence/213-final-scalar-metadata.png",
+      "evidence/207-matrix-results.json"
+    ],
+    "reason": "Final default-feature rich document renders actual flowchart and sequence images, inspected screenshots206/213; valid neighbor each20matrix cases.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF36",
+    "case": "Malformed Mermaid localized error/source",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/241-final-spanish-rich.txt"
+    ],
+    "reason": "Malformed/configuration Mermaid reports localized Spanish error with preserved source; independent valid diagrams remain.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF37",
+    "case": "Hostile Mermaid isolation",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/207-matrix-results.json",
+      "evidence/renderer-legacy-proof-attempt-04.json",
+      "evidence/production-post-qa-final-provenance.json"
+    ],
+    "reason": "Final default packaged hostile blocks retain unaffected content;25-case disposable sandbox proof passed. Full final-package runtime bridge/parent/filesystem/network/resource/forged-response matrix and20-document network-attempt observation remain unverified. Component architecture/signatures do not replace runtime probes.",
+    "owner": "SECURITY_REVIEW / OS_ENGINEERING / QA",
+    "prerequisite": "Supported read-only resource-attempt observation and functioning native UI",
+    "nextAction": "Execute final-package hostile/resource matrix and observe attempts; retain prototype/final evidence separately."
+  },
+  {
+    "id": "CF38",
+    "case": "Mermaid cancellation/stale result",
+    "status": "BLOCKED",
+    "buildClass": "final instrumented49cb00e3\u2026; identical signed helper in production/default isolated",
+    "evidence": [
+      "evidence/281-final-helper-execution-process.json",
+      "evidence/281-final-helper-executing-sample.txt",
+      "evidence/282-final-deadline-fallback.png",
+      "evidence/287-cancel-loading.txt",
+      "evidence/288-executing-cancel-trials.json",
+      "evidence/final-runner-hk2zbbyv-protocol.jsonl",
+      "evidence/289-child-observed.json",
+      "evidence/290-native-automation-blocker.json"
+    ],
+    "reason": "Actual final helper sampled executing JSC/SVG; native diagram_deadline and local fallback retained.12 native diagram_cancelled replies and held stale reply ignored. Sampled cancellation attempt failed cgWindowNotFound; actual executing-child cancellation and complete forged/stale final-package matrix are not fully established.",
+    "owner": "QA / OS_ENGINEERING",
+    "prerequisite": "Functioning supported native window access",
+    "nextAction": "Repeat cancellation with child execution established before action; verify PID reaped, bounded acknowledgment, parent responsiveness and all stale/forged cases."
+  },
+  {
+    "id": "CF39",
+    "case": "1 MiB native performance ten trials",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/255-final-large-reopen-measurements.json",
+      "evidence/255-large-1m.md-10.png",
+      "activity-timeline.json"
+    ],
+    "reason": "Ten actual close/reopen1MiB journeys yielded captured usable heading/paragraph/fallback pixels within1s; includes native open and CUA latency, fresh document tab each time. Prior tab reactivation measurements retained separately.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF40",
+    "case": "10 MiB native performance ten trials",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/255-final-large-reopen-measurements.json",
+      "evidence/255-large-10m.md-10.png"
+    ],
+    "reason": "Ten actual close/reopen10MiB journeys yielded captured usable heading/paragraph/fallback pixels within3s; includes native open and CUA latency. Prior reactivation results remain supplementary.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF41",
+    "case": "Over-limit source behavior",
+    "status": "PASS",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "evidence/251-final-over-limit.txt",
+      "evidence/252-final-readonly-source.txt"
+    ],
+    "reason": "11MiB native open refuses automatic rich reading; explicit consent opens read-only source presentation.",
+    "owner": "QA"
+  },
+  {
+    "id": "CF42",
+    "case": "Final production-identifier isolated runtime",
+    "status": "BLOCKED",
+    "buildClass": "isolated default-feature final-source candidate",
+    "evidence": [
+      "external-environment-procedure.md",
+      "evidence/production-post-qa-final-provenance.json"
+    ],
+    "reason": "Exact production identifier runtime not executed; existing real profile may contain valuable data. No disposable account/host supplied. Separate identifiers are explicitly supplementary.",
+    "owner": "OS_ENGINEERING / QA",
+    "prerequisite": "Operator-provided disposable macOS login/host; no account creation authorized",
+    "nextAction": "Run exact64811928\u2026production executable with preserved prior app/data and full runtime ledger."
+  },
+  {
+    "id": "CF43",
+    "case": "Escape after Enter/document focus",
+    "buildClass": "isolated default-feature final-source candidate",
+    "status": "PASS",
+    "reason": "After numeric19 committed with Enter and document heading focus, Escape closed Settings.",
+    "evidence": [
+      "evidence/211-final-enter-escape.txt"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF44",
+    "case": "Ten typography preference restarts",
+    "buildClass": "isolated default-feature final-source candidate",
+    "status": "PASS",
+    "reason": "Ten normal Quit/relaunch cycles observed native app inventory absent before relaunch, each restored committed size18/19/20/21/22/23/24/18/19/20.",
+    "evidence": [
+      "evidence/249-final-preference-restarts.json",
+      "evidence/249-final-tenth-preference-restart.txt",
+      "activity-timeline.json"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF45",
+    "case": "Spanish reading/Settings journey",
+    "buildClass": "isolated default-feature final-source candidate",
+    "status": "PASS",
+    "reason": "Spanish Settings and rich reader controls, diagram alt labels/error/source and duplicate-heading outline observed in final build. Exact width matrix separate.",
+    "evidence": [
+      "evidence/240-final-spanish-settings.txt",
+      "evidence/241-final-spanish-rich.txt"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF46",
+    "case": "Same-heading refresh and renamed-anchor fallback",
+    "buildClass": "final default isolatededd21f77\u2026 and instrumented49cb00e3\u2026",
+    "status": "PASS",
+    "reason": "Fresh default-feature edd21f77\u2026 successive insert-above refreshes retain anchor-middle in736point compact layout. Instrumented49cb00\u2026 additionally proves three refreshes and renamed fallback; original fixture restored.",
+    "evidence": [
+      "evidence/263-default-anchor-before.json",
+      "evidence/264-default-anchor-results.json",
+      "evidence/203-rounding-repeat-results.json",
+      "evidence/204-rounding-renamed-fallback.txt"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF49",
+    "case": "Twenty distinct hostile/rich documents",
+    "buildClass": "isolated default-feature final-source candidate",
+    "status": "PASS",
+    "reason": "Twenty separate hostile/rich documents opened in final default-feature isolated build; each retained metadata, encoded footnote, final unaffected text and a successfully rendered valid neighboring diagram. No zero-network-request claim inferred.",
+    "evidence": [
+      "evidence/207-matrix-results.json",
+      "evidence/final-reading-matrix-inputs.json",
+      "evidence/207-matrix-1.txt",
+      "evidence/207-matrix-20.txt",
+      "evidence/291-reading-matrix-no-write.json"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF47",
+    "case": "Reduce Motion native journey",
+    "status": "PASS",
+    "buildClass": "current evidence pending",
+    "reason": "Actual OS Reduce Motion enabled; final native responsive sidebar, rich Mermaid and Settings usable; original OFF restored in finally. Earlier collapsed-sidebar navigation failure retained.",
+    "evidence": [
+      "evidence/262-final-reduce-motion-settings.txt",
+      "evidence/262-final-reduce-motion-rich.txt",
+      "evidence/262-motion-restored.txt"
+    ],
+    "owner": "QA"
+  },
+  {
+    "id": "CF48",
+    "case": "EN/ES 640/900/1440-point layouts",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "Native menu produced736point half-window (1472pixel Retina screenshot), but observed border drags and zoom did not obtain exact640/900/1440points. Attempts256\u2013260 retained. No nearby width substituted.",
+    "evidence": [
+      "evidence/256-final-resize-attempt.png",
+      "evidence/257-final-900-point-resize.png",
+      "evidence/259-final-left-window.png",
+      "evidence/260-final-right-edge-resize.png",
+      "activity-timeline.json"
+    ],
+    "owner": "QA_AUTOMATION / QA",
+    "prerequisite": "Supported native window/Dock/drag/resize and nonactivating window observation",
+    "nextAction": "Execute exact journey in external-environment-procedure.md; do not substitute picker/activation or nearby dimensions."
+  },
+  {
+    "id": "CF50",
+    "case": "Executing search cancellation within250ms",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "Actual Stop during20,000-file uncapped no-match scan passes CF26. Ten25,000-entry packaged same-clock<=250ms acknowledgment trials are still missing. Native library microsecond stops do not establish this gate. Current CUA fails for both app and Finder.",
+    "evidence": [
+      "evidence/248-final-ten-cancellations.json",
+      "evidence/290-native-automation-blocker.json",
+      "evidence/final-search-native-measurement.log"
+    ],
+    "owner": "QA / QA_AUTOMATION",
+    "prerequisite": "Functioning native UI and specified25,000-entry/5,000Markdown fixture",
+    "nextAction": "Run ten observed executing Stop trials; pair trusted Stop performance.now with searchStops; require9/10<=250ms and fixed stopped counts."
+  },
+  {
+    "id": "CF51",
+    "case": "Unrelated-tab responsiveness within250ms",
+    "status": "PASS",
+    "buildClass": "final instrumented49cb00e3\u2026",
+    "reason": "Ten final instrumented unrelated-document transitions while diagram job is inflight reach actual heading/paragraph geometry and two animation frames in187\u2013207ms on same renderer clock; all trusted clicks; native cancellation events recorded. This measures UI responsiveness, separately from sampled executing-code deadline/cancellation proof.",
+    "evidence": [
+      "evidence/288-unrelated-tab-measurements.json",
+      "evidence/final-runner-hk2zbbyv-protocol.jsonl"
+    ],
+    "owner": "QA",
+    "prerequisite": null,
+    "nextAction": "Repeat on exact production identifier once disposable host is available."
+  },
+  {
+    "id": "CF52",
+    "case": "macOS14 native runtime",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "Only actual macOS27.0.1 arm64 runtime available; min14 metadata is not runtime evidence.",
+    "evidence": [
+      "external-environment-procedure.md"
+    ],
+    "owner": "OS_ENGINEERING / QA",
+    "prerequisite": "Disposable macOS14 host",
+    "nextAction": "Run final package full acceptance, especially deprecated engine sandbox/pixels/deadline."
+  },
+  {
+    "id": "CF53",
+    "case": "Intel/universal compile and runtime",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "Installed Rust target is aarch64-apple-darwin only; final main/XPC/helper inspected arm64. No Intel compilation/runtime or universal claim.",
+    "evidence": [
+      "external-environment-procedure.md"
+    ],
+    "owner": "OS_ENGINEERING / QA",
+    "prerequisite": "Existing authorized Intel target/toolchain and suitable Intel host",
+    "nextAction": "Build with existing authorized targets, inspect every helper architecture, then run native acceptance."
+  },
+  {
+    "id": "CF54",
+    "case": "Disposable Applications installation and rollback",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "Applications install/rollback authorized only on disposable account/host; none supplied. Production valuable app/data preserved.",
+    "evidence": [
+      "external-environment-procedure.md"
+    ],
+    "owner": "OS_ENGINEERING / QA",
+    "prerequisite": "Disposable account/host and rollback storage",
+    "nextAction": "Execute external-environment-procedure.md install/rollback without security bypass."
+  },
+  {
+    "id": "CF55",
+    "case": "Different-version upgrade and rollback",
+    "status": "BLOCKED",
+    "buildClass": "current evidence pending",
+    "reason": "No authorized known-hash different-version older package supplied; same-version archives are not upgrade evidence.",
+    "evidence": [
+      "external-environment-procedure.md"
+    ],
+    "owner": "OS_ENGINEERING / QA",
+    "prerequisite": "Disposable account/host plus authorized different-version older package",
+    "nextAction": "Execute preserved older-version preferences/session/draft upgrade and rollback procedure."
+  },
+  {
+    "id": "CF56",
+    "case": "Complete dependency security audit",
+    "status": "FAIL",
+    "buildClass": "current evidence pending",
+    "reason": "Production audit reports0 vulnerabilities; complete graph retains one HIGH development source-map-js1.2.1 advisory. Integrity-checked exact1.2.2 remedy proposal prepared; additional override not approved/applied.",
+    "evidence": [
+      "evidence/full-dependency-audit.json",
+      "evidence/production-dependency-audit.json",
+      "dependency-source-map-proposal/proposal.md",
+      "dependency-source-map-proposal/audit.json"
+    ],
+    "owner": "SECURITY_REVIEW / OS_ENGINEERING",
+    "prerequisite": "Approval of exact additional dependency amendment",
+    "nextAction": "Apply reviewed exact override in IMPLEMENT, audit graph, rebuild and rerun full acceptance."
+  }
+]

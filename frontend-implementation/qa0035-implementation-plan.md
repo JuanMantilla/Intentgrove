@@ -1,0 +1,11 @@
+# QA-0035 implementation plan
+
+USER-AUTHORIZED IMPLEMENT by the current user request. Scope: remember document-wide Cmd+A during initial Markdown acquisition/parse/layout; revoke on navigation, content replacement, incompatible field/modal/composition ownership. Preserve native contracts, source history, live/mixed/whole selection and UI exclusions. No redesign or unrelated finding repair.
+
+Observed: first Markdown acquisition retains the old active document and adapter until `readDocument` returns; App shortcut previously selects that retained document or drops requests when adapter absent. Reader already queues parse/paint/layout selection but lacked navigation lease and transient-owner cancellation. CodeGraph consulted first; changed source required direct reads.
+
+Implementation: attach acquisition token and navigation/generation to selection intent; bind only on that read's valid activation. Dispatch outside React commit; reader checks lease and exact ID/content before applying complete document selection. Cancel transient incompatible owners while waiting. Four code/test paths: /Users/juanmantilla/projects/personal/md-reader/src/app/App.tsx; /Users/juanmantilla/projects/personal/md-reader/src/reader/MarkdownView.tsx; /Users/juanmantilla/projects/personal/md-reader/src/reader/document-selection.ts; /Users/juanmantilla/projects/personal/md-reader/tests/ui/document-select-all.test.tsx.
+
+Verification: deterministic held reads, first-open/reopen/no existing adapter, A→B→A, transient owner cancellation, same-ID replacement/layout lease; original reading/mixed/whole/native field/modifier regressions. Freeze full source/config/test inputs with untouched configuration; run default `npm test`, TypeScript/Vite build and isolated offline debug native build. Exercise actual WebKit initial/reopen/rapid switch and ownership/native copy on disposable copies. Record unavailable checks without claiming passes. Default suite failures retained without weakening assertions/deadlines/config.
+
+User files/profiles and previous artifacts preserved. Task-local repair; observed Spec Kit feature is specs/014-interactive-prototype-v1, unchanged because it is unrelated. Candidate has a unique identifier/profile; no install/permissions/commit/publish/cleanup. Implementation review and independent QA RETEST remain pending.

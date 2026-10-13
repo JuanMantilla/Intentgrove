@@ -1,0 +1,412 @@
+{
+  "historical-full-suite": {
+    "total": 711,
+    "passed": 710,
+    "failed": 1,
+    "close_suite_ms": 49490.0869140625,
+    "first_eight": [
+      {
+        "name": "quit: Cancel",
+        "status": "passed",
+        "duration_ms": 1723.6248329999999
+      },
+      {
+        "name": "quit: Keep draft",
+        "status": "passed",
+        "duration_ms": 1910.3256250000004
+      },
+      {
+        "name": "quit: Discard",
+        "status": "passed",
+        "duration_ms": 1162.8725419999992
+      },
+      {
+        "name": "quit: Save to file",
+        "status": "passed",
+        "duration_ms": 2258.162415999999
+      },
+      {
+        "name": "window: Cancel",
+        "status": "passed",
+        "duration_ms": 1250.1102499999997
+      },
+      {
+        "name": "window: Keep draft",
+        "status": "passed",
+        "duration_ms": 2051.1952500000007
+      },
+      {
+        "name": "window: Discard",
+        "status": "passed",
+        "duration_ms": 3709.2107080000005
+      },
+      {
+        "name": "window: Save to file",
+        "status": "failed",
+        "duration_ms": 3410.9292920000007
+      }
+    ],
+    "file_order": [
+      "workspace-handoff.test.tsx",
+      "refresh-conflict.test.tsx",
+      "close-edit.test.tsx",
+      "workspace-layout.test.tsx",
+      "session.test.tsx",
+      "edit-flow.test.tsx",
+      "approved-navigation.test.tsx",
+      "reveal-file.test.tsx",
+      "document-select-all.test.tsx",
+      "workspace.test.tsx",
+      "prototype-integration.test.tsx",
+      "find.test.tsx",
+      "native-entry.test.tsx",
+      "automatic-refresh.test.tsx",
+      "html-integration.test.tsx",
+      "image-refresh.test.tsx",
+      "appearance-operations.test.tsx",
+      "refresh-recovery.test.tsx",
+      "html-unavailable.test.tsx",
+      "large-source.test.tsx",
+      "manual-reload.test.tsx",
+      "settings-window.test.tsx",
+      "recents.test.tsx",
+      "folder-search.test.tsx",
+      "rich-range.test.tsx",
+      "windows-platform.test.tsx",
+      "rich-section.test.tsx",
+      "appearance.test.tsx",
+      "loading-system.test.tsx",
+      "reading-settings.test.tsx",
+      "html-view.test.tsx",
+      "recovery.test.tsx",
+      "section-context-menu.test.tsx",
+      "diagram-block.test.tsx",
+      "new-markdown.test.tsx",
+      "markdown.test.tsx",
+      "image-view.test.tsx",
+      "find-index.test.ts",
+      "bounded-parser.test.ts",
+      "action-menu.test.tsx",
+      "section-editing.test.tsx",
+      "settings-initial-effect.test.tsx",
+      "appearance-editor.test.tsx",
+      "reload-feedback.test.tsx",
+      "block-budget.test.ts",
+      "code-block.test.tsx",
+      "frontmatter.test.tsx",
+      "heading-model.test.tsx",
+      "settings-owner.test.tsx",
+      "qa-snapshot.test.ts",
+      "settings-owner-lifecycle.test.tsx",
+      "zoom-geometry.test.tsx",
+      "listener-cleanup.test.tsx",
+      "worker.test.ts",
+      "markdown-regions.test.ts",
+      "pinch-zoom.test.tsx",
+      "diagram-host.test.ts",
+      "section-map.test.ts",
+      "appearance-contrast.test.ts",
+      "html-controller.test.ts",
+      "prototype-boundary.test.ts",
+      "qa-adapters.test.ts",
+      "prototype-controller.test.ts",
+      "html-boundary.test.ts",
+      "qa-bootstrap.test.ts",
+      "middle-filename.test.ts",
+      "refresh-state.test.ts",
+      "edit-state.test.ts",
+      "document-identity.test.ts"
+    ]
+  },
+  "full-suite-before": {
+    "total": 711,
+    "passed": 711,
+    "failed": 0,
+    "close_suite_ms": 16019.81201171875,
+    "first_eight": [
+      {
+        "name": "quit: Cancel",
+        "status": "passed",
+        "duration_ms": 591.623333
+      },
+      {
+        "name": "quit: Keep draft",
+        "status": "passed",
+        "duration_ms": 570.0029170000003
+      },
+      {
+        "name": "quit: Discard",
+        "status": "passed",
+        "duration_ms": 613.0272920000002
+      },
+      {
+        "name": "quit: Save to file",
+        "status": "passed",
+        "duration_ms": 631.2089169999999
+      },
+      {
+        "name": "window: Cancel",
+        "status": "passed",
+        "duration_ms": 532.4730410000002
+      },
+      {
+        "name": "window: Keep draft",
+        "status": "passed",
+        "duration_ms": 553.2670420000004
+      },
+      {
+        "name": "window: Discard",
+        "status": "passed",
+        "duration_ms": 635.1199580000002
+      },
+      {
+        "name": "window: Save to file",
+        "status": "passed",
+        "duration_ms": 673.2122500000005
+      }
+    ],
+    "file_order": [
+      "new-markdown.test.tsx",
+      "workspace-layout.test.tsx",
+      "workspace-handoff.test.tsx",
+      "close-edit.test.tsx",
+      "refresh-conflict.test.tsx",
+      "session.test.tsx",
+      "reveal-file.test.tsx",
+      "approved-navigation.test.tsx",
+      "edit-flow.test.tsx",
+      "find.test.tsx",
+      "html-integration.test.tsx",
+      "image-refresh.test.tsx",
+      "document-select-all.test.tsx",
+      "appearance-operations.test.tsx",
+      "workspace.test.tsx",
+      "automatic-refresh.test.tsx",
+      "native-entry.test.tsx",
+      "prototype-integration.test.tsx",
+      "refresh-recovery.test.tsx",
+      "html-unavailable.test.tsx",
+      "manual-reload.test.tsx",
+      "large-source.test.tsx",
+      "diagram-block.test.tsx",
+      "rich-section.test.tsx",
+      "recents.test.tsx",
+      "folder-search.test.tsx",
+      "settings-window.test.tsx",
+      "rich-range.test.tsx",
+      "loading-system.test.tsx",
+      "html-view.test.tsx",
+      "section-context-menu.test.tsx",
+      "windows-platform.test.tsx",
+      "recovery.test.tsx",
+      "bounded-parser.test.ts",
+      "appearance.test.tsx",
+      "markdown.test.tsx",
+      "image-view.test.tsx",
+      "section-editing.test.tsx",
+      "settings-initial-effect.test.tsx",
+      "find-index.test.ts",
+      "reading-settings.test.tsx",
+      "appearance-editor.test.tsx",
+      "code-block.test.tsx",
+      "action-menu.test.tsx",
+      "frontmatter.test.tsx",
+      "heading-model.test.tsx",
+      "settings-owner.test.tsx",
+      "reload-feedback.test.tsx",
+      "block-budget.test.ts",
+      "settings-owner-lifecycle.test.tsx",
+      "zoom-geometry.test.tsx",
+      "listener-cleanup.test.tsx",
+      "qa-snapshot.test.ts",
+      "worker.test.ts",
+      "markdown-regions.test.ts",
+      "diagram-host.test.ts",
+      "pinch-zoom.test.tsx",
+      "section-map.test.ts",
+      "appearance-contrast.test.ts",
+      "html-boundary.test.ts",
+      "qa-adapters.test.ts",
+      "prototype-controller.test.ts",
+      "html-controller.test.ts",
+      "prototype-boundary.test.ts",
+      "middle-filename.test.ts",
+      "qa-bootstrap.test.ts",
+      "refresh-state.test.ts",
+      "document-identity.test.ts",
+      "edit-state.test.ts"
+    ]
+  },
+  "full-suite-before-2": {
+    "total": 711,
+    "passed": 711,
+    "failed": 0,
+    "close_suite_ms": 11167.7939453125,
+    "first_eight": [
+      {
+        "name": "quit: Cancel",
+        "status": "passed",
+        "duration_ms": 461.801208
+      },
+      {
+        "name": "quit: Keep draft",
+        "status": "passed",
+        "duration_ms": 443.8477499999999
+      },
+      {
+        "name": "quit: Discard",
+        "status": "passed",
+        "duration_ms": 448.46904100000006
+      },
+      {
+        "name": "quit: Save to file",
+        "status": "passed",
+        "duration_ms": 475.8870840000002
+      },
+      {
+        "name": "window: Cancel",
+        "status": "passed",
+        "duration_ms": 445.79224999999997
+      },
+      {
+        "name": "window: Keep draft",
+        "status": "passed",
+        "duration_ms": 414.22183300000006
+      },
+      {
+        "name": "window: Discard",
+        "status": "passed",
+        "duration_ms": 443.7924170000001
+      },
+      {
+        "name": "window: Save to file",
+        "status": "passed",
+        "duration_ms": 452.7615000000005
+      }
+    ],
+    "file_order": [
+      "workspace-handoff.test.tsx",
+      "workspace-layout.test.tsx",
+      "approved-navigation.test.tsx",
+      "session.test.tsx",
+      "close-edit.test.tsx",
+      "edit-flow.test.tsx",
+      "refresh-conflict.test.tsx",
+      "reveal-file.test.tsx",
+      "workspace.test.tsx",
+      "html-integration.test.tsx",
+      "image-refresh.test.tsx",
+      "document-select-all.test.tsx",
+      "find.test.tsx",
+      "appearance-operations.test.tsx",
+      "native-entry.test.tsx",
+      "automatic-refresh.test.tsx",
+      "prototype-integration.test.tsx",
+      "new-markdown.test.tsx",
+      "refresh-recovery.test.tsx",
+      "html-unavailable.test.tsx",
+      "manual-reload.test.tsx",
+      "large-source.test.tsx",
+      "rich-range.test.tsx",
+      "folder-search.test.tsx",
+      "recents.test.tsx",
+      "settings-window.test.tsx",
+      "rich-section.test.tsx",
+      "html-view.test.tsx",
+      "appearance.test.tsx",
+      "section-context-menu.test.tsx",
+      "recovery.test.tsx",
+      "windows-platform.test.tsx",
+      "image-view.test.tsx",
+      "markdown.test.tsx",
+      "bounded-parser.test.ts",
+      "loading-system.test.tsx",
+      "settings-owner.test.tsx",
+      "section-editing.test.tsx",
+      "diagram-block.test.tsx",
+      "settings-owner-lifecycle.test.tsx",
+      "reading-settings.test.tsx",
+      "find-index.test.ts",
+      "settings-initial-effect.test.tsx",
+      "appearance-editor.test.tsx",
+      "code-block.test.tsx",
+      "action-menu.test.tsx",
+      "frontmatter.test.tsx",
+      "block-budget.test.ts",
+      "heading-model.test.tsx",
+      "reload-feedback.test.tsx",
+      "zoom-geometry.test.tsx",
+      "listener-cleanup.test.tsx",
+      "qa-snapshot.test.ts",
+      "worker.test.ts",
+      "markdown-regions.test.ts",
+      "pinch-zoom.test.tsx",
+      "diagram-host.test.ts",
+      "section-map.test.ts",
+      "appearance-contrast.test.ts",
+      "prototype-controller.test.ts",
+      "qa-adapters.test.ts",
+      "html-controller.test.ts",
+      "html-boundary.test.ts",
+      "prototype-boundary.test.ts",
+      "qa-bootstrap.test.ts",
+      "middle-filename.test.ts",
+      "refresh-state.test.ts",
+      "document-identity.test.ts",
+      "edit-state.test.ts"
+    ]
+  },
+  "predecessor-replay": {
+    "total": 56,
+    "passed": 56,
+    "failed": 0,
+    "close_suite_ms": 16963.975341796875,
+    "first_eight": [
+      {
+        "name": "quit: Cancel",
+        "status": "passed",
+        "duration_ms": 571.023458
+      },
+      {
+        "name": "quit: Keep draft",
+        "status": "passed",
+        "duration_ms": 559.7800420000001
+      },
+      {
+        "name": "quit: Discard",
+        "status": "passed",
+        "duration_ms": 577.3372499999998
+      },
+      {
+        "name": "quit: Save to file",
+        "status": "passed",
+        "duration_ms": 586.9945419999999
+      },
+      {
+        "name": "window: Cancel",
+        "status": "passed",
+        "duration_ms": 450.3406250000003
+      },
+      {
+        "name": "window: Keep draft",
+        "status": "passed",
+        "duration_ms": 513.4086249999996
+      },
+      {
+        "name": "window: Discard",
+        "status": "passed",
+        "duration_ms": 577.4909999999995
+      },
+      {
+        "name": "window: Save to file",
+        "status": "passed",
+        "duration_ms": 598.7762499999999
+      }
+    ],
+    "file_order": [
+      "workspace-handoff.test.tsx",
+      "refresh-conflict.test.tsx",
+      "close-edit.test.tsx"
+    ]
+  }
+}

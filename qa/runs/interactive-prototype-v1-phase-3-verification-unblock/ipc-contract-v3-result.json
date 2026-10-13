@@ -1,0 +1,22 @@
+{
+  "name": "ipc-contract-v3",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--features",
+    "settings-contract-tests",
+    "--lib",
+    "command_args::tests"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "environment_overrides": {},
+  "started_at": "2026-10-12T04:07:23.322247+00:00",
+  "finished_at": "2026-10-12T04:07:45.883517+00:00",
+  "exit_code": 0,
+  "log": "ipc-contract-v3.log",
+  "tested_snapshot": "tested-snapshot-v3.json"
+}

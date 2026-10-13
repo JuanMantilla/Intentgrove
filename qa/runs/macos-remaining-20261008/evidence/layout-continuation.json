@@ -1,0 +1,46 @@
+{
+  "status": "PARTIAL",
+  "authorization": "User explicitly requested AppleScript for exact window sizing",
+  "process": 6890,
+  "build": "isolated default",
+  "measurements": {
+    "enReader640": [
+      640,
+      900
+    ],
+    "enReader900": [
+      900,
+      900
+    ],
+    "enReader1440": [
+      1440,
+      900
+    ],
+    "esReader640": [
+      640,
+      900
+    ],
+    "esReader900": [
+      900,
+      900
+    ],
+    "esReader1440": [
+      1440,
+      900
+    ],
+    "esSettings640": [
+      640,
+      900
+    ],
+    "esSettings900": [
+      900,
+      900
+    ],
+    "esSettings1440": [
+      1440,
+      900
+    ]
+  },
+  "method": "System Events window size in logical points; captures DPR2. Separate position operation needed before 1440 because immediate size was screen-edge constrained. Failed constrained attempts excluded.",
+  "pending": "Complete all per-surface EN/ES widths, focus and Reduce Motion checks; screenshots alone are not full contract."
+}

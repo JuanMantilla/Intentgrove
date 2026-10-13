@@ -1,5 +1,7 @@
 # Approval record
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](current-version-acceptance-20261010.md).
+
 Confirmed source: the user's numbered answers establish the product requirements
 and approval boundary recorded in `docs/product-brief.md`. They do not approve a
 formal feature specification, visual mockup or technical plan that did not yet exist.
@@ -249,3 +251,52 @@ in [the brand decision](brand.md). The confirmed purpose is reading, organizing,
 and refining documents exchanged with AI. Existing technical identifiers and
 stored-data locations are preserved. Historical approval artifacts remain
 unchanged; this decision does not add AI model integration or authorize publishing.
+
+
+## macOS continuation — approved 2026-10-08
+
+User: **“I approve everything, make sure it's stated in the relevant documents”**, replying to the scoped approval explanation. [Canonical scope](macos-continuation-approval-20261008.md), [exact reviewed hashes/statement](macos-continuation-approval-20261008.json), [unchanged approval-time snapshots](approval-records/macos-continuation-20261008/).
+
+Approves disposable blob-frame isolation probe, audited exact Mermaid11.17.2/project lockfile installation and isolated Applications install/update acceptance. Supersedes earlier dependency/install exclusions for those actions only. Keep production isolation/proof gates, user data and OS security intact. Unseen killable-process architecture still requires a concrete amendment/approval if iframe fails. Release credentials/notarization/publication/deployment-target changes/security changes/commit/push remain excluded. Approval is not execution or acceptance; unavailable environments and prior update-package prerequisites remain.
+
+
+## Sandboxed diagram renderer approved — 2026-10-08
+
+User: **“Approve the amendment and exact dependency remedy”**. [Exact reviewed artifact/hash and unchanged snapshot](renderer-process-approval-20261008.json) approves the [concrete helper amendment](../specs/008-rich-reading/renderer-process-amendment-20261008.md), with prototype isolation/termination gates before production integration and audited exact KaTeX0.18.2 override retaining Mermaid11.17.2. Existing release/security/data restrictions remain. Approval does not establish execution or acceptance.
+
+
+## No-network helper engine correction approved — 2026-10-08
+
+User: **“Approve the engine addendum and proof-gated integration”**. [Exact artifact/hash/snapshot](renderer-engine-approval-20261008.json) approves the [WebKitLegacy helper addendum](../specs/008-rich-reading/renderer-engine-addendum-20261008.md). Preserve no-network App Sandbox and all original limits; integration requires actual proof. No OS security/release/account changes authorized.
+
+
+## Current approval reconciliation -2026-10-08
+
+Recorded renderer-process/engine approvals and exact Mermaid11.17.2/KaTeX0.18.2 remedy supersede their historical pending labels within exact scope only. Additional source-map-js1.2.2 override remains NOT approved/applied; concrete proposal: ../qa/runs/macos-completion-20261008/dependency-source-map-proposal/proposal.md. Applications install/update is authorized on a disposable account/host with rollback; prerequisites remain missing. Approval is not acceptance. Current report: ../qa/runs/macos-completion-20261008/report.md. Original reviewed snapshots/hashes are preserved.
+
+
+## Exact source-map remedy approved — 2026-10-08
+
+User: **“Approve the exact remedy”**, replying to the concrete source-map-js1.2.2 proposal. [Reviewed hash and preserved snapshot](source-map-remedy-approval-20261008.json). Authorizes the exact override, corresponding lockfile update, audit, archive/rebuild and retest. Supersedes the pending source-map approval above only. Existing data/security/release restrictions remain. Approval is not verification.
+
+## Markdown default opt-in — 2026-10-10
+
+User explicitly approved the specification, prompt design and implementation plan and requested T-D01–T-D07. All four reviewed SHA-256 values matched before implementation. [Immutable artifact hashes and exact approval](../specs/012-macos-delivery/default-markdown-20261010/approval.json). Scope excludes automated real Markdown default changes and installation/publication/dependencies/privilege changes/commit/push. Prior current-version acceptance remains historical.
+
+## Every-launch Markdown default check — 2026-10-10
+
+The user explicitly requested checking on every opening and asking when Intentgrove is not the Markdown default. This supersedes permanent response-based suppression in the earlier review set. [Concrete scoped amendment](../specs/012-macos-delivery/default-markdown-20261010/every-launch-amendment.md) and [recorded authority/hash](../specs/012-macos-delivery/default-markdown-20261010/evidence/every-launch/authorization.json). Consent/identity/type safety and other approvals remain unchanged; no installation or real defaults changes during automation authorized.
+
+## 2026-10-10 — automatic native file opening
+
+User requested automatic opening and explicitly chose new/focused tabs, workspace and draft preservation, and all supported files including drops. Scoped authority and implementation plan: [amendment](../specs/012-macos-delivery/automatic-native-open-20261010/amendment.md). No installation or real default changes authorized.
+
+Automatic-open evidence records the explicit user answers in [authority.json](../specs/012-macos-delivery/automatic-native-open-20261010/authority.json); its scope hash is traceability for the generated amendment, not a claim of later user artifact review.
+
+## Individual-file local links — approved 2026-10-10
+
+User: **“I approve it, please implement anything necessary”**, replying to the implemented local-link handoff. [Exact statement and reviewed artifact hashes](../os-engineering/individual-links-20261010/native-approval/approval.json) records the F001 scoped specification/plan/report approval. Necessary local macOS builds/package checks completed; no additional application code was required. [Packaging handoff and actual native GUI blocker](../os-engineering/individual-links-20261010/native-approval/report.md). Approval is not a claim of unavailable native GUI success or permission to alter OS protections, overwrite user work, publish or commit.
+
+## Bounded New Markdown native integration — authorized 2026-10-11
+
+User explicitly invoked os-senior-expert IMPLEMENT and stated: “I approve and authorize the bounded native integration described in: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/new-markdown-20261011-native-request.md”. The turn also authorizes the minimum Windows section-edit/save/recovery lifecycle, requires separate platform evidence and final frontend handoff, and excludes dependencies, privileges, installation/signing/publication/deployment/commit/push and deletion of existing artifacts. Exact statement, scope and request/report/prior-approval hashes: /Users/juanmantilla/projects/personal/md-reader/os-engineering/new-markdown-20261011/authorization.json. Prior approvals and Option B selection remain unchanged. Windows data-preservation and runtime proof gates are retained; authorization is not support verification or final user acceptance. Handoff and remaining platform boundary: /Users/juanmantilla/projects/personal/md-reader/os-engineering/new-markdown-20261011/frontend-handoff.md and /Users/juanmantilla/projects/personal/md-reader/os-engineering/new-markdown-20261011/windows-continuation.md.

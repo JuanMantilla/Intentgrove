@@ -1,0 +1,148 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: explicit-after-delete.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-delete.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selectable) root-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+				20 container
+					21 tab (selectable) opened-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+					22 button Close tab: opened-after-rename.md, Help: Close tab
+				23 container
+					24 tab (selectable) opened-after-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-delete.md
+					25 button Close tab: opened-after-delete.md, Help: Close tab
+				26 container
+					27 tab (selectable) opened-after-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace.md
+					28 button Close tab: opened-after-replace.md, Help: Close tab
+				29 container
+					30 tab (selectable) opened-before-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-rename.md
+					31 button Close tab: opened-before-rename.md, Help: Close tab
+				32 container
+					33 tab (selectable) opened-before-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-delete.md
+					34 button Close tab: opened-before-delete.md, Help: Close tab
+				35 container
+					36 tab (selectable) opened-before-replace.md · Unsaved · This file changed in another app. Your edit is safe., Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace.md
+					37 button Close tab: opened-before-replace.md, Help: Close tab
+				38 container
+					39 tab (selectable) one.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/one.md
+					40 button Close tab: one.md, Help: Close tab
+				41 container
+					42 tab (selectable) two.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/two.md
+					43 button Close tab: two.md, Help: Close tab
+				44 container
+					45 tab (selectable) explicit-dirty.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-dirty.md
+					46 button Close tab: explicit-dirty.md, Help: Close tab
+				47 container
+					48 tab (selectable) explicit-missing.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-missing.md
+					49 button Close tab: explicit-missing.md, Help: Close tab
+				50 container
+					51 tab (selectable) explicit-before-rename.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-rename.md
+					52 button Close tab: explicit-before-rename.md, Help: Close tab
+				53 container
+					54 tab (selectable) explicit-before-delete.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-delete.md
+					55 button Close tab: explicit-before-delete.md, Help: Close tab
+				56 container
+					57 tab (selectable) explicit-before-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-before-replace.md
+					58 button Close tab: explicit-before-replace.md, Help: Close tab
+				59 container
+					60 tab (selectable) explicit-after-rename.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-rename.md
+					61 button Close tab: explicit-after-rename.md, Help: Close tab
+				62 container
+					63 tab (selectable) explicit-after-delete.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-delete.md
+					64 button Close tab: explicit-after-delete.md, Help: Close tab
+				65 container
+					66 tab (selected) explicit-after-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-after-replace.md
+					67 button Close tab: explicit-after-replace.md, Help: Close tab
+			68 pop up button Go menu
+			69 button (collapsed) Open documents (18), Secondary Actions: Expand
+			70 container Explorer
+				71 pop up button PROJECTS
+				72 button Close Projects sidebar
+				73 button Open file
+				74 button Open folder
+				75 button Search folder
+				76 text fixtures
+				77 container
+					78 button active.md
+					79 button fresh.md
+					80 button inactive.md
+					81 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					82 button opened-after-rename-moved.md
+					83 button opened-after-replace-original.md
+					84 button opened-after-replace.md
+					85 button opened-before-rename-moved.md
+					86 button opened-before-replace-original.md
+					87 button opened-before-replace.md
+					88 button root-dirty.md
+					89 button root-missing-moved.md
+					90 button sentinel.md
+					91 button unopened-after-rename-moved.md
+					92 button unopened-after-replace-original.md
+					93 button unopened-after-replace.md
+					94 button unopened-before-rename-moved.md
+					95 button unopened-before-replace-original.md
+					96 button unopened-before-replace.md
+				97 text Storage and recovery
+				98 text Open edits and recovery offers: 2
+				99 button Manage…
+				100 button Settings…
+			101 container
+				102 menu Secondary Actions: Cancel
+					103 (selected) Reveal in Finder
+					104 Copy path
+					105 Close tab: explicit-after-rename.md
+					106 Close other tabs
+					107 Close tabs to the right
+					108 Reload explicit-after-rename.md
+				109 container explicit-after-replace.md
+					110 container explicit-after-replace.md
+						111 text explicit-after-replace.md
+					112 button Find in document
+					113 toggle button Outline, Value: on
+					114 button (collapsed) Reading settings, Secondary Actions: Expand
+					115 button Edit section
+					116 summary Document…, Value: off
+						117 text Document…
+					118 text Outside the open folder
+				119 container explicit-after-replace.md
+					120 container explicit-after-replace.md
+						121 container Edit section: explicit-after-replace.md
+							122 heading explicit-after-replace.md, Value: 1
+								123 text explicit-after-replace.md
+							124 button Edit section “explicit-after-replace.md”
+						125 text Original explicit saved bytes.
+				126 container Outline
+					127 text OUTLINE
+					128 button Close outline
+					129 container Outline
+						130 content list
+							131 button explicit-after-replace.md
+			132 container
+				133 text Current on disk Intentgrove by Theonira
+	134 close button
+	135 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	136 minimize button
+	137 text Intentgrove Reveal Retest
+138 menu bar
+	139 Intentgrove Reveal Retest
+	140 File
+	141 Edit
+	142 View
+	143 Go
+	144 Window
+	145 Help

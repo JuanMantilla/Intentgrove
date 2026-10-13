@@ -1,0 +1,69 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text fixtures
+				10 button Project tree settings
+				11 container
+					12 button edit-proof.md
+					13 button lifecycle.md
+					14 button linked.md
+					15 button permission.md
+					16 button plain.md
+					17 button qa-image.png
+					18 button rich.md
+					19 button search-navigation.md
+				20 text Storage and recovery
+				21 text Open edits and recovery offers: 0
+				22 button Manage…
+			23 container
+				24 container Visited files
+					25 button (disabled) Back, Help: No previous file
+					26 button (disabled) Forward, Help: No next file
+				27 tab group (selectable) Documents
+					28 container
+						29 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						30 button Close tab: search-navigation.md, Help: Close tab
+					31 container
+						32 tab (selected) permission.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+						33 button Close tab: permission.md, Help: Close tab
+				34 pop up button Go menu
+				35 button (collapsed) Open documents (2), Secondary Actions: Expand
+				36 container permission.md
+					37 text permission.md
+					38 text Folder root
+					39 toggle button Outline, Value: off
+					40 button (collapsed) Reading settings, Secondary Actions: Expand
+					41 button Edit section
+					42 summary Document…, Value: off
+						43 text Document…
+				44 container permission.md
+					45 container Permission proof
+						46 container Edit section: Permission proof
+							47 heading Permission proof, Value: 1
+								48 text Permission proof
+							49 button Edit section “Permission proof”
+						50 text FINAL_REPEAT_cmdq_save_10
+						51 container Edit section: Following section
+							52 heading Following section, Value: 2
+								53 text Following section
+							54 button Edit section “Following section”
+						55 text PERMISSION_FOLLOWING_UNCHANGED
+	56 close button
+	57 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	58 minimize button
+	59 text Intentgrove
+60 menu bar
+	61 Intentgrove
+	62 File
+	63 Edit
+	64 View
+	65 Go
+	66 Window
+	67 Help

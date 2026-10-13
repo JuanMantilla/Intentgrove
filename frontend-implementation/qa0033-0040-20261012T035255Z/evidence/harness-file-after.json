@@ -1,0 +1,26 @@
+{
+  "id": "harness-file-after",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--dir",
+    "tests",
+    "tests/ui/new-markdown.test.tsx"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T04:07:23.645062+00:00",
+  "load_before": [
+    15.96044921875,
+    22.7421875,
+    16.9775390625
+  ],
+  "exit_code": 0,
+  "finished_at": "2026-10-12T04:07:35.830440+00:00",
+  "load_after": [
+    17.0302734375,
+    22.6279296875,
+    17.0361328125
+  ],
+  "log": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/evidence/logs/harness-file-after.log"
+}

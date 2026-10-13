@@ -1,0 +1,47 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/lib.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/lib.rs
+@@ -4,8 +4,13 @@
+ mod acceptance_harness;
+ mod assets;
+ mod default_markdown;
++#[cfg(feature = "document-contract-tests")]
++#[doc(hidden)]
++pub mod document_contract_tests;
++mod document_view;
+ mod html;
+ mod platform;
++mod prototype;
+ #[cfg(all(feature = "html-native-probe", target_os = "macos"))]
+ pub use html::probe_run;
+ mod creation;
+@@ -608,8 +613,12 @@
+                 return true;
+             };
+             let handler: fn(tauri::ipc::Invoke) -> bool = tauri::generate_handler![
+-                html::commands::open_local_view,
+-                html::commands::cancel_html_open,
++                document_view::open_local_view,
++                prototype::commands::get_prototype_document,
++                prototype::commands::reload_prototype_document,
++                prototype::commands::dispose_prototype_document,
++                prototype::commands::release_prototype_grant,
++                document_view::cancel_html_open,
+                 html::commands::mount_html_view,
+                 html::commands::update_html_viewport,
+                 html::commands::get_html_state,
+@@ -886,6 +895,7 @@
+                 }
+                 window.state::<refresh::RefreshService>().suspend_watches();
+                 html::dispose_all();
++                let _ = window.state::<state::AppState>().unload_prototypes();
+                 window.state::<diagram::DiagramState>().cancel_all();
+             }
+         })
+@@ -916,6 +926,7 @@
+             }
+             if matches!(event, tauri::RunEvent::Exit) {
+                 html::dispose_all();
++                let _ = app.state::<state::AppState>().unload_prototypes();
+                 app.state::<diagram::DiagramState>().cancel_all();
+                 app.state::<refresh::RefreshService>().stop();
+             }

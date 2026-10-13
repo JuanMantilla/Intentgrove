@@ -1,0 +1,11 @@
+# Option B integration evidence index
+
+Canonical tested inputs: /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/new-markdown-integration-20261011/tested-snapshot-v6.json; scope includes frontend sources/assets/tests/config and explicit renderer inputs, not whole repository/native source certification.
+
+Final verification: tests-v6-isolated.log (588/65 PASS), build-v6.log (PASS), diff-check-v6.log (PASS), input-integrity-final.json (no drift), coverage.json (exact scope/time/limits). Earlier tests-final.log/tests-v6.log timeout failures and successful tests-final-retry.log are historical, retained; no assertion/deadline changes.
+
+Renderer inputs: render-matrix.html, renderer-mock.html, renderer-mock.tsx. Actual App with MOCKED native bridge; no production import. Canonical captures: six *-wide-dialog-vfinal.png and six *-wide-editor-vfinal.png; six *-narrow-dialog-v6.png and six *-narrow-editor-v6.png. render-matrix-final.json records measured dimensions/locale/requested and resolved theme. visual-review.json records scope/adaptations/fixes. Earlier narrow vfinal/v5 images show the defects and are superseded, not removed. browser-keyboard-limitations.json distinguishes tool limitations and mocked Save evidence.
+
+Native inputs/builds: native-dev-config.json, native-dev.log, native-dev-explicit-bin.log, native-embedded-build.log; local test wrapper Intentgrove New Markdown Test.app and native-candidate.json (binary/assets hashes). Earlier native candidate only; final watcher-return and narrow CSS refinements were not rebuilt for native UI certification. native-picker-disabled.png, native-form-retained.txt and native-observations.json record bounded native results/blocker. native-before.json/native-after.json prove disposable fixture bytes/names unchanged. Existing native handoff library filesystem evidence is separate and was not rerun here.
+
+Final report /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/new-markdown-integration-20261011-report.md; authority authorization-continuation.json references preserved original approvals/design hashes. All current evidence, reproductions, fixtures, local test artifacts and historical reports retained. AWAITING_ACCEPTANCE; no DONE_ACCEPTED, cleanup worker or deletion.

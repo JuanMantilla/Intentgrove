@@ -1,0 +1,87 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: active.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) active.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Close tab: active.md, Help: Close tab
+				17 container
+					18 tab (selected) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Close tab: inactive.md, Help: Close tab
+			20 pop up button Go menu
+			21 button (collapsed) Open documents (2), Secondary Actions: Expand
+			22 container Explorer
+				23 pop up button PROJECTS
+				24 button Close Projects sidebar
+				25 button Open file
+				26 button Open folder
+				27 button Search folder
+				28 text fixtures
+				29 container
+					30 button active.md
+					31 button delete.md
+					32 button inactive.md
+					33 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					34 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					35 button rename.md
+					36 button replace.md
+					37 button unopened.md
+				38 text Storage and recovery
+				39 text Open edits and recovery offers: 0
+				40 button Manage…
+				41 button Settings…
+			42 container
+				43 menu Secondary Actions: Cancel
+					44 (selected) Open café "quote" 'single' $ & # % (draft),.md
+					45 Reveal in Finder
+					46 Copy path
+					47 Reload café "quote" 'single' $ & # % (draft),.md
+				48 container inactive.md
+					49 container inactive.md
+						50 text inactive.md
+					51 button Find in document
+					52 toggle button Outline, Value: on
+					53 button (collapsed) Reading settings, Secondary Actions: Expand
+					54 button Edit section
+					55 summary Document…, Value: off
+						56 text Document…
+					57 text Folder root
+				58 container inactive.md
+					59 container QA inactive.md
+						60 container Edit section: QA inactive.md
+							61 heading QA inactive.md, Value: 1
+								62 text QA inactive.md
+							63 button Edit section “QA inactive.md”
+						64 text Disposable Reveal fixture.
+				65 container Outline
+					66 text OUTLINE
+					67 button Close outline
+					68 container Outline
+						69 content list
+							70 button QA inactive.md
+			71 container
+				72 text Current on disk Intentgrove by Theonira
+	73 close button
+	74 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	75 minimize button
+	76 text Intentgrove Reveal QA
+77 menu bar
+	78 Intentgrove Reveal QA
+	79 File
+	80 Edit
+	81 View
+	82 Go
+	83 Window
+	84 Help

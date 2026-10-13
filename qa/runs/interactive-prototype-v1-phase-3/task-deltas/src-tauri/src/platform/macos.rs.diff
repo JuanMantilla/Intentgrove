@@ -1,0 +1,20 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/platform/macos.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/platform/macos.rs
+@@ -217,6 +217,8 @@
+             "directory"
+         } else if file_type == libc::S_IFREG && markdown_name(name) {
+             "markdown"
++        } else if file_type == libc::S_IFREG && crate::scope::prototype_name(name) {
++            "prototype"
+         } else if file_type == libc::S_IFREG && crate::scope::html_name(name) {
+             "html"
+         } else if file_type == libc::S_IFREG && image_format(name).is_some() {
+@@ -326,6 +328,8 @@
+             "directory"
+         } else if file_type == libc::S_IFREG && markdown_name(name) {
+             "markdown"
++        } else if file_type == libc::S_IFREG && crate::scope::prototype_name(name) {
++            "prototype"
+         } else if file_type == libc::S_IFREG && crate::scope::html_name(name) {
+             "html"
+         } else if file_type == libc::S_IFREG && image_format(name).is_some() {

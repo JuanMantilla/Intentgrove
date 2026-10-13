@@ -1,15 +1,4 @@
-#[path = "../src/platform/mod.rs"]
-mod platform;
-#[path = "../src/document.rs"]
-mod document;
-#[path = "../src/listing.rs"]
-mod listing;
-#[path = "../src/refresh.rs"]
-mod refresh;
-#[path = "../src/scope.rs"]
-mod scope;
-#[path = "../src/state.rs"]
-mod state;
+use md_reader_lib::document_contract_tests::{document, platform, refresh, state};
 
 use document::read_document_impl;
 use refresh::{run_reload, RefreshCore, RefreshNotice, ReloadTarget, ReloadUpdate};

@@ -1,0 +1,855 @@
+--- baseline/src/app/App.tsx
++++ src/app/App.tsx
+@@ -1,3 +1,6 @@
++import WorkspaceIcon from "./WorkspaceIcon";
++import theoniraLight from "../assets/theonira/theonira-mark-light.png";
++import theoniraDark from "../assets/theonira/theonira-mark-dark.png";
+ import { workspaceLayout as resolveWorkspaceLayout, type WorkspaceLayout } from "./workspaceLayout";
+ import { commandPressed, shortcutHint, editingAvailable, isWindows } from "./platform";
+ import { isTauri } from "@tauri-apps/api/core";
+@@ -2943,7 +2946,7 @@
+                       ? void openImage({ rootId: root.id, segments: path }, { name: entry.name, path: path.join("/") })
+                     : setNotice(noticeLocale => t(noticeLocale, "unsupported"))}
+               >
+-                <span className="tree-icon" aria-hidden="true">{isFolder ? expanded ? "⌄" : "›" : entry.kind === "markdown" ? "◇" : entry.kind === "image" ? "▧" : "·"}</span>
++                <span className="tree-icon" aria-hidden="true"><WorkspaceIcon name={isFolder ? expanded ? "folder-open" : "folder" : entry.kind === "image" ? "image" : "file-text"} /></span>
+                 <span className="tree-name">{entry.name}</span>
+               </button>
+ 
+@@ -2985,6 +2988,19 @@
+       ? `${label}: ${destination.target.name} · ${destination.target.displayPath}` : label;
+   }
+ 
++  async function selectDocument(tab: Tab) {
++    const sequence = ++openSequence.current;
++    const previous = activeIdRef.current && htmlHandles.current.get(activeIdRef.current);
++    if (previous) { await previous.capture().catch(() => {}); await previous.hide().catch(() => {}); }
++    if (sequence === openSequence.current) { activeIdRef.current = tab.id; setActiveId(tab.id); }
++  }
++
++  function showFolderSearch() {
++    setFolderSearchScope([]); setSidebarOpen(true);
++    if (compactSidebar) setCompactSidebarOpen(true);
++    setSidebarPanel("search");
++  }
++
+   const closingEditIds = !closeIntent ? []
+     : closeIntent.kind === "app" || closeIntent.kind === "window" || closeIntent.kind === "folder"
+       ? Object.keys(edits)
+@@ -2993,43 +3009,48 @@
+     || tabs.find(tab => tab.id === id)?.freshness === "conflict");
+ 
+   return (
+-    <div className="app-shell" data-workspace-layout={layout}>
+-      {!isTauri() && <header ref={toolbarRef} className="toolbar">
+-        <button ref={sidebarTriggerRef} className="icon-button" type="button" onClick={toggleSidebar}
+-          title={t(locale, "toggleSidebar")} aria-label={t(locale, "toggleSidebar")}>☰</button>
+-        <span className="workspace-title">{root?.name ?? t(locale, "workspace")}</span>
+-        <span className="toolbar-spacer" />
+-        <span className="local-badge">{t(locale, "localOnly")}</span>
+-        {!active && <div className="toolbar-group">
+-          <button type="button" disabled>{t(locale, "outline")}</button>
+-          <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-            onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
+-        </div>}
+-        {isTauri() ? <button type="button" onClick={() => openSettings("General")}>{locale === "es" ? "Ajustes" : "Settings"}</button> : <div className="toolbar-group">
+-        <label className="appearance-control">
+-          <span>{t(locale, "appearance")}</span>
+-          <select aria-label={t(locale, "appearance")} value={appearance.preference}
+-            onChange={(event) => appearance.applyPreference(event.target.value as AppearanceMode)}>
+-            <option value="system">{t(locale, "appearanceSystem")}</option>
+-            <option value="light">{t(locale, "appearanceLight")}</option>
+-            <option value="dark">{t(locale, "appearanceDark")}</option>
+-          </select>
+-        </label>
+-        <label className="language-control">
+-          <span>{t(locale, "language")}</span>
+-          <select aria-label={t(locale, "language")} value={locale} onChange={(event) => setLocale(event.target.value as Locale)}>
+-            <option value="en">English</option>
+-            <option value="es">Español</option>
+-          </select>
+-        </label>
+-        </div>}
+-        {!root && <div className="toolbar-group">
+-        <button type="button" onClick={() => void chooseFile()} disabled={busy}>{t(locale, "openFile")}</button>
+-        <button className={root ? undefined : "primary-button"} type="button" onClick={() => void chooseFolder()} disabled={busy}>
+-          {t(locale, "openFolder")}
+-        </button>
+-        </div>}
+-      </header>}
++    <div className="app-shell" data-workspace-layout={layout} data-narrow={narrowWorkspace} data-sidebar-visible={sidebarVisible} data-editing={Boolean(activeEdit && !activeEdit.paused)}>
++      <header ref={toolbarRef} className="app-header">
++        <div className="global-header">
++          <div className="theonira-wordmark"><img src={appearance.resolved === "dark" ? theoniraDark : theoniraLight} alt="" />
++            <strong>Theonira</strong><span className="product-name">/ Intentgrove</span></div>
++          <div className="global-utilities">
++            <span className="local-badge"><WorkspaceIcon name="shield-check" />{t(locale, "localOnly")}</span>
++            {isTauri() ? <>
++              <button type="button" className="utility-button" aria-label={t(locale, "appearance")}
++                title={t(locale, "appearance")} onClick={() => appearance.applyPreference(appearance.resolved === "dark" ? "light" : "dark")}>
++                <WorkspaceIcon name={appearance.resolved === "dark" ? "moon" : "sun"} /></button>
++              <label className="global-language"><span className="sr-only">{t(locale, "language")}</span>
++                <select aria-label={t(locale, "language")} value={locale} onChange={event => setLocale(event.target.value as Locale)}>
++                  <option value="en">EN</option><option value="es">ES</option>
++                </select><WorkspaceIcon name="chevron-down" /></label>
++              <button type="button" className="utility-button" aria-label={locale === "es" ? "Ajustes" : "Settings"}
++                onClick={() => openSettings("General")}><WorkspaceIcon name="settings-2" /></button>
++            </> : <div className="toolbar-group">
++              <label className="appearance-control"><span>{t(locale, "appearance")}</span>
++                <select aria-label={t(locale, "appearance")} value={appearance.preference}
++                  onChange={event => appearance.applyPreference(event.target.value as AppearanceMode)}>
++                  <option value="system">{t(locale, "appearanceSystem")}</option><option value="light">{t(locale, "appearanceLight")}</option><option value="dark">{t(locale, "appearanceDark")}</option>
++                </select></label>
++              <label className="language-control"><span>{t(locale, "language")}</span>
++                <select aria-label={t(locale, "language")} value={locale} onChange={event => setLocale(event.target.value as Locale)}>
++                  <option value="en">English</option><option value="es">Español</option>
++                </select></label>
++            </div>}
++          </div>
++        </div>
++        <div className="workspace-toolbar">
++          <button ref={sidebarTriggerRef} className="ghost-button explorer-toggle" type="button" onClick={toggleSidebar}
++            aria-label={t(locale, "toggleSidebar")} aria-expanded={sidebarVisible}><WorkspaceIcon name="panel-left" />{t(locale, "explorer")}</button>
++          <strong className="workspace-title">{root?.name ?? t(locale, "workspace")}</strong>
++          <div className="workspace-toolbar-actions">
++            <button type="button" onClick={() => void chooseFile()} disabled={busy}><WorkspaceIcon name="file-text" />{t(locale, "openFile")}</button>
++            <button type="button" onClick={() => void chooseFolder()} disabled={busy}><WorkspaceIcon name="folder-open" />{t(locale, "openFolder")}</button>
++            <button type="button" className="ghost-button" onClick={openFind} disabled={!active || active.kind === "image"}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>
++          </div>
++          {!active && !isTauri() && <button ref={settingsTriggerRef} type="button" onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>}
++        </div>
++      </header>
+ 
+       {settingsOverlay.shown && <section id="reading-settings-panel" className="reading-settings-panel"
+         data-closing={settingsOverlay.closing} inert={settingsOverlay.closing}
+@@ -3069,6 +3090,110 @@
+       </div>}
+ 
+       <div className="workspace-layout">
++        <div className="compact-projects" hidden={layout !== "atlas" || !narrowWorkspace}>
++          <button type="button" aria-expanded={sidebarVisible} onClick={toggleSidebar}><WorkspaceIcon name="folder" />{t(locale, "projects")}<WorkspaceIcon name="chevron-down" /></button>
++          <span>{root?.name}</span>
++        </div>
++          <div className="document-tabs">
++          <div className="history-controls" role="group" aria-label={t(locale, "visitHistory")}>
++            {([-1, 1] as const).map((direction) => {
++              const cursor = direction === -1 && !active ? history.cursor : history.cursor + direction;
++              const destination = history.entries[cursor];
++              const label = t(locale, direction === -1 ? "historyBack" : "historyForward");
++              const reason = t(locale, direction === -1 ? "historyNoPrevious" : "historyNoNext");
++              return <button key={direction} type="button" className="history-arrow" aria-label={label}
++                disabled={historyBusy || !destination || (direction === 1 && !active)}
++                aria-description={historyBusy ? t(locale, "loading") : destination
++                  ? `${destination.target.name} · ${destination.target.displayPath}` : reason}
++                title={destination ? `${label}: ${destination.target.name}\n${destination.target.displayPath}` : reason}
++                onContextMenu={(event) => { event.preventDefault(); setHistoryDirection(direction); showHtmlOverlay(()=>setHistoryOpen(true)); }}
++                onClick={() => void traverseHistory(cursor)}>
++                <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
++                  <path d={direction === -1 ? "M9 0 L3 6 L9 12" : "M3 0 L9 6 L3 12"}
++                    fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
++                </svg>
++              </button>;
++            })}
++          </div><div className="tab-strip" role="tablist" aria-label={t(locale, "documents")}>
++            {tabs.map((tab) => {
++              const parent = distinguishingParent(tab, tabs);
++              return (
++                <div className={`tab ${tab.id === activeId ? "active" : ""}`} key={tab.id}
++                  draggable onDragStart={() => { draggedTab.current = tab.id; }}
++                  onDragEnd={() => { draggedTab.current = null; }}
++                  onDragOver={(event) => { if (draggedTab.current) event.preventDefault(); }}
++                  onDrop={(event) => {
++                    if (!draggedTab.current) return;
++                    event.preventDefault();
++                    moveTab(draggedTab.current, tabs.findIndex((item) => item.id === tab.id));
++                    draggedTab.current = null;
++                  }}>
++                  <button type="button" role="tab" data-tab-id={tab.id} aria-selected={tab.id === activeId}
++                    disabled={historyBusy}
++                    aria-label={[tab.name, parent, documentStatus(tab)].filter(Boolean).join(" · ")}
++                    aria-description={tab.displayPath}
++                    aria-keyshortcuts="Alt+Shift+ArrowLeft Alt+Shift+ArrowRight"
++                    tabIndex={tab.id === activeId ? 0 : -1}
++                    title={tab.displayPath} onClick={() => void selectDocument(tab)}
++                    onContextMenu={(event) => { const target = refreshTarget(tab);
++                      if (target) showReloadMenu(event, target, tab.name); }}
++                    onKeyDown={(event) => {
++                      if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) {
++                        const target = refreshTarget(tab);
++                        if (target) showReloadMenu(event, target, tab.name);
++                        return;
++                      }
++                      if (event.altKey && event.shiftKey && ["ArrowLeft", "ArrowRight"].includes(event.key)) {
++                        event.preventDefault();
++                        moveTab(tab.id, tabs.findIndex((item) => item.id === tab.id)
++                          + (event.key === "ArrowRight" ? 1 : -1));
++                        setNotice(noticeLocale => t(noticeLocale, "tabMoved"));
++                        return;
++                      }
++                      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
++                      event.preventDefault();
++                      const index = tabs.findIndex((item) => item.id === tab.id);
++                      const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
++                        : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
++                      openSequence.current += 1;
++                      activeIdRef.current = tabs[next].id;
++                      setActiveId(tabs[next].id);
++                      const buttons = event.currentTarget.closest(".tab-strip")?.querySelectorAll<HTMLButtonElement>("[role=tab]");
++                      buttons?.[next]?.focus();
++                    }}>
++                    <WorkspaceIcon name={tab.kind === "image" ? "image" : "file-text"} /><span>{tabFilename(tab, tabs)}</span>
++                    {parent && <small>{parent}</small>}
++                    {tab.dirty && <span className="dirty-dot" aria-hidden="true" />}
++                    {tab.freshness === "checking" && <small className="tab-refresh-status">{t(locale, "checking")}</small>}
++                    {tab.freshness === "changed" && <small className="tab-refresh-status">{t(locale, "updatedFromDisk")}</small>}
++                    {tab.freshness === "uncertain" && <small className="tab-refresh-status">{t(locale, "unableConfirm")}</small>}
++                    {tab.freshness === "unavailable" && <small className="tab-refresh-status">{tab.freshnessReason ? errorText(locale, tab.freshnessReason) : t(locale, "fileUnavailable")}</small>}
++                    {tab.freshness === "conflict" && <small className="tab-refresh-status">{t(locale, "conflictNotice")}</small>}
++                  </button>
++                  <button className="tab-close" type="button" title={t(locale, "closeTab")}
++                    disabled={historyBusy || savingTabId === tab.id}
++                    aria-label={`${t(locale, "closeTab")}: ${tab.name}`} onClick={() => void closeTab(tab.id)}>×</button>
++                </div>
++              );
++            })}
++          </div>
++          <button type="button" className="history-menu-trigger" aria-label={t(locale, "goMenuLabel")} aria-haspopup="menu" aria-expanded={Boolean(goMenu)}
++            onClick={(event) => {
++              if (goMenu) { setGoMenu(null); return; }
++              setProjectsMenu(null); setReloadMenu(null);
++              const bounds = event.currentTarget.getBoundingClientRect();
++              const anchor=event.currentTarget;showHtmlOverlay(()=>setGoMenu({anchor,x:bounds.left,y:bounds.bottom+4}));
++            }}>{t(locale, "goMenu")}</button>
++          <button className="document-list-trigger" type="button" aria-expanded={documentsOpen}
++            disabled={!tabs.length} onClick={() => showHtmlOverlay(()=>setDocumentsOpen(true))}>{t(locale, "openDocuments")} ({tabs.length})</button>
++          </div>
++
++        <nav className="folio-rail" hidden={layout !== "folio" || narrowWorkspace} aria-label={t(locale, "workspaceTools")}>
++          <button type="button" aria-label={t(locale, "explorer")} title={t(locale, "explorer")} onClick={toggleSidebar}><WorkspaceIcon name="panel-left" /></button>
++          <button type="button" aria-label={t(locale, "folderSearch")} title={t(locale, "folderSearch")} disabled={!root} onClick={showFolderSearch}><WorkspaceIcon name="search" /></button>
++          <button type="button" aria-label={t(locale, "openFolder")} title={t(locale, "openFolder")} disabled={busy} onClick={() => void chooseFolder()}><WorkspaceIcon name="folder-open" /></button>
++          <button type="button" aria-label={locale === "es" ? "Ajustes" : "Settings"} title={locale === "es" ? "Ajustes" : "Settings"} onClick={() => openSettings("General")}><WorkspaceIcon name="settings-2" /></button>
++        </nav>
+         <aside ref={sidebarElementRef} className="sidebar" aria-label={t(locale, "explorer")}
+           data-open={sidebarVisible} data-compact={compactSidebar} data-animate={sidebarAnimating}
+           aria-hidden={!sidebarVisible} inert={!sidebarVisible}
+@@ -3087,6 +3212,8 @@
+                 }}><span>{t(locale, "projects")}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                 <path d="M1 3 L6 8 L11 3" fill="none" stroke="currentColor" strokeWidth="1.75" /></svg></button>
+             </div>
++            <button className="explorer-search-launcher" type="button" disabled={!root} onClick={showFolderSearch}>
++              <WorkspaceIcon name="search" />{t(locale, "folderSearch")}</button>
+             {root ? (
+               <>
+                 <div hidden={sidebarPanel !== "search"} inert={sidebarPanel !== "search"} className="folder-search-host">
+@@ -3132,6 +3259,19 @@
+                 <button type="button" onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
+               </div>
+             )}
++            <section className="shelf-documents" hidden={layout !== "atlas" || compactSidebar || sidebarPanel === "search"} aria-label={t(locale, "openDocuments")}>
++              <div className="shelf-title">{t(locale, "openDocuments")} <span>{tabs.length}</span></div>
++              <div className="shelf-document-list">{tabs.map(tab => <button key={tab.id} type="button" title={tab.displayPath}
++                aria-current={tab.id === activeId ? "page" : undefined} disabled={historyBusy}
++                onClick={() => void selectDocument(tab)}>
++                <WorkspaceIcon name={tab.kind === "image" ? "image" : "file-text"} /><span>{tab.name}</span>{tab.dirty && <span className="dirty-dot" aria-label={t(locale, "unsaved")} />}
++              </button>)}</div>
++            </section>
++            <section className="shelf-search" hidden={layout !== "atlas" || compactSidebar || sidebarPanel === "search"} aria-label={t(locale, "folderSearch")}>
++              <div className="shelf-title">{t(locale, "folderSearch")}</div>
++              <button type="button" disabled={!root} onClick={showFolderSearch}><WorkspaceIcon name="search" />{t(locale, "folderSearch")}</button>
++              <p>{t(locale, "folderSearchBoth")} · {t(locale, "searchMarkdownCoverage")}</p>
++            </section>
+             <div className="sidebar-footnote">
+               <strong>{t(locale, "storageManagement")}</strong>
+               <div>{t(locale, "activeDrafts")}: {new Set([...Object.keys(edits), ...Object.keys(pendingRecoveries)]).size}</div>
+@@ -3145,105 +3285,6 @@
+         {compactSidebar && compactSidebarOpen && <button type="button" className="sidebar-scrim" aria-label={t(locale, "closeSidebar")}
+           onClick={() => { setCompactSidebarOpen(false); sidebarTriggerRef.current?.focus(); }} />}
+         <main className="main-panel">
+-          <div className="document-tabs">
+-          {isTauri() && <button ref={sidebarTriggerRef} className="sidebar-tab-trigger" type="button" onClick={toggleSidebar}
+-            aria-label={t(locale, "toggleSidebar")} aria-expanded={sidebarVisible}>{t(locale, "sidebarLabel")}</button>}
+-          <div className="history-controls" role="group" aria-label={t(locale, "visitHistory")}>
+-            {([-1, 1] as const).map((direction) => {
+-              const cursor = direction === -1 && !active ? history.cursor : history.cursor + direction;
+-              const destination = history.entries[cursor];
+-              const label = t(locale, direction === -1 ? "historyBack" : "historyForward");
+-              const reason = t(locale, direction === -1 ? "historyNoPrevious" : "historyNoNext");
+-              return <button key={direction} type="button" className="history-arrow" aria-label={label}
+-                disabled={historyBusy || !destination || (direction === 1 && !active)}
+-                aria-description={historyBusy ? t(locale, "loading") : destination
+-                  ? `${destination.target.name} · ${destination.target.displayPath}` : reason}
+-                title={destination ? `${label}: ${destination.target.name}\n${destination.target.displayPath}` : reason}
+-                onContextMenu={(event) => { event.preventDefault(); setHistoryDirection(direction); showHtmlOverlay(()=>setHistoryOpen(true)); }}
+-                onClick={() => void traverseHistory(cursor)}>
+-                <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+-                  <path d={direction === -1 ? "M9 0 L3 6 L9 12" : "M3 0 L9 6 L3 12"}
+-                    fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+-                </svg>
+-              </button>;
+-            })}
+-          </div><div className="tab-strip" role="tablist" aria-label={t(locale, "documents")}>
+-            {tabs.map((tab) => {
+-              const parent = distinguishingParent(tab, tabs);
+-              return (
+-                <div className={`tab ${tab.id === activeId ? "active" : ""}`} key={tab.id}
+-                  draggable onDragStart={() => { draggedTab.current = tab.id; }}
+-                  onDragEnd={() => { draggedTab.current = null; }}
+-                  onDragOver={(event) => { if (draggedTab.current) event.preventDefault(); }}
+-                  onDrop={(event) => {
+-                    if (!draggedTab.current) return;
+-                    event.preventDefault();
+-                    moveTab(draggedTab.current, tabs.findIndex((item) => item.id === tab.id));
+-                    draggedTab.current = null;
+-                  }}>
+-                  <button type="button" role="tab" aria-selected={tab.id === activeId}
+-                    disabled={historyBusy}
+-                    aria-label={[tab.name, parent, documentStatus(tab)].filter(Boolean).join(" · ")}
+-                    aria-description={tab.displayPath}
+-                    aria-keyshortcuts="Alt+Shift+ArrowLeft Alt+Shift+ArrowRight"
+-                    tabIndex={tab.id === activeId ? 0 : -1}
+-                    title={tab.displayPath} onClick={async () => {
+-                      const sequence=++openSequence.current;
+-                      if(activeIdRef.current && htmlHandles.current.has(activeIdRef.current)){const handle=htmlHandles.current.get(activeIdRef.current)!;await handle.capture().catch(()=>{});await handle.hide().catch(()=>{});}
+-                      if(sequence===openSequence.current){activeIdRef.current=tab.id;setActiveId(tab.id);}
+-                    }}
+-                    onContextMenu={(event) => { const target = refreshTarget(tab);
+-                      if (target) showReloadMenu(event, target, tab.name); }}
+-                    onKeyDown={(event) => {
+-                      if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) {
+-                        const target = refreshTarget(tab);
+-                        if (target) showReloadMenu(event, target, tab.name);
+-                        return;
+-                      }
+-                      if (event.altKey && event.shiftKey && ["ArrowLeft", "ArrowRight"].includes(event.key)) {
+-                        event.preventDefault();
+-                        moveTab(tab.id, tabs.findIndex((item) => item.id === tab.id)
+-                          + (event.key === "ArrowRight" ? 1 : -1));
+-                        setNotice(noticeLocale => t(noticeLocale, "tabMoved"));
+-                        return;
+-                      }
+-                      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+-                      event.preventDefault();
+-                      const index = tabs.findIndex((item) => item.id === tab.id);
+-                      const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
+-                        : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+-                      openSequence.current += 1;
+-                      activeIdRef.current = tabs[next].id;
+-                      setActiveId(tabs[next].id);
+-                      const buttons = event.currentTarget.closest(".tab-strip")?.querySelectorAll<HTMLButtonElement>("[role=tab]");
+-                      buttons?.[next]?.focus();
+-                    }}>
+-                    <span>{tabFilename(tab, tabs)}</span>
+-                    {parent && <small>{parent}</small>}
+-                    {tab.dirty && <small>{t(locale, "unsaved")}</small>}
+-                    {tab.freshness === "checking" && <small className="tab-refresh-status">{t(locale, "checking")}</small>}
+-                    {tab.freshness === "changed" && <small className="tab-refresh-status">{t(locale, "updatedFromDisk")}</small>}
+-                    {tab.freshness === "uncertain" && <small className="tab-refresh-status">{t(locale, "unableConfirm")}</small>}
+-                    {tab.freshness === "unavailable" && <small className="tab-refresh-status">{tab.freshnessReason ? errorText(locale, tab.freshnessReason) : t(locale, "fileUnavailable")}</small>}
+-                    {tab.freshness === "conflict" && <small className="tab-refresh-status">{t(locale, "conflictNotice")}</small>}
+-                  </button>
+-                  <button className="tab-close" type="button" title={t(locale, "closeTab")}
+-                    disabled={historyBusy || savingTabId === tab.id}
+-                    aria-label={`${t(locale, "closeTab")}: ${tab.name}`} onClick={() => void closeTab(tab.id)}>×</button>
+-                </div>
+-              );
+-            })}
+-          </div>
+-          <button type="button" className="history-menu-trigger" aria-label={t(locale, "goMenuLabel")} aria-haspopup="menu" aria-expanded={Boolean(goMenu)}
+-            onClick={(event) => {
+-              if (goMenu) { setGoMenu(null); return; }
+-              setProjectsMenu(null); setReloadMenu(null);
+-              const bounds = event.currentTarget.getBoundingClientRect();
+-              const anchor=event.currentTarget;showHtmlOverlay(()=>setGoMenu({anchor,x:bounds.left,y:bounds.bottom+4}));
+-            }}>{t(locale, "goMenu")}</button>
+-          <button className="document-list-trigger" type="button" aria-expanded={documentsOpen}
+-            disabled={!tabs.length} onClick={() => showHtmlOverlay(()=>setDocumentsOpen(true))}>{t(locale, "openDocuments")} ({tabs.length})</button>
+-          </div>
+           {historyAnnouncement && <span className="sr-only" role="status" aria-label={t(locale, "visitHistory")}>{historyAnnouncement}</span>}
+           {historyOpen && <WorkspaceDialog title={t(locale, "visitHistory")} closeLabel={t(locale, "closeSurface")}
+             closeDisabled={historyBusy} onClose={() => { if (!historyBusy) setHistoryOpen(false); }}>
+@@ -3300,9 +3341,9 @@
+               {(narrowWorkspace || (activeEdit && !activeEdit.paused)) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+-                  onClick={toggleOutline}>{t(locale, "outline")}</button>
++                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+                 <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-                  onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
++                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
+               </>}
+               <button type="button" disabled={!navigator.clipboard?.writeText} aria-description={!navigator.clipboard?.writeText ? t(locale, "pathCopyUnavailable") : undefined}
+                 onClick={() => void copyPath(active.displayPath)}>{t(locale, "copyPath")}</button>
+@@ -3320,17 +3361,18 @@
+               {!narrowWorkspace && !(activeEdit && !activeEdit.paused) && <>
+                 <button ref={outlineTriggerRef} type="button" aria-pressed={outlineVisible} disabled={!active.content && !(active.kind === "html" && active.htmlState?.headings.length)}
+                   aria-description={active.kind === "image" ? t(locale, "outlineMarkdownOnly") : active.kind === "html" && !active.htmlState?.headings.length ? t(locale,"outlineEmpty") : undefined}
+-                  onClick={toggleOutline}>{t(locale, "outline")}</button>
++                  onClick={toggleOutline}><WorkspaceIcon name="list" />{t(locale, "outline")}</button>
+                 <button ref={settingsTriggerRef} type="button" aria-expanded={readingSettingsOpen} aria-controls="reading-settings-panel"
+-                  onClick={() => openSettings("Reading")}>{t(locale, "readingSettings")}</button>
++                  onClick={() => openSettings("Reading")}><WorkspaceIcon name="settings-2" />{t(locale, "readingSettings")}</button>
+               </>}
+               {active.kind !== "image" && active.kind !== "html" && active.kind !== "details" && !isHtmlDocument(active.name) && !active.largeInspection && !active.errorCode && <>
+               {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
+                 <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
+                   || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
+-                  onClick={() => void saveEdit(active.id)}>{t(locale, "saveFile")}</button>
++                  onClick={() => void saveEdit(active.id)}><WorkspaceIcon name="save" />{t(locale, "saveFile")}</button>
+                 <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
+                   ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
++                <button type="button" disabled={busy} onClick={() => void saveEditAs(active.id)}>{t(locale, "saveAs")}</button>
+                 <small>{t(locale, "saveReturnsReading")}</small>
+               </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
+                 onClick={() => {
+@@ -3341,7 +3383,7 @@
+                   const section = sectionsByTab[active.id]?.find((item) => item.id === region?.dataset.sectionId)
+                     ?? sectionsByTab[active.id]?.[0];
+                   if (section) void beginEdit(section);
+-                }}>{t(locale, "editSection")}</button>}
++                }}><WorkspaceIcon name="pencil" />{t(locale, "editSection")}</button>}
+               {!editingAvailable && <small>{t(locale, "editingUnavailable")}</small>}
+             </>} </>} />}
+           {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
+@@ -3825,13 +3867,17 @@
+             className={`find-overlay ${overlay.active ? "active" : ""}`} aria-hidden="true"
+             style={{ left: overlay.left, top: overlay.top,
+               width: overlay.width, height: overlay.height }} />)}
+-          <ReloadFeedback message={manualReload && reloadStatusText(manualReload.result)
++
++        </main>
++      </div>
++      <footer className="workspace-status">
++          <ReloadFeedback fallback={active ? active.freshness === "current" && !active.dirty && !active.errorCode ? t(locale, "currentOnDisk") : active.name : t(locale, "localOnly")} message={manualReload && reloadStatusText(manualReload.result)
+             ? `${manualReload.label}: ${reloadStatusText(manualReload.result)}` : null}
+             successful={Boolean(manualReload && !manualReload.result.reasonCode
+               && ["current", "changed"].includes(manualReload.result.state))}
+-            dismissLabel={t(locale, "dismiss")} progress={manualReload ? reloadProgress(manualReload.target) : null} />
+-        </main>
+-      </div>
++            dismissLabel={t(locale, "dismiss")} progress={manualReload ? reloadProgress(manualReload.target) : null} />        {layout === "atlas" && <button className="status-storage" type="button" onClick={() => { showHtmlOverlay(() => setStorageOpen(true)); void refreshSafetyCopies(); }}>{t(locale, "storageManagement")}</button>}
++        <span className="workspace-signature">Intentgrove by Theonira</span>
++      </footer>
+     </div>
+   );
+ }
+--- baseline/src/app/i18n.ts
++++ src/app/i18n.ts
+@@ -227,6 +227,8 @@
+     readingScopeHelp: "Applies to reading and in-place editing in this workspace window.",
+     preferencesHelp: "Preferences apply as you change them. Document files are saved separately.",
+     sidebarLabel: "Sidebar",
++    workspaceTools: "Workspace tools",
++    currentOnDisk: "Current on disk",
+     appearance: "Appearance",
+     appearanceSystem: "System",
+     appearanceLight: "Light",
+@@ -614,6 +616,8 @@
+     readingScopeHelp: "Se aplica a la lectura y edición directa en esta ventana de trabajo.",
+     preferencesHelp: "Los ajustes se aplican al cambiarlos. Los documentos se guardan por separado.",
+     sidebarLabel: "Panel lateral",
++    workspaceTools: "Herramientas del espacio de trabajo",
++    currentOnDisk: "Actualizado en disco",
+     appearance: "Apariencia",
+     appearanceSystem: "Sistema",
+     appearanceLight: "Claro",
+--- baseline/src/app/ReloadFeedback.tsx
++++ src/app/ReloadFeedback.tsx
+@@ -1,8 +1,8 @@
+ import { useEffect, useRef, useState, type ReactNode } from "react";
+ 
+ /** Manual reload feedback occupies reserved space; last results remain in target menus. */
+-export default function ReloadFeedback({ message, successful, dismissLabel, progress }: {
+-  message: string | null; successful: boolean; dismissLabel: string; progress?: ReactNode;
++export default function ReloadFeedback({ message, successful, dismissLabel, progress, fallback }: {
++  message: string | null; successful: boolean; dismissLabel: string; progress?: ReactNode; fallback?: string;
+ }) {
+   const [dismissed, setDismissed] = useState(false);
+   const [hovered, setHovered] = useState(false);
+@@ -27,6 +27,7 @@
+       </span>
+       <button type="button" aria-label={dismissLabel} onClick={() => setDismissed(true)}>×</button>
+     </>}
++    {(dismissed || !message) && !progress && fallback && <span className="workspace-file-status">{fallback}</span>}
+     {progress}
+   </div>;
+ }
+--- baseline/src/app/WorkspaceIcon.tsx
++++ src/app/WorkspaceIcon.tsx
+@@ -0,0 +1,21 @@
++// Lucide geometry from the approved local Theonira study; ISC notice in assets/theonira.
++const shapes = {
++  "folder": <><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></>,
++  "folder-open": <><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" /></>,
++  "file-text": <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></>,
++  "image": <><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></>,
++  "panel-left": <><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M9 3v18" /></>,
++  "search": <><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></>,
++  "sun": <><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></>,
++  "moon": <><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></>,
++  "settings-2": <><path d="M20 7h-9" /><path d="M14 17H5" /><circle cx="17" cy="17" r="3" /><circle cx="7" cy="7" r="3" /></>,
++  "shield-check": <><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></>,
++  "list": <><path d="M3 12h.01" /><path d="M3 18h.01" /><path d="M3 6h.01" /><path d="M8 12h13" /><path d="M8 18h13" /><path d="M8 6h13" /></>,
++  "pencil": <><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /><path d="m15 5 4 4" /></>,
++  "save": <><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" /><path d="M7 3v4a1 1 0 0 0 1 1h7" /></>,
++  "check": <><path d="M20 6 9 17l-5-5" /></>,
++  "chevron-down": <><path d="m6 9 6 6 6-6" /></>,
++};
++export default function WorkspaceIcon({ name }: { name: keyof typeof shapes }) {
++  return <svg className="workspace-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{shapes[name]}</svg>;
++}
+--- baseline/src/styles/app.css
++++ src/styles/app.css
+@@ -29,81 +29,86 @@
+ 
+ :root {
+   color-scheme: light;
+-  --canvas: #F4F5F3;
+-  --chrome: #F8F9F7;
+-  --sidebar: #EEF0EE;
++  --canvas: #F7F8F9;
++  --chrome: #F7F8F9;
++  --sidebar: #F7F8F9;
+   --surface: #FFFFFF;
+-  --text: #202826;
+-  --muted: #52615C;
+-  --accent: #315F70;
+-  --accent-hover: #254C5B;
+-  --focus: #2E6E87;
++  --text: #15191C;
++  --muted: #5D686E;
++  --accent: #087F8C;
++  --accent-hover: #066B76;
++  --focus: #087F8C;
+   --action-text: #FFFFFF;
+-  --border: #D8DEDA;
+-  --control-border: #7C8E85;
+-  --hover: #DEE9E8;
+-  --code: #F3F6F5;
++  --border: #DCE2E5;
++  --control-border: #7A8C94;
++  --control-edge: #CBD3D7;
++  --hover: #E6F2F3;
++  --code: #EEF1F2;
+   --warning-surface: #F8EEE8;
+   --warning-text: #6F3D2E;
+   --warning-border: #B77C5A;
+-  --error: #8C442F;
+-  --selection: #D9E9EE;
+-  --scrim: #20282655;
+-  --shadow: #20282630;
++  --error: #B42318;
++  --selection: #CEEAED;
++  --scrim: #15191C55;
++  --shadow: #15191C30;
+ }
+ :root[data-theme="dark"] {
+   color-scheme: dark;
+-  --canvas: #151B1B;
+-  --chrome: #1D2524;
+-  --sidebar: #18201F;
+-  --surface: #202928;
+-  --text: #E6EEEA;
+-  --muted: #A8B9B1;
+-  --accent: #91C5D6;
+-  --accent-hover: #ADD7E4;
+-  --focus: #91C5D6;
+-  --action-text: #10272E;
+-  --border: #3C4D47;
+-  --control-border: #6B8078;
+-  --hover: #2D4547;
+-  --code: #17201F;
++  --canvas: #101416;
++  --chrome: #101416;
++  --sidebar: #101416;
++  --surface: #151A1D;
++  --text: #EEF3F4;
++  --muted: #A8B2B7;
++  --accent: #35B8C7;
++  --accent-hover: #5ED3DF;
++  --focus: #5ED3DF;
++  --action-text: #101416;
++  --border: #30393D;
++  --control-border: #74848C;
++  --control-edge: #465257;
++  --hover: #183035;
++  --code: #1A2023;
+   --warning-surface: #35271F;
+   --warning-text: #EFC6A7;
+   --warning-border: #8B654B;
+-  --error: #FFA997;
+-  --selection: #365B66;
++  --error: #FF8A80;
++  --selection: #1B3A3F;
+   --scrim: #00000088;
+   --shadow: #00000055;
+ }
+ @media (prefers-color-scheme: dark) {
+ :root:not([data-theme]) {
+   color-scheme: dark;
+-  --canvas: #151B1B;
+-  --chrome: #1D2524;
+-  --sidebar: #18201F;
+-  --surface: #202928;
+-  --text: #E6EEEA;
+-  --muted: #A8B9B1;
+-  --accent: #91C5D6;
+-  --accent-hover: #ADD7E4;
+-  --focus: #91C5D6;
+-  --action-text: #10272E;
+-  --border: #3C4D47;
+-  --control-border: #6B8078;
+-  --hover: #2D4547;
+-  --code: #17201F;
++  --canvas: #101416;
++  --chrome: #101416;
++  --sidebar: #101416;
++  --surface: #151A1D;
++  --text: #EEF3F4;
++  --muted: #A8B2B7;
++  --accent: #35B8C7;
++  --accent-hover: #5ED3DF;
++  --focus: #5ED3DF;
++  --action-text: #101416;
++  --border: #30393D;
++  --control-border: #74848C;
++  --control-edge: #465257;
++  --hover: #183035;
++  --code: #1A2023;
+   --warning-surface: #35271F;
+   --warning-text: #EFC6A7;
+   --warning-border: #8B654B;
+-  --error: #FFA997;
+-  --selection: #365B66;
++  --error: #FF8A80;
++  --selection: #1B3A3F;
+   --scrim: #00000088;
+   --shadow: #00000055;
+ }
+ }
+ 
+ :root {
+-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
++  font-family: "App Roboto", Arial, sans-serif;
++  font-size: 14px;
++  line-height: 1.5;
+   color: var(--text);
+   background: var(--canvas);
+   font-synthesis: none;
+@@ -308,7 +313,8 @@
+     from { opacity: 1; transform: translateY(0); }
+     to { opacity: 0; transform: translateY(-4px); }
+   }
+-  .tab { transition: background-color 110ms ease-out, box-shadow 110ms ease-out; }
++  /* WKWebView can retain the previous theme's interpolated tab background.
++     Paint selection and theme changes atomically to keep labels readable. */
+   .sidebar[data-animate="true"] { transition: width 170ms ease-out; }
+   .outline-panel { transition: flex-basis 140ms ease-out, width 140ms ease-out, opacity 120ms ease-out; }
+   .find-band { animation: quiet-appear 100ms ease-out both; }
+@@ -830,3 +836,186 @@
+ /* Explicit shelf item basis avoids WebKit's shrink-to-fit nested flex labels. */
+ .app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div { flex: 0 1 180px; min-width: 0; }
+ .app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll > .tree-group > div > .tree-row { width: 100%; }
++
++/* Approved Theonira studies: shared shell, exact paired palette and layout rhythm.
++   The document and editor keep their existing owners; these rules only compose them. */
++.workspace-icon { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
++button { background: var(--surface); font-weight: 500; }
++button:focus-visible, select:focus-visible, input:focus-visible { outline-width: 3px; outline-offset: 3px; }
++button:active:not(:disabled) { background: var(--selection); }
++.primary-button:active:not(:disabled) { background: var(--accent-hover); color: var(--action-text); }
++.app-header { flex: 0 0 auto; background: var(--canvas); }
++.global-header { height: 72px; display: flex; align-items: center; gap: 24px; padding: 0 24px; border-bottom: 1px solid var(--border); }
++.theonira-wordmark { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 18px; letter-spacing: -.02em; }
++.theonira-wordmark img { width: 32px; height: 32px; object-fit: contain; }
++.theonira-wordmark strong { font-weight: 700; }
++.product-name { font-weight: 500; color: var(--muted); }
++.global-utilities { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; }
++.global-utilities .local-badge { display: flex; align-items: center; gap: 8px; margin-inline-end: 8px; }
++.utility-button { display: grid; place-items: center; min-width: 38px; min-height: 36px; padding: 8px; }
++.global-language { position: relative; }
++.global-language select { appearance: none; background: var(--surface); color: var(--text); border: 1px solid var(--control-border); border-radius: 6px; height: 36px; padding: 6px 32px 6px 12px; font: inherit; }
++.global-language .workspace-icon { width: 14px; position: absolute; right: 10px; top: 9px; pointer-events: none; }
++.workspace-toolbar { min-height: 56px; display: flex; align-items: center; gap: 8px; padding: 8px 24px; border-bottom: 1px solid var(--border); }
++.workspace-toolbar button, .document-location-actions > button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 36px; padding: 8px 12px; font-size: 14px; }
++.ghost-button { border-color: transparent; background: transparent; }
++.workspace-toolbar-actions { margin-inline-start: auto; display: flex; gap: 8px; }
++.workspace-title { font-size: 14px; font-weight: 600; }
++.workspace-layout { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 48px minmax(0, 1fr); }
++.document-tabs { grid-column: 1 / -1; grid-row: 1; min-width: 0; height: 48px; min-height: 48px; background: var(--canvas); border-bottom: 1px solid var(--border); }
++.tab-strip { background: transparent; border: 0; min-height: 0; }
++.tab { min-width: 160px; max-width: 280px; }
++.tab > button:first-child { font-size: 14px; color: var(--muted); gap: 8px; }
++.tab.active > button:first-child { color: var(--text); font-weight: 500; }
++.tab .workspace-icon { width: 14px; height: 14px; }
++.tab-close { font-size: 18px; margin-inline: 8px; }
++.dirty-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
++.document-list-trigger { border-color: transparent; background: transparent; color: var(--muted); font-size: 12px; }
++.history-menu-trigger { border-color: transparent; background: transparent; font-size: 13px; }
++.main-panel { grid-column: 2; grid-row: 2; min-height: 0; background: var(--surface); }
++.sidebar { grid-column: 1; grid-row: 2; background: var(--canvas); padding-top: 16px; }
++.sidebar-heading { padding: 0 24px 8px; }
++.projects-trigger { min-height: 32px; padding: 0; border: 0 !important; background: transparent; font-size: 12px; letter-spacing: .06em; font-weight: 400; color: var(--muted) !important; }
++.explorer-search-launcher { display: flex; align-items: center; gap: 8px; margin: 0 12px 16px; padding: 8px 12px; min-height: 40px; color: var(--muted); text-align: start; font-size: 14px; }
++.sidebar:has(.folder-search-host:not([hidden])) .explorer-search-launcher { display: none; }
++.root-label { padding: 0 24px 12px; font-size: 14px; font-weight: 500; }
++.tree-scroll { padding-inline: 12px; }
++.tree-row { min-height: 36px; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
++.tree-icon { display: inline-flex; flex-basis: 16px; }
++.tree-icon .workspace-icon { width: 16px; height: 16px; }
++.tree-row[aria-current="page"], .tree-row.selected { color: var(--accent); background: var(--hover); font-weight: 500; }
++.sidebar-footnote { margin-top: auto; padding: 16px 24px; font-size: 12px; line-height: 1.6; }
++.sidebar-footnote strong { font-weight: 400; }
++.sidebar-footnote > button { font-size: 12px; margin-top: 8px; }
++.document-location { min-height: 80px; padding: 16px 24px; background: var(--surface); align-items: center; }
++.document-identity > strong { font-size: 16px; font-weight: 500; }
++.document-identity > span { font-size: 12px; }
++.document-location-actions { align-items: center; }
++.document-actions-disclosure > summary { min-height: 36px; font-size: 14px; padding: 7px 12px; background: var(--surface); }
++.document-location-actions button[aria-pressed="true"] { background: var(--hover); color: var(--accent); }
++.reader-scroll { background: var(--surface); }
++.app-shell[data-workspace-layout="margin"] .document-page { width: 100%; max-width: calc(var(--reading-width, 760px) + 96px); padding: 40px 48px; margin: 0 auto; }
++.markdown-body { --prose-measure: var(--reading-width, 760px); }
++.markdown-body h1 { font-size: 36px; line-height: 1.15; letter-spacing: -.035em; font-weight: 600; margin: 0 0 24px; }
++.markdown-body h2 { font-size: 24px; line-height: 1.3; letter-spacing: -.02em; font-weight: 500; margin: 32px 0 12px; border: 0; padding: 0; }
++.markdown-body p, .markdown-body li { margin-top: 0; margin-bottom: 16px; }
++.section-heading { position: relative; }
++.section-edit-button { opacity: 0; font-size: 12px; min-height: 32px; padding: 6px 10px; position: absolute; inset-inline-end: 0; top: 0; background: var(--surface); }
++.section-heading:hover .section-edit-button, .section-heading:focus-within .section-edit-button { opacity: 1; }
++@media (hover: none) { .section-edit-button { opacity: 1; position: static; } }
++.outline-panel { flex-basis: 196px; width: 196px; padding: 24px 16px; background: var(--surface); }
++.outline-heading { padding: 0 12px 12px; border: 0; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
++.outline-heading strong { font-weight: 400; }
++.outline-item { padding: 8px 12px; color: var(--muted); font-size: 13px; }
++.outline-item[aria-current="location"] { color: var(--accent); font-weight: 400; }
++.outline-panel[data-open="false"] { padding: 0; }
++.workspace-status { display: flex; gap: 16px; align-items: center; min-height: 32px; flex: 0 0 auto; padding: 0 24px; border-top: 1px solid var(--border); background: var(--canvas); color: var(--muted); font-size: 12px; }
++.workspace-status .reload-feedback-footer { min-height: 31px; min-width: 0; flex: 1; padding: 0; border: 0; }
++.workspace-signature { flex: none; }
++.folio-rail, .shelf-documents, .shelf-search { display: none; }
++.app-shell[data-workspace-layout="folio"] .folio-rail { grid-column: 1; grid-row: 2; width: 64px; display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 24px 8px; border-right: 1px solid var(--border); background: var(--canvas); }
++.folio-rail button { display: grid; place-items: center; padding: 8px; min-height: 36px; }
++.sidebar[data-compact="true"] { top: 48px; padding-top: 24px; }
++.app-shell[data-workspace-layout="folio"] .sidebar[data-compact="true"] { left: 64px; }
++.sidebar-scrim { top: 48px; height: calc(100% - 48px); }
++.app-shell[data-workspace-layout="folio"] .reader-scroll { background: var(--canvas); padding: 24px 48px; }
++.app-shell[data-workspace-layout="folio"] .document-page { width: 100%; max-width: min(920px, calc(var(--reading-width, 760px) + 160px)); min-height: 100%; margin: 0 auto; padding: 48px 80px; box-shadow: none; }
++.app-shell[data-workspace-layout="folio"] .document-page h1 { font-size: 48px; }
++.app-shell[data-workspace-layout="folio"] .outline-panel { flex-basis: 180px; width: 180px; padding: 48px 0; background: var(--canvas); }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .workspace-layout { grid-template-columns: minmax(0,1fr); grid-template-rows: 176px 48px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"][data-editing="true"] .workspace-layout { grid-template-rows: 132px 48px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"][data-sidebar-visible="false"] .workspace-layout { grid-template-rows: 0 48px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .document-tabs { grid-row: 2; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .main-panel { grid-column: 1; grid-row: 3; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"][data-open="true"] { grid-column: 1; grid-row: 1; height: 100%; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: 24px minmax(0,1fr); padding: 24px; gap: 0; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .sidebar-heading { grid-column: 1; grid-row: 1; padding: 0 24px 0 0; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .explorer-host { grid-column: 1; grid-row: 2; border: 0; padding: 8px 24px 0 0; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .root-label { font-size: 12px; padding-bottom: 4px; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .tree-scroll { padding: 0; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .sidebar-footnote,
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .explorer-search-launcher { display: none; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .shelf-documents,
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .shelf-search { display: flex; min-width: 0; flex-direction: column; padding: 0 24px; grid-row: 1 / -1; border-left: 1px solid var(--border); }
++.shelf-documents { grid-column: 2; }
++.shelf-search { grid-column: 3; }
++.shelf-title { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
++.shelf-document-list { min-height: 0; overflow: auto; }
++.shelf-document-list button { width: 100%; display: flex; gap: 8px; align-items: center; padding: 8px 12px; border: 0; background: transparent; font-size: 14px; text-align: start; }
++.shelf-document-list button[aria-current="page"] { background: var(--hover); color: var(--accent); }
++.shelf-document-list button > span:not(.dirty-dot) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
++.shelf-search > button { display: flex; align-items: center; gap: 8px; min-height: 40px; text-align: start; color: var(--muted); }
++.shelf-search p { color: var(--muted); font-size: 12px; margin-top: 12px; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"] .folder-search-host { grid-column: 1 / -1; grid-row: 2; }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"]:has(.folder-search-host:not([hidden])) { grid-template-rows: 24px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"] .sidebar[data-compact="false"]:has(.folder-search-host:not([hidden])) :is(.shelf-documents,.shelf-search) { display: none; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="false"] .workspace-layout:has(.folder-search-host:not([hidden])) { grid-template-rows: minmax(220px, 40%) 48px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"] .outline-panel { flex-basis: 224px; width: 224px; padding: 32px 16px; background: var(--canvas); }
++.app-shell[data-workspace-layout="atlas"] .document-page { width: 100%; max-width: min(920px, calc(var(--reading-width, 760px) + 128px)); margin: 0 auto; min-height: 100%; padding: 32px 64px; }
++.section-editor-in-place { padding: 0 0 0 16px; border: 0; border-left: 2px solid var(--accent); border-radius: 0; }
++.rich-formatting { border: 0; padding: 0; gap: 4px; }
++.rich-formatting button { font-size: 13px; padding: 6px 10px; min-height: 32px; }
++.rich-opaque { background: var(--code); border: 1px solid var(--control-border); border-radius: 6px; padding: 10px 12px; }
++@media (max-width: 1050px) {
++  .app-shell[data-workspace-layout="folio"] .reader-scroll { padding: 24px; }
++  .app-shell[data-workspace-layout="folio"] .document-page { padding: 40px 48px; }
++  .global-utilities .local-badge { display: none; }
++}
++.app-shell[data-narrow="true"] .folio-rail { display: none; }
++.app-shell[data-narrow="true"] .sidebar[data-compact="true"] { left: 0; }
++.app-shell[data-narrow="true"] .outline-panel { padding: 12px; flex-basis: 160px; width: auto; }
++.app-shell[data-narrow="true"] .outline-panel[data-open="false"] { display: none; }
++@media (max-width: 700px) {
++  .global-header { height: 64px; padding-inline: 16px; gap: 8px; }
++  .theonira-wordmark { font-size: 16px; }
++  .theonira-wordmark img { width: 28px; height: 28px; }
++  .product-name { display: none; }
++  .workspace-toolbar { padding: 8px 16px; flex-wrap: wrap; }
++  .workspace-toolbar-actions { gap: 4px; }
++  .workspace-toolbar button { padding: 8px; font-size: 13px; }
++  .workspace-title { display: none; }
++  .document-location { padding: 16px; min-height: 80px; }
++  .document-location-actions { gap: 8px; }
++  .document-location-actions > button, .header-edit-actions > button { min-height: 36px; }
++  .app-shell[data-workspace-layout] .reader-scroll { padding: 0; }
++  .app-shell[data-workspace-layout] .document-page { padding: 24px; width: 100%; margin: 0; }
++  .app-shell[data-workspace-layout] .document-page h1 { font-size: 32px; }
++  .app-shell[data-workspace-layout="folio"] .document-page h1 { font-size: 36px; }
++  .workspace-status { padding: 4px 16px; gap: 4px 12px; flex-wrap: wrap; }
++  .workspace-signature { font-size: 11px; }
++  .tab { min-width: 145px; }
++  .document-list-trigger { max-width: 132px; }
++}
++@media (max-width: 460px) {
++  .global-language { display: none; }
++  .utility-button { min-width: 44px; min-height: 44px; }
++  .workspace-toolbar-actions { margin-inline-start: 0; flex-wrap: wrap; }
++  .document-location-actions { width: 100%; }
++  .document-location-actions > button, .document-actions-disclosure > summary { min-height: 44px; }
++}
++.app-shell[data-workspace-layout="atlas"] .document-page { margin-inline: 0; }
++.app-shell[data-workspace-layout="atlas"] .markdown-body h2 { margin-top: 24px; }
++.app-shell[data-workspace-layout] .outline-panel[data-open="false"] { width: 0; flex-basis: 0; padding: 0; border: 0; }
++.sidebar .projects-trigger { font-size: 12px; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; }
++.tree-row { font-weight: 400; }
++:root { --hover: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
++:root[data-theme="dark"] { --hover: color-mix(in srgb, var(--accent) 10%, var(--surface)); --focus: #5ED3DF; }
++.folio-rail[hidden], .shelf-documents[hidden], .shelf-search[hidden], .compact-projects[hidden] { display: none; }
++.compact-projects { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--canvas); }
++.compact-projects button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; background: transparent; border: 0; font-size: 12px; }
++.compact-projects > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .workspace-layout { grid-template-rows: 32px 48px minmax(0,1fr); }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .compact-projects { grid-column: 1 / -1; grid-row: 1; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .document-tabs { grid-row: 2; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .main-panel { grid-row: 3; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .sidebar { top: 80px; }
++.app-shell[data-workspace-layout="atlas"][data-narrow="true"] .sidebar-scrim { top: 80px; height: calc(100% - 80px); }
++@media (prefers-color-scheme: dark) { :root:not([data-theme]) { --hover: color-mix(in srgb, var(--accent) 10%, var(--surface)); --focus: #5ED3DF; } }
++/* Thin decorative button edges from the study; inputs and focus retain contrast. */
++.global-header button, .global-language select, .workspace-toolbar button,
++.document-location-actions button, .document-actions-disclosure > summary,
++.folio-rail button, .explorer-search-launcher, .shelf-search > button,
++.rich-formatting button { border-color: var(--control-edge); }
++.workspace-toolbar .ghost-button { border-color: transparent; }
++.document-location-actions .primary-button { border-color: var(--accent); }
++.status-storage { border: 0; background: transparent; color: var(--muted); padding: 4px 8px; font-size: 12px; }
++.header-edit-actions > button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+Binary asset added: src/assets/theonira/theonira-mark-light.png
+--- baseline/src/assets/theonira/Lucide-LICENSE.txt
++++ src/assets/theonira/Lucide-LICENSE.txt
+@@ -0,0 +1,15 @@
++ISC License
++
++Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022.
++
++Permission to use, copy, modify, and/or distribute this software for any
++purpose with or without fee is hereby granted, provided that the above
++copyright notice and this permission notice appear in all copies.
++
++THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
++ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
++ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
++OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+Binary asset added: src/assets/theonira/theonira-mark-dark.png

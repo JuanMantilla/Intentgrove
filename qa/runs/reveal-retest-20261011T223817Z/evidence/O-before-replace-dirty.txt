@@ -1,0 +1,133 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button Back, Help: Back: opened-before-delete.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-delete.md
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					16 button Close tab: root-missing.md, Help: Close tab
+				17 container
+					18 tab (selectable) root-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					19 button Close tab: root-dirty.md, Help: Close tab
+				20 container
+					21 tab (selectable) opened-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+					22 button Close tab: opened-after-rename.md, Help: Close tab
+				23 container
+					24 tab (selectable) opened-after-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-delete.md
+					25 button Close tab: opened-after-delete.md, Help: Close tab
+				26 container
+					27 tab (selectable) opened-after-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace.md
+					28 button Close tab: opened-after-replace.md, Help: Close tab
+				29 container
+					30 tab (selectable) opened-before-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-rename.md
+					31 button Close tab: opened-before-rename.md, Help: Close tab
+				32 container
+					33 tab (selectable) opened-before-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-delete.md
+					34 button Close tab: opened-before-delete.md, Help: Close tab
+				35 container
+					36 tab (selected) opened-before-replace.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace.md
+					37 button Close tab: opened-before-replace.md, Help: Close tab
+			38 pop up button Go menu
+			39 button (collapsed) Open documents (8), Secondary Actions: Expand
+			40 container Explorer
+				41 pop up button PROJECTS
+				42 button Close Projects sidebar
+				43 button Open file
+				44 button Open folder
+				45 button Search folder
+				46 text fixtures
+				47 container
+					48 button active.md
+					49 button fresh.md
+					50 button inactive.md
+					51 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					52 button opened-after-rename-moved.md
+					53 button opened-after-replace-original.md
+					54 button opened-after-replace.md
+					55 button opened-before-rename-moved.md
+					56 button opened-before-replace.md
+					57 button root-dirty.md
+					58 button root-missing-moved.md
+					59 button sentinel.md
+					60 button unopened-after-rename-moved.md
+					61 button unopened-after-replace-original.md
+					62 button unopened-after-replace.md
+					63 button unopened-before-rename-moved.md
+					64 button unopened-before-replace-original.md
+					65 button unopened-before-replace.md
+				66 text Storage and recovery
+				67 text Open edits and recovery offers: 2
+				68 button Manage…
+				69 button Settings…
+			70 container
+				71 container opened-before-replace.md
+					72 container opened-before-replace.md
+						73 text opened-before-replace.md
+					74 button Find in document
+					75 button Save file
+					76 button Return to reading
+					77 button Save As
+					78 text Save returns to reading.
+					79 summary Document…, Value: off
+						80 text Document…
+					81 text Folder root
+				82 container opened-before-replace.md
+					83 container Editing: opened-before-replace.md
+						84 container Editing: opened-before-replace.md
+							85 text Editing: opened-before-replace.md
+							86 text Changes not saved to the file
+							87 toolbar Text formatting
+								88 button (disabled) Bold
+								89 button (disabled) Italic
+								90 button (disabled) Inline code
+								91 button (disabled) Strikethrough
+								92 button (disabled) Link…
+								93 summary Block type / More…, Value: off
+									94 text Block type / More…
+							95 text entry area (settable) Editing: opened-before-replace.md, Secondary Actions: Show Writing Tools, Value: **opened-before-replace.md
+**
+QA RETEST O-before-replace UNSAVEDOriginal QA saved bytes.
+								96 heading (settable, integer) Editing: opened-before-replace.md, Value: 1
+									97 text entry area (settable) Editing: opened-before-replace.md, Value: **opened-before-replace.md**, Secondary Actions: Show Writing Tools
+										98 text (settable) opened-before-replace.md
+								99 text entry area (settable) Editing: opened-before-replace.md, Value: QA RETEST O-before-replace UNSAVEDOriginal QA saved bytes., Secondary Actions: Show Writing Tools
+									100 text (settable) QA RETEST O-before-replace UNSAVEDOriginal QA saved bytes.
+							101 button Undo
+							102 button (disabled) Redo
+							103 button Discard changes…
+							104 button Save as…
+				105 container Outline
+					106 text OUTLINE
+					107 button Close outline
+					108 container Outline
+						109 content list
+							110 button opened-before-replace.md
+			111 container
+				112 text opened-before-replace.md Intentgrove by Theonira
+	113 close button
+	114 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	115 minimize button
+	116 text Intentgrove Reveal Retest
+117 menu bar
+	118 Intentgrove Reveal Retest
+	119 File
+	120 Edit
+	121 View
+	122 Go
+	123 Window
+	124 Help
+
+The focused UI element is 95 text entry area (settable) Editing: opened-before-replace.md, Secondary Actions: Show Writing Tools, Value: **opened-before-replace.md
+**
+QA RETEST O-before-replace UNSAVEDOriginal QA saved bytes.

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "unit",
+    "command": "cargo test --manifest-path crates/Cargo.toml --locked -p igproto-model",
+    "chunk_id": "66a368",
+    "wall_time_seconds": 0.38761975,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": "",
+    "finished_at": "2026-10-11T22:46:57.309Z"
+  },
+  {
+    "id": "format",
+    "command": "cargo fmt --manifest-path crates/Cargo.toml --all -- --check",
+    "chunk_id": "f62e5f",
+    "wall_time_seconds": 0.134423833,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": "",
+    "finished_at": "2026-10-11T22:46:57.069Z"
+  },
+  {
+    "id": "clippy",
+    "command": "cargo clippy --manifest-path crates/Cargo.toml --locked -p igproto-model --all-targets -- -D warnings",
+    "chunk_id": "8c7bf7",
+    "wall_time_seconds": 0.194600375,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": "",
+    "finished_at": "2026-10-11T22:46:57.122Z"
+  }
+]

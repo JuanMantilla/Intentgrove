@@ -1,0 +1,5 @@
+# Native provider/observation incidents
+
+These are retained automation limitations, not product defects. Exact messages observed: noWindowsAvailable after coordinate scroll/window operations; elementHasNoFrame during a multi-click Undo sequence (partial changes observed and completed with fresh IDs); invalid element ID0 after switching native targets; cannotClickOffscreenElement for TextEdit text view; separate browser virtual clipboard had no data to paste; ScreenCaptureKit -3812 after TextEdit Go-to shortcut (fresh AX showed GoToWindow had actually opened); user-changed notification before TextEdit save observation. Fresh bindings/AX IDs and exposed Raise actions recovered native checks. System clipboard observed through real TextEdit rather than browser virtual paste. Exact draft restoration was observed after undo. Native quit App quit messages are expected lifecycle results, not crashes.
+
+Some provider snapshots omit Find overlay pixels while AX reports its query; mutated editor heading is visually confirmed. No missing-overlay product defect inferred. Physical AT, IME and actual held native timing were not substituted with these observations.

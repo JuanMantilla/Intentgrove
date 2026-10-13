@@ -1,0 +1,51 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text second.md · Finder
+					13 button Open item: second.md
+					14 button Dismiss: second.md
+			15 container
+				16 container Visited files
+					17 button (disabled) Back, Help: No previous file
+					18 button (disabled) Forward, Help: No next file
+				19 tab group (selectable) Documents
+					20 container
+						21 tab (selected) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						22 button Close tab: second.md, Help: Close tab
+				23 pop up button Go menu
+				24 button (collapsed) Open documents (1), Secondary Actions: Expand
+				25 container second.md
+					26 text second.md
+					27 text Outside the open folder
+					28 button Edit section
+					29 summary Document…, Value: off
+						30 text Document…
+				31 container second.md
+					32 container Second
+						33 container Edit section: Second
+							34 heading Second, Value: 1
+								35 text Second
+							36 button Edit section “Second”
+						37 text needle from neighbor
+	38 close button
+	39 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	40 minimize button
+	41 text Intentgrove
+42 menu bar
+	43 Intentgrove Final Acceptance 20261008
+	44 File
+	45 Edit
+	46 View
+	47 Go
+	48 Window
+	49 Help

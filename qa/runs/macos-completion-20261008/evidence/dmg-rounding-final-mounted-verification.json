@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-08T05:07:56.466047+00:00",
+  "dmg": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg",
+  "sha256": "12cfc97d0633554886a9ecdc6f63355159406b1ddaec77c490025bebb5babeea",
+  "integrity": {
+    "exit": 0,
+    "output": "Checksumming Protective Master Boot Record (MBR : 0)\u2026\nProtective Master Boot Record (MBR :: verified   CRC32 $28B13520\nChecksumming GPT Header (Primary GPT Header : 1)\u2026\n GPT Header (Primary GPT Header : 1): verified   CRC32 $29670B16\nChecksumming GPT Partition Data (Primary GPT Table : 2)\u2026\nGPT Partition Data (Primary GPT Tabl: verified   CRC32 $4E09EBA9\nChecksumming  (Apple_Free : 3)\u2026\n                    (Apple_Free : 3): verified   CRC32 $00000000\nChecksumming disk image (Apple_APFS : 4)\u2026\n         disk image (Apple_APFS : 4): verified   CRC32 $04C4E70C\nChecksumming  (Apple_Free : 5)\u2026\n                    (Apple_Free : 5): verified   CRC32 $00000000\nChecksumming GPT Partition Data (Backup GPT Table : 6)\u2026\nGPT Partition Data (Backup GPT Table: verified   CRC32 $4E09EBA9\nChecksumming GPT Header (Backup GPT Header : 7)\u2026\n  GPT Header (Backup GPT Header : 7): verified   CRC32 $82BE10C3\nverified   CRC32 $DEA80FB2\nhdiutil: verify: checksum of \"/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/dmg/Intentgrove-local.dmg\" is VALID\n"
+  },
+  "mount": "/Volumes/Intentgrove",
+  "writable": false,
+  "fileMismatches": [],
+  "applicationsSymlink": "/Applications",
+  "mountedSignature": {
+    "exit": 0,
+    "output": ""
+  },
+  "detach": {
+    "exit": 0,
+    "output": "\"disk4\" ejected.\nhdiutil: WARNING: 'hdiutil detach ...' is deprecated. Please use 'diskutil eject ...' instead.\n"
+  }
+}

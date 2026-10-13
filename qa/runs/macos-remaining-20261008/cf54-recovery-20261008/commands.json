@@ -1,0 +1,16 @@
+{
+  "sequence": [
+    "CUA getApp exact installed path; inspect reader/settings; Cmd-Q",
+    "snapshot.py before-removal; compare13-file original provenance",
+    "swift trash.swift stopped during SDK compilation before execution; retained sample/still-installed state",
+    "clang -fobjc-arc -framework Foundation trash.m -o /tmp/intentgrove-cf54-native-trash",
+    "/tmp/intentgrove-cf54-native-trash -> removal.json",
+    "snapshot.py removed",
+    "restore.py (assert absence/data/package hashes then rename exact Trash result)",
+    "snapshot.py restored-before-launch",
+    "CUA getApp exact restored path; inspect recovered reader/settings",
+    "snapshot.py final-running; ps/lsof exact md_reader PID",
+    "Compare manifests and native preference semantics; update scope-specific acceptance/handoffs"
+  ],
+  "mutations": "Only native recoverable Trash move/exact restoration, normal app session/picker state, scoped evidence and documentation. No source fixes."
+}

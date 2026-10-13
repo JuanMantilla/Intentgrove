@@ -1,5 +1,7 @@
 # Implementation Plan: Workspace Reader
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 **Feature:** `001-workspace-reader` | **Date:** 2026-09-25 | **Status:** Draft for architecture approval
 **Spec:** [spec.md](spec.md) | **Design:** [design.md](design.md)
 
@@ -132,3 +134,8 @@ automation does not cover them.
 - A read-only F001 cannot yet satisfy editing, search, session restoration,
   external refresh, advanced rendering, or final installer requirements; those
   remain mapped to F002–F005.
+
+
+## Authorized HTML native architecture — 2026-10-08
+
+F001-H01–H08 use [the canonical HTML native amendment](html-native-amendment-20261008.md). This resolves standalone HTML versus inert Markdown raw HTML at the source. Original approval snapshots and unrelated feature selection remain unchanged. Concrete contracts/evidence are in the linked provider handoff; compile and source completion do not certify platform acceptance.

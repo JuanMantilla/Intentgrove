@@ -1,0 +1,74 @@
+The following is a diff from the previous accessibility tree for Window: "Settings — Intentgrove" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 0-42
++51 standard window Settings — Intentgrove, Secondary Actions: Raise
++	52 scroll area
++		53 HTML content Description: Intentgrove, URL: tauri://localhost/index.html?settings
++			54 container
++				55 heading Settings, Value: 1
++					56 text Settings
++				57 container General
++					58 heading General, Value: 2
++						59 text General
++					60 container
++						61 text Language
++						62 pop up button (collapsed) Language, Value: English, Secondary Actions: Expand
++						63 text Appearance
++						64 pop up button (collapsed) Appearance, Value: System, Secondary Actions: Expand
++				65 container Workspace layout
++					66 heading Workspace layout, Value: 2
++						67 text Workspace layout
++					68 container Workspace layout
++						69 container
++							70 radio button Margin Persistent explorer, central document and section outline., Value: 0
++							71 text Margin Persistent explorer, central document and section outline.
++						72 container
++							73 radio button Folio Centered reading page, collapsed navigation and generous spacing., Value: 0
++							74 text Folio Centered reading page, collapsed navigation and generous spacing.
++						75 container
++							76 radio button Atlas Horizontal project shelf, outline and reading desk., Value: 1
++							77 text Atlas Horizontal project shelf, outline and reading desk.
++				78 container Reading
++					79 heading Reading, Value: 2
++						80 text Reading
++					81 container
++						82 text Font
++						83 pop up button (collapsed) Font, Value: Roboto, Secondary Actions: Expand
++						84 text Text size (px)
++						85 slider (settable, float) Text size, Value: 16
++							86 value indicator 16
++						87 number field (settable) Text size (px), Value: 16
++							88 stepper 0
++								89 unknown
++								90 unknown
++						91 text Line height
++						92 slider (settable, float) Line height, Value: 1.6
++							93 value indicator 1.6
++						94 number field (settable) Line height, Value: 1.6
++							95 stepper 0
++								96 unknown
++								97 unknown
++						98 text Page width (px)
++						99 slider (settable, float) Page width, Value: 760
++							100 value indicator 760
++						101 number field (settable) Page width (px), Value: 760
++							102 stepper 0
++								103 unknown
++								104 unknown
++						105 container Page width
++							106 toggle button Comfortable, Value: on
++							107 toggle button Wide, Value: off
++						108 container Reading preview
++							109 text Reading preview
++							110 text Adjust the type to find a comfortable reading rhythm. Your document stays unchanged.
++						111 button Reset reading settings
++				112 container Project tree
++					113 heading Project tree, Value: 2
++						114 text Project tree
++					115 container
++						116 checkbox Documents and images only, Value: 1
++						117 text Documents and images only
++				118 button Done
++	119 close button
++	120 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
++	121 minimize button
++	122 text Settings — Intentgrove

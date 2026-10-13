@@ -1,0 +1,82 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) opened.md · Updated from disk, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/fixtures/opened.md, Value: on
+					16 button Close tab: opened.md, Help: Close tab
+			17 pop up button Go menu
+			18 button (collapsed) Open documents (1), Secondary Actions: Expand
+			19 container Explorer
+				20 pop up button PROJECTS
+				21 button Close Projects sidebar
+				22 button Open file
+				23 button Open folder
+				24 button Search folder
+				25 text fixtures
+				26 container
+					27 button after-rename-moved.md
+					28 button after-replace-original.md
+					29 button after-replace-second-original.md
+					30 button after-replace.md
+					31 button before-delete.md
+					32 button before-rename.md
+					33 button before-replace.md
+					34 button café # $ & % (draft),.md
+					35 button fresh.md
+					36 button opened-original.md
+					37 button opened.md
+				38 text Storage and recovery
+				39 text Open edits and recovery offers: 0
+				40 button Manage…
+				41 button Settings…
+			42 container
+				43 text Could not reveal the file. Select file again
+				44 button Dismiss
+				45 container opened.md
+					46 container opened.md
+						47 text opened.md
+					48 button Find in document
+					49 toggle button Outline, Value: on
+					50 button (collapsed) Reading settings, Secondary Actions: Expand
+					51 button Edit section
+					52 summary Document…, Value: off
+						53 text Document…
+					54 text Folder root
+				55 container opened.md
+					56 container Opened root replacement
+						57 container Edit section: Opened root replacement
+							58 heading Opened root replacement, Value: 1
+								59 text Opened root replacement
+							60 button Edit section “Opened root replacement”
+				61 container Outline
+					62 text OUTLINE
+					63 button Close outline
+					64 container Outline
+						65 content list
+							66 button Opened root replacement
+			67 container
+				68 text opened.md Intentgrove by Theonira
+	69 close button
+	70 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	71 minimize button
+	72 text Intentgrove QA0032
+73 menu bar
+	74 Intentgrove QA0032
+	75 File
+	76 Edit
+	77 View
+	78 Go
+	79 Window
+	80 Help

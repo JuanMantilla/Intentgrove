@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1",
+    "check": "held reads / parser / layout / stale navigation / field-modal-composition / existing selection regressions",
+    "result": "PASS",
+    "detail": "16 tests, 1 file; synthetic composition/modifier events",
+    "finished_at": "2026-10-12T02:44:45.034262+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+    ]
+  },
+  {
+    "id": "2",
+    "check": "default suite unchanged",
+    "result": "FAIL",
+    "detail": "701 PASS, 9 FAIL, 710 tests / 70 files; failures retained, cause unresolved",
+    "finished_at": "2026-10-12T02:51:15.127885+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/default-final.log"
+    ]
+  },
+  {
+    "id": "3",
+    "check": "TypeScript + Vite + offline debug macOS build",
+    "result": "PASS",
+    "detail": "build exit 0; warnings retained",
+    "finished_at": "2026-10-12T02:46:02.034573+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-build-final.log"
+    ]
+  },
+  {
+    "id": "4",
+    "check": "native first-open immediate Cmd+A",
+    "result": "PASS",
+    "detail": "one key, all25 B passages/end; no intermediate AX observation",
+    "finished_at": "2026-10-12T02:47:12.770519+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-initial-immediate.txt"
+    ]
+  },
+  {
+    "id": "5",
+    "check": "native reopen immediate Cmd+A",
+    "result": "PASS",
+    "detail": "clean second.md closed/reopened, one key, all25 B passages/end",
+    "finished_at": "2026-10-12T02:47:36.837702+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-reopen-immediate.txt"
+    ]
+  },
+  {
+    "id": "6",
+    "check": "native A\u2192B\u2192A cancellation",
+    "result": "PASS",
+    "detail": "A active, no stale selection; no AX observation between rapid inputs",
+    "finished_at": "2026-10-12T02:48:06.572529+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-rapid-A-B-A.txt"
+    ]
+  },
+  {
+    "id": "7",
+    "check": "reading60 + live mixed + whole30 selection",
+    "result": "PASS",
+    "detail": "all endpoints verified; mixed/whole native copy excludes editing/chrome labels",
+    "finished_at": "2026-10-12T02:54:01.262213+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-evidence-validation.json"
+    ]
+  },
+  {
+    "id": "8",
+    "check": "Filename / Find / Local target owners",
+    "result": "PASS",
+    "detail": "real Cmd+A complete replacement with field focus retained; dialogs cancelled",
+    "finished_at": "2026-10-12T02:49:47.104828+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-local-target-owner.txt"
+    ]
+  },
+  {
+    "id": "9",
+    "check": "source undo/redo",
+    "result": "PASS",
+    "detail": "undo removed last typed character; redo restored it after mixed selection",
+    "finished_at": "2026-10-12T02:49:04.001702+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-mixed-redo.txt"
+    ]
+  },
+  {
+    "id": "10",
+    "check": "modal ownership",
+    "result": "PASS",
+    "detail": "synthetic current/transient modal tests pass; native quit modal visible after Cmd+A, AX disappearance limits native focus proof",
+    "finished_at": "2026-10-12T02:44:45.034262+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+    ]
+  },
+  {
+    "id": "11",
+    "check": "native physical IME / Windows / screen reader",
+    "result": "NOT_RUN",
+    "detail": "no physical composition, Windows host or assistive-technology coverage",
+    "finished_at": "2026-10-12T02:44:45.034262+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/focused-final.log"
+    ]
+  },
+  {
+    "id": "12",
+    "check": "clean candidate quit",
+    "result": "BLOCKED",
+    "detail": "Keep draft clicked from inspected screenshot; noWindowsAvailable; process remained/session running; checkpoints and file bytes retained",
+    "finished_at": "2026-10-12T02:56:29.762223+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/native-profile-retention.json"
+    ]
+  },
+  {
+    "id": "13",
+    "check": "source/prior-evidence/fixture integrity",
+    "result": "PASS",
+    "detail": "433 source inputs / 576 prior evidence inputs / 3 fixture bytes unchanged",
+    "finished_at": "2026-10-12T02:52:28.073178+00:00",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/qa0035-20261012/integrity-final.json"
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "current-isolated-close",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "tests/ui/close-edit.test.tsx",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-isolated-close.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "started_at": "2026-10-12T05:03:57.093973+00:00",
+    "finished_at": "2026-10-12T05:04:11.273675+00:00",
+    "exit_code": 0
+  },
+  {
+    "name": "current-isolated-handoff",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "tests/ui/workspace-handoff.test.tsx",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-isolated-handoff.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-candidate",
+    "started_at": "2026-10-12T05:04:11.274197+00:00",
+    "finished_at": "2026-10-12T05:04:23.848986+00:00",
+    "exit_code": 0
+  }
+]

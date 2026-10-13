@@ -1,0 +1,78 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: QA_NO_MATCH_FINAL_20261008, Placeholder: File name or text
+							14 text (settable) QA_NO_MATCH_FINAL_20261008
+							15 button cancel
+					16 text Search scope: workspace · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text No results · 99 entries scanned, 4 skipped · Results: 0
+				28 text Storage and recovery
+				29 text Open edits and recovery offers: 0
+				30 button Manage…
+			31 container
+				32 container Visited files
+					33 button Back, Help: Back: linked.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+					34 button (disabled) Forward, Help: No next file
+				35 tab group (selectable) Documents
+					36 container
+						37 tab (selected) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						38 button Close tab: plain.md, Help: Close tab
+					39 container
+						40 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						41 button Close tab: linked.md, Help: Close tab
+					42 container
+						43 tab (selectable) alpha-00.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/docs/alpha/alpha-00.md
+						44 button Close tab: alpha-00.md, Help: Close tab
+				45 pop up button Go menu
+				46 button (collapsed) Open documents (3), Secondary Actions: Expand
+				47 container plain.md
+					48 text plain.md
+					49 text Folder root
+					50 toggle button Outline, Value: off
+					51 button (collapsed) Reading settings, Secondary Actions: Expand
+					52 button Edit section
+					53 summary Document…, Value: off
+						54 text Document…
+				55 container plain.md
+					56 container Unrelated document
+						57 container Edit section: Unrelated document
+							58 heading Unrelated document, Value: 1
+								59 text Unrelated document
+							60 button Edit section “Unrelated document”
+						61 text Responsive tab.
+	62 close button
+	63 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	64 minimize button
+	65 text Intentgrove
+66 menu bar
+	67 Intentgrove QA
+	68 File
+	69 Edit
+	70 View
+	71 Go
+	72 Window
+	73 Help
+
+The focused UI element is 13 search text field (settable) Search folder, Value: QA_NO_MATCH_FINAL_20261008, Placeholder: File name or text

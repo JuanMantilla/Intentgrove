@@ -1,0 +1,19 @@
+[package]
+name = "md_reader_image_xpc"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+publish = false
+
+[dependencies]
+resvg = { version = "=0.48.1", default-features = false, features = ["text"] }
+roxmltree = "=0.21.1"
+libc = "0.2"
+
+[dev-dependencies]
+skrifa = "=0.44.0"
+
+[lib]
+name = "md_reader_raster"
+path = "src/lib.rs"
+crate-type = ["staticlib", "rlib"]

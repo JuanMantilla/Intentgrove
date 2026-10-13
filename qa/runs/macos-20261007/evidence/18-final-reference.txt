@@ -1,0 +1,95 @@
+Window: "Intentgrove", App: Intentgrove QA Final 20261007.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text intentgrove-qa-20261007-fixtures Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text intentgrove-qa-20261007-fixtures
+				10 button Project tree settings
+				11 container
+					12 button cold.md
+					13 button entry.md
+					14 button final-reference.md
+					15 button hostile.svg
+					16 button images.md
+					17 button large.md
+					18 button (collapsed) notes, Secondary Actions: Expand
+					19 button pixel-next.png
+					20 button pixel.png
+					21 button warm.md
+				22 text Storage and recovery
+				23 text Open edits and recovery offers: 0
+				24 button Manage…
+			25 container
+				26 container Visited files
+					27 button (disabled) Back, Help: No previous file
+					28 button (disabled) Forward, Help: No next file
+				29 tab group (selectable) Documents
+					30 container
+						31 tab (selected) final-reference.md, Help: /private/tmp/intentgrove-qa-20261007-fixtures/final-reference.md
+						32 button Close tab: final-reference.md, Help: Close tab
+				33 pop up button Go menu
+				34 button (collapsed) Open documents (1), Secondary Actions: Expand
+				35 container final-reference.md
+					36 text final-reference.md
+					37 text Folder root
+					38 toggle button Outline, Value: off
+					39 button (collapsed) Reading settings, Secondary Actions: Expand
+					40 button Edit section
+					41 summary Document…, Value: off
+						42 text Document…
+				43 container final-reference.md
+					44 container Final reference acceptance
+						45 summary Metadata, Value: off
+							46 text Metadata
+						47 container Edit section: Final reference acceptance
+							48 heading Final reference acceptance, Value: 1
+								49 text Final reference acceptance
+							50 button Edit section “Final reference acceptance”
+						51 button Read scoped guide, Help: notes/scoped.md
+						52 container Edit section: Repeated heading
+							53 heading Repeated heading, Value: 2
+								54 text Repeated heading
+							55 button Edit section “Repeated heading”
+						56 text Unaffected paragraph before the diagram source.
+						57 text mermaid
+						58 button Copy code
+						59 text flowchart LR
+  A --> B
+
+						60 text mermaid
+						61 button Copy code
+						62 text flowchart LR
+  malformed {{
+
+						63 text mermaid
+						64 button Copy code
+						65 text %%{init: {'securityLevel': 'loose'}}%%
+flowchart LR
+  A["<script>attack()</script>"] --> B
+
+						66 heading Repeated heading, Value: 2
+							67 text Repeated heading
+						68 text Unaffected paragraph after the diagram source.
+						69 text js
+						70 button Copy code
+						71 text const message = "<script>inert text</script>";
+
+	72 close button
+	73 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	74 minimize button
+	75 text Intentgrove
+76 menu bar
+	77 Intentgrove QA Final 20261007
+	78 File
+	79 Edit
+	80 View
+	81 Go
+	82 Window
+	83 Help
+
+The focused UI element is 2 HTML content Description: Intentgrove, URL: tauri://localhost

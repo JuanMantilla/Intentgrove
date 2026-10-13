@@ -1,0 +1,7 @@
+# Retained QA context — v2
+
+Default714/714/714 PASS. Cold native B from empty FAIL after6 passing reopens; passing reopens never waived it. Native Find/clipboard/fields verified in their limited state. Superseded after late-adapter regression/wake repair.
+
+This context is superseded for final source verification by [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-v5-retest-20261012T054900Z/report.md>). Every attempt and original log is retained; successes do not erase failures or prove a historical cause. No task acceptance or cleanup.
+
+Coverage: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/coverage.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/coverage.json>). Plan/baseline: [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/plan.md](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/plan.md>), [/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/tested-snapshot.json](</Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-retest-20261012T041100Z/tested-snapshot.json>). Native/source identity and exact timing are recorded in this context evidence and final implementation handoff.

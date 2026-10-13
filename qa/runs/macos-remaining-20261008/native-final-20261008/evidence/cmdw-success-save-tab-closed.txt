@@ -1,0 +1,48 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: permission.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selected) plain.md, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md
+						14 button Close tab: plain.md, Help: Close tab
+				15 pop up button Go menu
+				16 button (collapsed) Open documents (1), Secondary Actions: Expand
+				17 container plain.md
+					18 text plain.md
+					19 text Folder root
+					20 button Edit section
+					21 summary Document…, Value: off
+						22 text Document…
+				23 text File saved: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/permission.md
+				24 button Dismiss
+				25 container plain.md
+					26 container Unrelated document
+						27 container Edit section: Unrelated document
+							28 heading Unrelated document, Value: 1
+								29 text Unrelated document
+							30 button Edit section “Unrelated document”
+						31 text Responsive tab.
+	32 close button
+	33 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	34 minimize button
+	35 text Intentgrove
+36 menu bar
+	37 Intentgrove
+	38 File
+	39 Edit
+	40 View
+	41 Go
+	42 Window
+	43 Help
+
+The focused UI element is 13 tab (selected) plain.md, Value: on, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/plain.md

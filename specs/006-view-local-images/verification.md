@@ -1,5 +1,7 @@
 # F006 verification — 2026-09-29, updated after fresh SVG QA
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 ## Scope and approved baseline
 
 Active Spec Kit feature: `006-view-local-images` (`check-prerequisites.sh --paths-only`). The approved spec SHA-256 is `b8ee8619282446852ce955e04e1d027cd298c7982bfa658fc227c4fb25873fea`; design is `f131f06a6d07b1c3f867888f8ff4fa0a016ae10b4a6d59b5edd01547fe0042d9`. The user approved the narrow Rust-minimum correction; revised plan SHA-256 is `b51332d53c2f620c74e47c28aa94a765d242c93e7f31fe5575391d2f4e726c44`. See `docs/approvals.md`. Host: macOS 26.2 (25C56), arm64, Apple SDK 15.5, Rust 1.88.0. Local ad-hoc build only.
@@ -153,3 +155,13 @@ PASS: baseline 255 tests; final current 39 files/269 tests (`npm test -- --maxWo
 NOT TESTED: actual Tauri grants/picker/native menus/Settings, durable native save/restart, physical input/IME/VoiceOver. Full rich-editor, HTML/resource isolation, generic-file handler, separate Settings and native Go/subtree work still depend on IR-01–05. Existing native acceptance tasks remain open. No package/release/Windows runtime claim.
 
 Feature ownership: global F007W state preserved; F006 resolved through the installed shell workflow's supported feature-directory override with NO_PERSIST. No historical approved spec/design/architecture files or design artifacts modified.
+
+
+## HTML native checkpoint — 2026-10-08
+
+F006-H01: current implementation/evidence/limitations live in [native report](../../os-engineering/html-report-20261008.md) and [provider handoff](../../os-engineering/html-frontend-handoff.md). Prior PASS results do not certify this changed candidate. Windows and full frontend/package journeys remain separately qualified.
+
+
+### HTML native scoped verification — 2026-10-08
+
+Implemented native owner contribution; [actual handoff](../../os-engineering/html-frontend-handoff.md), [report](../../os-engineering/html-report-20261008.md), [exact evidence](../../os-engineering/evidence/html-native-20261008/). Real native Rust/filesystem, macOS engine and disposable packaged-harness scopes are distinguished from mocked frontend checks. Windows compilation/runtime, native picker/Tauri transport and complete frontend package journeys remain unverified; existing acceptance tasks are not promoted by this handoff. October6 authorization supersedes staged reapproval, and feature selection013 remains unchanged.

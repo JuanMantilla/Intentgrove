@@ -1,0 +1,81 @@
+Window: "Intentgrove QA0032", App: Intentgrove QA0032.
+0 standard window Intentgrove QA0032, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selectable) opened.md, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/fixtures/opened.md
+					16 button Close tab: opened.md, Help: Close tab
+				17 container
+					18 tab (selectable) explicit.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit.md
+					19 button Close tab: explicit.md, Help: Close tab
+				20 container
+					21 tab (selected) explicit-safe.md · Select file again, Help: /Users/juanmantilla/projects/personal/md-reader/os-engineering/qa0032-20261011/individual/explicit-safe.md
+					22 button Close tab: explicit-safe.md, Help: Close tab
+			23 pop up button Go menu
+			24 button (collapsed) Open documents (3), Secondary Actions: Expand
+			25 container Explorer
+				26 pop up button PROJECTS
+				27 button Close Projects sidebar
+				28 button Open file
+				29 button Open folder
+				30 button Search folder
+				31 text fixtures
+				32 container
+					33 button after-rename-moved.md
+					34 button after-replace-original.md
+					35 button after-replace-second-original.md
+					36 button after-replace.md
+					37 button before-rename-moved.md
+					38 button before-replace-original.md
+					39 button before-replace.md
+					40 button café # $ & % (draft),.md
+					41 button final-race-original.md
+					42 button final-race.md
+					43 button fresh.md
+					44 button opened-original.md
+					45 button opened.md
+				46 text Storage and recovery
+				47 text Open edits and recovery offers: 0
+				48 button Manage…
+				49 button Settings…
+			50 container
+				51 text Could not reveal the file. Select file again
+				52 button Dismiss
+				53 container explicit-safe.md
+					54 container explicit-safe.md
+						55 text explicit-safe.md
+					56 button (disabled) Find in document
+					57 toggle button (disabled) Outline, Value: on
+					58 button (collapsed) Reading settings, Secondary Actions: Expand
+					59 summary Document…, Value: off
+						60 text Document…
+					61 text Outside the open folder
+				62 heading Select file again, Value: 1
+					63 text Select file again
+				64 text Check the file, then try again or choose another document.
+				65 button Select file again
+			66 container
+				67 text explicit-safe.md Intentgrove by Theonira
+	68 close button
+	69 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	70 minimize button
+	71 text Intentgrove QA0032
+72 menu bar
+	73 Intentgrove QA0032
+	74 File
+	75 Edit
+	76 View
+	77 Go
+	78 Window
+	79 Help

@@ -1,0 +1,18 @@
+{
+  "name": "format-crates-v7",
+  "command": [
+    "cargo",
+    "fmt",
+    "--manifest-path",
+    "crates/Cargo.toml",
+    "--all",
+    "--",
+    "--check"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:47:01.317367+00:00",
+  "finished_at": "2026-10-12T03:47:01.892163+00:00",
+  "exit_code": 0,
+  "log": "format-crates-v7.log",
+  "tested_snapshot": "tested-snapshot-v7.json"
+}

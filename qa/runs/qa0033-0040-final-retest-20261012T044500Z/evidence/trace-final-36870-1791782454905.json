@@ -1,0 +1,1110 @@
+[
+  {
+    "n": 0,
+    "at": 4444.837833,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 1,
+    "at": 4577.717958,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 2,
+    "at": 4582.747791,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 3,
+    "at": 4634.264166,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 4,
+    "at": 4727.076541,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 5
+  },
+  {
+    "n": 5,
+    "at": 4943.016375,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "scroll",
+    "value": 376
+  },
+  {
+    "n": 6,
+    "at": 5110.143458,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 5
+  },
+  {
+    "n": 7,
+    "at": 5178.134666,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "scroll",
+    "value": 776
+  },
+  {
+    "n": 8,
+    "at": 5217.015791,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 5
+  },
+  {
+    "n": 9,
+    "at": 5337.862458,
+    "test": "automatic refresh > does not accumulate native scroll rounding across successive heading restorations",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 10,
+    "at": 5439.346,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 11,
+    "at": 5598.766791,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 12,
+    "at": 5599.174833,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 13,
+    "at": 5724.696583,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 14,
+    "at": 5902.747291,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 6
+  },
+  {
+    "n": 15,
+    "at": 5902.859333,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v1"
+  },
+  {
+    "n": 16,
+    "at": 6308.192625,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "n": 17,
+    "at": 6522.635708,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 18,
+    "at": 7249.266291,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 375.75,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:127:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 19,
+    "at": 7249.883333,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "scroll",
+    "value": 375.75
+  },
+  {
+    "n": 20,
+    "at": 7775.364708,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 7
+  },
+  {
+    "n": 21,
+    "at": 7775.443666,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "sections-start",
+    "id": "a.md",
+    "version": "v2"
+  },
+  {
+    "n": 22,
+    "at": 7849.702708,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "scroll",
+    "value": 375.75
+  },
+  {
+    "n": 23,
+    "at": 7850.0795,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "sections-resolved",
+    "id": "a.md",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v2"
+  },
+  {
+    "n": 24,
+    "at": 8021.153791,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "scroll-write",
+    "before": 375.75,
+    "value": 775.75,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3019:18\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 25,
+    "at": 8149.788041,
+    "test": "automatic refresh > restores after delayed native editing controls change heading geometry",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 26,
+    "at": 8243.309791,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 27,
+    "at": 8352.109916,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 28,
+    "at": 8352.616416,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 29,
+    "at": 8381.57775,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 30,
+    "at": 8480.791375,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "worker-request",
+    "fileId": "a.md",
+    "owner": 1,
+    "length": 2126
+  },
+  {
+    "n": 31,
+    "at": 8480.881125,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 32,
+    "at": 8558.563708,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "worker-reply",
+    "fileId": "a.md",
+    "owner": 1,
+    "reply": 1
+  },
+  {
+    "n": 33,
+    "at": 8586.272541,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 123
+  },
+  {
+    "n": 34,
+    "at": 8790.382,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 48,
+    "blocks": 123
+  },
+  {
+    "n": 35,
+    "at": 8908.638625,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 72,
+    "blocks": 123
+  },
+  {
+    "n": 36,
+    "at": 9060.519041,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 96,
+    "blocks": 123
+  },
+  {
+    "n": 37,
+    "at": 9387.770083,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 120,
+    "blocks": 123
+  },
+  {
+    "n": 38,
+    "at": 9585.521458,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 123,
+    "blocks": 123
+  },
+  {
+    "n": 39,
+    "at": 9696.663,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 40,
+    "at": 9762.79425,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 400,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:176:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 41,
+    "at": 9763.404458,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll",
+    "value": 400
+  },
+  {
+    "n": 42,
+    "at": 10135.696,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "worker-request",
+    "fileId": "a.md",
+    "owner": 2,
+    "length": 2426
+  },
+  {
+    "n": 43,
+    "at": 10321.56725,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "worker-reply",
+    "fileId": "a.md",
+    "owner": 2,
+    "reply": 2
+  },
+  {
+    "n": 44,
+    "at": 10602.231541,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 123,
+    "blocks": 138
+  },
+  {
+    "n": 45,
+    "at": 10691.413291,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 138
+  },
+  {
+    "n": 46,
+    "at": 10727.353541,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll-write",
+    "before": 400,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:186:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 47,
+    "at": 10728.072375,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll",
+    "value": 0
+  },
+  {
+    "n": 48,
+    "at": 10943.715916,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 48,
+    "blocks": 138
+  },
+  {
+    "n": 49,
+    "at": 11118.683916,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 72,
+    "blocks": 138
+  },
+  {
+    "n": 50,
+    "at": 11244.9385,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 96,
+    "blocks": 138
+  },
+  {
+    "n": 51,
+    "at": 11405.1635,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 120,
+    "blocks": 138
+  },
+  {
+    "n": 52,
+    "at": 11583.921916,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 138,
+    "blocks": 138
+  },
+  {
+    "n": 53,
+    "at": 11713.120583,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 800,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3019:18\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 54,
+    "at": 11821.715083,
+    "test": "automatic refresh > retains the heading anchor at margin 0 through staged replacement",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 55,
+    "at": 12008.426625,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 56,
+    "at": 12143.845,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 57,
+    "at": 12144.136708,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 58,
+    "at": 12199.089833,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 59,
+    "at": 12330.692708,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "worker-request",
+    "fileId": "a.md",
+    "owner": 1,
+    "length": 2126
+  },
+  {
+    "n": 60,
+    "at": 12330.738541,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 0
+  },
+  {
+    "n": 61,
+    "at": 12668.077625,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "worker-reply",
+    "fileId": "a.md",
+    "owner": 1,
+    "reply": 1
+  },
+  {
+    "n": 62,
+    "at": 12709.649708,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 123
+  },
+  {
+    "n": 63,
+    "at": 13055.87225,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 48,
+    "blocks": 123
+  },
+  {
+    "n": 64,
+    "at": 13188.172791,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 72,
+    "blocks": 123
+  },
+  {
+    "n": 65,
+    "at": 13297.656875,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 96,
+    "blocks": 123
+  },
+  {
+    "n": 66,
+    "at": 13474.7735,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 120,
+    "blocks": 123
+  },
+  {
+    "n": 67,
+    "at": 13615.94525,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 123,
+    "blocks": 123
+  },
+  {
+    "n": 68,
+    "at": 13719.368708,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 69,
+    "at": 13787.858208,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 375.75,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:176:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 70,
+    "at": 13788.403125,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll",
+    "value": 375.75
+  },
+  {
+    "n": 71,
+    "at": 14010.313708,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "worker-request",
+    "fileId": "a.md",
+    "owner": 2,
+    "length": 2426
+  },
+  {
+    "n": 72,
+    "at": 14179.801833,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "worker-reply",
+    "fileId": "a.md",
+    "owner": 2,
+    "reply": 2
+  },
+  {
+    "n": 73,
+    "at": 14243.735125,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 123,
+    "blocks": 138
+  },
+  {
+    "n": 74,
+    "at": 14309.525833,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 138
+  },
+  {
+    "n": 75,
+    "at": 14329.725541,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll-write",
+    "before": 375.75,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:186:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 76,
+    "at": 14330.076375,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll",
+    "value": 0
+  },
+  {
+    "n": 77,
+    "at": 14456.604666,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 48,
+    "blocks": 138
+  },
+  {
+    "n": 78,
+    "at": 14536.118416,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 72,
+    "blocks": 138
+  },
+  {
+    "n": 79,
+    "at": 14740.783875,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 96,
+    "blocks": 138
+  },
+  {
+    "n": 80,
+    "at": 14852.571291,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 120,
+    "blocks": 138
+  },
+  {
+    "n": 81,
+    "at": 14901.233291,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 138,
+    "blocks": 138
+  },
+  {
+    "n": 82,
+    "at": 15014.853083,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 775.75,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3019:18\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 83,
+    "at": 15076.320041,
+    "test": "automatic refresh > retains the heading anchor at margin 24.25 through staged replacement",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 84,
+    "at": 15201.281583,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 85,
+    "at": 15363.276416,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 86,
+    "at": 15363.683833,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 87,
+    "at": 15403.630958,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 88,
+    "at": 15461.003833,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 89,
+    "at": 15518.973708,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 90,
+    "at": 15559.697,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 180,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:201:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 91,
+    "at": 15560.25325,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll",
+    "value": 180
+  },
+  {
+    "n": 92,
+    "at": 15634.910625,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "click",
+    "text": "b.md",
+    "title": "b.md",
+    "disabled": false
+  },
+  {
+    "n": 93,
+    "at": 15635.330375,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "open-start",
+    "sequence": 2,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "b.md"
+      ]
+    }
+  },
+  {
+    "n": 94,
+    "at": 15723.949333,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "open-activate",
+    "id": "b.md",
+    "sequence": 2,
+    "currentSequence": 2
+  },
+  {
+    "n": 95,
+    "at": 15841.046875,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "paint",
+    "fileId": "b.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 96,
+    "at": 15880.555375,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll-write",
+    "before": 180,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 97,
+    "at": 15929.795666,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 320,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:205:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 98,
+    "at": 15930.150125,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll",
+    "value": 320
+  },
+  {
+    "n": 99,
+    "at": 16057.519916,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "click",
+    "text": "a.mdUpdated from disk",
+    "title": "/tmp/fixture/a.md",
+    "disabled": false
+  },
+  {
+    "n": 100,
+    "at": 16118.407708,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 101,
+    "at": 16158.884458,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "scroll-write",
+    "before": 320,
+    "value": 180,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3016:71\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 102,
+    "at": 16200.891208,
+    "test": "automatic refresh > updates an inactive clean tab without taking focus or losing the active passage",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 103,
+    "at": 16302.428916,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 104,
+    "at": 16481.38625,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 105,
+    "at": 16481.714416,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 106,
+    "at": 16518.68525,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "click",
+    "text": "docs",
+    "title": "docs",
+    "disabled": false
+  },
+  {
+    "n": 107,
+    "at": 16567.941583,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 108,
+    "at": 16633.775791,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 109,
+    "at": 16678.318958,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 110,
+    "at": 16713.987625,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 275,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/tests/ui/automatic-refresh.test.tsx:236:12\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "n": 111,
+    "at": 16714.611458,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "scroll",
+    "value": 275
+  },
+  {
+    "n": 112,
+    "at": 16850.478666,
+    "test": "automatic refresh > refreshes a changed expanded branch without collapsing it or shifting the reader",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  },
+  {
+    "n": 113,
+    "at": 16940.573041,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "click",
+    "text": "Open folder",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 114,
+    "at": 17073.317416,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "click",
+    "text": "a.md",
+    "title": "a.md",
+    "disabled": false
+  },
+  {
+    "n": 115,
+    "at": 17073.688416,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "open-start",
+    "sequence": 1,
+    "request": {
+      "rootId": "root",
+      "segments": [
+        "a.md"
+      ]
+    }
+  },
+  {
+    "n": 116,
+    "at": 17136.146041,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "open-activate",
+    "id": "a.md",
+    "sequence": 1,
+    "currentSequence": 1
+  },
+  {
+    "n": 117,
+    "at": 17187.911875,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "paint",
+    "fileId": "a.md",
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "n": 118,
+    "at": 17225.15975,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.setter [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/qa/runs/qa0033-0040-final-retest-20261012T044500Z/diagnostic-setup.ts:9:187)\n    at /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/candidate-source-v3/src/app/App.tsx:3029:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "n": 119,
+    "at": 17339.667833,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "click",
+    "text": "Projects",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 120,
+    "at": 17413.651916,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "click",
+    "text": "Open folder⇧⌘O",
+    "title": null,
+    "disabled": false
+  },
+  {
+    "n": 121,
+    "at": 17618.429166,
+    "test": "automatic refresh > ignores events from an older workspace generation",
+    "event": "case-end",
+    "headings": [],
+    "dialogs": 0,
+    "loading": []
+  }
+]

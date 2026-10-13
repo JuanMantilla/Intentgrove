@@ -22,24 +22,39 @@ pub struct SafetyCopyInventory {
 }
 
 fn lock(dir: &Path) -> AppResult<crate::platform::storage::StorageLock> {
-    crate::platform::storage::lock_private(&dir.join("copies.lock"), "safety_copy_error", "safety_copy_permissions")
+    crate::platform::storage::lock_private(
+        &dir.join("copies.lock"),
+        "safety_copy_error",
+        "safety_copy_permissions",
+    )
 }
 
 fn inventory_at(dir: &Path) -> AppResult<SafetyCopyInventory> {
-    let mut result = SafetyCopyInventory { quota_bytes: MAX_SAFETY_COPY_BYTES, ..Default::default() };
+    let mut result = SafetyCopyInventory {
+        quota_bytes: MAX_SAFETY_COPY_BYTES,
+        ..Default::default()
+    };
     let mut seen = 0;
     for entry in fs::read_dir(dir).map_err(io_error)? {
         let entry = entry.map_err(io_error)?;
         let name = entry.file_name().to_string_lossy().into_owned();
-        if name == "copies.lock" { continue; }
+        if name == "copies.lock" {
+            continue;
+        }
         seen += 1;
         if seen > MAX_COPY_FILES {
-            return Err(AppError::new("safety_copy_quota", "Too many safety-copy files"));
+            return Err(AppError::new(
+                "safety_copy_quota",
+                "Too many safety-copy files",
+            ));
         }
         let file = open_selected(&entry.path(), false)?;
         let metadata = file.metadata().map_err(io_error)?;
-        crate::platform::storage::verify_private_file(&file).map_err(|e| AppError::new("safety_copy_permissions", e.message))?;
-        result.used_bytes = result.used_bytes.checked_add(metadata.len())
+        crate::platform::storage::verify_private_file(&file)
+            .map_err(|e| AppError::new("safety_copy_permissions", e.message))?;
+        result.used_bytes = result
+            .used_bytes
+            .checked_add(metadata.len())
             .ok_or_else(|| AppError::new("safety_copy_quota", "Safety-copy size overflow"))?;
         if name.ends_with(".resolved") {
             result.resolved_count += 1;
@@ -74,25 +89,49 @@ impl SafetyCopyBatch {
         Self::begin_locked(dir, lock, reserve_bytes)
     }
 
-    fn begin_locked(dir: PathBuf, lock: crate::platform::storage::StorageLock, reserve_bytes: u64) -> AppResult<Self> {
+    fn begin_locked(
+        dir: PathBuf,
+        lock: crate::platform::storage::StorageLock,
+        reserve_bytes: u64,
+    ) -> AppResult<Self> {
         let inventory = inventory_at(&dir)?;
         let used = inventory.used_bytes;
         if inventory.resolved_count + inventory.unresolved_count > (MAX_COPY_FILES - 3) as u64 {
-            return Err(AppError::new("safety_copy_quota", "Too many safety-copy files"));
+            return Err(AppError::new(
+                "safety_copy_quota",
+                "Too many safety-copy files",
+            ));
         }
         if reserve_bytes > MAX_SAFETY_COPY_BYTES.saturating_sub(used) {
-            return Err(AppError::new("safety_copy_quota", "Safety-copy storage is full"));
+            return Err(AppError::new(
+                "safety_copy_quota",
+                "Safety-copy storage is full",
+            ));
         }
-        Ok(Self { dir, _lock: lock, id: Uuid::new_v4().to_string(),
-            remaining: reserve_bytes, pending: Vec::new() })
+        Ok(Self {
+            dir,
+            _lock: lock,
+            id: Uuid::new_v4().to_string(),
+            remaining: reserve_bytes,
+            pending: Vec::new(),
+        })
     }
 
     pub fn preserve(&mut self, role: &str, bytes: &[u8]) -> AppResult<()> {
-        if !matches!(role, "original" | "staged" | "intervening" | "save-as-original") {
-            return Err(AppError::new("safety_copy_error", "Invalid safety-copy role"));
+        if !matches!(
+            role,
+            "original" | "staged" | "intervening" | "save-as-original"
+        ) {
+            return Err(AppError::new(
+                "safety_copy_error",
+                "Invalid safety-copy role",
+            ));
         }
         if bytes.len() as u64 > self.remaining {
-            return Err(AppError::new("safety_copy_quota", "Safety-copy reserve was exceeded"));
+            return Err(AppError::new(
+                "safety_copy_quota",
+                "Safety-copy reserve was exceeded",
+            ));
         }
         let path = self.dir.join(format!("{}-{role}.pending", self.id));
         let mut file = crate::platform::storage::create_private_file(&path)?;
@@ -127,7 +166,9 @@ pub async fn list_safety_copies(app: AppHandle) -> AppResult<SafetyCopyInventory
         let dir = private_storage_dir(&app, "save-backups")?;
         let _lock = lock(&dir)?;
         inventory_at(&dir)
-    }).await.map_err(|error| AppError::new("internal", error.to_string()))?
+    })
+    .await
+    .map_err(|error| AppError::new("internal", error.to_string()))?
 }
 
 fn clear_resolved_at(dir: &Path) -> AppResult<SafetyCopyInventory> {
@@ -137,9 +178,12 @@ fn clear_resolved_at(dir: &Path) -> AppResult<SafetyCopyInventory> {
     let mut resolved = Vec::new();
     for entry in fs::read_dir(dir).map_err(io_error)? {
         let entry = entry.map_err(io_error)?;
-        if !entry.file_name().to_string_lossy().ends_with(".resolved") { continue; }
+        if !entry.file_name().to_string_lossy().ends_with(".resolved") {
+            continue;
+        }
         let file = open_selected(&entry.path(), false)?;
-        crate::platform::storage::verify_private_file(&file).map_err(|e| AppError::new("safety_copy_permissions", e.message))?;
+        crate::platform::storage::verify_private_file(&file)
+            .map_err(|e| AppError::new("safety_copy_permissions", e.message))?;
         resolved.push(entry.path());
     }
     for path in resolved {
@@ -150,23 +194,30 @@ fn clear_resolved_at(dir: &Path) -> AppResult<SafetyCopyInventory> {
 }
 
 #[tauri::command]
-pub async fn clear_resolved_safety_copies(app: AppHandle,
-    confirmed: bool) -> AppResult<SafetyCopyInventory> {
+pub async fn clear_resolved_safety_copies(
+    app: AppHandle,
+    confirmed: bool,
+) -> AppResult<SafetyCopyInventory> {
     if !confirmed {
-        return Err(AppError::new("confirmation_required", "Confirm clearing resolved safety copies"));
+        return Err(AppError::new(
+            "confirmation_required",
+            "Confirm clearing resolved safety copies",
+        ));
     }
     tauri::async_runtime::spawn_blocking(move || {
         let dir = private_storage_dir(&app, "save-backups")?;
         let _lock = lock(&dir)?;
         clear_resolved_at(&dir)
-    }).await.map_err(|error| AppError::new("internal", error.to_string()))?
+    })
+    .await
+    .map_err(|error| AppError::new("internal", error.to_string()))?
 }
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     #[cfg(target_os = "macos")]
     use std::os::unix::fs::PermissionsExt;
-    use super::*;
 
     fn fixture() -> PathBuf {
         let dir = std::env::temp_dir().join(format!("md-reader-safety-copies-{}", Uuid::new_v4()));
@@ -184,8 +235,13 @@ mod tests {
         #[cfg(target_os = "macos")]
         let _ = fs::set_permissions(dir.join("legacy.bak"), fs::Permissions::from_mode(0o600));
         let guard = lock(&dir).unwrap();
-        assert_eq!(SafetyCopyBatch::begin_locked(dir.clone(), guard,
-            MAX_SAFETY_COPY_BYTES).err().unwrap().code, "safety_copy_quota");
+        assert_eq!(
+            SafetyCopyBatch::begin_locked(dir.clone(), guard, MAX_SAFETY_COPY_BYTES)
+                .err()
+                .unwrap()
+                .code,
+            "safety_copy_quota"
+        );
         assert_eq!(fs::read(dir.join("legacy.bak")).unwrap(), b"existing");
         fs::remove_dir_all(dir).unwrap();
     }

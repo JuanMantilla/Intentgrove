@@ -1,0 +1,14 @@
+import { describe, expect, it, vi } from 'vitest';
+import { HtmlController, validHtmlView } from '../../src/app/htmlController';
+import { htmlNative, type LocalView, type HtmlState } from '../../src/app/htmlNative';
+vi.mock('../../src/app/htmlNative',()=>({htmlNative:{dispose:vi.fn(async()=>true),capture:vi.fn(),location:vi.fn()}}));
+const view:LocalView={fileId:'f',identityKey:'1:2',diskVersion:'v1',name:'page.html',displayPath:'/tmp/page.html',kind:'html',viewToken:'token',generation:1,bytes:10,extension:'html'};
+const location={headingId:'authored ID',offset:-12,scrollTop:40,scrollLeft:10,zoom:1.5};
+const state:HtmlState={viewToken:'token',generation:1,revision:2,requestId:1,state:'ready',reasonCode:null,issues:[],headings:[{key:'heading:0',authoredId:'authored ID',level:1,text:'Original heading'}],location};
+describe('actual native HTML owner contract (mocked transport)',()=>{
+ it('fails closed for missing tokens and invalid generations',()=>{expect(validHtmlView({...view,viewToken:null})).toBe(false);expect(()=>new HtmlController({...view,generation:0},()=>{})).toThrow();});
+ it('rejects unrelated, old-revision, disposed and malformed state events',async()=>{const publish=vi.fn(),c=new HtmlController(view,publish);expect(c.accept(state)).toBe(true);expect(c.accept({...state,revision:1})).toBe(false);expect(c.accept({...state,viewToken:'other'})).toBe(false);expect(c.accept({...state,generation:2})).toBe(false);expect(c.accept({...state,location:{...location,zoom:NaN}})).toBe(false);await c.dispose();expect(c.accept({...state,revision:3})).toBe(false);expect(publish).toHaveBeenCalledTimes(1);});
+ it('serializes increasing requests including viewport/inspection operations',async()=>{const c=new HtmlController(view,()=>{});let release!:()=>void;const order:number[]=[];const first=c.run(async r=>{order.push(r.requestId);await new Promise<void>(yes=>release=yes);return 1;});const second=c.run(async r=>{order.push(r.requestId);return 2;});await Promise.resolve();await Promise.resolve();expect(order).toEqual([1]);release();expect(await first).toBe(1);expect(await second).toBe(2);expect(order).toEqual([1,2]);});
+ it('revokes immediately while an operation is pending and rejects its late reply',async()=>{const c=new HtmlController(view,()=>{});let release!:(x:number)=>void;const pending=c.run(()=>new Promise<number>(yes=>release=yes));await Promise.resolve();await Promise.resolve();await c.dispose();expect(htmlNative.dispose).toHaveBeenCalledWith({viewToken:'token',generation:1});release(1);await expect(pending).rejects.toMatchObject({code:'stale_view'});});
+ it('retains actual location acknowledgment including signed offset and local zoom',async()=>{vi.mocked(htmlNative.location).mockResolvedValue({location});const c=new HtmlController(view,()=>{});expect(await c.locate({...location,zoom:2})).toEqual(location);expect(c.location.zoom).toBe(1.5);});
+});

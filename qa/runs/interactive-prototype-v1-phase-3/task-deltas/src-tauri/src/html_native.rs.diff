@@ -1,0 +1,18 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/html_native.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/html_native.rs
+@@ -429,14 +429,10 @@
+     windows_surface::hide_all();
+ }
+ pub fn dispose_all() {
++    crate::document_view::cancel_all();
+     if let Ok(h) = host() {
+         if let Ok(mut views) = lock(&h.service) {
+             views.clear();
+-        }
+-        if let Ok(opens) = h.service.opens.lock() {
+-            for control in opens.values() {
+-                control.store(true, std::sync::atomic::Ordering::SeqCst);
+-            }
+         }
+     }
+     #[cfg(target_os = "windows")]

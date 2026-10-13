@@ -1,0 +1,249 @@
+[
+  {
+    "name": "ipc-contract-v3",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "settings-contract-tests",
+      "--lib",
+      "command_args::tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:07:23.322247+00:00",
+    "finished_at": "2026-10-12T04:07:45.883517+00:00",
+    "exit_code": 0,
+    "log": "ipc-contract-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "native-clippy-final-v3",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--lib",
+      "--tests",
+      "--message-format=json",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:07:45.884577+00:00",
+    "finished_at": "2026-10-12T04:08:00.665089+00:00",
+    "exit_code": 0,
+    "log": "native-clippy-final-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "native-tests-v3",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--features",
+      "document-contract-tests",
+      "--lib",
+      "--tests"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:08:00.666022+00:00",
+    "finished_at": "2026-10-12T04:09:07.584484+00:00",
+    "exit_code": 0,
+    "log": "native-tests-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "native-check-v3",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--offline",
+      "--locked"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:09:07.586073+00:00",
+    "finished_at": "2026-10-12T04:09:21.892451+00:00",
+    "exit_code": 0,
+    "log": "native-check-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "frontend-v3",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+      "run",
+      "--dir",
+      "tests/ui",
+      "--maxWorkers",
+      "1",
+      "--reporter=json",
+      "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-v3-results.json"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:07:23.322684+00:00",
+    "finished_at": "2026-10-12T04:13:18.530540+00:00",
+    "exit_code": 1,
+    "log": "frontend-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "types-v3",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:13:18.531376+00:00",
+    "finished_at": "2026-10-12T04:13:19.501201+00:00",
+    "exit_code": 0,
+    "log": "types-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "vite-v3",
+    "command": [
+      "node",
+      "/Users/juanmantilla/projects/personal/md-reader/node_modules/vite/bin/vite.js",
+      "build",
+      "--outDir",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/frontend-build-v3"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:13:19.501834+00:00",
+    "finished_at": "2026-10-12T04:13:20.272416+00:00",
+    "exit_code": 0,
+    "log": "vite-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "phase12-v3",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+    },
+    "started_at": "2026-10-12T04:07:23.322820+00:00",
+    "finished_at": "2026-10-12T04:07:38.118067+00:00",
+    "exit_code": 0,
+    "log": "phase12-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "crate-clippy-v3",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--offline",
+      "--locked",
+      "--workspace",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/Users/juanmantilla/projects/personal/md-reader/crates/target"
+    },
+    "started_at": "2026-10-12T04:07:38.119418+00:00",
+    "finished_at": "2026-10-12T04:07:38.643063+00:00",
+    "exit_code": 0,
+    "log": "crate-clippy-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "crate-format-v3",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "crates/Cargo.toml",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/regression-candidate-final",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:07:38.645279+00:00",
+    "finished_at": "2026-10-12T04:07:39.315913+00:00",
+    "exit_code": 0,
+    "log": "crate-format-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "app-boundaries-v3",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-verification-unblock/audit_boundaries.py"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:13:20.273389+00:00",
+    "finished_at": "2026-10-12T04:13:20.881369+00:00",
+    "exit_code": 0,
+    "log": "app-boundaries-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "crate-boundaries-v3",
+    "command": [
+      "python3",
+      "crates/check_boundaries.py"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:13:20.881760+00:00",
+    "finished_at": "2026-10-12T04:13:21.004374+00:00",
+    "exit_code": 0,
+    "log": "crate-boundaries-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  },
+  {
+    "name": "maintenance-format-v3",
+    "command": [
+      "python3",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/strict-clippy-baseline-cleanup/format_scope.py",
+      "--check"
+    ],
+    "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+    "environment_overrides": {},
+    "started_at": "2026-10-12T04:13:21.004762+00:00",
+    "finished_at": "2026-10-12T04:13:22.927766+00:00",
+    "exit_code": 0,
+    "log": "maintenance-format-v3.log",
+    "tested_snapshot": "tested-snapshot-v3.json"
+  }
+]

@@ -1,0 +1,13 @@
+diff --git a/src-tauri/src/lib.rs b/qa/runs/macos-completion-20261008/probe-native/src/lib.rs
+index c811c3e..1474faf 100644
+--- a/src-tauri/src/lib.rs
++++ b/qa/runs/macos-completion-20261008/probe-native/src/lib.rs
+@@ -191,6 +191,8 @@ fn is_go_menu_action(id: &str) -> bool {
+ }
+ 
+ fn allowed_navigation(url: &tauri::Url) -> bool {
++    eprintln!("APPROVED_BLOB_PROBE navigation {}", url);
++    if url.as_str().starts_with("blob:tauri://localhost/") { return true; }
+     (url.scheme() == "tauri" && url.host_str() == Some("localhost"))
+         || (cfg!(target_os = "windows") && url.scheme() == "http"
+             && url.host_str() == Some("tauri.localhost") && url.port().is_none()

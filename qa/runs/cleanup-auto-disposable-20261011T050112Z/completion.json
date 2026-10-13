@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "task_id": "cleanup-auto-disposable-20261011T050112Z",
+  "acceptance_version": "cleanup-auto-disposable-20261011T050112Z-v1",
+  "session_kind": "qa",
+  "qa_result": "QA_PASSED",
+  "task_state": "DONE_ACCEPTED",
+  "unresolved_blockers": [],
+  "required_checks": [
+    {
+      "id": "synthetic_bytes_result",
+      "result": "PASS",
+      "reason": "Compared both exact file bytes and SHA-256 against preserved inputs/inventory; arithmetic 2+3=5.",
+      "finished_at": "2026-10-11T05:01:17.333672+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+      ]
+    },
+    {
+      "id": "future_exact_scope",
+      "result": "PASS",
+      "reason": "New unique paths only; preexisting intermediate files retain baseline hashes.",
+      "finished_at": "2026-10-11T05:01:17.333783+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+      ]
+    },
+    {
+      "id": "protected_reproducibility",
+      "result": "PASS",
+      "reason": "All final evidence and reproducibility inputs live outside deletion folder in protected qa tree.",
+      "finished_at": "2026-10-11T05:01:17.333919+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+      ]
+    },
+    {
+      "id": "standing_policy_service",
+      "result": "PASS",
+      "reason": "Approved policy/config bytes unchanged; launchd observed existing service running. No new worker started.",
+      "finished_at": "2026-10-11T05:01:17.338186+00:00",
+      "evidence_paths": [
+        "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md",
+  "evidence_paths": [
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json"
+  ],
+  "tested_snapshot_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json",
+  "artifact_paths": [
+    "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-scratch.txt",
+    "cleanup-disposable/qa-intermediates/cleanup-auto-disposable-20261011T050112Z-trace.log"
+  ],
+  "retain_paths": [
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/check.py",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/checks.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-policy.json.baseline",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/cleanup-service.json.baseline",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/evidence-index.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/existing-intermediates.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-before.txt",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/launchd-check.txt",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/queue-before.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/report.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/reproducibility-inputs.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/synthetic-inventory.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-paths.json",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/tested-snapshot.json"
+  ],
+  "requirements_source_paths": [
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+    "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance-source.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "All documented synthetic checks pass; user conditional acceptance is satisfied for this task only",
+      "source_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/task-instructions.md",
+      "evidence_path": "qa/runs/cleanup-auto-disposable-20261011T050112Z/acceptance.json",
+      "satisfied": true
+    }
+  ]
+}

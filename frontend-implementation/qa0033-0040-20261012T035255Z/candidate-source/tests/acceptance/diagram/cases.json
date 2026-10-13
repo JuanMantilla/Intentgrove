@@ -1,0 +1,22 @@
+[
+  "flowchart LR\nA-->B",
+  "sequenceDiagram\nA->>B: hello",
+  "flowchart LR\nA[\"<script>alert(1)</script>\"]",
+  "%%{init: {'securityLevel':'loose'}}%%\nflowchart LR\nA-->B",
+  "flowchart LR\nclick A \"https://127.0.0.1:9\"",
+  "flowchart LR\nA[\"<img src=file:///etc/passwd>\"]",
+  "flowchart LR\nA[\"<svg onload=alert(1)>\"]",
+  "flowchart LR\nA[\"<iframe src=https://127.0.0.1:9>\"]",
+  "flowchart LR\nA[\"<object data=file:///etc/passwd>\"]",
+  "flowchart LR\nA[\"<a href=javascript:alert(1)>\"]",
+  "flowchart LR\nA[\"<foreignObject>\"]",
+  "flowchart LR\nA-->[",
+  "---\nconfig: x\n---\nflowchart LR\nA-->B",
+  "flowchart LR\nstyle A fill:url(https://127.0.0.1:9)",
+  "flowchart LR\nclassDef x fill:red",
+  "flowchart LR\nA[\"$$x$$\"]",
+  "flowchart LR\nlinkStyle 0 stroke:red",
+  "flowchart LR\ncallback A",
+  "flowchart LR\nhref A",
+  "pie\n\"A\": 2"
+]

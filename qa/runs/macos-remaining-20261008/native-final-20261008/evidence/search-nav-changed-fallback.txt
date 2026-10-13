@@ -1,0 +1,81 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 container Search folder
+					10 button Back to explorer
+					11 container
+						12 text Search folder
+						13 search text field (settable) Search folder, Value: NAV_FINAL_TARGET_UNIQUE, Placeholder: File name or text
+							14 text (settable) NAV_FINAL_TARGET_UNIQUE
+							15 button cancel
+					16 text Search scope: fixtures · Names and content
+					17 container Search in
+						18 toggle button Names and content, Value: on
+						19 toggle button File names, Value: off
+						20 toggle button Document text, Value: off
+					21 text Contents search covers Markdown files.
+					22 container
+						23 checkbox Include ignored files, Value: 0
+						24 text Include ignored files
+					25 button Search
+					26 button Clear search
+					27 text Search complete · 8 entries scanned, 1 skipped · Results: 1
+					28 container search-navigation.md
+						29 heading search-navigation.md 1, Help: search-navigation.md, Value: 3
+							30 text search-navigation.md 1
+						31 button search-navigation.md · Line 3 · NAV_FINAL_TARGET_UNIQUE, Help: search-navigation.md
+				32 text Storage and recovery
+				33 text Open edits and recovery offers: 0
+				34 button Manage…
+			35 container
+				36 container Visited files
+					37 button Back, Help: Back: café-東京.md
+/private/tmp/intentgrove-remaining-20261008/search-25000/group-00/café-東京.md
+					38 button (disabled) Forward, Help: No next file
+				39 tab group (selectable) Documents
+					40 container
+						41 tab (selected) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						42 button Close tab: search-navigation.md, Help: Close tab
+				43 pop up button Go menu
+				44 button (collapsed) Open documents (1), Secondary Actions: Expand
+				45 container search-navigation.md
+					46 text search-navigation.md
+					47 text Folder root
+					48 toggle button Outline, Value: off
+					49 button (collapsed) Reading settings, Secondary Actions: Expand
+					50 button Edit section
+					51 summary Document…, Value: off
+						52 text Document…
+				53 text The matching text moved or is gone. Showing the current file.
+				54 button Dismiss
+				55 container search-navigation.md
+					56 container Search navigation
+						57 container Edit section: Search navigation
+							58 heading Search navigation, Value: 1
+								59 text Search navigation
+							60 button Edit section “Search navigation”
+						61 text CHANGED_CURRENT_DOCUMENT
+						62 container Edit section: End
+							63 heading End, Value: 2
+								64 text End
+							65 button Edit section “End”
+						66 text Tail intact.
+	67 close button
+	68 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	69 minimize button
+	70 text Intentgrove
+71 menu bar
+	72 Intentgrove
+	73 File
+	74 Edit
+	75 View
+	76 Go
+	77 Window
+	78 Help

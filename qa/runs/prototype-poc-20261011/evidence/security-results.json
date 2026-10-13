@@ -1,0 +1,139 @@
+[
+  {
+    "name": "script",
+    "result": "PASS",
+    "reason": "prohibited SVG element {http://www.w3.org/2000/svg}script",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-script.igproto"
+  },
+  {
+    "name": "event-handler",
+    "result": "PASS",
+    "reason": "prohibited SVG attribute onclick",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-event-handler.igproto"
+  },
+  {
+    "name": "network-image",
+    "result": "PASS",
+    "reason": "unsafe package path",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-network-image.igproto"
+  },
+  {
+    "name": "external-file-image",
+    "result": "PASS",
+    "reason": "unsafe package path",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-external-file-image.igproto"
+  },
+  {
+    "name": "javascript-url",
+    "result": "PASS",
+    "reason": "non-image asset URL",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-javascript-url.igproto"
+  },
+  {
+    "name": "external-css-resource",
+    "result": "PASS",
+    "reason": "unsafe URL/style",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-external-css-resource.igproto"
+  },
+  {
+    "name": "css-escaped-url",
+    "result": "PASS",
+    "reason": "unsafe URL/style",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-css-escaped-url.igproto"
+  },
+  {
+    "name": "path-traversal",
+    "result": "PASS",
+    "reason": "path traversal",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-path-traversal.igproto"
+  },
+  {
+    "name": "encoded-traversal",
+    "result": "PASS",
+    "reason": "unsafe package path",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-encoded-traversal.igproto"
+  },
+  {
+    "name": "asset-traversal",
+    "result": "PASS",
+    "reason": "path traversal",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-asset-traversal.igproto"
+  },
+  {
+    "name": "missing-scene",
+    "result": "PASS",
+    "reason": "malformed scene reference",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-missing-scene.igproto"
+  },
+  {
+    "name": "missing-target",
+    "result": "PASS",
+    "reason": "malformed scene/target reference",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-missing-target.igproto"
+  },
+  {
+    "name": "duplicate-prototype-id",
+    "result": "PASS",
+    "reason": "duplicate/invalid prototype ID",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-duplicate-prototype-id.igproto"
+  },
+  {
+    "name": "foreign-object",
+    "result": "PASS",
+    "reason": "prohibited SVG element {http://www.w3.org/2000/svg}foreignObject",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-foreign-object.igproto"
+  },
+  {
+    "name": "svg-animation",
+    "result": "PASS",
+    "reason": "prohibited SVG element {http://www.w3.org/2000/svg}animate",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-svg-animation.igproto"
+  },
+  {
+    "name": "entity",
+    "result": "PASS",
+    "reason": "DTD/declaration prohibited",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-entity.igproto"
+  },
+  {
+    "name": "package-javascript",
+    "result": "PASS",
+    "reason": "asset type",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-package-javascript.igproto"
+  },
+  {
+    "name": "boolean-version",
+    "result": "PASS",
+    "reason": "unsupported format/version",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-boolean-version.igproto"
+  },
+  {
+    "name": "unknown-version",
+    "result": "PASS",
+    "reason": "unsupported format/version",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-unknown-version.igproto"
+  },
+  {
+    "name": "script-action",
+    "result": "PASS",
+    "reason": "unsupported action",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-script-action.igproto"
+  },
+  {
+    "name": "duplicate-json-key",
+    "result": "PASS",
+    "reason": "duplicate JSON key",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-duplicate-json-key.igproto"
+  },
+  {
+    "name": "expansion-limit",
+    "result": "PASS",
+    "reason": "expansion limit",
+    "artifact": "/Users/juanmantilla/projects/personal/.agents/investigations/vectorcraft-intentgrove-prototype/poc/evidence/malicious-expansion-limit.igproto"
+  },
+  {
+    "name": "compiler-duplicate",
+    "result": "PASS",
+    "reason": "duplicate/invalid prototype ID"
+  }
+]

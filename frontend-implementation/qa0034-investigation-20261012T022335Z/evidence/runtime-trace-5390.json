@@ -1,0 +1,332 @@
+[
+  {
+    "order": 0,
+    "at": 1002.148666,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": null,
+    "scrollTop": 0,
+    "pending": null,
+    "renderedMatches": true
+  },
+  {
+    "order": 1,
+    "at": 1117.072458,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 2,
+    "at": 1117.156208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": true,
+    "renderedMatches": false
+  },
+  {
+    "order": 3,
+    "at": 1117.475166,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v1"
+  },
+  {
+    "order": 4,
+    "at": 1127.439333,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v1",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 5,
+    "at": 1133.086375,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 6,
+    "at": 1133.105166,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 7,
+    "at": 1133.130833,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedMatches": false
+  },
+  {
+    "order": 8,
+    "at": 1136.961833,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 0,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 9,
+    "at": 1136.978291,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 0,
+    "renderedId": "file",
+    "sections": {
+      "file": "v1"
+    }
+  },
+  {
+    "order": 10,
+    "at": 1146.024916,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 0,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2963:12\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  },
+  {
+    "order": 11,
+    "at": 1148.654208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 0,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/tests/ui/appearance-operations.test.tsx:94:10\n    at file:///Users/juanmantilla/projects/personal/md-reader/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+  },
+  {
+    "order": 12,
+    "at": 1148.863541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-event",
+    "scrollTop": 170
+  },
+  {
+    "order": 13,
+    "at": 1149.329541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "capture-attempt",
+    "id": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true,
+    "markdownBody": true
+  },
+  {
+    "order": 14,
+    "at": 1149.374208,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "capture-accepted",
+    "id": "file",
+    "scrollTop": 170
+  },
+  {
+    "order": 15,
+    "at": 1155.71425,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "refresh-held-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "order": 16,
+    "at": 1166.152541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 17,
+    "at": 1170.645083,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 18,
+    "at": 1177.72725,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 19,
+    "at": 1181.551708,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 20,
+    "at": 1189.175416,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 21,
+    "at": 1200.65525,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 22,
+    "at": 1211.99,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 23,
+    "at": 1223.095458,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 24,
+    "at": 1234.108416,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 25,
+    "at": 1244.947333,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "theme-change",
+    "scrollTop": 170
+  },
+  {
+    "order": 26,
+    "at": 1278.193291,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": true,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 27,
+    "at": 1278.216541,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": true,
+    "renderedId": "file",
+    "renderedMatches": false
+  },
+  {
+    "order": 28,
+    "at": 1278.301583,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-start",
+    "id": "file",
+    "version": "v2"
+  },
+  {
+    "order": 29,
+    "at": 1286.906916,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "sections-resolved",
+    "id": "file",
+    "version": "v2",
+    "cancelled": false,
+    "resultVersion": "v1"
+  },
+  {
+    "order": 30,
+    "at": 1297.105666,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "markdown-layout",
+    "fileId": "file",
+    "layoutPending": false,
+    "renderReady": true,
+    "painted": 24,
+    "blocks": 2
+  },
+  {
+    "order": 31,
+    "at": 1297.107833,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "onRendered",
+    "id": "file"
+  },
+  {
+    "order": 32,
+    "at": 1297.125166,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": false
+  },
+  {
+    "order": 33,
+    "at": 1306.907625,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-attempt",
+    "activeId": "file",
+    "scrollTop": 170,
+    "pending": false,
+    "renderedId": "file",
+    "renderedMatches": true
+  },
+  {
+    "order": 34,
+    "at": 1306.91225,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "restore-ready",
+    "activeId": "file",
+    "scrollTop": 170,
+    "saved": {
+      "headingId": "one",
+      "offset": 0,
+      "scrollTop": 170
+    },
+    "position": 170,
+    "renderedId": "file",
+    "sections": {
+      "file": "v2"
+    }
+  },
+  {
+    "order": 35,
+    "at": 1307.153125,
+    "test": "preserves the active tab and reader position while a confirmed refresh is pending",
+    "event": "scroll-write",
+    "before": 170,
+    "value": 170,
+    "stack": "Error: \n    at HTMLDivElement.set [as scrollTop] (/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0034-investigation-20261012T022335Z/diagnostic-setup.ts:14:143)\n    at /Users/juanmantilla/projects/personal/md-reader/qa/runs/select-all-retest-20261012T011743Z/candidate-source/src/app/App.tsx:2950:71\n    at Object.react_stack_bottom_frame (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:28656:20)\n    at runWithFiberInDEV (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)\n    at commitHookEffectListMount (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13748:29)\n    at commitHookLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:13712:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15041:13)\n    at recursivelyTraverseLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:16482:11)\n    at commitLayoutEffectOnFiber (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:15121:11)\n    at flushLayoutEffects (/Users/juanmantilla/projects/personal/md-reader/node_modules/react-dom/cjs/react-dom-client.development.js:19839:15)"
+  }
+]

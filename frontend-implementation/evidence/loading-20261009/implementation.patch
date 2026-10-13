@@ -1,0 +1,1122 @@
+--- before/src/reader/PreviewLoading.tsx
++++ src/reader/PreviewLoading.tsx
+@@ -1,6 +1,36 @@
+-export default function PreviewLoading({ label, inline = false }: { label: string; inline?: boolean }) {
+-  return <span className={`preview-loading${inline ? " preview-loading-inline" : ""}`} role="status" aria-label={label}>
+-    <span className="sr-only">{label}</span>
+-    <span className="preview-loading-dots" aria-hidden="true"><i /><i /><i /></span>
++import { useEffect, useRef, useState } from "react";
++
++/** Shared local feedback. Totals must come from the operation, never elapsed time. */
++export default function PreviewLoading({ label, inline = false, visibleLabel = false, progress,
++  detail, placeholder = false, staticMotion = false, announce = true }: {
++  label: string; inline?: boolean; visibleLabel?: boolean;
++  progress?: { completed?: number; total?: number };
++  detail?: string; placeholder?: boolean; staticMotion?: boolean; announce?: boolean;
++}) {
++  const ref = useRef<HTMLSpanElement>(null);
++  const [visible, setVisible] = useState(!document.hidden);
++  useEffect(() => {
++    let intersecting = true;
++    const update = () => setVisible(intersecting && !document.hidden);
++    const observer = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver(entries => {
++      intersecting = entries[0]?.isIntersecting ?? false; update();
++    });
++    if (ref.current) observer?.observe(ref.current);
++    document.addEventListener("visibilitychange", update);
++    return () => { observer?.disconnect(); document.removeEventListener("visibilitychange", update); };
++  }, []);
++  const measured = progress && Number.isFinite(progress.total) && progress.total! > 0
++    && Number.isFinite(progress.completed) && progress.completed! >= 0;
++  const value = measured ? Math.min(progress!.total!, progress!.completed!) : undefined;
++  return <span ref={ref} className={`preview-loading${inline ? " preview-loading-inline" : ""}${progress ? " preview-loading-progress" : ""}${placeholder ? " preview-loading-placeholder" : ""}`}
++    data-motion={visible && !staticMotion ? "on" : "off"} role={announce ? "status" : undefined} aria-label={announce ? label : undefined}>
++    <span className={visibleLabel ? "loading-label" : "sr-only"}>{label}</span>
++    {progress ? <span className="loading-track" role="progressbar" aria-label={label}
++      aria-valuemin={measured ? 0 : undefined} aria-valuemax={measured ? progress.total : undefined}
++      aria-valuenow={value} data-measured={Boolean(measured)}>
++      <i style={measured ? { width: `${100 * value! / progress.total!}%` } : undefined} />
++    </span> : placeholder ? <span className="loading-rows" aria-hidden="true"><i /><i /><i /></span>
++      : <span className="preview-loading-dots" aria-hidden="true"><i /><i /><i /></span>}
++    {detail && <span className="loading-detail">{detail}</span>}
+   </span>;
+ }
+--- before/src/reader/HtmlView.tsx
++++ src/reader/HtmlView.tsx
+@@ -25,6 +25,7 @@
+   const [details, setDetails] = useState(false);
+   const [access, setAccess] = useState<HtmlLink | null>(null);
+   const [picker, setPicker] = useState(false);
++  const [reloading, setReloading] = useState(false);
+   const callbacks = useRef({onState, onLocation, onReplace, onLink, onPassage, onShortcut});
+   callbacks.current = {onState, onLocation, onReplace, onLink, onPassage, onShortcut};
+   const activeRef=useRef(active); activeRef.current=active;
+@@ -53,14 +54,14 @@
+   };
+   const reload = async () => {
+     const c = controller.current; if (!c || reloadInFlight.current) return;
+-    reloadInFlight.current=true;
++    reloadInFlight.current=true; setReloading(true);
+     try {
+       const location = await c.capture(); callbacks.current.onLocation(location);
+       const next = await c.run(request => htmlNative.reload(request));
+       const headings=stateRef.current?.headings ?? [];
+       const index=headings.findIndex(h=>(h.authoredId ?? h.key)===location.headingId);
+       callbacks.current.onReplace(next, location, headings.slice(0,Math.max(0,index)).reverse().map(h=>h.authoredId ?? h.key));
+-    } catch (e) { report(e); } finally {reloadInFlight.current=false;}
++    } catch (e) { report(e); } finally {reloadInFlight.current=false; setReloading(false);}
+   };
+   useEffect(() => {
+     let disposed = false; let mounted = false; let restored = false;
+@@ -161,7 +162,7 @@
+   }
+   const ready = state?.state === 'ready' || state?.state === 'empty';
+   return <section className="html-view" hidden={!active} aria-label={view.name}>
+-    <div className="html-metadata"><span>{t(locale,'htmlMetadata')}</span><span>{t(locale,'javascriptOff')}</span>
++    <div className="html-metadata">{reloading && ready && active && <PreviewLoading inline label={t(locale, "openingHtml")} />}<span>{t(locale,'htmlMetadata')}</span><span>{t(locale,'javascriptOff')}</span>
+       <label>{t(locale,'htmlZoom')} <select value={state?.location.zoom ?? initialLocation?.zoom ?? 1} disabled={!ready} onChange={e => {
+         const requestedZoom=Number(e.target.value);const c=controller.current;if(c) void c.capture().then(l => c.locate({...l,zoom:requestedZoom})).then(l => {callbacks.current.onLocation(l); return htmlNative.state(c!.owner);}).then(s => c!.accept(s)).catch(report);
+       }}>{![.5,.75,1,1.25,1.5,2,3].includes(state?.location.zoom ?? initialLocation?.zoom ?? 1) && <option value={state?.location.zoom ?? initialLocation?.zoom}>{Math.round((state?.location.zoom ?? initialLocation?.zoom ?? 1)*100)}%</option>}{[.5,.75,1,1.25,1.5,2,3].map(z=><option key={z} value={z}>{Math.round(z*100)}%</option>)}</select></label>
+@@ -176,7 +177,7 @@
+       const c=controller.current;if(c && visible.current && ready) void c.run(r=>htmlNative.focus(r)).catch(report);
+     }}>
+       {!ready && <div className="error-state" role={state?.state==='failed' || error ? 'alert' : undefined}>
+-        {state?.state==='failed' || error ? errorText(locale,error ?? state?.reasonCode ?? 'html_render_failed') : <PreviewLoading label={t(locale,'openingHtml')} />}
++        {state?.state==='failed' || error ? errorText(locale,error ?? state?.reasonCode ?? 'html_render_failed') : <PreviewLoading staticMotion={!active} label={t(locale,'openingHtml')} />}
+         {(state?.state==='failed' || error) && <><button onClick={() => void reload()}>{t(locale,'retry')}</button><button onClick={onClose}>{t(locale,'closeTab')}</button></>}
+       </div>}
+       {state?.state==='empty' && <p role="status">{t(locale,'htmlEmpty')}</p>}
+--- before/src/reader/SectionEditor.tsx
++++ src/reader/SectionEditor.tsx
+@@ -1,4 +1,5 @@
+ import { useRef, useState } from "react";
++import PreviewLoading from "./PreviewLoading";
+ import RichSection from "./RichSection";
+ import { t, type Locale } from "../app/i18n";
+ import { FindIndex, type FindResults, type FindSpan } from "./find-index";
+@@ -50,6 +51,7 @@
+     <div className="section-editor-status">
+       <p role="status" className="file-write-status">{t(locale, saving ? "sourceSaving" : draft !== initialSource ? "sourceDirty" : "sourceUnchanged")}</p>
+       <p role="status" className="recovery-status" data-state={checkpointStatus}>
++        {checkpointStatus === "pending" && <PreviewLoading inline announce={false} label={t(locale, "recoveryWriting")} />}
+         {checkpointStatus === "saved" && <span aria-hidden="true">✓ </span>}
+         {t(locale, checkpointStatus === "saved" ? "recoveryConfirmed" : checkpointStatus === "error" ? "recoveryFailed" : "recoveryWriting")}
+       </p>
+@@ -69,7 +71,7 @@
+       {!headerActions && <button type="button" onClick={onReturn} disabled={busy}>{t(locale, "returnReading")}</button>}
+       <button type="button" onClick={onSaveAs} disabled={busy}>{t(locale, "saveAsCopy")}</button>
+       {!headerActions && <button type="button" className="primary-button" onClick={onSave} disabled={busy || conflict || draft === initialSource}
+-        title={draft === initialSource ? t(locale, "noChangesToSave") : conflict ? t(locale, "saveConflict") : undefined}>{t(locale, "saveFile")}</button>}
++        aria-label={t(locale, "saveFile")} title={draft === initialSource ? t(locale, "noChangesToSave") : conflict ? t(locale, "saveConflict") : undefined}>{saving && <PreviewLoading inline label={t(locale, "sourceSaving")} />}{t(locale, "saveFile")}</button>}
+     </div>
+   </section>;
+ }
+--- before/src/reader/MarkdownView.tsx
++++ src/reader/MarkdownView.tsx
+@@ -115,7 +115,7 @@
+ }
+ 
+ export default function MarkdownView({ content, fileId, locale, onNavigate, sections, activeSectionId,
+-  onEditSection, findRootRef, onHeadings, onRendered, sectionEditor, editingSection, editingOriginalSource, editingDraft, layoutPending = false }: {
++  onEditSection, pendingSectionId, findRootRef, onHeadings, onRendered, sectionEditor, editingSection, editingOriginalSource, editingDraft, layoutPending = false }: {
+   content: string;
+   fileId: string;
+   locale: Locale;
+@@ -123,6 +123,7 @@
+   sections?: SectionDescriptor[];
+   activeSectionId?: string;
+   onEditSection?: (section: SectionDescriptor) => void;
++  pendingSectionId?: string;
+   findRootRef?: Ref<HTMLElement>;
+   onHeadings?: (entries: HeadingEntry[]) => void;
+   onRendered?: (fileId: string, content: string) => void;
+@@ -132,11 +133,14 @@
+   editingOriginalSource?: string;
+   editingDraft?: string;
+ }) {
+-  const parseContent = content.startsWith("\uFEFF") ? content.slice(1) : content;
+-  const overBudget = useMemo(() => documentOverLimit(parseContent), [parseContent]);
++  const requestedSource = content.startsWith("\uFEFF") ? content.slice(1) : content;
++  const overBudget = useMemo(() => documentOverLimit(requestedSource), [requestedSource]);
+   const hasWorker = typeof Worker !== "undefined";
+-  const [parsed, setParsed] = useState<{ content: string; tree?: Root;
++  const [parsed, setParsed] = useState<{ fileId: string; raw: string; content: string; tree?: Root;
+     metadata?: MetadataResult | null; blocks?: BoundedBlock[]; error?: boolean } | null>(null);
++  const retaining = hasWorker && parsed?.fileId === fileId && Boolean(parsed.tree) && parsed.content !== requestedSource;
++  const displaySource = retaining ? parsed!.raw : content;
++  const parseContent = retaining ? parsed!.content : requestedSource;
+   const generation = useRef(0);
+   const [painted, setPainted] = useState(24);
+   const [editMenu, setEditMenu] = useState<{
+@@ -149,19 +153,18 @@
+     let live = true;
+     const owner = ++generation.current;
+     let worker: Worker;
+-    setParsed(null);
+     try {
+       worker = new Worker(new URL("./markdownBudget.worker.ts", import.meta.url), { type: "module" });
+     } catch {
+-      setParsed({ content: parseContent, error: true });
++      setParsed({ fileId, raw: content, content: requestedSource, error: true });
+       return;
+     }
+     const finish = (tree?: Root, metadata?: MetadataResult | null, blocks?: BoundedBlock[]) => {
+       if (!live) return;
+       clearTimeout(timer);
+       worker.terminate();
+-      setParsed(tree ? { content: parseContent, tree, metadata, blocks }
+-        : { content: parseContent, error: true });
++      setParsed(tree ? { fileId, raw: content, content: requestedSource, tree, metadata, blocks }
++        : { fileId, raw: content, content: requestedSource, error: true });
+     };
+     const timer = setTimeout(() => finish(), 5_000);
+     worker.onmessage = (event: MessageEvent<{ kind: string; tree?: Root;
+@@ -170,20 +173,20 @@
+       finish(event.data.kind === "parsed" ? event.data.tree : undefined, event.data.metadata, event.data.blocks);
+     };
+     worker.onerror = () => finish();
+-    worker.postMessage({ version: BLOCK_PROTOCOL, generation: owner, source: parseContent });
++    worker.postMessage({ version: BLOCK_PROTOCOL, generation: owner, source: requestedSource });
+     return () => {
+       live = false;
+       clearTimeout(timer);
+       worker.terminate();
+     };
+-  }, [parseContent, hasWorker, overBudget]);
+-
+-  const tree = parsed?.content === parseContent ? parsed.tree : undefined;
+-  const workerMetadata = parsed?.content === parseContent ? parsed.metadata : undefined;
+-  const parseFailed = parsed?.content === parseContent && parsed.error;
++  }, [fileId, requestedSource, hasWorker, overBudget]);
++
++  const tree = parsed?.fileId === fileId && parsed.content === parseContent ? parsed.tree : undefined;
++  const workerMetadata = parsed?.fileId === fileId && parsed.content === parseContent ? parsed.metadata : undefined;
++  const parseFailed = parsed?.fileId === fileId && parsed.content === parseContent && parsed.error;
+   const canParseInline = !overBudget && parseContent.length <= 256 * 1024;
+-  const renderReady = !overBudget && (Boolean(tree) || ((!hasWorker) && canParseInline));
+-  const blocks = useMemo(() => parsed?.content === parseContent && parsed.blocks
++  const renderReady = !retaining && !overBudget && (Boolean(tree) || ((!hasWorker) && canParseInline));
++  const blocks = useMemo(() => parsed?.fileId === fileId && parsed.content === parseContent && parsed.blocks
+     ? parsed.blocks : canParseInline && (!hasWorker)
+       ? parseBounded(parseContent).blocks
+       : [], [parsed, parseContent, canParseInline, hasWorker, parseFailed]);
+@@ -208,17 +211,17 @@
+       ? parseFrontmatter(first.value) : null;
+   }, [workerMetadata, sectionTree]);
+   const sectionMap = useMemo(() => sections && onEditSection
+-    ? mapRenderedSections(content, sectionTree, sections)
+-    : null, [parseContent, sectionTree, sections, onEditSection]);
++    ? mapRenderedSections(displaySource, sectionTree, retaining ? [] : sections)
++    : null, [parseContent, sectionTree, sections, onEditSection, retaining]);
+   const editRange = useMemo(() => {
+     if (!sectionEditor || !editingSection || editingOriginalSource === undefined) return null;
+-    const bytes = new TextEncoder().encode(content);
++    const bytes = new TextEncoder().encode(displaySource);
+     const { startByte, endByte } = editingSection;
+     if (startByte < 0 || endByte < startByte || endByte > bytes.length) return null;
+     try {
+       const decoder = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true });
+       if (decoder.decode(bytes.slice(startByte, endByte)) !== editingOriginalSource) return null;
+-      const bom = content.startsWith("\uFEFF") ? 1 : 0;
++      const bom = displaySource.startsWith("\uFEFF") ? 1 : 0;
+       const from = decoder.decode(bytes.slice(0, startByte)).length - bom;
+       const to = decoder.decode(bytes.slice(0, endByte)).length - bom;
+       if (blocks.some(block => {
+@@ -227,7 +230,7 @@
+       })) return null;
+       return { from, to };
+     } catch { return null; }
+-  }, [content, editingSection, editingOriginalSource, Boolean(sectionEditor), blocks]);
++  }, [displaySource, editingSection, editingOriginalSource, Boolean(sectionEditor), blocks]);
+   const headingEntries = useMemo(() => collectHeadings(sectionTree), [sectionTree]);
+   const headingByOffset = useMemo(() => new Map(headingEntries.map((entry) => [entry.offset, entry])),
+     [headingEntries]);
+@@ -272,10 +275,10 @@
+     const editable = section?.kind === "heading" && sectionMap?.firstOffsets.get(section.id) === offset;
+     return <div className="section-heading">
+       {createElement(tag, { id }, children)}
+-      {editable && onEditSection && <button type="button" className="section-edit-button"
++      {editable && !retaining && onEditSection && <button type="button" className="section-edit-button"
+         data-edit-section={section.id}
+         aria-label={t(locale, "editSectionNamed").replace("{section}", section.label || textOf(children))}
+-        onClick={() => onEditSection(section)}>{t(locale, "editSection")}</button>}
++        aria-disabled={Boolean(pendingSectionId)} onClick={() => { if (!pendingSectionId) onEditSection(section); }}>{pendingSectionId === section.id && <PreviewLoading inline label={t(locale, "loading")} />}{t(locale, "editSection")}</button>}
+     </div>;
+   };
+ 
+@@ -368,7 +371,7 @@
+   }
+   if (hasWorker && !tree && !parseFailed) return <PreviewLoading label={t(locale, "loading")} />;
+   return (
+-    <RenderBoundary key={fileId} locale={locale} source={content}>
++    <RenderBoundary key={fileId} locale={locale} source={displaySource}>
+     <article ref={findRootRef} className="markdown-body" tabIndex={onEditSection && !sectionMap?.valid ? 0 : -1}
+       onContextMenu={openSectionMenu} onKeyDown={(event) => {
+       if (event.key === "ContextMenu" || (event.key === "F10" && event.shiftKey)) openSectionMenu(event);
+@@ -380,6 +383,7 @@
+         if (document.activeElement !== editMenu.anchor) event.currentTarget.focus();
+       }
+     }}>
++      {pendingSectionId && sections?.some(section => section.id === pendingSectionId && section.kind !== "heading") && <PreviewLoading inline label={t(locale, "loading")} />}
+       {metadata && !(sectionEditor && editRange?.from === 0) && <details className="markdown-metadata">
+         <summary>{t(locale, "metadata")}{metadata.status === "invalid"
+           ? ` · ${t(locale, "invalidMetadata")}` : ""}</summary>
+@@ -416,7 +420,7 @@
+         </RenderBoundary>;
+       })}
+       {editRange && editRange.from === editRange.to && blocks.length > 0 && mountedSectionEditor}
+-      {painted < blocks.length && <PreviewLoading label={t(locale, "loading")} />}
++      {(retaining || painted < blocks.length) && <PreviewLoading label={t(locale, "loading")} />}
+     </article>
+     </RenderBoundary>
+   );
+--- before/src/reader/ImageView.tsx
++++ src/reader/ImageView.tsx
+@@ -27,6 +27,7 @@
+   const [viewportTick, setViewportTick] = useState(0);
+   const [tiles, setTiles] = useState<Tile[]>([]);
+   const [tileError, setTileError] = useState(false);
++  const [tileLoading, setTileLoading] = useState(false);
+   const tileCache = useRef(new Map<string, Tile>());
+   const tilePending = useRef(new Set<string>());
+   const tileFailed = useRef(new Set<string>());
+@@ -153,6 +154,7 @@
+         }
+       });
+     }
++    setTileLoading([...wanted].some(key => !tileCache.current.has(key) && !tileFailed.current.has(key)));
+   }, [image, previewWidth, previewHeight, scale, viewportTick, fitMeasured]);
+   function changeScale(next: number, point?: { x: number; y: number }) {
+     const viewport = viewportRef.current;
+@@ -204,6 +206,7 @@
+         <button type="button" aria-label={t(locale, "imageZoomIn")} disabled={scale >= 4}
+           onClick={() => stepZoom(1)}>+</button>
+       </div>
++      {tileLoading && url && !failed && <PreviewLoading inline label={t(locale, "imageLoading")} />}
+       {tileError && <p className="image-detail-error" role="status">{t(locale, "imageDetailUnavailable")}</p>}
+     </div>
+     <div className="image-viewport" ref={viewportRef} tabIndex={0} aria-label={image.name}
+--- before/src/reader/LargeSourceView.tsx
++++ src/reader/LargeSourceView.tsx
+@@ -45,9 +45,9 @@
+     lastScrollTop.current = source.scrollTop;
+   }, [zoom]);
+ 
+-  async function load(offset: number, preserveFind = false) {
++  async function load(offset: number, preserveFind = false, owner?: number) {
+     if (!preserveFind) lastMatch.current = null;
+-    const generation = ++request.current;
++    const generation = owner ?? ++request.current;
+     setLoading(true);
+     setNotice(null);
+     try {
+@@ -60,7 +60,6 @@
+       if (sourceRef.current) sourceRef.current.scrollTop = 0;
+     } catch (error) {
+       if (request.current === generation) {
+-        setWindowData(null);
+         setNotice(errorText(locale, readerError(error).code));
+       }
+     } finally {
+@@ -69,7 +68,7 @@
+   }
+ 
+   useEffect(() => {
+-    lastMatch.current = null;
++    lastMatch.current = null; setWindowData(null); setFindProgress(null);
+     void load(0);
+     return () => { request.current += 1; findRequest.current += 1;
+       void api.cancelLargeFind().catch(() => {}); };
+@@ -90,8 +89,13 @@
+   async function goToLine() {
+     const target = Number(line);
+     if (!Number.isSafeInteger(target) || target < 1 || target > opened.lineCount) return;
+-    try { await load(await api.sourceLineOffset(opened.snapshotId, target)); }
+-    catch (error) { setNotice(errorText(locale, readerError(error).code)); }
++    const owner = ++request.current;
++    setLoading(true); setNotice(null);
++    try {
++      const offset = await api.sourceLineOffset(opened.snapshotId, target);
++      if (owner === request.current) await load(offset, false, owner);
++    } catch (error) { if (owner === request.current) setNotice(errorText(locale, readerError(error).code)); }
++    finally { if (owner === request.current) setLoading(false); }
+   }
+ 
+   async function findNext() {
+@@ -185,7 +189,9 @@
+       value={position} aria-label={t(locale, "largeSourceWindow")}
+       onChange={(event) => void load(Number(event.target.value))} />
+     <div className="large-source-status" role={loading || (!windowData && !notice) ? undefined : "status"}>
+-      {findProgress ? `${t(locale, "largeSourceSearching")} ${findProgress.scannedBytes.toLocaleString(locale)} / ${findProgress.totalBytes.toLocaleString(locale)} bytes`
++      {findProgress ? <PreviewLoading label={t(locale, "largeSourceSearching")} announce={false}
++        progress={{ completed: findProgress.scannedBytes, total: findProgress.totalBytes }}
++        detail={`${findProgress.scannedBytes.toLocaleString(locale)} / ${findProgress.totalBytes.toLocaleString(locale)} bytes`} />
+         : loading ? <PreviewLoading inline label={t(locale, "largeSourceLoading")} /> : notice ?? (windowData
+         ? `${windowData.startByte.toLocaleString(locale)}–${windowData.endByte.toLocaleString(locale)} / ${opened.sizeBytes.toLocaleString(locale)} bytes · ${t(locale, "largeSourceLine")} ${windowData.lineNumber}`
+         : <PreviewLoading inline label={t(locale, "largeSourceLoading")} />)}
+--- before/src/app/App.tsx
++++ src/app/App.tsx
+@@ -145,6 +145,16 @@
+   const [clearRecentsConfirm, setClearRecentsConfirm] = useState(false);
+   const [recents, setRecents] = useState<RecentList | null>(null);
+   const [recentIssue, setRecentIssue] = useState(false);
++  const [recentsLoading, setRecentsLoading] = useState(false);
++  const recentSequence = useRef(0);
++  const [openingRecent, setOpeningRecent] = useState<string | null>(null);
++  const [selectionPending, setSelectionPending] = useState<"folder" | "file" | null>(null);
++  const [documentPending, setDocumentPending] = useState<{ token: symbol; name: string; sequence: number; generation: number } | null>(null);
++  const [copySaving, setCopySaving] = useState<string | null>(null);
++  const copySavingRef = useRef(false);
++  const [enteringSection, setEnteringSection] = useState<{ tabId: string; sectionId: string } | null>(null);
++  const enteringSectionRef = useRef<symbol | null>(null);
++  useEffect(() => () => { enteringSectionRef.current = null; recentSequence.current += 1; }, []);
+   const [restoreOffer, setRestoreOffer] = useState<SessionRestore | null>(null);
+   const [sessionReady, setSessionReady] = useState(false);
+   const sessionReadyRef = useRef(false);
+@@ -354,8 +364,12 @@
+ 
+   async function refreshRecents() {
+     if (typeof api.listRecentItems !== "function") return;
+-    try { setRecents(await api.listRecentItems()); setRecentIssue(false); }
+-    catch { setRecentIssue(true); }
++    const sequence = ++recentSequence.current;
++    setRecentsLoading(true);
++    try { const result = await api.listRecentItems();
++      if (sequence === recentSequence.current) { setRecents(result); setRecentIssue(false); }
++    } catch { if (sequence === recentSequence.current) setRecentIssue(true); }
++    finally { if (sequence === recentSequence.current) setRecentsLoading(false); }
+   }
+   useEffect(() => { void refreshRecents(); }, []);
+   useEffect(() => { void refreshSafetyCopies(); }, []);
+@@ -425,7 +439,7 @@
+ 
+   async function useRecent(entry: RecentItem) {
+     if (busy) return;
+-    setBusy(true);
++    setBusy(true); setOpeningRecent(entry.id);
+     setNotice(null);
+     try {
+       const opened = entry.status === "available"
+@@ -445,7 +459,7 @@
+       const code = readerError(error).code;
+       setNotice(noticeLocale => code === "reselect_required" ? t(noticeLocale, "recentUnavailable") : errorText(noticeLocale, code));
+       await refreshRecents();
+-    } finally { setBusy(false); }
++    } finally { setBusy(false); setOpeningRecent(null); }
+   }
+ 
+   async function removeRecent(id: string) {
+@@ -892,7 +906,7 @@
+     const handleKeys = (event: KeyboardEvent) => {
+       if (event.key === "Escape") {
+         event.preventDefault();
+-        if (cleanupRef.current) return;
++        if (cleanupRef.current || savingTabRef.current || copySavingRef.current) return;
+         if (closeIntent) void resolveClose("cancel");
+         else if (pendingSaveAs) setPendingSaveAs(null);
+         else if (pendingSection) setPendingSection(null);
+@@ -971,6 +985,7 @@
+     const { progress } = job;
+     if (progress.state === "completed" || progress.state === "failed") return null;
+     return <div className="reload-progress" role="status" aria-live="polite">
++      {(progress.state === "running" || progress.state === "queued") && <PreviewLoading progress={{}} label={t(locale, "checking")} announce={false} />}
+       <span>{progress.state === "cancelled" ? `${t(locale, "notFullyChecked")}${progress.currentSegments ? `: ${progress.currentSegments.join("/")}` : ""}`
+         : `${t(locale, "examinedItems")}: ${progress.examinedCount}`}</span>
+       {(progress.state === "running" || progress.state === "queued") &&
+@@ -1042,6 +1057,8 @@
+     const observer=new MutationObserver(measure);observer.observe(document.body,{subtree:true,attributes:true,attributeFilter:['open'],childList:true});measure();return()=>observer.disconnect();
+   },[tabs.some(tab=>tab.kind === 'html')]);
+   const active = tabs.find((tab) => tab.id === activeId) ?? null;
++  const documentOpening = Boolean(documentPending && documentPending.sequence === openSequence.current
++    && documentPending.generation === generationRef.current);
+   const documentZoom = documentZooms.current.get(activeId ?? "") ?? 1;
+   usePinchZoom(readerRef, activeId ?? "", Boolean(active?.content !== undefined && active.kind !== "image"),
+     documentZoom, (next, point) => {
+@@ -1274,9 +1291,16 @@
+   }, [activeId, active?.diskVersion, active?.errorCode, Boolean(activeEdit)]);
+ 
+   async function startEdit(tabId: string, section: SectionDescriptor, diskVersion: string) {
+-    if (!editingAvailable || tabsRef.current.find(t=>t.id===tabId)?.kind === "html") return;
++    if (!editingAvailable || enteringSectionRef.current || tabsRef.current.find(t=>t.id===tabId)?.kind === "html") return;
++    const token = Symbol("section entry"), generation = generationRef.current, navigation = openSequence.current;
++    const previousVersion = tabsRef.current.find(tab => tab.id === tabId)?.diskVersion;
++    enteringSectionRef.current = token;
++    setEnteringSection({ tabId, sectionId: section.id });
++    const valid = () => enteringSectionRef.current === token && generation === generationRef.current && navigation === openSequence.current
++      && activeIdRef.current === tabId && tabsRef.current.some(tab => tab.id === tabId && (tab.diskVersion === diskVersion || tab.diskVersion === previousVersion));
+     try {
+       const started = await api.beginSectionEdit(tabId, section.id, diskVersion);
++      if (!valid()) { await api.discardSectionEdit(started.sessionId); return; }
+       setEdits((old) => editReducer(old, { type: "begin", tabId, edit: {
+         sessionId: started.sessionId, diskVersion: started.diskVersion,
+         section: started.section, source: started.source,
+@@ -1287,8 +1311,8 @@
+         ? { ...tab, editingActive: true, dirty: false } : tab));
+       setNotice(null);
+     } catch (error) {
+-      setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+-    }
++      if (valid()) setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
++    } finally { if (enteringSectionRef.current === token) { enteringSectionRef.current = null; setEnteringSection(null); } }
+   }
+ 
+   async function beginEdit(section: SectionDescriptor) {
+@@ -1408,7 +1432,7 @@
+   async function commitSaveAs(tabId: string, token: string, replaceExisting: boolean, copyName?: string) {
+     const edit = edits[tabId];
+     if (!edit) return;
+-    setBusy(true);
++    setBusy(true); copySavingRef.current = true; setCopySaving(tabId);
+     try {
+       await api.commitSectionSaveAs(edit.sessionId, token, edit.draft, replaceExisting);
+       setPendingSaveAs(null);
+@@ -1417,7 +1441,7 @@
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+     } finally {
+-      setBusy(false);
++      setBusy(false); copySavingRef.current = false; setCopySaving(null);
+     }
+   }
+ 
+@@ -1429,7 +1453,7 @@
+       const choice = await api.chooseSectionSaveAs(edit.sessionId);
+       if (!choice) return;
+       if (choice.exists) setPendingSaveAs({ tabId, token: choice.token, name: choice.name });
+-      else void commitSaveAs(tabId, choice.token, false, choice.name);
++      else await commitSaveAs(tabId, choice.token, false, choice.name);
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+     } finally {
+@@ -1613,12 +1637,13 @@
+ 
+   async function chooseFolder() {
+     if(htmlHandles.current.size) await hideHtml();
+-    setBusy(true);
++    setBusy(true); setSelectionPending("folder");
+     setNotice(null);
+     try {
+       if (typeof api.prepareRootSelection === "function") {
+         const token = await api.prepareRootSelection();
+         if (!token) return;
++        setSelectionPending("folder");
+         if (Object.keys(editsRef.current).length || Object.keys(pendingRecoveriesRef.current).length) {
+           setPendingFolder(token);
+           setCloseIntent({ kind: "folder" });
+@@ -1637,7 +1662,7 @@
+       const detail = readerError(error);
+       setNotice(noticeLocale => errorText(noticeLocale, detail.code));
+     } finally {
+-      setBusy(false);
++      setBusy(false); setSelectionPending(null);
+     }
+   }
+ 
+@@ -1728,6 +1753,7 @@
+     // Acquisition reserves identity; rendering success is acknowledged separately by the native surface.
+     const pendingId = request.fileId ?? `error:${request.rootId}:${pathKey(request.segments ?? [])}`;
+     const pendingName = fallback?.name ?? request.segments?.at(-1) ?? "";
++    if (!isHtmlDocument(pendingName)) setDocumentPending({ token, name: pendingName, sequence, generation });
+     if (isHtmlDocument(pendingName)) {
+       // Closing a pending tab invalidates the same token as closing a settled
+       // tab, including root-relative requests whose request key differs.
+@@ -1750,6 +1776,7 @@
+         return await acceptLocalView(view,request,pendingId,sequence===openSequence.current);
+       }
+       const document = requireMarkdownResponse(await api.readDocument(request));
++      setDocumentPending(old => old?.token === token ? null : old);
+       if (!current() || (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) !== token)) return;
+       if (typeof api.rememberRecentDocument === "function") {
+         void api.rememberRecentDocument(document.fileId).then(refreshRecents).catch(() => {});
+@@ -1878,6 +1905,7 @@
+         : [...old, tab]);
+       activate(id);
+     } finally {
++      setDocumentPending(old => old?.token === token ? null : old);
+       if (documentLoads.current.get(requestKey) === token) documentLoads.current.delete(requestKey);
+       if (isHtmlDocument(pendingName) && documentLoads.current.get(pendingId) === token) documentLoads.current.delete(pendingId);
+     }
+@@ -1908,7 +1936,7 @@
+       setTabs((old) => [...old, pending]);
+     } else {
+       setTabs((old) => old.map((tab) => tab.id === pendingId
+-        ? { ...tab, imageLoading: true, image: undefined, errorCode: undefined,
++        ? { ...tab, imageLoading: true, errorCode: undefined,
+           freshness: force ? "checking" : tab.freshness } : tab));
+     }
+     if (activate) { setActiveId(pendingId); activeIdRef.current = pendingId; setCompactSidebarOpen(false); }
+@@ -2101,7 +2129,7 @@
+   async function reselectFolder() {
+     const previous = rootRef.current;
+     if (!previous || busy) return;
+-    setBusy(true);
++    setBusy(true); setSelectionPending("folder");
+     try {
+       const selected = await api.selectRoot(previous.id);
+       if (!selected) return;
+@@ -2124,23 +2152,23 @@
+       for (const tab of retained) await refreshRetainedTab(tab.id);
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+-    } finally { setBusy(false); }
++    } finally { setBusy(false); setSelectionPending(null); }
+   }
+ 
+   async function recoverMissingRoot() {
+     if (busy || typeof api.reselectSessionRoot !== "function") return;
+-    setBusy(true);
++    setBusy(true); setSelectionPending("folder");
+     try {
+       const restored = await api.reselectSessionRoot();
+       if (restored) applyRestoredSession(restored);
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+-    } finally { setBusy(false); }
++    } finally { setBusy(false); setSelectionPending(null); }
+   }
+ 
+   async function recoverMissingFile(tab: Tab) {
+     if (busy || !tab.restoredKey || typeof api.reselectSessionFile !== "function") return;
+-    setBusy(true);
++    setBusy(true); setSelectionPending("file");
+     try {
+       const selected = await api.reselectSessionFile(tab.restoredKey);
+       if (!selected) return;
+@@ -2161,12 +2189,12 @@
+       }
+     } catch (error) {
+       setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code));
+-    } finally { setBusy(false); }
++    } finally { setBusy(false); setSelectionPending(null); }
+   }
+ 
+   async function reselectFile(tabId: string) {
+     if (busy) return;
+-    setBusy(true);
++    setBusy(true); setSelectionPending("file");
+     try {
+       const selected = await api.selectFile(tabId);
+       if (selected) {
+@@ -2176,12 +2204,12 @@
+         await refreshRetainedTab(tabId);
+       }
+     } catch (error) { setNotice(noticeLocale => errorText(noticeLocale, readerError(error).code)); }
+-    finally { setBusy(false); }
++    finally { setBusy(false); setSelectionPending(null); }
+   }
+ 
+   async function chooseFile() {
+     if(htmlHandles.current.size) await hideHtml();
+-    setBusy(true);
++    setBusy(true); setSelectionPending("file");
+     setNotice(null);
+     try {
+       const selected = await api.selectFile();
+@@ -2190,6 +2218,7 @@
+         sessionReadyRef.current = true;
+         setSessionReady(true);
+         if (typeof selected.generation === "number") generationRef.current = selected.generation;
++        setSelectionPending(null);
+         await (imageName(selected.name) ? openImage : openDocument)(
+           { fileId: selected.id, explicitFile: true }, { name: selected.name, path: selected.displayPath });
+       }
+@@ -2197,7 +2226,7 @@
+       const detail = readerError(error);
+       setNotice(noticeLocale => errorText(noticeLocale, detail.code));
+     } finally {
+-      setBusy(false);
++      setBusy(false); setSelectionPending(null);
+     }
+   }
+ 
+@@ -2212,6 +2241,9 @@
+       || (editsRef.current[tab.id] && editsRef.current[tab.id].draft !== editsRef.current[tab.id].source))) {
+       setCloseIntent({ kind: "tab", tabId: targets[0].id, tabIds: targets.map((tab) => tab.id) });
+       return;
++    }
++    if (enteringSection && ids.includes(enteringSection.tabId)) {
++      enteringSectionRef.current = null; setEnteringSection(null);
+     }
+     if (!handled) {
+       for (const tab of targets) {
+@@ -2533,7 +2565,7 @@
+   }
+ 
+   async function runCleanup(action: () => Promise<void>) {
+-    if (cleanupRef.current) return;
++    if (cleanupRef.current || savingTabRef.current || copySavingRef.current) return;
+     cleanupRef.current = true; setCleanupBusy(true);
+     try { await action(); }
+     finally { cleanupRef.current = false; setCleanupBusy(false); }
+@@ -2956,8 +2988,8 @@
+           );
+         })}
+         {state.loading && (
+-          <div className="tree-progress" role="status">
+-            <span>{t(locale, "loading")}</span>
++          <div className="tree-progress">
++            <PreviewLoading inline label={t(locale, "loading")} />
+             <button type="button" onClick={() => void cancelDirectory(segments)}>{t(locale, "cancel")}</button>
+           </div>
+         )}
+@@ -3045,6 +3077,7 @@
+             aria-label={t(locale, "toggleSidebar")} aria-expanded={sidebarVisible}><WorkspaceIcon name="panel-left" />{t(locale, "explorer")}</button>
+           <strong className="workspace-title">{root?.name ?? t(locale, "workspace")}</strong>
+           <div className="workspace-toolbar-actions">
++            {selectionPending && !documentOpening && <PreviewLoading inline label={t(locale, "loading")} />}
+             <button type="button" onClick={() => void chooseFile()} disabled={busy}><WorkspaceIcon name="file-text" />{t(locale, "openFile")}</button>
+             <button type="button" onClick={() => void chooseFolder()} disabled={busy}><WorkspaceIcon name="folder-open" />{t(locale, "openFolder")}</button>
+             <button type="button" className="ghost-button" onClick={openFind} disabled={!active || active.kind === "image"}><WorkspaceIcon name="search" />{t(locale, "findInDocument")}</button>
+@@ -3173,7 +3206,7 @@
+                     <WorkspaceIcon name={tab.kind === "image" ? "image" : "file-text"} /><span>{tabFilename(tab, tabs)}</span>
+                     {parent && <small>{parent}</small>}
+                     {tab.dirty && <span className="dirty-dot" aria-hidden="true" />}
+-                    {tab.freshness === "checking" && <small className="tab-refresh-status">{t(locale, "checking")}</small>}
++                    {tab.freshness === "checking" && !(manualReload?.result.state === "checking" && refreshTarget(tab) && reloadResultKey(manualReload.target) === reloadResultKey(refreshTarget(tab)!)) && <small className="tab-refresh-status"><PreviewLoading inline staticMotion label={t(locale, "checking")} /></small>}
+                     {tab.freshness === "changed" && <small className="tab-refresh-status">{t(locale, "updatedFromDisk")}</small>}
+                     {tab.freshness === "uncertain" && <small className="tab-refresh-status">{t(locale, "unableConfirm")}</small>}
+                     {tab.freshness === "unavailable" && <small className="tab-refresh-status">{tab.freshnessReason ? errorText(locale, tab.freshnessReason) : t(locale, "fileUnavailable")}</small>}
+@@ -3325,7 +3358,7 @@
+             </li>)}</ol>
+           </WorkspaceDialog>}
+           {storageOpen && <StorageManagement locale={locale} inventory={safetyCopies} loading={storageLoading}
+-            busy={busy || cleanupBusy} suspended={clearSessionConfirm || clearRecentsConfirm || clearDraftsConfirm || clearCopiesConfirm}
++            busy={busy || cleanupBusy} cleanupPending={cleanupBusy} suspended={clearSessionConfirm || clearRecentsConfirm || clearDraftsConfirm || clearCopiesConfirm}
+             exclusions={Boolean(root)} recentsEmpty={recents?.items.length === 0}
+             onClose={() => { if (!cleanupBusy) setStorageOpen(false); }} onRetry={() => void refreshSafetyCopies()}
+             onSession={() => setClearSessionConfirm(true)} onRecents={() => setClearRecentsConfirm(true)}
+@@ -3378,12 +3411,12 @@
+               {activeEdit && !activeEdit.paused ? <div className="header-edit-actions">
+                 <button type="button" className="primary-button" disabled={busy || Boolean(activeEdit.conflict)
+                   || active.freshness === "conflict" || activeEdit.draft === activeEdit.source}
+-                  onClick={() => void saveEdit(active.id)}><WorkspaceIcon name="save" />{t(locale, "saveFile")}</button>
++                  aria-label={t(locale, "saveFile")} onClick={() => void saveEdit(active.id)}>{savingTabId === active.id && !closeIntent && !pendingSection ? <PreviewLoading inline label={t(locale, "sourceSaving")} /> : <WorkspaceIcon name="save" />}{t(locale, "saveFile")}</button>
+                 <button type="button" disabled={busy} onClick={() => activeEdit.draft === activeEdit.source
+                   ? void discardEdit(active.id) : setCloseIntent({ kind: "read", tabId: active.id })}>{t(locale, "returnReading")}</button>
+                 <button type="button" disabled={busy} onClick={() => void saveEditAs(active.id)}>{t(locale, "saveAs")}</button>
+-                <small>{t(locale, "saveReturnsReading")}</small>
+-              </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
++                <small>{copySaving === active.id && !pendingSaveAs ? <PreviewLoading inline visibleLabel label={t(locale, "saveAsCopy")} /> : t(locale, "saveReturnsReading")}</small>
++              </div> : <button type="button" title={!editingAvailable ? t(locale, "editingUnavailable") : undefined} aria-disabled={Boolean(enteringSection)} disabled={!editingAvailable || busy || !sectionsByTab[active.id]?.length}
+                 onClick={() => {
+                   const reader = readerRef.current;
+                   const top = reader?.getBoundingClientRect().top ?? 0;
+@@ -3395,6 +3428,7 @@
+                 }}><WorkspaceIcon name="pencil" />{t(locale, "editSection")}</button>}
+               {!editingAvailable && <small>{t(locale, "editingUnavailable")}</small>}
+             </>} </>} />}
++          {documentOpening && <div className="document-acquisition">{documentPending?.name && <span>{documentPending.name}</span>}{active && <PreviewLoading inline label={t(locale, "loading")} />}</div>}
+           {findOpen && <div className="find-band" role="search" aria-label={t(locale, "findInDocument")}>
+             <input ref={findInputRef} type="search" value={findQuery} autoComplete="off"
+               maxLength={active?.kind === "html" ? 256 : 4096}
+@@ -3407,7 +3441,7 @@
+             <span className="find-count" role="status" aria-live="polite">
+               {!findAvailable || findIndexError ? t(locale, "findUnavailable")
+                 : !findQuery.trim() ? t(locale, "findEntry")
+-                  : !findResults ? t(locale, "checking")
++                  : !findResults ? <PreviewLoading inline announce={false} label={t(locale, "checking")} />
+                     : findResults.count === 0 ? t(locale, "findZero")
+                       : t(locale, "findPosition").replace("{current}", String(activeFindOrdinal + 1))
+                         .replace("{total}", String(findResults.count))}
+@@ -3498,10 +3532,10 @@
+               <strong>{t(locale, "replaceFile")}</strong>
+               <p>{pendingSaveAs.name}</p>
+               <div className="section-modal-actions">
+-                <button type="button" onClick={() => setPendingSaveAs(null)}>{t(locale, "cancel")}</button>
++                <button type="button" disabled={copySaving !== null} onClick={() => setPendingSaveAs(null)}>{t(locale, "cancel")}</button>
+                 <button type="button" className="primary-button" disabled={busy}
+                   onClick={() => void commitSaveAs(pendingSaveAs.tabId, pendingSaveAs.token, true, pendingSaveAs.name)}>
+-                  {t(locale, "replace")}
++                  {copySaving && <PreviewLoading inline label={t(locale, "sourceSaving")} />}{t(locale, "replace")}
+                 </button>
+               </div>
+             </div>
+@@ -3516,7 +3550,7 @@
+                 <button type="button" disabled={busy} onClick={() => void resolvePendingSection("resume")}>{t(locale, "resume")}</button>
+                 <button type="button" disabled={busy} onClick={() => void resolvePendingSection("discard")}>{t(locale, "discard")}</button>
+                 <button type="button" className="primary-button" disabled={busy}
+-                  onClick={() => void resolvePendingSection("save")}>{t(locale, "save")}</button>
++                  onClick={() => void resolvePendingSection("save")}>{savingTabId && <PreviewLoading inline label={t(locale, "sourceSaving")} />}{t(locale, "save")}</button>
+               </div>
+             </div>
+           </div>}
+@@ -3546,7 +3580,7 @@
+               <div className="section-modal-actions">
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("cancel")}>{t(locale, "cancel")}</button>
+                 <button type="button" disabled={busy} onClick={() => void resolveClose("discard")}>{t(locale, "discard")}</button>
+-                <button type="button" disabled={busy || closingConflict} onClick={() => void resolveClose("save")}>{t(locale, "save")}</button>
++                <button type="button" disabled={busy || closingConflict} onClick={() => void resolveClose("save")}>{savingTabId && <PreviewLoading inline visibleLabel label={t(locale, "sourceSaving")} />}{t(locale, "save")}</button>
+                 <button type="button" className="primary-button" disabled={busy} onClick={() => void resolveClose("keep")}>{t(locale, "keepDraft")}</button>
+               </div>
+             </div>
+@@ -3575,7 +3609,7 @@
+               <p>{t(locale, "sessionScopeDetail")}</p>
+               <div className="section-modal-actions">
+                 <button type="button" disabled={cleanupBusy} onClick={() => setClearSessionConfirm(false)}>{t(locale, "cancel")}</button>
+-                <button type="button" className="primary-button" disabled={cleanupBusy} onClick={() => void runCleanup(clearSession)}>{t(locale, "clearSession")}</button>
++                <button type="button" className="primary-button" disabled={cleanupBusy} onClick={() => void runCleanup(clearSession)}>{cleanupBusy && <PreviewLoading inline label={t(locale, "cleanupBusy")} />}{t(locale, "clearSession")}</button>
+               </div>
+             </div>
+           </div>}
+@@ -3586,7 +3620,7 @@
+               <p>{t(locale, "clearRecentsDetail")}</p>
+               <div className="section-modal-actions">
+                 <button type="button" disabled={cleanupBusy} onClick={() => setClearRecentsConfirm(false)}>{t(locale, "cancel")}</button>
+-                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearRecents)}>{t(locale, "clearRecents")}</button>
++                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearRecents)}>{cleanupBusy && <PreviewLoading inline label={t(locale, "cleanupBusy")} />}{t(locale, "clearRecents")}</button>
+               </div>
+             </div>
+           </div>}
+@@ -3598,7 +3632,7 @@
+               <p>{t(locale, "safetyCopyStorage")}</p>
+               <div className="section-modal-actions">
+                 <button type="button" disabled={cleanupBusy} onClick={() => setClearDraftsConfirm(false)}>{t(locale, "cancel")}</button>
+-                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearSavedDrafts)}>{t(locale, "clearDrafts")}</button>
++                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearSavedDrafts)}>{cleanupBusy && <PreviewLoading inline label={t(locale, "cleanupBusy")} />}{t(locale, "clearDrafts")}</button>
+               </div>
+             </div>
+           </div>}
+@@ -3609,7 +3643,7 @@
+               <p>{t(locale, "clearSafetyCopiesDetail")}</p>
+               <div className="section-modal-actions">
+                 <button type="button" disabled={cleanupBusy} onClick={() => setClearCopiesConfirm(false)}>{t(locale, "cancel")}</button>
+-                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearResolvedCopies)}>{t(locale, "clearSafetyCopies")}</button>
++                <button type="button" disabled={cleanupBusy} onClick={() => void runCleanup(clearResolvedCopies)}>{cleanupBusy && <PreviewLoading inline label={t(locale, "cleanupBusy")} />}{t(locale, "clearSafetyCopies")}</button>
+               </div>
+             </div>
+           </div>}
+@@ -3670,8 +3704,9 @@
+                 if(key.toLowerCase()==='f')openFind();else if(key.toLowerCase()==='r')void htmlHandles.current.get(tab.id)?.reload();
+                 else if(key.toLowerCase()==='w')void closeTab(tab.id);else if(key.toLowerCase()==='o')void (shift?chooseFolder():chooseFile());
+               }} onClose={()=>void closeTab(tab.id)} />)}
+-            {!active ? (
++            {!active && documentOpening ? <div className="error-state"><PreviewLoading label={t(locale, "loading")} /></div> : !active ? (
+               <div className="welcome">
++                {!sessionReady && !restoreOffer && <PreviewLoading placeholder label={t(locale, "restoreSession")} />}
+                 <div className="welcome-mark" aria-hidden="true">M</div>
+                 <h1>{t(locale, "welcomeTitle")}</h1>
+                 <p>{root ? t(locale, "noDocument") : t(locale, "welcomeBody")}</p>
+@@ -3685,6 +3720,7 @@
+                   <button className="primary-button" type="button" onClick={() => void chooseFolder()}>{t(locale, "openFolder")}</button>
+                   <button type="button" onClick={() => void chooseFile()}>{t(locale, "openFile")}</button>
+                 </div>
++                {!root && !priorRoot && !recents && sessionReady && (recentsLoading ? <PreviewLoading placeholder label={t(locale, "recents")} /> : recentIssue ? <p role="status">{t(locale, "recentsRecovered")} <button onClick={() => void refreshRecents()}>{t(locale, "retry")}</button></p> : null)}
+                 {!root && !priorRoot && tabs.length === 0 && recents && <section className="recents" aria-label={t(locale, "recents")}>
+                   <h2>{t(locale, "recents")}</h2>
+                   {(recentIssue || recents.recoveredCorrupt) && <p role="status">{t(locale, "recentsRecovered")}</p>}
+@@ -3700,7 +3736,7 @@
+                                 ? "recentReplaced" : entry.status === "denied" ? "recentDenied" : "recentUnavailable")}</span>}</div>
+                           <button type="button" disabled={busy} onClick={() => void useRecent(entry)}
+                             aria-label={`${t(locale, entry.status === "available" ? "openRecent" : "reselectRecent")}: ${entry.name}`}>
+-                            {t(locale, entry.status === "available" ? "openRecent" : "reselectRecent")}
++                            {openingRecent === entry.id && <PreviewLoading inline label={t(locale, "loading")} />}{t(locale, entry.status === "available" ? "openRecent" : "reselectRecent")}
+                           </button>
+                           <button type="button" disabled={busy} onClick={() => void removeRecent(entry.id)}
+                             aria-label={`${t(locale, "removeRecent")}: ${entry.name}`}>{t(locale, "removeRecent")}</button>
+@@ -3720,9 +3756,9 @@
+                     : active.largeInspection.overLimit ? t(locale, "largeSourceLimit")
+                       : t(locale, "largeSourceChoice")}</h1>
+                   <p>{copySize(active.largeInspection.sizeBytes, locale)}</p>
+-                  {busy && <PreviewLoading label={t(locale, "largeSourceLoading") + (largeProgress?.fileId === active.id
+-                    && largeProgress.totalBytes > 0
+-                    ? ` ${Math.round(100 * largeProgress.completedBytes / largeProgress.totalBytes)}%` : "")} />}
++                  {busy && <PreviewLoading label={t(locale, "largeSourceLoading")} progress={largeProgress?.fileId === active.id
++                    ? { completed: largeProgress.completedBytes, total: largeProgress.totalBytes } : {}}
++                    detail={largeProgress?.fileId === active.id ? `${largeProgress.completedBytes.toLocaleString(locale)} / ${largeProgress.totalBytes.toLocaleString(locale)} bytes` : undefined} />}
+                   {!active.largeInspection.overLimit && <button type="button" className="primary-button"
+                     disabled={busy} onClick={() => void openLargeTab(active.id)}>{t(locale,
+                       active.errorCode ? "largeSourceReload" : "largeSourceOpen")}</button>}
+@@ -3730,7 +3766,7 @@
+                 </div>}
+               </div>
+             ) : active.documentLoading || (active.imageLoading && !active.image) ? (
+-              <div className="error-state"><PreviewLoading label={t(locale, active.imageLoading ? "imageLoading" : "openingHtml")} /></div>
++              <div className="error-state"><PreviewLoading label={t(locale, active.imageLoading ? "imageLoading" : isHtmlDocument(active.name) ? "openingHtml" : "loading")} /></div>
+             ) : active.errorCode ? (
+               <div className="error-state" role="alert">
+                 <div className="error-symbol" aria-hidden="true">!</div>
+@@ -3800,6 +3836,7 @@
+                   </div>}
+                 </div>}
+                 <MarkdownView content={active.content ?? ""} fileId={active.id} locale={locale}
++                  pendingSectionId={enteringSection?.tabId === active.id ? enteringSection.sectionId : undefined}
+                   layoutPending={hasPendingSectionLayout(active)}
+                   findRootRef={findRootRef}
+                   onRendered={(id, content) => setRenderedMarkdown({ id, content })}
+@@ -3884,7 +3921,7 @@
+             ? `${manualReload.label}: ${reloadStatusText(manualReload.result)}` : null}
+             successful={Boolean(manualReload && !manualReload.result.reasonCode
+               && ["current", "changed"].includes(manualReload.result.state))}
+-            dismissLabel={t(locale, "dismiss")} progress={manualReload ? reloadProgress(manualReload.target) : null} />        {layout === "atlas" && <button className="status-storage" type="button" onClick={() => { showHtmlOverlay(() => setStorageOpen(true)); void refreshSafetyCopies(); }}>{t(locale, "storageManagement")}</button>}
++            dismissLabel={t(locale, "dismiss")} progress={manualReload ? reloadProgress(manualReload.target) ?? (manualReload.result.state === "checking" ? <PreviewLoading inline label={t(locale, "checking")} /> : null) : null} />        {layout === "atlas" && <button className="status-storage" type="button" onClick={() => { showHtmlOverlay(() => setStorageOpen(true)); void refreshSafetyCopies(); }}>{t(locale, "storageManagement")}</button>}
+         <span className="workspace-signature">Intentgrove by Theonira</span>
+       </footer>
+     </div>
+--- before/src/app/StorageManagement.tsx
++++ src/app/StorageManagement.tsx
+@@ -1,10 +1,11 @@
++import PreviewLoading from "../reader/PreviewLoading";
+ import type { SafetyCopyInventory } from "./api";
+ import { t, type Locale } from "./i18n";
+ import WorkspaceDialog from "./WorkspaceDialog";
+ 
+-export default function StorageManagement({ locale, inventory, loading, busy, suspended, exclusions, onClose,
++export default function StorageManagement({ locale, inventory, loading, busy, cleanupPending = false, suspended, exclusions, onClose,
+   onRetry, onSession, onRecents, onDrafts, onCopies, recentsEmpty }:
+-  { locale: Locale; inventory: SafetyCopyInventory | null; loading: boolean; busy: boolean; suspended: boolean;
++  { locale: Locale; inventory: SafetyCopyInventory | null; loading: boolean; busy: boolean; cleanupPending?: boolean; suspended: boolean;
+     exclusions: boolean; recentsEmpty: boolean; onClose: () => void; onRetry: () => void;
+     onSession: () => void; onRecents: () => void; onDrafts: () => void; onCopies: () => void }) {
+   const size = (bytes: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(bytes / 1024) + " KiB";
+@@ -12,7 +13,7 @@
+     suspended={suspended} onClose={onClose}>
+     <p>{t(locale, "draftStorage")}</p><p>{t(locale, "rememberWorkspace")}</p>
+     {exclusions && <details><summary>{t(locale, "excluded")}</summary><p>{t(locale, "localOnly")}</p></details>}
+-    <div role="status">{loading ? t(locale, "checking") : inventory
++    <div role="status">{loading ? <PreviewLoading inline label={t(locale, "checking")} announce={false} /> : inventory
+       ? `${t(locale, "resolvedCopies")}: ${inventory.resolvedCount} (${size(inventory.resolvedBytes)}) · ${t(locale, "unresolvedCopies")}: ${inventory.unresolvedCount} (${size(inventory.unresolvedBytes)})`
+       : t(locale, "storageUnknown")}</div>
+     {inventory && inventory.unresolvedCount > 0 && <p>{t(locale, "backupReviewDeferred")}</p>}
+@@ -27,6 +28,6 @@
+       <section><h3>{t(locale, "clearSafetyCopies")}</h3><p>{t(locale, "clearSafetyCopiesDetail")}</p>
+         <button type="button" disabled={busy || loading || !inventory?.resolvedCount} onClick={onCopies}>{t(locale, "clearSafetyCopies")}</button></section>
+     </div>
+-    {busy && <p role="status">{t(locale, "cleanupBusy")}</p>}
++    {cleanupPending && !suspended && <p role="status">{t(locale, "cleanupBusy")}</p>}
+   </WorkspaceDialog>;
+ }
+--- before/src/app/SettingsWindow.tsx
++++ src/app/SettingsWindow.tsx
+@@ -1,5 +1,6 @@
+ import { useEffect, useLayoutEffect, useRef, useState } from "react";
+ import { layoutCopy, workspaceLayout, workspaceLayouts } from "./workspaceLayout";
++import PreviewLoading from "../reader/PreviewLoading";
+ import ReadingSettings from "./ReadingSettings";
+ import SelectChevron from "./SelectChevron";
+ import { settingsApi, newerSettings, type PreferencePatch, type SettingsSnapshot } from "./settings-contract";
+@@ -10,6 +11,7 @@
+ export default function SettingsWindow() {
+   const [state, setState] = useState<SettingsSnapshot | null>(null);
+   const [error, setError] = useState(false);
++  const [loadError, setLoadError] = useState(false);
+   const [busy, setBusy] = useState(false);
+   const lastPatch = useRef<PreferencePatch | null>(null);
+   const appearance = useAppearance();
+@@ -25,8 +27,8 @@
+   }, []);
+   useEffect(() => {
+     let disposed = false;
+-    const refresh = () => { void settingsApi.get().then(next => { if (!disposed) accept(next); })
+-      .catch(() => { if (!disposed) setError(true); }); };
++    const refresh = () => { void settingsApi.get().then(next => { if (!disposed) { accept(next); setLoadError(false); } })
++      .catch(() => { if (!disposed) setLoadError(true); }); };
+     refresh();
+     const timer = setInterval(refresh, 500);
+     return () => { disposed = true; clearInterval(timer); };
+@@ -59,12 +61,19 @@
+     } catch { setError(true); try { accept(await settingsApi.get()); } catch { /* Keep the last acknowledged values. */ } }
+     finally { setBusy(false); }
+   }
+-  const locale = state?.values.language ?? "en";
++  const [initialLocale] = useState<"en" | "es">(() => { try { return localStorage.getItem("md-reader-locale") === "es" ? "es" : "en"; } catch { return "en"; } });
++  const locale = state?.values.language ?? initialLocale;
+   const es = locale === "es";
++  const patch = busy ? lastPatch.current : state?.retryPatch ?? lastPatch.current;
++  const pending = busy || state?.persistence === "pending";
++  const pendingGroup = patch?.language !== undefined || patch?.appearance !== undefined ? "general"
++    : patch?.workspaceLayout !== undefined ? "layout" : patch?.documentsAndImagesOnly !== undefined ? "tree" : "reading";
++  const feedback = (group: string) => pending && pendingGroup === group
++    ? <PreviewLoading inline visibleLabel label={es ? "Aplicando preferencia" : "Applying preference"} /> : null;
+   return <main className="native-settings">
+     <div className="settings-body"><h1>{es ? "Ajustes" : "Settings"}</h1>
+-    {!state ? <p role="status">{error ? (es ? "No se pudieron cargar los ajustes." : "Could not load preferences.") : (es ? "Cargando…" : "Loading…")}</p> : <>
+-      <section aria-labelledby="settings-general"><h2 id="settings-general" tabIndex={-1}>General</h2>
++    {!state ? <p role="status">{loadError ? (es ? "No se pudieron cargar los ajustes." : "Could not load preferences.") : <PreviewLoading placeholder label={t(locale, "loading")} announce={false} />}</p> : <>
++      <section aria-labelledby="settings-general"><h2 id="settings-general" tabIndex={-1}>General</h2>{feedback("general")}
+         <fieldset disabled={busy || state.persistence === "pending"}>
+           <div className="settings-row">
+             <label htmlFor="settings-language">{t(locale, "language")}</label>
+@@ -89,7 +98,7 @@
+           </div>
+         </fieldset>
+       </section>
+-      <section aria-labelledby="settings-layout"><h2 id="settings-layout">{layoutCopy(locale).label}</h2>
++      <section aria-labelledby="settings-layout"><h2 id="settings-layout">{layoutCopy(locale).label}</h2>{feedback("layout")}
+         <fieldset className="workspace-layout-choices" aria-labelledby="settings-layout"
+           aria-describedby={state.values.workspaceLayout === undefined ? "layout-unavailable" : undefined}
+           disabled={!state.ownerAvailable || busy || state.persistence === "pending" || state.values.workspaceLayout === undefined}>
+@@ -103,24 +112,24 @@
+         {state.values.workspaceLayout === undefined && <p id="layout-unavailable">{layoutCopy(locale).unavailable}</p>}
+       </section>
+       {!state.ownerAvailable && <p role="status">{es ? "El espacio de trabajo no está disponible. Lectura y árbol de proyecto están desactivados." : "The workspace owner is unavailable. Reading and Project tree are disabled."}</p>}
+-      <section aria-labelledby="settings-reading"><h2 id="settings-reading" tabIndex={-1}>{es ? "Lectura" : "Reading"}</h2>
++      <section aria-labelledby="settings-reading"><h2 id="settings-reading" tabIndex={-1}>{es ? "Lectura" : "Reading"}</h2>{feedback("reading")}
+         <fieldset disabled={!state.ownerAvailable || busy || state.persistence === "pending"}>
+           <ReadingSettings locale={locale} value={state.values} onChange={value => void change({ readingFont: value.readingFont, readingSize: value.readingSize, readingLineHeight: value.readingLineHeight, readingWidth: value.readingWidth })} />
+         </fieldset>
+       </section>
+-      <section aria-labelledby="settings-project-tree"><h2 id="settings-project-tree" tabIndex={-1}>{es ? "Árbol de proyecto" : "Project tree"}</h2>
++      <section aria-labelledby="settings-project-tree"><h2 id="settings-project-tree" tabIndex={-1}>{es ? "Árbol de proyecto" : "Project tree"}</h2>{feedback("tree")}
+         <fieldset disabled={!state.ownerAvailable || busy || state.persistence === "pending"}>
+           <label className="tree-preference"><input type="checkbox" aria-describedby="tree-help" checked={state.values.documentsAndImagesOnly} onChange={event => void change({ documentsAndImagesOnly: event.target.checked })} />{t(locale, "filterMarkdown")}</label>
+           <p id="tree-help" className="settings-help">{t(locale, "treeVisibilityHelp")}</p>
+         </fieldset>
+       </section>
+-      {(error || state.persistence === "failed" || state.persistence === "ownerUnavailable" || state.nativeThemeFailed || appearance.nativeWarning) && <p role="status">
++      {(error || loadError || state.persistence === "failed" || state.persistence === "ownerUnavailable" || state.nativeThemeFailed || appearance.nativeWarning) && <p role="status">
+         {es ? "No se pudo guardar o confirmar el cambio. El valor aplicado se conserva." : "The change could not be saved or confirmed. The applied value is retained."}
+         <button disabled={busy || !(state.retryPatch ?? lastPatch.current)} onClick={() => {
+           const patch = state.retryPatch ?? lastPatch.current; if (patch) void change(patch);
+         }}>{t(locale, "retry")}</button>
+       </p>}
+-      {state.persistence === "pending" && <p role="status">{es ? "Confirmando…" : "Waiting for acknowledgment…"}</p>}
++
+     </>}
+     </div><footer><p>{t(locale, "preferencesHelp")}</p><button className="primary-button" onClick={() => void settingsApi.close()}>{es ? "Listo" : "Done"}</button></footer>
+   </main>;
+--- before/src/app/FolderSearchPanel.tsx
++++ src/app/FolderSearchPanel.tsx
+@@ -1,3 +1,4 @@
++import PreviewLoading from "../reader/PreviewLoading";
+ import { useEffect, useRef, useState } from "react";
+ import { listen } from "@tauri-apps/api/event";
+ import { api, readerError, type FolderSearchBatch, type FolderSearchHit,
+@@ -29,6 +30,8 @@
+   const [mode, setMode] = useState<"both" | "name" | "content">("both");
+   const [includeIgnored, setIncludeIgnored] = useState(false);
+   const [hits, setHits] = useState<FolderSearchHit[]>([]);
++  const [replacingResults, setReplacingResults] = useState(false);
++  const replaceResults = useRef(false);
+   const [progress, setProgress] = useState({ scanned: 0, skipped: 0, matched: 0 });
+   const [status, setStatus] = useState<"idle" | FolderSearchBatch["status"]>("idle");
+   const [errorCode, setErrorCode] = useState<string | null>(null);
+@@ -55,7 +58,9 @@
+     if (batch.errorCode === "scope_changed") {
+       invalidate(); setStatus("partial"); setErrorCode("scope_changed"); return;
+     }
+-    setHits((old) => [...old, ...batch.results].slice(0, 10_000));
++    const replace = replaceResults.current;
++    replaceResults.current = false; setReplacingResults(false);
++    setHits((old) => [...(replace ? [] : old), ...batch.results].slice(0, 10_000));
+     setProgress({ scanned: batch.scanned, skipped: batch.skipped, matched: batch.matched });
+     setStatus(stoppedJob.current === batch.jobId
+       ? "stopped" : batch.status);
+@@ -85,7 +90,7 @@
+     };
+   }, [root.id, root.generation, scopeKey]);
+ 
+-  function invalidate() {
++  function invalidate(retainResults = false) {
+     sequence.current += 1;
+     const previous = job.current;
+     job.current = null;
+@@ -95,14 +100,15 @@
+     setOpening(null);
+     pending.current = [];
+     if (previous) void api.cancelFolderSearch(previous.jobId).catch(() => {});
+-    setHits([]);
++    if (!retainResults) setHits([]);
++    replaceResults.current = retainResults; setReplacingResults(retainResults);
+     setProgress({ scanned: 0, skipped: 0, matched: 0 });
+     setStatus("idle");
+     setErrorCode(null);
+   }
+ 
+   async function search(selectedIgnored = includeIgnored, selectedMode = mode) {
+-    invalidate();
++    invalidate(true);
+     const value = query.trim();
+     if (!value || !listenerReady) return;
+     const current = sequence.current;
+@@ -193,14 +199,14 @@
+     <label className="folder-search-label">{t(locale, "folderSearch")}
+       <input ref={inputRef} type="search" value={query} maxLength={256} autoComplete="off"
+         placeholder={t(locale, "folderSearchPlaceholder")}
+-        onChange={(event) => { invalidate(); setQuery(event.target.value); }}
++        onChange={(event) => { invalidate(Boolean(event.target.value.trim())); setQuery(event.target.value); }}
+         onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); void search(); } }} />
+     </label>
+     <p className="folder-search-scope">{t(locale, "searchScope")}: {[root.name, ...(confirmedScope ?? scopeSegments)].join(" / ")} · {t(locale,
+       mode === "name" ? "folderSearchName" : mode === "content" ? "folderSearchContent" : "folderSearchBoth")}</p>
+     <div className="search-modes" role="group" aria-label={t(locale, "folderSearchMode")}>
+       {(["both", "name", "content"] as const).map((choice) => <button type="button" key={choice}
+-        aria-pressed={mode === choice} onClick={() => { invalidate(); setMode(choice); }}>
++        aria-pressed={mode === choice} onClick={() => { invalidate(true); setMode(choice); }}>
+         {mode === choice && <span aria-hidden="true">✓ </span>}
+         {t(locale, choice === "both" ? "folderSearchBoth" : choice === "name" ? "folderSearchName" : "folderSearchContent")}
+       </button>)}
+@@ -208,7 +214,7 @@
+     <p className="folder-search-scope">{t(locale, "searchMarkdownCoverage")}</p>
+     <label className="folder-search-check"><input type="checkbox" checked={includeIgnored}
+       onChange={(event) => { const checked = event.target.checked; setIncludeIgnored(checked);
+-        invalidate(); }} />
++        invalidate(true); }} />
+       {t(locale, "folderSearchIncludeIgnored")}</label>
+     <div className="folder-search-actions">
+       {status !== "searching" && <button type="button" disabled={!query.trim() || !listenerReady} onClick={() => void search()}>{t(locale, "folderSearchGo")}</button>}
+@@ -220,21 +226,24 @@
+     <p className="folder-search-status" role="status" aria-live="polite">
+       {errorCode ? errorText(locale, errorCode) : status === "idle"
+         ? t(locale, "folderSearchGuidance") : status === "searching"
+-          ? t(locale, "folderSearchSearching") : status === "stopped"
++          ? <PreviewLoading inline announce={false} staticMotion={!active} label={t(locale, "folderSearchSearching")}
++              progress={progress.scanned > 0 || (!replacingResults && hits.length > 0) ? {} : undefined} /> : status === "stopped"
+             ? t(locale, "folderSearchStopped") : status === "partial"
+               ? t(locale, "folderSearchPartial") : progress.skipped > 0
+                 ? t(locale, "folderSearchFinished") : hits.length === 0
+                 ? t(locale, "folderSearchZero") : t(locale, "folderSearchComplete")}
+       {status !== "idle" && ` · ${progress.scanned.toLocaleString(locale)} ${t(locale, "folderSearchScanned")}, ${progress.skipped.toLocaleString(locale)} ${t(locale, "folderSearchSkipped")}`}
+-      {status !== "idle" && ` · ${t(locale, "searchResultCount")}: ${hits.length.toLocaleString(locale)}`}
++      {status !== "idle" && ` · ${t(locale, "searchResultCount")}: ${progress.matched.toLocaleString(locale)}`}
+     </p>
++    {replacingResults && hits.length > 0 && <p className="folder-search-scope">{locale === "es" ? "Resultados anteriores; esperando la nueva búsqueda." : "Previous results; awaiting the new search."}</p>}
+     <div className="folder-search-groups">{Array.from(groups, ([path, matches]) => <section key={path} aria-label={path}>
+       <h3 title={path}>{path}<span>{matches.length.toLocaleString(locale)}</span></h3>
+       <ol className="folder-search-results">{matches.map((hit) => <li key={hit.id}>
+-        <button type="button" disabled={opening !== null} title={hit.path}
++        <button type="button" disabled={opening !== null || replacingResults} title={hit.path}
+           aria-label={`${hit.path} · ${hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}${hit.context}`}
+           onClick={() => void open(hit)}>
+           <span>{hit.kind === "content" ? `${t(locale, "folderSearchLine")} ${hit.line} · ` : ""}{hit.context}</span>
++          {opening === hit.id && <PreviewLoading inline label={t(locale, "loading")} />}
+           {hit.ignored && <small>{t(locale, "folderSearchIgnored")}</small>}
+         </button>
+       </li>)}</ol>
+--- before/src/styles/app.css
++++ src/styles/app.css
+@@ -1042,5 +1042,34 @@
+ .preview-loading-dots > i { display: block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: preview-loading-pulse 1.2s ease-in-out infinite; }
+ .preview-loading-dots > i:nth-child(2) { animation-delay: .15s; }
+ .preview-loading-dots > i:nth-child(3) { animation-delay: .3s; }
+-@keyframes preview-loading-pulse { 0%, 80%, 100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-4px); } }
++@keyframes preview-loading-pulse { 0%, 80%, 100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+ @media (prefers-reduced-motion: reduce) { .preview-loading-dots > i { animation: none; opacity: .7; } }
++
++/* Approved loading system: one local indicator; motion never encodes progress. */
++.preview-loading { gap: 8px; }
++.preview-loading .loading-label, .loading-detail { color: var(--text); font-size: 13px; }
++.preview-loading-progress, .preview-loading-placeholder { flex-direction: column; align-items: stretch; min-height: 0; padding: 12px 0; }
++.loading-track { display: block; overflow: hidden; height: 3px; min-width: 80px; width: 100%; background: var(--border); border-radius: 4px; }
++.loading-track > i { display: block; height: 100%; background: var(--accent); }
++.loading-track[data-measured="false"] > i { width: 24%; animation: loading-travel 2s ease-in-out infinite; }
++@keyframes loading-travel { from { transform: translateX(-110%); } to { transform: translateX(430%); } }
++.loading-rows { display: grid; gap: 18px; width: 100%; }
++.loading-rows > i { height: 16px; border-radius: 4px; background: var(--border); animation: loading-breathe 1.7s ease-in-out infinite; }
++@keyframes loading-breathe { 50% { opacity: .4; } }
++.preview-loading[data-motion="off"] i { animation-play-state: paused; }
++button:has(.preview-loading):disabled { opacity: 1; }
++button .preview-loading { color: inherit; }
++.tab-refresh-status .preview-loading { padding: 0; }
++.section-edit-button:has(.preview-loading) { opacity: 1; }
++.reload-progress .preview-loading-progress { min-width: 120px; padding: 0; }
++@media (prefers-reduced-motion: reduce) {
++  .preview-loading i { animation: none !important; transform: none !important; opacity: .7; }
++  .loading-track[data-measured="false"] > i { width: 100%; background: var(--border); }
++}
++
++.document-acquisition { display: flex; align-items: center; gap: 12px; padding: 10px 20px; font-size: 13px; min-width: 0; }
++.document-acquisition > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++
++[hidden] .preview-loading i, [inert] .preview-loading i, [aria-hidden="true"] .preview-loading i { animation-play-state: paused; }
++.tab-refresh-status:has(.preview-loading) { position: absolute; right: 8px; top: 5px; pointer-events: none; }
++.tab-strip [role="tab"] { position: relative; }

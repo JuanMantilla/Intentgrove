@@ -1,10 +1,11 @@
+import type { WorkspaceLayout } from "./workspaceLayout";
 import { invoke } from "@tauri-apps/api/core";
 import type { AppearanceMode } from "./appearance";
 import type { Locale } from "./i18n";
 import type { ReadingPreferences } from "./ReadingSettings";
 
 export type SettingsGroup = "General" | "Reading" | "ProjectTree";
-export type Preferences = ReadingPreferences & { language: Locale; appearance: AppearanceMode; documentsAndImagesOnly: boolean };
+export type Preferences = ReadingPreferences & { language: Locale; appearance: AppearanceMode; documentsAndImagesOnly: boolean; workspaceLayout?: WorkspaceLayout };
 export type PreferencePatch = Partial<Preferences>;
 export interface SettingsSnapshot {
   revision: number; activation: number; group: SettingsGroup; ownerAvailable: boolean; values: Preferences;

@@ -1,0 +1,972 @@
+[
+  {
+    "id": "BUILD",
+    "result": "PASS",
+    "scope": "Identified isolated candidate/build",
+    "reason": "Fixed157-input source matches handoff; native debug build and deep strict signature pass; fresh identifier/profile.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:40:13.717Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/build-provenance.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/source-provenance.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/native-build.log",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/signature.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N01",
+    "result": "PASS",
+    "scope": "Fresh unopened explorer \u2192 Finder exact selection",
+    "reason": "Copied Finder pathname matches fresh.md; no document tab opened.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:40:52.206Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N01-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N01-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N01-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-EN-dark-explorer",
+    "result": "PASS",
+    "scope": "English dark explorer menu native screenshot",
+    "reason": "Paired native screenshot visibly includes readable menu within1280\u00d7820 bounds; Reveal above Copy path/Reload.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:40:52.207Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/N01-menu-paired.png",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N01-paired.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-after-replace",
+    "result": "PASS",
+    "scope": "QA-0032 original unopened after-menu replacement",
+    "reason": "Real different inode; retained menu invoked, result captured; copied Finder sentinel did not change to replacement.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:41:44.961Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-replace-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-after-rename-a1",
+    "result": "BLOCKED",
+    "scope": "Unopened rename after-menu attempt1",
+    "reason": "Native missing error captured; Finder readback interrupted by provider user-changed-Finder guard. No selection PASS claimed for this attempt.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:44:11.407Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-result.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "A01",
+    "result": "PASS",
+    "scope": "QA-0031 root missing tab menu",
+    "reason": "Known missing root tab exposes disabled Reveal; missing content retained; no Reveal activation performed.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:44:37.510Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A01-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A01-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A01-menu-result.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A03-a1",
+    "result": "BLOCKED",
+    "scope": "Dirty root-tab Reveal attempt1",
+    "reason": "Menu enabled and native Reveal invoked; exact Finder readback stopped by external-change guard. Draft/disk verification completed in retry.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:46:41.196Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A03-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A03-after.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "A03",
+    "result": "PASS",
+    "scope": "Saved dirty root tab",
+    "reason": "Exact Finder path; native unsaved draft marker retained; disk stays original, no Save.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:46:44.850Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A03-retry-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A03-retry-selection-copy.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A03-retry-draft.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A04",
+    "result": "PASS",
+    "scope": "Saved dirty root explorer",
+    "reason": "Explorer resolves opened grant; exact Finder path; draft retained and disk untouched.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:46:48.581Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A04-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A04-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A04-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-after-delete-a1",
+    "result": "BLOCKED",
+    "scope": "Unopened delete after menu",
+    "reason": "Preparatory fixture restoration caused directory refresh; saved menu tree contains no menu. No after-menu action was established; provisional result corrected as a test setup defect.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:47:16.395Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-selection-copy.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "U-after-rename",
+    "result": "PASS",
+    "scope": "Unopened rename after menu fresh retry",
+    "reason": "Fresh restored fixture; native missing error/safe dismissal and copied sentinel unchanged. External-interference attempt retained separately.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:47:20.255Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-retry-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-retry-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-retry-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-rename-retry-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-before-rename",
+    "result": "PASS",
+    "scope": "Unopened rename before menu entry",
+    "reason": "Original listed row mutated before context entry; stale action rejects/dismisses or original row disappears; copied Finder sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:01.247Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-rename-listed.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-rename-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-rename-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-before-delete",
+    "result": "PASS",
+    "scope": "Unopened delete before menu entry",
+    "reason": "Original listed row mutated before context entry; stale action rejects/dismisses or original row disappears; copied Finder sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:04.490Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-delete-listed.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-delete-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-delete-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-before-replace",
+    "result": "PASS",
+    "scope": "Unopened replace before menu entry",
+    "reason": "Original listed row mutated before context entry; stale action rejects/dismisses or original row disappears; copied Finder sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:07.365Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-replace-listed.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-before-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "U-after-delete",
+    "result": "PASS",
+    "scope": "Unopened delete after established open menu",
+    "reason": "Retry verified menu existed and Reveal was selected before deletion; native missing error/safe dismissal; copied sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:26.532Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-retry-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-retry-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-retry-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/U-after-delete-retry-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-after-rename",
+    "result": "PASS",
+    "scope": "Opened root rename after menu",
+    "reason": "Original native file grant established; menu existed and Reveal focused; immediate mutation/Return rejected or safely dismissed; copied sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:30.772Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-rename-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-rename-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-rename-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-rename-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-after-delete",
+    "result": "PASS",
+    "scope": "Opened root delete after menu",
+    "reason": "Original native file grant established; menu existed and Reveal focused; immediate mutation/Return rejected or safely dismissed; copied sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:34.931Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-delete-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-delete-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-delete-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-delete-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-after-replace",
+    "result": "PASS",
+    "scope": "Opened root replace after menu",
+    "reason": "Original native file grant established; menu existed and Reveal focused; immediate mutation/Return rejected or safely dismissed; copied sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:48:39.249Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-replace-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-replace-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-after-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-before-rename",
+    "result": "PASS",
+    "scope": "Opened root rename before menu",
+    "reason": "Existing native grant; missing/reselection target disabled or rejects; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:49:28.800Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-rename-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-rename-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-rename-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-rename-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-before-delete",
+    "result": "PASS",
+    "scope": "Opened root delete before menu",
+    "reason": "Existing native grant; missing/reselection target disabled or rejects; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:49:32.724Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-delete-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-delete-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-delete-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-delete-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "O-before-replace",
+    "result": "PASS",
+    "scope": "Opened root replace before menu",
+    "reason": "Existing native grant; dirty original keeps identity; missing/reselection target disabled or rejects; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:49:37.850Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-replace-opened.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-replace-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/O-before-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-after-rename",
+    "result": "PASS",
+    "scope": "Explicit native grant rename after menu",
+    "reason": "Established native file-only grant; open menu Reveal selected before mutation; rejection/safe dismissal; exact sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:50:29.010Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-rename-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-rename-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-rename-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-after-delete",
+    "result": "PASS",
+    "scope": "Explicit deletion after menu",
+    "reason": "Native deletion/Return performed; provider -3812 interrupted first state capture. Fresh state/readback recovered and exact sentinel checked.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:50:59.133Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-delete-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-delete-result-retry.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-delete-retry-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-after-replace",
+    "result": "PASS",
+    "scope": "Explicit replacement after menu",
+    "reason": "Original native file identity rejects different-inode replacement; exact copied sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:51:02.528Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-replace-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-after-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-before-rename",
+    "result": "PASS",
+    "scope": "Explicit native grant rename before menu",
+    "reason": "Known file-only native grant retained; unavailable action disabled or late native error; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:51:15.634Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-rename-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-rename-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-rename-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-rename-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-before-delete",
+    "result": "PASS",
+    "scope": "Explicit native grant delete before menu",
+    "reason": "Known file-only native grant retained; unavailable action disabled or late native error; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:51:19.235Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-delete-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-delete-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-delete-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-delete-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "E-before-replace",
+    "result": "PASS",
+    "scope": "Explicit native grant replace before menu",
+    "reason": "Known file-only native grant retained; unavailable action disabled or late native error; copied Finder sentinel unchanged.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:51:22.567Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-replace-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-replace-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-replace-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/E-before-replace-selection-copy.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A06-a1",
+    "result": "BLOCKED",
+    "scope": "Dirty root becomes known missing",
+    "reason": "Assertion sampled before tab/native state became known missing; precondition not met, so no product FAIL established. Original status/text evidence retained; follow-up targets observed known state.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:52:12.202Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-status.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "K-live-focus-a1",
+    "result": "BLOCKED",
+    "scope": "Focused Reveal becomes disabled while menu stays open",
+    "reason": "Assertion sampled before tab/native state became known missing; precondition not met, so no product FAIL established. Original status/text evidence retained; follow-up targets observed known state.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:52:12.203Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-status.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "K-live-enter",
+    "result": "PASS",
+    "scope": "Return after disable invokes next enabled Copy path",
+    "reason": "After native missing state arrived, Return/Copy path produced Path copied; clipboard is valid same local path with redundant interior slash from displayed root. Exact string assertion was overly strict for nearby Copy path; Finder exact selection oracle remains strict.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:52:15.496Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-copy-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-copy-copy-paste.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A06",
+    "result": "PASS",
+    "scope": "Dirty root known missing tab",
+    "reason": "Known missing status observed first; disabled Reveal and full unsaved marker retained.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:53:14.635Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-known-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A06-live-mutation.json"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A05",
+    "result": "PASS",
+    "scope": "Saved dirty explicit native reveal",
+    "reason": "Keyboard-only separated readback confirms exact copied pathname; native draft and original saved bytes retained. Interrupted provider attempts preserved.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:56:26.723Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A05-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A05-keyboard-final-selection-copy.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A05-final-draft.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "K-live-focus",
+    "result": "PASS",
+    "scope": "Live missing update transfers focus",
+    "reason": "Menu began with selected Reveal; after known missing state, Reveal disabled and Copy path selected without navigation keys.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:56:37.327Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-mutation.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-initial.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-known.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A07",
+    "result": "PASS",
+    "scope": "QA-0031 dirty explicit known missing",
+    "reason": "Disabled Reveal and full draft marker retained after file rename.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:56:37.328Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-known.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "K-tab-escape-a1",
+    "result": "BLOCKED",
+    "scope": "Tab Escape dismissal/focus",
+    "reason": "Direct AX focus metadata absent; follow-up keyboard reopening checks actual anchor behavior.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:56:37.806Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-escape.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "K-tab-escape",
+    "result": "PASS",
+    "scope": "Tab Escape restores anchor focus",
+    "reason": "Without reclicking, Shift+F10 reopened same explicit-dirty target after Escape; disabled Reveal and Copy path preserved.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:57:38.417Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-live-retry-escape.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-tab-keyboard-reopen.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N02",
+    "result": "PASS",
+    "scope": "Active root tab native Reveal",
+    "reason": "Selected Finder row URL matches unique immutable active.md; full readback retained.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:57:41.050Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N02-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N02-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N02-finder-url.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N03",
+    "result": "PASS",
+    "scope": "Inactive root tab native Reveal",
+    "reason": "Clicked active.md while inactive.md stayed active; exact unique selected Finder URL.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:57:43.393Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N03-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N03-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N03-finder-url.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N03-active-retained.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N04",
+    "result": "PASS",
+    "scope": "Active explicit native Reveal",
+    "reason": "Unique immutable explicit one.md selected by exact Finder row URL.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:58:12.392Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N04-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N04-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N04-finder-url.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N05",
+    "result": "PASS",
+    "scope": "Inactive explicit native Reveal",
+    "reason": "Clicked one.md while two.md stays active; exact Finder selected file URL.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:58:14.562Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N05-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N05-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N05-finder-url.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N05-active-retained.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "A02",
+    "result": "PASS",
+    "scope": "Known missing explicit tab menu",
+    "reason": "Native known-missing status established; reachable explicit menu disables Reveal.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:59:05.751Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/A02-menu.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P01",
+    "result": "PASS",
+    "scope": "Folder menu excludes file Reveal",
+    "reason": "Collapsed nested folder menu contains Expand/Search/Copy/Reload and no file Reveal.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T22:59:06.944Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P-folder-menu.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N06-a1",
+    "result": "BLOCKED",
+    "scope": "Special nested unopened explorer target",
+    "reason": "Semantic context attempt retained wrong one.md menu; nested Help selector/closure setup errors and unavailable coordinate mapping. Not a product selection failure; supported keyboard targeting retry below.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:00:17.506Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-final-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-final-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-final-finder-url.txt"
+    ],
+    "attempt_kind": "retained_initial_attempt"
+  },
+  {
+    "id": "N07",
+    "result": "PASS",
+    "scope": "Special nested root tab target",
+    "reason": "Native opened grant selects exact special Finder target; screenshot for shared file retained.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:00:19.983Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N07-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N07-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N07-finder-url.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P05",
+    "result": "PASS",
+    "scope": "Nearby Close tab",
+    "reason": "Only clean special tab removed; other tabs and root/explicit unsaved drafts retained.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:02:15.444Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P05-special-close-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P05-retained.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "K-explorer-escape",
+    "result": "PASS",
+    "scope": "Explorer Escape/keyboard reopening",
+    "reason": "Escape followed by Shift+F10 without reclick reopens original fresh.md row menu.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:02:17.020Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-explorer-base-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/K-explorer-reopen.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "N06",
+    "result": "PASS",
+    "scope": "Unopened special explorer native keyboard journey",
+    "reason": "Escape restores fresh row; Down traverses inactive/folder/special child; Shift+F10 opens exact special explorer menu. Reveal selects exact Finder URL while tab count stays20.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:02:46.416Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-keyboard-final-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-keyboard-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-keyboard-finder-url.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-keyboard-paired.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-EN-light-explorer",
+    "result": "BLOCKED",
+    "scope": "English light explorer menu pixels",
+    "reason": "Actual light-theme window captured, but paired native capture omitted the AX-confirmed menu; no menu placement/visual PASS.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:07:33.597Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-light-explorer-attempt-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-light-explorer-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-EN-light-explorer.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P03",
+    "result": "PASS",
+    "scope": "Folder Reload and late-run fresh unopened Reveal",
+    "reason": "Correct fresh.md menu after folder Reload invoked; exact Finder readback and new native notice captured.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:09:30.639Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P03-projects-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P03-folder-reload-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P03-folder-reload-result.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/fresh-after-folder-reload-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/fresh-after-folder-reload-state.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/fresh-after-folder-reload-finder-url.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-EN-light-tab",
+    "result": "BLOCKED",
+    "scope": "English light tab menu pixels",
+    "reason": "Raised window, selected Copy by keyboard, then captured in separate tool turn. Menu remains in post-capture AX tree but absent from native PNG; pixel placement cannot be certified.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:12:38.502Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-light-tab-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-light-tab-after-capture.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-EN-light-tab.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-ES-light-explorer",
+    "result": "BLOCKED",
+    "scope": "Spanish light native menu pixels",
+    "reason": "Menu present in paired and post-capture AX but absent from native PNG; visual placement cannot be certified.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:15:40.782Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-light-explorer-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-light-explorer-post.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-ES-light-explorer.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-ES-light-tab",
+    "result": "BLOCKED",
+    "scope": "Spanish light native menu pixels",
+    "reason": "Menu present in paired and post-capture AX but absent from native PNG; visual placement cannot be certified.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:15:40.783Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-light-tab-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-light-tab-post.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-ES-light-tab.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-ES-dark-explorer",
+    "result": "BLOCKED",
+    "scope": "Spanish dark explorer menu pixels",
+    "reason": "AX menu remains after native capture; PNG omits menu.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:15:45.579Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-dark-explorer-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-dark-explorer-post.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-ES-dark-explorer.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-ES-dark-tab",
+    "result": "BLOCKED",
+    "scope": "Spanish dark tab menu pixels",
+    "reason": "AX menu remains after native capture; PNG omits menu.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:15:52.197Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-dark-tab-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-ES-dark-tab-post.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-ES-dark-tab.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-EN-dark-tab",
+    "result": "BLOCKED",
+    "scope": "English dark tab menu pixels",
+    "reason": "AX menu remains after native capture; PNG omits menu.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:04.242Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-dark-tab-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-dark-tab-post.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-EN-dark-tab.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P02",
+    "result": "PASS",
+    "scope": "Nearby folder collapse/expand",
+    "reason": "Native context actions remove and restore special child; no Reveal in folder menu.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:16.500Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P02-collapse-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P02-collapse-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P02-expand-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P02-final.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P04",
+    "result": "PASS",
+    "scope": "Nearby Copy path explicit inactive tab",
+    "reason": "App Copy path read back through actual pasteboard in Finder Go sheet; exact one.md path; sheet dismissed without navigation. Initial Finder guard retained.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:37.131Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P04-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P04-copy-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P04-path-readback.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "P06",
+    "result": "PASS",
+    "scope": "Nearby Reload inactive explicit tab",
+    "reason": "Reload one.md completes without error, preserves inactive.md active and open dirty documents; no save action.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.751Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P06-menu.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P06-reload-after.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/P06-final.txt"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "V-placement",
+    "result": "BLOCKED",
+    "scope": "Long filename and right-edge menu placement",
+    "reason": "Supported native capture omits special explorer and rightmost tab overlays despite AX menu presence. Coordinates unavailable (noWindowsAvailable); no clipping or theme verdict asserted.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.752Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/N06-keyboard-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/N06-keyboard-menu.png",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/V-EN-dark-tab-paired.txt",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/screenshots/V-EN-dark-tab.png"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "POLICY",
+    "result": "PASS",
+    "scope": "Supplemental existing native reveal policy tests",
+    "reason": "4 existing reveal tests pass offline/locked, real filesystem policy assertions; supplements native UI journeys.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.752Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/native-policy-tests.log"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "WIN-explorer",
+    "result": "NOT_RUN",
+    "scope": "Windows explorer \u2192 File Explorer",
+    "reason": "No available Windows host/native session; macOS result does not verify Windows.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.753Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/build-provenance.json"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "WIN-tab",
+    "result": "NOT_RUN",
+    "scope": "Windows tab \u2192 File Explorer",
+    "reason": "No available Windows host/native session; macOS result does not verify Windows.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.753Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/build-provenance.json"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "LINUX",
+    "result": "NOT_APPLICABLE",
+    "scope": "Linux reveal",
+    "reason": "Linux remains unsupported per task; no platform support change.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:16:52.754Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/source-provenance.json"
+    ],
+    "attempt_kind": "final_case"
+  },
+  {
+    "id": "INTEGRITY",
+    "result": "PASS",
+    "scope": "Candidate, tested inputs, prior evidence and owned process",
+    "reason": "All164 precheck inputs unchanged in bytes/stat identity; all324 prior evidence/handoff hashes unchanged; bundle unchanged; isolated candidate stopped with Keep draft.",
+    "environment": "physical macOS27.0.1 arm64",
+    "build": "e9e60c547b302b70074324acd2219cbd81a53a252b868ccab9f329fef38157c1",
+    "finished_at": "2026-10-11T23:18:10.011Z",
+    "evidence_paths": [
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/final-integrity.json",
+      "/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/evidence/quit-keep-draft-before.txt"
+    ],
+    "attempt_kind": "final_case"
+  }
+]

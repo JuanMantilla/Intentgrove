@@ -1,0 +1,46 @@
+--- tests/ui/workspace-handoff.test.tsx (before this task)
++++ tests/ui/workspace-handoff.test.tsx
+@@ -8,7 +8,7 @@
+ import { FindIndex } from "../../src/reader/find-index";
+ import { getAppearance } from "../../src/app/appearance";
+ 
+-const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(),
++const mocks = vi.hoisted(() => ({ listNativeEntries: vi.fn(), acceptNativeEntry: vi.fn(), dismissNativeEntry: vi.fn(), selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(),
+   listEditSections: vi.fn(), beginSectionEdit: vi.fn(), checkpointSectionEdit: vi.fn(), saveSectionEdit: vi.fn(),
+   discardSectionEdit: vi.fn(), chooseSectionSaveAs: vi.fn(), commitSectionSaveAs: vi.fn(), listSafetyCopies: vi.fn(),
+   clearResolvedSafetyCopies: vi.fn(), setNativeMenuState: vi.fn(), clearAllRecovery: vi.fn(), clearWorkspaceSession: vi.fn(),
+@@ -24,6 +24,7 @@
+ ];
+ beforeEach(() => {
+   vi.resetAllMocks(); localStorage.clear(); getAppearance().applyPreference("dark");
++  mocks.listNativeEntries.mockResolvedValue([]);
+   mocks.selectRoot.mockResolvedValue({ id: "root", name: "fixture", displayPath: "/tmp/fixture", generation: 1 });
+   mocks.listEntries.mockImplementation(async (_root, segments) => ({ snapshotId: "v1", nextOffset: null,
+     entries: segments.length ? [{ name: "a.md", kind: "markdown" }] : [
+@@ -52,6 +53,26 @@
+ }
+ 
+ describe("approved workspace handoff", () => {
++  it("automatically opens a dropped file while retaining the workspace and existing dirty draft", async () => {
++    const editor = await edit();
++    typeRich(" draft", richLeaf("alpha"), 5);
++    await waitFor(() => expect(editor.textContent).toContain("alpha draft"));
++    mocks.acceptNativeEntry.mockImplementation(async () => {
++      mocks.listNativeEntries.mockResolvedValue([]);
++      return { kind: "document", grant: { id: "outside", name: "outside.md", displayPath: "/tmp/other/outside.md", generation: 1 } };
++    });
++    mocks.listNativeEntries.mockResolvedValue([{ id: "drop-1", source: "drop", name: "outside.md",
++      displayPath: "/tmp/other/outside.md", kind: "document", errorCode: null }]);
++    await act(async () => { mocks.listeners["native:entry_pending"]({ payload: null }); });
++    await waitFor(() => expect(screen.getByRole("tab", { name: "outside.md" }).getAttribute("aria-selected")).toBe("true"));
++    expect(screen.getByTitle("b.md")).toBeTruthy();
++    expect(screen.getByRole("tab", { name: /a.md/ })).toBeTruthy();
++    fireEvent.click(screen.getByRole("tab", { name: /a.md/ }));
++    await waitFor(() => expect(document.querySelector(".rich-section")?.textContent).toContain("alpha draft"));
++    expect(mocks.saveSectionEdit).not.toHaveBeenCalled();
++    expect(mocks.discardSectionEdit).not.toHaveBeenCalled();
++    expect(mocks.selectRoot).toHaveBeenCalledTimes(1);
++  });
+   it("names Go destinations with distinguishing paths from the shared visit history", async () => {
+     await open(); fireEvent.click(screen.getByTitle("b.md"));
+     await screen.findByRole("tab", { name: "b.md" });

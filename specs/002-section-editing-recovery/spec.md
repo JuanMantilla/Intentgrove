@@ -1,5 +1,12 @@
 # Feature Specification: Section Editing and Recovery
 
+## Current UX authority — direct in-place editing (2026-10-08)
+
+The current user IMPLEMENT instruction explicitly selects the later approved [Direct in-place editing](../../design-reviews/03-10-27-01/proposals/interaction-spec.md#direct-in-place-editing), [handoff](../../design-reviews/03-10-27-01/proposals/frontend-handoff.md) and [mockup02](../../design-reviews/03-10-27-01/proposals/mockups/02-in-place-editing.svg). These supersede this baseline's source editor/live preview, split columns, Source/Preview toggle and broad WYSIWYG exclusion **for the selected-section experience only**. Edit rendered content in the existing document scroll surface; retain native section identity and the Markdown artifact. Historical approval hashes identify the earlier baseline; they are not hashes of this amended text. This reconciliation records the user's current authorization, not acceptance of implementation.
+
+Implementation keeps installed CodeMirror EditorState/source history behind rendered source-positioned blocks, with localized source splices and unchanged schema1 recovery/native Save contracts. Opaque constructs retain original source; unsafe transformations are refused with a reason. Compatibility/limitations/evidence and the remaining native Edit-menu routing request are under [frontend implementation](../../frontend-implementation/in-place-native-request-20261008.md). Full acceptance remains PARTIAL; CRLF Save deferral is unchanged. Global Spec Kit013 selection is retained; feature002 was inspected using the supported NO_PERSIST override.
+
+
 **Feature directory**: `specs/002-section-editing-recovery`  
 **Created**: 2026-09-25  
 **Status**: Draft for user approval  
@@ -23,7 +30,7 @@
 
 ### User Story 1 — Enter a clearly bounded section editor (Priority: P1)
 
-A developer reading a Markdown file right-clicks the section to change, chooses **Edit section**, and edits that section's Markdown source. The rest of the document stays visible and cannot be changed in that edit session.
+A developer reading a Markdown file right-clicks the section to change, chooses **Edit section**, and edits that section directly in its rendered Markdown blocks. The rest of the document stays visible and cannot be changed in that edit session.
 
 **Why this priority**: Deliberate entry and a clear boundary are the core of the requested interaction.
 
@@ -31,7 +38,7 @@ A developer reading a Markdown file right-clicks the section to change, chooses 
 
 **Acceptance Scenarios**:
 
-1. **AS-001** (F004-R01–R03): Given a rendered document with three sections, when the user right-clicks text in the middle section, the context menu offers **Edit section** for that section; choosing it opens only that section's Markdown source for editing.
+1. **AS-001** (F004-R01–R03): Given a rendered document with three sections, when the user right-clicks text in the middle section, the context menu offers **Edit section** for that section; choosing it makes only that section's existing rendered blocks editable.
 2. **AS-002** (F004-R02, R03): Given an active section edit, when the user tries to type or paste in another section, that section remains unchanged; the active section has a clear label and boundary, and the rest remains readable but visually distinct.
 3. **AS-003** (F004-R01, R11): Given keyboard focus on a section, when the user opens its context menu or equivalent edit action using only the keyboard, the same section editor opens with visible focus and an accessible announcement.
 4. **AS-004** (F004-R04, R05): Given content before the first heading or a document with no headings, when the user invokes **Edit section** there, the corresponding pre-heading region or whole heading-free document is selected, with its boundary shown before typing begins.
@@ -41,7 +48,7 @@ A developer reading a Markdown file right-clicks the section to change, chooses 
 
 ### User Story 2 — Save a section safely (Priority: P1)
 
-The developer previews, undoes, redoes, saves, or discards changes to the selected section. Saving does not alter unrelated content or silently overwrite a newer disk version.
+The developer edits, undoes, redoes, saves, or discards changes to the selected section. Saving does not alter unrelated content or silently overwrite a newer disk version.
 
 **Why this priority**: An editor is useful only if it preserves existing document data and makes failures recoverable.
 
@@ -49,7 +56,7 @@ The developer previews, undoes, redoes, saves, or discards changes to the select
 
 **Acceptance Scenarios**:
 
-1. **AS-005** (F004-R03, R06, R07): Given a changed section, when the user uses Undo, Redo, and Save, the section preview follows the draft, the tab shows dirty state until Save succeeds, and only the selected source region changes in the original file.
+1. **AS-005** (F004-R03, R06, R07): Given a changed section, when the user uses Undo, Redo, and Save, the rendered section follows the draft, the tab shows dirty state until Save succeeds, and only the selected source region changes in the original file.
 2. **AS-006** (F004-R09): Given another process changes the file after editing begins, when the user saves, the app stops the save and offers inspection of the disk version, continued editing, Save As, or explicit reload/discard; it does not silently replace the external change.
 3. **AS-007** (F004-R07, R10): Given a denied write, removed file, or other save failure, when the user saves, the original remains intact, the draft remains available and dirty, and the app explains the failure.
 4. **AS-008** (F004-R06, R08): Given a dirty section, when the user closes its tab or returns to reading, the app offers Save, Keep draft, Discard, and Cancel; each choice has the stated effect, and Discard never changes the original file.
@@ -141,3 +148,16 @@ The developer closes the app while a section is being edited, then reopens it an
 - The detailed visual treatment of inactive sections, editor placement, and recovery feedback belongs in `design.md` and requires user approval. This spec requires a clear boundary, readable surroundings, and accessible alternatives; blur is optional.
 - Only `.md` and `.markdown` files within an explicitly granted file or folder scope and within the normal editable size limit are editable. The existing 10 MiB rich-document limit is the provisional ceiling; large-file source mode remains read-only.
 - Editing remains local. The existing exclusions for WYSIWYG, collaboration, AI, Git operations, and general source-code editing continue to apply.
+
+## Current delivery scope amendment — 2026-10-08
+
+CRLF section-Save support under AS-014/F004-R07 is deferred by explicit user instruction. Its acceptance checks are not required for current delivery; historical requirements/tests remain for provenance. LF Save and all applicable source/draft preservation requirements remain unchanged. See [decision](../../docs/macos-crlf-save-deferral-20261008.md). QA-0017 remains known/DEFERRED, not fixed.
+
+
+## HTML read-only boundary — 2026-10-08
+
+F002-H01: standalone HTML never enters Markdown section editing, dirty buffers or editing/recovery journals. Existing Markdown behavior is preserved. Session validation/checkpoint explicitly refuses HTML editing/recovery payloads; HTML routes through its own read-only provider. Canonical architecture: [F001 amendment](../001-workspace-reader/html-native-amendment-20261008.md); actual API and evidence: [native handoff](../../os-engineering/html-frontend-handoff.md) and [report](../../os-engineering/html-report-20261008.md). Native tests cover the rejection; frontend production routing remains receiving work. No HTML source editor is authorized.
+
+## Approved in-place implementation reconciliation — 2026-10-08
+
+The user's explicit implementation request selects the later approved `design-reviews/03-10-27-01/proposals/interaction-spec.md` direct in-place editing, frontend handoff and mockup02. Historical F004 source/live-preview presentation is superseded for authoring. Native section identity/byte ownership, explicit Save/Save As, conflicts, dirty exits and durable recovery requirements remain in force. Implementation uses existing CodeMirror EditorState/history only behind rendered source-span transactions, with no mounted source view or serializer and unchanged schema1 checkpoint JSON. Opaque original syntax is locked; unsafe operations fail with a localized reason. Native history/Format commands are owned only by the focused main rendered editor; ordinary inputs retain native responders. The recorded CRLF Save deferral remains unchanged. This records the user's target and delivered architecture, not a new approval or full platform acceptance. See frontend finish evidence for actual checks and limitations.

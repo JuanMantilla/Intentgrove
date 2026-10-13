@@ -1,0 +1,102 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Mostrar u ocultar explorador
+				5 text fixtures
+				6 button Ajustes
+			7 container
+				8 container Archivos visitados
+					9 button Atrás, Help: Atrás: qa-image.png
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+					10 button (disabled) Adelante, Help: No hay archivo siguiente
+				11 tab group (selectable) Documentos
+					12 container
+						13 tab (selectable) search-navigation.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/search-navigation.md
+						14 button Cerrar pestaña: search-navigation.md, Help: Cerrar pestaña
+					15 container
+						16 tab (selected) rich.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/rich.md
+						17 button Cerrar pestaña: rich.md, Help: Cerrar pestaña
+					18 container
+						19 tab (selectable) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						20 button Cerrar pestaña: qa-image.png, Help: Cerrar pestaña
+				21 pop up button Menú Ir
+				22 button (collapsed) Documentos abiertos(3), Secondary Actions: Expand
+				23 container rich.md
+					24 text rich.md
+					25 text Raíz de la carpeta
+					26 toggle button Índice, Value: off
+					27 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					28 button Editar sección
+					29 summary Documento…, Value: off
+						30 text Documento…
+				31 text El pasaje cambió de lugar; se muestra la posición disponible más cercana
+				32 button Cerrar aviso
+				33 container rich.md
+					34 container Reading acceptance
+						35 summary Metadatos, Value: off
+							36 text Metadatos
+						37 container Editar sección: Reading acceptance
+							38 heading Reading acceptance, Value: 1
+								39 text Reading acceptance
+							40 button Editar sección «Reading acceptance»
+						41 container
+							42 text Before diagrams. 
+							43 button Reference, Help: linked.md
+							44 text  and encoded footnote
+							45 button 1, Help: #fn-a%2520b
+							46 text .
+						47 text json
+						48 button Copiar código
+						49 text {"highlight": true}
+
+						50 image Diagrama Mermaid
+						51 summary Ver código fuente, Value: off
+							52 text Ver código fuente
+						53 text Between diagrams.
+						54 text Diagrama no disponible. El código fuente se conserva abajo.
+						55 container (expanded) Secondary Actions: Collapse
+							56 summary Ver código fuente, Value: on
+								57 text Ver código fuente
+							58 text mermaid
+							59 button Copiar código
+							60 text sequenceDiagram
+ Alice->>Bob: Hello
+ Bob-->>Alice: Ready
+
+						61 text Cargando…
+						62 summary Ver código fuente, Value: off
+							63 text Ver código fuente
+						64 text Cargando…
+						65 summary Ver código fuente, Value: off
+							66 text Ver código fuente
+						67 text After diagrams.
+						68 container Editar sección: Duplicate
+							69 heading Duplicate, Value: 2
+								70 text Duplicate
+							71 button Editar sección «Duplicate»
+						72 text First duplicate target.
+						73 container Editar sección: Duplicate
+							74 heading Duplicate, Value: 2
+								75 text Duplicate
+							76 button Editar sección «Duplicate»
+						77 text Second duplicate target.
+						78 container
+							79 text [1] 
+							80 button ↩, Help: #fnref-a%2520b-1
+						81 text Encoded footnote body.
+	82 close button
+	83 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	84 minimize button
+	85 text Intentgrove
+86 menu bar
+	87 Intentgrove
+	88 File
+	89 Edit
+	90 View
+	91 Ir
+	92 Window
+	93 Help
+
+The focused UI element is 4 button Mostrar u ocultar explorador

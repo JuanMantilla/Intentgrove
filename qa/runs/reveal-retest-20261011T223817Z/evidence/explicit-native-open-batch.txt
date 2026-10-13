@@ -1,0 +1,143 @@
+Window: "Intentgrove Reveal Retest", App: Intentgrove Reveal Retest.
+0 standard window Intentgrove Reveal Retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 container Items opened from macOS
+				10 text Items opened from macOS
+				11 container
+					12 text explicit-missing.md · Finder
+					13 button Dismiss: explicit-missing.md
+					14 text explicit-before-rename.md · Finder
+					15 button Dismiss: explicit-before-rename.md
+					16 text explicit-before-delete.md · Finder
+					17 button Dismiss: explicit-before-delete.md
+					18 text explicit-before-replace.md · Finder
+					19 button Dismiss: explicit-before-replace.md
+					20 text explicit-after-rename.md · Finder
+					21 button Dismiss: explicit-after-rename.md
+					22 text explicit-after-delete.md · Finder
+					23 button Dismiss: explicit-after-delete.md
+					24 text explicit-after-replace.md · Finder
+					25 button Dismiss: explicit-after-replace.md
+			26 button (expanded) Projects, Secondary Actions: Collapse
+			27 container Visited files
+				28 button Back, Help: Back: two.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/two.md
+				29 button (disabled) Forward, Help: No next file
+			30 tab group (selectable) Documents
+				31 container
+					32 tab (selectable) root-missing.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-missing.md
+					33 button Close tab: root-missing.md, Help: Close tab
+				34 container
+					35 tab (selectable) root-dirty.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/root-dirty.md
+					36 button Close tab: root-dirty.md, Help: Close tab
+				37 container
+					38 tab (selectable) opened-after-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-rename.md
+					39 button Close tab: opened-after-rename.md, Help: Close tab
+				40 container
+					41 tab (selectable) opened-after-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-delete.md
+					42 button Close tab: opened-after-delete.md, Help: Close tab
+				43 container
+					44 tab (selectable) opened-after-replace.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-after-replace.md
+					45 button Close tab: opened-after-replace.md, Help: Close tab
+				46 container
+					47 tab (selectable) opened-before-rename.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-rename.md
+					48 button Close tab: opened-before-rename.md, Help: Close tab
+				49 container
+					50 tab (selectable) opened-before-delete.md · This file is missing, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-delete.md
+					51 button Close tab: opened-before-delete.md, Help: Close tab
+				52 container
+					53 tab (selectable) opened-before-replace.md · Unsaved · This file changed in another app. Your edit is safe., Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/fixtures/opened-before-replace.md
+					54 button Close tab: opened-before-replace.md, Help: Close tab
+				55 container
+					56 tab (selectable) one.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/one.md
+					57 button Close tab: one.md, Help: Close tab
+				58 container
+					59 tab (selectable) two.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/two.md
+					60 button Close tab: two.md, Help: Close tab
+				61 container
+					62 tab (selected) explicit-dirty.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-retest-20261011T223817Z/individual/explicit-dirty.md
+					63 button Close tab: explicit-dirty.md, Help: Close tab
+			64 pop up button Go menu
+			65 button (collapsed) Open documents (11), Secondary Actions: Expand
+			66 container Explorer
+				67 pop up button (disabled) PROJECTS
+				68 button Close Projects sidebar
+				69 button (disabled) Open file
+				70 button (disabled) Open folder
+				71 button Search folder
+				72 text fixtures
+				73 container
+					74 button active.md
+					75 button fresh.md
+					76 button inactive.md
+					77 button (collapsed) nested space café # $ & % (dir),, Secondary Actions: Expand
+					78 button opened-after-rename-moved.md
+					79 button opened-after-replace-original.md
+					80 button opened-after-replace.md
+					81 button opened-before-rename-moved.md
+					82 button opened-before-replace-original.md
+					83 button opened-before-replace.md
+					84 button root-dirty.md
+					85 button root-missing-moved.md
+					86 button sentinel.md
+					87 button unopened-after-rename-moved.md
+					88 button unopened-after-replace-original.md
+					89 button unopened-after-replace.md
+					90 button unopened-before-rename-moved.md
+					91 button unopened-before-replace-original.md
+					92 button unopened-before-replace.md
+				93 text Storage and recovery
+				94 text Open edits and recovery offers: 2
+				95 button Manage…
+				96 button Settings…
+			97 container
+				98 container explicit-dirty.md
+					99 container explicit-dirty.md
+						100 text explicit-dirty.md
+					101 button Find in document
+					102 toggle button Outline, Value: on
+					103 button (collapsed) Reading settings, Secondary Actions: Expand
+					104 button (disabled) Edit section
+					105 summary Document…, Value: off
+						106 text Document…
+					107 text Outside the open folder
+				108 container explicit-dirty.md
+					109 container explicit-dirty.md
+						110 container Edit section: explicit-dirty.md
+							111 heading explicit-dirty.md, Value: 1
+								112 text explicit-dirty.md
+							113 button Edit section “explicit-dirty.md”
+						114 text Original explicit saved bytes.
+				115 container Outline
+					116 text OUTLINE
+					117 button Close outline
+					118 container Outline
+						119 content list
+							120 button explicit-dirty.md
+			121 container
+				122 text Current on disk Intentgrove by Theonira
+	123 close button
+	124 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	125 minimize button
+	126 text Intentgrove Reveal Retest
+127 menu bar
+	128 Intentgrove Reveal Retest
+	129 File
+	130 Edit
+	131 View
+	132 Go
+	133 Window
+	134 Help
+
+Selected text: ```
+before
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

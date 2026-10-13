@@ -1,0 +1,256 @@
+[
+  {
+    "id": "CF10",
+    "case": "File drop",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "evidence": [
+      "evidence/013-user-file-drop.txt",
+      "evidence/user-native-gestures.json"
+    ],
+    "reason": "Observed constituent acceptance on identified new candidate; compound ten-journey/full production contract is separate.",
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF11",
+    "case": "Folder drop",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "evidence": [
+      "evidence/014-user-folder-drop.txt",
+      "evidence/015-folder-drop-document.txt"
+    ],
+    "reason": "Observed constituent acceptance on identified new candidate; compound ten-journey/full production contract is separate.",
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF12",
+    "case": "Settings drop refusal",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "reason": "One user-assisted gesture with observed postconditions on isolated default candidate; production-ID and ten-journey compound contract remain separate.",
+    "evidence": [
+      "evidence/user-native-gestures.json",
+      "evidence/018-default-settings-drop-refusal.txt"
+    ],
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF13",
+    "case": "Clean Close",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "reason": "One user-assisted gesture with observed postconditions on isolated default candidate; production-ID and ten-journey compound contract remain separate.",
+    "evidence": [
+      "evidence/user-native-gestures.json",
+      "evidence/022-user-dock-reopen.txt"
+    ],
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF14",
+    "case": "Actual Dock reopen",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "reason": "One user-assisted gesture with observed postconditions on isolated default candidate; production-ID and ten-journey compound contract remain separate.",
+    "evidence": [
+      "evidence/user-native-gestures.json",
+      "evidence/022-user-dock-reopen.txt"
+    ],
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF19",
+    "case": "Dirty Close Save",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "evidence": [
+      "evidence/005-title-close-dirty-dialog.txt",
+      "evidence/006-close-save-reopened.png"
+    ],
+    "reason": "Observed constituent acceptance on identified new candidate; compound ten-journey/full production contract is separate.",
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF37",
+    "case": "Hostile Mermaid isolation",
+    "owner": "SECURITY_REVIEW / OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "Final production helper/XPC byte-identical and directly executed; real production parent/consumer paths in authenticated isolated QA; final default-feature package built and boundary-verified, not full production-ID UX runtime",
+    "status": "PASS",
+    "reason": "20 real mixed documents twice, measured resource-attempt observers and positive controls, actual sandbox file/socket refusals, actual parent malformed/forged matrix and real-PNG transport rejection; QA-0014 fixed in rebuilt production package.",
+    "evidence": [
+      "mermaid-acceptance/report.md",
+      "mermaid-acceptance/acceptance-summary.json",
+      "mermaid-acceptance/webview-results.json",
+      "mermaid-acceptance/parent-attempt-09.log",
+      "mermaid-acceptance/production-provenance-after-fix.json"
+    ]
+  },
+  {
+    "id": "CF38",
+    "case": "Mermaid cancellation/stale result",
+    "owner": "QA / OS_ENGINEERING",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "Final production helper/XPC byte-identical and directly executed; real production parent/consumer paths in authenticated isolated QA; final default-feature package built and boundary-verified, not full production-ID UX runtime",
+    "status": "PASS",
+    "reason": "Actual Mermaid parse/render entry before 20 ordinary cancellations, explicit stalled-phase cancellation/deadlines, native ownership/window destruction and reaping, held real pixels ignored after navigation/source replacement/close; acknowledgments11\u2013137ms and unrelated ready42\u2013248ms in final WebView run.",
+    "evidence": [
+      "mermaid-acceptance/report.md",
+      "mermaid-acceptance/acceptance-summary.json",
+      "mermaid-acceptance/webview-results.json",
+      "mermaid-acceptance/parent-attempt-09.log",
+      "mermaid-acceptance/production-provenance-after-fix.json"
+    ]
+  },
+  {
+    "id": "CF42",
+    "case": "Final production-identifier isolated runtime",
+    "owner": "OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "Current default production main34405daf\u2026; current-account fresh state preserved; no repeated reset",
+    "status": "NOT_TESTED",
+    "reason": "QA-0017 CRLF Save deferred by user, no active CRLF acceptance gate. Existing demonstrated runtime constituents retained; broader non-excluded criterion is not established by deferral. Prior explicit exclusions still apply.",
+    "evidence": [
+      "production-runtime-coverage.json",
+      "evidence/current-account-fresh-reset.json"
+    ],
+    "currentAttempt": {
+      "candidate": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+      "status": "NOT_TESTED",
+      "ledger": "native-final-20261008/coverage.json",
+      "report": "native-final-20261008/report.md",
+      "findingIDs": [],
+      "fullAcceptance": "INCOMPLETE"
+    },
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate.",
+    "statusBeforeCRLFDeferral": "FAIL",
+    "deferredFindingIDs": [
+      "QA-0017"
+    ],
+    "scopeDeferral": "docs/macos-crlf-save-deferral-20261008.md"
+  },
+  {
+    "id": "CF48",
+    "case": "EN/ES 640/900/1440-point layouts",
+    "owner": "QA_AUTOMATION / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "FAIL",
+    "reason": "Twelve dimension-audited EN/ES reader/Settings captures at 640/900/1440 points visually reviewed. Spanish 640-point search result also verified after reopening responsive drawer. Full image/search/keyboard/Reduce Motion matrix incomplete; invalid-size earlier captures excluded.",
+    "evidence": [
+      "evidence/installed-layout-dimension-audit.json",
+      "evidence/installed-es-640-search-result.jpg",
+      "evidence/installed-es-640-search-result.txt"
+    ],
+    "currentAttempt": {
+      "candidate": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+      "status": "FAIL",
+      "ledger": "native-final-20261008/coverage.json",
+      "report": "native-final-20261008/report.md",
+      "findingIDs": [
+        "QA-0018"
+      ],
+      "fullAcceptance": "INCOMPLETE"
+    },
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF50",
+    "case": "Executing search cancellation within250ms",
+    "owner": "QA / QA_AUTOMATION",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "evidence": [
+      "evidence/search-stop-timing-summary.json",
+      "evidence/stable-stop-observations.json"
+    ],
+    "reason": "Observed constituent acceptance on identified new candidate; compound ten-journey/full production contract is separate.",
+    "currentAttempt": {
+      "candidate": "34405daf849d83ee8330c999bb0e6be862347d2ba99ac6ad100a800ce7106b10",
+      "ledger": "native-final-20261008/coverage.json",
+      "fullAcceptance": "INCOMPLETE",
+      "timing": "Current same-source opt-in QA30d5af:10trusted executingStops1\u20133ms; default executingStops10observed, latencyunmeasured; no tool-duration claim"
+    },
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "scopeNote": "Historical results retained. Apply the seven exact current gate exclusions in the amendment; no historical PASS transfers to the current candidate."
+  },
+  {
+    "id": "CF54",
+    "case": "Disposable Applications installation and rollback",
+    "owner": "OS_ENGINEERING / QA",
+    "historicalStatus": "BLOCKED",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "Existing historical b7 production-ID Applications installation; no latest-candidate transfer",
+    "status": "PASS",
+    "reason": "Authorized existing installation recovery journey complete and PASS. SC-001 withdrawn by user; no ten-trial or newer-build requirement added to CF54.",
+    "evidence": [
+      "evidence/production-applications-install.json",
+      "evidence/installed-production-launch.txt",
+      "cf54-recovery-20261008/report.md",
+      "cf54-recovery-20261008/result.json"
+    ],
+    "historicalStatusBeforeExclusion": "BLOCKED",
+    "scopeAmendment": "docs/macos-acceptance-exclusions-20261008.md",
+    "statusBeforeThisSession": "NOT_APPLICABLE",
+    "currentAuthorization": "User request in this session: reversible task-owned removal/restoration; preserve fresh state and private backup",
+    "fullSC001": "NOT_APPLICABLE: withdrawn by explicit user instruction",
+    "scopeWithdrawal": "docs/macos-sc001-withdrawal-20261008.md",
+    "newerBuildTesting": {
+      "owner": "USER",
+      "agentAcceptanceRequired": false,
+      "disposition": "Removed from remaining agent work by explicit user instruction; not a test PASS",
+      "decision": "docs/macos-newer-build-user-testing-20261008.md"
+    }
+  },
+  {
+    "id": "CF56",
+    "case": "Complete dependency security audit",
+    "owner": "SECURITY_REVIEW / OS_ENGINEERING",
+    "historicalStatus": "FAIL",
+    "historicalLedger": "../macos-completion-20261008/coverage.json",
+    "buildClass": "current rebuilt isolated/instrumented/package scopes; not production-ID runtime",
+    "status": "PASS",
+    "evidence": [
+      "dependency-remedy/audit-reverified.json",
+      "dependency-remedy/verification.json",
+      "checks-attempt-01/",
+      "mermaid-acceptance/audit-summary.json",
+      "mermaid-acceptance/npm-tarball-integrity.json",
+      "mermaid-acceptance/cargo-osv-audit.json"
+    ],
+    "reason": "Exact source-map-js1.2.2 unchanged/reverified; complete404npm locked tarball integrity and full/production audit zero vulnerabilities.489Cargo registry versions checked; five supported-target unic maintenance advisories retained, no known supported-target vulnerability found. No dependency changes; dated scope and applicability in audit-summary.json."
+  }
+]

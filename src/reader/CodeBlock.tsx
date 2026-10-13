@@ -20,7 +20,7 @@ export function fencedSource(content: string, start: number | undefined, end: nu
   return body.slice(0, body.length - last.length);
 }
 
-function renderTokens(tokens: CodeToken[]): React.ReactNode {
+export function renderTokens(tokens: CodeToken[]): React.ReactNode {
   return tokens.map((token, index) => "text" in token
     ? token.text
     : <span key={index} className={token.className}>{renderTokens(token.children)}</span>);
@@ -29,8 +29,26 @@ function renderTokens(tokens: CodeToken[]): React.ReactNode {
 export default function CodeBlock({ source, copySource, language, locale }: {
   source: string; copySource: string; language: string; locale: Locale;
 }) {
-  const [tokens, setTokens] = useState<CodeToken[] | null>(null);
+  const tokens = useCodeTokens(source, language);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
+
+  return <div className="code-block">
+    <div className="code-block-toolbar">
+      <span>{language || t(locale, "plainCode")}</span>
+      <button type="button" onClick={() => {
+        if (!navigator.clipboard?.writeText) { setCopyStatus("failed"); return; }
+        void navigator.clipboard.writeText(copySource).then(() => setCopyStatus("copied"),
+          () => setCopyStatus("failed"));
+      }}>{t(locale, "copyCode")}</button>
+      {copyStatus !== "idle" && <span role="status">{t(locale,
+        copyStatus === "copied" ? "codeCopied" : "codeCopyFailed")}</span>}
+    </div>
+    <pre><code>{tokens ? renderTokens(tokens) : source}</code></pre>
+  </div>;
+}
+
+export function useCodeTokens(source: string, language: string) {
+  const [result, setTokens] = useState<{ source: string; language: string; tokens: CodeToken[] } | null>(null);
   useEffect(() => {
     setTokens(null);
     if (!language || source.length > 32 * 1024 || typeof Worker === "undefined"
@@ -51,24 +69,12 @@ export default function CodeBlock({ source, copySource, language, locale }: {
       worker.terminate();
       release();
       if (event.data.kind === "tokens" && Array.isArray(event.data.tokens))
-        setTokens(event.data.tokens);
+        setTokens({ source, language, tokens: event.data.tokens });
     };
     worker.onerror = () => { live = false; clearTimeout(timer); worker.terminate(); release(); };
     worker.postMessage({ language, source });
     return () => { live = false; clearTimeout(timer); worker.terminate(); release(); };
   }, [language, source]);
 
-  return <div className="code-block">
-    <div className="code-block-toolbar">
-      <span>{language || t(locale, "plainCode")}</span>
-      <button type="button" onClick={() => {
-        if (!navigator.clipboard?.writeText) { setCopyStatus("failed"); return; }
-        void navigator.clipboard.writeText(copySource).then(() => setCopyStatus("copied"),
-          () => setCopyStatus("failed"));
-      }}>{t(locale, "copyCode")}</button>
-      {copyStatus !== "idle" && <span role="status">{t(locale,
-        copyStatus === "copied" ? "codeCopied" : "codeCopyFailed")}</span>}
-    </div>
-    <pre><code>{tokens ? renderTokens(tokens) : source}</code></pre>
-  </div>;
+  return result?.source === source && result.language === language ? result.tokens : null;
 }

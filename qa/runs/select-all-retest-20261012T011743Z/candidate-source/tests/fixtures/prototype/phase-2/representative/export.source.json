@@ -1,0 +1,166 @@
+{
+  "sourceVersion": 1,
+  "prototypeId": "69d61c4a-38ce-49ab-86b9-5308800d0d04",
+  "title": "Representative V1 contract fixture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "entry": "dashboard",
+  "visualSources": [
+    {
+      "id": "dashboard",
+      "path": "scenes/dashboard.svg",
+      "sha256": "ef1a3ea3cbfd5c0ef4ffa2f89b73aac6ace7c3519f0f60c6dcb520651271f161",
+      "exportProfile": "vectorcraft-svg-v1"
+    },
+    {
+      "id": "settings",
+      "path": "scenes/settings.svg",
+      "sha256": "9c16827f63dd760aace3c3d0eff1031c052160756e9d47940101431964d13d4f",
+      "exportProfile": "vectorcraft-svg-v1"
+    },
+    {
+      "id": "profile",
+      "path": "scenes/profile.svg",
+      "sha256": "1015549dd45b857763db8e619e3df75a8e81f18291e596b1d8df177f2bbf2eb0",
+      "exportProfile": "vectorcraft-svg-v1"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "dashboard",
+      "kind": "base",
+      "visualBinding": {
+        "source": "dashboard",
+        "rootTarget": "root",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": [
+        {
+          "target": "menu-panel",
+          "initialVisible": false
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "kind": "base",
+      "visualBinding": {
+        "source": "settings",
+        "rootTarget": "root",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": []
+    },
+    {
+      "id": "profile",
+      "kind": "overlay",
+      "visualBinding": {
+        "source": "profile",
+        "rootTarget": "root",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      },
+      "localState": []
+    }
+  ],
+  "interactions": [
+    {
+      "id": "open-settings",
+      "scene": "dashboard",
+      "target": "settings-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "NAVIGATE",
+        "scene": "settings"
+      },
+      "transition": {
+        "type": "DISSOLVE",
+        "durationMs": 100
+      },
+      "label": "Open Settings"
+    },
+    {
+      "id": "settings-back",
+      "scene": "settings",
+      "target": "back-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "BACK"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "Settings Back"
+    },
+    {
+      "id": "dashboard-back",
+      "scene": "dashboard",
+      "target": "back-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "BACK"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "Dashboard Back"
+    },
+    {
+      "id": "open-profile",
+      "scene": "dashboard",
+      "target": "profile-avatar",
+      "trigger": "CLICK",
+      "action": {
+        "type": "OPEN_OVERLAY",
+        "scene": "profile"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "Open Profile"
+    },
+    {
+      "id": "close-profile",
+      "scene": "profile",
+      "target": "close-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "CLOSE_OVERLAY"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "Close Profile"
+    },
+    {
+      "id": "toggle-menu",
+      "scene": "dashboard",
+      "target": "menu-button",
+      "trigger": "CLICK",
+      "action": {
+        "type": "TOGGLE",
+        "target": "menu-panel"
+      },
+      "transition": {
+        "type": "INSTANT"
+      },
+      "label": "Toggle Menu"
+    }
+  ]
+}

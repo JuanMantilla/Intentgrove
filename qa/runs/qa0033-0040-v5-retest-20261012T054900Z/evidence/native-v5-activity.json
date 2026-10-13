@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-12T06:00:12.463234+00:00",
+  "native_processes": [
+    "43029 /Users/juanmantilla/projects/personal/md-reader/frontend-implementation/qa0033-0040-20261012T035255Z/native-target/debug/bundle/macos/Intentgrove QA0033-0040 v5.app/Contents/MacOS/md_reader"
+  ],
+  "pid": 43029,
+  "load": [
+    10.107421875,
+    12.64306640625,
+    12.724609375
+  ],
+  "command": [
+    "/usr/bin/log",
+    "show",
+    "--last",
+    "8m",
+    "--style",
+    "compact",
+    "--predicate",
+    "processID == 43029 AND (eventMessage CONTAINS \"occluded\" OR eventMessage CONTAINS \"WebProcess\")"
+  ],
+  "exit_code": 0,
+  "occluded1": true,
+  "occluded0": true
+}

@@ -1,0 +1,51 @@
+Window: "Intentgrove", App: Intentgrove.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text fixtures
+				6 button Settings
+			7 container
+				8 container Visited files
+					9 button Back, Help: Back: find-acceptance.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/find-acceptance.md
+					10 button (disabled) Forward, Help: No next file
+				11 tab group (selectable) Documents
+					12 container
+						13 tab (selectable) find-acceptance.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/find-acceptance.md
+						14 button Close tab: find-acceptance.md, Help: Close tab
+					15 container
+						16 tab (selected) qa-image.png, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/macos-remaining-20261008/native-final-20261008/fixtures/qa-image.png
+						17 button Close tab: qa-image.png, Help: Close tab
+				18 pop up button Go menu
+				19 button (collapsed) Open documents (2), Secondary Actions: Expand
+				20 container qa-image.png
+					21 text qa-image.png
+					22 text Folder root
+					23 summary Document…, Value: off
+						24 text Document…
+				25 container qa-image.png
+					26 text Format: PNG Dimensions: 192 × 128
+					27 container qa-image.png
+						28 toggle button Fit, Value: on
+						29 toggle button Actual size, Value: off
+						30 button Zoom out
+						31 container 100%
+							32 text 100%
+						33 button Zoom in
+					34 container qa-image.png
+						35 image qa-image.png
+				36 button Dismiss
+	37 close button
+	38 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	39 minimize button
+	40 text Intentgrove
+41 menu bar
+	42 Intentgrove
+	43 File
+	44 Edit
+	45 View
+	46 Go
+	47 Window
+	48 Help

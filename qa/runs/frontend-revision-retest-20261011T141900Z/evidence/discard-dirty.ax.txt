@@ -1,0 +1,96 @@
+Window: "Intentgrove — isolated QA retest", App: Intentgrove Revision Retest.
+0 standard window Intentgrove — isolated QA retest, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: localhost:5173/
+			3 container
+				4 text Theonira / Intentgrove Local files only
+				5 button Appearance
+				6 text Language
+				7 pop up button (collapsed) Language, Value: EN, Secondary Actions: Expand
+				8 button Settings
+			9 button (expanded) Projects, Secondary Actions: Collapse
+			10 container Visited files
+				11 button (disabled) Back, Help: No previous file
+				12 button (disabled) Forward, Help: No next file
+			13 tab group (selectable) Documents
+				14 container
+					15 tab (selected) cancel.md · Unsaved, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/frontend-revision-retest-20261011T141900Z/fixtures/cancel.md
+					16 button Close tab: cancel.md, Help: Close tab
+			17 pop up button Go menu
+			18 button (collapsed) Open documents (1), Secondary Actions: Expand
+			19 container Explorer
+				20 pop up button PROJECTS
+				21 button Close Projects sidebar
+				22 button Open file
+				23 button Open folder
+				24 button (disabled) Search folder
+				25 text Open a Markdown file to start reading.
+				26 text Storage and recovery
+				27 text Open edits and recovery offers: 1
+				28 button Manage…
+				29 button Settings…
+			30 container
+				31 text Workspace progress could not be saved. Recent tabs and reading positions may not be restored. The workspace operation failed. (session_stale)
+				32 button Retry
+				33 button Dismiss
+				34 container cancel.md
+					35 container cancel.md
+						36 text cancel.md
+					37 button Find in document
+					38 button Save file
+					39 button Return to reading
+					40 button Save As
+					41 text Save returns to reading.
+					42 summary Document…, Value: off
+						43 text Document…
+					44 text Outside the open folder
+				45 container cancel.md
+					46 container QA disposable
+						47 container Edit section: QA disposable
+							48 heading QA disposable, Value: 1
+								49 text QA disposable
+							50 button Edit section “QA disposable”
+						51 container Editing: Section
+							52 text Editing: Section
+							53 text Changes not saved to the file
+							54 toolbar Text formatting
+								55 button (disabled) Bold
+								56 button (disabled) Italic
+								57 button (disabled) Inline code
+								58 button (disabled) Strikethrough
+								59 button (disabled) Link…
+								60 summary Block type / More…, Value: off
+									61 text Block type / More…
+							62 text entry area (settable) Editing: Section, Secondary Actions: Show Writing Tools, Value: Section
+
+qadiscard must vanish
+								63 heading (settable, integer) Editing: Section, Value: 2
+									64 text entry area (settable) Editing: Section, Value: Section, Secondary Actions: Show Writing Tools
+										65 text (settable) Section
+								66 text entry area (settable) Editing: Section, Value: qadiscard must vanish, Secondary Actions: Show Writing Tools
+									67 text (settable) qadiscard must vanish
+							68 button Undo
+							69 button (disabled) Redo
+							70 button Discard changes…
+							71 button Save as…
+				72 container Outline
+					73 text OUTLINE
+					74 button Close outline
+					75 container Outline
+						76 content list
+							77 button QA disposable
+							78 button Section
+			79 container
+				80 text cancel.md Intentgrove by Theonira
+	81 close button
+	82 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	83 minimize button
+	84 text Intentgrove — isolated QA retest
+85 menu bar
+	86 Intentgrove Revision Retest
+	87 File
+	88 Edit
+	89 View
+	90 Go
+	91 Window
+	92 Help

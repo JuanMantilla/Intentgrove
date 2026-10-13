@@ -1,5 +1,7 @@
 # IR-05 exact frontend integration handoff
 
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../docs/current-version-acceptance-20261010.md).
+
 Native contracts are implemented. `src/app/api.ts` exposes them. `App.tsx` already publishes Go state from committed history and consumes the four actions using existing traversal/dialog/clear functions. There is no second native history. No shortcuts were added. macOS native menu clicks still need host acceptance; Windows continues using the existing client Go menu.
 
 ## Menu contract

@@ -1,0 +1,19 @@
+//! Normative V1 caps; callers cannot increase these through package data.
+pub const ID_PATTERN: &str = "^[a-z][a-z0-9-]{0,63}$";
+pub const ID_BYTES: usize = 64;
+pub const JSON_DEPTH: usize = 32;
+pub const MANIFEST_BYTES: usize = 256 * 1024;
+pub const GRAPH_BYTES: usize = 1024 * 1024;
+pub const SOURCE_BYTES: usize = 2 * 1024 * 1024;
+pub const SCENES: usize = 32;
+pub const INTERACTIONS: usize = 1024;
+pub const INTERACTIONS_PER_SCENE: usize = 256;
+pub const TARGETS_PER_SCENE: usize = 1024;
+pub const TARGETS_TOTAL: usize = 8192;
+pub const STATE_PER_SCENE: usize = 64;
+pub const STATE_TOTAL: usize = 512;
+pub const VIEWPORT_SIDE: u32 = 4096;
+pub const VIEWPORT_AREA: u64 = 8_388_608;
+pub const NAVIGATION_CAPACITY: usize = 32;
+pub const OVERLAY_CAPACITY: usize = 1;
+pub const DISSOLVE_MS: u32 = 100;

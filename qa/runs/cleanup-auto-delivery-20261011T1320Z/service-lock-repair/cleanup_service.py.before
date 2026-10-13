@@ -1,0 +1,94 @@
+"""launchd foreground worker. Preparation/installation never starts this module."""
+import argparse
+import os
+from pathlib import Path
+import signal
+import sys
+import time
+import cleanup as runner
+import automatic
+import file_guard as guard
+
+
+def configuration(path):
+    path = guard.absolute(str(path), required=True)
+    info = guard.inspect(path)
+    guard.regular(info, content_guard=False)
+    runner.require(info.st_uid == os.getuid() and info.st_mode & 0o777 == 0o600, 'private_service_config_required')
+    value = runner.read(path)
+    runner.require(value.get('schema_version') == 1 and type(value.get('enabled')) is bool,
+                   'invalid_service_configuration')
+    runner.require(value['workspace'] == str(runner.WORKSPACE), 'service_workspace_mismatch')
+    automatic.when(value['not_before'])
+    runner.require(isinstance(value['excluded_record_keys'], list) and
+                   all(isinstance(k, str) and len(k) == 64 for k in value['excluded_record_keys']), 'invalid_exclusions')
+    return value
+
+
+def eligible_request(request, config):
+    return (request['record_key'] not in config['excluded_record_keys'] and
+            automatic.when(request['queued_at']) >= automatic.when(config['not_before']))
+
+
+def tick(config, call_ai=runner.ai_pass):
+    """Caller holds the single worker lock across review and execution."""
+    for path in sorted((runner.STATE / 'queue').glob('*.json')):
+        request = runner.read(path)
+        if not eligible_request(request, config):
+            continue  # Never rewrite, retry, consume or count attempts on pre-existing jobs.
+        completion = runner.read(runner.STATE / 'completions' / (request['record_key'] + '.json'))
+        if completion['body']['policy_sha256'] != runner.digest(runner.policy()):
+            continue  # Policy rollout must not consume older accepted jobs, even after preparation.
+        if request['state'] in ('QUEUED', 'RUNNING', 'RETRY'):
+            runner.process_job(path, call_ai)
+            request = runner.read(path)
+        if request['state'] in ('READY_FOR_APPROVAL', 'APPLYING') and automatic.validate(
+                runner.policy().get('automatic_execution'))['enabled']:
+            try:
+                runner.apply_locked(request['run_id'], automatic_execution=True)
+            except (KeyboardInterrupt, SystemExit):
+                raise  # APPLYING + immutable receipts permit conservative restart.
+            except Exception as exc:
+                request = runner.read(path)
+                request.update(state='AUTOMATIC_BLOCKED', reason=str(exc))
+                runner.write(path, request)  # No automatic retry after an authority failure.
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config', required=True)
+    parser.add_argument('--once', action='store_true')
+    args = parser.parse_args()
+    try:
+        config = configuration(args.config)
+        runner.require(config['enabled'], 'service_disabled')
+        runner.require(sys.platform == 'darwin', 'macos_required')
+        auth = guard.canonical_root(config['auth_home'])
+        runner.test_context.private(auth, directory=True)
+        runner.test_context.private(auth / 'auth.json')
+        # Drop ambient tokens, proxy variables, integration and user configuration overrides.
+        os.environ.clear()
+        os.environ.update({'PATH': config['executable_path'], 'HOME': str(auth),
+                           'QA_CLEANUP_AUTH_HOME': str(auth), 'PYTHONDONTWRITEBYTECODE': '1'})
+        runner.runtime_check()
+        def interrupted(signum, frame):
+            raise KeyboardInterrupt()
+        signal.signal(signal.SIGTERM, interrupted)
+        with runner.lock('worker'):
+            while True:
+                latest = configuration(args.config)
+                runner.require(latest == config, 'service_configuration_changed_restart_required')
+                tick(config)
+                if args.once:
+                    break
+                time.sleep(10)
+        return 0
+    except KeyboardInterrupt:
+        return 130
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+
+
+if __name__ == '__main__':
+    sys.exit(main())

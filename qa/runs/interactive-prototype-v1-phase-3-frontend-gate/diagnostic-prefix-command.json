@@ -1,0 +1,25 @@
+{
+  "command": [
+    "node",
+    "/Users/juanmantilla/projects/personal/md-reader/node_modules/vitest/vitest.mjs",
+    "run",
+    "--dir",
+    "tests/ui",
+    "tests/ui/workspace-handoff.test.tsx",
+    "tests/ui/close-edit.test.tsx",
+    "--config",
+    "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/current-prefix.config.mjs",
+    "--maxWorkers",
+    "1",
+    "--reporter=json",
+    "--outputFile=/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/diagnostic-prefix.json"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/diagnostic-candidate",
+  "environment_overrides": {
+    "DEBUG_PRINT_LIMIT": "100000",
+    "GATE_TRACE": "/Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3-frontend-gate/diagnostic-prefix-trace.jsonl"
+  },
+  "started_at": "2026-10-12T05:05:18.412140+00:00",
+  "finished_at": "2026-10-12T05:05:35.907613+00:00",
+  "exit_code": 0
+}

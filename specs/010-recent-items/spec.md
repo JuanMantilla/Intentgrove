@@ -32,3 +32,10 @@ Offer a small recent folders/documents list for fast return to local work. The l
 ## Assumptions
 
 Proposed cap: 20 folders and 50 documents, deduplicated by native selection identity. The exact retention cap is a draft default for user approval. Do not persist document contents, credentials or repository file lists in Recents.
+
+
+## Authorized HTML native reconciliation — 2026-10-08
+
+**F003R-H01**: Recent Document entries admit Markdown and HTML with existing native-selected identity/reselection semantics, caps and storage. Opening a recent HTML selection still requires the typed HTML descriptor/mount path; saved display paths never grant siblings.
+
+October6 remaining-scope authorization applies; no existing design reapproval. [Canonical native boundary](../001-workspace-reader/html-native-amendment-20261008.md), [provider handoff](../../os-engineering/html-frontend-handoff.md). Historical requirements and approval snapshots remain historical; this supplement does not claim runtime acceptance.

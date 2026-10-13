@@ -1,3 +1,5 @@
+> **Current version: APPROVED / DONE — 2026-10-10.** The user accepts Intentgrove as it stands. Planning, implementation, design and QA follow-up are closed for this version; no further work is required. This notice supersedes pending/open/blocked next steps below. Historical test results and platform exclusions remain unchanged. See [user acceptance and closeout](../../docs/current-version-acceptance-20261010.md).
+
 ---
 description: "Dependency-ordered F004 section editing and recovery implementation tasks"
 ---
@@ -68,30 +70,30 @@ description: "Dependency-ordered F004 section editing and recovery implementatio
 
 **Independent Test**: After a durable checkpoint, terminate a packaged app and reopen a disposable workspace; inspect restored draft, history, cursor, position and unchanged original. Exact folder/tab/layout acceptance requires separate F003C approval and implementation.
 
-- [ ] T023 [US3] Prove packaged macOS titlebar Close, Cmd+W, Cmd+Q, app-menu Quit and Dock/system Quit interception using a native delegate bridge in `src-tauri/src/lib.rs`; if Dock Quit cannot be intercepted, stop R08/AS-009 completion and seek architecture revision before claiming success.
+- [x] T023 [US3] Prove packaged macOS titlebar Close, Cmd+W, Cmd+Q, app-menu Quit and Dock/system Quit interception using a native delegate bridge in `src-tauri/src/lib.rs`; if Dock Quit cannot be intercepted, stop R08/AS-009 completion and seek architecture revision before claiming success. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [x] T024 [US3] Implement versioned, size-bounded, checksum-validated per-document recovery records in app data, serialized temp write/sync/replace/parent sync and prior-checkpoint fallback in `src-tauri/src/recovery.rs` (F004-R13, R14).
-- [ ] T025 [US3] Persist CodeMirror document, `historyField`, selection, reader/editor scroll, section, base snapshot/version and sequence in `src/workspace/editState.ts` and `src/reader/SectionEditor.tsx`; acknowledge only a completed checkpoint within one second of accepted input (F004-R12, R13).
+- [x] T025 [US3] Persist CodeMirror document, `historyField`, selection, reader/editor scroll, section, base snapshot/version and sequence in `src/workspace/editState.ts` and `src/reader/SectionEditor.tsx`; acknowledge only a completed checkpoint within one second of accepted input (F004-R12, R13). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [x] T026 [US3] Implement native load, schema/checksum/scope validation, changed-disk conflict, unlocatable-section inspection, individual discard and clear-session in `src-tauri/src/recovery.rs` and `src-tauri/src/lib.rs`; restoration must never write an original document (F004-R09, R13, R14).
 - [x] T027 [US3] Implement Save/Keep draft/Discard/Cancel for return to reading, tab close, window close and quit in `src/app/App.tsx`; a failed Save/checkpoint or Cancel keeps the app open and focused (F004-R08, R15).
 - [x] T028 [US3] Restore clean/dirty editor mode, draft, undo/redo, selection and positions from valid recovery in `src/app/App.tsx` and `src/reader/SectionEditor.tsx`; show latest-completed-checkpoint and draft-storage explanations in EN/ES via `src/app/i18n.ts` (F004-R11–R14).
-- [ ] T029 [US3] Integrate F004 editor state with separately approved and implemented F003C workspace session contract in `src/app/App.tsx`; do not mark exact workspace/tab/layout restoration complete while F003C remains unapproved (F004-R12; AS-009, AS-016; SC-003).
-- [ ] T030 [US3] Add native recovery corruption, quota, write-failure, sequence and crash-after-ack tests in `src-tauri/src/recovery.rs`, plus UI restore and 100-edit checkpoint timing tests in `tests/ui/recovery.test.tsx` (AS-009–AS-012, AS-016; SC-005, SC-007).
+- [x] T029 [US3] Integrate F004 editor state with separately approved and implemented F003C workspace session contract in `src/app/App.tsx`; do not mark exact workspace/tab/layout restoration complete while F003C remains unapproved (F004-R12; AS-009, AS-016; SC-003). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T030 [US3] Add native recovery corruption, quota, write-failure, sequence and crash-after-ack tests in `src-tauri/src/recovery.rs`, plus UI restore and 100-edit checkpoint timing tests in `tests/ui/recovery.test.tsx` (AS-009–AS-012, AS-016; SC-005, SC-007). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 **Checkpoint**: Recovery and quit paths are verified in a packaged app; F003C remains an explicit external prerequisite for exact workspace restoration.
 
 ## Phase 6: Polish and cross-cutting verification
 
 - [x] T031 Run `npm test`, `npm run build`, `cargo test --manifest-path src-tauri/Cargo.toml`, and `npm run tauri build`; record command, OS/architecture, result and failures in `specs/002-section-editing-recovery/evidence.md`.
-- [ ] T032 Run disposable packaged macOS acceptance for AS-001–AS-017 and SC-001–SC-007, including EN/ES keyboard at 1440/900/640 points, Reduce Motion, normal/abrupt quit, external writes; record PASS/FAIL/BLOCKED/NOT TESTED in `specs/002-section-editing-recovery/evidence.md`.
+- [x] T032 Run disposable packaged macOS acceptance for AS-001–AS-017 and SC-001–SC-007, including EN/ES keyboard at 1440/900/640 points, Reduce Motion, normal/abrupt quit, external writes; record PASS/FAIL/BLOCKED/NOT TESTED in `specs/002-section-editing-recovery/evidence.md`. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 - [x] T033 Review native scope, untrusted Markdown preview, IPC, Save, recovery storage and residual-race messaging against `specs/002-section-editing-recovery/contracts/editing-ipc.md`; record findings and fixes in `specs/002-section-editing-recovery/evidence.md`.
 - [x] T034 Update `specs/002-section-editing-recovery/evidence.md` with requirement-to-test traceability and `.agents/state.md` with exact remaining work; resume F003D T023 only when F004 dirty/conflict API exists.
 
 ## Audit regressions — 2026-09-28
 
 - [x] T035 Add failing regressions for a NUL-containing draft, leaked Save stage after source removal, overlapping Quit/disk-discard dialogs and lost Cancel focus; repair the actual Save transaction and modal lifecycle in `src-tauri/src/editing.rs`, `src/app/App.tsx` and `tests/ui/close-edit.test.tsx` (R07–R09/R11/R15). See evidence.md for red and passing results.
-- [ ] T036 Verify recovery-record ownership and cleanup when an active document is reselected at a moved native path; prevent stale recovery records after Save/Discard without deleting a record belonging to another session. Add disposable recovery/reselection integration coverage in `src-tauri/src/recovery.rs` and the active feature's tests (R13/R14). Current same-path reselection tests do not cover moved-path cleanup.
-- [ ] T037 Complete F004-R16 moved-path recovery acceptance for active explicit files, active root files, and cold session root/file reselection in a disposable packaged app; record ten move sequences, Save/Discard cleanup and competing-record preservation in `specs/002-section-editing-recovery/evidence.md` (AS-018; SC-008).
-- [ ] T038 Complete F004-R17 retained safety-copy storage acceptance: verify 1 GiB pre-save stop, resolved/unresolved inventory and separate EN/ES confirmed cleanup without repository writes in ten disposable packaged trials; record results in `specs/002-section-editing-recovery/evidence.md` (AS-019; SC-009).
+- [x] T036 Verify recovery-record ownership and cleanup when an active document is reselected at a moved native path; prevent stale recovery records after Save/Discard without deleting a record belonging to another session. Add disposable recovery/reselection integration coverage in `src-tauri/src/recovery.rs` and the active feature's tests (R13/R14). Current same-path reselection tests do not cover moved-path cleanup. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T037 Complete F004-R16 moved-path recovery acceptance for active explicit files, active root files, and cold session root/file reselection in a disposable packaged app; record ten move sequences, Save/Discard cleanup and competing-record preservation in `specs/002-section-editing-recovery/evidence.md` (AS-018; SC-008). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
+- [x] T038 Complete F004-R17 retained safety-copy storage acceptance: verify 1 GiB pre-save stop, resolved/unresolved inventory and separate EN/ES confirmed cleanup without repository writes in ten disposable packaged trials; record results in `specs/002-section-editing-recovery/evidence.md` (AS-019; SC-009). **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**
 
 ## Dependencies and execution order
 
@@ -109,3 +111,13 @@ description: "Dependency-ordered F004 section editing and recovery implementatio
 ## Implementation strategy
 
 Start with US1 as the smallest independently demonstrable slice, then add explicit safe Save and Save As (US2), then recovery and native quit (US3). Keep F003C as a separate approval/implementation track. No task authorizes committing, publishing, changing system security, or using real user documents as fixtures.
+
+Current scope: CRLF Save acceptance/QA-0017 deferred by user; no CRLF repair/retest task is required now. See [decision](../../docs/macos-crlf-save-deferral-20261008.md). Other tasks unchanged.
+
+
+## HTML read-only boundary — 2026-10-08
+
+F002-H01: standalone HTML never enters Markdown section editing, dirty buffers or editing/recovery journals. Existing Markdown behavior is preserved. Session validation/checkpoint explicitly refuses HTML editing/recovery payloads; HTML routes through its own read-only provider. Canonical architecture: [F001 amendment](../001-workspace-reader/html-native-amendment-20261008.md); actual API and evidence: [native handoff](../../os-engineering/html-frontend-handoff.md) and [report](../../os-engineering/html-report-20261008.md). Native tests cover the rejection; frontend production routing remains receiving work. No HTML source editor is authorized.
+
+- [X] HN-E01 Preserve Markdown-only edit/recovery and reject HTML session editing/recovery payloads; native suite PASS.
+- [x] HN-E02 Verify receiving frontend never exposes edit/source actions for HTML in complete packaged routing. **Closed by user acceptance of the current state (2026-10-10); no additional execution claimed.**

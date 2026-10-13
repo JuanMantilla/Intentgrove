@@ -1,0 +1,7 @@
+# Actual capability boundaries
+
+macOS27.0.1 arm64, real WKWebView debug candidate, unique compiled identifier/incognito main. CUA semantic UI, native picker, editing, keyboard, AX and screenshot save available. Drag/scroll fail -10005 noWindowsAvailable. Two observations failed ScreenCaptureKit -3811; AX retries recovered. Native Settings excluded: auxiliary WebKit window does not have proven profile isolation, so native Folio/Atlas blocked.
+
+Chrome extension headed fixture: actual App renderer, synthetic native bridge; DOM/style reading, locators, viewport and screenshot available. No live VoiceOver audio/caption verification capability. Native AX is not a screen reader test. Zoom shortcuts left scale1; native Chrome menu Zoom In existed but action was interrupted by provider user-state change. No verified200% session.
+
+Sandbox loopback EPERM resolved via authorized server escalation. Initial5191 overlay blank because native navigation permits only5173; corrected supported port, no bypass. No app source edited. Native first Quit Keep confirmed App quit. Final Quit failure happened AFTER HMR drift and is excluded from original-candidate verdict. Run app41333 terminated with TERM after failed quit; installed37537 retained; Vite45129 stopped. QA tab closed, viewport reset. Fixture root and ignored file restored. Profiles/evidence retained; no OS permissions, dependency installs, cleanup worker, commits or deployment.

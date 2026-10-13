@@ -1,6 +1,7 @@
+import { projectAction } from "./project-navigation-helpers";
 // @vitest-environment jsdom
 import { afterEach, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../../src/app/App";
 const mocks = vi.hoisted(() => ({ selectRoot: vi.fn(), selectFile: vi.fn(), listEntries: vi.fn(), readDocument: vi.fn(),
   listEditSections: vi.fn(), beginSectionEdit: vi.fn(), saveSectionEdit: vi.fn() }));
@@ -23,7 +24,7 @@ it("composes the Windows read-only interface and Ctrl picker without invoking ed
   await waitFor(() => expect(mocks.selectFile).toHaveBeenCalledTimes(1));
   fireEvent.keyDown(window, { key: "o", metaKey: true });
   expect(mocks.selectFile).toHaveBeenCalledTimes(1);
-  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "Open folder" }));
+  fireEvent.click(projectAction("Open folder"));
   fireEvent.click(await screen.findByTitle("a.md"));
   const edit = await screen.findByRole("button", { name: "Edit section" });
   expect((edit as HTMLButtonElement).disabled).toBe(true);

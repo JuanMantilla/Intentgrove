@@ -1,0 +1,9 @@
+{
+  "file": "/Users/juanmantilla/projects/personal/md-reader/frontend-implementation/evidence/revision-20261010/native-fixtures/cancel.md",
+  "sha256": "e35bd5987ff536678dee91b329cf10a30cd4ed4729d9c5b6aa1890c5364fcfbf",
+  "exact_expected_bytes": false,
+  "bytes": "# Native validation\n\nA disposable document for layout validation.\n\n## Search section\n\nvalidationneedle cancel\\-fixture document match.\n\n## Another section\n\nKeep this reading content visible.\n",
+  "exact_existing_serializer_bytes": true,
+  "only_edited_section_changed": true,
+  "note": "Existing rich editor serializer escapes the literal hyphen as \\-; the unescaped byte expectation was false. Rendered text is cancel-fixture. No persistence/serialization code was changed."
+}

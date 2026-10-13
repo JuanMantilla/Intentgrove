@@ -12,3 +12,8 @@ libc = "0.2"
 
 [dev-dependencies]
 skrifa = "=0.44.0"
+
+[lib]
+name = "md_reader_raster"
+path = "src/lib.rs"
+crate-type = ["staticlib", "rlib"]

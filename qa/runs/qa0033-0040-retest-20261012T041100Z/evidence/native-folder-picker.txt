@@ -1,0 +1,17 @@
+The following is a diff from the previous accessibility tree for Window: "Intentgrove QA0033-0040" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 57-69
+~	52 scroll area
+~		53 HTML content Description: Intentgrove, URL: tauri://localhost
+~			54 container New Markdown file
+~				55 heading New Markdown file, Value: 2
+~					56 text New Markdown file
++				57 button Cancel
++				58 container
++					59 text Name your file and choose where it belongs. Filename
++					60 text field (settable) Filename, Value: replacement
++					61 text The .md extension is added once. replacement.md Destination
++					62 container Destination
++						63 text Choose a folder to save your file.
++					64 button Choose folder…
++					65 button (disabled) Create file
+The focused UI element is 60 text field (settable) Filename, Value: replacement

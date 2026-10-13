@@ -1,0 +1,25 @@
+{
+  "attach": {
+    "exitCode": 0,
+    "output": "expected   CRC32 $48DBE823\n/dev/disk4          \tGUID_partition_scheme          \t\n/dev/disk4s1        \tApple_APFS                     \t\n/dev/disk5          \tEF57347C-0000-11AA-AA11-0030654\t\n/dev/disk5s1        \t41504653-0000-11AA-AA11-0030654\t/private/tmp/intentgrove-completion-mount-_i44vyhj\nhdiutil: WARNING: 'hdiutil attach -readonly -nobrowse -mountpoint ...' is deprecated. Please use 'diskutil image attach --readOnly --mountOptions nobrowse --mountPoint ...' instead.\n"
+  },
+  "applicationsSymlink": "/Applications",
+  "binaries": {
+    "Contents/MacOS/md_reader": "ab2ed29169110f1d4bf9be3038599ac9ea043af50719046a4de662c5ca49715d",
+    "Contents/XPCServices/ImageDecoder.xpc/Contents/MacOS/md_reader_image_xpc": "9b7f470dc7ae63050e12ef5602b4e87b4e6211d722212dadb9ea1c41a5b6981d",
+    "Contents/Helpers/DiagramRenderer.app/Contents/MacOS/DiagramRenderer": "e44b74985c69a0063725f209d67771b61b3c2d7ff6bf06dfb25cbc3514e52690"
+  },
+  "strictSignature": {
+    "exitCode": 0,
+    "output": ""
+  },
+  "mountFlags": " (apfs, local, nodev, nosuid, read-only, journaled, noowners, nobrowse, mounted by juanmantilla)",
+  "contents": [
+    "Intentgrove.app",
+    "Applications"
+  ],
+  "detach": {
+    "exitCode": 0,
+    "output": "\"disk4\" ejected.\nhdiutil: WARNING: 'hdiutil detach ...' is deprecated. Please use 'diskutil eject ...' instead.\n"
+  }
+}

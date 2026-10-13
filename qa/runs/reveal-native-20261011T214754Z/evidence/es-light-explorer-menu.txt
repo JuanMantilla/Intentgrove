@@ -1,0 +1,103 @@
+Window: "Intentgrove Reveal QA", App: Intentgrove Reveal QA.
+0 standard window Intentgrove Reveal QA, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 text Theonira / Intentgrove Solo archivos locales
+				5 button Apariencia
+				6 text Idioma
+				7 pop up button (collapsed) Idioma, Value: ES, Secondary Actions: Expand
+				8 button Ajustes
+			9 button (expanded) Proyectos, Secondary Actions: Collapse
+			10 container Archivos visitados
+				11 button Atrás, Help: Atrás: one.md
+/Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+				12 button (disabled) Adelante, Help: No hay archivo siguiente
+			13 tab group (selectable) Documentos
+				14 container
+					15 tab (selectable) active.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/active.md
+					16 button Cerrar pestaña: active.md, Help: Cerrar pestaña
+				17 container
+					18 tab (selectable) inactive.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/inactive.md
+					19 button Cerrar pestaña: inactive.md, Help: Cerrar pestaña
+				20 container
+					21 tab (selectable) café "quote" 'single' $ & # % (draft),.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					22 button Cerrar pestaña: café "quote" 'single' $ & # % (draft),.md, Help: Cerrar pestaña
+				23 container
+					24 tab (selectable) unopened.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/unopened.md
+					25 button Cerrar pestaña: unopened.md, Help: Cerrar pestaña
+				26 container
+					27 tab (selectable) one.md · Sin guardar, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/one.md
+					28 button Cerrar pestaña: one.md, Help: Cerrar pestaña
+				29 container
+					30 tab (selectable) two.md, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/individual files/two.md
+					31 button Cerrar pestaña: two.md, Help: Cerrar pestaña
+				32 container
+					33 tab (selected) delete.md · Falta este archivo, Help: /Users/juanmantilla/projects/personal/md-reader/qa/runs/reveal-native-20261011T214754Z/fixtures/delete.md
+					34 button Cerrar pestaña: delete.md, Help: Cerrar pestaña
+			35 pop up button Menú Ir
+			36 button (collapsed) Documentos abiertos (7), Secondary Actions: Expand
+			37 container Explorador
+				38 pop up button PROYECTOS
+				39 button Cerrar barra lateral de Proyectos
+				40 button Abrir archivo
+				41 button Abrir carpeta
+				42 button Buscar en la carpeta
+				43 text fixtures
+				44 container
+					45 button active.md
+					46 button delete-renamed.md
+					47 button inactive.md
+					48 button (expanded) nested space café # $ & % (dir),, Secondary Actions: Collapse
+					49 button café "quote" 'single' $ & # % (draft),.md, Help: nested space café # $ & % (dir),/café "quote" 'single' $ & # % (draft),.md
+					50 button rename-moved.md
+					51 button replace-original.md
+					52 button replace.md
+					53 button unopened.md
+				54 text Almacenamiento y recuperación
+				55 text Ediciones abiertas y avisos de recuperación: 1
+				56 button Gestionar…
+				57 button Ajustes…
+			58 container
+				59 text Ruta copiada
+				60 button Cerrar aviso
+				61 container delete.md
+					62 container delete.md
+						63 text delete.md
+					64 button Buscar en el documento
+					65 toggle button Índice, Value: on
+					66 button (collapsed) Ajustes de lectura, Secondary Actions: Expand
+					67 button Editar sección
+					68 summary Documento…, Value: off
+						69 text Documento…
+					70 text Raíz de la carpeta
+				71 container delete.md
+					72 container
+						73 text Falta este archivo
+						74 button Reintentar
+					75 container QA delete.md
+						76 container Editar sección: QA delete.md
+							77 heading QA delete.md, Value: 1
+								78 text QA delete.md
+							79 button Editar sección «QA delete.md»
+						80 text Disposable Reveal fixture.
+				81 container Índice
+					82 text ÍNDICE
+					83 button Cerrar índice
+					84 container Índice
+						85 content list
+							86 button QA delete.md
+			87 container
+				88 text delete.md Intentgrove by Theonira
+	89 close button
+	90 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	91 minimize button
+	92 text Intentgrove Reveal QA
+93 menu bar
+	94 Intentgrove Reveal QA
+	95 File
+	96 Edit
+	97 View
+	98 Ir
+	99 Window
+	100 Help

@@ -1,0 +1,71 @@
+{
+  "recordedUTC": "2026-10-08T21:38:45.559000+00:00",
+  "userAuthorization": "Exclude the seven blocked checks; retain all three defects",
+  "excludedCheckIDs": [
+    "DOCK-MATRIX",
+    "TITLE-CLEAN-MATRIX",
+    "SEARCH-TIMING-DEFAULT",
+    "CF48-KEYBOARD-SEARCH-JOURNEYS",
+    "CURRENT-INSTALL-ROLLBACK",
+    "CURRENT-NATIVE-OPEN-DROPS",
+    "FIND-VISIBLE-GEOMETRY"
+  ],
+  "retainedFindingIDs": [
+    "QA-0017",
+    "QA-0018",
+    "QA-0019"
+  ],
+  "sourceLedger": "qa/runs/macos-remaining-20261008/native-final-20261008/coverage.json",
+  "historicalChecks": [
+    {
+      "id": "DOCK-MATRIX",
+      "case": "Remaining actual Dock Quit/reopen compound repetitions",
+      "status": "BLOCKED",
+      "reason": "Two direct Dock CUA probes timeoutReached; user declined remaining nine operator cycles. One actual Quit Cancel passed. One clean reopen gesture pending."
+    },
+    {
+      "id": "TITLE-CLEAN-MATRIX",
+      "case": "Ten visible clean title Close \u2192 actual Dock reopen journeys",
+      "status": "BLOCKED",
+      "reason": "One no-window geometry observed with process retained; CUA can expose hidden AX and stale screenshot. No repeated visible actual Dock reopening proof. Earlier title outcome rows are disk/AX constituents only."
+    },
+    {
+      "id": "SEARCH-TIMING-DEFAULT",
+      "case": "Exact default production Stop latency measurement",
+      "status": "BLOCKED",
+      "reason": "Default package lacks authenticated measurement channel; trusted same-source QA timing is separate supporting evidence. Tool-call duration excluded."
+    },
+    {
+      "id": "CF48-KEYBOARD-SEARCH-JOURNEYS",
+      "case": "All start/result-open/toggle/Stop/empty/error/close keyboard journeys EN/ES each exact width",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Exact visible-window geometry regressed to zero System Events windows; full sequential keyboard search journeys at all6locale/width combinations are not demonstrated. Actual Dock visibility needed; static/focus constituents separate."
+    },
+    {
+      "id": "CURRENT-INSTALL-ROLLBACK",
+      "case": "Install latest frozen package, ten ordinary launches and reversible uninstall/rollback",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Installed Applications app and DMG remain b7 historical candidate. Finder initial access works intermittently, then cgWindowNotFound on native fixture action. No latest install/rollback acceptance inferred."
+    },
+    {
+      "id": "CURRENT-NATIVE-OPEN-DROPS",
+      "case": "Current-candidate Finder Open With and real file/folder/Settings drops, required repetitions",
+      "status": "BLOCKED",
+      "evidence": [],
+      "reason": "Finder native action cgWindowNotFound. Current actual fixture drop requested; historical b7 passes separate."
+    },
+    {
+      "id": "FIND-VISIBLE-GEOMETRY",
+      "case": "Find control painting/visible geometry discrepancy",
+      "status": "BLOCKED",
+      "evidence": [
+        "evidence/document-find-reopen-empty-640.jpg",
+        "evidence/document-find-no-matches-640.jpg"
+      ],
+      "reason": "CUA shows blank allocated control strip while AX responds; System Events again zero windows. No product defect attributed without actual visible-window verification."
+    }
+  ],
+  "scope": "Acceptance gate exclusion only; not PASS, defect closure, source change or release approval."
+}

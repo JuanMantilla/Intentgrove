@@ -1,0 +1,20 @@
+--- /Users/juanmantilla/projects/personal/md-reader/qa/runs/interactive-prototype-v1-phase-3/baseline/src-tauri/src/assets.rs
++++ /Users/juanmantilla/projects/personal/md-reader/src-tauri/src/assets.rs
+@@ -184,6 +184,8 @@
+             "anchor"
+         } else if image_format(&grant.name).is_some() {
+             "image"
++        } else if crate::scope::prototype_name(&grant.name) {
++            "prototype"
+         } else if crate::scope::html_name(&grant.name) {
+             "html"
+         } else {
+@@ -242,6 +244,8 @@
+     Ok(LinkResponse {
+         kind: if is_image {
+             "image"
++        } else if crate::scope::prototype_name(&grant.name) {
++            "prototype"
+         } else if crate::scope::html_name(&grant.name) {
+             "html"
+         } else if markdown_name(&grant.name) {

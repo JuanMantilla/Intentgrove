@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "app": "/Users/juanmantilla/projects/personal/md-reader/src-tauri/target/release/bundle/macos/Intentgrove.app",
+  "executable_sha256": "8298a481d3968f257a4895b83ec598e75aa44ff06b44832e80ed2751177e8daa",
+  "plist_sha256": "6206f183787f6d1321c5c8244cc8e33c4f29ca16d95e6f9a9463f288936c560a",
+  "checks": {
+    "signature": {
+      "exit": 0,
+      "output": ""
+    },
+    "disabled_cli": {
+      "exit": 4,
+      "output": "Markdown consent requires an eligible production Intentgrove.app.\n"
+    },
+    "disabled_script": {
+      "exit": 4,
+      "output": "Markdown consent requires an eligible production Intentgrove.app.\n"
+    }
+  },
+  "scope": "Disabled consent mode only; no real associations requested"
+}

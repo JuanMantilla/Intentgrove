@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "task_id": "document-select-all-20261011",
+  "acceptance_version": "implementation-handoff-v1-20261012T000200Z",
+  "session_kind": "qa",
+  "qa_result": "QA_FAILED",
+  "task_state": "AWAITING_ACCEPTANCE",
+  "unresolved_blockers": [
+    "Current full-suite regression is not clean: intermittent reader-position assertion and New Markdown dialog timeout; isolated checks pass, causes unresolved."
+  ],
+  "required_checks": [
+    {
+      "id": "requested-selection-behavior",
+      "result": "PASS",
+      "reason": "All four requested behaviors observed in real Chrome actual-App fixture; native file bridge synthetic.",
+      "finished_at": "2026-10-12T00:01:02.710933+00:00",
+      "evidence_paths": [
+        "qa/runs/document-select-all-20261011/browser-observations-final.json",
+        "qa/runs/document-select-all-20261011/long-document-selection-final.png",
+        "qa/runs/document-select-all-20261011/editor-document-selection-final.png",
+        "qa/runs/document-select-all-20261011/coverage.json"
+      ]
+    },
+    {
+      "id": "focused-regressions",
+      "result": "PASS",
+      "reason": "Nine new selection regressions plus affected editor-menu/appearance checks: 22 pass across three suites.",
+      "finished_at": "2026-10-12T00:01:02.710933+00:00",
+      "evidence_paths": [
+        "qa/runs/document-select-all-20261011/regression-focused-final.log"
+      ]
+    },
+    {
+      "id": "active-full-regression",
+      "result": "FAIL",
+      "reason": "Two final-input full current-suite attempts each669PASS/1FAIL; different failures pass isolated but causes remain unresolved.",
+      "finished_at": "2026-10-12T00:01:02.710933+00:00",
+      "evidence_paths": [
+        "qa/runs/document-select-all-20261011/frontend-suite-final.log",
+        "qa/runs/document-select-all-20261011/frontend-suite-confirmation.log",
+        "qa/runs/document-select-all-20261011/new-markdown-isolated.log",
+        "qa/runs/document-select-all-20261011/regression-focused-final.log"
+      ]
+    },
+    {
+      "id": "type-build",
+      "result": "PASS",
+      "reason": "Final npm run build completed successfully (TypeScript and Vite).",
+      "finished_at": "2026-10-12T00:01:02.710933+00:00",
+      "evidence_paths": [
+        "qa/runs/document-select-all-20261011/build-final.log"
+      ]
+    },
+    {
+      "id": "input-diff-integrity",
+      "result": "PASS",
+      "reason": "204 tested source/config/input hashes unchanged; git diff --check exit0.",
+      "finished_at": "2026-10-12T00:01:02.710933+00:00",
+      "evidence_paths": [
+        "qa/runs/document-select-all-20261011/input-integrity.json",
+        "qa/runs/document-select-all-20261011/diff-check.log"
+      ]
+    }
+  ],
+  "final_report": "qa/runs/document-select-all-20261011/report.md",
+  "evidence_paths": [
+    "qa/runs/document-select-all-20261011/evidence-index.md",
+    "qa/runs/document-select-all-20261011/coverage.json"
+  ],
+  "tested_snapshot_path": "qa/runs/document-select-all-20261011/tested-snapshot-final.json",
+  "artifact_paths": [
+    "qa/runs/document-select-all-20261011/browser-observations-final.json",
+    "qa/runs/document-select-all-20261011/browser-observations.json",
+    "qa/runs/document-select-all-20261011/build-final.log",
+    "qa/runs/document-select-all-20261011/build.log",
+    "qa/runs/document-select-all-20261011/coverage.json",
+    "qa/runs/document-select-all-20261011/diagnostic.log",
+    "qa/runs/document-select-all-20261011/diff-check.log",
+    "qa/runs/document-select-all-20261011/editor-document-selection-final.png",
+    "qa/runs/document-select-all-20261011/editor-document-selection.png",
+    "qa/runs/document-select-all-20261011/evidence-index.md",
+    "qa/runs/document-select-all-20261011/focused-v1.log",
+    "qa/runs/document-select-all-20261011/focused-v2.log",
+    "qa/runs/document-select-all-20261011/focused-v3.log",
+    "qa/runs/document-select-all-20261011/focused-v4.log",
+    "qa/runs/document-select-all-20261011/frontend-suite-confirmation.log",
+    "qa/runs/document-select-all-20261011/frontend-suite-final.log",
+    "qa/runs/document-select-all-20261011/full-suite.log",
+    "qa/runs/document-select-all-20261011/input-integrity.json",
+    "qa/runs/document-select-all-20261011/long-document-selection-final.png",
+    "qa/runs/document-select-all-20261011/long-document-selection.png",
+    "qa/runs/document-select-all-20261011/new-markdown-isolated.log",
+    "qa/runs/document-select-all-20261011/regression-focused-final.log",
+    "qa/runs/document-select-all-20261011/report.md",
+    "qa/runs/document-select-all-20261011/requirements.md",
+    "qa/runs/document-select-all-20261011/snapshot-final.log",
+    "qa/runs/document-select-all-20261011/snapshot-v2.log",
+    "qa/runs/document-select-all-20261011/snapshot-v3.log",
+    "qa/runs/document-select-all-20261011/snapshot-v4.log",
+    "qa/runs/document-select-all-20261011/tested-paths.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-final.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v1.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v2.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v3.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v4.json",
+    "frontend-implementation/document-select-all-20261011-report.md"
+  ],
+  "retain_paths": [
+    "qa/runs/document-select-all-20261011/browser-observations-final.json",
+    "qa/runs/document-select-all-20261011/browser-observations.json",
+    "qa/runs/document-select-all-20261011/build-final.log",
+    "qa/runs/document-select-all-20261011/build.log",
+    "qa/runs/document-select-all-20261011/coverage.json",
+    "qa/runs/document-select-all-20261011/diagnostic.log",
+    "qa/runs/document-select-all-20261011/diff-check.log",
+    "qa/runs/document-select-all-20261011/editor-document-selection-final.png",
+    "qa/runs/document-select-all-20261011/editor-document-selection.png",
+    "qa/runs/document-select-all-20261011/evidence-index.md",
+    "qa/runs/document-select-all-20261011/focused-v1.log",
+    "qa/runs/document-select-all-20261011/focused-v2.log",
+    "qa/runs/document-select-all-20261011/focused-v3.log",
+    "qa/runs/document-select-all-20261011/focused-v4.log",
+    "qa/runs/document-select-all-20261011/frontend-suite-confirmation.log",
+    "qa/runs/document-select-all-20261011/frontend-suite-final.log",
+    "qa/runs/document-select-all-20261011/full-suite.log",
+    "qa/runs/document-select-all-20261011/input-integrity.json",
+    "qa/runs/document-select-all-20261011/long-document-selection-final.png",
+    "qa/runs/document-select-all-20261011/long-document-selection.png",
+    "qa/runs/document-select-all-20261011/new-markdown-isolated.log",
+    "qa/runs/document-select-all-20261011/regression-focused-final.log",
+    "qa/runs/document-select-all-20261011/report.md",
+    "qa/runs/document-select-all-20261011/requirements.md",
+    "qa/runs/document-select-all-20261011/snapshot-final.log",
+    "qa/runs/document-select-all-20261011/snapshot-v2.log",
+    "qa/runs/document-select-all-20261011/snapshot-v3.log",
+    "qa/runs/document-select-all-20261011/snapshot-v4.log",
+    "qa/runs/document-select-all-20261011/tested-paths.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-final.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v1.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v2.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v3.json",
+    "qa/runs/document-select-all-20261011/tested-snapshot-v4.json",
+    "src/app/App.tsx",
+    "src/reader/MarkdownView.tsx",
+    "src/reader/document-selection.ts",
+    "src/styles/app.css",
+    "tests/ui/document-select-all.test.tsx",
+    "tests/ui/section-context-menu.test.tsx",
+    "frontend-implementation/document-select-all-20261011-report.md",
+    ".agents/state.md",
+    "frontend-implementation/STATE.md"
+  ],
+  "requirements_source_paths": [
+    "AGENTS.md",
+    "qa/runs/document-select-all-20261011/requirements.md"
+  ],
+  "completion_requirements": [
+    {
+      "requirement": "User reviews/accepts the implementation; acceptance remains pending and does not follow from test results.",
+      "source_path": "qa/runs/document-select-all-20261011/requirements.md",
+      "evidence_path": "qa/runs/document-select-all-20261011/report.md",
+      "satisfied": false
+    }
+  ]
+}

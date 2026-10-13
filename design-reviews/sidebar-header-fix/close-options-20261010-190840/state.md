@@ -1,0 +1,3 @@
+# Projects close-control options
+
+PROPOSED — READY FOR DESIGN REVIEW. Three options requested: fine square cross (recommended), circular cross, panel-hide icon. Original proposal preserved. New comparison and individual native VectorCraft/PNG/SVG designs, HTML review and handoff saved under /Users/juanmantilla/projects/personal/md-reader/design-reviews/sidebar-header-fix/close-options-20261010-190840. Four exported PNGs visually inspected; comparison native reopen/re-export identical; fonts resolve; XML/assets/script checked. HTML browser rendering blocked by prior file-URL policy rejection; runtime behavior untested. No source changes, cleanup or publishing. Next: user selects an option and explicitly approves design before implementation.

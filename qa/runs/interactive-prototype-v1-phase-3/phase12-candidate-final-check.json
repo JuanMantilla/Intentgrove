@@ -1,0 +1,18 @@
+{
+  "name": "phase12-candidate",
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "qa/runs/interactive-prototype-v1-phase-3/prototype-crates-candidate/crates/Cargo.toml",
+    "--offline",
+    "--locked",
+    "--workspace"
+  ],
+  "cwd": "/Users/juanmantilla/projects/personal/md-reader",
+  "started_at": "2026-10-12T03:24:26.587993+00:00",
+  "finished_at": "2026-10-12T03:24:31.830943+00:00",
+  "exit_code": 0,
+  "log": "phase12-candidate.log",
+  "tested_snapshot": "tested-snapshot-v6.json"
+}

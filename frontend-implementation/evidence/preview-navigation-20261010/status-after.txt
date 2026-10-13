@@ -1,0 +1,297 @@
+ M .agents/state.md
+ M design-reviews/03-10-27-01/proposals/STATE.md
+ M design-reviews/03-10-27-01/proposals/frontend-handoff.md
+ M design-reviews/03-10-27-01/proposals/index.html
+ M design-reviews/03-10-27-01/proposals/interaction-spec.md
+ M design-reviews/03-10-27-01/proposals/mockups/02-in-place-editing.svg
+ M design-reviews/03-10-27-01/proposals/revision-record.json
+ M docs/approvals.md
+ M docs/product-brief.md
+ M frontend-implementation/STATE.md
+ M frontend-implementation/integration-decisions-20261006.md
+ M frontend-implementation/integration-requests.md
+ M frontend-implementation/plan.md
+ M frontend-implementation/report.md
+ M os-engineering/STATE.md
+ M os-engineering/plan.md
+ M os-engineering/report.md
+ M package-lock.json
+ M package.json
+ M qa/STATE.md
+ M specs/001-workspace-reader/plan.md
+ M specs/001-workspace-reader/spec.md
+ M specs/001-workspace-reader/tasks.md
+ M specs/001-workspace-reader/verification.md
+ M specs/002-section-editing-recovery/design.md
+ M specs/002-section-editing-recovery/plan.md
+ M specs/002-section-editing-recovery/spec.md
+ M specs/002-section-editing-recovery/tasks.md
+ M specs/004-restore-workspace-session/plan.md
+ M specs/004-restore-workspace-session/spec.md
+ M specs/004-restore-workspace-session/tasks.md
+ M specs/004-restore-workspace-session/verification.md
+ M specs/005-external-change-refresh/plan.md
+ M specs/005-external-change-refresh/spec.md
+ M specs/005-external-change-refresh/tasks.md
+ M specs/006-view-local-images/plan.md
+ M specs/006-view-local-images/spec.md
+ M specs/006-view-local-images/tasks.md
+ M specs/006-view-local-images/verification.md
+ M specs/008-rich-reading/tasks.md
+ M specs/008-rich-reading/verification.md
+ M specs/009-folder-search/plan.md
+ M specs/009-folder-search/spec.md
+ M specs/009-folder-search/tasks.md
+ M specs/009-folder-search/verification.md
+ M specs/010-recent-items/plan.md
+ M specs/010-recent-items/spec.md
+ M specs/010-recent-items/tasks.md
+ M specs/010-recent-items/verification.md
+ M specs/012-macos-delivery/plan.md
+ M specs/012-macos-delivery/spec.md
+ M specs/012-macos-delivery/tasks.md
+ M specs/012-macos-delivery/verification.md
+ M specs/013-windows-desktop/plan.md
+ M specs/013-windows-desktop/spec.md
+ M specs/013-windows-desktop/tasks.md
+ M src-tauri/Cargo.lock
+ M src-tauri/Cargo.toml
+ M src-tauri/build.rs
+ M src-tauri/src/acceptance_harness.rs
+ M src-tauri/src/assets.rs
+ M src-tauri/src/document.rs
+ M src-tauri/src/editing.rs
+ M src-tauri/src/image.rs
+ M src-tauri/src/large_source.rs
+ M src-tauri/src/lib.rs
+ M src-tauri/src/listing.rs
+ M src-tauri/src/native_entry.rs
+ M src-tauri/src/platform/macos.rs
+ M src-tauri/src/platform/mod.rs
+ M src-tauri/src/platform/test_support.rs
+ M src-tauri/src/platform/windows.rs
+ M src-tauri/src/platform/windows_path.rs
+ M src-tauri/src/platform/windows_save.rs
+ M src-tauri/src/platform/windows_storage.rs
+ M src-tauri/src/recents.rs
+ M src-tauri/src/recovery.rs
+ M src-tauri/src/refresh.rs
+ M src-tauri/src/save_copies.rs
+ M src-tauri/src/scope.rs
+ M src-tauri/src/search.rs
+ M src-tauri/src/selection.rs
+ M src-tauri/src/session.rs
+ M src-tauri/src/settings.rs
+ M src-tauri/src/state.rs
+ M src-tauri/tauri.conf.json
+ M src-tauri/tests/automatic_refresh.rs
+ M src-tauri/tests/manual_reload.rs
+ M src-tauri/tests/refresh_conflict.rs
+ M src-tauri/tests/refresh_recovery.rs
+ M src-tauri/tests/refresh_version.rs
+ M src-tauri/tests/windows_scoped.rs
+ M src-tauri/xpc/Cargo.toml
+ M src-tauri/xpc/package-app.sh
+ M src-tauri/xpc/src/main.rs
+ M src/app/ActionMenu.tsx
+ M src/app/App.tsx
+ M src/app/DocumentLocation.tsx
+ M src/app/FolderSearchPanel.tsx
+ M src/app/ReadingSettings.tsx
+ M src/app/ReloadFeedback.tsx
+ M src/app/SettingsWindow.tsx
+ M src/app/StorageManagement.tsx
+ M src/app/api.ts
+ M src/app/i18n.ts
+ M src/app/settings-contract.ts
+ M src/app/useSettingsOwner.ts
+ M src/reader/CodeBlock.tsx
+ M src/reader/ImageView.tsx
+ M src/reader/LargeSourceView.tsx
+ M src/reader/MarkdownView.tsx
+ M src/reader/SectionEditor.tsx
+ M src/reader/markdownBudget.worker.ts
+ M src/styles/app.css
+ M tests/acceptance/build_qa.sh
+ M tests/acceptance/check_build_boundary.py
+ M tests/acceptance/qa/bridge.ts
+ M tests/acceptance/qa/main.ts
+ M tests/acceptance/qa/vite.config.ts
+ M tests/fixtures/redesign-preview.tsx
+ M tests/ui/appearance-editor.test.tsx
+ M tests/ui/appearance-operations.test.tsx
+ M tests/ui/approved-navigation.test.tsx
+ M tests/ui/automatic-refresh.test.tsx
+ M tests/ui/close-edit.test.tsx
+ M tests/ui/edit-flow.test.tsx
+ M tests/ui/find.test.tsx
+ M tests/ui/folder-search.test.tsx
+ M tests/ui/frontmatter.test.tsx
+ M tests/ui/image-refresh.test.tsx
+ M tests/ui/image-view.test.tsx
+ M tests/ui/manual-reload.test.tsx
+ M tests/ui/markdown.test.tsx
+ M tests/ui/qa-adapters.test.ts
+ M tests/ui/recents.test.tsx
+ M tests/ui/recovery.test.tsx
+ M tests/ui/refresh-conflict.test.tsx
+ M tests/ui/refresh-recovery.test.tsx
+ M tests/ui/session.test.tsx
+ M tests/ui/settings-window.test.tsx
+ M tests/ui/windows-platform.test.tsx
+ M tests/ui/workspace-handoff.test.tsx
+ M tests/ui/workspace.test.tsx
+ M tests/worker-bundle.mjs
+?? design-reviews/loading-20261009/
+?? docs/approval-records/
+?? docs/macos-acceptance-exclusions-20261008.json
+?? docs/macos-acceptance-exclusions-20261008.md
+?? docs/macos-continuation-approval-20261008.json
+?? docs/macos-continuation-approval-20261008.md
+?? docs/macos-crlf-save-deferral-20261008.md
+?? docs/macos-newer-build-user-testing-20261008.md
+?? docs/macos-sc001-withdrawal-20261008.md
+?? docs/macos-supported-scope-20261008.json
+?? docs/macos-supported-scope-20261008.md
+?? docs/renderer-engine-approval-20261008.json
+?? docs/renderer-process-approval-20261008.json
+?? docs/source-map-remedy-approval-20261008.json
+?? frontend-implementation/evidence/design-alignment-20261009/
+?? frontend-implementation/evidence/folio-context-menu-20261009/
+?? frontend-implementation/evidence/html-20261008/
+?? frontend-implementation/evidence/html-integration-20261008/
+?? frontend-implementation/evidence/in-place-20261008/
+?? frontend-implementation/evidence/in-place-finish-20261008/
+?? frontend-implementation/evidence/loading-20261009/
+?? frontend-implementation/evidence/macos-20261007/
+?? frontend-implementation/evidence/macos-completion-20261008/
+?? frontend-implementation/evidence/macos-finish-20261008/
+?? frontend-implementation/evidence/preview-loading-20261009/
+?? frontend-implementation/evidence/preview-navigation-20261010/
+?? frontend-implementation/evidence/qa0013-settings-20261008/
+?? frontend-implementation/evidence/qa0018-qa0019-20261008/
+?? frontend-implementation/evidence/sidebar-selection-20261009/
+?? frontend-implementation/evidence/tab-focus-20261009/
+?? frontend-implementation/evidence/theonira-themes-20261009/
+?? frontend-implementation/evidence/workspace-layout-native-20261008/
+?? frontend-implementation/evidence/workspace-layouts-20261008/
+?? frontend-implementation/html-native-handoff-20261008.md
+?? frontend-implementation/html-qa-handoff.md
+?? frontend-implementation/in-place-native-request-20261008.md
+?? frontend-implementation/loading-20261009-matrix.md
+?? frontend-implementation/loading-20261009-report.md
+?? frontend-implementation/preview-navigation-20261010-plan.md
+?? frontend-implementation/preview-navigation-20261010-report.md
+?? os-engineering/evidence/html-native-20261008/
+?? os-engineering/evidence/macos-20261007/
+?? os-engineering/evidence/macos-finish-20261008/
+?? os-engineering/evidence/workspace-layout-native-20261008/
+?? os-engineering/html-frontend-handoff.md
+?? os-engineering/html-plan-20261008.md
+?? os-engineering/html-report-20261008.md
+?? os-engineering/macos-20261007-plan.md
+?? os-engineering/macos-20261007-report.md
+?? os-engineering/macos-audit-20261007.md
+?? os-engineering/macos-completion-20261008-report.md
+?? os-engineering/macos-finish-20261008-report.md
+?? public/licenses/MERMAID-DEPENDENCIES.txt
+?? qa/findings/QA-0006.md
+?? qa/findings/QA-0007.md
+?? qa/findings/QA-0008.md
+?? qa/findings/QA-0009.md
+?? qa/findings/QA-0010.md
+?? qa/findings/QA-0011.md
+?? qa/findings/QA-0012.md
+?? qa/findings/QA-0013.md
+?? qa/findings/QA-0014.md
+?? qa/findings/QA-0015.md
+?? qa/findings/QA-0016.md
+?? qa/findings/QA-0017.md
+?? qa/findings/QA-0018.md
+?? qa/findings/QA-0019.md
+?? qa/findings/QA-0020.md
+?? qa/findings/QA-0021.md
+?? qa/findings/QA-0022.md
+?? qa/runs/html-20261008/
+?? qa/runs/macos-20261007/
+?? qa/runs/macos-completion-20261008/
+?? qa/runs/macos-finish-20261008/
+?? qa/runs/macos-remaining-20261008/
+?? scripts/README-mac-profile.txt
+?? scripts/profile-mac-build.py
+?? scripts/tests/
+?? scripts/verify-macos.sh
+?? specs/001-workspace-reader/html-native-amendment-20261008.md
+?? specs/002-section-editing-recovery/verification.md
+?? specs/005-external-change-refresh/verification.md
+?? specs/008-rich-reading/isolation-amendment-20261008.md
+?? specs/008-rich-reading/macos-20261007-rendering.md
+?? specs/008-rich-reading/renderer-engine-addendum-20261008.md
+?? specs/008-rich-reading/renderer-process-amendment-20261008.md
+?? specs/012-macos-delivery/current-readiness-20261007.md
+?? specs/013-windows-desktop/verification.md
+?? src-tauri/diagram/
+?? src-tauri/src/diagram.rs
+?? src-tauri/src/editing_menu.rs
+?? src-tauri/src/html.rs
+?? src-tauri/src/html_broker.rs
+?? src-tauri/src/html_commands.rs
+?? src-tauri/src/html_image_budget.rs
+?? src-tauri/src/html_inspect.js
+?? src-tauri/src/html_native.rs
+?? src-tauri/src/html_probe.rs
+?? src-tauri/src/html_probe_main.rs
+?? src-tauri/src/html_surface.m
+?? src-tauri/src/html_tests.rs
+?? src-tauri/src/html_windows.rs
+?? src-tauri/xpc/src/lib.rs
+?? src/app/SelectChevron.tsx
+?? src/app/WorkspaceIcon.tsx
+?? src/app/htmlBoundary.ts
+?? src/app/htmlController.ts
+?? src/app/htmlNative.ts
+?? src/app/workspaceLayout.ts
+?? src/assets/theonira/
+?? src/reader/DiagramBlock.tsx
+?? src/reader/HtmlView.tsx
+?? src/reader/PreviewLoading.tsx
+?? src/reader/RichCodeText.tsx
+?? src/reader/RichSection.tsx
+?? src/reader/block-budget.ts
+?? src/reader/bounded-parser.ts
+?? src/reader/diagram-host.ts
+?? src/reader/rich-dom.ts
+?? src/reader/rich-selection.ts
+?? src/reader/rich-source.ts
+?? tests/acceptance/diagram/
+?? tests/acceptance/html/
+?? tests/acceptance/qa/bootstrap.ts
+?? tests/acceptance/settings/
+?? tests/diagnostics/
+?? tests/fixtures/diagram-pixels.png
+?? tests/fixtures/html-view/
+?? tests/fixtures/in-place-preview.config.ts
+?? tests/fixtures/loading-preview.html
+?? tests/fixtures/loading-preview.tsx
+?? tests/ui/block-budget.test.ts
+?? tests/ui/bounded-parser.test.ts
+?? tests/ui/diagram-block.test.tsx
+?? tests/ui/diagram-host.test.ts
+?? tests/ui/html-boundary.test.ts
+?? tests/ui/html-controller.test.ts
+?? tests/ui/html-integration.test.tsx
+?? tests/ui/html-unavailable.test.tsx
+?? tests/ui/html-view.test.tsx
+?? tests/ui/listener-cleanup.test.tsx
+?? tests/ui/loading-system.test.tsx
+?? tests/ui/markdown-regions.test.ts
+?? tests/ui/project-navigation-helpers.ts
+?? tests/ui/qa-bootstrap.test.ts
+?? tests/ui/qa-snapshot.test.ts
+?? tests/ui/rich-edit-helpers.ts
+?? tests/ui/rich-range.test.tsx
+?? tests/ui/rich-section.test.tsx
+?? tests/ui/settings-initial-effect.test.tsx
+?? tests/ui/settings-owner-lifecycle.test.tsx
+?? tests/ui/workspace-layout.test.tsx
+?? vitest.config.ts

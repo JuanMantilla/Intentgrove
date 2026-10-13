@@ -1,0 +1,92 @@
+Window: "Intentgrove", App: Intentgrove Final Acceptance 20261008.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text Workspace
+				6 button Settings
+				7 button Open file
+				8 button Open folder
+			9 container
+				10 container Visited files
+					11 button (disabled) Back, Help: No previous file
+					12 button (disabled) Forward, Help: No next file
+				13 tab group (selectable) Documents
+					14 container
+						15 tab (selectable) second.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/second.md
+						16 button Close tab: second.md, Help: Close tab
+					17 container
+						18 tab (selectable) reading.md, Help: /private/tmp/intentgrove-finish-20261008/fixtures/reading.md
+						19 button Close tab: reading.md, Help: Close tab
+					20 container
+						21 tab (selectable) pixel.png, Help: /private/tmp/intentgrove-finish-20261008/fixtures/pixel.png
+						22 button Close tab: pixel.png, Help: Close tab
+					23 container
+						24 tab (selectable) hostile.svg · Unable to confirm latest version, Help: /private/tmp/intentgrove-finish-20261008/fixtures/hostile.svg
+						25 button Close tab: hostile.svg, Help: Close tab
+					26 container
+						27 tab (selected) failure.md · Unsaved · This file changed in another app. Your edit is safe., Help: /private/tmp/intentgrove-finish-20261008/fixtures/save-failure/failure.md
+						28 button Close tab: failure.md, Help: Close tab
+				29 pop up button Go menu
+				30 button (collapsed) Open documents (5), Secondary Actions: Expand
+				31 container failure.md
+					32 text failure.md
+					33 text Outside the open folder
+					34 button (disabled) Save file
+					35 button Return to reading
+					36 text Save returns to reading.
+					37 summary Document…, Value: off
+						38 text Document…
+				39 text The file changed while this draft was stored. Inspect it before saving.
+				40 button Dismiss
+				41 container failure.md
+					42 container
+						43 text This file changed in another app. Your edit is safe. Another app can still write at the exact moment of Save. A recoverable copy is kept.
+						44 button Inspect versions
+						45 button Keep my edit
+						46 button Save a copy
+						47 button Use disk version
+					48 container Editing: Failure
+						49 text Editing: Failure
+						50 text Changes not saved to the file
+						51 text Markdown source
+						52 text entry area (settable) Markdown source: Failure, Secondary Actions: Show Writing Tools, Value: # Failure
+
+Original failure fixture.
+
+retained failed save draft
+
+
+							53 text (settable) # Failure
+							54 text (settable) Original failure fixture.
+							55 text (settable) retained failed save draft
+						56 container Live preview
+							57 text Live preview
+							58 container Failure
+								59 heading Failure, Value: 1
+									60 text Failure
+								61 text Original failure fixture.
+								62 text retained failed save draft
+						63 button Undo
+						64 button (disabled) Redo
+						65 button Discard changes…
+						66 button Save as…
+					67 container Failure
+						68 container Edit section: Failure
+							69 heading Failure, Value: 1
+								70 text Failure
+							71 button Edit section “Failure”
+						72 text Original failure fixture.
+	73 close button
+	74 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	75 minimize button
+	76 text Intentgrove
+77 menu bar
+	78 Intentgrove Final Acceptance 20261008
+	79 File
+	80 Edit
+	81 View
+	82 Go
+	83 Window
+	84 Help

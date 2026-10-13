@@ -1,0 +1,132 @@
+Window: "Intentgrove", App: Intentgrove QA.
+0 standard window Intentgrove, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: Intentgrove, URL: tauri://localhost
+			3 container
+				4 button Toggle sidebar
+				5 text workspace Local files only
+				6 button Settings
+			7 container Explorer
+				8 pop up button Projects
+				9 text workspace
+				10 button Project tree settings
+				11 container
+					12 button busy.md
+					13 button corrupt.png
+					14 button (collapsed) docs, Secondary Actions: Expand
+					15 button edit.md
+					16 button hostile.svg
+					17 button image-security.md
+					18 button large-10m.md
+					19 button large-11m.md
+					20 button large-1m.md
+					21 button linked.md
+					22 button mixed-10m.md
+					23 button mixed-1m.md
+					24 button (collapsed) permissions, Secondary Actions: Expand
+					25 button plain.md
+					26 button qa-image.png
+					27 button rich.md
+				28 text Storage and recovery
+				29 text Open edits and recovery offers: 0
+				30 button Manage…
+			31 container
+				32 container Visited files
+					33 button Back, Help: Back: plain.md
+/private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+					34 button (disabled) Forward, Help: No next file
+				35 tab group (selectable) Documents
+					36 container
+						37 tab (selectable) plain.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/plain.md
+						38 button Close tab: plain.md, Help: Close tab
+					39 container
+						40 tab (selectable) linked.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/linked.md
+						41 button Close tab: linked.md, Help: Close tab
+					42 container
+						43 tab (selectable) alpha-00.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/docs/alpha/alpha-00.md
+						44 button Close tab: alpha-00.md, Help: Close tab
+					45 container
+						46 tab (selected) rich.md, Help: /private/tmp/intentgrove-completion-20261008-20b1a640/workspace/rich.md
+						47 button Close tab: rich.md, Help: Close tab
+				48 pop up button Go menu
+				49 button (collapsed) Open documents (4), Secondary Actions: Expand
+				50 container rich.md
+					51 text rich.md
+					52 text Folder root
+					53 toggle button Outline, Value: off
+					54 button (collapsed) Reading settings, Secondary Actions: Expand
+					55 button Edit section
+					56 summary Document…, Value: off
+						57 text Document…
+				58 container rich.md
+					59 container Reading acceptance
+						60 summary Metadata, Value: off
+							61 text Metadata
+						62 container Edit section: Reading acceptance
+							63 heading Reading acceptance, Value: 1
+								64 text Reading acceptance
+							65 button Edit section “Reading acceptance”
+						66 container
+							67 text Before diagrams. 
+							68 button Reference, Help: linked.md
+							69 text  and encoded footnote
+							70 button 1, Help: #fn-a%2520b
+							71 text .
+						72 text json
+						73 button Copy code
+						74 text {"highlight": true}
+
+						75 image Mermaid diagram
+						76 summary View source, Value: off
+							77 text View source
+						78 text Between diagrams.
+						79 image Mermaid diagram
+						80 summary View source, Value: off
+							81 text View source
+						82 text Diagram unavailable. The source is preserved below.
+						83 container (expanded) Secondary Actions: Collapse
+							84 summary View source, Value: on
+								85 text View source
+							86 text mermaid
+							87 button Copy code
+							88 text flowchart broken
+
+						89 text Diagram unavailable. The source is preserved below.
+						90 container (expanded) Secondary Actions: Collapse
+							91 summary View source, Value: on
+								92 text View source
+							93 text mermaid
+							94 button Copy code
+							95 text %%{init: {securityLevel: "loose"}}%%
+flowchart LR
+ A-->B
+
+						96 text After diagrams.
+						97 container Edit section: Duplicate
+							98 heading Duplicate, Value: 2
+								99 text Duplicate
+							100 button Edit section “Duplicate”
+						101 text First duplicate target.
+						102 container Edit section: Duplicate
+							103 heading Duplicate, Value: 2
+								104 text Duplicate
+							105 button Edit section “Duplicate”
+						106 text Second duplicate target.
+						107 container
+							108 text [1] 
+							109 button ↩, Help: #fnref-a%2520b-1
+						110 text Encoded footnote body.
+	111 close button
+	112 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	113 minimize button
+	114 text Intentgrove
+115 menu bar
+	116 Intentgrove QA
+	117 File
+	118 Edit
+	119 View
+	120 Go
+	121 Window
+	122 Help
+
+The focused UI element is 56 summary Document…, Value: off
